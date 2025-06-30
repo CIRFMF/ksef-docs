@@ -28,7 +28,7 @@ Wersja 2.0 API KSeF została opisana w standardzie OpenAPI, co umożliwia zarów
 
 * **Specyfikacja** (plik JSON OpenAPI):  
   Surowy plik specyfikacji OpenAPI w formacie JSON, przeznaczony do wykorzystania w narzędziach automatyzujących integrację (np. generatory kodu, walidatory kontraktów API).
-  <br> Środowisko testowe (TE): \[[link](https://ksef-test.mf.gov.pl/swagger/v2/swagger.json)\]
+  <br> Środowisko testowe (TE): \[[link](https://ksef-test.mf.gov.pl/docs/v2/openapi.json)\]
   <br> Środowisko produkcyjne (PRD)
 
 **Oficjalna biblioteka integracyjna KSeF 2.0 Client (open source)**
