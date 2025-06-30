@@ -49,7 +49,7 @@ Odpowiedź zwraca challenge i timestamp.
 
 #### 1. Przygotowanie dokumentu XML (AuthTokenRequest)
 
-Po uzyskaniu auth challenge należy przygotować dokument XML zgodny ze schematem [AuthTokenRequest](https://ksef-test.mf.gov.pl/schemas/v2/authv2.xsd), który zostanie wykorzystany w dalszym procesie uwierzytelniania. Dokument ten zawiera:
+Po uzyskaniu auth challenge należy przygotować dokument XML zgodny ze schematem [AuthTokenRequest](https://ksef-test.mf.gov.pl/docs/v2/schemas/authv2.xsd), który zostanie wykorzystany w dalszym procesie uwierzytelniania. Dokument ten zawiera:
 
 
 |    Klucz     |           Wartość                                                                                                                              |
