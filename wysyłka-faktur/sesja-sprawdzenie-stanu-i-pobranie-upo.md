@@ -68,7 +68,7 @@ sessionInvoices.getInvoices().forEach(invoice -> {
     log.info(invoice.getInvoiceNumber() + " " + invoice.getKsefNumber() + " " + invoice.getStatus());
 });
 ```
-### 3. Pobranie informcji o pojedynczej fakturze
+### 3. Pobranie informacji o pojedynczej fakturze
 
 Umożliwia pobranie szczegółowych informacji o pojedynczej fakturze w sesji, w tym jej statusu i metadanych.
 

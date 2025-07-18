@@ -81,7 +81,7 @@ var sendOnlineInvoiceRequest = SendInvoiceOnlineSessionRequestBuilder
        encryptedInvoiceMetadata.HashSHA.Value, encryptedInvoiceMetadata.FileSize)
     .WithEncryptedInvoiceContent(Convert.ToBase64String(encryptedInvoice))
     .Build();
-var sendInvoiceResponse = await kseClient.SendOnlineSessionInvoiceAsync(sendOnlineInvoiceRequest, referenceNumber, accesToken, cancellationToken);
+var sendInvoiceResponse = await ksefClient.SendOnlineSessionInvoiceAsync(sendOnlineInvoiceRequest, referenceNumber, accesToken, cancellationToken);
 ```
 
 Przykład w języku Java:
