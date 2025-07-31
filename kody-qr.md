@@ -14,7 +14,7 @@ W zależności od trybu wystawienia (online czy offline) na wizualizacji faktury
 - w trybie **online** — jeden kod QR (KOD I), umożliwiający weryfikację i pobranie faktury z KSeF,
 - w trybie **offline** — dwa kody QR:
   - **KOD I** do weryfikacji faktury po jej przesłaniu do KSeF,
-  - **KOD II** do potwierdzenia autentyczności wystawcy na podstawie [certyfikatu KSeF](\certyfikaty-KSeF.md).
+  - **KOD II** do potwierdzenia autentyczności wystawcy na podstawie [certyfikatu KSeF](/certyfikaty-KSeF.md).
 
 ### 1. KOD I – Weryfikacja i pobieranie faktury
 
