@@ -15,6 +15,7 @@ W trybie offline faktury wystawiane są elektronicznie, zgodnie z obowiązujący
   * **KOD I** – umożliwia weryfikację faktury w systemie KSeF,  
   * **KOD II** – potwierdza tożsamość wystawcy.  
 * Fakturę korygującą przesyła się dopiero po nadaniu numeru KSeF dokumentowi pierwotnemu.
+* W przypadku gdy przesłana faktura offline zostanie odrzucona z przyczyn technicznych, możliwe jest skorzystanie z mechanizmu [korekty technicznej](/offline/korekta-techniczna.md).
 
 
 ### Zestawienie trybów wystawiania faktur w KSeF – offline24, offline i awaryjny
@@ -56,3 +57,7 @@ W przypadku ogłoszenia awarii całkowitej (środki społecznego przekazu: TV, r
 * Datą wystawienia jest zawsze datą faktyczna wskazana na fakturze a data otrzymania data faktycznego otrzymania faktury zakupu.
 * Faktury z tego trybu nie są opatrywane kodami QR.
 * Faktura korygująca w trakcie trwającej awarii KSeF wystawiana jest analogicznie – poza KSeF, z datą faktyczną.
+
+## Powiązane dokumenty
+- [Korekta techniczna faktury offline](offline/korekta-techniczna.md)
+- [Kody QR](kody-qr.md)  
