@@ -27,6 +27,8 @@ Dozwolone typy certyfikatów w podpisie XAdES:
 * Profil Zaufany (ePUAP) – umożliwia podpisanie dokumentu; wykorzystywany przez osoby fizyczne,
 * Certyfikat wewnętrzny KSeF – wystawiany przez system KSeF. Certyfikat ten nie jest certyfikatem kwalifikowanym, ale jest honorowany w procesie uwierzytelniania.
 
+**Certyfikat kwalifikowany** – certyfikat wydany przez kwalifikowanego dostawcę usług zaufania, wpisanego do unijnego rejestru [EU Trusted List (EUTL)](https://eidas.ec.europa.eu/efda/trust-services/browse/eidas/tls), zgodnie z rozporządzeniem eIDAS. W KSeF akceptowane są certyfikaty kwalifikowane wydane w Polsce oraz w innych państwach członkowskich Unii Europejskiej.
+
 ### Wymagane atrybuty certyfikatów kwalifikowanych
 
 #### Certyfikaty podpisu kwalifikowanego (wydawane dla osób fizycznych)
