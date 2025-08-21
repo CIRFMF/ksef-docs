@@ -1,5 +1,9 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.0 RC4
+- **Status sesji**
+  - Aktualizacja uprawnień. Pobieranie informacji o sesji, fakturach i UPO wymaga uprawnienia: ```InvoiceWrite```.
+
 ### Wersja 2.0.0 RC3
 
 - **Dodanie endpointu do pobierania listy metadanych faktur**  
