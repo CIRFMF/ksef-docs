@@ -5812,8 +5812,7 @@
           "dateRange": {
             "required": [
               "dateType",
-              "from",
-              "to"
+              "from"
             ],
             "allOf": [
               {
@@ -5900,7 +5899,7 @@
           },
           "hasAttachment": {
             "type": "boolean",
-            "description": "[mock] Czy faktura ma załącznik.",
+            "description": "Czy faktura ma załącznik.",
             "nullable": true
           }
         },
@@ -6015,8 +6014,7 @@
       "InvoiceQueryDateRange": {
         "required": [
           "dateType",
-          "from",
-          "to"
+          "from"
         ],
         "type": "object",
         "properties": {
@@ -6036,7 +6034,8 @@
           "to": {
             "type": "string",
             "description": "Data końcowa zakresu.",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -6110,8 +6109,7 @@
           "dateRange": {
             "required": [
               "dateType",
-              "from",
-              "to"
+              "from"
             ],
             "allOf": [
               {
