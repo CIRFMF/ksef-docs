@@ -3234,7 +3234,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryPersonPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":"7762811692","authorizedIdentifierType":"Nip","targetIdentifier":"9786214922","targetIdentifierType":"Nip","authorIdentifier":"15062788702","authorIdentifierType":"Pesel","permissionScope":"InvoiceWrite","description":"Uprawnienie nadane pośrednio","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"page":1,"pageSize":10}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":"7762811692","authorizedIdentifierType":"Nip","targetIdentifier":"9786214922","targetIdentifierType":"Nip","authorIdentifier":"15062788702","authorIdentifierType":"Pesel","permissionScope":"InvoiceWrite","description":"Uprawnienie nadane pośrednio","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"hasMore":false}
               }
             }
           },
@@ -3315,7 +3315,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QuerySubunitPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59","authorizedIdentifierType":"Fingerprint","subunitIdentifier":"7762811692-12345","subunitIdentifierType":"InternalId","authorIdentifier":"15062788702","authorIdentifierType":"Pesel","permissionScope":"CredentialsManage","description":"administrator jednostki podrzędnej","startDate":"2025-06-22T10:41:11+00:00"}],"page":1,"pageSize":10}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59","authorizedIdentifierType":"Fingerprint","subunitIdentifier":"7762811692-12345","subunitIdentifierType":"InternalId","authorIdentifier":"15062788702","authorIdentifierType":"Pesel","permissionScope":"CredentialsManage","description":"administrator jednostki podrzędnej","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -3383,7 +3383,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryEntityRolesResponse"
                 },
-                "example": {"roles":[{"role":"EnforcementAuthority","description":"Organ egzekucyjny","startDate":"2025-06-22T10:41:11+00:00"}],"page":1,"pageSize":10}
+                "example": {"roles":[{"role":"EnforcementAuthority","description":"Organ egzekucyjny","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -3464,7 +3464,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QuerySubordinateEntityRolesResponse"
                 },
-                "example": {"roles":[{"subordinateEntityIdentifier":"7762811692","subordinateEntityIdentifierType":"Nip","role":"VatGroupSubUnit","description":"Członek grupy VAT","startDate":"2025-06-22T10:41:11+00:00"}],"page":1,"pageSize":10}
+                "example": {"roles":[{"subordinateEntityIdentifier":"7762811692","subordinateEntityIdentifierType":"Nip","role":"VatGroupSubUnit","description":"Członek grupy VAT","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -3549,7 +3549,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryEntityAuthorizationPermissionsResponse"
                 },
-                "example": {"authorizationGrants":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":"15062788702","authorIdentifierType":"Pesel","authorizedEntityIdentifier":"7762811692","authorizedEntityIdentifierType":"Nip","authorizingEntityIdentifier":"1134256681","authorizingEntityIdentifierType":"Nip","authorizationScope":"SelfInvoicing","description":"Uprawnienie podmiotowe do samofakturowania","startDate":"2025-06-22T10:41:11+00:00"}],"page":1,"pageSize":10}
+                "example": {"authorizationGrants":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":"15062788702","authorIdentifierType":"Pesel","authorizedEntityIdentifier":"7762811692","authorizedEntityIdentifierType":"Nip","authorizingEntityIdentifier":"1134256681","authorizingEntityIdentifierType":"Nip","authorizationScope":"SelfInvoicing","description":"Uprawnienie podmiotowe do samofakturowania","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -3630,7 +3630,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryEuEntityPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":"15062788702","authorIdentifierType":"Pesel","vatUeIdentifier":"DE123456789012","euEntityName":"Podmiot unijny","authorizedFingerprintIdentifier":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59","permissionScope":"VatUeManage","description":"Administrator podmiotu unijnego","startDate":"2025-06-22T10:41:11+00:00"}],"page":1,"pageSize":10}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":"15062788702","authorIdentifierType":"Pesel","vatUeIdentifier":"DE123456789012","euEntityName":"Podmiot unijny","authorizedFingerprintIdentifier":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59","permissionScope":"VatUeManage","description":"Administrator podmiotu unijnego","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -6936,8 +6936,7 @@
       "QueryEntityAuthorizationPermissionsResponse": {
         "required": [
           "authorizationGrants",
-          "page",
-          "pageSize"
+          "hasMore"
         ],
         "type": "object",
         "properties": {
@@ -6948,23 +6947,16 @@
             },
             "description": "Lista uprawnień."
           },
-          "page": {
-            "type": "integer",
-            "description": "Numer strony.",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "description": "Rozmiar strony.",
-            "format": "int32"
+          "hasMore": {
+            "type": "boolean",
+            "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
         },
         "additionalProperties": false
       },
       "QueryEntityRolesResponse": {
         "required": [
-          "page",
-          "pageSize",
+          "hasMore",
           "roles"
         ],
         "type": "object",
@@ -6976,23 +6968,16 @@
             },
             "description": "Lista ról."
           },
-          "page": {
-            "type": "integer",
-            "description": "Numer strony.",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "description": "Rozmiar strony.",
-            "format": "int32"
+          "hasMore": {
+            "type": "boolean",
+            "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
         },
         "additionalProperties": false
       },
       "QueryEuEntityPermissionsResponse": {
         "required": [
-          "page",
-          "pageSize",
+          "hasMore",
           "permissions"
         ],
         "type": "object",
@@ -7004,15 +6989,9 @@
             },
             "description": "Lista uprawnień."
           },
-          "page": {
-            "type": "integer",
-            "description": "Numer strony.",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "description": "Rozmiar strony.",
-            "format": "int32"
+          "hasMore": {
+            "type": "boolean",
+            "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
         },
         "additionalProperties": false
@@ -7047,8 +7026,7 @@
       },
       "QueryPersonPermissionsResponse": {
         "required": [
-          "page",
-          "pageSize",
+          "hasMore",
           "permissions"
         ],
         "type": "object",
@@ -7060,23 +7038,16 @@
             },
             "description": "Lista uprawnień."
           },
-          "page": {
-            "type": "integer",
-            "description": "Numer strony.",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "description": "Rozmiar strony.",
-            "format": "int32"
+          "hasMore": {
+            "type": "boolean",
+            "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
         },
         "additionalProperties": false
       },
       "QuerySubordinateEntityRolesResponse": {
         "required": [
-          "page",
-          "pageSize",
+          "hasMore",
           "roles"
         ],
         "type": "object",
@@ -7088,23 +7059,16 @@
             },
             "description": "Lista ról."
           },
-          "page": {
-            "type": "integer",
-            "description": "Numer strony.",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "description": "Rozmiar strony.",
-            "format": "int32"
+          "hasMore": {
+            "type": "boolean",
+            "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
         },
         "additionalProperties": false
       },
       "QuerySubunitPermissionsResponse": {
         "required": [
-          "page",
-          "pageSize",
+          "hasMore",
           "permissions"
         ],
         "type": "object",
@@ -7116,15 +7080,9 @@
             },
             "description": "Lista uprawnień."
           },
-          "page": {
-            "type": "integer",
-            "description": "Numer strony.",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "description": "Rozmiar strony.",
-            "format": "int32"
+          "hasMore": {
+            "type": "boolean",
+            "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
         },
         "additionalProperties": false
