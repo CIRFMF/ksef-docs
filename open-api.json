@@ -5534,7 +5534,7 @@
                 "$ref": "#/components/schemas/IndirectPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu, w którego kontekście chcemy pośrednio nadać uprawnienia. W przypadku nadawania uprawnienia generalnego, pole to powinno mieć wartość null.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |",
+            "description": "Identyfikator podmiotu, w którego kontekście chcemy pośrednio nadać uprawnienia. W przypadku nadawania uprawnienia generalnego, pole to powinno mieć wartość null.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
             "nullable": true
           },
           "permissions": {
@@ -5603,12 +5603,11 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu, w którego kontekście chcemy pośrednio nadać uprawnienia. W przypadku nadawania uprawnienia generalnego, pole to powinno mieć wartość null.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
+        "description": "Identyfikator podmiotu, w którego kontekście chcemy pośrednio nadać uprawnienia. W przypadku nadawania uprawnienia generalnego, pole to powinno mieć wartość null.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
       },
       "IndirectPermissionsTargetIdentifierType": {
         "enum": [
-          "Nip",
-          "InternalId"
+          "Nip"
         ],
         "type": "string"
       },
