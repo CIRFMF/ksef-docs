@@ -1,12 +1,15 @@
 ## Certyfikaty KSeF
-27.06.2025
+21.08.2025
 
 ### Wstęp
-Certyfikat KSeF to cyfrowe poświadczenie tożsamości podmiotu, wydawane przez system KSeF na wniosek użytkownika. Certyfikat ten może być wykorzystywany do:
+Certyfikat KSeF to cyfrowe poświadczenie tożsamości podmiotu, wydawane przez system KSeF na wniosek użytkownika.
 
-* uwierzytelniania się w systemie KSeF,
-* realizacji operacji w trybie offline, w tym wystawiania faktur bezpośrednio w aplikacji użytkownika.
+Dostępne są dwa typy certyfikatów:
 
+| Typ              | Opis |
+| ---------------- | ---- |
+| **Authentication** | Certyfikat przeznaczony do uwierzytelniania w systemie KSeF. |
+| **Offline**        | Certyfikat przeznaczony wyłącznie do wystawiania faktur w trybie offline. Używany do potwierdzania autentyczności wystawcy i integralności faktury poprzez [kod QR II](kody-qr.md). Nie umożliwia uwierzytelnienia. |
 
 #### Proces uzyskania certyfikatu
 Proces aplikowania o certyfikat składa się z kilku etapów:
@@ -114,8 +117,9 @@ POST [/certificates/enrollments](https://ksef-test.mf.gov.pl/docs/v2/index.html#
 
 W przesyłanym wniosku należy podać:
 * **nazwę certyfikatu** – widoczną później w metadanych certyfikatu, ułatwiającą identyfikację,
+* **type** – typ certyfikatu (`Authentication` lub `Offline`),
 * **CSR** w formacie PKCS#10 (DER), zakodowany jako ciąg Base64,
-* (opcjonalnie) **datę rozpoczęcia ważności certyfikatu** – jeśli nie zostanie wskazana, certyfikat będzie ważny od chwili jego wystawienia.
+* (opcjonalnie) **validFrom** – datę rozpoczęcia ważności. Jeśli nie zostanie wskazana, certyfikat będzie ważny od chwili jego wystawienia.
 
 Upewnij się, że CSR zawiera dokładnie te same dane, które zostały zwrócone przez endpoint /certificates/enrollments/data.
 
@@ -193,6 +197,7 @@ Każdy element odpowiedzi zawiera:
 | `certificateSerialNumber` | `Numer seryjny certyfikatu`          |
 | `certificateName` | `Nazwa certyfikatu nadana przy rejestracji`          |
 | `certificateBase64` | `Treść certyfikatu zakodowana w Base64 (format DER)`          |
+| `certificateType` | `Typ certyfikatu (Authentication, Offline).`          |
 
 Otrzymane certyfikaty możemy między innymi wykorzystać do [uwierzytelniania](uwierzytelnianie.md) w systemie KSeF.
 
@@ -206,6 +211,7 @@ GET [/certificates/query](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Cer
 * `status` - status certyfikatu (`Active`, `Blocked`, `Revoked`, `Expired`)
 * `expiresAfter` - data końca ważności certyfikatu (opcjonalny)
 * `name` - nazwa certyfikatu (opcjonalny)
+* `type` - typ certyfikatu (`Authentication`, `Offline`)
 * `certificateSerialNumber` - numer seryjny certyfikatu (opcjonalny)
 * `pageSize` - numer strony (domyślnie 10)
 * `pageOffset` - offset strony (domyślnie 0)`

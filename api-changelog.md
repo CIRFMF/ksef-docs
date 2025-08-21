@@ -1,6 +1,18 @@
 ## Zmiany w API 2.0
 
 ### Wersja 2.0.0 RC4
+
+- **Certyfikaty KSeF**
+  - Dodano nową właściwość `type` w certyfikatach KSeF.
+  - Dostępne typy certyfikatów:
+    - `Authentication` – certyfikat do uwierzytelnienia w systemie KSeF,
+    - `Offline` – certyfikat ograniczony wyłącznie do potwierdzania autentyczności wystawcy i integralności faktury w trybie offline (KOD II).
+  - Zaktualizowano dokumentację procesów `/certificates/enrollments`, `/certificates/query`, `/certificates/retrieve`.
+
+- **Kody QR**
+  - Doprecyzowano, że KOD II może być generowany wyłącznie w oparciu o certyfikat typu `Offline`.
+  - Dodano ostrzeżenie bezpieczeństwa, że certyfikaty `Authentication` nie mogą być używane do wystawiania faktur offline.
+
 - **Status sesji**
   - Aktualizacja uprawnień. Pobieranie informacji o sesji, fakturach i UPO wymaga uprawnienia: ```InvoiceWrite```.
 
