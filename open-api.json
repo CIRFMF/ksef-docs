@@ -2741,28 +2741,28 @@
                 },
                 "examples": {
                   "Kod 100 | Uwierzytelnianie w toku": {
-                    "value": {"isCurrent":false,"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":100,"description":"Uwierzytelnianie w toku"}}
+                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":100,"description":"Uwierzytelnianie w toku"}}
                   },
                   "Kod 200 | Uwierzytelnianie zakończone sukcesem": {
-                    "value": {"isCurrent":false,"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":200,"description":"Uwierzytelnianie zakończone sukcesem"}}
+                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":200,"description":"Uwierzytelnianie zakończone sukcesem"}}
                   },
                   "Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Nieważny certyfikat": {
-                    "value": {"isCurrent":false,"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Nieważny certyfikat."]}}
+                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Nieważny certyfikat."]}}
                   },
                   "Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Błąd weryfikacji łańcucha certyfikatów": {
-                    "value": {"isCurrent":false,"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Błąd weryfikacji łańcucha certyfikatów."]}}
+                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Błąd weryfikacji łańcucha certyfikatów."]}}
                   },
                   "Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Niezaufany łańcuch certyfikatów": {
-                    "value": {"isCurrent":false,"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Niezaufany łańcuch certyfikatów."]}}
+                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Niezaufany łańcuch certyfikatów."]}}
                   },
                   "Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Certyfikat odwołany": {
-                    "value": {"isCurrent":false,"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Certyfikat odwołany."]}}
+                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Certyfikat odwołany."]}}
                   },
                   "Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Niepoprawny certyfikat": {
-                    "value": {"isCurrent":false,"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Niepoprawny certyfikat."]}}
+                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Niepoprawny certyfikat."]}}
                   },
                   "Kod 500 | Nieznany błąd": {
-                    "value": {"isCurrent":false,"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":500,"description":"Nieznany błąd ({statusCode})"}}
+                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":500,"description":"Nieznany błąd ({statusCode})"}}
                   }
                 }
               }
@@ -3799,6 +3799,65 @@
         },
         "additionalProperties": false
       },
+      "AuthenticationListItem": {
+        "required": [
+          "authenticationMethod",
+          "referenceNumber",
+          "startDate",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string",
+            "description": "Data rozpoczęcia operacji uwierzytelnienia.",
+            "format": "date-time"
+          },
+          "authenticationMethod": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AuthenticationMethod"
+              }
+            ],
+            "description": "Użyta metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusInfo"
+              }
+            ],
+            "description": "Informacje o aktualnym statusie.\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Uwierzytelnianie w toku | - |\n| 200 | Uwierzytelnianie zakończone sukcesem | - |\n| 400 | Uwierzytelnianie zakończone niepowodzeniem | Nieważny certyfikat |\n| 400 | Uwierzytelnianie zakończone niepowodzeniem | Błąd weryfikacji łańcucha certyfikatów |\n| 400 | Uwierzytelnianie zakończone niepowodzeniem | Niezaufany łańcuch certyfikatów |\n| 400 | Uwierzytelnianie zakończone niepowodzeniem | Certyfikat odwołany |\n| 400 | Uwierzytelnianie zakończone niepowodzeniem | Niepoprawny certyfikat |\n| 400 | Uwierzytelnianie zakończone niepowodzeniem | Brak przypisanych uprawnień |\n| 401 | Uwierzytelnienie unieważnione | Uwierzytelnienie i powiązane refresh tokeny zostały unieważnione przez użytkownika |\n| 500 | Nieznany błąd | - |"
+          },
+          "isTokenRedeemed": {
+            "type": "boolean",
+            "description": "Czy został już wydany refresh token powiązany z danym uwierzytelnieniem.",
+            "nullable": true
+          },
+          "lastTokenRefreshDate": {
+            "type": "string",
+            "description": "Data ostatniego odświeżenia tokena.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "refreshTokenValidUntil": {
+            "type": "string",
+            "description": "Termin ważności refresh tokena (o ile nie zostanie wcześniej unieważniony).",
+            "format": "date-time",
+            "nullable": true
+          },
+          "referenceNumber": {
+            "type": "string",
+            "description": "Numer referencyjny operacji uwierzytelnienia."
+          },
+          "isCurrent": {
+            "type": "boolean",
+            "description": "Czy sesja jest powiązana z aktualnie używanym tokenem.",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AuthenticationListResponse": {
         "required": [
           "items"
@@ -3813,7 +3872,7 @@
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AuthenticationOperationStatusResponse"
+              "$ref": "#/components/schemas/AuthenticationListItem"
             },
             "description": "Lista sesji uwierzytelniania."
           }
@@ -3835,21 +3894,11 @@
       "AuthenticationOperationStatusResponse": {
         "required": [
           "authenticationMethod",
-          "referenceNumber",
           "startDate",
           "status"
         ],
         "type": "object",
         "properties": {
-          "referenceNumber": {
-            "type": "string",
-            "description": "Numer referencyjny operacji uwierzytelnienia."
-          },
-          "isCurrent": {
-            "type": "boolean",
-            "description": "Czy sesja jest powiązana z aktualnie używanym tokenem.",
-            "readOnly": true
-          },
           "startDate": {
             "type": "string",
             "description": "Data rozpoczęcia operacji uwierzytelnienia.",
