@@ -24,6 +24,12 @@
   - Pobranie statusu uwierzytelniania - Usunięto z odpowiedzi redundantne `referenceNumber`, `isCurrent`.
   - Ujednolicenie stronicowania: endpoint /sessions/{referenceNumber}/invoices (pobranie faktur sesji) przechodzi na paginację opartą o nagłówek żądania `x-continuation-token`; usunięto parametr pageOffset, pageSize pozostaje bez zmian. Pierwsza strona bez nagłówka; kolejne strony pobiera się przez przekazanie wartości tokenu zwróconej przez API. Zmiana spójna z innymi zasobami korzystającymi z x-continuation-token (np. /auth/sessions, /sessions/{referenceNumber}/invoices/failed).
   - Usunięto obsługę identyfikatora `InternalId` w polu `targetIdentifier` podczas nadawania uprawnień pośrednich (/permissions/indirect/grants). Od teraz dopuszczalny jest wyłącznie identyfikator `Nip`.
+  - Status operacji nadawania uprawnień - Aktualizacja listy możliwych kodów statusu w odpowiedzi
+    - 410 – Podane identyfikatory są niezgodne lub pozostają w niewłaściwej relacji.
+    - 420 – Użyte poświadczenia nie mają uprawnień do wykonania tej operacji.
+    - 430 – Kontekst identyfikatora nie odpowiada wymaganej roli lub uprawnieniom.
+    - 440 – Operacja niedozwolona dla wskazanych powiązań identyfikatorów.
+    - 450 – Operacja niedozwolona dla wskazanego identyfikatora lub jego typu.
 
 ### Wersja 2.0.0 RC3
 
