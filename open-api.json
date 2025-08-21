@@ -233,6 +233,7 @@
               "schema": {
                 "required": [
                   "certificateName",
+                  "certificateType",
                   "csr"
                 ],
                 "allOf": [
@@ -348,7 +349,8 @@
                     "$ref": "#/components/schemas/RetrieveCertificatesRequest"
                   }
                 ]
-              }
+              },
+              "example": {"certificateSerialNumbers":["0321C82DA41B4362","0321F21DA462A362"]}
             }
           }
         },
@@ -359,7 +361,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RetrieveCertificatesResponse"
-                }
+                },
+                "example": {"certificates":[{"certificate":"AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/wABAgMEBQYHCAkKCwwNDg8QERITFBUWFxgZGhscHR4fICEiIyQlJicoKSorLC0uLzAxMjM0NTY3ODk6Ozw9Pj9AQUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVpbXF1eX2BhYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ent8fX5/gIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/w==","certificateName":"Cert 00023","certificateSerialNumber":"0321C82DA41B4362","certificateType":"Authentication"}]}
               }
             }
           },
@@ -4225,6 +4228,7 @@
           "status",
           "subjectIdentifier",
           "subjectIdentifierType",
+          "type",
           "validFrom",
           "validTo"
         ],
@@ -4238,6 +4242,14 @@
             "type": "string",
             "description": "Nazwa własna certyfikatu."
           },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/KsefCertificateType"
+              }
+            ],
+            "description": "Typ certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany do wystawiania faktur w trybie offline. |\n"
+          },
           "commonName": {
             "type": "string",
             "description": "Nazwa powszechna (CN) podmiotu, dla którego wystawiono certyfikat."
@@ -4248,7 +4260,7 @@
                 "$ref": "#/components/schemas/CertificateListItemStatus"
               }
             ],
-            "description": "Status certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia. |\n| Blocked | Certyfikat został zablokowany i nie może zostać użyty do uwierzytelnienia.            Status przejściowy do czasu zakończenia procesu unieważniania. |\n| Revoked | Certyfikat został unieważniony i nie może zostać użyty do uwierzytelnienia. |\n| Expired | Certyfikat wygasł i nie może zostać użyty do uwierzytelnienia. |\n"
+            "description": "Status certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia lub wystawiania faktur offline (w zależności od typu certyfikatu). |\n| Blocked | Certyfikat został zablokowany i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline.            Status przejściowy do czasu zakończenia procesu unieważniania. |\n| Revoked | Certyfikat został unieważniony i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline. |\n| Expired | Certyfikat wygasł i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline. |\n"
           },
           "subjectIdentifier": {
             "type": "string",
@@ -4285,7 +4297,7 @@
           "Expired"
         ],
         "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia. |\n| Blocked | Certyfikat został zablokowany i nie może zostać użyty do uwierzytelnienia.            Status przejściowy do czasu zakończenia procesu unieważniania. |\n| Revoked | Certyfikat został unieważniony i nie może zostać użyty do uwierzytelnienia. |\n| Expired | Certyfikat wygasł i nie może zostać użyty do uwierzytelnienia. |\n"
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia lub wystawiania faktur offline (w zależności od typu certyfikatu). |\n| Blocked | Certyfikat został zablokowany i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline.            Status przejściowy do czasu zakończenia procesu unieważniania. |\n| Revoked | Certyfikat został unieważniony i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline. |\n| Expired | Certyfikat wygasł i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline. |\n"
       },
       "CertificateRevocationReason": {
         "enum": [
@@ -4546,6 +4558,7 @@
       "EnrollCertificateRequest": {
         "required": [
           "certificateName",
+          "certificateType",
           "csr"
         ],
         "type": "object",
@@ -4553,6 +4566,14 @@
           "certificateName": {
             "type": "string",
             "description": "Nazwa własna certyfikatu."
+          },
+          "certificateType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/KsefCertificateType"
+              }
+            ],
+            "description": "Typ certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany do wystawiania faktur w trybie offline. |\n"
           },
           "csr": {
             "type": "string",
@@ -6219,6 +6240,14 @@
         ],
         "type": "string"
       },
+      "KsefCertificateType": {
+        "enum": [
+          "Authentication",
+          "Offline"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany do wystawiania faktur w trybie offline. |\n"
+      },
       "OpenBatchSessionRequest": {
         "required": [
           "batchFile",
@@ -6854,13 +6883,22 @@
             "description": "Nazwa własna certyfikatu. Wyszukiwanie jest częściowe, czyli zwracane są certyfikaty, których nazwa zawiera podany ciąg znaków (contains).",
             "nullable": true
           },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/KsefCertificateType"
+              }
+            ],
+            "description": "Typ certyfikatu KSeF.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany do wystawiania faktur w trybie offline. |\n",
+            "nullable": true
+          },
           "status": {
             "allOf": [
               {
                 "$ref": "#/components/schemas/CertificateListItemStatus"
               }
             ],
-            "description": "Status certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia. |\n| Blocked | Certyfikat został zablokowany i nie może zostać użyty do uwierzytelnienia.            Status przejściowy do czasu zakończenia procesu unieważniania. |\n| Revoked | Certyfikat został unieważniony i nie może zostać użyty do uwierzytelnienia. |\n| Expired | Certyfikat wygasł i nie może zostać użyty do uwierzytelnienia. |\n",
+            "description": "Status certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia lub wystawiania faktur offline (w zależności od typu certyfikatu). |\n| Blocked | Certyfikat został zablokowany i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline.            Status przejściowy do czasu zakończenia procesu unieważniania. |\n| Revoked | Certyfikat został unieważniony i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline. |\n| Expired | Certyfikat wygasł i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline. |\n",
             "nullable": true
           },
           "expiresAfter": {
@@ -7115,13 +7153,14 @@
         "required": [
           "certificate",
           "certificateName",
-          "certificateSerialNumber"
+          "certificateSerialNumber",
+          "certificateType"
         ],
         "type": "object",
         "properties": {
           "certificate": {
             "type": "string",
-            "description": "Certyfikat w formacie DER.",
+            "description": "Certyfikat w formacie DER zakodowany w Base64.",
             "format": "byte"
           },
           "certificateName": {
@@ -7131,6 +7170,14 @@
           "certificateSerialNumber": {
             "type": "string",
             "description": "Numer seryjny certyfikatu."
+          },
+          "certificateType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/KsefCertificateType"
+              }
+            ],
+            "description": "Typ certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany do wystawiania faktur w trybie offline. |\n"
           }
         },
         "additionalProperties": false
