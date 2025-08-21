@@ -1,6 +1,6 @@
 ## Pobieranie faktur
 ### Pobranie faktur po numerze KSeF
-26.06.2025
+21.08.2025
 
 Zwraca fakturę o podanym numerze KSeF.
 
@@ -17,29 +17,14 @@ Przykład w języku Java:
 var document = ksefClient.getInvoice(ksefReferenceNumber);
 ```
 
-### Pobranie faktury na podstawie numeru KSeF oraz danych faktury
-
-Faktura zostanie zwrócona wyłącznie, jeśli wszystkie dane wejściowe są zgodne z danymi faktury w systemie.
-
-POST [/invoices/download](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1download/post)
-
-Przykład w języku C#:
-```csharp
-var invoice = await ksefClient.DownloadInvoiceAsync(body, accessToken, cancellationToken);
-```
-Przykład w języku Java:
-```java
-var invoice = ksefClient.getInvoice(downloadInvoiceRequest);
-```
-
 ### Pobranie listy metadanych faktur
 Zwraca listę metadanych faktur spełniające podane kryteria wyszukiwania.
 
-POST [/invoices/query](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1query/post)
+POST [/invoices/query/metadata](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1query~1metadata/post)
 
 Przykład w języku C#:
 ```csharp
-var pagedInvoicesResponse = await ksefClient.QueryInvoicesAsync(body, accessToken, pageOffset, pageSize, cancellationToken);
+var pagedInvoicesResponse = await ksefClient.QueryInvoiceMetadataAsync(body, accessToken, pageOffset, pageSize, cancellationToken);
 ```
 
 Przykład w języku Java:
