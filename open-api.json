@@ -7353,7 +7353,7 @@
                 "$ref": "#/components/schemas/StatusInfo"
               }
             ],
-            "description": "Status faktury.\n\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Dokument faktury przyjęty | - |\n| 150 | Trwa przetwarzanie | - |\n| 200 | Sukces | - |\n| 410 | Nieprawidłowy zakres uprawnień | - |\n| 415 | Brak możliwości wysyłania faktury z załącznikiem | - |\n| 430 | Błąd weryfikacji pliku faktury | - |\n| 435 | Błąd odszyfrowania pliku | - |\n| 440 | Duplikat faktury | - |\n| 450 | Błąd weryfikacji semantyki dokumentu faktury | - |\n| 500 | Nieznany błąd ({statusCode}) | - |"
+            "description": "Status faktury.\n\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Faktura przyjęta do dalszego przetwarzania | - |\n| 150 | Trwa przetwarzanie | - |\n| 200 | Sukces | - |\n| 410 | Nieprawidłowy zakres uprawnień | - |\n| 415 | Brak możliwości wysyłania faktury z załącznikiem | - |\n| 430 | Błąd weryfikacji pliku faktury | - |\n| 435 | Błąd odszyfrowania pliku | - |\n| 440 | Duplikat faktury | - |\n| 450 | Błąd weryfikacji semantyki dokumentu faktury | - |\n| 500 | Nieznany błąd ({statusCode}) | - |"
           }
         },
         "additionalProperties": false
