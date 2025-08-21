@@ -16,9 +16,9 @@
 - **Status sesji**
   - Aktualizacja uprawnień. Pobieranie informacji o sesji, fakturach i UPO wymaga uprawnienia: ```InvoiceWrite```.
 
-- **Pobranie listy metadanych faktur**
-  - Dodano nową właściwość: `hasMore` (boolean) – informuje o dostępności kolejnej strony wyników.
-  - Właściwość `totalCount` została oznaczona jako deprecated (pozostaje chwilowo w odpowiedzi dla zgodności wstecznej).
+- **OpenAPI**
+  - Pobranie listy metadanych faktur - Dodano nową właściwość: `hasMore` (boolean) – informuje o dostępności kolejnej strony wyników. Właściwość `totalCount` została oznaczona jako deprecated (pozostaje chwilowo w odpowiedzi dla zgodności wstecznej).
+  - Wyszukiwanie nadanych uprawnień - Dodanie właściwości `hasMore`. Usunięcie `pageSize`, `pageOffset`.
 
 ### Wersja 2.0.0 RC3
 
