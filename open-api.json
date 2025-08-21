@@ -1539,19 +1539,21 @@
           {
             "name": "pageOffset",
             "in": "query",
-            "description": "Indeks pierwszej strony wyników (domyślnie 0).",
+            "description": "Indeks pierwszej strony wyników.",
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "default": 0
             }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "description": "Rozmiar strony wyników(domyślnie 10).",
+            "description": "Rozmiar strony wyników.",
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "default": 10
             }
           }
         ],
@@ -7017,6 +7019,7 @@
       },
       "QueryInvoiceMetadataReponse": {
         "required": [
+          "hasMore",
           "invoices",
           "totalCount"
         ],
@@ -7025,7 +7028,12 @@
           "totalCount": {
             "type": "integer",
             "description": "Całkowita liczba pasujących rekordów w repozytorium.",
-            "format": "int32"
+            "format": "int32",
+            "deprecated": true
+          },
+          "hasMore": {
+            "type": "boolean",
+            "description": "Flaga informująca o dostępności kolejnej strony wyników."
           },
           "invoices": {
             "type": "array",
