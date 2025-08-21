@@ -117,7 +117,7 @@ POST [/certificates/enrollments](https://ksef-test.mf.gov.pl/docs/v2/index.html#
 
 W przesyłanym wniosku należy podać:
 * **nazwę certyfikatu** – widoczną później w metadanych certyfikatu, ułatwiającą identyfikację,
-* **type** – typ certyfikatu (`Authentication` lub `Offline`),
+* **typ certyfikatu** – `Authentication` lub `Offline`,
 * **CSR** w formacie PKCS#10 (DER), zakodowany jako ciąg Base64,
 * (opcjonalnie) **validFrom** – datę rozpoczęcia ważności. Jeśli nie zostanie wskazana, certyfikat będzie ważny od chwili jego wystawienia.
 
@@ -127,6 +127,7 @@ Przykład w języku C#:
 ```csharp
  var request = SendCertificateEnrollmentRequestBuilder.Create()
             .WithCertificateName("Testowy certyfikat")
+            .WithCertificateType(CertificateType.Authentication)
             .WithCsr(csrBase64encoded)
             .WithValidFrom(DateTimeOffset.UtcNow.AddDays(1)) // Certyfikat będzie ważny od jutra
             .Build();
@@ -196,7 +197,7 @@ Każdy element odpowiedzi zawiera:
 |---------------------------|------------------------|
 | `certificateSerialNumber` | `Numer seryjny certyfikatu`          |
 | `certificateName` | `Nazwa certyfikatu nadana przy rejestracji`          |
-| `certificateBase64` | `Treść certyfikatu zakodowana w Base64 (format DER)`          |
+| `certificate` | `Treść certyfikatu zakodowana w Base64 (format DER)`          |
 | `certificateType` | `Typ certyfikatu (Authentication, Offline).`          |
 
 Otrzymane certyfikaty możemy między innymi wykorzystać do [uwierzytelniania](uwierzytelnianie.md) w systemie KSeF.
@@ -211,7 +212,7 @@ GET [/certificates/query](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Cer
 * `status` - status certyfikatu (`Active`, `Blocked`, `Revoked`, `Expired`)
 * `expiresAfter` - data końca ważności certyfikatu (opcjonalny)
 * `name` - nazwa certyfikatu (opcjonalny)
-* `type` - typ certyfikatu (`Authentication`, `Offline`)
+* `type` - typ certyfikatu (`Authentication`, `Offline`) (opcjonalny)
 * `certificateSerialNumber` - numer seryjny certyfikatu (opcjonalny)
 * `pageSize` - numer strony (domyślnie 10)
 * `pageOffset` - offset strony (domyślnie 0)`
@@ -244,6 +245,7 @@ W odpowiedzi otrzymamy metadane certyfikatów:
 |---------------------------|------------------------|
 | `certificateSerialNumber` | `00035434535`          |
 | `name`                    | `Certyfikat 1`         |
+| `type`                    | `Authentication`       |
 | `commonName`              | `Jan Kowalski`         |
 | `status`                  | `Active`               |
 | `subjectIdentifier`       | `1234445678`           |
