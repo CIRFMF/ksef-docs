@@ -78,8 +78,7 @@ Zwraca listę metadanych wszystkich przesłanych faktur wraz z ich statusami ora
 Przykład w języku C#:
 ```csharp
 const int pageSize = 50;
-int pageOffset = 0;
-bool morePages;
+string continuationtoken = null;
 
 do
 {
@@ -96,10 +95,9 @@ do
         Console.WriteLine($"#{doc.InvoiceNumber}. Status: {doc.Status.Code}");
     }
 
-    morePages = listResult.Invoices.Count == pageSize;
-    pageOffset++;
+    continuationtoken = sessionInvoices.ContinuationToken;
 }
-while (morePages);
+while (continuationtoken != null);
 
 ```
 
