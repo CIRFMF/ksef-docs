@@ -20,7 +20,7 @@
   - Pobranie listy metadanych faktur 
     - Dodano właściwość: `hasMore` (boolean) – informuje o dostępności kolejnej strony wyników. Właściwość `totalCount` została oznaczona jako deprecated (pozostaje chwilowo w odpowiedzi dla zgodności wstecznej).
     - W filtrowaniu po zakresie `dateRange` właściwość `to` (data końcowa zakresu) nie jest już obowiązkowa.
-  - Wyszukiwanie nadanych uprawnień - dodano właściwość `hasMore`, usunięto `pageSize`, `pageOffset`.
+  - Wyszukiwanie nadanych uprawnień - w odpowiedzi dodano właściwość `hasMore`, usunięto `pageSize`, `pageOffset`.
   - Pobranie statusu uwierzytelniania - usunięto z odpowiedzi redundantne `referenceNumber`, `isCurrent`.
   - Ujednolicenie stronicowania - endpoint `/sessions/{referenceNumber}/invoices` (pobranie faktur sesji) przechodzi na paginację opartą o nagłówek żądania `x-continuation-token`; usunięto parametr `pageOffset`, `pageSize` pozostaje bez zmian. Pierwsza strona bez nagłówka; kolejne strony pobiera się przez przekazanie wartości tokenu zwróconej przez API. Zmiana spójna z innymi zasobami korzystającymi z `x-continuation-token` (np. `/auth/sessions`, `/sessions/{referenceNumber}/invoices/failed`).
   - Usunięto obsługę identyfikatora `InternalId` w polu `targetIdentifier` podczas nadawania uprawnień pośrednich (`/permissions/indirect/grants`). Od teraz dopuszczalny jest wyłącznie identyfikator `Nip`.
