@@ -4297,7 +4297,7 @@
                 "$ref": "#/components/schemas/KsefCertificateType"
               }
             ],
-            "description": "Typ certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany do wystawiania faktur w trybie offline. |\n"
+            "description": "Typ certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany wyłącznie do potwierdzania autentyczności wystawcy i integralności faktury w trybie offline |\n"
           },
           "commonName": {
             "type": "string",
@@ -4309,7 +4309,7 @@
                 "$ref": "#/components/schemas/CertificateListItemStatus"
               }
             ],
-            "description": "Status certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia lub wystawiania faktur offline (w zależności od typu certyfikatu). |\n| Blocked | Certyfikat został zablokowany i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline.            Status przejściowy do czasu zakończenia procesu unieważniania. |\n| Revoked | Certyfikat został unieważniony i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline. |\n| Expired | Certyfikat wygasł i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline. |\n"
+            "description": "Status certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia lub realizacji operacji w trybie offline (w zależności od typu certyfikatu). |\n| Blocked | Certyfikat został zablokowany i nie może zostać użyty do uwierzytelnienia i realizacji operacji w trybie offline.            Status przejściowy do czasu zakończenia procesu unieważniania. |\n| Revoked | Certyfikat został unieważniony i nie może zostać użyty do uwierzytelnienia i realizacji operacji w trybie offline. |\n| Expired | Certyfikat wygasł i nie może zostać użyty do uwierzytelnienia i realizacji operacji w trybie offline. |\n"
           },
           "subjectIdentifier": {
             "type": "string",
@@ -4346,7 +4346,7 @@
           "Expired"
         ],
         "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia lub wystawiania faktur offline (w zależności od typu certyfikatu). |\n| Blocked | Certyfikat został zablokowany i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline.            Status przejściowy do czasu zakończenia procesu unieważniania. |\n| Revoked | Certyfikat został unieważniony i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline. |\n| Expired | Certyfikat wygasł i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline. |\n"
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia lub realizacji operacji w trybie offline (w zależności od typu certyfikatu). |\n| Blocked | Certyfikat został zablokowany i nie może zostać użyty do uwierzytelnienia i realizacji operacji w trybie offline.            Status przejściowy do czasu zakończenia procesu unieważniania. |\n| Revoked | Certyfikat został unieważniony i nie może zostać użyty do uwierzytelnienia i realizacji operacji w trybie offline. |\n| Expired | Certyfikat wygasł i nie może zostać użyty do uwierzytelnienia i realizacji operacji w trybie offline. |\n"
       },
       "CertificateRevocationReason": {
         "enum": [
@@ -4622,7 +4622,7 @@
                 "$ref": "#/components/schemas/KsefCertificateType"
               }
             ],
-            "description": "Typ certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany do wystawiania faktur w trybie offline. |\n"
+            "description": "Typ certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany wyłącznie do potwierdzania autentyczności wystawcy i integralności faktury w trybie offline |\n"
           },
           "csr": {
             "type": "string",
@@ -6292,7 +6292,7 @@
           "Offline"
         ],
         "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany do wystawiania faktur w trybie offline. |\n"
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany wyłącznie do potwierdzania autentyczności wystawcy i integralności faktury w trybie offline |\n"
       },
       "OpenBatchSessionRequest": {
         "required": [
@@ -6935,7 +6935,7 @@
                 "$ref": "#/components/schemas/KsefCertificateType"
               }
             ],
-            "description": "Typ certyfikatu KSeF.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany do wystawiania faktur w trybie offline. |\n",
+            "description": "Typ certyfikatu KSeF.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany wyłącznie do potwierdzania autentyczności wystawcy i integralności faktury w trybie offline |\n",
             "nullable": true
           },
           "status": {
@@ -6944,7 +6944,7 @@
                 "$ref": "#/components/schemas/CertificateListItemStatus"
               }
             ],
-            "description": "Status certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia lub wystawiania faktur offline (w zależności od typu certyfikatu). |\n| Blocked | Certyfikat został zablokowany i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline.            Status przejściowy do czasu zakończenia procesu unieważniania. |\n| Revoked | Certyfikat został unieważniony i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline. |\n| Expired | Certyfikat wygasł i nie może zostać użyty do realizacji operacji uwierzytelnienia i wystawiania faktur offline. |\n",
+            "description": "Status certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia lub realizacji operacji w trybie offline (w zależności od typu certyfikatu). |\n| Blocked | Certyfikat został zablokowany i nie może zostać użyty do uwierzytelnienia i realizacji operacji w trybie offline.            Status przejściowy do czasu zakończenia procesu unieważniania. |\n| Revoked | Certyfikat został unieważniony i nie może zostać użyty do uwierzytelnienia i realizacji operacji w trybie offline. |\n| Expired | Certyfikat wygasł i nie może zostać użyty do uwierzytelnienia i realizacji operacji w trybie offline. |\n",
             "nullable": true
           },
           "expiresAfter": {
@@ -7187,7 +7187,7 @@
                 "$ref": "#/components/schemas/KsefCertificateType"
               }
             ],
-            "description": "Typ certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany do wystawiania faktur w trybie offline. |\n"
+            "description": "Typ certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany wyłącznie do potwierdzania autentyczności wystawcy i integralności faktury w trybie offline |\n"
           }
         },
         "additionalProperties": false
