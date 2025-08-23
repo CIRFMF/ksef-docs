@@ -12,7 +12,7 @@ Korekta techniczna umożliwia ponowne przesłanie faktury wystawionej w [trybie 
 > **Uwaga**!
 1. Korekta techniczna **nie dotyczy** sytuacji związanych z brakiem uprawnień podmiotów występujących na fakturze (np. samofakturowanie, walidacja relacji dla JST lub grup VAT).
 2. W tym trybie **nie jest dozwolona** korygowanie treści faktury – korekta techniczna dotyczy wyłącznie problemów technicznych uniemożliwiających jej przyjęcie w systemie KSeF.
-3. Korekta techniczna może być przesyłana wyłącznie w [sesji interaktywnej](../sesja-interaktywna.md), natomiast może dotyczyć faktur wysyłanych zarówno w [sesji interaktywnej](../sesja-interaktywna.md), jak i w [sesji wsadowej](../sesja-wsadowa.md).
+3. Korekta techniczna może być przesyłana wyłącznie w [sesji interaktywnej](../sesja-interaktywna.md), natomiast może dotyczyć faktur offline odrzuconych zarówno w [sesji interaktywnej](../sesja-interaktywna.md), jak i w [sesji wsadowej](../sesja-wsadowa.md).
 4. Niedozwolone jest korygowanie technicznie faktury offline, dla której została już przyjęta inna prawidłowa korekta.
 
 ## Przykładowy przebieg korekty technicznej faktury offline  
@@ -31,7 +31,7 @@ Korekta techniczna umożliwia ponowne przesłanie faktury wystawionej w [trybie 
    - Faktura zostaje **odrzucona** z powodu błędu technicznego (np. niepoprawna zgodność ze schematem XSD).  
 
 4. **Sprzedawca aktualizuje swoje oprogramowanie** i ponownie generuje fakturę o tej samej treści, ale zgodną ze  schematem.  
-   - Ponieważ zawartość XML różni się od wersji pierwotnej, **skrót SHA-256 faktury jest inny**.
+   - Ponieważ zawartość XML różni się od wersji pierwotnej, **skrót SHA-256 pliku faktury jest inny**.
 
 5. **Sprzedawca wysyła poprawioną fakturę jako korektę techniczną.**  
    - Wskazuje w polu `hashOfCorrectedInvoice` skrót SHA-256 pierwotnej, odrzuconej faktury offline.  
