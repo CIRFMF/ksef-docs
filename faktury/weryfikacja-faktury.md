@@ -33,8 +33,11 @@ Data wystawienia faktury (`P_1`) nie może być późniejsza niż data przyjęci
 - Obliczenie i weryfikacja skrótu zaszyfrowanej faktury wraz z rozmiarem pliku.
 
 ## Ograniczenia dotyczące załączników
-- Wysyłka faktur z załącznikami jest dozwolona tylko w trybie wsadowym.
+- Wysyłka faktur z załącznikami jest dozwolona tylko w trybie wsadowym.  
+**Wyjątek:** W przypadku przesyłania [korekty technicznej faktury offline](../offline/korekta-techniczna.md) dopuszczalne jest użycie sesji interaktywnej.
 - Możliwość wysyłki faktur z załącznikami wymaga uprzedniego zgłoszenia tej opcji w usłudze `e-Urząd Skarbowy`.
+
+
 
 ## Wymagania dotyczące uprawnień
 Wysłanie faktury do KSeF wymaga posiadania odpowiednich uprawnień do jej wystawienia w kontekście danego podmiotu.

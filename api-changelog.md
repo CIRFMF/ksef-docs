@@ -16,6 +16,9 @@
 - **Status sesji**
   - Aktualizacja autoryzacji - pobieranie informacji o sesji, fakturach i UPO wymaga uprawnienia: ```InvoiceWrite```.
 
+- **Korekta techniczna faktury offline**
+  - Dodano szczegółowy opis [korekty technicznej](offline/korekta-techniczna.md) dla faktur wystawionych w trybie offline.
+
 - **OpenAPI**
   - Pobranie listy metadanych faktur 
     - Dodano właściwość: `hasMore` (boolean) – informuje o dostępności kolejnej strony wyników. Właściwość `totalCount` została oznaczona jako deprecated (pozostaje chwilowo w odpowiedzi dla zgodności wstecznej).
