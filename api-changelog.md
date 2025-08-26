@@ -35,6 +35,9 @@
     - 440 – Operacja niedozwolona dla wskazanych powiązań identyfikatorów.
     - 450 – Operacja niedozwolona dla wskazanego identyfikatora lub jego typu.
     - Dodano obsługę błędu **21418** – „Przekazany token kontynuacji ma nieprawidłowy format” we wszystkich endpointach wykorzystujących mechanizm paginacji z użyciem `continuationToken` (`/auth/sessions`, `/sessions`, `/sessions/{referenceNumber}/invoices`, `/sessions/{referenceNumber}/invoices/failed`, `/tokens`).
+    - Doprecyzowano proces pobierania paczki faktur:
+      - `/invoices/exports` – rozpoczęcie procesu tworzenia paczki faktur,
+      - `/invoices/async-query/{operationReferenceNumber}` – sprawdzenie statusu i odbiór gotowej paczki.
 
 ### Wersja 2.0.0 RC3
 
