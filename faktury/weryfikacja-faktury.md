@@ -7,11 +7,13 @@ Faktura przesyłana do systemu KSeF podlega szeregowi kontroli technicznych i se
 Faktura musi być przygotowana w formacie XML, kodowana w UTF-8 oraz zgodna z aktualnym schematem opublikowanym przez Ministerstwo Finansów.
 
 ## Unikalność faktury
-- System wykrywa duplikaty na podstawie trzech pól:
+- KSeF wykrywa duplikaty faktur globalnie, w oparciu o dane przechowywane w systemie. Kryterium identyfikacji duplikatu stanowi kombinacja:
   1. NIP sprzedawcy (`Podmiot1:NIP`)
   2. Rodzaj faktury (`RodzajFaktury`)
   3. Numer faktury (`P_2`)
-- W przypadku duplikatu zwracany jest kod błędu 440 („Duplikat faktury”).
+- W przypadku duplikatu zwracany jest kod błędu 440 („Duplikat faktury”). 
+- Unikalność faktury utrzymywana jest w KSeF przez okres 10 pełnych lat, liczonych od końca roku kalendarzowego, w którym faktura została wystawiona.
+- Kryterium unikalności odnosi się zawsze do sprzedawcy (Podmiot1:NIP). W przypadku, gdy w imieniu tego samego podmiotu faktury wystawiają różne jednostki (np. oddziały, jednostki organizacyjne JST, inne uprawnione podmioty), muszą one uzgodnić zasady numeracji, aby uniknąć duplikatów.
 
 ## Walidacja dat
 Data wystawienia faktury (`P_1`) nie może być późniejsza niż data przyjęcia dokumentu do systemu KSeF.
