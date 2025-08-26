@@ -157,6 +157,9 @@ W nowym rozwiązaniu, przy przesyłaniu paczki dokumentów:
 
 Zmiana ta znacząco podnosi niezawodność i efektywność trybu wsadowego i opiera się na tym samym modelu przesyłania paczek bez ryzyka utraty całej paczki z powodu pojedynczych błędów.
 
+## Weryfikacja duplikatów faktur  
+Zmieniono sposób wykrywania duplikatów – obecnie sprawdzane są dane biznesowe faktury (Podmiot1:NIP, RodzajFaktury, P_2), a nie skrót pliku. Szczegóły – [Weryfikacja duplikatów](faktury/weryfikacja-faktury.md).
+
 ## Zmiana w module Uprawnień
 
 Zmiany w module uprawnień wiążą się ze zmianą niektórych aspektów logiki ich funkcjonowania w KSeF 2.0. 

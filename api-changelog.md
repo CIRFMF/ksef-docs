@@ -19,6 +19,7 @@
 - **Dokumentacja**
   - Dodano dokument opisujący [numer KSeF](faktury/numer-ksef.md).
   - Dodano dokument opisujący [korektę techniczną](offline/korekta-techniczna.md) dla faktur wystawionych w trybie offline.
+  - Doprecyzowano sposób [wykrywania duplikatów](faktury/weryfikacja-faktury.md)
 
 - **OpenAPI**
   - Pobranie listy metadanych faktur 
