@@ -237,3 +237,6 @@ Przykład w języku Java:
 ```java
 var upo = ksefClient.getSessionUpo(referenceNumber, upoReferenceNumber);
 ```
+
+## Powiązane dokumenty
+- [Numer KSeF – struktura i walidacja](numer-ksef.md)
