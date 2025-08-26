@@ -1615,26 +1615,24 @@
         ]
       }
     },
-    "/api/v2/invoices/async-query": {
+    "/api/v2/invoices/exports": {
       "post": {
         "tags": [
           "Pobieranie faktur"
         ],
-        "summary": "[mock] Inicjalizuje asynchroniczne zapytanie o pobranie faktur",
-        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów.\nWymagane jest przekazanie informacji o szyfrowaniu w polu `Encryption`, które służą do zaszyfrowania wygenerowanych paczek z fakturami.\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "summary": "[mock] Eksport paczki faktur",
+        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu `Encryption`, które służą do zabezpieczenia przygotowanej paczki z fakturami.\n\nWymagane uprawnienia: `InvoiceRead`.",
         "requestBody": {
-          "description": "Zestaw filtrów dla wyszukiwania faktur.",
           "content": {
             "application/json": {
               "schema": {
                 "required": [
                   "encryption",
-                  "subjectType",
-                  "dateRange"
+                  "filters"
                 ],
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/InvoicesAsyncQueryRequest"
+                    "$ref": "#/components/schemas/InvoicesExportRequest"
                   }
                 ]
               }
@@ -1642,25 +1640,26 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InitAsyncInvoicesQueryResponse"
+                  "$ref": "#/components/schemas/ExportInvoicesResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21315               | Zalogowany identyfikator kontekstu nie może być użyty dla wybranego podmiotu.     | {treść z walidatora}                                           |\n| 21405               | Dokument nie jest zgodny ze schemą (json).          | {treść błędu walidacji}                                       |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -1679,18 +1678,18 @@
         ]
       }
     },
-    "/api/v2/invoices/async-query/{operationReferenceNumber}": {
+    "/api/v2/invoices/exports/{operationReferenceNumber}": {
       "get": {
         "tags": [
           "Pobieranie faktur"
         ],
-        "summary": "[mock] Sprawdza status asynchronicznego zapytania o pobranie faktur",
-        "description": "Pobiera status wcześniej zainicjalizowanego zapytania asynchronicznego na podstawie identyfikatora operacji.\nUmożliwia śledzenie postępu przetwarzania zapytania oraz pobranie gotowych paczek z wynikami, jeśli są już dostępne.\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "summary": "[mock] Pobranie statusu eksportu paczki faktur",
+        "description": "\n\nWymagane uprawnienia: `InvoiceRead`.",
         "parameters": [
           {
             "name": "operationReferenceNumber",
             "in": "path",
-            "description": "Unikalny identyfikator operacji zwrócony podczas inicjalizacji zapytania.",
+            "description": "Numer referencyjny operacji.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1703,20 +1702,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AsyncInvoicesQueryStatus"
+                  "$ref": "#/components/schemas/InvoicesExportStatusResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21175               | Wynik zapytania o podanym identyfikatorze nie istnieje.     | {treść z walidatora}                                  |\n| 21405               | Dokument nie jest zgodny ze schemą (json).          | {treść błędu walidacji}                                       |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -3705,36 +3705,6 @@
         ],
         "type": "string"
       },
-      "AsyncInvoicesQueryStatus": {
-        "required": [
-          "operationReferenceNumber",
-          "status"
-        ],
-        "type": "object",
-        "properties": {
-          "operationReferenceNumber": {
-            "type": "string",
-            "description": "Unikalny identyfikator operacji, nadany podczas inicjalizacji zapytania."
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusInfo"
-              }
-            ],
-            "description": "Informacje o aktualnym statusie przetwarzania zapytania."
-          },
-          "packageParts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoicePackagePart"
-            },
-            "description": "Lista plików dostępnych do pobrania.\nWypełniana tylko, gdy wynik zapytania jest gotowy.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "AttachmentPermissionGrantRequest": {
         "type": "object",
         "properties": {
@@ -5441,6 +5411,17 @@
         },
         "additionalProperties": false
       },
+      "ExportInvoicesResponse": {
+        "type": "object",
+        "properties": {
+          "operationReferenceNumber": {
+            "type": "string",
+            "description": "Numer referencyjny operacji.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "FormCode": {
         "required": [
           "schemaVersion",
@@ -5613,24 +5594,6 @@
           "Nip"
         ],
         "type": "string"
-      },
-      "InitAsyncInvoicesQueryResponse": {
-        "type": "object",
-        "properties": {
-          "operationReferenceNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusInfo"
-              }
-            ],
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
       },
       "InitTokenAuthenticationRequest": {
         "required": [
@@ -5973,6 +5936,14 @@
         "additionalProperties": false
       },
       "InvoicePackagePart": {
+        "required": [
+          "expirationDate",
+          "fileName",
+          "headers",
+          "method",
+          "ordinalNumber",
+          "url"
+        ],
         "type": "object",
         "properties": {
           "ordinalNumber": {
@@ -5982,14 +5953,12 @@
           },
           "method": {
             "type": "string",
-            "description": "Metoda HTTP, której należy użyć przy pobieraniu pliku.",
-            "nullable": true
+            "description": "Metoda HTTP, której należy użyć przy pobieraniu pliku."
           },
           "url": {
             "type": "string",
             "description": "Adres URL, pod który należy wysłać żądanie pobrania pliku.",
-            "format": "uri",
-            "nullable": true
+            "format": "uri"
           },
           "expirationDate": {
             "type": "string",
@@ -6002,8 +5971,11 @@
               "type": "string",
               "nullable": true
             },
-            "description": "Nagłówki, których należy użyć przy pobieraniu pliku.",
-            "nullable": true
+            "description": "Nagłówki, których należy użyć przy pobieraniu pliku."
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Nazwa pliku."
           }
         },
         "additionalProperties": false
@@ -6127,11 +6099,137 @@
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1. |\n| Subject2 | Podmiot 2. |\n| Subject3 | Podmiot 3. |\n| SubjectAuthorized | Podmiot upoważniony. |\n"
       },
-      "InvoicesAsyncQueryRequest": {
+      "InvoicesExportFilters": {
         "required": [
           "dateRange",
-          "encryption",
           "subjectType"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQuerySubjectType"
+              }
+            ],
+            "description": "Typ podmiotu, którego dotyczą kryteria filtrowania faktur.\nOkreśla kontekst, w jakim przeszukiwane są dane.\n| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1. |\n| Subject2 | Podmiot 2. |\n| Subject3 | Podmiot 3. |\n| SubjectAuthorized | Podmiot upoważniony. |\n"
+          },
+          "dateRange": {
+            "required": [
+              "dateType",
+              "from"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQueryDateRange"
+              }
+            ],
+            "description": "Typ i zakres dat, według którego mają być filtrowane faktury."
+          },
+          "ksefNumber": {
+            "type": "string",
+            "description": "Numer KSeF faktury.",
+            "nullable": true
+          },
+          "invoiceNumber": {
+            "type": "string",
+            "description": "Numer faktury nadany przez wystawcę.",
+            "nullable": true
+          },
+          "amount": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQueryAmount"
+              }
+            ],
+            "description": "Filtr kwotowy – brutto, netto lub VAT (z wartością).",
+            "nullable": true
+          },
+          "seller": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQuerySeller"
+              }
+            ],
+            "description": "Dane sprzedawcy.",
+            "nullable": true
+          },
+          "buyer": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQueryBuyer"
+              }
+            ],
+            "description": "Dane nabywcy.",
+            "nullable": true
+          },
+          "currencyCodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CurrencyCode"
+            },
+            "description": "Kody walut.",
+            "nullable": true
+          },
+          "invoicingMode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoicingMode"
+              }
+            ],
+            "description": "Tryb wystawienia faktury: online lub offline.",
+            "nullable": true
+          },
+          "isSelfInvoicing": {
+            "type": "boolean",
+            "description": "Czy faktura została wystawiona w trybie samofakturowania.",
+            "nullable": true
+          },
+          "schemaType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQuerySchemaType"
+              }
+            ],
+            "description": "Struktura dokumentu.",
+            "nullable": true
+          },
+          "invoiceTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceMetadataInvoiceType"
+            },
+            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | Faktura podstawowa. |\n| Zal | Faktura zaliczkowa. |\n| Kor | Faktura korygująca. |\n| Roz | Faktura rozliczeniowa. |\n| Upr | Faktura uproszczona. |\n| KorZal | Faktura korygująca do faktury zaliczkowej. |\n| KorRoz | Faktura korygująca do faktury rozliczeniowej. |\n",
+            "nullable": true
+          },
+          "hasAttachment": {
+            "type": "boolean",
+            "description": "Czy faktura ma załącznik.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoicesExportPackage": {
+        "required": [
+          "parts"
+        ],
+        "type": "object",
+        "properties": {
+          "parts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoicePackagePart"
+            },
+            "description": "Lista plików dostępnych do pobrania.\nWypełniana tylko, gdy wynik zapytania jest gotowy."
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoicesExportRequest": {
+        "required": [
+          "encryption",
+          "filters"
         ],
         "type": "object",
         "properties": {
@@ -6147,6 +6245,63 @@
             ],
             "description": "Informacje wymagane do zaszyfrowania wyniku zapytania."
           },
+          "filters": {
+            "required": [
+              "subjectType",
+              "dateRange"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoicesExportFilters"
+              }
+            ],
+            "description": "Zestaw filtrów dla wyszukiwania faktur."
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoicesExportStatusResponse": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusInfo"
+              }
+            ],
+            "description": "Informacje o aktualnym statusie przetwarzania zapytania."
+          },
+          "completedDate": {
+            "type": "string",
+            "description": "Data przetworzenia zapytania",
+            "format": "date-time",
+            "nullable": true
+          },
+          "package": {
+            "required": [
+              "parts"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoicesExportPackage"
+              }
+            ],
+            "description": "Informacje o paczce faktur.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoicesMetadataQueryRequest": {
+        "required": [
+          "dateRange",
+          "subjectType"
+        ],
+        "type": "object",
+        "properties": {
           "subjectType": {
             "allOf": [
               {
