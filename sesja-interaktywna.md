@@ -131,4 +131,7 @@ Przykład w języku Java:
 ksefClient.closeOnlineSession(referenceNumber);
 ```
 
-Zobacz [Sprawdzenie stanu i pobranie UPO](faktury/sesja-sprawdzenie-stanu-i-pobranie-upo.md)
+Powiązane dokumenty: 
+- [Sprawdzenie stanu i pobranie UPO](faktury/sesja-sprawdzenie-stanu-i-pobranie-upo.md)
+- [Weryfikacja faktury](faktury/weryfikacja-faktury.md)
+- [Numer KSeF – struktura i walidacja](numer-ksef.md)

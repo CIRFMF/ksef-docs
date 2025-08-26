@@ -16,8 +16,9 @@
 - **Status sesji**
   - Aktualizacja autoryzacji - pobieranie informacji o sesji, fakturach i UPO wymaga uprawnienia: ```InvoiceWrite```.
 
-- **Korekta techniczna faktury offline**
-  - Dodano szczegółowy opis [korekty technicznej](offline/korekta-techniczna.md) dla faktur wystawionych w trybie offline.
+- **Dokumentacja**
+  - Dodano dokument opisujący [numer KSeF](faktury/numer-ksef.md).
+  - Dodano dokument opisujący [korektę techniczną](offline/korekta-techniczna.md) dla faktur wystawionych w trybie offline.
 
 - **OpenAPI**
   - Pobranie listy metadanych faktur 

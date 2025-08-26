@@ -252,4 +252,7 @@ Przykład w języku Java:
 ksefClient.closeBatchSession(referenceNumber);
 ```
 
-Zobacz [Sprawdzenie stanu i pobranie UPO](faktury/sesja-sprawdzenie-stanu-i-pobranie-upo.md)
+Zobacz 
+- [Sprawdzenie stanu i pobranie UPO](faktury/sesja-sprawdzenie-stanu-i-pobranie-upo.md)
+- [Weryfikacja faktury](faktury/weryfikacja-faktury.md)
+- [Numer KSeF – struktura i walidacja](numer-ksef.md)
