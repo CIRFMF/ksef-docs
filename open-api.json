@@ -45,14 +45,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
@@ -1858,14 +1859,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -1991,7 +1993,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |",
             "content": {
               "application/json": {
                 "schema": {
@@ -2133,7 +2135,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |",
             "content": {
               "application/json": {
                 "schema": {
@@ -2458,14 +2460,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
