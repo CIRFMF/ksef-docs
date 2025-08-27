@@ -17,6 +17,14 @@
   - Aktualizacja autoryzacji - pobieranie informacji o sesji, fakturach i UPO wymaga uprawnienia: ```InvoiceWrite```.
   - Zmieniono kod statusu *trwa przetwarzanie*: z `300` na `150` dla sesji wsadowej.
 
+- **Pobieranie metadanych faktur (`/invoices/query/metadata`)**  
+Rozszerzono model odpowiedzi o pola:
+ - `fileHash` – skrót SHA256 faktury,
+ - `hashOfCorrectedInvoice` – skrót SHA256 korygowanej faktury offline,
+ - `thirdSubjects` – lista trzecich podmiotów,
+ - `authorizedSubject` – podmiot upoważniony (nowy obiekt `InvoiceMetadataAuthorizedSubject` zawierający `identifier`, `name`, `role`).  
+
+
 - **Dokumentacja**
   - Dodano dokument opisujący [numer KSeF](faktury/numer-ksef.md).
   - Dodano dokument opisujący [korektę techniczną](offline/korekta-techniczna.md) dla faktur wystawionych w trybie offline.

@@ -5762,6 +5762,54 @@
           "hasAttachment": {
             "type": "boolean",
             "description": "Czy faktura posiada załącznik."
+          },
+          "fileHash": {
+            "type": "string",
+            "description": "[Mock] Skrót SHA256 faktury.",
+            "nullable": true
+          },
+          "hashOfCorrectedInvoice": {
+            "type": "string",
+            "description": "[Mock] Skrót SHA256 korygowanej faktury.",
+            "nullable": true
+          },
+          "thirdSubjects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceMetadataThirdSubject"
+            },
+            "description": "[Mock] Lista trzecich podmiotów.",
+            "nullable": true
+          },
+          "authorizedSubject": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceMetadataAuthorizedSubject"
+              }
+            ],
+            "description": "[Mock] Podmiot upoważniony.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceMetadataAuthorizedSubject": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "Identyfikator podmiotu upoważnionego",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Nazwa podmiotu upoważnionego",
+            "nullable": true
+          },
+          "role": {
+            "type": "integer",
+            "description": "Rola podmiotu upoważnionego",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -5778,7 +5826,7 @@
                 "$ref": "#/components/schemas/BuyerIdentifierType"
               }
             ],
-            "description": "Typ identyfikatora nabywcy."
+            "description": "Typ identyfikatora nabywcy.\n| Wartość | Opis |\n| --- | --- |\n| None | Brak identyfikatora nabywcy |\n| Other | Inny |\n| Nip | NIP |\n| VatUe | VAT UE |\n"
           },
           "identifier": {
             "type": "string",
@@ -5820,6 +5868,35 @@
             "type": "string",
             "description": "Nazwa sprzedawcy.",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceMetadataThirdSubject": {
+        "type": "object",
+        "properties": {
+          "identifierType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ThirdSubjectIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora podmiotu trzeciego.\n| Wartość | Opis |\n| --- | --- |\n| Nip | Nip |\n| InternalId | Identyfikator wewnętrzny |\n| VatUe | VAT UE |\n| Other | Inny identyfikator |\n| None | Brak identyfikatora podmiotu trzeciego |\n"
+          },
+          "identifier": {
+            "type": "string",
+            "description": "Wartość identyfikatora podmiotu trzeciego.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Nazwa podmiotu trzeciego.",
+            "nullable": true
+          },
+          "role": {
+            "type": "integer",
+            "description": "Rola podmiotu trzeciego",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -5910,7 +5987,7 @@
                 "$ref": "#/components/schemas/BuyerIdentifierType"
               }
             ],
-            "description": "Typ identyfikatora nabywcy.",
+            "description": "Typ identyfikatora nabywcy.\n| Wartość | Opis |\n| --- | --- |\n| None | Brak identyfikatora nabywcy |\n| Other | Inny |\n| Nip | NIP |\n| VatUe | VAT UE |\n",
             "nullable": true
           },
           "identifier": {
@@ -5986,7 +6063,7 @@
           "SubjectAuthorized"
         ],
         "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1. |\n| Subject2 | Podmiot 2. |\n| Subject3 | Podmiot 3. |\n| SubjectAuthorized | Podmiot upoważniony. |\n"
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 |\n| Subject2 | Podmiot 2 |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
       },
       "InvoicesExportFilters": {
         "required": [
@@ -6001,7 +6078,7 @@
                 "$ref": "#/components/schemas/InvoiceQuerySubjectType"
               }
             ],
-            "description": "Typ podmiotu, którego dotyczą kryteria filtrowania faktur.\nOkreśla kontekst, w jakim przeszukiwane są dane.\n| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1. |\n| Subject2 | Podmiot 2. |\n| Subject3 | Podmiot 3. |\n| SubjectAuthorized | Podmiot upoważniony. |\n"
+            "description": "Typ podmiotu, którego dotyczą kryteria filtrowania faktur.\nOkreśla kontekst, w jakim przeszukiwane są dane.\n| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 |\n| Subject2 | Podmiot 2 |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
           },
           "dateRange": {
             "required": [
@@ -6144,7 +6221,7 @@
                 "$ref": "#/components/schemas/InvoicesExportFilters"
               }
             ],
-            "description": "Zestaw filtrów dla wyszukiwania faktur."
+            "description": "Zestaw filtrów do wyszukiwania faktur."
           }
         },
         "additionalProperties": false
@@ -6197,7 +6274,7 @@
                 "$ref": "#/components/schemas/InvoiceQuerySubjectType"
               }
             ],
-            "description": "Typ podmiotu, którego dotyczą kryteria filtrowania metadanych faktur.\nOkreśla kontekst, w jakim przeszukiwane są dane.\n| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1. |\n| Subject2 | Podmiot 2. |\n| Subject3 | Podmiot 3. |\n| SubjectAuthorized | Podmiot upoważniony. |\n"
+            "description": "Typ podmiotu, którego dotyczą kryteria filtrowania metadanych faktur.\nOkreśla kontekst, w jakim przeszukiwane są dane.\n| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 |\n| Subject2 | Podmiot 2 |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
           },
           "dateRange": {
             "required": [
@@ -8126,6 +8203,17 @@
           }
         },
         "additionalProperties": false
+      },
+      "ThirdSubjectIdentifierType": {
+        "enum": [
+          "Nip",
+          "InternalId",
+          "VatUe",
+          "Other",
+          "None"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Nip | Nip |\n| InternalId | Identyfikator wewnętrzny |\n| VatUe | VAT UE |\n| Other | Inny identyfikator |\n| None | Brak identyfikatora podmiotu trzeciego |\n"
       },
       "TokenInfo": {
         "required": [
