@@ -41,6 +41,7 @@
       - `/invoices/exports` – rozpoczęcie procesu tworzenia paczki faktur,
       - `/invoices/async-query/{operationReferenceNumber}` – sprawdzenie statusu i odbiór gotowej paczki.
     - Zmieniono nazwę modelu `InvoiceMetadataQueryRequest` na `QueryInvoicesMetadataReponse`.
+    - Rozszerzono typ `PersonPermissionsAuthorIdentifier` o nową wartość `System` (Identyfikator systemowy). Wartość ta wykorzystywana jest do oznaczania uprawnień nadawanych automatycznie przez KSeF na podstawie istniejących relacji prawnych i organizacyjnych (np. powiązanie NIP–PESEL właściciela, relacje JST–jednostki organizacyjne, grupy VAT). Zmiana dotyczy endpointu: `/permissions/persons/grants`.
 
 ### Wersja 2.0.0 RC3
 
