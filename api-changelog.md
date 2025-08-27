@@ -19,10 +19,12 @@
 
 - **Pobieranie metadanych faktur (`/invoices/query/metadata`)**  
 Rozszerzono model odpowiedzi o pola:
- - `fileHash` – skrót SHA256 faktury,
- - `hashOfCorrectedInvoice` – skrót SHA256 korygowanej faktury offline,
- - `thirdSubjects` – lista trzecich podmiotów,
- - `authorizedSubject` – podmiot upoważniony (nowy obiekt `InvoiceMetadataAuthorizedSubject` zawierający `identifier`, `name`, `role`).  
+  - `fileHash` – skrót SHA256 faktury,
+  - `hashOfCorrectedInvoice` – skrót SHA256 korygowanej faktury offline,
+  - `thirdSubjects` – lista trzecich podmiotów,
+  - `authorizedSubject` – podmiot upoważniony (nowy obiekt `InvoiceMetadataAuthorizedSubject` zawierający `identifier`, `name`, `role`),
+ - Dodano możliwość filtrowania po typie dokumentu (`InvoiceQueryFormType`), dostępne wartości: `FA`, `PEF`, `RR`. 
+ - Pole `schemaType` oznaczone jako deprecated – planowane do usunięcia w przyszłych wersjach API.
 
 
 - **Dokumentacja**

@@ -5740,7 +5740,7 @@
                 "$ref": "#/components/schemas/InvoiceMetadataInvoiceType"
               }
             ],
-            "description": "Rodzaj faktury.\n| Wartość | Opis |\n| --- | --- |\n| Vat | Faktura podstawowa. |\n| Zal | Faktura zaliczkowa. |\n| Kor | Faktura korygująca. |\n| Roz | Faktura rozliczeniowa. |\n| Upr | Faktura uproszczona. |\n| KorZal | Faktura korygująca do faktury zaliczkowej. |\n| KorRoz | Faktura korygująca do faktury rozliczeniowej. |\n"
+            "description": "Rodzaj faktury.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | [Mock] (PEF) Podstawowowa |\n| VatPefSp | [Mock] (PEF) Specjalizowana |\n| KorPef | [Mock] (PEF) Korygująca |\n| VatRr | [Mock] (RR) Podstawowa |\n| KorVatRr | [Mock] (RR) Korygująca |\n"
           },
           "formCode": {
             "required": [
@@ -5849,10 +5849,15 @@
           "Roz",
           "Upr",
           "KorZal",
-          "KorRoz"
+          "KorRoz",
+          "VatPef",
+          "VatPefSp",
+          "KorPef",
+          "VatRr",
+          "KorVatRr"
         ],
         "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Vat | Faktura podstawowa. |\n| Zal | Faktura zaliczkowa. |\n| Kor | Faktura korygująca. |\n| Roz | Faktura rozliczeniowa. |\n| Upr | Faktura uproszczona. |\n| KorZal | Faktura korygująca do faktury zaliczkowej. |\n| KorRoz | Faktura korygująca do faktury rozliczeniowej. |\n"
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | [Mock] (PEF) Podstawowowa |\n| VatPefSp | [Mock] (PEF) Specjalizowana |\n| KorPef | [Mock] (PEF) Korygująca |\n| VatRr | [Mock] (RR) Podstawowa |\n| KorVatRr | [Mock] (RR) Korygująca |\n"
       },
       "InvoiceMetadataSeller": {
         "required": [
@@ -6036,6 +6041,15 @@
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| Issue | Data wystawienia faktury. |\n| Invoicing | Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania). |\n| PermanentStorage | Data trwałego zapisu faktury w repozytorium systemu KSeF. |\n"
       },
+      "InvoiceQueryFormType": {
+        "enum": [
+          "FA",
+          "PEF",
+          "RR"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| FA | Faktura VAT |\n| PEF | Faktura PEF |\n| RR | Faktura RR |\n"
+      },
       "InvoiceQuerySchemaType": {
         "enum": [
           "FA1",
@@ -6151,13 +6165,13 @@
             "description": "Czy faktura została wystawiona w trybie samofakturowania.",
             "nullable": true
           },
-          "schemaType": {
+          "formType": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/InvoiceQuerySchemaType"
+                "$ref": "#/components/schemas/InvoiceQueryFormType"
               }
             ],
-            "description": "Struktura dokumentu.",
+            "description": "Struktura dokumentu.\n| Wartość | Opis |\n| --- | --- |\n| FA | Faktura VAT |\n| PEF | Faktura PEF |\n| RR | Faktura RR |\n",
             "nullable": true
           },
           "invoiceTypes": {
@@ -6165,7 +6179,7 @@
             "items": {
               "$ref": "#/components/schemas/InvoiceMetadataInvoiceType"
             },
-            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | Faktura podstawowa. |\n| Zal | Faktura zaliczkowa. |\n| Kor | Faktura korygująca. |\n| Roz | Faktura rozliczeniowa. |\n| Upr | Faktura uproszczona. |\n| KorZal | Faktura korygująca do faktury zaliczkowej. |\n| KorRoz | Faktura korygująca do faktury rozliczeniowej. |\n",
+            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | [Mock] (PEF) Podstawowowa |\n| VatPefSp | [Mock] (PEF) Specjalizowana |\n| KorPef | [Mock] (PEF) Korygująca |\n| VatRr | [Mock] (RR) Podstawowa |\n| KorVatRr | [Mock] (RR) Korygująca |\n",
             "nullable": true
           },
           "hasAttachment": {
@@ -6353,7 +6367,16 @@
                 "$ref": "#/components/schemas/InvoiceQuerySchemaType"
               }
             ],
-            "description": "Struktura dokumentu.",
+            "nullable": true,
+            "deprecated": true
+          },
+          "formType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQueryFormType"
+              }
+            ],
+            "description": "Typ dokumentu.\n| Wartość | Opis |\n| --- | --- |\n| FA | Faktura VAT |\n| PEF | Faktura PEF |\n| RR | Faktura RR |\n",
             "nullable": true
           },
           "invoiceTypes": {
@@ -6361,7 +6384,7 @@
             "items": {
               "$ref": "#/components/schemas/InvoiceMetadataInvoiceType"
             },
-            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | Faktura podstawowa. |\n| Zal | Faktura zaliczkowa. |\n| Kor | Faktura korygująca. |\n| Roz | Faktura rozliczeniowa. |\n| Upr | Faktura uproszczona. |\n| KorZal | Faktura korygująca do faktury zaliczkowej. |\n| KorRoz | Faktura korygująca do faktury rozliczeniowej. |\n",
+            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | [Mock] (PEF) Podstawowowa |\n| VatPefSp | [Mock] (PEF) Specjalizowana |\n| KorPef | [Mock] (PEF) Korygująca |\n| VatRr | [Mock] (RR) Podstawowa |\n| KorVatRr | [Mock] (RR) Korygująca |\n",
             "nullable": true
           },
           "hasAttachment": {
