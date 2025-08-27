@@ -1569,7 +1569,7 @@
                 ],
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/InvoiceMetadataQueryRequest"
+                    "$ref": "#/components/schemas/InvoicesMetadataQueryRequest"
                   }
                 ]
               }
@@ -1582,7 +1582,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/QueryInvoiceMetadataReponse"
+                  "$ref": "#/components/schemas/QueryInvoicesMetadataReponse"
                 }
               }
             }
@@ -5806,117 +5806,6 @@
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| Vat | Faktura podstawowa. |\n| Zal | Faktura zaliczkowa. |\n| Kor | Faktura korygująca. |\n| Roz | Faktura rozliczeniowa. |\n| Upr | Faktura uproszczona. |\n| KorZal | Faktura korygująca do faktury zaliczkowej. |\n| KorRoz | Faktura korygująca do faktury rozliczeniowej. |\n"
       },
-      "InvoiceMetadataQueryRequest": {
-        "required": [
-          "dateRange",
-          "subjectType"
-        ],
-        "type": "object",
-        "properties": {
-          "subjectType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQuerySubjectType"
-              }
-            ],
-            "description": "Typ podmiotu, którego dotyczą kryteria filtrowania metadanych faktur.\nOkreśla kontekst, w jakim przeszukiwane są dane.\n| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1. |\n| Subject2 | Podmiot 2. |\n| Subject3 | Podmiot 3. |\n| SubjectAuthorized | Podmiot upoważniony. |\n"
-          },
-          "dateRange": {
-            "required": [
-              "dateType",
-              "from"
-            ],
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQueryDateRange"
-              }
-            ],
-            "description": "Typ i zakres dat, według którego mają być filtrowane faktury."
-          },
-          "ksefNumber": {
-            "type": "string",
-            "description": "Numer KSeF faktury.",
-            "nullable": true
-          },
-          "invoiceNumber": {
-            "type": "string",
-            "description": "Numer faktury nadany przez wystawcę.",
-            "nullable": true
-          },
-          "amount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQueryAmount"
-              }
-            ],
-            "description": "Filtr kwotowy – brutto, netto lub VAT (z wartością).",
-            "nullable": true
-          },
-          "seller": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQuerySeller"
-              }
-            ],
-            "description": "Dane sprzedawcy.",
-            "nullable": true
-          },
-          "buyer": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQueryBuyer"
-              }
-            ],
-            "description": "Dane nabywcy.",
-            "nullable": true
-          },
-          "currencyCodes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CurrencyCode"
-            },
-            "description": "Kody walut.",
-            "nullable": true
-          },
-          "invoicingMode": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoicingMode"
-              }
-            ],
-            "description": "Tryb wystawienia faktury: online lub offline.",
-            "nullable": true
-          },
-          "isSelfInvoicing": {
-            "type": "boolean",
-            "description": "Czy faktura została wystawiona w trybie samofakturowania.",
-            "nullable": true
-          },
-          "schemaType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQuerySchemaType"
-              }
-            ],
-            "description": "Struktura dokumentu.",
-            "nullable": true
-          },
-          "invoiceTypes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceMetadataInvoiceType"
-            },
-            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | Faktura podstawowa. |\n| Zal | Faktura zaliczkowa. |\n| Kor | Faktura korygująca. |\n| Roz | Faktura rozliczeniowa. |\n| Upr | Faktura uproszczona. |\n| KorZal | Faktura korygująca do faktury zaliczkowej. |\n| KorRoz | Faktura korygująca do faktury rozliczeniowej. |\n",
-            "nullable": true
-          },
-          "hasAttachment": {
-            "type": "boolean",
-            "description": "Czy faktura ma załącznik.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "InvoiceMetadataSeller": {
         "required": [
           "identifier"
@@ -7198,7 +7087,7 @@
         },
         "additionalProperties": false
       },
-      "QueryInvoiceMetadataReponse": {
+      "QueryInvoicesMetadataReponse": {
         "required": [
           "hasMore",
           "invoices",

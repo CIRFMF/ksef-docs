@@ -39,6 +39,7 @@
     - Doprecyzowano proces pobierania paczki faktur:
       - `/invoices/exports` – rozpoczęcie procesu tworzenia paczki faktur,
       - `/invoices/async-query/{operationReferenceNumber}` – sprawdzenie statusu i odbiór gotowej paczki.
+    - Zmieniono nazwę modelu `InvoiceMetadataQueryRequest` na `QueryInvoicesMetadataReponse`.
 
 ### Wersja 2.0.0 RC3
 
