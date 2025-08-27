@@ -6697,13 +6697,14 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator osoby lub podmiotu nadającego uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
+        "description": "Identyfikator osoby lub podmiotu nadającego uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |\n| System | Identyfikator systemowy |"
       },
       "PersonPermissionsAuthorIdentifierType": {
         "enum": [
           "Nip",
           "Pesel",
-          "Fingerprint"
+          "Fingerprint",
+          "System"
         ],
         "type": "string"
       },
@@ -6788,7 +6789,7 @@
                 "$ref": "#/components/schemas/PersonPermissionsAuthorIdentifier"
               }
             ],
-            "description": "Identyfikator osoby lub podmiotu nadającego uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |",
+            "description": "Identyfikator osoby lub podmiotu nadającego uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |\n| System | Identyfikator systemowy |",
             "nullable": true
           },
           "authorizedIdentifier": {
