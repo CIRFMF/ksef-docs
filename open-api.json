@@ -1651,7 +1651,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21315               | Zalogowany identyfikator kontekstu nie może być użyty dla wybranego podmiotu.     | {treść z walidatora}                                           |\n| 21405               | Dokument nie jest zgodny ze schemą (json).          | {treść błędu walidacji}                                       |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21315               | Zalogowany identyfikator kontekstu nie może być użyty dla wybranego podmiotu.     | {treść błędu walidacji}                                           |\n| 21405               | Dokument nie jest zgodny ze schemą (json).          | {treść błędu walidacji}                                       |",
             "content": {
               "application/json": {
                 "schema": {
@@ -4100,7 +4100,8 @@
           "Nip",
           "VatUe"
         ],
-        "type": "string"
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| None | Brak identyfikatora nabywcy |\n| Other | Inny |\n| Nip | NIP |\n| VatUe | VAT UE |\n"
       },
       "CertificateEnrollmentDataResponse": {
         "required": [
@@ -5671,7 +5672,7 @@
           },
           "invoicingDate": {
             "type": "string",
-            "description": "Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania).",
+            "description": "[Mock] Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania).",
             "format": "date-time"
           },
           "acquisitionDate": {
@@ -5681,7 +5682,7 @@
           },
           "permanentStorageDate": {
             "type": "string",
-            "description": "Data trwałego zapisu faktury w repozytorium systemu KSeF.",
+            "description": "[Mock] Data trwałego zapisu faktury w repozytorium systemu KSeF.",
             "format": "date-time"
           },
           "seller": {
@@ -6016,7 +6017,7 @@
                 "$ref": "#/components/schemas/InvoiceQueryDateType"
               }
             ],
-            "description": "Typ daty, według której ma być zastosowany zakres.\n| Wartość | Opis |\n| --- | --- |\n| Issue | Data wystawienia faktury. |\n| Invoicing | Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania). |\n| PermanentStorage | Data trwałego zapisu faktury w repozytorium systemu KSeF. |\n"
+            "description": "Typ daty, według której ma być zastosowany zakres.\n| Wartość | Opis |\n| --- | --- |\n| Issue | Data wystawienia faktury |\n| Invoicing | [Mock] Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania) |\n| PermanentStorage | [Mock] Data trwałego zapisu faktury w repozytorium systemu KSeF |\n"
           },
           "from": {
             "type": "string",
@@ -6039,7 +6040,7 @@
           "PermanentStorage"
         ],
         "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Issue | Data wystawienia faktury. |\n| Invoicing | Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania). |\n| PermanentStorage | Data trwałego zapisu faktury w repozytorium systemu KSeF. |\n"
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Issue | Data wystawienia faktury |\n| Invoicing | [Mock] Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania) |\n| PermanentStorage | [Mock] Data trwałego zapisu faktury w repozytorium systemu KSeF |\n"
       },
       "InvoiceQueryFormType": {
         "enum": [
