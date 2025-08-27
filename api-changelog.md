@@ -46,12 +46,12 @@ Rozszerzono model odpowiedzi o pola:
     - 430 – Kontekst identyfikatora nie odpowiada wymaganej roli lub uprawnieniom.
     - 440 – Operacja niedozwolona dla wskazanych powiązań identyfikatorów.
     - 450 – Operacja niedozwolona dla wskazanego identyfikatora lub jego typu.
-    - Dodano obsługę błędu **21418** – „Przekazany token kontynuacji ma nieprawidłowy format” we wszystkich endpointach wykorzystujących mechanizm paginacji z użyciem `continuationToken` (`/auth/sessions`, `/sessions`, `/sessions/{referenceNumber}/invoices`, `/sessions/{referenceNumber}/invoices/failed`, `/tokens`).
-    - Doprecyzowano proces pobierania paczki faktur:
-      - `/invoices/exports` – rozpoczęcie procesu tworzenia paczki faktur,
-      - `/invoices/async-query/{operationReferenceNumber}` – sprawdzenie statusu i odbiór gotowej paczki.
-    - Zmieniono nazwę modelu `InvoiceMetadataQueryRequest` na `QueryInvoicesMetadataReponse`.
-    - Rozszerzono typ `PersonPermissionsAuthorIdentifier` o nową wartość `System` (Identyfikator systemowy). Wartość ta wykorzystywana jest do oznaczania uprawnień nadawanych automatycznie przez KSeF na podstawie istniejących relacji prawnych i organizacyjnych (np. powiązanie NIP–PESEL właściciela, relacje JST–jednostki organizacyjne, grupy VAT). Zmiana dotyczy endpointu: `/permissions/persons/grants`.
+  - Dodano obsługę błędu **21418** – „Przekazany token kontynuacji ma nieprawidłowy format” we wszystkich endpointach wykorzystujących mechanizm paginacji z użyciem `continuationToken` (`/auth/sessions`, `/sessions`, `/sessions/{referenceNumber}/invoices`, `/sessions/{referenceNumber}/invoices/failed`, `/tokens`).
+  - Doprecyzowano proces pobierania paczki faktur:
+    - `/invoices/exports` – rozpoczęcie procesu tworzenia paczki faktur,
+    - `/invoices/async-query/{operationReferenceNumber}` – sprawdzenie statusu i odbiór gotowej paczki.
+  - Zmieniono nazwę modelu `InvoiceMetadataQueryRequest` na `QueryInvoicesMetadataReponse`.
+  - Rozszerzono typ `PersonPermissionsAuthorIdentifier` o nową wartość `System` (Identyfikator systemowy). Wartość ta wykorzystywana jest do oznaczania uprawnień nadawanych przez KSeF na podstawie złożonego wniosku ZAW-FA. Zmiana dotyczy endpointu: `/permissions/query/persons/grants`.
 
 ### Wersja 2.0.0 RC3
 
