@@ -15,6 +15,7 @@
 
 - **Status sesji**
   - Aktualizacja autoryzacji - pobieranie informacji o sesji, fakturach i UPO wymaga uprawnienia: ```InvoiceWrite```.
+  - Zmieniono kod statusu *trwa przetwarzanie*: z `300` na `150` dla sesji wsadowej.
 
 - **Dokumentacja**
   - Dodano dokument opisujący [numer KSeF](faktury/numer-ksef.md).
