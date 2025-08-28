@@ -120,7 +120,7 @@ Zbiorcze UPO będzie dostępne po sprawdzeniu stanu sesji.
 Przykład w języku C#:
 
 ```csharp
- var upo = await ksefClient.CloseOnlineSessionAsync(
+ var closeOnlineSessionResponse = await ksefClient.CloseOnlineSessionAsync(
             sessionReferenceNumber,
             cancellationToken
         );    
