@@ -9,8 +9,8 @@ Numer KSeF to unikalny identyfikator faktury nadawany przez system. Zawsze ma d�
 Gdzie:
 - `9999999999` – NIP sprzedawcy (10 cyfr),
 - `RRRRMMDD` – data przyjęcia faktury (rok, miesiąc, dzień) do dalszego przetwarzania,
-- `FFFFFFFFFFFF` – część techniczna składająca się z 12 znaków alfanumerycznych,
-- `FF` – suma kontrolna (2 znaki, CRC-8 w formacie HEX, wielkie litery).
+- `FFFFFFFFFFFF` – część techniczna składająca się z 12 znaków w zapisie szesnastkowym, tylko [0–9 A–F], wielkie litery,
+- `FF` – suma kontrolna CRC-8 - 2 znaki w zapisie szesnastkowym, tylko [0–9 A–F], wielkie litery.
 
 ## Przykład
 ```
