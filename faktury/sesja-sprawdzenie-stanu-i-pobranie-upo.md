@@ -216,11 +216,32 @@ Endpoint umożliwia selektywne pobranie wyłącznie odrzuconych faktur, co ułat
 
 ### 7. Pobranie UPO sesji
 
-Udostępnia zbiorcze UPO potwierdzające przyjęcie wszystkich faktur przesłanych w danej sesji.
+UPO sesji stanowi zbiorcze poświadczenie przyjęcia wszystkich faktur poprawnie przesłanych w ramach danej sesji.
 
+Po zamknięciu sesji, w odpowiedzi na sprawdzenie jej [stanu](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions~1%7BreferenceNumber%7D/get) (krok 2 – Sprawdzenie stanu sesji), zwracane są nie tylko informacje o liczbie poprawnie i błędnie przetworzonych faktur, lecz także lista referencji do zbiorczych UPO.
+
+Każdy element tablicy `upo.pages[]` zawiera numer referencyjny UPO (`referenceNumber`) oraz link (`downloadUrl`) umożliwiający jego pobranie:
+
+```json
+"upo": {
+    "pages": [
+        {
+            "referenceNumber": "20250901-EU-47FDBE3000-5961A5D232-BF",
+            "downloadUrl": "/api/v2/sessions/20250901-SB-47FA636000-5960B49115-9D/upo/20250901-EU-47FDBE3000-5961A5D232-BF"
+        },
+        {
+            "referenceNumber": "20250901-EU-48D8488000-59667BB54C-C8",
+            "downloadUrl": "/api/v2/sessions/20250901-SB-47FA636000-5960B49115-9D/upo/20250901-EU-48D8488000-59667BB54C-C8"
+        }        
+    ]
+}
+
+```
+
+Dysponując tą listą, klient API może pobrać UPO pojedynczo, wywołując endpoint wskazany w polu `downloadUrl`, tj.  
 GET [/sessions/\{referenceNumber\}/upo/\{upoReferenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions~1%7BreferenceNumber%7D~1upo~1%7BupoReferenceNumber%7D/get)
 
-Otrzymany dokument XML jest zgodny ze schematem [XSD](/faktury/upo-sesja.xsd).
+Otrzymany dokument XML jest zgodny ze schematem [XSD](/faktury/upo-sesja.xsd) i może zawierać maksymalnie 10 000 pozycji faktur.
 
 Przyklad w języku C#:
 
