@@ -82,11 +82,11 @@ var encryptedInvoiceMetadata = cryptographyService.GetMetaData(encryptedInvoice)
 var sendOnlineInvoiceRequest = SendInvoiceOnlineSessionRequestBuilder
     .Create()
     .WithInvoiceHash(invoiceMetadata.HashSHA.Value, invoiceMetadata.FileSize)
-    .WithEncryptedInvoiceHash(
+    .WithEncryptedDocumentHash(
        encryptedInvoiceMetadata.HashSHA.Value, encryptedInvoiceMetadata.FileSize)
-    .WithEncryptedInvoiceContent(Convert.ToBase64String(encryptedInvoice))
+    .WithEncryptedDocumentContent(Convert.ToBase64String(encryptedInvoice))
     .Build();
-var sendInvoiceResponse = await ksefClient.SendOnlineSessionInvoiceAsync(sendOnlineInvoiceRequest, referenceNumber, accesToken, cancellationToken);
+var sendInvoiceResponse = await ksefClient.SendOnlineSessionInvoiceAsync(sendOnlineInvoiceRequest, referenceNumber, accessToken, cancellationToken);
 ```
 
 Przykład w języku Java:
