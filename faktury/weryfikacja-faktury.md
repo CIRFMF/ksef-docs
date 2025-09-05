@@ -18,7 +18,7 @@ Faktura musi być przygotowana w formacie XML, kodowana w UTF-8 oraz zgodna z ak
 ## Walidacja dat
 Data wystawienia faktury (`P_1`) nie może być późniejsza niż data przyjęcia dokumentu do systemu KSeF.
 
-## Rozmiar pliku
+## Rozmiar pliku XML (niezaszyfrowanego)
 - Maksymalny rozmiar faktury bez załączników: **1 MB**
 - Maksymalny rozmiar faktury z załącznikami: **3 MB**
 
