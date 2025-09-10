@@ -232,6 +232,16 @@ Przykład w języku Java:
 ksefClient.sendBatchParts(openBatchSessionResponse, encryptedZipParts);
 ```
 
+**Limit czasu na przesłanie partów w sesji wsadowej**  
+Wysyłka plików w sesji wsadowej jest ograniczona czasowo. Czas ten zależy wyłącznie od liczby zadeklarowanych partów i wynosi 20 minut na każdy part. Każdy dodatkowy part proporcjonalnie zwiększa limit czasu **dla każdego parta** w paczce.
+
+Łączny czas na wysyłkę każdego parta = liczba partów × 20 minut.  
+Przykład. Paczka zawiera 2 party – każdy part ma 40 minut na wysyłkę.
+
+Wielkość parta nie ma znaczenia dla ustalenia limitu czasu – jedynym kryterium jest liczba partów zadeklarowana przy otwarciu sesji.  
+
+Autoryzacja jest weryfikowana na początku każdego żądania HTTP. Jeżeli w momencie przyjęcia żądania adres jest ważny, operacja przesłania zostaje zrealizowana w całości. Wygaśnięcie ważności w trakcie trwania przesyłania nie przerywa rozpoczętej operacji.
+
 ### 6. Zamknięcie sesji wsadowej
 Po przesłaniu wszystkich części paczki należy zamknąć sesję wsadową, co inicjuje asynchronicznie przetwarzanie paczki faktur ([szczegóły weryfikacji](faktury\weryfikacja-faktury.md)), oraz generowanie zbiorczego UPO.
 
