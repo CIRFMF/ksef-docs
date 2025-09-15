@@ -45,7 +45,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -78,14 +78,15 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
@@ -121,14 +122,15 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
@@ -160,14 +162,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": null,
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
@@ -258,7 +261,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                                                           | Details |\n|---------------------|------------------------------------------------------------------------------------------------|---------|\n| 25002               | Brak możliwości złożenia wniosku certyfikacyjnego dla wykorzystanego sposobu uwierzytelnienia. |         |\n| 25003               | Dane w CSR nie zgadzają się z danymi w użytym wektorze uwierzytelniającym.                     |         |\n| 25004               | Niepoprawny format CSR lub niepoprawny podpis CSR.                                             |         |\n| 25006               | Osiągnięto limit możliwych do złożenia wniosków certyfikacyjnych.                              |         |\n| 25007               | Osiągnięto limit dopuszczalnej liczby posiadanych certyfikatów.                                |         |\n| 25010               | Nieprawidłowy typ lub długość klucza.                                                          |         |",
+            "description": "| ExceptionCode       | ExceptionDescription                                                                           | Details |\n|---------------------|------------------------------------------------------------------------------------------------|---------|\n| 25002               | Brak możliwości złożenia wniosku certyfikacyjnego dla wykorzystanego sposobu uwierzytelnienia. |         |\n| 25003               | Dane w CSR nie zgadzają się z danymi w użytym wektorze uwierzytelniającym.                     |         |\n| 25004               | Niepoprawny format CSR lub niepoprawny podpis CSR.                                             |         |\n| 25006               | Osiągnięto limit możliwych do złożenia wniosków certyfikacyjnych.                              |         |\n| 25007               | Osiągnięto limit dopuszczalnej liczby posiadanych certyfikatów.                                |         |\n| 25010               | Nieprawidłowy typ lub długość klucza.                                                          |         |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -309,7 +312,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                                                           | Details |\n|---------------------|------------------------------------------------------------------------------------------------|---------|\n| 25005               | Wniosek certyfikacyjny o podanym numerze referencyjnym nie istnieje.                           |         |",
+            "description": "| ExceptionCode       | ExceptionDescription                                                                           | Details |\n|---------------------|------------------------------------------------------------------------------------------------|---------|\n| 25005               | Wniosek certyfikacyjny o podanym numerze referencyjnym nie istnieje.                           |         |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -368,14 +371,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
@@ -425,7 +429,7 @@
             "description": "No Content"
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                                                           | Details |\n|---------------------|------------------------------------------------------------------------------------------------|---------|\n| 25008               | Certyfikat o podanym numerze seryjnym nie istnieje.                                            |         |\n| 25009               | Nie można odwołać wskazanego certyfikatu, ponieważ jest już odwołany, zablokowany lub nieważny.|         |",
+            "description": "| ExceptionCode       | ExceptionDescription                                                                           | Details |\n|---------------------|------------------------------------------------------------------------------------------------|---------|\n| 25008               | Certyfikat o podanym numerze seryjnym nie istnieje.                                            |         |\n| 25009               | Nie można odwołać wskazanego certyfikatu, ponieważ jest już odwołany, zablokowany lub nieważny.|         |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -501,14 +505,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
@@ -544,14 +549,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": null,
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           }
         }
       }
@@ -581,14 +587,15 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode       | ExceptionDescription                                       | Details |\n|---------------------|------------------------------------------------------------|---------|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           }
         }
       }
@@ -618,14 +625,15 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           }
         }
       }
@@ -655,14 +663,15 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode       | ExceptionDescription                                       | Details |\n|---------------------|------------------------------------------------------------|---------|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           }
         }
       }
@@ -692,14 +701,15 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           }
         }
       }
@@ -729,14 +739,15 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           }
         }
       }
@@ -766,14 +777,15 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           }
         }
       }
@@ -803,14 +815,15 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           }
         }
       }
@@ -840,14 +853,15 @@
             "description": "OK"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           }
         }
       }
@@ -891,14 +905,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -956,14 +971,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -1021,14 +1037,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -1086,14 +1103,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -1151,14 +1169,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -1216,14 +1235,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -1281,14 +1301,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -1338,14 +1359,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -1395,14 +1417,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -1452,14 +1475,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
@@ -1502,7 +1526,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21164               | Faktura o podanym identyfikatorze nie istnieje.     | Faktura o numerze KSeF {ksefNumber} nie została znaleziona.   |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21164               | Faktura o podanym identyfikatorze nie istnieje.     | Faktura o numerze KSeF {ksefNumber} nie została znaleziona.   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -1588,7 +1612,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21405               | Dokument nie jest zgodny ze schemą (json).          | {treść błędu walidacji}                                       |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21405               | Dokument nie jest zgodny ze schemą (json).          | {treść błędu walidacji}                                       |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -1651,7 +1675,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21315               | Zalogowany identyfikator kontekstu nie może być użyty dla wybranego podmiotu.     | {treść błędu walidacji}                                           |\n| 21405               | Dokument nie jest zgodny ze schemą (json).          | {treść błędu walidacji}                                       |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21315               | Zalogowany identyfikator kontekstu nie może być użyty dla wybranego podmiotu.     | {treść błędu walidacji}                                           |\n| 21405               | Błąd walidacji danych wejściowych.          | {treść błędu z walidatora}                                       |",
             "content": {
               "application/json": {
                 "schema": {
@@ -1708,7 +1732,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21175               | Wynik zapytania o podanym identyfikatorze nie istnieje.     | {treść z walidatora}                                  |\n| 21405               | Dokument nie jest zgodny ze schemą (json).          | {treść błędu walidacji}                                       |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21175               | Wynik zapytania o podanym identyfikatorze nie istnieje.     |                                  |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -1859,7 +1883,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -1917,7 +1941,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -1993,7 +2017,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -2060,14 +2084,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -2135,7 +2160,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -2201,7 +2226,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                                                        | \n|---------------------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------------------|\n| 21178               | Nie znaleziono UPO dla podanych kryteriów.          | UPO o numerze KSeF {ksefNumber} i numerze referencyjnym sesji {referenceNumber} nie zostało znalezione.  |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                                                        | \n|---------------------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------------------|\n| 21178               | Nie znaleziono UPO dla podanych kryteriów.          | UPO o numerze KSeF {ksefNumber} i numerze referencyjnym sesji {referenceNumber} nie zostało znalezione.  |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -2267,14 +2292,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -2332,7 +2358,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                                                        | \n|---------------------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.                                        |\n| 21178               | Nie znaleziono UPO dla podanych kryteriów.          | UPO o numerze referencyjnym {referenceNumber} dla sesji {referenceNumber} nie zostało znalezione.        |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                                                        | \n|---------------------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.                                        |\n| 21178               | Nie znaleziono UPO dla podanych kryteriów.          | UPO o numerze referencyjnym {referenceNumber} dla sesji {referenceNumber} nie zostało znalezione.        |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -2391,7 +2417,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                       | Details |\n|---------------------|------------------------------------------------------------|---------|\n| 26001               | Nie można nadać tokenowi uprawnień których nie posiadasz.  | Informacja o brakujących uprawnieniach. |",
+            "description": "| ExceptionCode       | ExceptionDescription                                       | Details |\n|---------------------|------------------------------------------------------------|---------|\n| 26001               | Nie można nadać tokenowi uprawnień których nie posiadasz.  | Informacja o brakujących uprawnieniach. |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -2460,7 +2486,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy format. |   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -2510,14 +2536,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
@@ -2551,14 +2578,15 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -2597,14 +2625,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": null,
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           }
         }
       }
@@ -2650,7 +2679,7 @@
             }
           },
           "400": {
-            "description": " | ExceptionCode      | ExceptionDescription                                                | Details                                                     | \n|---------------------|---------------------------------------------------------------------|-------------------------------------------------------------|\n| 21001               | Nieczytelna treść.                                                  |                                                             |\n| 21111               | Nieprawidłowe wyzwanie autoryzacyjne.                               |                                                             |\n| 21115               | Nieprawidłowy certyfikat.                                           |                                                             |\n| 21117               | Nieprawidłowy identyfikator podmiotu dla wskazanego typu kontekstu. |                                                             |\n| 21217               | Nieprawidłowe kodowanie znaków.                                     |                                                             |\n| 21401               | Dokument nie jest zgodny ze schemą (xsd).                           | {treść błędu walidacji}                                     |\n| 21406               | Konflikt podpisu i typu uwierzytelnienia.                           |                                                             |\n| 9101                | Nieprawidłowy dokument.                                             |                                                             |\n| 9102                | Brak podpisu.                                                       |                                                             |\n| 9103                | Przekroczona liczba dozwolonych podpisów.                           |                                                             |\n| 9105                | Nieprawidłowa treść podpisu.                                        |                                                             |",
+            "description": " | ExceptionCode      | ExceptionDescription                                                | Details                                                     | \n|---------------------|---------------------------------------------------------------------|-------------------------------------------------------------|\n| 21001               | Nieczytelna treść.                                                  |                                                             |\n| 21111               | Nieprawidłowe wyzwanie autoryzacyjne.                               |                                                             |\n| 21115               | Nieprawidłowy certyfikat.                                           |                                                             |\n| 21117               | Nieprawidłowy identyfikator podmiotu dla wskazanego typu kontekstu. |                                                             |\n| 21217               | Nieprawidłowe kodowanie znaków.                                     |                                                             |\n| 21401               | Dokument nie jest zgodny ze schemą (xsd).                           | {treść błędu walidacji}                                     |\n| 21406               | Konflikt podpisu i typu uwierzytelnienia.                           |                                                             |\n| 9101                | Nieprawidłowy dokument.                                             |                                                             |\n| 9102                | Brak podpisu.                                                       |                                                             |\n| 9103                | Przekroczona liczba dozwolonych podpisów.                           |                                                             |\n| 9105                | Nieprawidłowa treść podpisu.                                        |                                                             |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -2702,14 +2731,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           }
         }
       }
@@ -2770,14 +2800,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": null,
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
@@ -2810,14 +2841,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": null,
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
@@ -2910,14 +2942,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -2989,7 +3022,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                                                    | \n|---------------------|-----------------------------------------------------|------------------------------------------------------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została odnaleziona.                                   |\n| 21154               | Sesja interaktywna zakończona.                      | Sesja o numerze referencyjnym {referenceNumber} jest zamknięta.                                            |\n| 21155               | Przekroczona dozwolona ilość faktur w sesji.        | Sesja o numerze referencyjnym {referenceNumber} osiągnęła dozwolony limit liczby faktur {invoiceLimit}.    |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                                                    | \n|---------------------|-----------------------------------------------------|------------------------------------------------------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została odnaleziona.                                   |\n| 21154               | Sesja interaktywna zakończona.                      | Sesja o numerze referencyjnym {referenceNumber} jest zamknięta.                                            |\n| 21155               | Przekroczona dozwolona ilość faktur w sesji.        | Sesja o numerze referencyjnym {referenceNumber} osiągnęła dozwolony limit liczby faktur {invoiceLimit}.    |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -3039,7 +3072,7 @@
             "description": "No Content"
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                    | \n|---------------------|-----------------------------------------------------|----------------------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została odnaleziona.   |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                    | \n|---------------------|-----------------------------------------------------|----------------------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została odnaleziona.   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -3106,7 +3139,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                   | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------------------|\n| 21157               | Nieprawidłowy rozmiar części pakietu.               | {treść błędu walidacji}                                                   | \n| 21161               | Przekroczono dozwoloną ilość części pakietu.        | {treść błędu walidacji}                                                   | \n| 21401               | Dokument nie jest zgodny ze schemą (json).          | {treść błędu walidacji}                                                   |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                   | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------------------|\n| 21157               | Nieprawidłowy rozmiar części pakietu.               | {treść błędu walidacji}                                                   | \n| 21161               | Przekroczono dozwoloną ilość części pakietu.        | {treść błędu walidacji}                                                   | \n| 21401               | Dokument nie jest zgodny ze schemą (json).          | {treść błędu walidacji}                                                   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -3156,7 +3189,7 @@
             "description": "No Content"
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                   | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |\n| 21205               | Pakiet nie może być pusty.                          | Nie przesłano zadeklarowanych części pliku.                               |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                   | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |\n| 21205               | Pakiet nie może być pusty.                          | Nie przesłano zadeklarowanych części pliku.                               |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -3240,14 +3273,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -3321,14 +3355,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -3389,14 +3424,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -3470,14 +3506,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -3555,14 +3592,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
@@ -3636,14 +3674,15 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
               }
-            }
+            },
+            "x-summary": "Bad Request"
           },
           "403": {
             "description": "Forbidden"

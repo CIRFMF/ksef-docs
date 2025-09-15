@@ -1,5 +1,11 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.0 RC5
+
+
+- **OpenAPI**
+  - Dodano uniwersalny kod błędu walidacji danych wejściowych `21405` do wszystkich endpointów. Treść błędu z walidatora zwracana w odpowiedzi.
+
 ### Wersja 2.0.0 RC4
 
 - **Certyfikaty KSeF**
