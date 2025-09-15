@@ -5,6 +5,7 @@
 
 - **OpenAPI**
   - Dodano uniwersalny kod błędu walidacji danych wejściowych `21405` do wszystkich endpointów. Treść błędu z walidatora zwracana w odpowiedzi.
+  - Zaktualizowano przykłady (example) w definicjach endpointów.
 
 ### Wersja 2.0.0 RC4
 
