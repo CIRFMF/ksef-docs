@@ -1813,7 +1813,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie listy sesji",
-        "description": "Zwraca listę sesji spełniających podane kryteria wyszukiwania.\n\nWymagane uprawnienia: `Introspection`.",
+        "description": "Zwraca listę sesji spełniających podane kryteria wyszukiwania.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`.",
         "parameters": [
           {
             "name": "pageSize",
@@ -1954,6 +1954,7 @@
           }
         ],
         "x-required-permissions": [
+          "InvoiceWrite",
           "Introspection"
         ]
       }
