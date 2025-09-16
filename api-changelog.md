@@ -5,6 +5,7 @@
 
 - **OpenAPI**
   - Dodano uniwersalny kod błędu walidacji danych wejściowych `21405` do wszystkich endpointów. Treść błędu z walidatora zwracana w odpowiedzi.
+  - Dodano odpowiedź 400 z walidacją zwracającą kod błędu `30001` („Podmiot lub uprawnienie już istnieje.”) dla POST `/api/v2/testdata/subject` oraz POST `/api/v2/testdata/person`.
   - Zaktualizowano przykłady (example) w definicjach endpointów.
 
 ### Wersja 2.0.0 RC4
