@@ -2,6 +2,8 @@
 
 ### Wersja 2.0.0 RC5
 
+- **Załączniki do faktur**
+  - Dodano endpoint GET `/api/v2/permissions/attachments/status` do sprawdzania statusu zgody na wystawianie faktur z załącznikiem.
 
 - **OpenAPI**
   - Dodano uniwersalny kod błędu walidacji danych wejściowych `21405` do wszystkich endpointów. Treść błędu z walidatora zwracana w odpowiedzi.

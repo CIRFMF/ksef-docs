@@ -727,3 +727,14 @@ Przykład w języku Java:
 ```java
 var permissionStatusInfo = ksefClient.permissionOperationStatus(referenceNumber);
 ```
+
+### Sprawdzenie statusu zgody na wystawianie faktur z załącznikiem
+
+Zgoda jest wymagana do wystawiania faktur zawierających załączniki i obowiązuje w obrębie bieżącego kontekstu (`ContextIdentifier`) użytego przy uwierzytelnieniu. Zgoda jest nadawana poza API, wyłącznie w usłudze e-Urząd Skarbowy, a zgłoszenia można składać od 1 stycznia 2026 r. API nie udostępnia operacji złożenia zgody
+
+GET [/permissions/attachments/status](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Operacje/paths/~1api~1v2~1permissions~1attachments~1status/get)
+
+Zwraca status zgody dla bieżącego kontekstu. Jeżeli zgoda nie jest aktywna, faktura z załącznikiem wysłana do API KSeF zostanie odrzucona.
+
+**Środowisko testowe**  
+Na środowisku testowym dostępny jest endpoint POST `/api/v2/testdata/attachment`, który nadaje możliwość wysyłania faktur z załącznikiem przez wskazany podmiot. Endpoint służy wyłącznie do zasymulowania nadania zgody w testach i działa w zakresie bieżącego kontekstu.

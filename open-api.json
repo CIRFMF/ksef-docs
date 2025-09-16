@@ -1497,6 +1497,53 @@
         ]
       }
     },
+    "/api/v2/permissions/attachments/status": {
+      "get": {
+        "tags": [
+          "Operacje"
+        ],
+        "summary": "Sprawdzenie statusu zgody na wystawianie faktur z załącznikiem",
+        "description": "Sprawdzenie czy obecny kontekst posiada zgodę na wystawianie faktur z załącznikiem.\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckAttachmentPermissionStatusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-required-permissions": [
+          "CredentialsManage",
+          "CredentialsRead"
+        ]
+      }
+    },
     "/api/v2/invoices/ksef/{ksefNumber}": {
       "get": {
         "tags": [
@@ -4370,6 +4417,22 @@
         ],
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| Unspecified | Nieokreślony. |\n| Superseded | Certyfikat został zastąpiony przez inny. |\n| KeyCompromise | Klucz prywatny powiązany z certyfikatem został skompromitowany. |\n"
+      },
+      "CheckAttachmentPermissionStatusResponse": {
+        "type": "object",
+        "properties": {
+          "isAttachmentAllowed": {
+            "type": "boolean",
+            "description": "Informacja czy Podmiot ma obecnie możliwość dodawania Załączników do Faktur"
+          },
+          "revokedDate": {
+            "type": "string",
+            "description": "Data i czas zakończenia możliwość dodawania przez Podmiot Załączników do Faktur.\nBrak podanej daty oznacza bezterminową możliwość dodawania Załączników do Faktur",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "CommonSessionStatus": {
         "enum": [
