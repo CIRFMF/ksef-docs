@@ -2,6 +2,9 @@
 
 ### Wersja 2.0.0 RC5
 
+- **Pobieranie metadanych faktur (`/invoices/query/metadata`)** 
+  - Usunięto pole `totalCount` z odpowiedzi wyszukiwania metadanych.
+
 - **Uprawnienia**
   - Rozszerzono DELETE `/api/v2/permissions/common/grants/{permissionId}` o uprawnienie `VatUeManage`. Wymagane uprawnienia: CredentialsManage lub `VatUeManage`.
   - Dodano uprawnienie `Introspection` do wszystkich endpointów sprawdzających status w sesji GET `/sessions/{referenceNumber}/...` Każdy z tych endpointów można teraz wywołać posiadając `InvoiceWrite` lub `Introspection`.

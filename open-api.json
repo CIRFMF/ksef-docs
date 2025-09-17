@@ -7304,17 +7304,10 @@
       "QueryInvoicesMetadataReponse": {
         "required": [
           "hasMore",
-          "invoices",
-          "totalCount"
+          "invoices"
         ],
         "type": "object",
         "properties": {
-          "totalCount": {
-            "type": "integer",
-            "description": "Całkowita liczba pasujących rekordów w repozytorium.",
-            "format": "int32",
-            "deprecated": true
-          },
           "hasMore": {
             "type": "boolean",
             "description": "Flaga informująca o dostępności kolejnej strony wyników."
