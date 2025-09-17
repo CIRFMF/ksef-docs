@@ -2,18 +2,26 @@
 
 ### Wersja 2.0.0 RC5
 
-- **Pobieranie metadanych faktur (`/invoices/query/metadata`)** 
-  - Usunięto pole `totalCount` z odpowiedzi wyszukiwania metadanych.
+- **Uwierzytelnianie**  
+  Doprecyzowano kody statusów w GET `/auth/{referenceNumber}`, `/auth/sessions`: 
+  - 415 (brak uprawnień), 
+  - 425 (uwierzytelnienie unieważnione), 
+  - 450 (błędny token: nieprawidłowy token, nieprawidłowy czas, unieważniony, nieaktywny), 
+  - 460 (błąd certyfikatu: nieważny, błąd weryfikacji łańcucha, niezaufany łańcuch, odwołany, niepoprawny).  
+  Pozostają 100 (w toku), 200 (sukces) i 500 (nieznany błąd).
+
+- **Pobieranie metadanych faktur (`/invoices/query/metadata`)**  
+  Usunięto pole `totalCount` z odpowiedzi wyszukiwania metadanych.
 
 - **Uprawnienia**
   - Rozszerzono DELETE `/api/v2/permissions/common/grants/{permissionId}` o uprawnienie `VatUeManage`. Wymagane uprawnienia: CredentialsManage lub `VatUeManage`.
   - Dodano uprawnienie `Introspection` do wszystkich endpointów sprawdzających status w sesji GET `/sessions/{referenceNumber}/...` Każdy z tych endpointów można teraz wywołać posiadając `InvoiceWrite` lub `Introspection`.
 
-- **Załączniki do faktur**
-  - Dodano endpoint GET `/api/v2/permissions/attachments/status` do sprawdzania statusu zgody na wystawianie faktur z załącznikiem.
+- **Załączniki do faktur**  
+  Dodano endpoint GET `/api/v2/permissions/attachments/status` do sprawdzania statusu zgody na wystawianie faktur z załącznikiem.
 
-- **Pobranie listy sesji**
-  - Rozszerzono uprawnienia dla GET `/api/v2/sessions`: dodano `InvoiceWrite`. Posiadając uprawnienie `InvoiceWrite`, można pobierać wyłącznie sesje utworzone przez podmiot uwierzytelniający; posiadając uprawnienie `Introspection`, można pobierać wszystkie sesje.
+- **Pobranie listy sesji**  
+  Rozszerzono uprawnienia dla GET `/api/v2/sessions`: dodano `InvoiceWrite`. Posiadając uprawnienie `InvoiceWrite`, można pobierać wyłącznie sesje utworzone przez podmiot uwierzytelniający; posiadając uprawnienie `Introspection`, można pobierać wszystkie sesje.
 
 - **OpenAPI**
   - Dodano uniwersalny kod błędu walidacji danych wejściowych `21405` do wszystkich endpointów. Treść błędu z walidatora zwracana w odpowiedzi.
