@@ -1814,7 +1814,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie listy sesji",
-        "description": "Zwraca listę sesji spełniających podane kryteria wyszukiwania.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`.",
+        "description": "Zwraca listę sesji spełniających podane kryteria wyszukiwania.\n\nWymagane uprawnienia:\n- `Introspection` – pozwala pobrać wszystkie sesje w bieżącym kontekście uwierzytelnienia `(ContextIdentifier)`.\n- `InvoiceWrite` – pozwala pobrać wyłącznie sesje utworzone przez podmiot uwierzytelniający, czyli podmiot inicjujący uwierzytelnienie.",
         "parameters": [
           {
             "name": "pageSize",
