@@ -1335,7 +1335,7 @@
           "Odbieranie uprawnień"
         ],
         "summary": "Odebranie uprawnień",
-        "description": "Rozpoczyna asynchroniczną operacje odbierania uprawnienia o podanym identyfikatorze.\n\nTa metoda służy do odbierania uprawnień takich jak:\n- nadanych nadanych osobom fizycznym lub podmiotom do pracy w KSeF\n- nadanych podmiotom do obsługi faktur\n- nadanych w sposób pośredni\n- administratorów jednostek i podmiotów podrzędnych\n- administratorów podmiotów unijnych uprawnionych do samofakturowania\n- reprezentantów podmiotów unijnych\n\n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Rozpoczyna asynchroniczną operacje odbierania uprawnienia o podanym identyfikatorze.\n\nTa metoda służy do odbierania uprawnień takich jak:\n- nadanych nadanych osobom fizycznym lub podmiotom do pracy w KSeF\n- nadanych podmiotom do obsługi faktur\n- nadanych w sposób pośredni\n- administratorów jednostek i podmiotów podrzędnych\n- administratorów podmiotów unijnych uprawnionych do samofakturowania\n- reprezentantów podmiotów unijnych\n\n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84)\n\nWymagane uprawnienia: `CredentialsManage`, `VatUeManage`.",
         "parameters": [
           {
             "name": "permissionId",
@@ -1383,7 +1383,8 @@
           }
         ],
         "x-required-permissions": [
-          "CredentialsManage"
+          "CredentialsManage",
+          "VatUeManage"
         ]
       }
     },

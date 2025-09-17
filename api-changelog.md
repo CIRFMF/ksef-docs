@@ -2,6 +2,9 @@
 
 ### Wersja 2.0.0 RC5
 
+- **Uprawnienia**
+  - Rozszerzono DELETE `/api/v2/permissions/common/grants/{permissionId}` o uprawnienie `VatUeManage`. Wymagane uprawnienia: CredentialsManage lub `VatUeManage`.
+
 - **Załączniki do faktur**
   - Dodano endpoint GET `/api/v2/permissions/attachments/status` do sprawdzania statusu zgody na wystawianie faktur z załącznikiem.
 
