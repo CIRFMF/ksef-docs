@@ -1966,7 +1966,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie statusu sesji",
-        "description": "Sprawdza bieżący status sesji o podanym numerze referencyjnym.\n\nWymagane uprawnienia: `InvoiceWrite`.",
+        "description": "Sprawdza bieżący status sesji o podanym numerze referencyjnym.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -2014,7 +2014,8 @@
           }
         ],
         "x-required-permissions": [
-          "InvoiceWrite"
+          "InvoiceWrite",
+          "Introspection"
         ]
       }
     },
@@ -2024,7 +2025,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie faktur sesji",
-        "description": "Zwraca listę faktur przesłanych w sesji wraz z ich statusami, oraz informacje na temat ilości poprawnie i niepoprawnie przetworzonych faktur.\n\nWymagane uprawnienia: `InvoiceWrite`.",
+        "description": "Zwraca listę faktur przesłanych w sesji wraz z ich statusami, oraz informacje na temat ilości poprawnie i niepoprawnie przetworzonych faktur.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`.",
         "parameters": [
           {
             "name": "x-continuation-token",
@@ -2090,7 +2091,8 @@
           }
         ],
         "x-required-permissions": [
-          "InvoiceWrite"
+          "InvoiceWrite",
+          "Introspection"
         ]
       }
     },
@@ -2100,7 +2102,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie statusu faktury z sesji",
-        "description": "Zwraca fakturę przesłaną w sesji wraz ze statusem.\n\nWymagane uprawnienia: `InvoiceWrite`.",
+        "description": "Zwraca fakturę przesłaną w sesji wraz ze statusem.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -2157,7 +2159,8 @@
           }
         ],
         "x-required-permissions": [
-          "InvoiceWrite"
+          "InvoiceWrite",
+          "Introspection"
         ]
       }
     },
@@ -2167,7 +2170,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie niepoprawnie przetworzonych faktur sesji",
-        "description": "Zwraca listę niepoprawnie przetworzonych faktur przesłanych w sesji wraz z ich statusami.\n\nWymagane uprawnienia: `InvoiceWrite`.",
+        "description": "Zwraca listę niepoprawnie przetworzonych faktur przesłanych w sesji wraz z ich statusami.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`.",
         "parameters": [
           {
             "name": "x-continuation-token",
@@ -2233,7 +2236,8 @@
           }
         ],
         "x-required-permissions": [
-          "InvoiceWrite"
+          "InvoiceWrite",
+          "Introspection"
         ]
       }
     },
@@ -2243,7 +2247,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie UPO faktury z sesji na podstawie numeru KSeF",
-        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\nWymagane uprawnienia: `InvoiceWrite`.",
+        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -2299,7 +2303,8 @@
           }
         ],
         "x-required-permissions": [
-          "InvoiceWrite"
+          "InvoiceWrite",
+          "Introspection"
         ]
       }
     },
@@ -2309,7 +2314,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie UPO faktury z sesji na podstawie numeru referencyjnego faktury",
-        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\nWymagane uprawnienia: `InvoiceWrite`.",
+        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -2365,7 +2370,8 @@
           }
         ],
         "x-required-permissions": [
-          "InvoiceWrite"
+          "InvoiceWrite",
+          "Introspection"
         ]
       }
     },
@@ -2375,7 +2381,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie UPO dla sesji",
-        "description": "Zwraca XML zawierający zbiorcze UPO dla sesji.\n\nWymagane uprawnienia: `InvoiceWrite`.",
+        "description": "Zwraca XML zawierający zbiorcze UPO dla sesji.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -2431,7 +2437,8 @@
           }
         ],
         "x-required-permissions": [
-          "InvoiceWrite"
+          "InvoiceWrite",
+          "Introspection"
         ]
       }
     },
