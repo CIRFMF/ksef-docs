@@ -2,6 +2,22 @@
 
 ### Wersja 2.0.0 RC5
 
+- **UPO**
+  - Dodano element `Uwierzytelnienie`, który porządkuje dane z nagłówka UPO i rozszerza je o dodatkowe informacje; zastępuje dotychczasowe `IdentyfikatorPodatkowyPodmiotu` oraz `SkrotZlozonejStruktury`.
+  - `Uwierzytelnienie` zawiera:
+    - `IdKontekstu` – identyfikator kontekstu uwierzytelnienia,
+    - dowód uwierzytelnienia (w zależności od metody): 
+      - `NumerReferencyjnyTokenaKSeF` - identyfikator tokenu uwierzytelniającego w systemie KSeF,
+      - `SkrotDokumentuUwierzytelniajacego` - wartość funkcji skrótu dokumentu uwierzytelniającego w postaci otrzymanej przez system (łącznie z podpisem elektronicznym).
+  - W elemencie `Dokument` dodano:
+    - NipSprzedawcy,
+    - DataWystawieniaFaktury,
+    - DataNadaniaNumeruKSeF.
+  - W elemencie `Dokument` usunięto `DataPrzeslaniaDokumentu`.
+  - Schemat UPO: 
+    - faktura: [link](/faktury/upo/schemy/upo-faktura-v3-1.xsd)
+    - sesja: [link](/faktury/upo/schemy/upo-sesja-v4-2.xsd).
+
 - **Uwierzytelnianie**  
   Doprecyzowano kody statusów w GET `/auth/{referenceNumber}`, `/auth/sessions`: 
   - 415 (brak uprawnień), 
