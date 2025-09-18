@@ -4214,12 +4214,9 @@
             "type": "string",
             "description": "Kraj, kod ISO 3166."
           },
-          "givenNames": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Imiona.",
+          "givenName": {
+            "type": "string",
+            "description": "Imię.",
             "nullable": true
           },
           "surname": {

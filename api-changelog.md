@@ -26,6 +26,12 @@
   - 460 (błąd certyfikatu: nieważny, błąd weryfikacji łańcucha, niezaufany łańcuch, odwołany, niepoprawny).  
   Pozostają 100 (w toku), 200 (sukces) i 500 (nieznany błąd).
 
+- **Certyfikaty**    
+  Zmiana struktury odpowiedzi w  GET `certificates/enrollments/data` ("Pobranie danych do wniosku certyfikacyjnego"):
+  - Usunięto: givenNames (tablica string, nullable).
+  - Dodano: givenName (string).
+  - Charakter zmiany: breaking (zmiana nazwy i typu pola z tablicy na tekst).
+
 - **Pobieranie metadanych faktur (`/invoices/query/metadata`)**  
   Usunięto pole `totalCount` z odpowiedzi wyszukiwania metadanych.
 
