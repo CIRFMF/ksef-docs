@@ -32,7 +32,7 @@
 						<xsd:sequence>
 							<xsd:element name="IdKontekstu" >
 								<xsd:annotation>
-									<xsd:documentation>Identyfikator kontekstu uwierzytelnienia w systemie KSeF.</xsd:documentation>
+									<xsd:documentation>Identyfikator kontekstu uwierzytelnienia w systemie KSeF</xsd:documentation>
 								</xsd:annotation>
 								<xsd:complexType>
 									<xsd:choice>
