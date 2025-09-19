@@ -35,8 +35,13 @@
 - **Tokeny KSeF**  
   Dodano kod błedu dla odpowiedzi POST `/api/v2/tokens` ("Wygenerowanie nowego tokena"): `26002` - "Nie można wygenerować tokena dla obecnego typu kontekstu". Token może być generowany wyłącznie w kontekście `Nip` lub `InternalId`.
 
-- **Pobieranie metadanych faktur (`/invoices/query/metadata`)**  
-  Usunięto pole `totalCount` z odpowiedzi wyszukiwania metadanych.
+- **Pobieranie metadanych faktur (GET `/invoices/query/metadata`)**  
+  - Usunięto właściwość `totalCount` z odpowiedzi wyszukiwania metadanych.
+  - Dodano właściwość `seller.nip` w filtrze żądania i w zwracanych metadanych. Właściwość `seller.identifier` oznaczono jako deprecated (zostanie usunięta w następnym wydaniu).
+  - Dodano właściwość `authorizedSubject.nip` w zwracanych metadanych. Właściwość `authorizedSubject.identifier` oznaczono jako deprecated (zostanie usunięta w następnym wydaniu).
+
+- **Eksport paczki faktur (POST `/invoices/exports`)**
+  - Dodano właściwość `seller.nip` w filtrze żądania. Właściwość `seller.identifier` oznaczono jako deprecated (zostanie usunięta w następnym wydaniu).
 
 - **Uprawnienia**
   - Rozszerzono DELETE `/api/v2/permissions/common/grants/{permissionId}` o uprawnienie `VatUeManage`. Wymagane uprawnienia: CredentialsManage lub `VatUeManage`.

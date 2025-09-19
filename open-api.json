@@ -5796,7 +5796,7 @@
           },
           "seller": {
             "required": [
-              "identifier"
+              "nip"
             ],
             "allOf": [
               {
@@ -5892,6 +5892,9 @@
             "nullable": true
           },
           "authorizedSubject": {
+            "required": [
+              "nip"
+            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/InvoiceMetadataAuthorizedSubject"
@@ -5904,21 +5907,23 @@
         "additionalProperties": false
       },
       "InvoiceMetadataAuthorizedSubject": {
+        "required": [
+          "nip"
+        ],
         "type": "object",
         "properties": {
-          "identifier": {
+          "nip": {
             "type": "string",
-            "description": "Identyfikator podmiotu upoważnionego",
-            "nullable": true
+            "description": "Nip podmiotu upoważnionego"
           },
           "name": {
             "type": "string",
-            "description": "Nazwa podmiotu upoważnionego",
+            "description": "Nazwa podmiotu upoważnionego.",
             "nullable": true
           },
           "role": {
             "type": "integer",
-            "description": "Rola podmiotu upoważnionego",
+            "description": "Rola podmiotu upoważnionego.",
             "format": "int32"
           }
         },
@@ -5971,13 +5976,19 @@
       },
       "InvoiceMetadataSeller": {
         "required": [
-          "identifier"
+          "nip"
         ],
         "type": "object",
         "properties": {
           "identifier": {
             "type": "string",
-            "description": "Identyfikator sprzedawcy."
+            "description": "Identyfikator sprzedawcy.",
+            "nullable": true,
+            "deprecated": true
+          },
+          "nip": {
+            "type": "string",
+            "description": "Nip sprzedawcy."
           },
           "name": {
             "type": "string",
@@ -6010,7 +6021,7 @@
           },
           "role": {
             "type": "integer",
-            "description": "Rola podmiotu trzeciego",
+            "description": "Rola podmiotu trzeciego.",
             "format": "int32"
           }
         },
