@@ -45,6 +45,7 @@
 
 - **Uprawnienia**
   - Rozszerzono DELETE `/api/v2/permissions/common/grants/{permissionId}` o uprawnienie `VatUeManage`. Wymagane uprawnienia: CredentialsManage lub `VatUeManage`.
+  - Rozszerzono żądanie POST `/permissions/eu-entities/administration/grants` ("Nadanie uprawnień administratora podmiotu unijnego") o "Nazwę podmiotu" `subjectName`.
   - Dodano uprawnienie `Introspection` do wszystkich endpointów sprawdzających status w sesji GET `/sessions/{referenceNumber}/...` Każdy z tych endpointów można teraz wywołać posiadając `InvoiceWrite` lub `Introspection`.
 
 - **Załączniki do faktur**  

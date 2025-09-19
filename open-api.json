@@ -1211,7 +1211,8 @@
                 "required": [
                   "subjectIdentifier",
                   "contextIdentifier",
-                  "description"
+                  "description",
+                  "subjectName"
                 ],
                 "allOf": [
                   {
@@ -5216,7 +5217,8 @@
         "required": [
           "contextIdentifier",
           "description",
-          "subjectIdentifier"
+          "subjectIdentifier",
+          "subjectName"
         ],
         "type": "object",
         "properties": {
@@ -5247,6 +5249,10 @@
           "description": {
             "type": "string",
             "description": "Opis nadawanych uprawnień."
+          },
+          "subjectName": {
+            "type": "string",
+            "description": "Nazwa podmiotu."
           }
         },
         "additionalProperties": false
