@@ -20,11 +20,16 @@
 
 - **Uwierzytelnianie**  
   Doprecyzowano kody statusów w GET `/auth/{referenceNumber}`, `/auth/sessions`: 
-  - 415 (brak uprawnień), 
-  - 425 (uwierzytelnienie unieważnione), 
-  - 450 (błędny token: nieprawidłowy token, nieprawidłowy czas, unieważniony, nieaktywny), 
-  - 460 (błąd certyfikatu: nieważny, błąd weryfikacji łańcucha, niezaufany łańcuch, odwołany, niepoprawny).  
-  Pozostają 100 (w toku), 200 (sukces) i 500 (nieznany błąd).
+  - `415` (brak uprawnień), 
+  - `425` (uwierzytelnienie unieważnione), 
+  - `450` (błędny token: nieprawidłowy token, nieprawidłowy czas, unieważniony, nieaktywny), 
+  - `460` (błąd certyfikatu: nieważny, błąd weryfikacji łańcucha, niezaufany łańcuch, odwołany, niepoprawny).  
+  Pozostają `100` (w toku), `200` (sukces) i `500` (nieznany błąd).
+
+- **Autoryzacja**
+  - Rozszerzono reguły dostępu o `VatUeManage` dla DELETE `/permissions/common/grants/{permissionId}`: operację można wykonać, jeżeli podmiot posiada `CredentialsManage` lub `VatUeManage`.
+  - Rozszerzono reguły dostępu o `Introspection` dla GET `/sessions/{referenceNumber}/...`: każdy z tych endpointów można teraz wywołać posiadając `InvoiceWrite` lub `Introspection`.
+  - Rozszerzono reguły dostępu o `InvoiceWrite` dla GET `/api/v2/sessions` ("Pobranie listy sesji"): posiadając uprawnienie `InvoiceWrite`, można pobierać wyłącznie sesje utworzone przez podmiot uwierzytelniający; posiadając uprawnienie `Introspection`, można pobierać wszystkie sesje.
 
 - **Certyfikaty**    
   Zmiana struktury odpowiedzi w  GET `certificates/enrollments/data` ("Pobranie danych do wniosku certyfikacyjnego"):
@@ -44,9 +49,7 @@
   - Dodano właściwość `seller.nip` w filtrze żądania. Właściwość `seller.identifier` oznaczono jako deprecated (zostanie usunięta w następnym wydaniu).
 
 - **Uprawnienia**
-  - Rozszerzono DELETE `/api/v2/permissions/common/grants/{permissionId}` o uprawnienie `VatUeManage`. Wymagane uprawnienia: CredentialsManage lub `VatUeManage`.
   - Rozszerzono żądanie POST `/permissions/eu-entities/administration/grants` ("Nadanie uprawnień administratora podmiotu unijnego") o "Nazwę podmiotu" `subjectName`.
-  - Dodano uprawnienie `Introspection` do wszystkich endpointów sprawdzających status w sesji GET `/sessions/{referenceNumber}/...` Każdy z tych endpointów można teraz wywołać posiadając `InvoiceWrite` lub `Introspection`.
 
 - **Załączniki do faktur**  
   Dodano endpoint GET `/api/v2/permissions/attachments/status` do sprawdzania statusu zgody na wystawianie faktur z załącznikiem.
