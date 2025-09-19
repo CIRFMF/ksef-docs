@@ -32,6 +32,9 @@
   - Dodano: givenName (string).
   - Charakter zmiany: breaking (zmiana nazwy i typu pola z tablicy na tekst).
 
+- **Tokeny KSeF**  
+  Dodano kod błedu dla odpowiedzi POST `/api/v2/tokens` ("Wygenerowanie nowego tokena"): `26002` - "Nie można wygenerować tokena dla obecnego typu kontekstu". Token może być generowany wyłącznie w kontekście `Nip` lub `InternalId`.
+
 - **Pobieranie metadanych faktur (`/invoices/query/metadata`)**  
   Usunięto pole `totalCount` z odpowiedzi wyszukiwania metadanych.
 

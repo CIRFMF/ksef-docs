@@ -2448,7 +2448,7 @@
           "Tokeny KSeF"
         ],
         "summary": "Wygenerowanie nowego tokena",
-        "description": "Zwraca token, który może być użyty do uwierzytelniania się w KSeF.\n\nToken jest zwracany tylko raz. Zaczyna być aktywny w momencie gdy jego status zmieni się na `Active`.",
+        "description": "Zwraca token, który może być użyty do uwierzytelniania się w KSeF.\n\nToken może być generowany tylko w kontekście NIP lub identyfikatora wewnętrznego. Jest zwracany tylko raz. Zaczyna być aktywny w momencie gdy jego status zmieni się na `Active`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2474,7 +2474,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                       | Details |\n|---------------------|------------------------------------------------------------|---------|\n| 26001               | Nie można nadać tokenowi uprawnień których nie posiadasz.  | Informacja o brakujących uprawnieniach. |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "description": "| ExceptionCode       | ExceptionDescription                                       | Details |\n|---------------------|------------------------------------------------------------|---------|\n| 26001               | Nie można nadać tokenowi uprawnień których nie posiadasz.  | Informacja o brakujących uprawnieniach. |\n| 26002               | Nie można wygenerować tokena dla obecnego typu kontekstu.  | Informacja o aktualnym i dozwolonych typach kontekstu. |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {

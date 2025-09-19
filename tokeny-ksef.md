@@ -12,9 +12,9 @@ Token KSeF to unikalny, generowany identyfikator uwierzytelniający, który — 
 
 Wygenerowanie ```tokena KSeF``` jest możliwe wyłącznie po jednorazowym uwierzytelnieniu się [podpisem elektronicznym (XAdES)](uwierzytelnianie.md#21-uwierzytelnianie-kwalifikowanym-podpisem-elektronicznym).
 
-### 1. Generowanie tokenu
+### 1. Generowanie tokenu  
 
-Nowy token można wygenerować za pomocą wywołania endpointu:<br>
+Token może być generowany wyłącznie w kontekście `Nip` lub `InternalId`. Generowanie odbywa się poprzez wywołanie endpointu:  
 POST [/tokens](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Tokeny/paths/~1api~1v2~1tokens/post)
 
 Podając w ciele żądania kolekcję uprawnień oraz opis tokena.
