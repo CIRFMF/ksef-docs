@@ -2645,7 +2645,7 @@
           "Tokeny KSeF"
         ],
         "summary": "Unieważnienie tokena",
-        "description": "Unieważniony token nie pozwoli już na uwierzytelnienie się za jego pomocą. Unieważnienie nie może zostać cofnięte.\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Unieważniony token nie pozwoli już na uwierzytelnienie się za jego pomocą. Unieważnienie nie może zostać cofnięte.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -2672,9 +2672,6 @@
             },
             "x-summary": "Bad Request"
           },
-          "403": {
-            "description": "Forbidden"
-          },
           "401": {
             "description": "Unauthorized"
           }
@@ -2683,9 +2680,6 @@
           {
             "Bearer": [ ]
           }
-        ],
-        "x-required-permissions": [
-          "CredentialsManage"
         ]
       }
     },
