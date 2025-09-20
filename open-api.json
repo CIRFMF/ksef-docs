@@ -2683,6 +2683,59 @@
         ]
       }
     },
+    "/api/v2/peppol/query": {
+      "get": {
+        "tags": [
+          "Usługi Peppol"
+        ],
+        "summary": "Pobranie listy dostawców usług Peppol",
+        "description": "Zwraca listę dostawców usług Peppol zarejestrowanych w systemie.",
+        "parameters": [
+          {
+            "name": "pageOffset",
+            "in": "query",
+            "description": "Numer strony wyników.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Rozmiar strony wyników.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryPeppolProvidersResponse"
+                },
+                "example": {"peppolProviders":[{"id":"1234567890","name":"Dostawca usług Peppol"}],"hasMore":false}
+              }
+            }
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          }
+        }
+      }
+    },
     "/api/v2/auth/challenge": {
       "post": {
         "tags": [
@@ -2987,7 +3040,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Otwarcie sesji interaktywnej",
-        "description": "Otwiera sesję do wysyłki pojedynczych faktur. Należy przekazać schemat wysyłanych faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Otwarcie sesji interaktywnej](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#1-otwarcie-sesji)\n> - [Klucz publiczny Ministersta Finansów](/public-keys/publicKey.pem)\n\nWymagane uprawnienia: `InvoiceWrite`.",
+        "description": "Otwiera sesję do wysyłki pojedynczych faktur. Należy przekazać schemat wysyłanych faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Otwarcie sesji interaktywnej](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#1-otwarcie-sesji)\n> - [Klucz publiczny Ministersta Finansów](/public-keys/publicKey.pem)\n\nWymagane uprawnienia: `InvoiceWrite`, `PefInvoiceWrite`.",
         "operationId": "onlineSession.open",
         "requestBody": {
           "content": {
@@ -3043,7 +3096,8 @@
           }
         ],
         "x-required-permissions": [
-          "InvoiceWrite"
+          "InvoiceWrite",
+          "PefInvoiceWrite"
         ]
       }
     },
@@ -3053,7 +3107,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Wysłanie faktury",
-        "description": "Przyjmuje zaszyfrowaną fakturę oraz jej metadane i rozpoczyna jej przetwarzanie.\n\n> Więcej informacji:\n> - [Wysłanie faktury](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#2-wys%C5%82anie-faktury)\n\nWymagane uprawnienia: `InvoiceWrite`.",
+        "description": "Przyjmuje zaszyfrowaną fakturę oraz jej metadane i rozpoczyna jej przetwarzanie.\n\n> Więcej informacji:\n> - [Wysłanie faktury](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#2-wys%C5%82anie-faktury)\n\nWymagane uprawnienia: `InvoiceWrite`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -3123,7 +3177,8 @@
           }
         ],
         "x-required-permissions": [
-          "InvoiceWrite"
+          "InvoiceWrite",
+          "PefInvoiceWrite"
         ]
       }
     },
@@ -3133,7 +3188,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Zamknięcie sesji interaktywnej",
-        "description": "Zamyka sesję interaktywną i rozpoczyna generowanie zbiorczego UPO dla sesji.\n\nWymagane uprawnienia: `InvoiceWrite`.",
+        "description": "Zamyka sesję interaktywną i rozpoczyna generowanie zbiorczego UPO dla sesji.\n\nWymagane uprawnienia: `InvoiceWrite`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -3173,7 +3228,8 @@
           }
         ],
         "x-required-permissions": [
-          "InvoiceWrite"
+          "InvoiceWrite",
+          "PefInvoiceWrite"
         ]
       }
     },
@@ -3907,7 +3963,7 @@
                 "$ref": "#/components/schemas/AuthenticationMethod"
               }
             ],
-            "description": "Użyta metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n"
+            "description": "Użyta metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy uslug Peppol. |\n"
           },
           "status": {
             "allOf": [
@@ -3974,10 +4030,11 @@
           "InternalCertificate",
           "QualifiedSignature",
           "QualifiedSeal",
-          "PersonalSignature"
+          "PersonalSignature",
+          "PeppolSignature"
         ],
         "type": "string",
-        "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n"
+        "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy uslug Peppol. |\n"
       },
       "AuthenticationOperationStatusResponse": {
         "required": [
@@ -3998,7 +4055,7 @@
                 "$ref": "#/components/schemas/AuthenticationMethod"
               }
             ],
-            "description": "Użyta metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n"
+            "description": "Użyta metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy uslug Peppol. |\n"
           },
           "status": {
             "allOf": [
@@ -4509,7 +4566,8 @@
           "AllPartners",
           "Nip",
           "InternalId",
-          "NipVatUe"
+          "NipVatUe",
+          "PeppolId"
         ],
         "type": "string"
       },
@@ -4849,7 +4907,8 @@
         "enum": [
           "SelfInvoicing",
           "RRInvoicing",
-          "TaxRepresentative"
+          "TaxRepresentative",
+          "PefInvoicing"
         ],
         "type": "string"
       },
@@ -4917,7 +4976,7 @@
                 "$ref": "#/components/schemas/EntityAuthorizationsAuthorizedEntityIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu uprawnionego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
+            "description": "Identyfikator podmiotu uprawnionego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| PeppolId | Identyfikator dostawcy usług Peppol |",
             "nullable": true
           },
           "queryType": {
@@ -4964,7 +5023,8 @@
       },
       "EntityAuthorizationPermissionsSubjectIdentifierType": {
         "enum": [
-          "Nip"
+          "Nip",
+          "PeppolId"
         ],
         "type": "string"
       },
@@ -4997,11 +5057,12 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu uprawnionego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
+        "description": "Identyfikator podmiotu uprawnionego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| PeppolId | Identyfikator dostawcy usług Peppol |"
       },
       "EntityAuthorizationsAuthorizedEntityIdentifierType": {
         "enum": [
-          "Nip"
+          "Nip",
+          "PeppolId"
         ],
         "type": "string"
       },
@@ -5588,8 +5649,7 @@
             "description": "Wartość"
           }
         },
-        "additionalProperties": false,
-        "description": "Obsługiwane schematy:\n| SystemCode | SchemaVersion | Value |\n| --- | --- | --- |\n| FA (2) | 1-0E | FA |\n| FA (3) | 1-0E | FA |\n"
+        "additionalProperties": false
       },
       "GenerateTokenRequest": {
         "type": "object",
@@ -5898,7 +5958,7 @@
                 "$ref": "#/components/schemas/FormCode"
               }
             ],
-            "description": "Struktura dokumentu faktury.\n\nObsługiwane schematy:\n| SystemCode | SchemaVersion | Value |\n| --- | --- | --- |\n| FA (2) | 1-0E | FA |\n| FA (3) | 1-0E | FA |\n"
+            "description": "Struktura dokumentu faktury.\n\nObsługiwane schematy:\n| SystemCode | SchemaVersion | Value |\n| --- | --- | --- |\n| FA (2) | 1-0E | FA |\n| FA (3) | 1-0E | FA |\n| FA_PEF (3) | 2-1 | FA_PEF |\n| FA_KOR_PEF (3) | 2-1 | FA_PEF |\n"
           },
           "isSelfInvoicing": {
             "type": "boolean",
@@ -6111,7 +6171,8 @@
         "enum": [
           "SelfInvoicing",
           "TaxRepresentative",
-          "RRInvoicing"
+          "RRInvoicing",
+          "PefInvoicing"
         ],
         "type": "string"
       },
@@ -6327,7 +6388,7 @@
                 "$ref": "#/components/schemas/InvoiceQueryFormType"
               }
             ],
-            "description": "Struktura dokumentu.\n| Wartość | Opis |\n| --- | --- |\n| FA | Faktura VAT |\n| PEF | Faktura PEF |\n| RR | Faktura RR |\n",
+            "description": "Typ dokumentu.\n| Wartość | Opis |\n| --- | --- |\n| FA | Faktura VAT |\n| PEF | Faktura PEF |\n| RR | Faktura RR |\n",
             "nullable": true
           },
           "invoiceTypes": {
@@ -6690,7 +6751,7 @@
                 "$ref": "#/components/schemas/FormCode"
               }
             ],
-            "description": "Schemat faktur wysyłanych w ramach sesji.\n\nObsługiwane schematy:\n| SystemCode | SchemaVersion | Value |\n| --- | --- | --- |\n| FA (2) | 1-0E | FA |\n| FA (3) | 1-0E | FA |\n"
+            "description": "Schemat faktur wysyłanych w ramach sesji.\n\nObsługiwane schematy:\n| SystemCode | SchemaVersion | Value |\n| --- | --- | --- |\n| FA (2) | 1-0E | FA |\n| FA (3) | 1-0E | FA |\n| FA_PEF (3) | 2-1 | FA_PEF |\n| FA_KOR_PEF (3) | 2-1 | FA_PEF |\n"
           },
           "encryption": {
             "required": [
@@ -6752,6 +6813,22 @@
               "nullable": true
             },
             "description": "Nagłówki, których należy użyć przy wysyłce części pliku paczki.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PeppolProvider": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identyfikator dostawcy usług Peppol.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Nazwa dostawcy usług Peppol.",
             "nullable": true
           }
         },
@@ -7361,6 +7438,27 @@
               "$ref": "#/components/schemas/InvoiceMetadata"
             },
             "description": "Lista faktur spełniających kryteria."
+          }
+        },
+        "additionalProperties": false
+      },
+      "QueryPeppolProvidersResponse": {
+        "required": [
+          "hasMore",
+          "peppolProviders"
+        ],
+        "type": "object",
+        "properties": {
+          "peppolProviders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PeppolProvider"
+            },
+            "description": "Lista dostawców usług Peppol."
+          },
+          "hasMore": {
+            "type": "boolean",
+            "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
         },
         "additionalProperties": false
@@ -8510,6 +8608,10 @@
       "description": "Token KSeF to unikalny, generowany identyfikator uwierzytelniający, który — na równi z [kwalifikowanym podpisem elektronicznym](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md#21-uwierzytelnianie-kwalifikowanym-podpisem-elektronicznym) — umożliwia [uwierzytelnienie](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md#22-uwierzytelnianie-tokenem-ksef) się do API KSeF.\n\nToken KSeF jest wydawany z niezmiennym zestawem uprawnień określonych przy jego tworzeniu; każda modyfikacja tych uprawnień wymaga wygenerowania nowego tokena.\n> **Uwaga!** <br>\n> Token KSeF pełni rolę **poufnego sekretu** uwierzytelniającego — należy przechowywać go wyłącznie w zaufanym i bezpiecznym magazynie.\n\nWięcej informacji:\n- [Token KSeF](https://github.com/CIRFMF/ksef-docs/blob/main/tokeny-ksef.md)\n"
     },
     {
+      "name": "Usługi Peppol",
+      "description": ""
+    },
+    {
       "name": "Dane testowe",
       "description": "API służy do tworzenia i zarządzania danymi testowymi, takimi jak podmioty, osoby fizyczne oraz uprawnienia. Możliwe do utworzenia podmioty to: organ egzekucyjny, grupa VAT oraz jednostki samorządu terytorialnego. W przypadku osób fizycznych można określić, czy dana osoba jest komornikiem. Funkcjonalność nadawania i odbierania uprawnień ma na celu odwzorowanie działania formularza ZAW-FA w środowisku testowym.\n\nWięcej informacji:\n- [Scenariusze testowe](https://github.com/CIRFMF/ksef-docs/blob/main/dane-testowe-scenariusze.md)"
     }
@@ -8556,6 +8658,12 @@
       "name": "Tokeny KSeF",
       "tags": [
         "Tokeny KSeF"
+      ]
+    },
+    {
+      "name": "Usługi Peppol",
+      "tags": [
+        "Usługi Peppol"
       ]
     },
     {

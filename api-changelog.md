@@ -2,6 +2,14 @@
 
 ### Wersja 2.0.0 RC5
 
+- **Obsługa faktur PEF i dostawców usług Peppol**
+  - Dodano obsługę faktur `PEF` wysyłanych przez dostawcę usług Peppol. Nowe możliwości nie zmieniają dotychczasowych zachowań KSeF dla innych formatów, są rozszerzeniem API.
+  - Wprowadzono nowy typ kontekstu uwierzytelniania: `PeppolId`, umożliwiający pracę w kontekście dostawcy usług Peppol.
+  - Automatyczna rejestracja dostawcy: przy pierwszym uwierzytelnieniu dostawcy usług Peppol (z użyciem dedykowanego certyfikatu) następuje jego automatyczna rejestracja w systemie.
+  - Dodano enpoint GET `/peppol/query` ("Lista dostawców usług Peppol") zwracający zarejestrowanych dostawców.
+  - Zaktualizowano reguły dostępu dla otwarcia i zamknięcia sesji, wysyłka faktur wymagaja uprawnienia `PefInvoiceWrite`.
+  - Dodano nowe schematy faktur: `FA_PEF (3)`, `FA_KOR_PEF (3)`.
+
 - **UPO**
   - Dodano element `Uwierzytelnienie`, który porządkuje dane z nagłówka UPO i rozszerza je o dodatkowe informacje; zastępuje dotychczasowe `IdentyfikatorPodatkowyPodmiotu` oraz `SkrotZlozonejStruktury`.
   - `Uwierzytelnienie` zawiera:
