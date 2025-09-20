@@ -5840,6 +5840,75 @@
         },
         "additionalProperties": false
       },
+      "InvoicesExportRequest": {
+        "required": [
+          "encryption",
+          "filters"
+        ],
+        "type": "object",
+        "properties": {
+          "encryption": {
+            "required": [
+              "encryptedSymmetricKey",
+              "initializationVector"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EncryptionInfo"
+              }
+            ],
+            "description": "Informacje wymagane do zaszyfrowania wyniku zapytania."
+          },
+          "filters": {
+            "required": [
+              "subjectType",
+              "dateRange"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoicesExportFilters"
+              }
+            ],
+            "description": "Zestaw filtrów do wyszukiwania faktur."
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoicesExportStatusResponse": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusInfo"
+              }
+            ],
+            "description": "Informacje o aktualnym statusie przetwarzania zapytania."
+          },
+          "completedDate": {
+            "type": "string",
+            "description": "Data przetworzenia zapytania",
+            "format": "date-time",
+            "nullable": true
+          },
+          "package": {
+            "required": [
+              "parts"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoicesExportPackage"
+              }
+            ],
+            "description": "Informacje o paczce faktur.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "InvoiceMetadata": {
         "required": [
           "acquisitionDate",
@@ -6051,24 +6120,6 @@
         },
         "additionalProperties": false
       },
-      "InvoiceMetadataInvoiceType": {
-        "enum": [
-          "Vat",
-          "Zal",
-          "Kor",
-          "Roz",
-          "Upr",
-          "KorZal",
-          "KorRoz",
-          "VatPef",
-          "VatPefSp",
-          "KorPef",
-          "VatRr",
-          "KorVatRr"
-        ],
-        "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | [Mock] (PEF) Podstawowowa |\n| VatPefSp | [Mock] (PEF) Specjalizowana |\n| KorPef | [Mock] (PEF) Korygująca |\n| VatRr | [Mock] (RR) Podstawowa |\n| KorVatRr | [Mock] (RR) Korygująca |\n"
-      },
       "InvoiceMetadataSeller": {
         "required": [
           "nip"
@@ -6118,6 +6169,22 @@
             "type": "integer",
             "description": "Rola podmiotu trzeciego.",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoicesExportPackage": {
+        "required": [
+          "parts"
+        ],
+        "type": "object",
+        "properties": {
+          "parts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoicePackagePart"
+            },
+            "description": "Lista plików dostępnych do pobrania.\nWypełniana tylko, gdy wynik zapytania jest gotowy."
           }
         },
         "additionalProperties": false
@@ -6258,15 +6325,6 @@
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| Issue | Data wystawienia faktury |\n| Invoicing | [Mock] Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania) |\n| PermanentStorage | [Mock] Data trwałego zapisu faktury w repozytorium systemu KSeF |\n"
       },
-      "InvoiceQueryFormType": {
-        "enum": [
-          "FA",
-          "PEF",
-          "RR"
-        ],
-        "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| FA | Faktura VAT |\n| PEF | Faktura PEF |\n| RR | Faktura RR |\n"
-      },
       "InvoiceQuerySchemaType": {
         "enum": [
           "FA1",
@@ -6274,223 +6332,6 @@
           "FA3"
         ],
         "type": "string"
-      },
-      "InvoiceQuerySeller": {
-        "type": "object",
-        "properties": {
-          "identifier": {
-            "type": "string",
-            "description": "Identyfikator sprzedawcy.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "InvoiceQuerySubjectType": {
-        "enum": [
-          "Subject1",
-          "Subject2",
-          "Subject3",
-          "SubjectAuthorized"
-        ],
-        "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 |\n| Subject2 | Podmiot 2 |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
-      },
-      "InvoicesExportFilters": {
-        "required": [
-          "dateRange",
-          "subjectType"
-        ],
-        "type": "object",
-        "properties": {
-          "subjectType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQuerySubjectType"
-              }
-            ],
-            "description": "Typ podmiotu, którego dotyczą kryteria filtrowania faktur.\nOkreśla kontekst, w jakim przeszukiwane są dane.\n| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 |\n| Subject2 | Podmiot 2 |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
-          },
-          "dateRange": {
-            "required": [
-              "dateType",
-              "from"
-            ],
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQueryDateRange"
-              }
-            ],
-            "description": "Typ i zakres dat, według którego mają być filtrowane faktury."
-          },
-          "ksefNumber": {
-            "type": "string",
-            "description": "Numer KSeF faktury.",
-            "nullable": true
-          },
-          "invoiceNumber": {
-            "type": "string",
-            "description": "Numer faktury nadany przez wystawcę.",
-            "nullable": true
-          },
-          "amount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQueryAmount"
-              }
-            ],
-            "description": "Filtr kwotowy – brutto, netto lub VAT (z wartością).",
-            "nullable": true
-          },
-          "seller": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQuerySeller"
-              }
-            ],
-            "description": "Dane sprzedawcy.",
-            "nullable": true
-          },
-          "buyer": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQueryBuyer"
-              }
-            ],
-            "description": "Dane nabywcy.",
-            "nullable": true
-          },
-          "currencyCodes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CurrencyCode"
-            },
-            "description": "Kody walut.",
-            "nullable": true
-          },
-          "invoicingMode": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoicingMode"
-              }
-            ],
-            "description": "Tryb wystawienia faktury: online lub offline.",
-            "nullable": true
-          },
-          "isSelfInvoicing": {
-            "type": "boolean",
-            "description": "Czy faktura została wystawiona w trybie samofakturowania.",
-            "nullable": true
-          },
-          "formType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQueryFormType"
-              }
-            ],
-            "description": "Typ dokumentu.\n| Wartość | Opis |\n| --- | --- |\n| FA | Faktura VAT |\n| PEF | Faktura PEF |\n| RR | Faktura RR |\n",
-            "nullable": true
-          },
-          "invoiceTypes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceMetadataInvoiceType"
-            },
-            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | [Mock] (PEF) Podstawowowa |\n| VatPefSp | [Mock] (PEF) Specjalizowana |\n| KorPef | [Mock] (PEF) Korygująca |\n| VatRr | [Mock] (RR) Podstawowa |\n| KorVatRr | [Mock] (RR) Korygująca |\n",
-            "nullable": true
-          },
-          "hasAttachment": {
-            "type": "boolean",
-            "description": "Czy faktura ma załącznik.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "InvoicesExportPackage": {
-        "required": [
-          "parts"
-        ],
-        "type": "object",
-        "properties": {
-          "parts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoicePackagePart"
-            },
-            "description": "Lista plików dostępnych do pobrania.\nWypełniana tylko, gdy wynik zapytania jest gotowy."
-          }
-        },
-        "additionalProperties": false
-      },
-      "InvoicesExportRequest": {
-        "required": [
-          "encryption",
-          "filters"
-        ],
-        "type": "object",
-        "properties": {
-          "encryption": {
-            "required": [
-              "encryptedSymmetricKey",
-              "initializationVector"
-            ],
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EncryptionInfo"
-              }
-            ],
-            "description": "Informacje wymagane do zaszyfrowania wyniku zapytania."
-          },
-          "filters": {
-            "required": [
-              "subjectType",
-              "dateRange"
-            ],
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoicesExportFilters"
-              }
-            ],
-            "description": "Zestaw filtrów do wyszukiwania faktur."
-          }
-        },
-        "additionalProperties": false
-      },
-      "InvoicesExportStatusResponse": {
-        "required": [
-          "status"
-        ],
-        "type": "object",
-        "properties": {
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusInfo"
-              }
-            ],
-            "description": "Informacje o aktualnym statusie przetwarzania zapytania."
-          },
-          "completedDate": {
-            "type": "string",
-            "description": "Data przetworzenia zapytania",
-            "format": "date-time",
-            "nullable": true
-          },
-          "package": {
-            "required": [
-              "parts"
-            ],
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoicesExportPackage"
-              }
-            ],
-            "description": "Informacje o paczce faktur.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
       },
       "InvoicesMetadataQueryRequest": {
         "required": [
@@ -6611,6 +6452,165 @@
           }
         },
         "additionalProperties": false
+      },	  
+      "InvoicesExportFilters": {
+        "required": [
+          "dateRange",
+          "subjectType"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQuerySubjectType"
+              }
+            ],
+            "description": "Typ podmiotu, którego dotyczą kryteria filtrowania faktur.\nOkreśla kontekst, w jakim przeszukiwane są dane.\n| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 |\n| Subject2 | Podmiot 2 |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
+          },
+          "dateRange": {
+            "required": [
+              "dateType",
+              "from"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQueryDateRange"
+              }
+            ],
+            "description": "Typ i zakres dat, według którego mają być filtrowane faktury."
+          },
+          "ksefNumber": {
+            "type": "string",
+            "description": "Numer KSeF faktury.",
+            "nullable": true
+          },
+          "invoiceNumber": {
+            "type": "string",
+            "description": "Numer faktury nadany przez wystawcę.",
+            "nullable": true
+          },
+          "amount": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQueryAmount"
+              }
+            ],
+            "description": "Filtr kwotowy – brutto, netto lub VAT (z wartością).",
+            "nullable": true
+          },
+          "seller": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQuerySeller"
+              }
+            ],
+            "description": "Dane sprzedawcy.",
+            "nullable": true
+          },
+          "buyer": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQueryBuyer"
+              }
+            ],
+            "description": "Dane nabywcy.",
+            "nullable": true
+          },
+          "currencyCodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CurrencyCode"
+            },
+            "description": "Kody walut.",
+            "nullable": true
+          },
+          "invoicingMode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoicingMode"
+              }
+            ],
+            "description": "Tryb wystawienia faktury: online lub offline.",
+            "nullable": true
+          },
+          "isSelfInvoicing": {
+            "type": "boolean",
+            "description": "Czy faktura została wystawiona w trybie samofakturowania.",
+            "nullable": true
+          },
+          "formType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceQueryFormType"
+              }
+            ],
+            "description": "Typ dokumentu.\n| Wartość | Opis |\n| --- | --- |\n| FA | Faktura VAT |\n| PEF | Faktura PEF |\n| RR | Faktura RR |\n",
+            "nullable": true
+          },
+          "invoiceTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceMetadataInvoiceType"
+            },
+            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | [Mock] (PEF) Podstawowowa |\n| VatPefSp | [Mock] (PEF) Specjalizowana |\n| KorPef | [Mock] (PEF) Korygująca |\n| VatRr | [Mock] (RR) Podstawowa |\n| KorVatRr | [Mock] (RR) Korygująca |\n",
+            "nullable": true
+          },
+          "hasAttachment": {
+            "type": "boolean",
+            "description": "Czy faktura ma załącznik.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceQueryFormType": {
+        "enum": [
+          "FA",
+          "PEF",
+          "RR"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| FA | Faktura VAT |\n| PEF | Faktura PEF |\n| RR | Faktura RR |\n"
+      },
+      "InvoiceQuerySeller": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "Identyfikator sprzedawcy.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceQuerySubjectType": {
+        "enum": [
+          "Subject1",
+          "Subject2",
+          "Subject3",
+          "SubjectAuthorized"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 |\n| Subject2 | Podmiot 2 |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
+      },	  
+      "InvoiceMetadataInvoiceType": {
+        "enum": [
+          "Vat",
+          "Zal",
+          "Kor",
+          "Roz",
+          "Upr",
+          "KorZal",
+          "KorRoz",
+          "VatPef",
+          "VatPefSp",
+          "KorPef",
+          "VatRr",
+          "KorVatRr"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | [Mock] (PEF) Podstawowowa |\n| VatPefSp | [Mock] (PEF) Specjalizowana |\n| KorPef | [Mock] (PEF) Korygująca |\n| VatRr | [Mock] (RR) Podstawowa |\n| KorVatRr | [Mock] (RR) Korygująca |\n"
       },
       "InvoicingMode": {
         "enum": [
