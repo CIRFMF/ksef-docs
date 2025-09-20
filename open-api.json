@@ -1576,7 +1576,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21164               | Faktura o podanym identyfikatorze nie istnieje.     | Faktura o numerze KSeF {ksefNumber} nie została znaleziona.   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "description": "| ExceptionCode | ExceptionDescription                                      | Details                                                                                                                        | \n|---------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|\n| 21164         | Faktura o podanym identyfikatorze nie istnieje.           | Faktura o numerze KSeF {ksefNumber} nie została znaleziona.                                                                    |\n| 21165         | Faktura o podanym numerze KSeF nie jest jeszcze dostępna. | Faktura o numerze KSeF {ksefNumber} została przetworzona, ale nie jest jeszcze dostępna do pobrania. Spróbuj ponownie później. |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
