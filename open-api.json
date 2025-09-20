@@ -2509,16 +2509,35 @@
               "type": "array",
               "items": {
                 "$ref": "#/components/schemas/AuthenticationTokenStatus"
-              },
-              "description": "| Wartość | Opis |\n| --- | --- |\n| Pending | Token został utworzony ale jest jeszcze w trakcie aktywacji i nadawania uprawnień. Nie może być jeszcze wykorzystywany do uwierzytelniania. |\n| Active | Token jest aktywny i może być wykorzystywany do uwierzytelniania. |\n| Revoking | Token jest w trakcie unieważniania. Nie może już być wykorzystywany do uwierzytelniania. |\n| Revoked | Token został unieważniony i nie może być wykorzystywany do uwierzytelniania. |\n| Failed | Nie udało się aktywować tokena. Należy wygenerować nowy token, obecny nie może być wykorzystywany do uwierzytelniania. |\n"
+              }
             }
           },
           {
-            "name": "x-continuation-token",
-            "in": "header",
-            "description": "Token służący do pobrania kolejnej strony wyników.",
+            "name": "description",
+            "in": "query",
+            "description": "Umożliwia filtrowanie tokenów po opisie. Wartość parametru jest wyszukiwana w opisie tokena (operacja nie rozróżnia wielkości liter). Należy podać co najmniej 3 znaki.",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "authorIdentifier",
+            "in": "query",
+            "description": "Umożliwia filtrowanie tokenów po ich twórcy. Wartość parametru jest wyszukiwana w identyfikatorze (operacja nie rozróżnia wielkości liter). Należy podać co najmniej 3 znaki.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorIdentifierType",
+            "in": "query",
+            "description": "Umożliwia filtrowanie tokenów po ich twórcy. Wartość parametru określa typ identyfikatora w którym będzie wyszukiwany ciąg znaków przekazany w parametrze `authorIdentifier`.\n| Wartość | Opis |\n| --- | --- |\n| Nip | NIP. |\n| Pesel | PESEL. |\n| Fingerprint | Odcisk palca certyfikatu. |\n",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AuthorIdentifierType"
+                }
+              ]
             }
           },
           {
@@ -2527,8 +2546,15 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "type": "integer",
-              "format": "int32",
-              "default": 10
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-continuation-token",
+            "in": "header",
+            "description": "Token służący do pobrania kolejnej strony wyników.",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -4132,6 +4158,15 @@
           }
         },
         "additionalProperties": false
+      },
+      "AuthorIdentifierType": {
+        "enum": [
+          "Nip",
+          "Pesel",
+          "Fingerprint"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Nip | NIP. |\n| Pesel | PESEL. |\n| Fingerprint | Odcisk palca certyfikatu. |\n"
       },
       "BatchFileInfo": {
         "required": [

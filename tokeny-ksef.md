@@ -54,13 +54,6 @@ var token = ksefClient.generateKsefToken(request);
 Metadane tokenów KSeF można pobierać i filtrować za pomocą wywołania:<br>
 GET [/tokens](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Tokeny/paths/~1api~1v2~1tokens/get)
 
-według różnych kryteriów, takich jak:
-
-| Parametr  | Przykładowa wartość          | Opis                                                       |
-|-----------|-------------------------------|------------------------------------------------------------|
-| status    | `pending`, `active`           | Filtruje wyniki według statusu. Może wystąpić wielokrotnie.|
-| pageSize  | `20`                           | Liczba wyników na stronę (paginacja).                      |
-
 Przykład w języku C#:
 ```csharp
 var result = new List<AuthenticationKsefToken>();

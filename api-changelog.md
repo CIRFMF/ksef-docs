@@ -38,7 +38,11 @@
   - Charakter zmiany: breaking (zmiana nazwy i typu pola z tablicy na tekst).
 
 - **Tokeny KSeF**  
-  Dodano kod błedu dla odpowiedzi POST `/api/v2/tokens` ("Wygenerowanie nowego tokena"): `26002` - "Nie można wygenerować tokena dla obecnego typu kontekstu". Token może być generowany wyłącznie w kontekście `Nip` lub `InternalId`.
+  - Dodano kod błedu dla odpowiedzi POST `/api/v2/tokens` ("Wygenerowanie nowego tokena"): `26002` - "Nie można wygenerować tokena dla obecnego typu kontekstu". Token może być generowany wyłącznie w kontekście `Nip` lub `InternalId`.
+  - Dodano parametry zapytania do filtrowania wyników dla GET `/tokens`:
+    - `description` - wyszukiwanie w opisie tokena (bez rozróżniania wielkości liter), min. 3 znaki,
+    - `authorIdentifier` - wyszukiwanie po identyfikatorze twórcy (bez rozróżniania wielkości liter), min. 3 znaki,
+    - `authorIdentifierType` - typ identyfikatora twórcy używany przy authorIdentifier (Nip, Pesel, Fingerprint).
 
 - **Pobieranie metadanych faktur (GET `/invoices/query/metadata`)**  
   - Usunięto właściwość `totalCount` z odpowiedzi wyszukiwania metadanych.
