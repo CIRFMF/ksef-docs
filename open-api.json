@@ -8521,7 +8521,9 @@
           "InvoiceRead",
           "InvoiceWrite",
           "CredentialsRead",
-          "CredentialsManage"
+          "CredentialsManage",
+          "SubunitManage",
+          "EnforcementOperations"
         ],
         "type": "string"
       },

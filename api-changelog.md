@@ -48,6 +48,7 @@
 
 - **Tokeny KSeF**  
   - Dodano kod błedu dla odpowiedzi POST `/api/v2/tokens` ("Wygenerowanie nowego tokena"): `26002` - "Nie można wygenerować tokena dla obecnego typu kontekstu". Token może być generowany wyłącznie w kontekście `Nip` lub `InternalId`.
+  - Rozszerzono katalog uprawnień możliwych do przypisania tokenowi: dodano `SubunitManage` oraz `EnforcementOperations`.
   - Dodano parametry zapytania do filtrowania wyników dla GET `/tokens`:
     - `description` - wyszukiwanie w opisie tokena (bez rozróżniania wielkości liter), min. 3 znaki,
     - `authorIdentifier` - wyszukiwanie po identyfikatorze twórcy (bez rozróżniania wielkości liter), min. 3 znaki,
