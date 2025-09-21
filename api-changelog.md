@@ -57,6 +57,7 @@
 - **Pobieranie metadanych faktur (GET `/invoices/query/metadata`)**  
   - Usunięto właściwość `totalCount` z odpowiedzi wyszukiwania metadanych.
   - Zmieniono nazwę właściwości w odpowiedzi z `fileHash` na `invoiceHash`.
+  - Usunięto z filtrów właściwość `schemaType` (z wartościami `FA1`, `FA2`, `FA3`), wcześniej oznaczoną jako deprecated.
   - Dodano właściwość `seller.nip` w filtrze żądania i w zwracanych metadanych. Właściwość `seller.identifier` oznaczono jako deprecated (zostanie usunięta w następnym wydaniu).
   - Dodano właściwość `authorizedSubject.nip` w zwracanych metadanych. Właściwość `authorizedSubject.identifier` oznaczono jako deprecated (zostanie usunięta w następnym wydaniu).
 

@@ -6326,14 +6326,6 @@
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| Issue | Data wystawienia faktury |\n| Invoicing | [Mock] Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania) |\n| PermanentStorage | [Mock] Data trwałego zapisu faktury w repozytorium systemu KSeF |\n"
       },
-      "InvoiceQuerySchemaType": {
-        "enum": [
-          "FA1",
-          "FA2",
-          "FA3"
-        ],
-        "type": "string"
-      },
       "InvoicesMetadataQueryRequest": {
         "required": [
           "dateRange",
@@ -6419,15 +6411,6 @@
             "type": "boolean",
             "description": "Czy faktura została wystawiona w trybie samofakturowania.",
             "nullable": true
-          },
-          "schemaType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQuerySchemaType"
-              }
-            ],
-            "nullable": true,
-            "deprecated": true
           },
           "formType": {
             "allOf": [
