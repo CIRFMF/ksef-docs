@@ -1987,7 +1987,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/SessionStatusResponse"
                 },
-                "example": {"status":{"code":200,"description":"Sesja interaktywna przetworzona pomyślnie"},"upo":{"pages":[{"referenceNumber":"20250626-EU-2EBD6FA000-242EB9B66D-43","downloadUrl":"https://ksef-api/api/v2/sessions/20250626-SO-2EBAD16000-2429DECA8E-E2/upo/20250626-EU-2EBD6FA000-242EB9B66D-43"}]},"invoiceCount":10,"successfulInvoiceCount":8,"failedInvoiceCount":2}
+                "example": {"status":{"code":200,"description":"Sesja interaktywna przetworzona pomyślnie"},"upo":{"pages":[{"referenceNumber":"20250626-EU-2EBD6FA000-242EB9B66D-43","downloadUrl":"https://ksef-test.mf.gov.pl/storage/01/20250918-sb-3789a40000-20373e1269-a3/session-upo/upo_00.xml?sv=2025-01-05&st=2025-09-18T14%3A55%3A50Z&se=2025-09-21T15%3A00%3A50Z&sr=b&sp=r&sig=ZlQO6Xtzu3VQQDwmEMfb0VryMxe9WcUgWtkdiB6X2Qo%3D"}]},"invoiceCount":10,"successfulInvoiceCount":8,"failedInvoiceCount":2}
               }
             }
           },
@@ -2064,7 +2064,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/SessionInvoicesResponse"
                 },
-                "example": {"continuationToken":"W34idG9rZW4iOiIrUklEOn4xUE5BQU5hcXJVOUFBQUFBQUFBQUFBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBVUFBQUFBQUFBQUFRZ0FBQUFBQUFBQT0iLCJyYW5nZSI6eyJtaW4iOiIiLCJtYXgiOiJGRiJ9fV0=","invoices":[{"ordinalNumber":1,"invoiceNumber":"FA/XPWIC-7900685789/06/2025","ksefNumber":"5265877635-20250626-010080DD2B5E-26","referenceNumber":"20250626-EE-2F15D39000-242207E5C4-1B","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","acquisitionDate":"2025-07-11T12:24:16.0154302+00:00","invoicingDate":"2025-07-11T12:23:56.0154302+00:00","status":{"code":200,"description":"Sukces"}},{"ordinalNumber":2,"referenceNumber":"20250626-EE-2F20AD2000-242386DF86-52","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","invoicingDate":"2025-07-11T12:23:56.0154302+00:00","status":{"code":440,"description":"Duplikat faktury","details":["Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"]}}]}
+                "example": {"continuationToken":"W34idG9rZW4iOiIrUklEOn4xUE5BQU5hcXJVOUFBQUFBQUFBQUFBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBVUFBQUFBQUFBQUFRZ0FBQUFBQUFBQT0iLCJyYW5nZSI6eyJtaW4iOiIiLCJtYXgiOiJGRiJ9fV0=","invoices":[{"ordinalNumber":1,"invoiceNumber":"FA/XPWIC-7900685789/06/2025","ksefNumber":"5265877635-20250626-010080DD2B5E-26","referenceNumber":"20250626-EE-2F15D39000-242207E5C4-1B","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","acquisitionDate":"2025-07-11T12:24:16.0154302+00:00","invoicingDate":"2025-07-11T12:23:56.0154302+00:00","permanentStorageDate":"2025-07-11T12:24:01.0154302+00:00","upoDownloadUrl":"https://ksef-test.mf.gov.pl/storage/01/20250918-SB-3789A40000-20373E1269-A3/invoice-upo/upo_5265877635-20250626-010080DD2B5E-26.xml?sv=2025-01-05&st=2025-09-18T14%3A49%3A20Z&se=2025-09-21T14%3A54%3A20Z&sr=b&sp=r&sig=%2BUWFPA10gS580VhngGKW%2FZiOOtiHPOiTyMlxhG6ZvWs%3D","status":{"code":200,"description":"Sukces"}},{"ordinalNumber":2,"referenceNumber":"20250626-EE-2F20AD2000-242386DF86-52","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","invoicingDate":"2025-07-11T12:23:56.0154302+00:00","status":{"code":440,"description":"Duplikat faktury","details":["Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"]}}]}
               }
             }
           },
@@ -7740,6 +7740,18 @@
             "type": "string",
             "description": "Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania).",
             "format": "date-time"
+          },
+          "permanentStorageDate": {
+            "type": "string",
+            "description": "Data trwałego zapisu faktury w repozytorium systemu KSeF. Od tego momentu faktura jest dostępna do pobrania.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "upoDownloadUrl": {
+            "type": "string",
+            "description": "Adres do pobrania UPO.",
+            "format": "uri",
+            "nullable": true
           },
           "status": {
             "allOf": [

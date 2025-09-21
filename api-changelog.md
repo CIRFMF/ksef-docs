@@ -73,6 +73,11 @@
 - **Pobranie listy sesji**  
   Rozszerzono uprawnienia dla GET `/api/v2/sessions`: dodano `InvoiceWrite`. Posiadając uprawnienie `InvoiceWrite`, można pobierać wyłącznie sesje utworzone przez podmiot uwierzytelniający; posiadając uprawnienie `Introspection`, można pobierać wszystkie sesje.
 
+- **Status faktury w sesji**  
+  Rozszerzono odpowiedź dla GET `/sessions/{referenceNumber}/invoices` ("Pobranie faktur sesji") oraz GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}` ("Pobranie statusu faktury z sesji") o właściwości:
+  - `permanentStorageDate` – data trwałego zapisu faktury w repozytorium KSeF (od tego momentu faktura jest dostępna do pobrania),
+  - `upoDownloadUrl` – adres do pobrania UPO.
+
 - **OpenAPI**
   - Dodano uniwersalny kod błędu walidacji danych wejściowych `21405` do wszystkich endpointów. Treść błędu z walidatora zwracana w odpowiedzi.
   - Dodano odpowiedź 400 z walidacją zwracającą kod błędu `30001` („Podmiot lub uprawnienie już istnieje.”) dla POST `/api/v2/testdata/subject` oraz POST `/api/v2/testdata/person`.
