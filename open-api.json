@@ -4134,6 +4134,12 @@
             "description": "Data i czas utworzenia tokena.",
             "format": "date-time"
           },
+          "lastUseDate": {
+            "type": "string",
+            "description": "Data ostatniego użycia tokena.",
+            "format": "date-time",
+            "nullable": true
+          },
           "status": {
             "allOf": [
               {

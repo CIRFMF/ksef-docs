@@ -53,6 +53,9 @@
     - `description` - wyszukiwanie w opisie tokena (bez rozróżniania wielkości liter), min. 3 znaki,
     - `authorIdentifier` - wyszukiwanie po identyfikatorze twórcy (bez rozróżniania wielkości liter), min. 3 znaki,
     - `authorIdentifierType` - typ identyfikatora twórcy używany przy authorIdentifier (Nip, Pesel, Fingerprint).
+  - Dodano właściwość `lastUseDate` ("Data ostatniego użycia tokena") w odpowiedziach dla:
+    - GET `/tokens` ("lista tokenów"),
+    - GET `/tokens/{referenceNumber}` ("status tokena").
 
 - **Pobieranie metadanych faktur (GET `/invoices/query/metadata`)**  
   - Usunięto właściwość `totalCount` z odpowiedzi wyszukiwania metadanych.
