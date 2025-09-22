@@ -6569,6 +6569,12 @@
           "identifier": {
             "type": "string",
             "description": "Identyfikator sprzedawcy.",
+            "nullable": true,
+            "deprecated": true
+          },
+          "nip": {
+            "type": "string",
+            "description": "Nip sprzedawcy.",
             "nullable": true
           }
         },
