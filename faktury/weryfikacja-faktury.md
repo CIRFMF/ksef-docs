@@ -1,5 +1,5 @@
 # Weryfikacja faktury
-29.07.2025
+22.09.2025
 
 Faktura przesyłana do systemu KSeF podlega szeregowi kontroli technicznych i semantycznych. Weryfikacja obejmuje następujące kryteria:
 
@@ -19,12 +19,12 @@ Faktura musi być przygotowana w formacie XML, kodowana w UTF-8 oraz zgodna z ak
 Data wystawienia faktury (`P_1`) nie może być późniejsza niż data przyjęcia dokumentu do systemu KSeF.
 
 ## Rozmiar pliku
-- Maksymalny rozmiar faktury bez załączników: **1 MB**
-- Maksymalny rozmiar faktury z załącznikami: **3 MB**
+- Maksymalny rozmiar faktury bez załączników: **1 MiB** (1 048 576 bajtów).
+- Maksymalny rozmiar faktury z załącznikami: **3 MiB** (3 145 728 bajtów).
 
 ## Ograniczenia ilościowe
 - Maksymalna liczba faktur w jednej sesji (zarówno interaktywnej, jak i wsadowej) wynosi 10 000 000.
-- W ramach wysyłki wsadowej można wysłać maksymalnie 50 paczek ZIP, każda o maksymalnym rozmiarze 100 MB.
+- W ramach wysyłki wsadowej można przesłać maksymalnie 50 plików ZIP; rozmiar każdego pliku nie może przekroczyć 100 MiB (104 857 600 bajtów), a łączny rozmiar paczki - 5 GiB (5 368 709 120 bajtów).
 
 ## Poprawne szyfrowanie
 - Faktura powinna być zaszyfrowana algorytmem AES-256-CBC (klucz symetryczny 256 bit, IV 128 bit, PKCS#7).

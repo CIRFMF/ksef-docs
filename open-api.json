@@ -4236,7 +4236,7 @@
         "properties": {
           "fileSize": {
             "type": "integer",
-            "description": "Rozmiar pliku paczki w bajtach. Maksymalny rozmiar paczki to 5GB (5_368_709_120 bajtów).",
+            "description": "Rozmiar pliku paczki w bajtach. Maksymalny rozmiar paczki to 5GiB (5 368 709 120 bajtów).",
             "format": "int64"
           },
           "fileHash": {
@@ -4273,7 +4273,7 @@
           },
           "fileSize": {
             "type": "integer",
-            "description": "Rozmiar części pliku paczki w bajtach. Maksymalna dozwolona wartość to 100MB (104_857_600 bajtów).",
+            "description": "Rozmiar części pliku paczki w bajtach. Maksymalna dozwolona wartość to 100MiB (104 857 600 bajtów).",
             "format": "int64"
           },
           "fileHash": {
