@@ -1609,12 +1609,12 @@
           "Pobieranie faktur"
         ],
         "summary": "Pobranie listy metadanych faktur",
-        "description": "Zwraca listę metadanych faktur spełniające podane kryteria wyszukiwania.\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Zwraca listę metadanych faktur spełniające podane kryteria wyszukiwania. Wyniki sortowane są rosnąco według typu daty przekazanej w `DateRange`. Do realizacji pobierania przyrostowego należy stosować typ `PermanentStorage`. Maksymalnie można pobrać faktury w zakresie do 10 000 rekordów\n\nWymagane uprawnienia: `InvoiceRead`.",
         "parameters": [
           {
             "name": "pageOffset",
             "in": "query",
-            "description": "Indeks pierwszej strony wyników.",
+            "description": "Indeks pierwszej strony wyników (0 = pierwsza strona).",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -1624,7 +1624,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "Rozmiar strony wyników.",
+            "description": "Rozmiar strony wyników. Wartość musi zawierać się w przedziale od 10 do 250.",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -1643,7 +1643,7 @@
                 ],
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/InvoicesMetadataQueryRequest"
+                    "$ref": "#/components/schemas/InvoiceQueryFilters"
                   }
                 ]
               }
@@ -1656,7 +1656,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/QueryInvoicesMetadataReponse"
+                  "$ref": "#/components/schemas/QueryInvoicesMetadataResponse"
                 },
                 "example": {"hasMore":false,"invoices":[{"ksefNumber":"5555555555-20250828-010080615740-E4","invoiceNumber":"FA/KUDYO1a7dddfe-610e-4843-84ba-6b887e35266e","issueDate":"2025-06-16","invoicingDate":"2025-08-28T09:22:13.388+00:00","acquisitionDate":"2025-08-28T09:22:56.388+00:00","permanentStorageDate":"2025-08-28T09:23:01.388+00:00","seller":{"nip":"5555555555","name":"Kucharski and Krupa"},"buyer":{"identifierType":"Nip","identifier":"7352765225","name":"Cichy LLC"},"netAmount":35260.63,"grossAmount":43370.57,"vatAmount":8109.94,"currency":"PLN","invoicingMode":"Offline","invoiceType":"Vat","formCode":{"systemCode":"FA (3)","schemaVersion":"1-0E","value":"FA"},"isSelfInvoicing":false,"hasAttachment":false,"invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","thirdSubjects":[]}]}
               }
@@ -5924,9 +5924,11 @@
           "formCode",
           "grossAmount",
           "hasAttachment",
+          "invoiceHash",
           "invoiceNumber",
           "invoiceType",
           "invoicingDate",
+          "invoicingMode",
           "isSelfInvoicing",
           "issueDate",
           "ksefNumber",
@@ -5952,7 +5954,7 @@
           },
           "invoicingDate": {
             "type": "string",
-            "description": "[Mock] Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania).",
+            "description": "Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania).",
             "format": "date-time"
           },
           "acquisitionDate": {
@@ -5962,7 +5964,7 @@
           },
           "permanentStorageDate": {
             "type": "string",
-            "description": "[Mock] Data trwałego zapisu faktury w repozytorium systemu KSeF.",
+            "description": "Data trwałego zapisu faktury w repozytorium systemu KSeF.",
             "format": "date-time"
           },
           "seller": {
@@ -6012,16 +6014,15 @@
                 "$ref": "#/components/schemas/InvoicingMode"
               }
             ],
-            "description": "Tryb fakturowania (online/offline).",
-            "nullable": true
+            "description": "Tryb fakturowania (online/offline)."
           },
           "invoiceType": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/InvoiceMetadataInvoiceType"
+                "$ref": "#/components/schemas/InvoiceType"
               }
             ],
-            "description": "Rodzaj faktury.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | [Mock] (PEF) Podstawowowa |\n| VatPefSp | [Mock] (PEF) Specjalizowana |\n| KorPef | [Mock] (PEF) Korygująca |\n| VatRr | [Mock] (RR) Podstawowa |\n| KorVatRr | [Mock] (RR) Korygująca |\n"
+            "description": "Rodzaj faktury.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | (PEF) Podstawowowa |\n| VatPefSp | (PEF) Specjalizowana |\n| KorPef | (PEF) Korygująca |\n| VatRr | (RR) Podstawowa |\n| KorVatRr | (RR) Korygująca |\n"
           },
           "formCode": {
             "required": [
@@ -6046,12 +6047,11 @@
           },
           "invoiceHash": {
             "type": "string",
-            "description": "[Mock] Skrót SHA256 faktury.",
-            "nullable": true
+            "description": "Skrót SHA256 faktury."
           },
           "hashOfCorrectedInvoice": {
             "type": "string",
-            "description": "[Mock] Skrót SHA256 korygowanej faktury.",
+            "description": "Skrót SHA256 korygowanej faktury.",
             "nullable": true
           },
           "thirdSubjects": {
@@ -6059,19 +6059,20 @@
             "items": {
               "$ref": "#/components/schemas/InvoiceMetadataThirdSubject"
             },
-            "description": "[Mock] Lista trzecich podmiotów.",
+            "description": "Lista trzecich podmiotów.",
             "nullable": true
           },
           "authorizedSubject": {
             "required": [
-              "nip"
+              "nip",
+              "role"
             ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/InvoiceMetadataAuthorizedSubject"
               }
             ],
-            "description": "[Mock] Podmiot upoważniony.",
+            "description": "Podmiot upoważniony.",
             "nullable": true
           }
         },
@@ -6079,7 +6080,8 @@
       },
       "InvoiceMetadataAuthorizedSubject": {
         "required": [
-          "nip"
+          "nip",
+          "role"
         ],
         "type": "object",
         "properties": {
@@ -6152,6 +6154,10 @@
         "additionalProperties": false
       },
       "InvoiceMetadataThirdSubject": {
+        "required": [
+          "identifierType",
+          "role"
+        ],
         "type": "object",
         "properties": {
           "identifierType": {
@@ -6307,7 +6313,7 @@
                 "$ref": "#/components/schemas/InvoiceQueryDateType"
               }
             ],
-            "description": "Typ daty, według której ma być zastosowany zakres.\n| Wartość | Opis |\n| --- | --- |\n| Issue | Data wystawienia faktury |\n| Invoicing | [Mock] Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania) |\n| PermanentStorage | [Mock] Data trwałego zapisu faktury w repozytorium systemu KSeF |\n"
+            "description": "Typ daty, według której ma być zastosowany zakres.\n| Wartość | Opis |\n| --- | --- |\n| Issue | Data wystawienia faktury. |\n| Invoicing | Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania). |\n| PermanentStorage | Data trwałego zapisu faktury w repozytorium systemu KSeF. |\n"
           },
           "from": {
             "type": "string",
@@ -6316,7 +6322,7 @@
           },
           "to": {
             "type": "string",
-            "description": "Data końcowa zakresu.",
+            "description": "Data końcowa zakresu. Jeśli nie zostanie podana, przyjmowana jest bieżąca data i czas w UTC.",
             "format": "date-time",
             "nullable": true
           }
@@ -6330,9 +6336,9 @@
           "PermanentStorage"
         ],
         "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Issue | Data wystawienia faktury |\n| Invoicing | [Mock] Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania) |\n| PermanentStorage | [Mock] Data trwałego zapisu faktury w repozytorium systemu KSeF |\n"
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Issue | Data wystawienia faktury. |\n| Invoicing | Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania). |\n| PermanentStorage | Data trwałego zapisu faktury w repozytorium systemu KSeF. |\n"
       },
-      "InvoicesMetadataQueryRequest": {
+      "InvoiceQueryFilters": {
         "required": [
           "dateRange",
           "subjectType"
@@ -6357,7 +6363,7 @@
                 "$ref": "#/components/schemas/InvoiceQueryDateRange"
               }
             ],
-            "description": "Typ i zakres dat, według którego mają być filtrowane faktury."
+            "description": "Typ i zakres dat, według którego mają być filtrowane faktury. Dozwolony maksymalny okres wynosi 2 lata."
           },
           "ksefNumber": {
             "type": "string",
@@ -6430,9 +6436,9 @@
           "invoiceTypes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InvoiceMetadataInvoiceType"
+              "$ref": "#/components/schemas/InvoiceType"
             },
-            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | [Mock] (PEF) Podstawowowa |\n| VatPefSp | [Mock] (PEF) Specjalizowana |\n| KorPef | [Mock] (PEF) Korygująca |\n| VatRr | [Mock] (RR) Podstawowa |\n| KorVatRr | [Mock] (RR) Korygująca |\n",
+            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | (PEF) Podstawowowa |\n| VatPefSp | (PEF) Specjalizowana |\n| KorPef | (PEF) Korygująca |\n| VatRr | (RR) Podstawowa |\n| KorVatRr | (RR) Korygująca |\n",
             "nullable": true
           },
           "hasAttachment": {
@@ -6541,9 +6547,9 @@
           "invoiceTypes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InvoiceMetadataInvoiceType"
+              "$ref": "#/components/schemas/InvoiceType"
             },
-            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | [Mock] (PEF) Podstawowowa |\n| VatPefSp | [Mock] (PEF) Specjalizowana |\n| KorPef | [Mock] (PEF) Korygująca |\n| VatRr | [Mock] (RR) Podstawowa |\n| KorVatRr | [Mock] (RR) Korygująca |\n",
+            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | (PEF) Podstawowowa |\n| VatPefSp | (PEF) Specjalizowana |\n| KorPef | (PEF) Korygująca |\n| VatRr | (RR) Podstawowa |\n| KorVatRr | (RR) Korygująca |\n",
             "nullable": true
           },
           "hasAttachment": {
@@ -6589,8 +6595,8 @@
         ],
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 |\n| Subject2 | Podmiot 2 |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
-      },	  
-      "InvoiceMetadataInvoiceType": {
+      },
+      "InvoiceType": {
         "enum": [
           "Vat",
           "Zal",
@@ -6606,7 +6612,7 @@
           "KorVatRr"
         ],
         "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | [Mock] (PEF) Podstawowowa |\n| VatPefSp | [Mock] (PEF) Specjalizowana |\n| KorPef | [Mock] (PEF) Korygująca |\n| VatRr | [Mock] (RR) Podstawowa |\n| KorVatRr | [Mock] (RR) Korygująca |\n"
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | (PEF) Podstawowowa |\n| VatPefSp | (PEF) Specjalizowana |\n| KorPef | (PEF) Korygująca |\n| VatRr | (RR) Podstawowa |\n| KorVatRr | (RR) Korygująca |\n"
       },
       "InvoicingMode": {
         "enum": [
@@ -7417,7 +7423,7 @@
         },
         "additionalProperties": false
       },
-      "QueryInvoicesMetadataReponse": {
+      "QueryInvoicesMetadataResponse": {
         "required": [
           "hasMore",
           "invoices"

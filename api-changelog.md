@@ -58,11 +58,27 @@
     - GET `/tokens/{referenceNumber}` ("status tokena").
 
 - **Pobieranie metadanych faktur (GET `/invoices/query/metadata`)**  
-  - Usunięto właściwość `totalCount` z odpowiedzi wyszukiwania metadanych.
-  - Zmieniono nazwę właściwości w odpowiedzi z `fileHash` na `invoiceHash`.
-  - Usunięto z filtrów właściwość `schemaType` (z wartościami `FA1`, `FA2`, `FA3`), wcześniej oznaczoną jako deprecated.
-  - Dodano właściwość `seller.nip` w filtrze żądania i w zwracanych metadanych. Właściwość `seller.identifier` oznaczono jako deprecated (zostanie usunięta w następnym wydaniu).
-  - Dodano właściwość `authorizedSubject.nip` w zwracanych metadanych. Właściwość `authorizedSubject.identifier` oznaczono jako deprecated (zostanie usunięta w następnym wydaniu).
+  - Filtry:
+    - stronicowanie: zwiększono maksymalny rozmiar strony do 250 rekordów,
+    - usunięto właściwość `schemaType` (z wartościami `FA1`, `FA2`, `FA3`), wcześniej oznaczoną jako deprecated,
+    - dodano `seller.nip`; `seller.identifier` oznaczono jako deprecated (zostanie usunięte w następnym wydaniu),
+    - dodano `authorizedSubject.nip`; `authorizedSubject.identifier` oznaczono jako deprecated (zostanie usunięte w następnym wydaniu),
+
+    - doprecyzowano opis: brak wartości w `dateRange.to` oznacza użycie bieżącej daty i czasu (UTC),
+    - doprecyzowano maksymalny dozwolony zakres `DateRange` na 2 lata.
+  - Sortowanie:
+    - wyniki są sortowane rosnąco według typu daty wskazanej w `DateRange`; do pobierania przyrostowego zalecany typ `PermanentStorage`,
+  - Model odpowiedzi:
+    - usunięto właściwość `totalCount`,
+    - zmieniono nazwę `fileHash` na `invoiceHash`,
+    - dodano `seller.nip`; `seller.identifier` oznaczono jako deprecated (zostanie usunięte w następnym wydaniu),
+    - dodano `authorizedSubject.nip`; `authorizedSubject.identifier` oznaczono jako deprecated (zostanie usunięte w następnym wydaniu),
+    - oznaczono `invoiceHash` jako zawsze zwracane,
+    - oznaczono `invoicingMode` jako zawsze zwracane,
+    - oznaczono `authorizedSubject.role` ("Podmiot upoważniony") jako zawsze zwracane,
+    - oznaczono `invoiceMetadataAuthorizedSubject.role` ("Nip podmiotu upoważnionego") jako zawsze zwracane,
+    - oznaczono `invoiceMetadataThirdSubject.role` ("Lista podmiotów trzecich") jako zawsze zwracane.
+  - Usunięto oznaczenia [Mock] z opisów właściwości.
 
 - **Eksport paczki faktur (POST `/invoices/exports`)**
   - Dodano właściwość `seller.nip` w filtrze żądania. Właściwość `seller.identifier` oznaczono jako deprecated (zostanie usunięta w następnym wydaniu).
