@@ -737,4 +737,4 @@ GET [/permissions/attachments/status](https://ksef-test.mf.gov.pl/docs/v2/index.
 Zwraca status zgody dla bieżącego kontekstu. Jeżeli zgoda nie jest aktywna, faktura z załącznikiem wysłana do API KSeF zostanie odrzucona.
 
 **Środowisko testowe**  
-Na środowisku testowym dostępny jest endpoint POST `/api/v2/testdata/attachment`, który nadaje możliwość wysyłania faktur z załącznikiem przez wskazany podmiot. Endpoint służy wyłącznie do zasymulowania nadania zgody w testach i działa w zakresie bieżącego kontekstu.
+Na środowisku testowym dostępny jest endpoint POST `/testdata/attachment`, który nadaje możliwość wysyłania faktur z załącznikiem przez wskazany podmiot. Endpoint służy wyłącznie do zasymulowania nadania zgody w testach i działa w zakresie bieżącego kontekstu.

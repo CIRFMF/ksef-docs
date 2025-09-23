@@ -127,7 +127,7 @@ Alternatywnie można posłużyć się opisanym wyżej endpointem do tworzenia da
 Dzięki tej operacji przedstawiciel członka grupy VAT uzyskuje możliwość nadawania uprawnień sobie lub innym osobom (np. pracownikom) w standardowy sposób, za pośrednictwem systemu KSeF.
 
 ### Scenariusz nr 4 – Włączenie możliwości wysyłania faktur z załącznikiem
-Na środowisku testowym można zasymulować podmiot, który ma włączoną możliwość przesyłania faktur z załącznikami. Operację należy wykonać za pomocą endpointu /api/v2/testdata/attachment.
+Na środowisku testowym można zasymulować podmiot, który ma włączoną możliwość przesyłania faktur z załącznikami. Operację należy wykonać za pomocą endpointu /testdata/attachment.
 
 ```json
 {
@@ -138,7 +138,7 @@ Na środowisku testowym można zasymulować podmiot, który ma włączoną możl
 W efekcie podmiot o NIP 4972530874 otrzyma możliwość przesyłania faktur zawierających załączniki.
 
 ### Scenariusz nr 5 – Wyłączenie możliwości wysyłania faktur z załącznikiem
-Aby przetestować sytuację, w której dana jednostka nie ma już możliwości przesyłania faktur z załącznikami, należy użyć endpointu /api/v2/testdata/attachment/revoke.
+Aby przetestować sytuację, w której dana jednostka nie ma już możliwości przesyłania faktur z załącznikami, należy użyć endpointu /testdata/attachment/revoke.
 
 ```json
 {

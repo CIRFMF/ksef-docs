@@ -37,7 +37,7 @@
 - **Autoryzacja**
   - Rozszerzono reguły dostępu o `VatUeManage` dla DELETE `/permissions/common/grants/{permissionId}`: operację można wykonać, jeżeli podmiot posiada `CredentialsManage` lub `VatUeManage`.
   - Rozszerzono reguły dostępu o `Introspection` dla GET `/sessions/{referenceNumber}/...`: każdy z tych endpointów można teraz wywołać posiadając `InvoiceWrite` lub `Introspection`.
-  - Rozszerzono reguły dostępu o `InvoiceWrite` dla GET `/api/v2/sessions` ("Pobranie listy sesji"): posiadając uprawnienie `InvoiceWrite`, można pobierać wyłącznie sesje utworzone przez podmiot uwierzytelniający; posiadając uprawnienie `Introspection`, można pobierać wszystkie sesje.
+  - Rozszerzono reguły dostępu o `InvoiceWrite` dla GET `/sessions` ("Pobranie listy sesji"): posiadając uprawnienie `InvoiceWrite`, można pobierać wyłącznie sesje utworzone przez podmiot uwierzytelniający; posiadając uprawnienie `Introspection`, można pobierać wszystkie sesje.
   - Zmieniono reguły dostępu dla DELETE `/tokens/{referenceNumber}`: usunięto wymóg uprawnienia `CredentialsManage`.
 
 - **Certyfikaty**    
@@ -47,7 +47,7 @@
   - Charakter zmiany: breaking (zmiana nazwy i typu pola z tablicy na tekst).
 
 - **Tokeny KSeF**  
-  - Dodano kod błędu dla odpowiedzi POST `/api/v2/tokens` ("Wygenerowanie nowego tokena"): `26002` - "Nie można wygenerować tokena dla obecnego typu kontekstu". Token może być generowany wyłącznie w kontekście `Nip` lub `InternalId`.
+  - Dodano kod błędu dla odpowiedzi POST `/tokens` ("Wygenerowanie nowego tokena"): `26002` - "Nie można wygenerować tokena dla obecnego typu kontekstu". Token może być generowany wyłącznie w kontekście `Nip` lub `InternalId`.
   - Rozszerzono katalog uprawnień możliwych do przypisania tokenowi: dodano `SubunitManage` oraz `EnforcementOperations`.
   - Dodano parametry zapytania do filtrowania wyników dla GET `/tokens`:
     - `description` - wyszukiwanie w opisie tokena (bez rozróżniania wielkości liter), min. 3 znaki,
@@ -120,10 +120,10 @@
    Dodano kod błędu dla odpowiedzi 400: `21165` - "Faktura o podanym numerze KSeF nie jest jeszcze dostępna".
 
 - **Załączniki do faktur**  
-  Dodano endpoint GET `/api/v2/permissions/attachments/status` do sprawdzania statusu zgody na wystawianie faktur z załącznikiem.
+  Dodano endpoint GET `/permissions/attachments/status` do sprawdzania statusu zgody na wystawianie faktur z załącznikiem.
 
 - **Pobranie listy sesji**  
-  Rozszerzono uprawnienia dla GET `/api/v2/sessions`: dodano `InvoiceWrite`. Posiadając uprawnienie `InvoiceWrite`, można pobierać wyłącznie sesje utworzone przez podmiot uwierzytelniający; posiadając uprawnienie `Introspection`, można pobierać wszystkie sesje.
+  Rozszerzono uprawnienia dla GET `/sessions`: dodano `InvoiceWrite`. Posiadając uprawnienie `InvoiceWrite`, można pobierać wyłącznie sesje utworzone przez podmiot uwierzytelniający; posiadając uprawnienie `Introspection`, można pobierać wszystkie sesje.
 
 - **Status faktury w sesji**  
   Rozszerzono odpowiedź dla GET `/sessions/{referenceNumber}/invoices` ("Pobranie faktur sesji") oraz GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}` ("Pobranie statusu faktury z sesji") o właściwości:
@@ -132,7 +132,7 @@
 
 - **OpenAPI**
   - Dodano uniwersalny kod błędu walidacji danych wejściowych `21405` do wszystkich endpointów. Treść błędu z walidatora zwracana w odpowiedzi.
-  - Dodano odpowiedź 400 z walidacją zwracającą kod błędu `30001` („Podmiot lub uprawnienie już istnieje.”) dla POST `/api/v2/testdata/subject` oraz POST `/api/v2/testdata/person`.
+  - Dodano odpowiedź 400 z walidacją zwracającą kod błędu `30001` („Podmiot lub uprawnienie już istnieje.”) dla POST `/testdata/subject` oraz POST `/testdata/person`.
   - Zaktualizowano przykłady (example) w definicjach endpointów.
 
 ### Wersja 2.0.0 RC4
