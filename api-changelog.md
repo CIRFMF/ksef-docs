@@ -66,7 +66,6 @@
     - usunięto właściwość `schemaType` (z wartościami `FA1`, `FA2`, `FA3`), wcześniej oznaczoną jako deprecated,
     - dodano `seller.nip`; `seller.identifier` oznaczono jako deprecated (zostanie usunięte w następnym wydaniu),
     - dodano `authorizedSubject.nip`; `authorizedSubject.identifier` oznaczono jako deprecated (zostanie usunięte w następnym wydaniu),
-
     - doprecyzowano opis: brak wartości w `dateRange.to` oznacza użycie bieżącej daty i czasu (UTC),
     - doprecyzowano maksymalny dozwolony zakres `DateRange` na 2 lata.
   - Sortowanie:
@@ -83,8 +82,36 @@
     - oznaczono `invoiceMetadataThirdSubject.role` ("Lista podmiotów trzecich") jako zawsze zwracane.
   - Usunięto oznaczenia [Mock] z opisów właściwości.
 
-- **Eksport paczki faktur (POST `/invoices/exports`)**
-  - Dodano właściwość `seller.nip` w filtrze żądania. Właściwość `seller.identifier` oznaczono jako deprecated (zostanie usunięta w następnym wydaniu).
+- **Eksport paczki faktur: zlecenie (POST `/invoices/exports`)**
+  - Filtry:
+    - dodano `seller.nip`; `seller.identifier` oznaczono jako deprecated (zostanie usunięte w następnym wydaniu),
+  - Usunięto oznaczenia [Mock].
+
+  - **Eksport paczki faktur: status (GET `/invoices/exports/{operationReferenceNumber}`)**
+    - Opisy statusów: uzupełniono dokumentację statusu eksportu:
+      - `100` - "Eksport faktur w toku" 
+      - `200` - "Eksport faktur zakończony sukcesem" 
+      - `415` - "Błąd odszyfrowania dostarczonego klucza"  
+      - `500` - "Nieznany błąd ({statusCode})"
+    - Model odpowiedzi `package`:
+      - dodano:
+        - `invoiceCount` - "Łączna liczba faktur w paczce. Maksymalna liczba faktur w paczce to 10 000",
+        - `size` - "Rozmiar paczki w bajtach. Maksymalny rozmiar paczki to 1 GiB (1 073 741 824 bajtów)",
+        - `isTruncated` - "Określa, czy wynik eksportu został ucięty z powodu przekroczenia limitu liczby faktur lub wielkości paczki",
+        - `lastIssueDate` - "Data wystawienia ostatniej faktury ujętej w paczce.\nPole występuje wyłącznie wtedy, gdy paczka została ucięta i eksport był filtrowany po typie daty `Issue`",
+        - `lastInvoicingDate` - "Data przyjęcia ostatniej faktury ujętej w paczce.\nPole występuje wyłącznie wtedy, gdy paczka została ucięta i eksport był filtrowany po typie daty `Invoicing`",
+        - `lastPermanentStorageDate` - "Data trwałego zapisu ostatniej faktury ujętej w paczce.\nPole występuje wyłącznie wtedy, gdy paczka została ucięta i eksport był filtrowany po typie daty `PermanentStorage`".
+    - Model odpowiedzi `package.parts`
+      - usunięto `fileName`, `headers`,
+      - dodano:
+        - `partName` - "Nazwa pliku części paczki",
+        - `partSize` - "Rozmiar części paczki w bajtach. Maksymalny rozmiar części to 50MiB (52 428 800 bajtów)",
+        - `partHash` - "Skrót SHA256 pliku części paczki, zakodowany w formacie Base64",
+        - `encryptedPartSize` - "Rozmiar zaszyfrowanej części paczki w bajtach",
+        - `encryptedPartHash` - "Skrót SHA256 zaszyfrowanej części paczki, zakodowany w formacie Base64",
+        - `expirationDate` - "Moment wygaśnięcia linku do pobrania części",
+      - oznaczono wszystkich właściwości w `package` jako zawsze zwracane,
+    - Usunięto oznaczenia [Mock].
 
 - **Uprawnienia**
   - Rozszerzono żądanie POST `/permissions/eu-entities/administration/grants` ("Nadanie uprawnień administratora podmiotu unijnego") o "Nazwę podmiotu" `subjectName`.

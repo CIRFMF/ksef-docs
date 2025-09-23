@@ -34,7 +34,7 @@ var queryInvoicesReponse = ksefClient.queryInvoices(pageOffset, pageSize, invoic
 
 ### Inicjalizuje asynchroniczne zapytanie o pobranie faktur
 
-Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów. Wymagane jest przekazanie informacji o szyfrowaniu w polu Encryption, które służą do zaszyfrowania wygenerowanych paczek z fakturami.
+Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów. Wymagane jest przekazanie informacji o szyfrowaniu w polu `encryption`, które służą wykorzystywane do zaszyfrowania wygenerowanych paczek z fakturami.
 
 POST [/invoices/exports](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1exports/post)
 
@@ -52,7 +52,7 @@ Przykład w języku Java:
 
 Pobiera status wcześniej zainicjalizowanego zapytania asynchronicznego na podstawie identyfikatora operacji. Umożliwia śledzenie postępu przetwarzania zapytania oraz pobranie gotowych paczek z wynikami, jeśli są już dostępne.
 
-GET [/invoices/async-query/{operationReferenceNumber}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1exports~1%7BoperationReferenceNumber%7D/get)
+GET [/invoices/exports/{operationReferenceNumber}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1exports~1%7BoperationReferenceNumber%7D/get)
 
 Przykład w języku C#:
 ```csharp

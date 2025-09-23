@@ -1695,9 +1695,10 @@
         "tags": [
           "Pobieranie faktur"
         ],
-        "summary": "[mock] Eksport paczki faktur",
+        "summary": "Eksport paczki faktur",
         "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu `Encryption`, które służą do zabezpieczenia przygotowanej paczki z fakturami.\n\nWymagane uprawnienia: `InvoiceRead`.",
         "requestBody": {
+          "description": "Dane wejściowe określające kryteria i format eksportu paczki faktur.",
           "content": {
             "application/json": {
               "schema": {
@@ -1707,7 +1708,7 @@
                 ],
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/InvoicesExportRequest"
+                    "$ref": "#/components/schemas/InvoiceExportRequest"
                   }
                 ]
               }
@@ -1726,7 +1727,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21315               | Zalogowany identyfikator kontekstu nie może być użyty dla wybranego podmiotu.     | {treść błędu walidacji}                                           |\n| 21405               | Błąd walidacji danych wejściowych.          | {treść błędu z walidatora}                                       |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21180               | Nieprawidłowe żądanie.                              | Nie można wyeksportować paczki faktur dla wybranego podmiotu ({subjecttype}) i zalogowanego identyfikatoru kontekstu ({type}). |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -1758,7 +1759,7 @@
         "tags": [
           "Pobieranie faktur"
         ],
-        "summary": "[mock] Pobranie statusu eksportu paczki faktur",
+        "summary": "Pobranie statusu eksportu paczki faktur",
         "description": "\n\nWymagane uprawnienia: `InvoiceRead`.",
         "parameters": [
           {
@@ -1777,7 +1778,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InvoicesExportStatusResponse"
+                  "$ref": "#/components/schemas/InvoiceExportStatusResponse"
                 }
               }
             }
@@ -5862,7 +5863,7 @@
         },
         "additionalProperties": false
       },
-      "InvoicesExportRequest": {
+      "InvoiceExportRequest": {
         "required": [
           "encryption",
           "filters"
@@ -5888,7 +5889,7 @@
             ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/InvoicesExportFilters"
+                "$ref": "#/components/schemas/InvoiceQueryFilters"
               }
             ],
             "description": "Zestaw filtrów do wyszukiwania faktur."
@@ -5896,7 +5897,7 @@
         },
         "additionalProperties": false
       },
-      "InvoicesExportStatusResponse": {
+      "InvoiceExportStatusResponse": {
         "required": [
           "status"
         ],
@@ -5908,24 +5909,27 @@
                 "$ref": "#/components/schemas/StatusInfo"
               }
             ],
-            "description": "Informacje o aktualnym statusie przetwarzania zapytania."
+            "description": "Status eksportu.\n\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Eksport faktur w toku | - |\n| 200 | Eksport faktur zakończony sukcesem | - |\n| 415 | Błąd odszyfrowania dostarczonego klucza  | - |\n| 500 | Nieznany błąd ({statusCode}) | - |"
           },
           "completedDate": {
             "type": "string",
-            "description": "Data przetworzenia zapytania",
+            "description": "Data zakończenia przetwarzania żądania.",
             "format": "date-time",
             "nullable": true
           },
           "package": {
             "required": [
-              "parts"
+              "invoiceCount",
+              "size",
+              "parts",
+              "isTruncated"
             ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/InvoicesExportPackage"
+                "$ref": "#/components/schemas/InvoicePackage"
               }
             ],
-            "description": "Informacje o paczce faktur.",
+            "description": "Dane paczki faktur przygotowanej do pobrania.",
             "nullable": true
           }
         },
@@ -6201,37 +6205,79 @@
         },
         "additionalProperties": false
       },
-      "InvoicesExportPackage": {
+      "InvoicePackage": {
         "required": [
-          "parts"
+          "invoiceCount",
+          "isTruncated",
+          "parts",
+          "size"
         ],
         "type": "object",
         "properties": {
+          "invoiceCount": {
+            "type": "integer",
+            "description": "Łączna liczba faktur w paczce. Maksymalna liczba faktur w paczce to 10 000.",
+            "format": "int64"
+          },
+          "size": {
+            "type": "integer",
+            "description": "Rozmiar paczki w bajtach. Maksymalny rozmiar paczki to 1 GiB (1 073 741 824 bajtów).",
+            "format": "int64"
+          },
           "parts": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/InvoicePackagePart"
             },
-            "description": "Lista plików dostępnych do pobrania.\nWypełniana tylko, gdy wynik zapytania jest gotowy."
+            "description": "Lista dostępnych części paczki do pobrania. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu."
+          },
+          "isTruncated": {
+            "type": "boolean",
+            "description": "Określa, czy wynik eksportu został ucięty z powodu przekroczenia limitu liczby faktur lub wielkości paczki."
+          },
+          "lastIssueDate": {
+            "type": "string",
+            "description": "Data wystawienia ostatniej faktury ujętej w paczce.\nPole występuje wyłącznie wtedy, gdy paczka została ucięta i eksport był filtrowany po typie daty `Issue`.",
+            "format": "date",
+            "nullable": true
+          },
+          "lastInvoicingDate": {
+            "type": "string",
+            "description": "Data przyjęcia ostatniej faktury ujętej w paczce.\nPole występuje wyłącznie wtedy, gdy paczka została ucięta i eksport był filtrowany po typie daty `Invoicing`.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPermanentStorageDate": {
+            "type": "string",
+            "description": "Data trwałego zapisu ostatniej faktury ujętej w paczce.\nPole występuje wyłącznie wtedy, gdy paczka została ucięta i eksport był filtrowany po typie daty `PermanentStorage`.",
+            "format": "date-time",
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
       "InvoicePackagePart": {
         "required": [
+          "encryptedPartHash",
+          "encryptedPartSize",
           "expirationDate",
-          "fileName",
-          "headers",
           "method",
           "ordinalNumber",
+          "partHash",
+          "partName",
+          "partSize",
           "url"
         ],
         "type": "object",
         "properties": {
           "ordinalNumber": {
             "type": "integer",
-            "description": "Numer porządkowy pliku w ramach całego zbioru wynikowego.",
+            "description": "Numer sekwencyjny pliku części paczki.",
             "format": "int32"
+          },
+          "partName": {
+            "type": "string",
+            "description": "Nazwa pliku części paczki."
           },
           "method": {
             "type": "string",
@@ -6239,25 +6285,31 @@
           },
           "url": {
             "type": "string",
-            "description": "Adres URL, pod który należy wysłać żądanie pobrania pliku.",
+            "description": "Adres URL, pod który należy wysłać żądanie pobrania.",
             "format": "uri"
+          },
+          "partSize": {
+            "type": "integer",
+            "description": "Rozmiar części paczki w bajtach. Maksymalny rozmiar części to 50MiB (52 428 800 bajtów).",
+            "format": "int64"
+          },
+          "partHash": {
+            "type": "string",
+            "description": "Skrót SHA256 pliku części paczki, zakodowany w formacie Base64."
+          },
+          "encryptedPartSize": {
+            "type": "integer",
+            "description": "Rozmiar zaszyfrowanej części paczki w bajtach.",
+            "format": "int64"
+          },
+          "encryptedPartHash": {
+            "type": "string",
+            "description": "Skrót SHA256 zaszyfrowanej części paczki, zakodowany w formacie Base64."
           },
           "expirationDate": {
             "type": "string",
-            "description": "Data wygaśnięcia linku do pobrania pliku.",
+            "description": "Moment wygaśnięcia linku do pobrania części.",
             "format": "date-time"
-          },
-          "headers": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string",
-              "nullable": true
-            },
-            "description": "Nagłówki, których należy użyć przy pobieraniu pliku."
-          },
-          "fileName": {
-            "type": "string",
-            "description": "Nazwa pliku."
           }
         },
         "additionalProperties": false
@@ -6379,117 +6431,6 @@
               }
             ],
             "description": "Typ i zakres dat, według którego mają być filtrowane faktury. Dozwolony maksymalny okres wynosi 2 lata."
-          },
-          "ksefNumber": {
-            "type": "string",
-            "description": "Numer KSeF faktury.",
-            "nullable": true
-          },
-          "invoiceNumber": {
-            "type": "string",
-            "description": "Numer faktury nadany przez wystawcę.",
-            "nullable": true
-          },
-          "amount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQueryAmount"
-              }
-            ],
-            "description": "Filtr kwotowy – brutto, netto lub VAT (z wartością).",
-            "nullable": true
-          },
-          "seller": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQuerySeller"
-              }
-            ],
-            "description": "Dane sprzedawcy.",
-            "nullable": true
-          },
-          "buyer": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQueryBuyer"
-              }
-            ],
-            "description": "Dane nabywcy.",
-            "nullable": true
-          },
-          "currencyCodes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CurrencyCode"
-            },
-            "description": "Kody walut.",
-            "nullable": true
-          },
-          "invoicingMode": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoicingMode"
-              }
-            ],
-            "description": "Tryb wystawienia faktury: online lub offline.",
-            "nullable": true
-          },
-          "isSelfInvoicing": {
-            "type": "boolean",
-            "description": "Czy faktura została wystawiona w trybie samofakturowania.",
-            "nullable": true
-          },
-          "formType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQueryFormType"
-              }
-            ],
-            "description": "Typ dokumentu.\n| Wartość | Opis |\n| --- | --- |\n| FA | Faktura VAT |\n| PEF | Faktura PEF |\n| RR | Faktura RR |\n",
-            "nullable": true
-          },
-          "invoiceTypes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceType"
-            },
-            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | (PEF) Podstawowowa |\n| VatPefSp | (PEF) Specjalizowana |\n| KorPef | (PEF) Korygująca |\n| VatRr | (RR) Podstawowa |\n| KorVatRr | (RR) Korygująca |\n",
-            "nullable": true
-          },
-          "hasAttachment": {
-            "type": "boolean",
-            "description": "Czy faktura ma załącznik.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },	  
-      "InvoicesExportFilters": {
-        "required": [
-          "dateRange",
-          "subjectType"
-        ],
-        "type": "object",
-        "properties": {
-          "subjectType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQuerySubjectType"
-              }
-            ],
-            "description": "Typ podmiotu, którego dotyczą kryteria filtrowania faktur.\nOkreśla kontekst, w jakim przeszukiwane są dane.\n| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 |\n| Subject2 | Podmiot 2 |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
-          },
-          "dateRange": {
-            "required": [
-              "dateType",
-              "from"
-            ],
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQueryDateRange"
-              }
-            ],
-            "description": "Typ i zakres dat, według którego mają być filtrowane faktury."
           },
           "ksefNumber": {
             "type": "string",
