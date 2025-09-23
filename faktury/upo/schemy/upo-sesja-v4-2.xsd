@@ -32,7 +32,7 @@
 						<xsd:sequence>
 							<xsd:element name="IdKontekstu" >
 								<xsd:annotation>
-									<xsd:documentation>Identyfikator kontekstu uwierzytelnienia w systemie KSeF</xsd:documentation>
+									<xsd:documentation>Identyfikator kontekstu uwierzytelnienia w systemie KSeF.</xsd:documentation>
 								</xsd:annotation>
 								<xsd:complexType>
 									<xsd:choice>
@@ -195,6 +195,17 @@
 								<xsd:simpleType>
 									<xsd:restriction base="xsd:date">
 										<xsd:minInclusive value="2006-01-01"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="DataPrzeslaniaDokumentu">
+								<xsd:annotation>
+									<xsd:documentation>Data przesłania dokumentu do systemu KSeF</xsd:documentation>
+								</xsd:annotation>
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:dateTime">
+										<xsd:whiteSpace value="collapse"/>
+										<xsd:minInclusive value="2021-10-01T00:00:00Z"/>
 									</xsd:restriction>
 								</xsd:simpleType>
 							</xsd:element>

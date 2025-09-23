@@ -21,7 +21,6 @@
     - NipSprzedawcy,
     - DataWystawieniaFaktury,
     - DataNadaniaNumeruKSeF.
-  - W elemencie `Dokument` usunięto `DataPrzeslaniaDokumentu`.
   - Schemat UPO: 
     - faktura: [link](/faktury/upo/schemy/upo-faktura-v3-1.xsd)
     - sesja: [link](/faktury/upo/schemy/upo-sesja-v4-2.xsd).

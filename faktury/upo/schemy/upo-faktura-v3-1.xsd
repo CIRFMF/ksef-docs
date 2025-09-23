@@ -140,6 +140,17 @@
 									</xsd:restriction>
 								</xsd:simpleType>
 							</xsd:element>
+							<xsd:element name="DataPrzeslaniaDokumentu">
+								<xsd:annotation>
+									<xsd:documentation>Data przesłania dokumentu do systemu KSeF</xsd:documentation>
+								</xsd:annotation>
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:dateTime">
+										<xsd:whiteSpace value="collapse"/>
+										<xsd:minInclusive value="2021-10-01T00:00:00Z"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
 							<xsd:element name="DataNadaniaNumeruKSeF">
 								<xsd:annotation>
 									<xsd:documentation>Czas i data wygenerowania numeru KSeF</xsd:documentation>
