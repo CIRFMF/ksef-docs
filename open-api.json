@@ -4154,6 +4154,14 @@
               }
             ],
             "description": "Status tokena.\n| Wartość | Opis |\n| --- | --- |\n| Pending | Token został utworzony ale jest jeszcze w trakcie aktywacji i nadawania uprawnień. Nie może być jeszcze wykorzystywany do uwierzytelniania. |\n| Active | Token jest aktywny i może być wykorzystywany do uwierzytelniania. |\n| Revoking | Token jest w trakcie unieważniania. Nie może już być wykorzystywany do uwierzytelniania. |\n| Revoked | Token został unieważniony i nie może być wykorzystywany do uwierzytelniania. |\n| Failed | Nie udało się aktywować tokena. Należy wygenerować nowy token, obecny nie może być wykorzystywany do uwierzytelniania. |\n"
+          },
+          "statusDetails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Dodatkowe informacje na temat statusu, zwracane w przypadku błędów.",
+            "nullable": true
           }
         },
         "additionalProperties": false
