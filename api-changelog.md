@@ -34,7 +34,7 @@
   Pozostają `100` (w toku), `200` (sukces) i `500` (nieznany błąd).
 
 - **Autoryzacja**
-  - Rozszerzono reguły dostępu o `VatUeManage` dla DELETE `/permissions/common/grants/{permissionId}`: operację można wykonać, jeżeli podmiot posiada `CredentialsManage` lub `VatUeManage`.
+  - Rozszerzono reguły dostępu o `VatUeManage`, `SubunitManage` dla DELETE `/permissions/common/grants/{permissionId}`: operację można wykonać, jeżeli podmiot posiada `CredentialsManage`, `VatUeManage` lub `SubunitManage`.
   - Rozszerzono reguły dostępu o `Introspection` dla GET `/sessions/{referenceNumber}/...`: każdy z tych endpointów można teraz wywołać posiadając `InvoiceWrite` lub `Introspection`.
   - Rozszerzono reguły dostępu o `InvoiceWrite` dla GET `/sessions` ("Pobranie listy sesji"): posiadając uprawnienie `InvoiceWrite`, można pobierać wyłącznie sesje utworzone przez podmiot uwierzytelniający; posiadając uprawnienie `Introspection`, można pobierać wszystkie sesje.
   - Zmieniono reguły dostępu dla DELETE `/tokens/{referenceNumber}`: usunięto wymóg uprawnienia `CredentialsManage`.
