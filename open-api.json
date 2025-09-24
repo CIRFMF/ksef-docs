@@ -3360,6 +3360,79 @@
         ]
       }
     },
+    "/api/v2/permissions/query/personal/grants": {
+      "post": {
+        "tags": [
+          "Wyszukiwanie nadanych uprawnień"
+        ],
+        "summary": "Pobranie listy własnych uprawnień",
+        "description": "Zwraca listę uprawnień przysługujących uwierzytelnionemu podmiotowi.\n\n> Więcej informacji:\n> - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-w%C5%82asnych-uprawnie%C5%84)",
+        "parameters": [
+          {
+            "name": "pageOffset",
+            "in": "query",
+            "description": "Numer strony wyników.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Rozmiar strony wyników.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PersonalPermissionsQueryRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryPersonalPermissionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
     "/api/v2/permissions/query/persons/grants": {
       "post": {
         "tags": [
@@ -7215,6 +7288,236 @@
         },
         "additionalProperties": false
       },
+      "PersonalPermission": {
+        "required": [
+          "canDelegate",
+          "description",
+          "id",
+          "permissionScope",
+          "permissionState",
+          "startDate"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identyfikator uprawnienia."
+          },
+          "contextIdentifier": {
+            "type": "string",
+            "description": "Identyfikator kontekstu uprawnienia, jeśli inny niż kontekst uwierzytelnienia.",
+            "nullable": true
+          },
+          "contextIdentifierType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonalPermissionsContextIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora kontekstu uprawnienia.",
+            "nullable": true
+          },
+          "authorizedIdentifier": {
+            "type": "string",
+            "description": "Identyfikator podmiotu uprawnionego, jeśli inny niż podmiot uwierzytelnienia.",
+            "nullable": true
+          },
+          "authorizedIdentifierType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonalPermissionsAuthorizedIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora podmiotu uprawnionego.",
+            "nullable": true
+          },
+          "targetIdentifier": {
+            "type": "string",
+            "description": "Identyfikator podmiotu docelowego.",
+            "nullable": true
+          },
+          "targetIdentifierType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonalPermissionsTargetIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora podmiotu docelowego.",
+            "nullable": true
+          },
+          "permissionScope": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonalPermissionScope"
+              }
+            ],
+            "description": "Uprawnienie."
+          },
+          "description": {
+            "type": "string",
+            "description": "Opis uprawnienia."
+          },
+          "permissionState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionState"
+              }
+            ],
+            "description": "Stan uprawnienia."
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Data rozpoczęcia obowiązywania uprawnienia.",
+            "format": "date-time"
+          },
+          "canDelegate": {
+            "type": "boolean",
+            "description": "Informacja o możliwości dalszego nadawania uprawnienia w sposób pośredni."
+          }
+        },
+        "additionalProperties": false
+      },
+      "PersonalPermissionScope": {
+        "enum": [
+          "CredentialsManage",
+          "CredentialsRead",
+          "InvoiceWrite",
+          "InvoiceRead",
+          "Introspection",
+          "SubunitManage",
+          "EnforcementOperations",
+          "VatUeManage",
+          "Owner"
+        ],
+        "type": "string"
+      },
+      "PersonalPermissionType": {
+        "enum": [
+          "CredentialsManage",
+          "CredentialsRead",
+          "InvoiceWrite",
+          "InvoiceRead",
+          "Introspection",
+          "SubunitManage",
+          "EnforcementOperations"
+        ],
+        "type": "string"
+      },
+      "PersonalPermissionsAuthorizedIdentifierType": {
+        "enum": [
+          "Nip",
+          "Pesel",
+          "Fingerprint"
+        ],
+        "type": "string"
+      },
+      "PersonalPermissionsContextIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonalPermissionsContextIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora."
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Identyfikator kontekstu uprawnienia (dla uprawnień nadanych podmiotom do obsługi faktur).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
+      },
+      "PersonalPermissionsContextIdentifierType": {
+        "enum": [
+          "Nip"
+        ],
+        "type": "string"
+      },
+      "PersonalPermissionsQueryRequest": {
+        "type": "object",
+        "properties": {
+          "contextIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonalPermissionsContextIdentifier"
+              }
+            ],
+            "description": "Identyfikator kontekstu uprawnienia (dla uprawnień nadanych podmiotom do obsługi faktur).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
+            "nullable": true
+          },
+          "targetIdentifier": {
+            "required": [
+              "type"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonalPermissionsTargetIdentifier"
+              }
+            ],
+            "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
+            "nullable": true
+          },
+          "permissionTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PersonalPermissionType"
+            },
+            "description": "Możliwe uprawnienia do filtrowania.",
+            "nullable": true
+          },
+          "permissionState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionState"
+              }
+            ],
+            "description": "Stan uprawnienia. \n| Type | Value |\n| --- | --- |\n| Active | Uprawnienia aktywne |\n| Inactive | Uprawnienia nieaktywne, nadane w sposób pośredni |",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PersonalPermissionsTargetIdentifier": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonalPermissionsTargetIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora."
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora. W przypadku typu AllPartners należy pozostawić puste. W pozostałych przypadkach pole jest wymagane.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |"
+      },
+      "PersonalPermissionsTargetIdentifierType": {
+        "enum": [
+          "Nip",
+          "AllPartners"
+        ],
+        "type": "string"
+      },
       "PublicKeyCertificate": {
         "required": [
           "certificate",
@@ -7433,6 +7736,27 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PersonPermission"
+            },
+            "description": "Lista uprawnień."
+          },
+          "hasMore": {
+            "type": "boolean",
+            "description": "Flaga informująca o dostępności kolejnej strony wyników."
+          }
+        },
+        "additionalProperties": false
+      },
+      "QueryPersonalPermissionsResponse": {
+        "required": [
+          "hasMore",
+          "permissions"
+        ],
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PersonalPermission"
             },
             "description": "Lista uprawnień."
           },

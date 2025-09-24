@@ -575,6 +575,18 @@ ksefClient.revokeAuthorizationsPermission(permissionId)
 KSeF udostępnia zestaw endpointów pozwalających na odpytywanie listy aktywnych uprawnień nadanych użytkownikom i podmiotom. Mechanizmy te są niezbędne do audytu, przeglądu stanu dostępu, a także przy budowie interfejsów administracyjnych (np. do zarządzania strukturą dostępu w organizacji). Sekcja zawiera przegląd metod wyszukiwania z podziałem na kategorie nadanych uprawnień.
 
 ---
+### Pobranie listy własnych uprawnień
+
+Zapytanie pozwala na pobranie listy uprawnień posiadanych przez uwierzytelniony podmiot.
+ Na tej liście znajdują się uprawnienia:
+- nadane w sposób bezpośredni w bieżącym kontekście
+- nadane przez podmiot nadrzędny
+- nadane w sposób pośredni, gdzie kontekstem jest pośrednik lub podmiot docelowy
+- nadane podmiotowi do obsługi faktur (`"InvoiceRead"` i `"InvoiceWrite"`) przez inny podmiot, jeśli uwierzytelniony podmiot ma uprawnienia właścieilskie (`"Owner"`) 
+
+POST [/permissions/query/personal/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1api~1v2~1permissions~1query~1personal~1grants/post)
+
+---
 ### Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom
 
 Zapytanie pozwala na pobranie listy uprawnień nadanych osobom fizycznym lub podmiotom – np. pracownikom firmy. Możliwe jest filtrowanie po rodzaju uprawnień, stanie (`Active` / `Inactive`), a także identyfikatorze nadawcy i odbiorcy. Endpoint ten bywa wykorzystywany przy onboardingu, audycie oraz monitoringu uprawnień personalnych.
