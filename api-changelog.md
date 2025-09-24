@@ -114,7 +114,9 @@
 
 - **Uprawnienia**
   - Rozszerzono żądanie POST `/permissions/eu-entities/administration/grants` ("Nadanie uprawnień administratora podmiotu unijnego") o "Nazwę podmiotu" `subjectName`.
-  - Dodano żądanie POST `/permissions/query/personal/grants` do pobrania listy własnych uprawnień
+  - Rozszerzono żądanie POST `/permissions/query/persons/grants` o nową wartość `System` dla filtru identyfikatora podmiotu nadającego uprawnienia `authorIdentifier` i usunięcie wymagalność z pola `authorIdentifier.value`.
+  - Rozszerzono żądanie POST `/permissions/query/persons/grants` o nową wartość `AllPartners` dla filtru identyfikator podmiotu docelowego `targetIdentifier` i usunięcie wymagalność z pola `targetIdentifier.value`.
+  - Dodano żądanie POST `/permissions/query/personal/grants` do pobrania listy własnych uprawnień.
 
 - **Pobranie faktury (GET `/invoices/ksef/{ksefNumber}`)**  
    Dodano kod błędu dla odpowiedzi 400: `21165` - "Faktura o podanym numerze KSeF nie jest jeszcze dostępna".

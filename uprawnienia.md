@@ -595,9 +595,9 @@ POST [/permissions/query/persons/grants](https://ksef-test.mf.gov.pl/docs/v2/ind
 
 | Pole                  | Opis                                                                 |
 | :-------------------- | :------------------------------------------------------------------- |
-| `authorIdentifier`    | Identyfikator podmiotu nadającego uprawnienia.   ```Nip```, ```Pesel```,```Fingerprint```                     |
+| `authorIdentifier`    | Identyfikator podmiotu nadającego uprawnienia.   ```Nip```, ```Pesel```, ```Fingerprint```, ```System```                      |
 | `authorizedIdentifier`| Identyfikator podmiotu, któremu nadano uprawnienia.      ```Nip```, ```Pesel```,```Fingerprint```             |
-| `targetIdentifier`    | Identyfikator podmiotu docelowego (dla uprawnień pośrednich).  ```Nip```      |
+| `targetIdentifier`    | Identyfikator podmiotu docelowego (dla uprawnień pośrednich).  ```Nip```, ```AllPartners```      |
 | `permissionTypes`     | Typy uprawnień do filtrowania.   `"CredentialsManage"`, `"CredentialsRead"`, `"InvoiceWrite"`, `"InvoiceRead"`, `"Introspection"`, `"SubunitManage"`, `"EnforcementOperations"`  |
 | `permissionState`     | Stan uprawnienia.  ```Active``` / ```Inactive```                                                  |
 

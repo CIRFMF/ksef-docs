@@ -7043,8 +7043,7 @@
       },
       "PersonPermissionsAuthorIdentifier": {
         "required": [
-          "type",
-          "value"
+          "type"
         ],
         "type": "object",
         "properties": {
@@ -7058,11 +7057,12 @@
           },
           "value": {
             "type": "string",
-            "description": "Wartość identyfikatora."
+            "description": "Wartość identyfikatora. W przypadku typu System należy pozostawić puste. W pozostałych przypadkach pole jest wymagane.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator osoby lub podmiotu nadającego uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |\n| System | Identyfikator systemowy |"
+        "description": "Identyfikator osoby lub podmiotu nadającego uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |\n| System | Identyfikator systemowy KSeF |"
       },
       "PersonPermissionsAuthorIdentifierType": {
         "enum": [
@@ -7146,15 +7146,14 @@
         "properties": {
           "authorIdentifier": {
             "required": [
-              "type",
-              "value"
+              "type"
             ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/PersonPermissionsAuthorIdentifier"
               }
             ],
-            "description": "Identyfikator osoby lub podmiotu nadającego uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |\n| System | Identyfikator systemowy |",
+            "description": "Identyfikator osoby lub podmiotu nadającego uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |\n| System | Identyfikator systemowy KSeF |",
             "nullable": true
           },
           "authorizedIdentifier": {
@@ -7172,15 +7171,14 @@
           },
           "targetIdentifier": {
             "required": [
-              "type",
-              "value"
+              "type"
             ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/PersonPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
+            "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
             "nullable": true
           },
           "permissionTypes": {
@@ -7251,8 +7249,7 @@
       },
       "PersonPermissionsTargetIdentifier": {
         "required": [
-          "type",
-          "value"
+          "type"
         ],
         "type": "object",
         "properties": {
@@ -7266,15 +7263,17 @@
           },
           "value": {
             "type": "string",
-            "description": "Wartość identyfikatora."
+            "description": "Wartość identyfikatora. W przypadku typu AllPartners należy pozostawić puste. W pozostałych przypadkach pole jest wymagane.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
+        "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |"
       },
       "PersonPermissionsTargetIdentifierType": {
         "enum": [
-          "Nip"
+          "Nip",
+          "AllPartners"
         ],
         "type": "string"
       },
