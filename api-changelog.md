@@ -134,10 +134,14 @@
 - **Pobranie listy sesji**  
   Rozszerzono uprawnienia dla GET `/sessions`: dodano `InvoiceWrite`. Posiadając uprawnienie `InvoiceWrite`, można pobierać wyłącznie sesje utworzone przez podmiot uwierzytelniający; posiadając uprawnienie `Introspection`, można pobierać wszystkie sesje.
 
-- **Wysyłka faktury w sesji interaktywnej**  
-  Zaktualizowano kody błędów dla POST `/sessions/online/{referenceNumber}/invoices` ("Wysłanie faktury"):
+- **Sesja interaktywnej**  
+  - Zaktualizowano kody błędów dla POST `/sessions/online/{referenceNumber}/invoices` ("Wysłanie faktury"):
     - usunięto `21154` - "Sesja interaktywna zakończona", 
     - dodano `21180` - "Status sesji nie pozwala na wykonanie operacji".
+  - Dodano błąd `21180` - "Status sesji nie pozwala na wykonanie operacji" dla POST `/sessions/online/{referenceNumber}/close` ("Zamknięcie sesji interaktywnej").
+
+- **Sesja wsadowa**  
+  - Dodano błąd `21180` - "Status sesji nie pozwala na wykonanie operacji" dla POST `/sessions/batch/{referenceNumber}/close` ("Zamknięcie sesji wsadowej").
 
 - **Status faktury w sesji**  
   Rozszerzono odpowiedź dla GET `/sessions/{referenceNumber}/invoices` ("Pobranie faktur sesji") oraz GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}` ("Pobranie statusu faktury z sesji") o właściwości:

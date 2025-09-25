@@ -3216,7 +3216,7 @@
             "description": "No Content"
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                    | \n|---------------------|-----------------------------------------------------|----------------------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została odnaleziona.   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                    | \n|---------------------|-----------------------------------------------------|----------------------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została odnaleziona.   |\n| 21180               | Status sesji nie pozwala na wykonanie operacji.     | Status sesji {code} uniemożliwia jej zamknięcie.                           |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -3334,7 +3334,7 @@
             "description": "No Content"
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                   | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |\n| 21205               | Pakiet nie może być pusty.                          | Nie przesłano zadeklarowanych części pliku.                               |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                   | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------------------|\n| 21173               | Brak sesji o wskazanym numerze referencyjnym.       | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.   |\n| 21205               | Pakiet nie może być pusty.                          | Nie przesłano zadeklarowanych części pliku.                               | \n| 21180               | Status sesji nie pozwala na wykonanie operacji.     | Status sesji {code} uniemożliwia jej zamknięcie.                          |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
