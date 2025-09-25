@@ -8,7 +8,8 @@
   - Automatyczna rejestracja dostawcy: przy pierwszym uwierzytelnieniu dostawcy usług Peppol (z użyciem dedykowanego certyfikatu) następuje jego automatyczna rejestracja w systemie.
   - Dodano enpoint GET `/peppol/query` ("Lista dostawców usług Peppol") zwracający zarejestrowanych dostawców.
   - Zaktualizowano reguły dostępu dla otwarcia i zamknięcia sesji, wysyłka faktur wymagaja uprawnienia `PefInvoiceWrite`.
-  - Dodano nowe schematy faktur: `FA_PEF (3)`, `FA_KOR_PEF (3)`.
+  - Dodano nowe schematy faktur: `FA_PEF (3)`, `FA_KOR_PEF (3)`,
+  - Rozszerzono `ContextIdentifier` o `PeppolId` w xsd `AuthTokenRequest`.
 
 - **UPO**
   - Dodano element `Uwierzytelnienie`, który porządkuje dane z nagłówka UPO i rozszerza je o dodatkowe informacje; zastępuje dotychczasowe `IdentyfikatorPodatkowyPodmiotu` oraz `SkrotZlozonejStruktury`.
