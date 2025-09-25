@@ -89,6 +89,7 @@
   - Filtry:
     - dodano `seller.nip`; `seller.identifier` oznaczono jako deprecated (zostanie usunięte w następnym wydaniu),
   - Usunięto oznaczenia [Mock].
+  - Doprecyzowano zasady sortowania. Faktury w paczce są sortowane rosnąco według typu daty wskazanego w `DateRange` podczas inicjalizacji eksportu.
 
   - **Eksport paczki faktur: status (GET `/invoices/exports/{operationReferenceNumber}`)**
     - Opisy statusów: uzupełniono dokumentację statusu eksportu:

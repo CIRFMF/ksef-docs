@@ -88,6 +88,8 @@ ExportInvoicesResponse exportInvoicesResponse = await KsefClient.ExportInvoicesA
 ```
 Dostępne wartości `DateType` oraz `SubjectType` są opisane [tutaj](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1query~1metadata/post) 
 
+Faktury w paczce są sortowane rosnąco według typu daty wskazanego w `DateRange` podczas inicjalizacji eksportu.
+
 Przykład w języku Java:
 
 [QueryInvoiceIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QueryInvoiceIntegrationTest.java)

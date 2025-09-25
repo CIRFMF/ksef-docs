@@ -6325,7 +6325,7 @@
             "items": {
               "$ref": "#/components/schemas/InvoicePackagePart"
             },
-            "description": "Lista dostępnych części paczki do pobrania. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu."
+            "description": "Lista dostępnych części paczki do pobrania. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. Wyniki sortowane są rosnąco według typu daty przekazanej w `DateRange` przy inicjalizacji."
           },
           "isTruncated": {
             "type": "boolean",
