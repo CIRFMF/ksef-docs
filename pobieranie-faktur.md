@@ -26,7 +26,7 @@ Zwraca listę metadanych faktur spełniające podane kryteria wyszukiwania.
 POST [/invoices/query/metadata](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1query~1metadata/post)
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Invoice\InvoiceE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Invoice/InvoiceE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Invoice\InvoiceE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Invoice/InvoiceE2ETests.cs)
 
 ```csharp
 InvoiceQueryFilters invoiceQueryFilters = new InvoiceQueryFilters

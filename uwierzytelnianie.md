@@ -31,7 +31,7 @@ POST [/auth/challenge](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierz
 Czas życia challenge'a wynosi 10 minut.
 
 Przykład w języku ```C#```:
-[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 
 ```csharp
 
@@ -134,7 +134,7 @@ Szczegółowe informacje na temat obsługiwanych formatów podpisu XAdES oraz wy
 Przykład w języku ```C#```:
 
 Wygenerowanie testowego certyfikatu (możliwego do użycia tylko na środowisku testowym) osoby fizycznej z przykładowymi identyfikatorami:
-[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 
 ```csharp
 X509Certificate2 ownerCertificate = CertificateUtils.GetPersonalCertificate("Jan", "Kowalski", "TINPL", ownerNip, "M B");
@@ -249,7 +249,7 @@ Wariant uwierzytelniania tokenem KSeF wymaga przesyłania **zaszyfrowanego ciąg
 należy zaszyfrować kluczem publicznym KSeF, wykorzystując algorytm ```RSA-OAEP``` z funkcją skrótu ```SHA-256 (MGF1)```. Otrzymany szyfrogram należy zakodować w ```Base64```.
 
 Przykład w języku ```C#```:
-[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 
 ```csharp
 AuthChallengeResponse challenge = await KsefClient.GetAuthChallengeAsync();
@@ -287,7 +287,7 @@ za pomocą wywołania endpointu:
 POST [/auth/ksef-token](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierzytelnianie/paths/~1api~1v2~1auth~1ksef-token/post). <br>
 
 Przykład w języku ```C#```:
-[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 
 ```csharp
 // Sposób 1: Budowa requesta za pomocą builder
@@ -344,7 +344,7 @@ Na środowisku produkcyjnym czas oczekiwania na zakończenie operacji uwierzytel
 W przypadku niepowodzenia, w odpowiedzi mogą pojawić się kody błędów związane z niepoprawnym podpisem, brakiem uprawnień lub problemami technicznymi. Szczegółowa lista kodów błędów będzie dostępna w dokumentacji technicznej endpointa.
 
 Przykład w języku ```C#```:
-[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 
 ```csharp
 AuthStatus status;
@@ -364,7 +364,7 @@ Endpoint zwraca jednorazowo parę tokenów wygenerowanych dla pomyślnie zakońc
 POST [/auth/token/redeem](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierzytelnianie/paths/~1api~1v2~1auth~1token~1redeem/post)
 
 Przykład w języku ```C#```:
-[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 
 ```csharp
 AuthOperationStatusResponse tokens = await KsefClient.GetAccessTokenAsync(signature.AuthenticationToken.Token);

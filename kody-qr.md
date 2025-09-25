@@ -50,7 +50,7 @@ String url = linkSvc.buildInvoiceVerificationUrl(nip, issueDate, xml);
 
 #### Generowanie kodu QR
 Przykład w języku ```C#```:
-[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeE2ETests.cs)
 
 ```csharp
 private const int PixelsPerModule = 5;
@@ -76,7 +76,7 @@ Proces przyjęcia faktury przez KSeF zazwyczaj przebiega natychmiastowo — nume
 ![QR Offline](qr/qr-offline.png)
 
 Przykład w języku ```C#```:
-[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeE2ETests.cs)
 
 ```csharp
 byte[] labeled = qrCodeService.AddLabelToQrCode(qrBytes, GeneratedQrCodeLabel);
@@ -173,7 +173,7 @@ String url = verificationLinkService.buildCertificateVerificationUrl(
 
 #### Generowanie QR kodu
 Przykład w języku ```C#```:
-[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeE2ETests.cs)
 
 ```csharp
 byte[] qrBytes = qrCodeService.GenerateQrCode(url, PixelsPerModule);
@@ -191,7 +191,7 @@ byte[] qrOnline = qrCodeService.generateQrCode(invoiceForOnlineUrl);
 Pod kodem QR powinien znaleźć się podpis **CERTYFIKAT**, wskazujący na funkcję weryfikacji certyfikatu KSeF.
 
 Przykład w języku ```C#```:
-[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeE2ETests.cs)
 
 ```csharp
 private const string GeneratedQrCodeLabel = "CERTYFIKAT";
