@@ -21,7 +21,7 @@
     - NipSprzedawcy,
     - DataWystawieniaFaktury,
     - DataNadaniaNumeruKSeF.
-  - Ujednolicono schemat UPO. UPO dla faktury i dla sesji korzystają ze wspólnej schemy [upo-v4-2.xsd](/faktury/upo/schemy/upo-v4-2.xsd). Zastępuje dotychczasowe upo-faktura-v3-1.xsd i upo-sesja-v4-2.xsd.
+  - Ujednolicono schemat UPO. UPO dla faktury i dla sesji korzystają ze wspólnej schemy [upo-v4-2.xsd](/faktury/upo/schemy/upo-v4-2.xsd). Zastępuje dotychczasowe upo-faktura-v3-0.xsd i upo-sesja-v4-1.xsd.
 
 - **Limity żądań API**  
   Dodano specyfikację [limitów żądań API](limity-api.md).    
