@@ -60,7 +60,7 @@ Po uzyskaniu auth challenge należy przygotować dokument XML zgodny ze schemate
 | Challenge    | `Wartość otrzymana z wywołania POST [/auth/challenge](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uzyskiwanie-dostepu/paths/~1api~1v2~1auth~1challenge/post)`                                                                                                          |
 | ContextIdentifier| `Identyfikator kontekstu, dla którego realizowane jest uwierzytelnienie (NIP, identyfikator wewnętrzny, identyfikator złożony VAT UE)`                                                                       |
 | SubjectIdentifierType | `Sposób identyfikacji podmiotu uwierzytelniającego się. Możliwe wartości: certificateSubject (np. NIP/PESEL z certyfikatu) lub certificateFingerprint (odcisk palca certyfikatu).` |    
-|(opcjonalnie) IpAddressPolicy | `Reguły dotyczące walidacji adresu IP klienta podczas korzystania z wydanego tokena dostępu (accessTokenu).` |    
+|(opcjonalnie) AuthorizationPolicy | `Reguły autoryzacyjne. Obecnie obsługiwana lista dozwolonych adresów IP klienta.` |    
  
 
  Przykładowy dokumenty XML:
@@ -84,24 +84,23 @@ Po uzyskaniu auth challenge należy przygotować dokument XML zgodny ze schemate
 Przykład w języku ```C#```:
 
  ```csharp
- var ipAddressPolicy = new IpAddressPolicy
-  {
-      OnClientIpChange = IpChangePolicy.Reject, // Odrzuć, jeśli IP się zmieni
-      AllowedIps = new AllowedIps
-      {
-          IpAddress = ["192.168.0.1", "192.222.111.1"],
-          IpMask = ["192.168.1.0/24"], // Przykładowa maska
-          IpRange = ["222.111.0.1-222.111.0.255"] // Przykładowy zakres IP
-      }
-  };
+var authorizationPolicy = new AuthorizationPolicy
+{
+    AllowedIps = new AllowedIps
+    {
+        Ip4Addresses = ["192.168.0.1", "192.222.111.1"],
+        Ip4Masks = ["192.168.1.0/24"], // Przykładowa maska
+        Ip4Ranges = ["222.111.0.1-222.111.0.255"] // Przykładowy zakres IP
+    }
+};
+
 var authTokenRequest = AuthTokenRequestBuilder
     .Create()
     .WithChallenge(challengeResponse.Challenge)
-    .WithContext(ContextIdentifierType.Nip, contextIdentifier)
-    .WithIdentifierType(SubjectIdentifierTypeEnum.CertificateSubject) // or Fingerprint
-    .WithIpAddressPolicy(ipAddressPolicy)
+    .WithContext(ContextIdentifierType.Nip, ownerNip)
+    .WithIdentifierType(SubjectIdentifierTypeEnum.CertificateSubject)
+    .WithAuthorizationPolicy(authorizationPolicy)
     .Build();
-
 ```
 
 Przykład w języku ```Java```:
@@ -281,7 +280,7 @@ Zaszyfrowany token Ksef należy przesłać razem z
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | Challenge    | `Wartość otrzymana z wywołania /auth/challenge`                                                                                                          |
 | Context| `Identyfikator kontekstu, dla którego realizowane jest uwierzytelnienie (NIP, identyfikator wewnętrzny, identyfikator złożony VAT UE)`                                                                       |
-| (opcjonalnie) IpAddressPolicy | `Reguły dotyczące walidacji adresu IP klienta podczas korzystania z wydanego tokena dostępu (accessTokena).` |  
+| (opcjonalnie) AuthorizationPolicy | `Reguły dotyczące walidacji adresu IP klienta podczas korzystania z wydanego tokena dostępu (accessTokena).` |  
 
 za pomocą wywołania endpointu:
 
@@ -309,7 +308,7 @@ AuthKsefTokenRequest request = new AuthKsefTokenRequest
         Value = nip
     },
     EncryptedToken = encryptedTokenB64,
-    IpAddressPolicy = new IpAddressPolicy { }
+    AuthorizationPolicy = null
 };
 
 SignatureResponse signature = await KsefClient.SubmitKsefTokenAuthRequestAsync(request, CancellationToken);

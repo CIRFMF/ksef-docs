@@ -3926,7 +3926,7 @@
       "AllowedIps": {
         "type": "object",
         "properties": {
-          "ipAddress": {
+          "ip4Addresses": {
             "type": "array",
             "items": {
               "type": "string"
@@ -3934,7 +3934,7 @@
             "description": "Lista adresów IPv4 w notacji dziesiętnej kropkowanej, np. `192.168.0.10`.",
             "nullable": true
           },
-          "ipRange": {
+          "ip4Ranges": {
             "type": "array",
             "items": {
               "type": "string"
@@ -3942,12 +3942,12 @@
             "description": "Lista adresów IPv4 podana w formie zakresu początek–koniec, oddzielonego pojedynczym myślnikiem, np. `10.0.0.1–10.0.0.254`.",
             "nullable": true
           },
-          "ipMask": {
+          "ip4Masks": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Lista adresów IPv4 w notacji CIDR z maską 8 / 16 / 24 / 32, np. `172.16.0.0/16`.",
+            "description": "Lista adresów IPv4 w notacji CIDR, np. `172.16.0.0/16`.",
             "nullable": true
           }
         },
@@ -4315,6 +4315,21 @@
         ],
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| Nip | NIP. |\n| Pesel | PESEL. |\n| Fingerprint | Odcisk palca certyfikatu. |\n"
+      },
+      "AuthorizationPolicy": {
+        "type": "object",
+        "properties": {
+          "allowedIps": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AllowedIps"
+              }
+            ],
+            "description": "Lista dozwolonych adresów IP.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "BatchFileInfo": {
         "required": [
@@ -5925,13 +5940,13 @@
             "type": "string",
             "description": "Zaszyfrowany token wraz z timestampem z challenge'a, w formacie `token|timestamp`."
           },
-          "ipAddressPolicy": {
+          "authorizationPolicy": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/IpAddressPolicy"
+                "$ref": "#/components/schemas/AuthorizationPolicy"
               }
             ],
-            "description": "Reguła walidacji adresu IP klienta przy każdym użyciu tokena dostępu.",
+            "description": "Polityka autoryzacji żądań przy każdym użyciu tokena dostępu.",
             "nullable": true
           }
         },
@@ -6648,37 +6663,6 @@
         "enum": [
           "Online",
           "Offline"
-        ],
-        "type": "string"
-      },
-      "IpAddressPolicy": {
-        "type": "object",
-        "properties": {
-          "onClientIpChange": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IpChangePolicy"
-              }
-            ],
-            "description": "Określa reakcję systemu, gdy token dostępu zostanie użyty z adresu IP spoza zadeklarowanej listy dozwolonych adresów IP (allowedIps).",
-            "nullable": true
-          },
-          "allowedIps": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AllowedIps"
-              }
-            ],
-            "description": "Lista dozwolonych adresów IP.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "IpChangePolicy": {
-        "enum": [
-          "Reject",
-          "Ignore"
         ],
         "type": "string"
       },

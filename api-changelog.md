@@ -24,12 +24,13 @@
   - Ujednolicono schemat UPO. UPO dla faktury i dla sesji korzystają ze wspólnej schemy [upo-v4-2.xsd](/faktury/upo/schemy/upo-v4-2.xsd). Zastępuje dotychczasowe upo-faktura-v3-1.xsd i upo-sesja-v4-2.xsd.
 
 - **Uwierzytelnianie**  
-  Doprecyzowano kody statusów w GET `/auth/{referenceNumber}`, `/auth/sessions`: 
-  - `415` (brak uprawnień), 
-  - `425` (uwierzytelnienie unieważnione), 
-  - `450` (błędny token: nieprawidłowy token, nieprawidłowy czas, unieważniony, nieaktywny), 
-  - `460` (błąd certyfikatu: nieważny, błąd weryfikacji łańcucha, niezaufany łańcuch, odwołany, niepoprawny).  
-  Pozostają `100` (w toku), `200` (sukces) i `500` (nieznany błąd).
+  - Doprecyzowano kody statusów w GET `/auth/{referenceNumber}`, `/auth/sessions`: 
+    - `415` (brak uprawnień), 
+    - `425` (uwierzytelnienie unieważnione), 
+    - `450` (błędny token: nieprawidłowy token, nieprawidłowy czas, unieważniony, nieaktywny), 
+    - `460` (błąd certyfikatu: nieważny, błąd weryfikacji łańcucha, niezaufany łańcuch, odwołany, niepoprawny).  
+  - Aktualizacja opcjonalnej polityki IP w XSD `AuthTokenRequest`:
+    Zastąpiono `IpAddressPolicy` nową strukturą `AuthorizationPolicy`/`AllowedIps`. Zaktualizowano dokument [Uwierzytelnianie](uwierzytelnianie.md).
 
 - **Autoryzacja**
   - Rozszerzono reguły dostępu o `VatUeManage`, `SubunitManage` dla DELETE `/permissions/common/grants/{permissionId}`: operację można wykonać, jeżeli podmiot posiada `CredentialsManage`, `VatUeManage` lub `SubunitManage`.
