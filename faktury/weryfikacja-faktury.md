@@ -19,11 +19,11 @@ Faktura musi być przygotowana w formacie XML, kodowana w UTF-8 oraz zgodna z ak
 Data wystawienia faktury (`P_1`) nie może być późniejsza niż data przyjęcia dokumentu do systemu KSeF.
 
 ## Rozmiar pliku
-- Maksymalny rozmiar faktury bez załączników: **1 MiB** (1 048 576 bajtów).
-- Maksymalny rozmiar faktury z załącznikami: **3 MiB** (3 145 728 bajtów).
+- Maksymalny rozmiar faktury bez załączników: **1 MiB \*** (1 048 576 bajtów).
+- Maksymalny rozmiar faktury z załącznikami: **3 MiB \*** (3 145 728 bajtów).
 
 ## Ograniczenia ilościowe
-- Maksymalna liczba faktur w jednej sesji (zarówno interaktywnej, jak i wsadowej) wynosi 10 000 000.
+- Maksymalna liczba faktur w jednej sesji (zarówno interaktywnej, jak i wsadowej) wynosi 10 000 *.
 - W ramach wysyłki wsadowej można przesłać maksymalnie 50 plików ZIP; rozmiar każdego pliku nie może przekroczyć 100 MiB (104 857 600 bajtów), a łączny rozmiar paczki - 5 GiB (5 368 709 120 bajtów).
 
 ## Poprawne szyfrowanie
@@ -39,7 +39,7 @@ Data wystawienia faktury (`P_1`) nie może być późniejsza niż data przyjęci
 **Wyjątek:** W przypadku przesyłania [korekty technicznej faktury offline](../offline/korekta-techniczna.md) dopuszczalne jest użycie sesji interaktywnej.
 - Możliwość wysyłki faktur z załącznikami wymaga uprzedniego zgłoszenia tej opcji w usłudze `e-Urząd Skarbowy`.
 
-
-
 ## Wymagania dotyczące uprawnień
 Wysłanie faktury do KSeF wymaga posiadania odpowiednich uprawnień do jej wystawienia w kontekście danego podmiotu.
+
+\* **Uwaga:** Jeżeli w scenariuszach biznesowych organizacji dostępne limity są niewystarczające, prosimy o kontakt z działem wsparcia KSeF w celu przeprowadzenia indywidualnej analizy i doboru odpowiedniego rozwiązania

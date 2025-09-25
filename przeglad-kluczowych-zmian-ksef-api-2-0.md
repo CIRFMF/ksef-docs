@@ -177,22 +177,18 @@ Ponadto w systemie wprowadzono nowy typ uprawnienia oraz nowe możliwości logow
 W ramach definicji API wszystkie uprawnienia zostały uporządkowane w logiczne grupy odpowiadające poszczególnym obszarom funkcjonalnym systemu.
 
 ## Limity wywołań API (rate limiting) ##
-
-W wersji KSeF API 2.0 wprowadzono precyzyjny i przewidywalny mechanizm ograniczeń liczby wywołań (rate limits), który zastępuje dotychczasowe, nieelastyczne rozwiązania znane z wersji 1.0.
-
-Każdy endpoint w systemie objęty jest limitem liczby żądań w zadanych przedziałach czasowych: na sekundę, minutę, godzinę oraz dobę.
+W wersji KSeF API 2.0 wprowadzono precyzyjny i przewidywalny mechanizm ograniczeń liczby wywołań (rate limits), który zastępuje dotychczasowe rozwiązania znane z wersji 1.0.
+Każdy endpoint w systemie objęty jest limitem liczby żądań w zadanych przedziałach czasowych: na sekundę, minutę, godzinę.
 
 Zakresy i wartości limitów są:
-
-* publicznie udostępniane (w dokumentacji online),  
+* publicznie udostępniane: [limity API](limity-api.md),  
 * zróżnicowane w zależności od środowiska (środowisko testowe ma limity mniej restrykcyjne niż produkcyjne),  
 * dostosowane do charakteru operacji:  
-  * dla endpointów chronionych – limity stosowane są per token JWT,  
-  * dla endpointów otwartych (np. uwierzytelnienie, pobranie faktury) – limity stosowane są per adres IP klienta.
+  * dla endpointów chronionych – limity stosowane są per kontekst i adres IP,  
+  * dla endpointów otwartych – limity stosowane są per adres IP.
 
-Nowy model limitów został zaprojektowany tak, aby nie ograniczać typowego testowania aplikacji integrujących się z systemem – co stanowi istotne usprawnienie względem dotychczasowego podejścia, w którym nawet przy standardowym scenariuszu testowym mogło dojść do zablokowania dalszych żądań.
-
-Rozwiązanie to zapewnia większą przejrzystość, przewidywalność oraz lepsze skalowanie systemu, zarówno w środowiskach deweloperskich, jak i produkcyjnych.
+Nowy model limitów został zaprojektowany tak, aby nie ograniczać typowego testowania aplikacji integrujących się z systemem.
+Rozwiązanie to zapewnia większą przejrzystość, przewidywalność oraz lepszą odporność systemu, zarówno w środowiskach testowych, jak i produkcyjnych.
 
 ## Pomocnicze API do generowania danych testowych (środowisko testowe)
 
