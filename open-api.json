@@ -162,7 +162,7 @@
             }
           },
           "400": {
-            "description": null,
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -550,7 +550,7 @@
             }
           },
           "400": {
-            "description": null,
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -2733,7 +2733,7 @@
             }
           },
           "400": {
-            "description": null,
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -2766,7 +2766,7 @@
             }
           },
           "400": {
-            "description": null,
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -2941,7 +2941,7 @@
             }
           },
           "400": {
-            "description": null,
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -2982,7 +2982,7 @@
             }
           },
           "400": {
-            "description": null,
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -3283,7 +3283,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                   | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------------------|\n| 21157               | Nieprawidłowy rozmiar części pakietu.               | {treść błędu walidacji}                                                   | \n| 21161               | Przekroczono dozwoloną ilość części pakietu.        | {treść błędu walidacji}                                                   | \n| 21401               | Dokument nie jest zgodny ze schemą (json).          | {treść błędu walidacji}                                                   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                   | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------------------|\n| 21157               | Nieprawidłowy rozmiar części pakietu.               | {treść błędu walidacji}                                                   | \n| 21161               | Przekroczono dozwoloną liczbę części pakietu.       | {treść błędu walidacji}                                                   | \n| 21401               | Dokument nie jest zgodny ze schemą (json).          | {treść błędu walidacji}                                                   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -4338,7 +4338,7 @@
             "items": {
               "$ref": "#/components/schemas/BatchFilePartInfo"
             },
-            "description": "Informacje o częściach pliku paczki. Maksymalna ilość części to 50."
+            "description": "Informacje o częściach pliku paczki. Maksymalna liczba części to 50."
           }
         },
         "additionalProperties": false
@@ -6152,7 +6152,7 @@
             "items": {
               "$ref": "#/components/schemas/InvoiceMetadataThirdSubject"
             },
-            "description": "Lista trzecich podmiotów.",
+            "description": "Lista podmiotów trzecich.",
             "nullable": true
           },
           "authorizedSubject": {
@@ -8102,19 +8102,19 @@
           },
           "invoiceCount": {
             "type": "integer",
-            "description": "Ilość przyjętych faktur w ramach sesji.",
+            "description": "Liczba przyjętych faktur w ramach sesji.",
             "format": "int32",
             "nullable": true
           },
           "successfulInvoiceCount": {
             "type": "integer",
-            "description": "Ilość faktur przeprocesowanych w ramach sesji z sukcesem .",
+            "description": "Liczba faktur przeprocesowanych w ramach sesji z sukcesem .",
             "format": "int32",
             "nullable": true
           },
           "failedInvoiceCount": {
             "type": "integer",
-            "description": "Ilość faktur przeprocesowanych w ramach sesji z błędem.",
+            "description": "Liczba faktur przeprocesowanych w ramach sesji z błędem.",
             "format": "int32",
             "nullable": true
           }
