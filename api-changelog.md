@@ -134,6 +134,11 @@
 - **Pobranie listy sesji**  
   Rozszerzono uprawnienia dla GET `/sessions`: dodano `InvoiceWrite`. Posiadając uprawnienie `InvoiceWrite`, można pobierać wyłącznie sesje utworzone przez podmiot uwierzytelniający; posiadając uprawnienie `Introspection`, można pobierać wszystkie sesje.
 
+- **Wysyłka faktury w sesji interaktywnej**  
+  Zaktualizowano kody błędów dla POST `/sessions/online/{referenceNumber}/invoices` ("Wysłanie faktury"):
+    - usunięto `21154` - "Sesja interaktywna zakończona", 
+    - dodano `21180` - "Status sesji nie pozwala na wykonanie operacji".
+
 - **Status faktury w sesji**  
   Rozszerzono odpowiedź dla GET `/sessions/{referenceNumber}/invoices` ("Pobranie faktur sesji") oraz GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}` ("Pobranie statusu faktury z sesji") o właściwości:
   - `permanentStorageDate` – data trwałego zapisu faktury w repozytorium KSeF (od tego momentu faktura jest dostępna do pobrania),
