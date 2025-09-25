@@ -6194,6 +6194,11 @@
         ],
         "type": "object",
         "properties": {
+          "identifiter": {
+            "type": "string",
+            "nullable": true,
+            "deprecated": true
+          },
           "nip": {
             "type": "string",
             "description": "Nip podmiotu upoważnionego"
