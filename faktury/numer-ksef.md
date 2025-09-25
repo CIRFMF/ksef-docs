@@ -47,6 +47,9 @@ bool isValid = KsefNumberValidator.IsValid(ksefNumber, out string message);
 ```
 
 ## Przykład w języku Java:
+[OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
+
 ```java
+KSeFNumberValidator.ValidationResult result = KSeFNumberValidator.isValid(ksefNumber);
 
 ```

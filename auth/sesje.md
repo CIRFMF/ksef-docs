@@ -22,10 +22,14 @@ while (!string.IsNullOrWhiteSpace(continuationToken));
 ```
 
 Przykład w języku ```Java```:
+[SessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SessionIntegrationTest.java)
+
 ```java
 int pageSize = 10;
-String continuationToken = null;
-ksefClient.getActiveSessions(pageSize, continuationToken);
+AuthenticationListResponse activeSessions = createKSeFClient().getActiveSessions(10, null, accessToken);
+while (Strings.isNotBlank(activeSessions.getContinuationToken())) {
+    activeSessions = createKSeFClient().getActiveSessions(10, activeSessions.getContinuationToken(), accessToken);
+}
 ```
 
 ### Unieważnienie bieżącej sesji
@@ -42,8 +46,10 @@ await ksefClient.RevokeCurrentSessionAsync(token, cancellationToken);
 ```
 
 Przykład w języku ```Java```:
+[SessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SessionIntegrationTest.java)
+
 ```java
-ksefClient.revokeCurrentSession();
+createKSeFClient().revokeCurrentSession(accessToken);
 ```
 
 ### Unieważnienie wybranej sesji
@@ -60,6 +66,8 @@ await ksefClient.RevokeSessionAsync(referenceNumber, accessToken, cancellationTo
 ```
 
 Przykład w języku ```Java```:
+[SessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SessionIntegrationTest.java)
+
 ```java
-ksefClient.revokeSession(referenceNumber);
+createKSeFClient().revokeSession(secondSessionReferenceNumber, firstAccessTokensPair.accessToken());
 ```

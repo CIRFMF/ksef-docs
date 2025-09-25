@@ -36,13 +36,12 @@ Przykład w języku C#:
 ```
 
 Przykład w języku Java:
+[SessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SessionIntegrationTest.java)
+
 ```java
-int pageSize = 10;
-String continuationToken = null;
 SessionsQueryRequest request = new SessionsQueryRequest();
-request.setSessionType(SessionType.ONLINE); // sesja interaktywna
-//request.setSessionType(SessionType.BATCH); // sesja batchowa
-SessionsQueryResponse sessionsQueryResponse = defaultKsefClient.getSessions(request, pageSize, continuationToken);
+request.setSessionType(SessionType.ONLINE);
+SessionsQueryResponse sessionsQueryResponse = createKSeFClient().getSessions(request, 10, null, accessToken);
 ```
 
 ### 2. Sprawdzenie stanu sesji
@@ -61,11 +60,10 @@ var failedInvoiceCount = openSessionResult.FailedInvoiceCount;
 ```
 
 Przykład w języku Java:
+[OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
+
 ```java
-var openSessionResult = ksefClient.getSessionStatus(referenceNumber);
-var invoiceCount = openSessionResult.getInvoiceCount();
-var successfulInvoiceCount = openSessionResult.getSuccessfulInvoiceCount();
-var failedInvoiceCount = openSessionResult.getFailedInvoiceCount();
+SessionStatusResponse statusResponse = createKSeFClient().getSessionStatus(sessionReferenceNumber, accessToken);
 ```
 
 
@@ -102,11 +100,11 @@ while (continuationtoken != null);
 ```
 
 Przykład w języku Java:
+[OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
+
 ```java
-var sessionInvoices = ksefClient.getSessionInvoices(referenceNumber, 10, 0);
-sessionInvoices.getInvoices().forEach(invoice -> {
-    log.info(invoice.getInvoiceNumber() + " " + invoice.getKsefNumber() + " " + invoice.getStatus());
-});
+SessionInvoicesResponse sessionInvoices = createKSeFClient().getSessionInvoices(sessionReferenceNumber, null, 10, accessToken);
+
 ```
 ### 4. Pobranie informcji o pojedynczej fakturze
 
@@ -127,8 +125,11 @@ var invoice = await ksefClient
 ```
 
 Przykład w języku Java:
+[QueryInvoiceIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QueryInvoiceIntegrationTest.java)
+
 ```java
-SessionInvoice sessionInvoiceStatus = ksefClient.getSessionInvoiceStatus(referenceNumber, invoiceReferenceNumber);
+SessionInvoice sessionInvoiceStatus = ksefClient.getSessionInvoiceStatus(referenceNumber, invoiceReferenceNumber, accessToken);
+        SessionInvoiceStatusResponse statusResponse = createKSeFClient().getSessionInvoiceStatus(sessionReferenceNumber, invoiceReferenceNumber, accessToken);
 ```
 
 ### 5. Pobranie UPO dla faktury
@@ -150,8 +151,10 @@ var upo = await ksefClient
 ```
 
 Przykład w języku Java:
+[OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
+
 ```java
-var upo = ksefClient.getSessionInvoiceUpoByReferenceNumber(referenceNumber, invoiceReferenceNumber);
+byte[] upoResponse = createKSeFClient().getSessionInvoiceUpoByReferenceNumber(sessionReferenceNumber, invoiceReferenceNumber, accessToken);
 ```
 
 #### 5.2 Na podstawie numeru KSeF faktury
@@ -169,8 +172,10 @@ var upo = await ksefClient
 ```
 
 Przykład w języku Java:
+[OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
+
 ```java
-var upo = ksefClient.getSessionInvoiceUpoByKsefNumber(referenceNumber, ksefNumber);
+byte[] upoResponse = createKSeFClient().getSessionInvoiceUpoByKsefNumber(sessionReferenceNumber, ksefNumber, accessToken);
 ```
 
 Otrzymany dokument XML jest: 
@@ -205,11 +210,10 @@ while (!string.IsNullOrEmpty(continuationToken));
 ```
 
 Przykład w języku Java:
+[SessionController.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/main/java/pl/akmf/ksef/sdk/SessionController.java)
+
 ```java
-SessionInvoicesResponse sessionFailedInvoices = ksefClient.getSessionFailedInvoices(referenceNumber, pageSize);
-sessionFailedInvoices.getInvoices().forEach(invoice->{
-    log.info(invoice.getInvoiceNumber() + " " + invoice.getStatus());
-});
+SessionInvoicesResponse response = ksefClient.getSessionFailedInvoices(referenceNumber, continuationToken, pageSize, authToken);
 ```
 
 Endpoint umożliwia selektywne pobranie wyłącznie odrzuconych faktur, co ułatwia analizę błędów w sesjach zawierających dużą liczbę faktur.
@@ -255,8 +259,10 @@ Przyklad w języku C#:
 ```
 
 Przykład w języku Java:
+[OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
+
 ```java
-var upo = ksefClient.getSessionUpo(referenceNumber, upoReferenceNumber);
+byte[] sessionUpo = createKSeFClient().getSessionUpo(sessionReferenceNumber, upoReferenceNumber, accessToken);
 ```
 
 ## Powiązane dokumenty

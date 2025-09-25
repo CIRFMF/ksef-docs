@@ -15,12 +15,15 @@ Przed otwarciem sesji oraz wysłaniem faktur wymagane jest:
 Operacje te można zrealizować za pomocą komponentu ```CryptographyService```, dostępnego w kliencie KSeF.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
+
 ```csharp
-EncryptionData encryptionData = cryptographyService.GetEncryptionData();
+EncryptionData encryptionData = CryptographyService.GetEncryptionData();
 ```
 Przykład w języku Java:
+[OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
+
 ```java
-var cryptographyService = new DefaultCryptographyService(ksefClient);
 EncryptionData encryptionData = cryptographyService.getEncryptionData();
 ```
 
@@ -41,26 +44,29 @@ W odpowiedzi zwracany jest obiekt zawierający:
  - ```validUntil``` – Termin ważności sesji. Po jego upływie sesja zostanie automatycznie zamknięta. Czas życia sesji interaktywnej wynosi 12 godzin od momentu jej utworzenia.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
 ```csharp
- var request = OpenOnlineSessionRequestBuilder
-         .Create()
-         .WithFormCode(systemCode: "FA (2)", schemaVersion: "1-0E", value: "FA")
-         .WithEncryption(
-             encryptedSymmetricKey: encryptionData.EncryptionInfo.EncryptedSymmetricKey,
-             initializationVector: encryptionData.EncryptionInfo.InitializationVector)
-         .Build();
+OpenOnlineSessionRequest openOnlineSessionRequest = OpenOnlineSessionRequestBuilder
+    .Create()
+    .WithFormCode(systemCode: SystemCodeHelper.GetValue(systemCode), schemaVersion: DefaultSchemaVersion, value: DefaultFormCodeValue)
+    .WithEncryption(
+        encryptedSymmetricKey: encryptionData.EncryptionInfo.EncryptedSymmetricKey,
+        initializationVector: encryptionData.EncryptionInfo.InitializationVector)
+    .Build();
 
- var openSessionResponse = await ksefClient.OpenOnlineSessionAsync(request, accessToken, cancellationToken);
+OpenOnlineSessionResponse openOnlineSessionResponse = KsefClient.OpenOnlineSessionAsync(openOnlineSessionRequest, accessToken, CancellationToken);
 ```
 
 Przykład w języku Java:
+[OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
+
 ```java
-var request = new OpenOnlineSessionRequestBuilder()
-        .withFormCode(new FormCode("FA (2)","FA","1-0E"))
+OpenOnlineSessionRequest request = new OpenOnlineSessionRequestBuilder()
+        .withFormCode(new FormCode(systemCode, schemaVersion, value))
         .withEncryptionInfo(encryptionData.encryptionInfo())
         .build();
 
-var response = ksefClient.openOnlineSession(request);
+OpenOnlineSessionResponse openOnlineSessionResponse = createKSeFClient().openOnlineSession(request, accessToken);
 ```
 
 ### 2. Wysłanie faktury
@@ -74,40 +80,47 @@ Odpowiedź zawiera ```referenceNumber``` dokumentu – używany do identyfikacji
 Po prawidłowym przesłaniu faktury rozpoczyna się asynchroniczna weryfikacja faktury ([szczegóły weryfikacji](faktury\weryfikacja-faktury.md)).
 
 Przykład w języku C#:
-```csharp
-var encryptedInvoice = cryptographyService.EncryptBytesWithAES256(invoice, encryptionData.CipherKey, encryptionData.CipherIv);
+[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
 
-var invoiceMetadata = cryptographyService.GetMetaData(invoice);
-var encryptedInvoiceMetadata = cryptographyService.GetMetaData(encryptedInvoice);
-var sendOnlineInvoiceRequest = SendInvoiceOnlineSessionRequestBuilder
+```csharp
+byte[] encryptedInvoice = cryptographyService.EncryptBytesWithAES256(invoice, encryptionData.CipherKey, encryptionData.CipherIv);
+FileMetadata invoiceMetadata = cryptographyService.GetMetaData(invoice);
+FileMetadata encryptedInvoiceMetadata = cryptographyService.GetMetaData(encryptedInvoice);
+
+SendInvoiceRequest sendOnlineInvoiceRequest = SendInvoiceOnlineSessionRequestBuilder
     .Create()
-    .WithInvoiceHash(invoiceMetadata.HashSHA.Value, invoiceMetadata.FileSize)
-    .WithEncryptedDocumentHash(
-       encryptedInvoiceMetadata.HashSHA.Value, encryptedInvoiceMetadata.FileSize)
+    .WithInvoiceHash(invoiceMetadata.HashSHA, invoiceMetadata.FileSize)
+    .WithEncryptedDocumentHash(encryptedInvoiceMetadata.HashSHA, encryptedInvoiceMetadata.FileSize)
     .WithEncryptedDocumentContent(Convert.ToBase64String(encryptedInvoice))
     .Build();
-var sendInvoiceResponse = await ksefClient.SendOnlineSessionInvoiceAsync(sendOnlineInvoiceRequest, referenceNumber, accessToken, cancellationToken);
+
+SendInvoiceResponse sendInvoiceResponse = KsefClient.SendOnlineSessionInvoiceAsync(sendOnlineInvoiceRequest, referenceNumber, accessToken);
 ```
 
 Przykład w języku Java:
+[OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
+
 ```java
-byte[] invoice = ...;
-var encryptedInvoice = cryptographyService.encryptBytesWithAES256(invoice,
-        encryptionData.cipherKey(),
-        encryptionData.cipherIv());
+String invoiceTemplate = ""; // xml z fakturą
 
-var invoiceMetadata = cryptographyService.getMetaData(invoice);
-var encryptedInvoiceMetadata = cryptographyService.getMetaData(encryptedInvoice);
+byte[] invoice = invoiceTemplate.getBytes(StandardCharsets.UTF_8);
 
-var sendInvoiceRequest = new SendInvoiceRequestBuilder()
-        .withInvoiceHash(invoiceMetadata.getHashSHA())
-        .withInvoiceSize(invoiceMetadata.getFileSize())
-        .withEncryptedInvoiceHash(encryptedInvoiceMetadata.getHashSHA())
-        .withEncryptedInvoiceSize(encryptedInvoiceMetadata.getFileSize())
-        .withEncryptedInvoiceContent(Base64.getEncoder().encodeToString(encryptedInvoice))
-        .build();
+byte[] encryptedInvoice = cryptographyService.encryptBytesWithAES256(invoice,
+    encryptionData.cipherKey(),
+    encryptionData.cipherIv());
 
-SendInvoiceResponse sendInvoiceResponse = defaultKsefClient.onlineSessionSendInvoice(referenceNumber, sendInvoiceRequest);
+FileMetadata invoiceMetadata = cryptographyService.getMetaData(invoice);
+FileMetadata encryptedInvoiceMetadata = cryptographyService.getMetaData(encryptedInvoice);
+
+SendInvoiceOnlineSessionRequest sendInvoiceOnlineSessionRequest = new SendInvoiceOnlineSessionRequestBuilder()
+    .withInvoiceHash(invoiceMetadata.getHashSHA())
+    .withInvoiceSize(invoiceMetadata.getFileSize())
+    .withEncryptedInvoiceHash(encryptedInvoiceMetadata.getHashSHA())
+    .withEncryptedInvoiceSize(encryptedInvoiceMetadata.getFileSize())
+    .withEncryptedInvoiceContent(Base64.getEncoder().encodeToString(encryptedInvoice))
+    .build();
+
+SendInvoiceResponse sendInvoiceResponse = createKSeFClient().onlineSessionSendInvoice(sessionReferenceNumber, sendInvoiceOnlineSessionRequest, accessToken);
 ```
 
 ### 3. Zamknięcie sesji
@@ -118,17 +131,17 @@ POST [/sessions/online/\{referenceNumber\}/close](https://ksef-test.mf.gov.pl/do
 Zbiorcze UPO będzie dostępne po sprawdzeniu stanu sesji.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
 
 ```csharp
- var closeOnlineSessionResponse = await ksefClient.CloseOnlineSessionAsync(
-            sessionReferenceNumber,
-            cancellationToken
-        );    
+await KsefClient.CloseOnlineSessionAsync(referenceNumber, accessToken, CancellationToken);
 ```
 
 Przykład w języku Java:
+[OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
+
 ```java
-ksefClient.closeOnlineSession(referenceNumber);
+createKSeFClient().closeOnlineSession(sessionReferenceNumber, accessToken);
 ```
 
 Powiązane dokumenty: 

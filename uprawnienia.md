@@ -236,29 +236,34 @@ Lista uprawnień, które mogą zostać nadane osobie fizycznej:
 
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Permissions\PersonPermission\PersonPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/PersonPermission/PersonPermissionE2ETests.cs)
 
 ```csharp
- var request = GrantPersonPermissionsRequestBuilder
-     .Create()
-     .WithSubject(subjectIdentifier)
-     .WithPermissions(StandardPermissionType.InvoiceRead, StandardPermissionType.InvoiceWrite)
-     .WithDescription("Access for quarterly review")
-     .Build();
+GrantPermissionsPersonRequest request = GrantPersonPermissionsRequestBuilder
+    .Create()
+    .WithSubject(subject)
+    .WithPermissions(
+        StandardPermissionType.InvoiceRead,
+        StandardPermissionType.InvoiceWrite)
+    .WithDescription(description)
+    .Build();
 
- return await ksefClient.GrantsPermissionPersonAsync(request,  accessToken, cancellationToken);
-
+OperationResponse response =
+    await KsefClient.GrantsPermissionPersonAsync(request, accessToken, CancellationToken);
 ```
 
 Przykład w języku Java:
+[PersonPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/PersonPermissionIntegrationTest.java)
 
 ```java
-var request = new PersonPermissionsGrantRequestBuilder()
-        .withSubjectIdentifier(subjectIdentifier)
-        .withPermissions(List.of(PersonPermissionType.INVOICEREAD, PersonPermissionType.INVOICEWRITE))
-        .withDescription("Access for quarterly review")
-        .build();
 
-return ksefClient.grantsPermissionPerson(request);
+GrantPersonPermissionsRequest request = new GrantPersonPermissionsRequestBuilder()
+   .withSubjectIdentifier(new PersonPermissionsSubjectIdentifier(PersonPermissionsSubjectIdentifierType.PESEL, personValue))
+   .withPermissions(List.of(PersonPermissionType.INVOICEWRITE, PersonPermissionType.INVOICEREAD))
+   .withDescription("e2e test grant")
+   .build();
+
+OperationResponse response = createKSeFClient().grantsPermissionPerson(request, accessToken);
 ```
 
 Uprawnienia może nadawać ktoś kto jest:
@@ -289,32 +294,34 @@ POST [/permissions/entities/grants](https://ksef-test.mf.gov.pl/docs/v2/index.ht
 | `description`                              | Wartość tekstowa (opis)              |
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Permissions\EntityPermission\EntityPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/EntityPermission/EntityPermissionE2ETests.cs)
 
 ```csharp
- var request = GrantEntityPermissionsRequestBuilder
+GrantPermissionsEntityRequest request = GrantEntityPermissionsRequestBuilder
     .Create()
-    .WithSubject(subjectIdentifier)
+    .WithSubject(subject)
     .WithPermissions(
         Permission.New(StandardPermissionType.InvoiceRead, true),
         Permission.New(StandardPermissionType.InvoiceWrite, false)
-        )
-    .WithDescription("Access for quarterly review")
+    )
+    .WithDescription(description)
     .Build();
 
- return await ksefClient.GrantsPermissionEntityAsync(request, accessToken, cancellationToken);
+OperationResponse response = await KsefClient.GrantsPermissionEntityAsync(request, accessToken, CancellationToken);
 ```
 Przykład w języku Java:
-```java
-var request = new EntityPermissionsGrantRequestBuilder()
-            .withSubjectIdentifier(subjectIdentifier)
-            .withPermissions(List.of(
-                    new EntityPermission(EntityPermissionType.INVOICEREAD, true),
-                    new EntityPermission(EntityPermissionType.INVOICEREAD, false))
-            )
-            .withDescription("Access for quarterly review")
-            .build();
+[EntityPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/EntityPermissionIntegrationTest.java)
 
-return ksefClient.grantsPermissionEntity(request);
+```java
+GrantEntityPermissionsRequest request = new GrantEntityPermissionsRequestBuilder()
+        .withPermissions(List.of(
+                new EntityPermission(EntityPermissionType.INVOICEREAD, true),
+                new EntityPermission(EntityPermissionType.INVOICEWRITE, false)))
+        .withDescription(DESCRIPTION)
+        .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifierType.NIP, targetNip))
+        .build();
+
+OperationResponse response = ksefClient.grantsPermissionEntity(request, accessToken);
 ```
 
 ---
@@ -340,27 +347,33 @@ Wymagane uprawnienia do nadawania uprawnień: ```CredentialsManage``` lub ```Own
 
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Permissions\ProxyPermission\AuthorizationPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/ProxyPermission/AuthorizationPermissionsE2ETests.cs)
 
 ```csharp
-  var request = GrantProxyEntityPermissionsRequestBuilder
-            .Create()
-            .WithSubject(subjectIdentifier)
-            .WithPermission(StandardPermissionType.TaxRepresentative)
-            .WithDescription("Access for quarterly review")
-            .Build();
- 
- return await ksefClient.GrantsPermissionProxyEntityAsync(request, accessToken, cancellationToken);
+GrantAuthorizationPermissionsRequest grantPermissionAuthorizationRequest =
+    GrantAuthorizationPermissionsRequestBuilder
+    .Create()
+    .WithSubject(Fixture.SubjectIdentifier)
+    .WithPermission(StandardPermissionType.SelfInvoicing)
+    .WithDescription("E2E test grant")
+    .Build();
 
+OperationResponse operationResponse = await KsefClient
+    .GrantsAuthorizationPermissionAsync(grantPermissionAuthorizationRequest,
+    accessToken, CancellationToken);
 ```
 
 Przykład w języku Java:
-```java
-GrantPermissionsProxyEntityRequest request = new GrantPermissionsProxyEntityRequest();
-    request.setSubjectIdentifier(subjectIdentifier);
-    request.setPermissions(List.of(ProxyEntityPermissionType.TAXREPRESENTATIVE));
-    request.setDescription("Access for quarterly review");
+[ProxyPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/ProxyPermissionIntegrationTest.java)
 
-return ksefClient.grantsPermissionsProxyEntity(request);
+```java
+GrantAuthorizationPermissionsRequest request = new GrantAuthorizationPermissionsRequestBuilder()
+   .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifierType.NIP, subjectNip))
+   .withPermission(ProxyEntityPermissionType.SELFINVOICING)
+   .withDescription("e2e test grant")
+   .build();
+
+OperationResponse response = createKSeFClient().grantsPermissionsProxyEntity(request, accessToken);
 ```
 ---
 ### Nadanie uprawnień w sposób pośredni
@@ -395,13 +408,18 @@ return await ksefClient.GrantsPermissionIndirectEntityAsync(request, accessToken
 ```
 
 Przykład w języku Java:
-```java
-IndirectPermissionsGrantRequest request = new IndirectPermissionsGrantRequest();
-    request.setSubjectIdentifier(subjectIdentifier);
-    request.setPermissions(List.of(IndirectPermissionType.INVOICEREAD, IndirectPermissionType.INVOICEWRITE));
-    request.setDescription("Access for quarterly review");
+[IndirectPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/IndirectPermissionIntegrationTest.java)
 
-return ksefClient.grantsPermissionIndirectEntity(request);
+```java
+GrantIndirectEntityPermissionsRequest request = new GrantIndirectEntityPermissionsRequestBuilder()
+   .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifierType.NIP, subjectNip))
+   .withTargetIdentifier(new TargetIdentifier(TargetIdentifierType.NIP, targetNip))
+   .withPermissions(List.of(INVOICEWRITE))
+   .withDescription("E2E indirect grantE2E indirect grant")
+   .build();
+
+OperationResponse response = createKSeFClient().grantsPermissionIndirectEntity(request, accessToken);
+
 ```
 ---
 ### Nadanie uprawnień administratora podmiotu podrzędnego
@@ -435,14 +453,18 @@ var request = GrantSubUnitPermissionsRequestBuilder
  return await ksefClient.GrantsPermissionSubUnitAsync(request, accessToken, cancellationToken);
 ```
 Przykład w języku Java:
-```java
-var request = new SubunitPermissionsGrantRequestBuilder()
-    .withSubjectIdentifier(subjectIdentifier)
-    .withContextIdentifier(subjectIdentifier)
-    .withDescription("Sub-entity access")
-    .build();
 
-return ksefClient.grantsPermissionSubUnit(request);
+[SubUnitPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SubUnitPermissionIntegrationTest.java)
+
+```java
+SubunitPermissionsGrantRequest request = new SubunitPermissionsGrantRequestBuilder()
+   .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifierType.NIP, subjectNip))
+   .withContextIdentifier(new ContextIdentifier(ContextIdentifierType.INTERNALID, contextNip))
+   .withDescription("e2e subunit test")
+   .build();
+
+OperationResponse response = createKSeFClient().grantsPermissionSubUnit(request, accessToken);
+
 ```
 ---
 ### Nadanie uprawnień administratora podmiotu unijnego
@@ -472,14 +494,18 @@ Przykład w języku C#:
  return await ksefClient.GrantsPermissionEUEntityAsync(request, accessToken, cancellationToken);
 ```
 Przykład w języku Java:
-```java
-var request = new EuEntityPermissionsGrantRequestBuilder()
-    .withSubject(body.subjectIdentifier())
-    .withContext(body.contextIdentifier())
-    .withDescription("Access for quarterly review")
-    .build();
+[EuEntityPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/EuEntityPermissionIntegrationTest.java)
 
-return ksefClient.grantsPermissionEUEntity(request);
+```java
+EuEntityPermissionsGrantRequest request = new GrantEUEntityPermissionsRequestBuilder()
+   .withSubject(new SubjectIdentifier(SubjectIdentifierType.FINGERPRINT, euEntity))
+   .withSubjectName("Sample Subject Name")
+   .withContext(new ContextIdentifier(ContextIdentifierType.NIPVATUE, nipVatUe))
+   .withDescription("E2E EU Entity Permission Test")
+   .build();
+
+OperationResponse response = createKSeFClient().grantsPermissionEUEntity(request, accessToken);
+
 ```
 ---
 ### Nadanie uprawnień reprezentanta podmiotu unijnego
@@ -508,14 +534,17 @@ Przykład w języku C#:
  return await ksefClient.GrantsPermissionEUEntityRepresentativeAsync(request, accessToken, cancellationToken);
 ```
 Przykład w języku Java:
-```java
-var request = new EuEntityPermissionsGrantRepresentativeRequestBuilder()
-    .withSubjectIdentifier(subjectIdentifier)
-    .withPermissions(List.of(EuEntityPermissionType.INVOICEREAD, EuEntityPermissionType.INVOICEWRITE))
-    .withDescription("Representative access")
-    .build();
+[EuEntityRepresentativePermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/EuEntityRepresentativePermissionIntegrationTest.java)
 
-return ksefClient.grantsPermissionEUEntityRepresentative(request);
+```java
+GrantEUEntityRepresentativePermissionsRequest request = new GrantEUEntityRepresentativePermissionsRequestBuilder()
+   .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifierType.FINGERPRINT, fingerprint))
+   .withPermissions(List.of(EuEntityPermissionType.INVOICEWRITE, EuEntityPermissionType.INVOICEREAD))
+   .withDescription("Representative for EU Entity")
+   .build();
+
+OperationResponse response = createKSeFClient().grantsPermissionEUEntityRepresentative(request, accessToken);
+
 ```
 
 ## Odbieranie uprawnień
@@ -543,8 +572,10 @@ await ksefClient.RevokeCommonPermissionAsync(permissionId, accessToken, cancella
 ```
 
 Przykład w języku Java:
+[EntityPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/EntityPermissionIntegrationTest.java)
+
 ```java
-ksefClient.revokeCommonPermission(permissionId);
+createKSeFClient().revokeCommonPermission(operationId, accessToken)
 ```
 ---
 ### Odebranie uprawnień podmiotowych
@@ -565,8 +596,10 @@ await ksefClient.RevokeAuthorizationsPermissionAsync(permissionId, accessToken, 
 ```
 
 Przykład w języku Java:
+[ProxyPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/ProxyPermissionIntegrationTest.java)
+
 ```java
-ksefClient.revokeAuthorizationsPermission(permissionId)
+createKSeFClient().revokeAuthorizationsPermission(operationId, accessToken)
 ```
 
 
@@ -608,8 +641,16 @@ await ksefClient.SearchGrantedPersonPermissionsAsync(request, accessToken, pageO
 ```
 
 Przykład w języku Java:
+[PersonPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/PersonPermissionIntegrationTest.java)
+
 ```java
-ksefClient.searchGrantedPersonPermissions(request, pageOffset, pageSize);
+PersonPermissionsQueryRequest request = new PersonPermissionsQueryRequestBuilder()
+   .withAuthorizedIdentifier(new PersonPermissionsAuthorizedIdentifier(PersonPermissionsAuthorizedIdentifierType.PESEL, personValue))
+   .withQueryType(PersonPermissionQueryType.PERMISSION_GRANTED_IN_CURRENT_CONTEXT)
+   .withPermissionTypes(List.of(PersonPermissionType.INVOICEWRITE, PersonPermissionType.INVOICEREAD))
+   .build();
+
+QueryPersonPermissionsResponse response = createKSeFClient().searchGrantedPersonPermissions(request, 0, 10, accessToken);
 ```
 ---
 ### Pobranie listy uprawnień administratorów jednostek i podmiotów podrzędnych
@@ -628,8 +669,15 @@ await ksefClient.SearchSubunitAdminPermissionsAsync(request, accessToken, pageOf
 ```
 
 Przykład w języku Java:
+[SubUnitPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SubUnitPermissionIntegrationTest.java)
+
 ```java
-ksefClient.searchSubunitAdminPermissions(request, pageOffset, pageSize);
+SubunitPermissionsQueryRequest request = new SubunitPermissionsQueryRequestBuilder()
+   .withSubunitIdentifier(new SubunitPermissionsSubunitIdentifier(SubunitPermissionsSubunitIdentifierType.INTERNALID, subUnitNip))
+   .build();
+
+QuerySubunitPermissionsResponse response = createKSeFClient().searchSubunitAdminPermissions(request, 0, 10, accessToken);
+
 ```
 ---
 ### Pobranie listy ról podmiotu
@@ -644,8 +692,10 @@ await ksefClient.SearchEntityInvoiceRolesAsync(accessToken, pageOffset, pageSize
 ```
 
 Przykład w języku Java:
+[SearchPermissionTestEndpoint.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/main/java/pl/akmf/ksef/sdk/SearchPermissionTestEndpoint.java)
+
 ```java
-ksefClient.searchEntityInvoiceRoles(pageOffset, pageSize);
+ksefClient.searchEntityInvoiceRoles(pageOffset, pageSize, accessToken);
 ```
 ---
 ### Pobranie listy podmiotów podrzędnych
@@ -666,8 +716,10 @@ await ksefClient.SearchSubordinateEntityInvoiceRolesAsync(request, accessToken,p
 ```
 
 Przykład w języku Java:
+[SearchPermissionTestEndpoint.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/main/java/pl/akmf/ksef/sdk/SearchPermissionTestEndpoint.java)
+
 ```java
-ksefClient.searchSubordinateEntityInvoiceRoles(request, pageOffset, pageSize);
+ksefClient.searchSubordinateEntityInvoiceRoles(request, pageOffset, pageSize, accessToken);
 ```
 ---
 ### Pobranie listy uprawnień podmiotowych do obsługi faktur
@@ -692,8 +744,15 @@ await ksefClient.SearchEntityAuthorizationGrantsAsync(request, accessToken, page
 ```
 
 Przykład w języku Java:
+[ProxyPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/ProxyPermissionIntegrationTest.java)
+
 ```java
-ksefClient.searchEntityAuthorizationGrants(request, pageOffset, pageSize)
+EntityAuthorizationPermissionsQueryRequest request = new EntityAuthorizationPermissionsQueryRequestBuilder()
+   .withQueryType(QueryType.GRANTED)
+   .build();
+
+QueryEntityAuthorizationPermissionsResponse response = createKSeFClient().searchEntityAuthorizationGrants(request, 0, 10, accessToken);
+
 ```
 ---
 ### Pobranie listy uprawnień administratorów lub reprezentantów podmiotów unijnych uprawnionych do samofakturowania
@@ -714,8 +773,14 @@ await ksefClient.SearchGrantedEuEntityPermissionsAsync(request, accessToken, pag
 ```
 
 Przykład w języku Java:
+[EuEntityPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/EuEntityPermissionIntegrationTest.java)
+
 ```java
-ksefClient.searchGrantedEuEntityPermissions(request, pageOffset, pageSize);
+EuEntityPermissionsQueryRequest request = new EuEntityPermissionsQueryRequestBuilder()
+   .withAuthorizedFingerprintIdentifier(subjectContext)
+   .build();
+
+QueryEuEntityPermissionsResponse response = createKSeFClient().searchGrantedEuEntityPermissions(request, 0, 10, accessToken);
 ```
 
 ## Operacje 
@@ -736,8 +801,10 @@ var operationStatus = await ksefClient.OperationsStatusAsync(referenceNumber, ac
 ```
 
 Przykład w języku Java:
+[EuEntityPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/EuEntityPermissionIntegrationTest.java)
+
 ```java
-var permissionStatusInfo = ksefClient.permissionOperationStatus(referenceNumber);
+PermissionStatusInfo operations = createKSeFClient().permissionOperationStatus(referenceNumber, accessToken);
 ```
 
 ### Sprawdzenie statusu zgody na wystawianie faktur z załącznikiem

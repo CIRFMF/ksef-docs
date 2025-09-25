@@ -31,15 +31,18 @@ POST [/auth/challenge](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierz
 Czas życia challenge'a wynosi 10 minut.
 
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
+
 ```csharp
 
-var challengeResponse = await ksefClient
-    .GetAuthChallengeAsync();
+AuthChallengeResponse challenge = await KsefClient.GetAuthChallengeAsync();
 ```
 
 Przykład w języku ```Java```:
+[BaseIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/configuration/BaseIntegrationTest.java)
+
 ```java
-var challenge = ksefClient.getAuthChallenge();
+AuthenticationChallengeResponse challenge = createKSeFClient().getAuthChallenge();
 ```
 Odpowiedź zwraca challenge i timestamp.
 
@@ -54,7 +57,7 @@ Po uzyskaniu auth challenge należy przygotować dokument XML zgodny ze schemate
 
 |    Klucz     |           Wartość                                                                                                                              |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| Challenge    | `Wartość otrzymana z wywołania POST /auth/challenge`                                                                                                          |
+| Challenge    | `Wartość otrzymana z wywołania POST [/auth/challenge](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uzyskiwanie-dostepu/paths/~1api~1v2~1auth~1challenge/post)`                                                                                                          |
 | ContextIdentifier| `Identyfikator kontekstu, dla którego realizowane jest uwierzytelnienie (NIP, identyfikator wewnętrzny, identyfikator złożony VAT UE)`                                                                       |
 | SubjectIdentifierType | `Sposób identyfikacji podmiotu uwierzytelniającego się. Możliwe wartości: certificateSubject (np. NIP/PESEL z certyfikatu) lub certificateFingerprint (odcisk palca certyfikatu).` |    
 |(opcjonalnie) IpAddressPolicy | `Reguły dotyczące walidacji adresu IP klienta podczas korzystania z wydanego tokena dostępu (accessTokenu).` |    
@@ -88,7 +91,7 @@ Przykład w języku ```C#```:
       {
           IpAddress = ["192.168.0.1", "192.222.111.1"],
           IpMask = ["192.168.1.0/24"], // Przykładowa maska
-          IpRange = ["222.1111.0.1-222.1111.0.255"] // Przykładowy zakres IP
+          IpRange = ["222.111.0.1-222.111.0.255"] // Przykładowy zakres IP
       }
   };
 var authTokenRequest = AuthTokenRequestBuilder
@@ -102,13 +105,14 @@ var authTokenRequest = AuthTokenRequestBuilder
 ```
 
 Przykład w języku ```Java```:
+[BaseIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/configuration/BaseIntegrationTest.java)
+
 ```java
-var authTokenRequest = new AuthTokenRequestBuilder()
-        .withChallenge(challenge.getChallenge())
-        .withContext(ContextIdentifierTypeEnum.NIP, context)
-        .withSubjectType(SubjectIdentifierTypeEnum.CERTIFICATE_SUBJECT)
-        .withIpAddressPolicy(IpChangePolicyEnum.IGNORE.value(), List.of(), List.of(), List.of())
-        .build();
+AuthTokenRequest authTokenRequest = new AuthTokenRequestBuilder()
+    .withChallenge(challenge.getChallenge())
+    .withContextNip(context)
+    .withSubjectType(SubjectIdentifierTypeEnum.CERTIFICATE_SUBJECT)
+    .build();
 ```
 
 #### 2. Podpisanie dokumentu (XAdES)
@@ -131,59 +135,86 @@ Szczegółowe informacje na temat obsługiwanych formatów podpisu XAdES oraz wy
 Przykład w języku ```C#```:
 
 Wygenerowanie testowego certyfikatu (możliwego do użycia tylko na środowisku testowym) osoby fizycznej z przykładowymi identyfikatorami:
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
+
 ```csharp
-var certificate = SelfSignedCertificateForSignatureBuilder
-    .Create()
-    .WithGivenName("Jan")
-    .WithSurname("Kowalski")
-    .WithSerialNumber("PNOPL-123450678901") // Alternatywnie: TINPL-1234567890
-    .WithCommonName("Jan Kowalski")
-    .Build();
+X509Certificate2 ownerCertificate = CertificateUtils.GetPersonalCertificate("Jan", "Kowalski", "TINPL", ownerNip, "M B");
+
+//CertificateUtils.GetPersonalCertificate
+public static X509Certificate2 GetPersonalCertificate(
+    string givenName,
+    string surname,
+    string serialNumberPrefix,
+    string serialNumber,
+    string commonName)
+{
+    X509Certificate2 certificate = SelfSignedCertificateForSignatureBuilder
+                .Create()
+                .WithGivenName(givenName)
+                .WithSurname(surname)
+                .WithSerialNumber($"{serialNumberPrefix}-{serialNumber}")
+                .WithCommonName(commonName)
+                .Build();
+    return certificate;
+}
 ```
 Wygenerowanie testowego certyfikatu (możliwego do użycia tylko na środowisku testowym) organizacji z przykładowymi identyfikatorami
 ```csharp
 // Odpowiednik certyfikatu kwalifikowanego organizacji (tzw. pieczęć firmowa)
-var certificate = SelfSignedCertificateForSealBuilder
-    .Create()
-    .WithOrganizationName("Kowalski sp. z o.o")
-    .WithOrganizationIdentifier("VATPL-1234567890")
-    .WithCommonName("Kowalski")
-    .Build();
+X509Certificate2 euEntitySealCertificate = CertificateUtils.GetCompanySeal("Kowalski sp. z o.o", euEntityNipVatEu, "Kowalski");
+
+//CertificateUtils.GetCompanySeal
+public static X509Certificate2 GetCompanySeal(
+    string organizationName,
+    string organizationIdentifier,
+    string commonName)
+{
+    X509Certificate2 certificate = SelfSignedCertificateForSealBuilder
+                .Create()
+                .WithOrganizationName(organizationName)
+                .WithOrganizationIdentifier(organizationIdentifier)
+                .WithCommonName(commonName)
+                .Build();
+    return certificate;
+}
 ```
 
 Używając ```ISignatureService``` oraz posiadając certyfikat z kluczem prywatnym do podpisania dokumentu:
 ```csharp
- var unsignedXml = AuthTokenRequestSerializer.SerializeToXmlString(authTokenRequest);
+string unsignedXml = AuthTokenRequestSerializer.SerializeToXmlString(authTokenRequest);
 
- var signedXml = signatureService.SignAsync(unsignedXml, certificate);
+string signedXml = await signatureService.SignAsync(unsignedXml, certificate);
 ```
 
 Przykład w języku ```Java```:
-Wygenerowanie testowego certyfikatu
+[BaseIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/configuration/BaseIntegrationTest.java)
+
+Wygenerowanie testowego certyfikatu (możliwego do użycia tylko na środowisku testowym) organizacji z przykładowymi identyfikatorami
 
 Dla organizacji
 
 ```java
-var x500 = new CertificateBuilders()
-        .buildForOrganization("Kowalski sp. z o.o", "VATPL-" + context, "Kowalski");
-SelfSignedCertificate cert = new DefaultCertificateGenerator().generateSelfSignedCertificateRsa(x500);
+X500Name x500 = new CertificateBuilders()
+    .buildForOrganization("Kowalski sp. z o.o", "VATPL-" + subject, "Kowalski", "PL");
+
+SelfSignedCertificate cert = certificateService.generateSelfSignedCertificateRsa(x500);
 ```
 
 Lub dla osoby prywatnej
 
 ```java
-var x500 = new CertificateBuilders()
+X500Name x500 = new CertificateBuilders()
         .buildForPerson("Jan", "Kowalski", context, "Kowalski");
 
-SelfSignedCertificate cert = new DefaultCertificateGenerator().generateSelfSignedCertificateRsa(x500);
+SelfSignedCertificate cert = certificateService.generateSelfSignedCertificateRsa(x500);
 ```
 
 Używając SignatureService oraz posiadając certyfikat z kluczem prywatnym można podpisać dokument
 
 ```java
-var unsignedXml = AuthTokenRequestSerializer.authTokenRequestSerializer(authTokenRequest);
+String xml = AuthTokenRequestSerializer.authTokenRequestSerializer(authTokenRequest);
 
-var signedXml = new DefaultSignatureService().sign(xml.getBytes(), cert.certificate(), cert.getPrivateKey());
+String signedXml = signatureService.sign(xml.getBytes(), cert.certificate(), cert.getPrivateKey());
 ```
 
 #### 3. Wysłanie podpisanego XML
@@ -198,14 +229,14 @@ Ponieważ proces uwierzytelniania jest asynchroniczny, w odpowiedzi zwracany jes
 Przykład w języku ```C#```:
 
 ```csharp
-var authOperationInfo = await ksefClient
-    .SubmitXadesAuthRequestAsync(signedXml);
+SignatureResponse authOperationInfo = await ksefClient.SubmitXadesAuthRequestAsync(signedXml, verifyCertificateChain: false);
 ```
 
 Przykład w języku ```Java```:
+[BaseIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/configuration/BaseIntegrationTest.java)
 
 ```java
-var submitAuthTokenResponse = ksefClient.submitAuthTokenRequest(signedXml, false);
+SignatureResponse submitAuthTokenResponse = createKSeFClient().submitAuthTokenRequest(signedXml, false);
 ```
 
 ### 2.2. Uwierzytelnianie **tokenem KSeF**
@@ -219,27 +250,28 @@ Wariant uwierzytelniania tokenem KSeF wymaga przesyłania **zaszyfrowanego ciąg
 należy zaszyfrować kluczem publicznym KSeF, wykorzystując algorytm ```RSA-OAEP``` z funkcją skrótu ```SHA-256 (MGF1)```. Otrzymany szyfrogram należy zakodować w ```Base64```.
 
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
+
 ```csharp
- var challenge = challengeResponse.Challenge;
- var timestamp = challengeResponse.Timestamp;
+AuthChallengeResponse challenge = await KsefClient.GetAuthChallengeAsync();
+long timestampMs = challenge.Timestamp.ToUnixTimeMilliseconds();
 
- var timestampMs = challengeResponse.Timestamp.ToUnixTimeMilliseconds();
-
- // Tworzenie ciągu token|timestamp
- var tokenWithTimestamp = $"{tokenKsef}|{timestampMs}";
- var tokenBytes = Encoding.UTF8.GetBytes(tokenWithTimestamp);
-
- // Szyfrowanie RSA-OAEP SHA-256
- var encryptedBytes = cryptographyService.EncryptKsefTokenWithRSAUsingPublicKey(tokenBytes);
-
- var encryptedToken = Convert.ToBase64String(encryptedBytes);
+// Przygotuj "token|timestamp" i zaszyfruj RSA-OAEP SHA-256 zgodnie z wymaganiem API
+string tokenWithTimestamp = $"{ksefToken}|{timestampMs}";
+byte[] tokenBytes = System.Text.Encoding.UTF8.GetBytes(tokenWithTimestamp);
+byte[] encrypted = CryptographyService.EncryptKsefTokenWithRSAUsingPublicKey(tokenBytes);
+string encryptedTokenB64 = Convert.ToBase64String(encrypted);
 ```
 
 Przykład w języku ```Java```:
+[KsefTokenIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/KsefTokenIntegrationTest.java)
+
 ```java
-var challenge = defaultKsefClient.getAuthChallenge();
-var tokenWithTimestamp = ksefToken.getToken() + "|" + challenge.getTimestamp().toInstant().toEpochMilli();
-var encryptedToken = new DefaultCryptographyService(defaultKsefClient).encryptKsefTokenWithRSAUsingPublicKey(tokenWithTimestamp.getBytes(StandardCharsets.UTF_8));
+AuthenticationChallengeResponse challenge = ksefClient.getAuthChallenge();
+String ksefToken = $otrzymanyToken;
+byte[] encryptedToken;
+encryptedToken = new DefaultCryptographyService(createKSeFClient())
+    .encryptKsefTokenWithRSAUsingPublicKey(ksefToken.getToken(), challenge.getTimestamp());
 ```
 
 #### 2. Wysłanie żądania uwierzytelnienia [tokenem KSeF](tokeny-ksef.md)
@@ -256,34 +288,44 @@ za pomocą wywołania endpointu:
 POST [/auth/ksef-token](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierzytelnianie/paths/~1api~1v2~1auth~1ksef-token/post). <br>
 
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 
 ```csharp
-   // Budowa requesta
-   var builder = AuthKsefTokenRequestBuilder
-       .Create()
-       .WithChallenge(challenge)
-       .WithContext(contextIdentifierType, contextIdentifierValue)
-       .WithEncryptedToken(encryptedToken);
+// Sposób 1: Budowa requesta za pomocą builder
+var builder = AuthKsefTokenRequestBuilder
+    .Create()
+    .WithChallenge(challenge)
+    .WithContext(contextIdentifierType, contextIdentifierValue)
+    .WithEncryptedToken(encryptedToken);   
+var authKsefTokenRequest = builder.Build();
 
-   if (ipAddressPolicy != null)
-       builder = builder.WithIpAddressPolicy(ipAddressPolicy);
+// Sposób 2: manualne tworzenie obiektu
+AuthKsefTokenRequest request = new AuthKsefTokenRequest
+{
+    Challenge = challenge.Challenge,
+    ContextIdentifier = new AuthContextIdentifier
+    {
+        Type = ContextIdentifierType.Nip,
+        Value = nip
+    },
+    EncryptedToken = encryptedTokenB64,
+    IpAddressPolicy = new IpAddressPolicy { }
+};
 
-   var authKsefTokenRequest = builder.Build();
-
-   // Wysłanie do KSeF
-   var submissionRef = await ksefClient
-        .SubmitKsefTokenAuthRequestAsync(authKsefTokenRequest, cancellationToken);
+SignatureResponse signature = await KsefClient.SubmitKsefTokenAuthRequestAsync(request, CancellationToken);
 ```
 
 Przykład w języku ```Java```:
+[KsefTokenIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/KsefTokenIntegrationTest.java)
+
 ```java
-var authTokenRequest = new AuthKsefTokenRequestBuilder()
+AuthKsefTokenRequest authTokenRequest = new AuthKsefTokenRequestBuilder()
         .withChallenge(challenge.getChallenge())
-        .withContextIdentifier(new ContextIdentifier(ContextIdentifierType.NIP, CONTEXT_NIP))
+        .withContextIdentifier(new ContextIdentifier(ContextIdentifierType.NIP, contextNip))
         .withEncryptedToken(Base64.getEncoder().encodeToString(encryptedToken))
         .build();
 
-var response = defaultKsefClient.authorizeByKSeFToken(authTokenRequest);
+        SignatureResponse response = createKSeFClient().authenticateByKSeFToken(authTokenRequest);
 ```
 
 Ponieważ proces uwierzytelniania jest asynchroniczny, w odpowiedzi zwracany jest tymczasowy token operacyjny (```authenticationToken```) wraz z numerem referencyjnym (```referenceNumber```). Oba identyfikatory służą do:
@@ -303,16 +345,18 @@ Na środowisku produkcyjnym czas oczekiwania na zakończenie operacji uwierzytel
 W przypadku niepowodzenia, w odpowiedzi mogą pojawić się kody błędów związane z niepoprawnym podpisem, brakiem uprawnień lub problemami technicznymi. Szczegółowa lista kodów błędów będzie dostępna w dokumentacji technicznej endpointa.
 
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 
 ```csharp
-var authorizationStatus = await ksefClient
-                                .GetAuthStatusAsync(referenceNumber, authenticationToken);
+AuthStatus status;
+status = await KsefClient.GetAuthStatusAsync(signature.ReferenceNumber, signature.AuthenticationToken.Token);
 ```
 
 Przykład w języku ```Java```:
+[BaseIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/configuration/BaseIntegrationTest.java)
 
 ```java
-var authStatus = defaultKsefClient.getAuthStatus(response.getReferenceNumber());
+AuthStatus authStatus = createKSeFClient().getAuthStatus(referenceNumber, tempToken);
 ```
 
 ### 4. Uzyskanie tokena dostępowego (accessToken)
@@ -321,16 +365,17 @@ Endpoint zwraca jednorazowo parę tokenów wygenerowanych dla pomyślnie zakońc
 POST [/auth/token/redeem](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierzytelnianie/paths/~1api~1v2~1auth~1token~1redeem/post)
 
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 
 ```csharp
-var accessTokenResponse = await ksefClient
-    .GetAccessTokenAsync(authOperationInfo);
+AuthOperationStatusResponse tokens = await KsefClient.GetAccessTokenAsync(signature.AuthenticationToken.Token);
 ```
 
 Przykład w języku ```Java```:
+[BaseIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/configuration/BaseIntegrationTest.java)
 
 ```java
-var accessTokenResponse = ksefClient.getAccessToken(submitAuthTokenResponse.getReferenceNumber());
+AuthOperationStatusResponse tokenResponse = createKSeFClient().redeemToken(response.getAuthenticationToken().getToken());
 ```
 
 W odpowiedzi zwracane są:
@@ -355,14 +400,14 @@ Odpowiedź zawiera nowy ```accessToken``` (JWT) z aktualnym zestawem uprawnień 
  Przykład w języku ```C#```:
 
 ```csharp
-var refreshedAccessTokenResponse = await ksefClient
-    .RefreshAccessTokenAsync(accessTokenResult.RefreshToken.Token);
+RefreshTokenResponse refreshedAccessTokenResponse = await ksefClient.RefreshAccessTokenAsync(accessTokenResult.RefreshToken.Token);
 ```
 
 Przykład w języku ```Java```:
+[AuthorizationIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/AuthorizationIntegrationTest.java)
 
 ```java
-var accessToken = ksefClient.refreshAccessToken(refreshToken);
+AuthenticationTokenRefreshResponse refreshTokenResult = createKSeFClient().refreshAccessToken(token.refreshToken());
 ```
 
 #### 6. Zarządzanie sesjami uwierzytelniania 

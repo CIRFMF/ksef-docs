@@ -27,7 +27,7 @@ Data wystawienia faktury (`P_1`) nie może być późniejsza niż data przyjęci
 - W ramach wysyłki wsadowej można przesłać maksymalnie 50 plików ZIP; rozmiar każdego pliku nie może przekroczyć 100 MiB (104 857 600 bajtów), a łączny rozmiar paczki - 5 GiB (5 368 709 120 bajtów).
 
 ## Poprawne szyfrowanie
-- Faktura powinna być zaszyfrowana algorytmem AES-256-CBC (klucz symetryczny 256 bit, IV 128 bit, PKCS#7).
+- Faktura powinna być zaszyfrowana algorytmem AES-256-CBC (klucz symetryczny 256 bit, IV 128 bit, z dopełnieniem (padding) PKCS#7).
 - Klucz symetryczny szyfrowany algorytmem RSAES-OAEP (SHA-256/MGF1).
 
 ## Zgodność metadanych faktury w sesji interaktywnej

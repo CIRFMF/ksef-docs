@@ -41,12 +41,14 @@ Przykład w języku C#:
 ```
 
 Przykład w języku Java:
+[KsefTokenIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/configuration/KsefTokenIntegrationTest.java)
+
 ```java
-GenerateTokenRequest request = new GenerateTokenRequestBuilder()
-        .withDescription("test description")
-        .withPermissions(List.of(TokenPermissionType.INVOICEREAD, TokenPermissionType.INVOICEWRITE, TokenPermissionType.CREDENTIALSREAD))
-        .build();
-var token = ksefClient.generateKsefToken(request);
+KsefTokenRequest request = new KsefTokenRequestBuilder()
+    .withDescription("test description")
+    .withPermissions(List.of(TokenPermissionType.INVOICEREAD, TokenPermissionType.INVOICEWRITE))
+    .build();
+GenerateTokenResponse ksefToken = createKSeFClient().generateKsefToken(request, authToken.accessToken());
 ```
 
 ### 2. Filtrowanie tokenów
@@ -70,10 +72,12 @@ do
 ```
 
 Przykład w języku Java:
+[KsefTokenIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/KsefTokenIntegrationTest.java)
+
 ```java
-List<AuthenticationTokenStatus> statuses = List.of(AuthenticationTokenStatus.ACTIVE);
+List<AuthenticationTokenStatus> status = List.of(AuthenticationTokenStatus.ACTIVE);
 Integer pageSize = 10;
-var tokens = ksefClient.queryKsefTokens(statuses, StringUtils.EMPTY, pageSize);
+QueryTokensResponse tokens = createKSeFClient().queryKsefTokens(status, StringUtils.EMPTY, pageSize, authenticationToken);
 ```
 
 W odpowiedzi zwracane są metadane tokenów, między innymi informacja kto i w jakim kontekœcie wygenerował token KSef oraz uprawnienia do niego przypisane.
@@ -90,8 +94,10 @@ Przykład w języku C#:
 var token = await ksefClient.GetKsefTokenAsync(referenceNumber, accessToken, cancellationToken);
 ```
 Przykład w języku Java:
+[KsefTokenIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/KsefTokenIntegrationTest.java)
+
 ```java
-var token = ksefClient.getKsefToken(referenceNumber);
+AuthenticationToken ksefToken = createKSeFClient().getKsefToken(token.getReferenceNumber(), accessToken);
 ```
 
 ### 4. Unieważnienie tokena
@@ -107,6 +113,8 @@ await ksefClient.RevokeKsefTokenAsync(referenceNumber, accessToken, cancellation
 ```
 
 Przykład w języku Java:
+[KsefTokenIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/KsefTokenIntegrationTest.java)
+
 ```java
-ksefClient.revokeKsefToken(referenceNumber);
+createKSeFClient().revokeKsefToken(token.getReferenceNumber(), accessToken);
 ```

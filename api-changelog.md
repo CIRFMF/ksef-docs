@@ -138,6 +138,11 @@
   - Dodano odpowiedź 400 z walidacją zwracającą kod błędu `30001` („Podmiot lub uprawnienie już istnieje.”) dla POST `/testdata/subject` oraz POST `/testdata/person`.
   - Zaktualizowano przykłady (example) w definicjach endpointów.
 
+- **Dokumentacja**
+  - Doprecyzowano algorytmy podpisu i przykłady w [Kody QR](kody-qr.md).
+  - Uściślono wymagania dotyczące klucza prywatnego używanego do podpisu CSR w [Certyfikaty KSeF](certyfikaty-KSeF.md).
+  - Zaktualizowano przykłady kodu w C# i Javie.
+
 ### Wersja 2.0.0 RC4
 
 - **Certyfikaty KSeF**

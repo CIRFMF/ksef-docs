@@ -21,12 +21,15 @@ Przed otwarciem sesji oraz wysłaniem faktur wymagane jest:
 Operacje te można zrealizować za pomocą komponentu ```CryptographyService```, dostępnego w oficjalnym kliencie KSeF. Biblioteka ta udostępnia gotowe metody do generowania i szyfrowania kluczy, zgodnie z wymaganiami systemu.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
+
 ```csharp
 EncryptionData encryptionData = cryptographyService.GetEncryptionData();
 ```
 Przykład w języku Java:
+[BatchIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/BatchIntegrationTest.java)
+
 ```java
-var cryptographyService = new DefaultCryptographyService(ksefClient);
 EncryptionData encryptionData = cryptographyService.getEncryptionData();
 ```
 
@@ -36,43 +39,56 @@ Wygenerowane dane służą do szyfrowania faktur.
 Należy utworzyć paczkę ZIP zawierającą wszystkie faktury, które zostaną przesłane w ramach jednej sesji.  
 
 Przykład w języku C#:
-```csharp
-// Wczytaj pliki faktur ustrukturyzowanych (xml) do pamięci
-    var files = invoices.Select(f => new { FileName = Path.GetFileName(f), Content = System.IO.File.ReadAllBytes(f) }).ToList();
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
 
-    // Stwórz ZIP w pamięci
-    byte[] zipBytes;
-    using (var zipStream = new MemoryStream())
+```csharp
+(byte[] zipBytes, Client.Core.Models.Sessions.FileMetadata zipMeta) =
+    BatchUtils.BuildZip(invoices, cryptographyService);
+
+//BatchUtils.BuildZip
+public static (byte[] ZipBytes, FileMetadata Meta) BuildZip(
+    IEnumerable<(string FileName, byte[] Content)> files,
+    ICryptographyService crypto)
+{
+    using var zipStream = new MemoryStream();
+    using var archive = new ZipArchive(zipStream, ZipArchiveMode.Create, leaveOpen: true);
+    
+    foreach (var (fileName, content) in files)
     {
-        using (var archive = new ZipArchive(zipStream, ZipArchiveMode.Create, true))
-        {
-            foreach (var file in files)
-            {
-                var entry = archive.CreateEntry(file.FileName, CompressionLevel.Optimal);
-                using var entryStream = entry.Open();
-                entryStream.Write(file.Content, 0, file.Content.Length);
-            }
-        }
-        zipBytes = zipStream.ToArray();
+        var entry = archive.CreateEntry(fileName, CompressionLevel.Optimal);
+        using var entryStream = entry.Open();
+        entryStream.Write(content);
     }
+    
+    archive.Dispose();
+    
+    var zipBytes = zipStream.ToArray();
+    var meta = crypto.GetMetaData(zipBytes);
+
+    return (zipBytes, meta);
+}
 ```
 
 Przykład w języku Java:
-```java
-    List<Path> invoices = ....;
-    byte[] zipBytes;
-    try (ByteArrayOutputStream zipStream = new ByteArrayOutputStream();
-        ZipOutputStream archive = new ZipOutputStream(zipStream)) {
+[BatchIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/BatchIntegrationTest.java)
 
-        for (Path file : invoices) {
-            archive.putNextEntry(new ZipEntry(file.getFileName().toString()));
-            byte[] fileContent = Files.readAllBytes(file);
-            archive.write(fileContent);
-            archive.closeEntry();
-        }
-        archive.finish();
-        zipBytes = zipStream.toByteArray();
+```java
+byte[] zipBytes;
+try (ByteArrayOutputStream zipStream = new ByteArrayOutputStream();
+    ZipOutputStream archive = new ZipOutputStream(zipStream)) {
+    
+    for (Path file : invoices) {
+        archive.putNextEntry(new ZipEntry(file.getFileName().toString()));
+        byte[] fileContent = Files.readAllBytes(file);
+        archive.write(fileContent);
+        archive.closeEntry();
     }
+    archive.finish();
+    zipBytes = zipStream.toByteArray();
+}
+
+// get ZIP metadata (before crypto)
+FileMetadata zipMetadata = cryptographyService.getMetaData(zipBytes);
 ```
 
 ### 2. Podział binarny paczki ZIP na części
@@ -80,41 +96,42 @@ Przykład w języku Java:
 Ze względu na ograniczenia rozmiaru przesyłanych plików, paczka ZIP powinna być podzielona binarnie na mniejsze części, które będą przesyłane osobno. Każda część powinna mieć unikalną nazwę i numer porządkowy.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
+
 ```csharp
 
  // Pobierz metadane ZIP-a (przed szyfrowaniem)
  var zipMetadata = cryptographyService.GetMetaData(zipBytes);
-
- // Podziel ZIP na 11 partów
- int partCount = 11;
- int partSize = (int)Math.Ceiling((double)zipBytes.Length / partCount);
- var zipParts = new List<byte[]>();
- for (int i = 0; i < partCount; i++)
- {
-     int start = i * partSize;
-     int size = Math.Min(partSize, zipBytes.Length - start);
-     if (size <= 0) break;
-     var part = new byte[size];
-     Array.Copy(zipBytes, start, part, 0, size);
-     zipParts.Add(part);
- }
+int maxPartSize = 100 * 1024 * 1024; // 100 MB
+int partCount = (int)Math.Ceiling((double)zipBytes.Length / maxPartSize);
+int partSize = (int)Math.Ceiling((double)zipBytes.Length / partCount);
+var zipParts = new List<byte[]>();
+for (int i = 0; i < partCount; i++)
+{
+    int start = i * partSize;
+    int size = Math.Min(partSize, zipBytes.Length - start);
+    if (size <= 0) break;
+    var part = new byte[size];
+    Array.Copy(zipBytes, start, part, 0, size);
+    zipParts.Add(part);
+}
 
 ```
 
 Przykład w języku Java:
-```java
-    int numberOfParts = 11;
-    var zipMetadata = cryptographyService.getMetaData(zipBytes);
-    int partSize = (int) Math.ceil((double) zipBytes.length / numberOfParts);
+[BatchIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/BatchIntegrationTest.java)
 
-    List<byte[]> zipParts = new ArrayList<>();
-    for (int i = 0; i < numberOfParts; i++) {
-        int start = i * partSize;
-        int size = Math.min(partSize, zipBytes.length - start);
-        if (size <= 0) break;
-        byte[] part = Arrays.copyOfRange(zipBytes, start, start + size);
-        zipParts.add(part);
-    }
+```java
+int NUMBER_OF_PARTS = 11;
+List<byte[]> zipParts = new ArrayList<>();
+for (int i = 0; i < NUMBER_OF_PARTS; i++) {
+    int start = i * partSize;
+    int size = Math.min(partSize, zipBytes.length - start);
+    if (size <= 0) break;
+    
+    byte[] part = Arrays.copyOfRange(zipBytes, start, start + size);
+    zipParts.add(part);
+}
 ```
 
 ### 3. Zaszyfrowanie części paczki
@@ -137,17 +154,19 @@ Przykład w języku C#:
 ```
 
 Przykład w języku Java:
+[BatchIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/BatchIntegrationTest.java)
+
 ```java
-    List<BatchPartSendingInfo> encryptedZipParts = new ArrayList<>();
-    for (int i = 0; i < zipParts.size(); i++) {
-        byte[] encryptedZipPart = cryptographyService.encryptBytesWithAES256(
-                zipParts.get(i),
-                encryptionData.cipherKey(),
-                encryptionData.cipherIv()
-        );
-        FileMetadata zipPartMetadata = cryptographyService.getMetaData(encryptedZipPart);
-        encryptedZipParts.add(new BatchPartSendingInfo(encryptedZipPart, zipPartMetadata, (i + 1)));
-    }
+List<BatchPartSendingInfo> encryptedZipParts = new ArrayList<>();
+for (int i = 0; i < zipParts.size(); i++) {
+    byte[] encryptedZipPart = cryptographyService.encryptBytesWithAES256(
+    zipParts.get(i),
+    encryptionData.cipherKey(),
+    encryptionData.cipherIv()
+    );
+    FileMetadata zipPartMetadata = cryptographyService.getMetaData(encryptedZipPart);
+    encryptedZipParts.add(new BatchPartSendingInfo(encryptedZipPart, zipPartMetadata, (i + 1)));
+}            
 ```
 
 ### 4. Otwarcie sesji wsadowej
@@ -164,56 +183,77 @@ POST [/sessions/batch](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wysylk
 W odpowiedzi na otwarcie sesji otrzymamy obiekt zawierający `referenceNumber`, który będzie używany w kolejnych krokach do identyfikacji sesji wsadowej.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
+
 ```csharp
-//  Buduj request
-        var batchFileInfoBuilder = OpenBatchSessionRequestBuilder
-            .Create()
-            .WithFormCode(systemCode: "FA (2)", schemaVersion: "1-0E", value: "FA")
-            .WithBatchFile(
-                fileName: "faktury.zip",
-                fileSize: zipMetadata.FileSize,
-                fileHash: zipMetadata.HashSHA.Value);
+Client.Core.Models.Sessions.BatchSession.OpenBatchSessionRequest openBatchRequest =
+    BatchUtils.BuildOpenBatchRequest(zipMeta, encryptionData, encryptedParts, systemCode);
 
-        for (int i = 0; i < encryptedParts.Count; i++)
-        {
-            batchFileInfoBuilder = batchFileInfoBuilder.AddBatchFilePart(
-                ordinalNumber: i + 1,
-                fileName: $"faktura_part{i + 1}.zip.aes",
-                fileSize: encryptedParts[i].Metadata.FileSize,
-                fileHash: encryptedParts[i].Metadata.HashSHA.Value);
-        }
+Client.Core.Models.Sessions.BatchSession.OpenBatchSessionResponse openBatchSessionResponse =
+    await BatchUtils.OpenBatchAsync(KsefClient, openBatchRequest, accessToken);
 
-        var openBatchRequest = batchFileInfoBuilder.EndBatchFile()
-            .WithEncryption(
-                encryptedSymmetricKey: encryptionData.EncryptionInfo.EncryptedSymmetricKey,
-                initializationVector: encryptionData.EncryptionInfo.InitializationVector)
-            .Build();
+//BatchUtils.BuildOpenBatchRequest
+public static OpenBatchSessionRequest BuildOpenBatchRequest(
+    FileMetadata zipMeta,
+    EncryptionData encryption,
+    IEnumerable<BatchPartSendingInfo> encryptedParts,
+    SystemCode systemCode = DefaultSystemCode,
+    string schemaVersion = DefaultSchemaVersion,
+    string value = DefaultValue)
+{
+    var builder = OpenBatchSessionRequestBuilder
+        .Create()
+        .WithFormCode(systemCode: SystemCodeHelper.GetValue(systemCode), schemaVersion: schemaVersion, value: value)
+        .WithBatchFile(fileSize: zipMeta.FileSize, fileHash: zipMeta.HashSHA);
 
-        // Otwórz sesję wsadową
-        var openBatchSessionResponse = await ksefClient.OpenBatchSessionAsync(openBatchRequest, accessToken, cancellationToken);
+    foreach (var p in encryptedParts)
+    {
+        builder = builder.AddBatchFilePart(
+            ordinalNumber: p.OrdinalNumber,
+            fileName: $"part_{p.OrdinalNumber}.zip.aes",
+            fileSize: p.Metadata.FileSize,
+            fileHash: p.Metadata.HashSHA);
+    }
+
+    return builder
+        .EndBatchFile()
+        .WithEncryption(
+            encryptedSymmetricKey: encryption.EncryptionInfo.EncryptedSymmetricKey,
+            initializationVector: encryption.EncryptionInfo.InitializationVector)
+        .Build();
+}
+
+//BatchUtils.OpenBatchAsync
+public static async Task<OpenBatchSessionResponse> OpenBatchAsync(
+    IKSeFClient client,
+    OpenBatchSessionRequest openReq,
+    string accessToken)
+    => await client.OpenBatchSessionAsync(openReq, accessToken);
 ```
 
 Przykład w języku Java:
+[BatchIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/BatchIntegrationTest.java)
+
 ```java
-var builder = OpenBatchSessionRequestBuilder.create()
-        .withFormCode("FA (2)", "1-0E", "FA")
-        .withOfflineMode(false)
-        .withBatchFile(zipMetadata.getFileSize(), zipMetadata.getHashSHA());
+OpenBatchSessionRequestBuilder builder = OpenBatchSessionRequestBuilder.create()
+.withFormCode(SystemCode.FA_2, "1-0E", "FA")
+.withOfflineMode(false)
+.withBatchFile(zipMetadata.getFileSize(), zipMetadata.getHashSHA());
 
 for (int i = 0; i < encryptedZipParts.size(); i++) {
-    var part = encryptedZipParts.get(i);
+    BatchPartSendingInfo part = encryptedZipParts.get(i);
     builder = builder.addBatchFilePart(i + 1, "faktura_part" + (i + 1) + ".zip.aes",
-            part.getMetadata().getFileSize(), part.getMetadata().getHashSHA());
+    part.getMetadata().getFileSize(), part.getMetadata().getHashSHA());
 }
 
 OpenBatchSessionRequest request = builder.endBatchFile()
-        .withEncryption(
-                encryptionData.encryptionInfo().getEncryptedSymmetricKey(),
-                encryptionData.encryptionInfo().getInitializationVector()
-        )
-        .build();
+.withEncryption(
+    encryptionData.encryptionInfo().getEncryptedSymmetricKey(),
+    encryptionData.encryptionInfo().getInitializationVector()
+)
+.build();
 
-var openBatchSessionResponse = ksefClient.openBatchSession(request);
+OpenBatchSessionResponse response = createKSeFClient().openBatchSession(request, accessToken);
 ```
 
 Metoda zwraca listę części paczki; dla każdej części podaje adres uploadu (URL), wymaganą metodę HTTP oraz komplet nagłówków, które należy przesłać razem z daną częścią.
@@ -223,13 +263,17 @@ Metoda zwraca listę części paczki; dla każdej części podaje adres uploadu 
 Na podstawie danych zwróconych przy otwarciu sesji (unikalny URL, metoda HTTP, wymagane nagłówki) należy przesłać każdą zadeklarowaną część paczki pod wskazany adres, stosując dokładnie podaną metodę i nagłówki dla danej części.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
+
 ```csharp
-await ksefClient.SendBatchPartsAsync(openBatchSessionResponse, BatchPartsDirectory);
+await KsefClient.SendBatchPartsAsync(openBatchSessionResponse, encryptedParts);
 ```
 
 Przykład w języku Java:
+[BatchIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/BatchIntegrationTest.java)
+
 ```java
-ksefClient.sendBatchParts(openBatchSessionResponse, encryptedZipParts);
+createKSeFClient().sendBatchParts(response, encryptedZipParts);
 ```
 
 **Limit czasu na przesłanie partów w sesji wsadowej**  
@@ -248,18 +292,15 @@ Po przesłaniu wszystkich części paczki należy zamknąć sesję wsadową, co 
 POST [/sessions/batch/\{referenceNumber\}/close](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wysylka-wsadowa/paths/~1api~1v2~1sessions~1batch~1%7BreferenceNumber%7D~1close/post)}]
 
 Przykład w języku C#:
-
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
 ```csharp
-
-var closeBatchSessionRequest = CloseBatchSessionRequestBuilder
-    .Create()
-    .WithReferenceNumber(openBatchSessionResponse.ReferenceNumber)
-    .Build();
-    var closeBatchSessionResponse = await ksefClient.CloseBatchSessionAsync(closeBatchSessionRequest, accessToken);
+await KsefClient.CloseBatchSessionAsync(referenceNumber, accessToken);
 ```
 Przykład w języku Java:
+[BatchIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/BatchIntegrationTest.java)
+
 ```java
-ksefClient.closeBatchSession(referenceNumber);
+createKSeFClient().closeBatchSession(referenceNumber, accessToken);
 ```
 
 Zobacz 

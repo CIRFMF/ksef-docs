@@ -40,7 +40,7 @@ https://ksef-test.mf.gov.pl/client-app/invoice/1111111111/01-02-2026/UtQp9Gpc51y
 
 Przykład w języku ```C#```:
 ```csharp
-var url = linkSvc.BuildInvoiceVerificationUrl(nip, issueDate, invoiceHash);
+string url = linkSvc.BuildInvoiceVerificationUrl(nip, issueDate, invoiceHash);
 ```
 
 Przyklad w języku Java:
@@ -50,13 +50,18 @@ String url = linkSvc.buildInvoiceVerificationUrl(nip, issueDate, xml);
 
 #### Generowanie kodu QR
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeE2ETests.cs)
+
 ```csharp
-var qrCode = qrSvc.GenerateQrCode(url);
+private const int PixelsPerModule = 5;
+byte[] qrBytes = qrCodeService.GenerateQrCode(url, PixelsPerModule);
 ```
 
 Przyklad w języku Java:
+[QrCodeOnlineIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QrCodeOnlineIntegrationTest.java)
+
 ```java
-byte[] qrCode = qrSvc.generateQrCode(url);
+byte[] qrOnline = qrCodeService.generateQrCode(invoiceForOnlineUrl);
 ```
 
 #### Oznaczenie pod kodem QR
@@ -71,13 +76,17 @@ Proces przyjęcia faktury przez KSeF zazwyczaj przebiega natychmiastowo — nume
 ![QR Offline](qr/qr-offline.png)
 
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeE2ETests.cs)
+
 ```csharp
-var labeledQr = qrSvc.AddLabelToQrCode(qrCode, ksefNumber);
+byte[] labeled = qrCodeService.AddLabelToQrCode(qrBytes, GeneratedQrCodeLabel);
 ```
 
 Przyklad w języku Java:
+[QrCodeOnlineIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QrCodeOnlineIntegrationTest.java)
+
 ```java
-byte[] labeledQr = qrSvc.addLabelToQrCode(qrCode, ksefNumber);
+byte[] qrOnline = qrCodeService.addLabelToQrCode(qrOnline, invoiceKsefNumber);
 ```
 
 ### 2. KOD II – Weryfikacja certyfikatu
@@ -107,7 +116,23 @@ ksef-test.mf.gov.pl/client-app/certificate/Nip/1111111111/1111111111/01F20A5D352
 ```
 
 **Algorytmy podpisu:**  
-* RSA (RSASSA‑PSS): szyfruje się ciąg do podpisu kluczem prywatnym KSeF przy użyciu algorytmu RSA-OAEP z funkcją skrótu SHA-256 (MGF1). Otrzymany szyfrogram należy zakodować w formacie Base64URL.
+
+* **RSA (RSASSA-PSS)**  
+  - Funkcja skrótu: SHA-256  
+  - MGF: MGF1 z SHA-256  
+  - Długość losowej domieszki (soli): 32 bajty
+  - Wymagana długość klucza: Minimum 2048 bity.
+  
+  Ciąg do podpisu jest najpierw haszowany algorytmem SHA-256, a następnie generowany jest podpis zgodnie ze schematem RSASSA-PSS.  
+
+* **ECDSA (P-256/SHA-256)**  
+  Ciąg do podpisu jest haszowany algorytmem SHA-256, a następnie generowany jest podpis z użyciem klucza prywatnego ECDSA opartego na krzywej NIST P-256 (secp256r1), której wybór należy wskazać podczas generowania CSR.  
+
+  Wartość podpisu to para liczb całkowitych (r, s). Może być zakodowana w jednym z dwóch formatów:  
+  - **IEEE P1363 Fixed Field Concatenation** – **rekomendowany sposób** z uwagi na krótszy ciąg wynikowy i stałą długość. Format prostszy i krótszy niż DER. Podpis to konkatenacja R || S (po 32 bajty big-endian).  
+  - **ASN.1 DER SEQUENCE (RFC 3279)** – podpis jest kodowany jako ASN.1 DER.  Rozmiar podpisu jest zmienny. Proponujemy użycie tego rodzaju podpisu tylko, gdy IEEE P1363 nie jest możliwy z powodu ograniczeń technologicznych.  
+
+W obu przypadkach (niezależnie od wyboru RSA czy ESDSA) otrzymaną wartość podpisu należy zakodować w formacie Base64URL.
 
 
 Przykładowo dla faktury:
@@ -116,12 +141,12 @@ Przykładowo dla faktury:
 - NIP sprzedawcy: "1111111111",
 - numer seryjny certyfikatu KSeF: "01F20A5D352AE590",
 - skrót SHA-256 w formacie Base64URL: "UtQp9Gpc51y-u3xApZjIjgkpZ01js-J8KflSPW8WzIE",
-- podpisu linku przy użyciu klucza prywatnego certyfikatu KSeF: "KFoN1Z91HvySb2uqP2ZDFKubKftzWtWsQOjqTdLFXA3ZEoC1PB8sixNi1LLwgnndwL-MkDcpaCEZxBuVtjWcBpAUJEYlnmDQFOMQs-ueSsp5uuVbmNb-d8_yRTAQvSUdHNuIYfpy7Wpj1jTY0yghgOmdTQzpV5MrcHEReLKjpGONHj8lZtq7RpY43LlCfvctHbUWbqSYAC0C7zmNKz5ROK1LFE-QIi5qGqrRIdw1PCEEPW9tKcB94G3qAHXizNyp5TO6V_0qZ9eC1DXtftkCocQD_CEI3MY-nu7yk6LC7hF7yQ1t8GGRikhQP6w4OwBR-z048IdhCtWd-RYNnxiU6w"
+- podpisu linku przy użyciu klucza prywatnego certyfikatu KSeF: "BRoRSfcLRh71PAonJCFPg55JYXZW24aEsQrZBRctRjQUnxngrVUJmWhMSHH7ikTp7VMnWYkfWOrUTXELmhJ6x-PNZn3cjm0e741c59h6Q5E-KWIQKONvBmn3XWLkncMrOlFMufwP3lFFXz58hSOvnoOzu3j87nLr7niV0jfkwmWZVV2oEjrWZTBCKueWX7Dk7WBUX9pPjFFafkE2iCQdm8MuaW8l-y94xTXYesn3mi8IxpCNo3hcTw_yrGnw-ucAABdhVw7K7MJJacCT2-7_Luh4qiWFiPNcP7Jp_IiI9RQH05xWsxXKA-Z9kgDyjP2KADyKu_vro82bAab4_VW8zQ"
 
 Wygenerowany link wygląda następująco:
 
 ```
-https://ksef-test.mf.gov.pl/client-app/certificate/Nip/1111111111/1111111111/01F20A5D352AE590/UtQp9Gpc51y-u3xApZjIjgkpZ01js-J8KflSPW8WzIE/KFoN1Z91HvySb2uqP2ZDFKubKftzWtWsQOjqTdLFXA3ZEoC1PB8sixNi1LLwgnndwL-MkDcpaCEZxBuVtjWcBpAUJEYlnmDQFOMQs-ueSsp5uuVbmNb-d8_yRTAQvSUdHNuIYfpy7Wpj1jTY0yghgOmdTQzpV5MrcHEReLKjpGONHj8lZtq7RpY43LlCfvctHbUWbqSYAC0C7zmNKz5ROK1LFE-QIi5qGqrRIdw1PCEEPW9tKcB94G3qAHXizNyp5TO6V_0qZ9eC1DXtftkCocQD_CEI3MY-nu7yk6LC7hF7yQ1t8GGRikhQP6w4OwBR-z048IdhCtWd-RYNnxiU6w
+https://ksef-test.mf.gov.pl/client-app/certificate/Nip/1111111111/1111111111/01635E98D9669239/UtQp9Gpc51y-u3xApZjIjgkpZ01js-J8KflSPW8WzIE/BRoRSfcLRh71PAonJCFPg55JYXZW24aEsQrZBRctRjQUnxngrVUJmWhMSHH7ikTp7VMnWYkfWOrUTXELmhJ6x-PNZn3cjm0e741c59h6Q5E-KWIQKONvBmn3XWLkncMrOlFMufwP3lFFXz58hSOvnoOzu3j87nLr7niV0jfkwmWZVV2oEjrWZTBCKueWX7Dk7WBUX9pPjFFafkE2iCQdm8MuaW8l-y94xTXYesn3mi8IxpCNo3hcTw_yrGnw-ucAABdhVw7K7MJJacCT2-7_Luh4qiWFiPNcP7Jp_IiI9RQH05xWsxXKA-Z9kgDyjP2KADyKu_vro82bAab4_VW8zQ
 ```
 
 Przykład w języku ```C#```:
@@ -131,23 +156,34 @@ Przykład w języku ```C#```:
 ```
 
 Przykład w języku Java:
+[QrCodeOfflineIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QrCodeOfflineIntegrationTest.java)
+
 ```java
 String pem = privateKeyPemBase64.replaceAll("\\s+", "");
 byte[] keyBytes = java.util.Base64.getDecoder().decode(pem);
-PrivateKey privateKey = new DefaultCryptographyService(ksefClient).parsePrivateKeyFromPem(keyBytes);
 
-String url = linkSvc.buildCertificateVerificationUrl(nip, certSerial, xml, privateKey);
+String url = verificationLinkService.buildCertificateVerificationUrl(
+    contextNip,
+    ContextIdentifierType.NIP,
+    contextNip,
+    certificate.getCertificateSerialNumber(),
+    invoiceHash,
+    cryptographyService.parsePrivateKeyFromPem(keyBytes));
 ```
 
 #### Generowanie QR kodu
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeE2ETests.cs)
+
 ```csharp
-var qrCode = qrSvc.GenerateQrCode(url);
+byte[] qrBytes = qrCodeService.GenerateQrCode(url, PixelsPerModule);
 ```
 
 Przykład w języku Java:
+[QrCodeOnlineIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QrCodeOnlineIntegrationTest.java)
+
 ```java
-byte[] qrCode = qrSvc.generateQrCode(url);
+byte[] qrOnline = qrCodeService.generateQrCode(invoiceForOnlineUrl);
 ```
 
 #### Oznaczenie pod kodem QR
@@ -155,13 +191,18 @@ byte[] qrCode = qrSvc.generateQrCode(url);
 Pod kodem QR powinien znaleźć się podpis **CERTYFIKAT**, wskazujący na funkcję weryfikacji certyfikatu KSeF.
 
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeE2ETests.cs)
+
 ```csharp
-var labeledQr = qrSvc.AddLabelToQrCode(qrCode, "CERTYFIKAT");
+private const string GeneratedQrCodeLabel = "CERTYFIKAT";
+byte[] labeled = qrCodeService.AddLabelToQrCode(qrBytes, GeneratedQrCodeLabel);
 ```
 
 Przykład w języku Java:
+[QrCodeOnlineIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QrCodeOnlineIntegrationTest.java)
+
 ```java
-byte[] labeledQr = qrSvc.addLabelToQrCode(qrCode, "CERTYFIKAT");
+qrOnline = qrCodeService.addLabelToQrCode(qrOnline, invoiceKsefNumber);
 ```
 
 ![QR  Certyfikat](qr/qr-cert.png)

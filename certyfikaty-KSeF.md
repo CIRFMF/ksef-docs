@@ -36,14 +36,17 @@ API udostępnia informacje na temat:
 GET [/certificates/limits](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1limits/get)
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 ```csharp
-var limits = await ksefClient.GetCertificateLimitsAsync(accessToken, cancellationToken);
+CertificateLimitResponse certificateLimitResponse = await KsefClient
+    .GetCertificateLimitsAsync(accessToken, CancellationToken);
 ```
 
 Przykład w języku Java:
+[CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
 
 ```java
-var limits = ksefClient.getCertificateLimits();
+CertificateLimitsResponse response = createKSeFClient().getCertificateLimits(accessToken);
 ```
 
 ### 2. Pobranie danych do wniosku certyfikacyjnego
@@ -63,15 +66,17 @@ System na tej podstawie zwraca komplet atrybutów DN (X.500 Distinguished Name),
 
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 ```csharp
-var enrollmentData = await ksefClient
-    .GetCertificateEnrollmentDataAsync(accessToken, cancellationToken)
-    .ConfigureAwait(false);
+CertificateEnrollmentsInfoResponse certificateEnrollmentsInfoResponse =
+    await KsefClient.GetCertificateEnrollmentDataAsync(accessToken, CancellationToken);
 ```
 
 Przykład w języku Java:
+[CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
+
 ```java
-CertificateEnrollmentsInfoResponse enrollmentData = ksefClient.getCertificateEnrollmentInfo();
+CertificateEnrollmentsInfoResponse response = createKSeFClient().getCertificateEnrollmentInfo(accessToken);
 ```
 
 Oto pełna lista pól, które mogą być zwrócone, przedstawiona w formie tabeli zawierającej OID:
@@ -97,23 +102,36 @@ Aby złożyć wniosek o certyfikat KSeF, należy przygotować tzw. żądanie pod
 
 Wymagania dotyczące klucza prywatnego użytego do podpisu CSR:
 * Typy dozwolone:
-  * RSA (OID: 1.2.840.113549.1.1.1), minimalna długość: 2048 bitów,
-  * EC (klucze eliptyczne, OID: 1.2.840.10045.2.1), minimalna długość: 256 bitów.
+  * RSA (OID: 1.2.840.113549.1.1.1), długość klucza: 2048 bitów,
+  * EC (klucze eliptyczne, OID: 1.2.840.10045.2.1), krzywa NIST P-256 (secp256r1).
 * Zalecane jest stosowanie kluczy EC.
+
+* Dozwolone algorytmy podpisu:
+  * RSA PKCS#1 v1.5,
+  * RSA PSS,
+  * ECDSA (format podpisu zgodny z RFC 3279).
+
+* Dozwolone funkcje skrótu użyte do podpisu CSR:
+  * SHA1,
+  * SHA256,
+  * SHA384,
+  * SHA512.
 
 Wszystkie dane identyfikacyjne (atrybuty X.509) powinny być zgodne z wartościami zwróconymi przez system w poprzednim kroku (/certificates/enrollments/data). Zmodyfikowanie tych danych spowoduje odrzucenie wniosku.
 
 Przykład w języku C# (z użyciem ```ICryptographyService```):
-
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 
 ```csharp
-(var csrBase64Encoded, var privateKeyBase64Encoded) = cryptographyService.GenerateCsr(enrollmentData);
+var (csr, key) = CryptographyService.GenerateCsrWithRSA(TestFixture.EnrollmentInfo);
 ```
 
 
 Przykład w języku Java:
+[CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
+
 ```java
-CsrResult csr = cryptographyService.generateCsr(enrollmentData);
+CsrResult csr = new DefaultCryptographyService(createKSeFClient()).generateCsr(enrollmentInfo);
 ```
 
 * ```csrBase64Encoded``` – zawiera żądanie CSR zakodowane w formacie Base64, gotowe do wysłania do KSeF
@@ -135,26 +153,33 @@ W przesyłanym wniosku należy podać:
 Upewnij się, że CSR zawiera dokładnie te same dane, które zostały zwrócone przez endpoint /certificates/enrollments/data.
 
 Przykład w języku C#:
-```csharp
- var request = SendCertificateEnrollmentRequestBuilder.Create()
-            .WithCertificateName("Testowy certyfikat")
-            .WithCertificateType(CertificateType.Authentication)
-            .WithCsr(csrBase64Encoded)
-            .WithValidFrom(DateTimeOffset.UtcNow.AddDays(1)) // Certyfikat będzie ważny od jutra
-            .Build();
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 
-  var certificateEnrollmentResponse = await ksefClient.SendCertificateEnrollmentAsync(request, accessToken, cancellationToken);
+```csharp
+SendCertificateEnrollmentRequest sendCertificateEnrollmentRequest = SendCertificateEnrollmentRequestBuilder
+    .Create()
+    .WithCertificateName(TestCertificateName)
+    .WithCertificateType(CertificateType.Authentication)
+    .WithCsr(csr)
+    .WithValidFrom(DateTimeOffset.UtcNow.AddDays(CertificateValidityDays))
+    .Build();
+
+CertificateEnrollmentResponse certificateEnrollmentResponse = await KsefClient
+    .SendCertificateEnrollmentAsync(sendCertificateEnrollmentRequest, accessToken, CancellationToken);
 ```
 
 Przykład w języku Java:
-```java
-var request = new SendCertificateEnrollmentRequestBuilder()
-    .withCertificateName("certificateName")
-    .withCsr(csr.csr())
-    .withValidFrom(OffsetDateTime.now())
-    .build();
+[CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
 
-return ksefClient.sendCertificateEnrollment(request);
+```java
+SendCertificateEnrollmentRequest request = new SendCertificateEnrollmentRequestBuilder()
+        .withValidFrom(LocalDateTime.now().toString())
+        .withCsr(csr.csr())
+        .withCertificateName("certificate")
+        .withCertificateType(CertificateType.Authentication)
+        .build();
+
+CertificateEnrollmentResponse response = createKSeFClient().sendCertificateEnrollment(request, accessToken);
 ```
 
 W odpowiedzi otrzymasz ```referenceNumber```, który umożliwia monitorowanie statusu wniosku oraz późniejsze pobranie wystawionego certyfikatu.
@@ -169,18 +194,18 @@ GET [/certificates/enrollments/\{referenceNumber\}](https://ksef-test.mf.gov.pl/
 Jeżeli wniosek certyfikacyjny zostanie odrzucony, w odpowiedzi otrzymamy informacje o błędzie.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 
 ```csharp
-await ksefClient.GetCertificateEnrollmentStatusAsync(
-        certificateEnrollmentResponse.ReferenceNumber, 
-        accessToken, 
-        cancellationToken);
+CertificateEnrollmentStatusResponse certificateEnrollmentStatusResponse = await KsefClient
+    .GetCertificateEnrollmentStatusAsync(TestFixture.EnrollmentReference, accessToken, CancellationToken);
 ```
 
 Przykład w języku Java:
+[CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
 
 ```java
-ksefClient.getCertificateEnrollmentStatus(referenceNumber);
+CertificateEnrollmentStatusResponse response = createKSeFClient().getCertificateEnrollmentStatus(referenceNumber, accessToken);
 ```
 
 Po uzyskaniu numeru seryjnego certyfikatu (```certificateSerialNumber```), możliwe jest pobranie jego zawartości i metadanych w kolejnych krokach procesu.
@@ -192,16 +217,22 @@ System KSeF umożliwia pobranie treści wcześniej wystawionych certyfikatów we
 POST [/certificates/retrieve](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1retrieve/post)
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 
 ```csharp
-var certificates = await ksefClient.GetCertificateListAsync(new CertificateListRequest { CertificateSerialNumbers = certificateSerialNumbers}, accessToken, cancellationToken);
+CertificateListRequest certificateListRequest = new CertificateListRequest { CertificateSerialNumbers = TestFixture.SerialNumbers };
+
+CertificateListResponse certificateListResponse = await KsefClient
+    .GetCertificateListAsync(certificateListRequest, accessToken, CancellationToken);
 ```
 
 Przykład w języku Java:
+[CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
 
 ```java
-var certificates = ksefClient.getCertificateList(new CertificateListRequest(List.of(certificateSerialNumber)))
-        .getCertificates();
+CertificateListResponse certificateResponse =
+        createKSeFClient().getCertificateList(new CertificateListRequest(List.of(certificateSerialNumber)), accessToken);
+
 ```
 
 Każdy element odpowiedzi zawiera:
@@ -229,24 +260,25 @@ Parametry filtrowania (opcjonalne):
 * `pageOffset` - numer strony wyników (domyślnie 0)
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 ```csharp
 var request = GetCertificateMetadataListRequestBuilder
-            .Create()
-            .WithCertificateSerialNumber(serialNumber)
-            .WithName(name)
-            .Build();
-var metadataList = await ksefClient.GetCertificateMetadataListAsync(accessToken, request, 20, 0, cancellationToken);
+    .Create()
+    .WithCertificateSerialNumber(serialNumber)
+    .WithName(name)
+    .Build();
+    CertificateMetadataListResponse certificateMetadataListResponse = await KsefClient
+            .GetCertificateMetadataListAsync(accessToken, requestPayload, pageSize, pageOffset, CancellationToken);
 ```
 Przykład w języku Java:
+[CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
 
 ```java
-var request = new CertificateMetadataListRequestBuilder()
-        .withName("name")
-        .withCertificateSerialNumber("certificateSerialNumber")
-        .withStatus(CertificateListItemStatus.ACTIVE)
+QueryCertificatesRequest request = new certificateMetadataListRequestBuilder()
         .build();
-ksefClient.getCertificateMetadataList(request, 10, 0)
-        .getCertificates();
+
+CertificateMetadataListResponse response = createKSeFClient().getCertificateMetadataList(request, 10, 0, accessToken);
+
 ```
 
 W odpowiedzi otrzymamy metadane certyfikatów.
@@ -261,23 +293,26 @@ Unieważnienie realizowane jest na podstawie numeru seryjnego certyfikatu (```ce
 POST [/certificates/\{certificateSerialNumber\}/revoke](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1%7BcertificateSerialNumber%7D~1revoke/post)
 
 Przykład w języku C#:
-
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 ```csharp
-var request = RevokeCertificateRequestBuilder.Create()
-    .WithRevocationReason(CertificateRevocationReason.KeyCompromise) // optional
-    .Build();
+CertificateRevokeRequest certificateRevokeRequest = RevokeCertificateRequestBuilder
+        .Create()
+        .WithRevocationReason(CertificateRevocationReason.KeyCompromise)
+        .Build();
 
 await ksefClient.RevokeCertificateAsync(request, certificateSerialNumber, accessToken, cancellationToken)
      .ConfigureAwait(false);
 ```
 
 Przykład w języku Java:
+[CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
 
 ```java
-var request = new RevokeCertificateRequestBuilder()
+CertificateRevokeRequest request = new CertificateRevokeRequestBuilder()
         .withRevocationReason(CertificateRevocationReason.KEYCOMPROMISE)
         .build();
-ksefClient.revokeCertificate(request, certificateSerialNumber);
+
+createKSeFClient().revokeCertificate(request, serialNumber, accessToken);
 ```
 
 Po unieważnieniu certyfikat nie może zostać ponownie wykorzystany. Jeśli zajdzie potrzeba jego dalszego użycia, należy wystąpić o nowy certyfikat.
