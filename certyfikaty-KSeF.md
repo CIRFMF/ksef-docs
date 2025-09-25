@@ -36,7 +36,7 @@ API udostępnia informacje na temat:
 GET [/certificates/limits](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1limits/get)
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 ```csharp
 CertificateLimitResponse certificateLimitResponse = await KsefClient
     .GetCertificateLimitsAsync(accessToken, CancellationToken);
@@ -66,7 +66,7 @@ System na tej podstawie zwraca komplet atrybutów DN (X.500 Distinguished Name),
 
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 ```csharp
 CertificateEnrollmentsInfoResponse certificateEnrollmentsInfoResponse =
     await KsefClient.GetCertificateEnrollmentDataAsync(accessToken, CancellationToken);
@@ -120,7 +120,7 @@ Wymagania dotyczące klucza prywatnego użytego do podpisu CSR:
 Wszystkie dane identyfikacyjne (atrybuty X.509) powinny być zgodne z wartościami zwróconymi przez system w poprzednim kroku (/certificates/enrollments/data). Zmodyfikowanie tych danych spowoduje odrzucenie wniosku.
 
 Przykład w języku C# (z użyciem ```ICryptographyService```):
-[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 
 ```csharp
 var (csr, key) = CryptographyService.GenerateCsrWithRSA(TestFixture.EnrollmentInfo);
@@ -153,7 +153,7 @@ W przesyłanym wniosku należy podać:
 Upewnij się, że CSR zawiera dokładnie te same dane, które zostały zwrócone przez endpoint /certificates/enrollments/data.
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 
 ```csharp
 SendCertificateEnrollmentRequest sendCertificateEnrollmentRequest = SendCertificateEnrollmentRequestBuilder
@@ -194,7 +194,7 @@ GET [/certificates/enrollments/\{referenceNumber\}](https://ksef-test.mf.gov.pl/
 Jeżeli wniosek certyfikacyjny zostanie odrzucony, w odpowiedzi otrzymamy informacje o błędzie.
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 
 ```csharp
 CertificateEnrollmentStatusResponse certificateEnrollmentStatusResponse = await KsefClient
@@ -217,7 +217,7 @@ System KSeF umożliwia pobranie treści wcześniej wystawionych certyfikatów we
 POST [/certificates/retrieve](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1retrieve/post)
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 
 ```csharp
 CertificateListRequest certificateListRequest = new CertificateListRequest { CertificateSerialNumbers = TestFixture.SerialNumbers };
@@ -260,7 +260,7 @@ Parametry filtrowania (opcjonalne):
 * `pageOffset` - numer strony wyników (domyślnie 0)
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 ```csharp
 var request = GetCertificateMetadataListRequestBuilder
     .Create()
@@ -293,7 +293,7 @@ Unieważnienie realizowane jest na podstawie numeru seryjnego certyfikatu (```ce
 POST [/certificates/\{certificateSerialNumber\}/revoke](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1%7BcertificateSerialNumber%7D~1revoke/post)
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 ```csharp
 CertificateRevokeRequest certificateRevokeRequest = RevokeCertificateRequestBuilder
         .Create()

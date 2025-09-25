@@ -15,7 +15,7 @@ Przed otwarciem sesji oraz wysłaniem faktur wymagane jest:
 Operacje te można zrealizować za pomocą komponentu ```CryptographyService```, dostępnego w kliencie KSeF.
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
 
 ```csharp
 EncryptionData encryptionData = CryptographyService.GetEncryptionData();
@@ -44,7 +44,7 @@ W odpowiedzi zwracany jest obiekt zawierający:
  - ```validUntil``` – Termin ważności sesji. Po jego upływie sesja zostanie automatycznie zamknięta. Czas życia sesji interaktywnej wynosi 12 godzin od momentu jej utworzenia.
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
 ```csharp
 OpenOnlineSessionRequest openOnlineSessionRequest = OpenOnlineSessionRequestBuilder
     .Create()
@@ -80,7 +80,7 @@ Odpowiedź zawiera ```referenceNumber``` dokumentu – używany do identyfikacji
 Po prawidłowym przesłaniu faktury rozpoczyna się asynchroniczna weryfikacja faktury ([szczegóły weryfikacji](faktury\weryfikacja-faktury.md)).
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
 
 ```csharp
 byte[] encryptedInvoice = cryptographyService.EncryptBytesWithAES256(invoice, encryptionData.CipherKey, encryptionData.CipherIv);
@@ -131,7 +131,7 @@ POST [/sessions/online/\{referenceNumber\}/close](https://ksef-test.mf.gov.pl/do
 Zbiorcze UPO będzie dostępne po sprawdzeniu stanu sesji.
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
 
 ```csharp
 await KsefClient.CloseOnlineSessionAsync(referenceNumber, accessToken, CancellationToken);

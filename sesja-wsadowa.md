@@ -21,7 +21,7 @@ Przed otwarciem sesji oraz wysłaniem faktur wymagane jest:
 Operacje te można zrealizować za pomocą komponentu ```CryptographyService```, dostępnego w oficjalnym kliencie KSeF. Biblioteka ta udostępnia gotowe metody do generowania i szyfrowania kluczy, zgodnie z wymaganiami systemu.
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
 
 ```csharp
 EncryptionData encryptionData = cryptographyService.GetEncryptionData();
@@ -39,7 +39,7 @@ Wygenerowane dane służą do szyfrowania faktur.
 Należy utworzyć paczkę ZIP zawierającą wszystkie faktury, które zostaną przesłane w ramach jednej sesji.  
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
 
 ```csharp
 (byte[] zipBytes, Client.Core.Models.Sessions.FileMetadata zipMeta) =
@@ -96,7 +96,7 @@ FileMetadata zipMetadata = cryptographyService.getMetaData(zipBytes);
 Ze względu na ograniczenia rozmiaru przesyłanych plików, paczka ZIP powinna być podzielona binarnie na mniejsze części, które będą przesyłane osobno. Każda część powinna mieć unikalną nazwę i numer porządkowy.
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
 
 ```csharp
 
@@ -183,7 +183,7 @@ POST [/sessions/batch](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wysylk
 W odpowiedzi na otwarcie sesji otrzymamy obiekt zawierający `referenceNumber`, który będzie używany w kolejnych krokach do identyfikacji sesji wsadowej.
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
 
 ```csharp
 Client.Core.Models.Sessions.BatchSession.OpenBatchSessionRequest openBatchRequest =
@@ -263,7 +263,7 @@ Metoda zwraca listę części paczki; dla każdej części podaje adres uploadu 
 Na podstawie danych zwróconych przy otwarciu sesji (unikalny URL, metoda HTTP, wymagane nagłówki) należy przesłać każdą zadeklarowaną część paczki pod wskazany adres, stosując dokładnie podaną metodę i nagłówki dla danej części.
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
 
 ```csharp
 await KsefClient.SendBatchPartsAsync(openBatchSessionResponse, encryptedParts);
@@ -292,7 +292,7 @@ Po przesłaniu wszystkich części paczki należy zamknąć sesję wsadową, co 
 POST [/sessions/batch/\{referenceNumber\}/close](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wysylka-wsadowa/paths/~1api~1v2~1sessions~1batch~1%7BreferenceNumber%7D~1close/post)}]
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
 ```csharp
 await KsefClient.CloseBatchSessionAsync(referenceNumber, accessToken);
 ```

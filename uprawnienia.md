@@ -236,7 +236,7 @@ Lista uprawnień, które mogą zostać nadane osobie fizycznej:
 
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\PersonPermission\PersonPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/PersonPermission/PersonPermissionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\PersonPermission\PersonPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/PersonPermission/PersonPermissionE2ETests.cs)
 
 ```csharp
 GrantPermissionsPersonRequest request = GrantPersonPermissionsRequestBuilder
@@ -294,7 +294,7 @@ POST [/permissions/entities/grants](https://ksef-test.mf.gov.pl/docs/v2/index.ht
 | `description`                              | Wartość tekstowa (opis)              |
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\EntityPermission\EntityPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/EntityPermission/EntityPermissionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\EntityPermission\EntityPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/EntityPermission/EntityPermissionE2ETests.cs)
 
 ```csharp
 GrantPermissionsEntityRequest request = GrantEntityPermissionsRequestBuilder
@@ -347,7 +347,7 @@ Wymagane uprawnienia do nadawania uprawnień: ```CredentialsManage``` lub ```Own
 
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\ProxyPermission\AuthorizationPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/ProxyPermission/AuthorizationPermissionsE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\ProxyPermission\AuthorizationPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/ProxyPermission/AuthorizationPermissionsE2ETests.cs)
 
 ```csharp
 GrantAuthorizationPermissionsRequest grantPermissionAuthorizationRequest =
@@ -394,7 +394,7 @@ POST [/permissions/indirect/grants](https://ksef-test.mf.gov.pl/docs/v2/index.ht
 | `description`                              | Wartość tekstowa (opis)              |
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\IndirectPermission\IndirectPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/IndirectPermission/IndirectPermissionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\IndirectPermission\IndirectPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/IndirectPermission/IndirectPermissionE2ETests.cs)
 
 ```csharp
 GrantPermissionsIndirectEntityRequest request = GrantIndirectEntityPermissionsRequestBuilder
@@ -442,7 +442,7 @@ Wymagane uprawnienia do nadawania:
 | `description`                              | Wartość tekstowa (opis)              |
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
 
 ```csharp
 GrantPermissionsSubUnitRequest grantPermissionsSubUnitRequest =
@@ -486,7 +486,7 @@ POST [/permissions/eu-entities/administration/grants](https://ksef-test.mf.gov.p
 | `description`                              | Wartość tekstowa (opis)              |
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\EuEntityPermission\EuEntityPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/EuEntityPermission/EuEntityPermissionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\EuEntityPermission\EuEntityPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/EuEntityPermission/EuEntityPermissionE2ETests.cs)
 
 ```csharp
 GrantPermissionsRequest grantPermissionsRequest = GrantEUEntityPermissionsRequestBuilder
@@ -530,7 +530,7 @@ POST [/permissions/eu-entities/grants](https://ksef-test.mf.gov.pl/docs/v2/index
 | `description`                              | Wartość tekstowa (opis)              |
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\EuAdministrationPermission\EuRepresentativePermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/EuAdministrationPermission/EuRepresentativePermissionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\EuAdministrationPermission\EuRepresentativePermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/EuAdministrationPermission/EuRepresentativePermissionE2ETests.cs)
 
 ```csharp
 GrantPermissionsEUEntitRepresentativeRequest grantRepresentativePermissionsRequest = GrantEUEntityRepresentativePermissionsRequestBuilder
@@ -609,7 +609,7 @@ Ta metoda służy do odbierania uprawnień takich jak:
 - operacje przedstawiciela podatkowego.
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\EuEntityPermission\EuEntityPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/EuEntityPermission/EuEntityPermissionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\EuEntityPermission\EuEntityPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/EuEntityPermission/EuEntityPermissionE2ETests.cs)
 
 ```csharp
 await ksefClient.RevokeAuthorizationsPermissionAsync(permissionId, accessToken, cancellationToken);
@@ -655,7 +655,7 @@ POST [/permissions/query/persons/grants](https://ksef-test.mf.gov.pl/docs/v2/ind
 | `permissionState`     | Stan uprawnienia.  ```Active``` / ```Inactive```                                                  |
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
 
 ```csharp
 PagedPermissionsResponse<Client.Core.Models.Permissions.PersonPermission> response =
@@ -692,7 +692,7 @@ POST [/permissions/query/subunits/grants](https://ksef-test.mf.gov.pl/docs/v2/in
 | `subjectIdentifier`    | Identyfikator podmiotu podrzędnego.   ```InternalId``` lub `Nip`            |
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
 
 ```csharp
 SubunitPermissionsQueryRequest subunitPermissionsQueryRequest = new SubunitPermissionsQueryRequest();
@@ -725,7 +725,7 @@ Endpoint zwraca zestaw ról przypisanych do kontekstu w ktorym jesteśmy uwierzy
 GET [/permissions/query/entities/roles](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1api~1v2~1permissions~1query~1entities~1roles/get)
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
 
 ```csharp
 PagedRolesResponse<EntityRole> response =
@@ -756,7 +756,7 @@ POST [/permissions/query/subordinate-entities/roles](https://ksef-test.mf.gov.pl
     
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
 
 ```csharp
 SubordinateEntityRolesQueryRequest subordinateEntityRolesQueryRequest = new SubordinateEntityRolesQueryRequest();
@@ -794,7 +794,7 @@ POST [/permissions/query/authorizations/grants](https://ksef-test.mf.gov.pl/docs
  
 
 Przyklad w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
 
 ```csharp
 PagedAuthorizationsResponse<AuthorizationGrant> response =
@@ -832,7 +832,7 @@ POST [/permissions/query/eu-entities/grants](https://ksef-test.mf.gov.pl/docs/v2
 | `permissionTypes`           | Typy uprawnień do filtrowania. Możliwe wartości to: `VatUeManage`, `InvoiceWrite`, `InvoiceRead`, `Introspection`. |
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
 
 ```csharp
 PagedPermissionsResponse<Client.Core.Models.Permissions.EuEntityPermission> response =
@@ -869,7 +869,7 @@ GET [/permissions/operations/{operationReferenceNumber}](https://ksef-test.mf.go
 Każda operacja nadania uprawnienia zwraca identyfikator operacji, który należy wykorzystać do sprawdzenia statusu tej operacji.
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/docs/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
 
 ```csharp
 var operationStatus = await ksefClient.OperationsStatusAsync(referenceNumber, accessToken, cancellationToken);
