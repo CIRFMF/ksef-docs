@@ -21,7 +21,7 @@
     - NipSprzedawcy,
     - DataWystawieniaFaktury,
     - DataNadaniaNumeruKSeF.
-  - Ujednolicono schemat UPO: UPO dla faktury i dla sesji korzystają ze wspólnej schemy [upo-v4-2.xsd](/faktury/upo/schemy/upo-v4-2.xsd). Zastępuje dotychczasowe upo-faktura-v3-1.xsd i upo-sesja-v4-2.xsd.
+  - Ujednolicono schemat UPO. UPO dla faktury i dla sesji korzystają ze wspólnej schemy [upo-v4-2.xsd](/faktury/upo/schemy/upo-v4-2.xsd). Zastępuje dotychczasowe upo-faktura-v3-1.xsd i upo-sesja-v4-2.xsd.
 
 - **Uwierzytelnianie**  
   Doprecyzowano kody statusów w GET `/auth/{referenceNumber}`, `/auth/sessions`: 
@@ -37,11 +37,13 @@
   - Rozszerzono reguły dostępu o `InvoiceWrite` dla GET `/sessions` ("Pobranie listy sesji"): posiadając uprawnienie `InvoiceWrite`, można pobierać wyłącznie sesje utworzone przez podmiot uwierzytelniający; posiadając uprawnienie `Introspection`, można pobierać wszystkie sesje.
   - Zmieniono reguły dostępu dla DELETE `/tokens/{referenceNumber}`: usunięto wymóg uprawnienia `CredentialsManage`.
 
-- **Certyfikaty**    
-  Zmiana struktury odpowiedzi w  GET `certificates/enrollments/data` ("Pobranie danych do wniosku certyfikacyjnego"):
-  - Usunięto: givenNames (tablica string, nullable).
-  - Dodano: givenName (string).
-  - Charakter zmiany: breaking (zmiana nazwy i typu pola z tablicy na tekst).
+- **Pobranie danych do wniosku certyfikacyjnego (GET `certificates/enrollments/data`)**    
+  - Zmiana struktury odpowiedzi:
+    - Usunięto: givenNames (tablica string).
+    - Dodano: givenName (string).
+    - Charakter zmiany: breaking (zmiana nazwy i typu pola z tablicy na tekst).
+  - Dodano kod błędu `25011` — „Nieprawidłowy algorytm podpisu CSR”.
+  - Uściślono wymagania dotyczące klucza prywatnego używanego do podpisu CSR w [Certyfikaty KSeF](certyfikaty-KSeF.md).
 
 - **Tokeny KSeF**  
   - Dodano kod błędu dla odpowiedzi POST `/tokens` ("Wygenerowanie nowego tokena"): `26002` - "Nie można wygenerować tokena dla obecnego typu kontekstu". Token może być generowany wyłącznie w kontekście `Nip` lub `InternalId`.
@@ -138,7 +140,6 @@
 
 - **Dokumentacja**
   - Doprecyzowano algorytmy podpisu i przykłady w [Kody QR](kody-qr.md).
-  - Uściślono wymagania dotyczące klucza prywatnego używanego do podpisu CSR w [Certyfikaty KSeF](certyfikaty-KSeF.md).
   - Zaktualizowano przykłady kodu w C# i Javie.
 
 ### Wersja 2.0.0 RC4
