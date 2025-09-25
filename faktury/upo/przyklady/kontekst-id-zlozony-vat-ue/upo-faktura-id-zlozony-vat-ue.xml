@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Potwierdzenie xmlns="http://upo.schematy.mf.gov.pl/KSeF/v3-1">
+<Potwierdzenie xmlns="http://upo.schematy.mf.gov.pl/KSeF/v4-2">
 	<NazwaPodmiotuPrzyjmujacego>Ministerstwo Finansów</NazwaPodmiotuPrzyjmujacego>
 	<NumerReferencyjnySesji>36950822-93-9D5A28BFDA-47C899773E-5C</NumerReferencyjnySesji>
 	<Uwierzytelnienie>
@@ -15,7 +15,7 @@
 		<NumerKSeFDokumentu>5265877635-20250916-0200A0D6723E-C2</NumerKSeFDokumentu>
 		<NumerFaktury>FA/XVQUD-9997622510/04/2027</NumerFaktury>
 		<DataWystawieniaFaktury>2025-09-16</DataWystawieniaFaktury>
-		<DataPrzeslaniaDokumentu>2025-09-16T11:05:40.845+02:00</DataPrzeslaniaDokumentu>
+		<DataPrzeslaniaDokumentu>2025-09-16T11:05:40.841+02:00</DataPrzeslaniaDokumentu>
 		<DataNadaniaNumeruKSeF>2025-09-16T11:05:41.045+02:00</DataNadaniaNumeruKSeF>
 		<SkrotDokumentu>GZMGNVzs3krF6URKgvaw77OOeG3nJ+WGziT5xguliQ8=</SkrotDokumentu>
 	</Dokument>

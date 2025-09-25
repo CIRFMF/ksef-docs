@@ -180,7 +180,7 @@ byte[] upoResponse = createKSeFClient().getSessionInvoiceUpoByKsefNumber(session
 
 Otrzymany dokument XML jest: 
 * podpisany w formacie XADES przez Ministerstwo Finansów
-* zgodny ze schematem [XSD](/faktury/upo/schemy/upo-faktura-v3-1.xsd) dla pojedynczej faktury.
+* zgodny ze schematem [XSD](/faktury/upo/schemy/upo-v4-2.xsd).
 
 ### 6. Pobranie listy niepoprawnie przyjętych faktur
 
@@ -245,7 +245,7 @@ Każdy element tablicy `upo.pages[]` zawiera numer referencyjny UPO (`referenceN
 Dysponując tą listą, klient API może pobrać UPO pojedynczo, wywołując endpoint wskazany w polu `downloadUrl`, tj.  
 GET [/sessions/\{referenceNumber\}/upo/\{upoReferenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions~1%7BreferenceNumber%7D~1upo~1%7BupoReferenceNumber%7D/get)
 
-Otrzymany dokument XML jest zgodny ze schematem [XSD](/faktury/upo/schemy/upo-sesja-v4-2.xsd) i może zawierać maksymalnie 10 000 pozycji faktur.
+Otrzymany dokument XML jest zgodny ze schematem [XSD](/faktury/upo/schemy/upo-v4-2.xsd) i może zawierać maksymalnie 10 000 pozycji faktur.
 
 Przyklad w języku C#:
 
