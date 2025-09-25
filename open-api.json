@@ -1728,7 +1728,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21180               | Nieprawidłowe żądanie.                              | Nie można wyeksportować paczki faktur dla wybranego podmiotu ({subjecttype}) i zalogowanego identyfikatoru kontekstu ({type}). |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21181               | Nieprawidłowe żądanie eksportu faktur.              | Nie można wyeksportować paczki faktur dla wybranego podmiotu ({subjecttype}) i zalogowanego identyfikatoru kontekstu ({type}). |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {

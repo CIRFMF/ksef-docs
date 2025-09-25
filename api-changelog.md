@@ -89,6 +89,7 @@
   - Filtry:
     - dodano `seller.nip`; `seller.identifier` oznaczono jako deprecated (zostanie usunięte w następnym wydaniu),
   - Usunięto oznaczenia [Mock].
+  - Zmieniono kod błędu: z `21180` na `21181` ("Nieprawidłowe żądanie eksportu faktur").
   - Doprecyzowano zasady sortowania. Faktury w paczce są sortowane rosnąco według typu daty wskazanego w `DateRange` podczas inicjalizacji eksportu.
 
   - **Eksport paczki faktur: status (GET `/invoices/exports/{operationReferenceNumber}`)**
