@@ -324,3 +324,6 @@ Limity te dotyczą wyłącznie zasobów chronionych. Nie obejmują one publiczny
 		</tr>	
 	</tbody>
 </table>
+
+Powiązane dokumenty: 
+- [Limity](limity.md)

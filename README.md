@@ -24,7 +24,7 @@ Przewodnik został podzielony na tematyczne sekcje, odpowiadające kluczowym fun
 * [Sesja wsadowa](sesja-wsadowa.md)
 * [Pobieranie faktur](pobieranie-faktur.md)
 * [Zarządzanie tokenami KSeF](tokeny-ksef.md)
-* [Limity żądań API](limity-api.md)
+* [Limity](limity/limity.md)
 
 Dla każdego obszaru przewidziano:
 

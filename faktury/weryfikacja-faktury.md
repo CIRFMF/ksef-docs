@@ -42,4 +42,4 @@ Data wystawienia faktury (`P_1`) nie może być późniejsza niż data przyjęci
 ## Wymagania dotyczące uprawnień
 Wysłanie faktury do KSeF wymaga posiadania odpowiednich uprawnień do jej wystawienia w kontekście danego podmiotu.
 
-\* **Uwaga:** Jeżeli w scenariuszach biznesowych organizacji dostępne limity są niewystarczające, prosimy o kontakt z działem wsparcia KSeF w celu przeprowadzenia indywidualnej analizy i doboru odpowiedniego rozwiązania
+\* **Uwaga:** Jeżeli w scenariuszach biznesowych organizacji dostępne [limity](../limity/limity.md) są niewystarczające, prosimy o kontakt z działem wsparcia KSeF w celu przeprowadzenia indywidualnej analizy i doboru odpowiedniego rozwiązania.
