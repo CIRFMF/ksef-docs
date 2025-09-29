@@ -12,7 +12,12 @@
   Usunięto nadmiarowy kod błędu `21401`	- "Dokument nie jest zgodny ze schemą (json)".
 
 - **Pobieranie metadanych faktur (GET `/invoices/query/metadata`)**  
-  Dodano w odpowiedzi zawsze zwracaną właściwość isTruncated (boolean) – "Określa, czy wynik został obcięty z powodu przekroczenia limitu liczby faktur (10 000)".
+  - Dodano w odpowiedzi (zawsze zwracaną) właściwość `isTruncated` (boolean) – "Określa, czy wynik został obcięty z powodu przekroczenia limitu liczby faktur (10 000)",
+  - Oznaczono właściwość `amount.type` jako wymaganą w filtrze żądania.
+
+- **Eksport paczki faktur: zlecenie (POST `/invoices/exports`)**
+  - Oznaczono `operationReferenceNumber` w modelu odpowiedzi jako zawsze zwracane,
+  - Oznaczono właściwość `amount.type` jako wymaganą w filtrze żądania.
 
 ### Wersja 2.0.0 RC5
 

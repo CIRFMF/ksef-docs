@@ -5647,12 +5647,14 @@
         "additionalProperties": false
       },
       "ExportInvoicesResponse": {
+        "required": [
+          "operationReferenceNumber"
+        ],
         "type": "object",
         "properties": {
           "operationReferenceNumber": {
             "type": "string",
-            "description": "Numer referencyjny operacji.",
-            "nullable": true
+            "description": "Numer referencyjny operacji."
           }
         },
         "additionalProperties": false
@@ -6335,6 +6337,9 @@
         "type": "string"
       },
       "InvoiceQueryAmount": {
+        "required": [
+          "type"
+        ],
         "type": "object",
         "properties": {
           "type": {
@@ -6342,8 +6347,7 @@
               {
                 "$ref": "#/components/schemas/AmountType"
               }
-            ],
-            "nullable": true
+            ]
           },
           "from": {
             "type": "number",
@@ -6454,6 +6458,9 @@
             "nullable": true
           },
           "amount": {
+            "required": [
+              "type"
+            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/InvoiceQueryAmount"
