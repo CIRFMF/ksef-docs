@@ -11,6 +11,9 @@
 - **Sesja wsadowa**  
   Usunięto nadmiarowy kod błędu `21401`	- "Dokument nie jest zgodny ze schemą (json)".
 
+- **Pobieranie metadanych faktur (GET `/invoices/query/metadata`)**  
+  Dodano w odpowiedzi zawsze zwracaną właściwość isTruncated (boolean) – "Określa, czy wynik został obcięty z powodu przekroczenia limitu liczby faktur (10 000)".
+
 ### Wersja 2.0.0 RC5
 
 - **Obsługa faktur PEF i dostawców usług Peppol**
