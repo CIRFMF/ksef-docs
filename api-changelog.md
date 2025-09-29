@@ -1,5 +1,13 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.0 RC5.1
+- Usunięto nadmiarowe wartości enum `None`, `AllPartners` w następujących miejscach:
+  - we właściwości `contextIdentifier.type` żądania POST `/auth/ksef-token` ("Uwierzytelnienie z wykorzystaniem tokena KSeF"),
+  - we właściwościach `authorIdentifier.type` oraz `contextIdentifier.type` w modelu odpowiedzi GET `/tokens` ("Pobranie listy wygenerowanych tokenów").
+
+- Ujednoznaczniono model odpowiedzi GET `/tokens`:  
+  właściwości `authorIdentifier.type`, `authorIdentifier.value`, `contextIdentifier.type`, `contextIdentifier.value` oznaczono jako zawsze zwracane (required, non-nullable).
+
 ### Wersja 2.0.0 RC5
 
 - **Obsługa faktur PEF i dostawców usług Peppol**

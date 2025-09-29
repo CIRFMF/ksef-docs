@@ -2546,7 +2546,7 @@
             "schema": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/AuthorIdentifierType"
+                  "$ref": "#/components/schemas/TokenAuthorIdentifierType"
                 }
               ]
             }
@@ -2625,7 +2625,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthenticationToken"
+                  "$ref": "#/components/schemas/TokenStatusResponse"
                 }
               }
             }
@@ -4001,6 +4001,37 @@
         },
         "additionalProperties": false
       },
+      "AuthenticationContextIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AuthenticationContextIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora"
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuthenticationContextIdentifierType": {
+        "enum": [
+          "Nip",
+          "InternalId",
+          "NipVatUe",
+          "PeppolId"
+        ],
+        "type": "string"
+      },
       "AuthenticationInitResponse": {
         "required": [
           "authenticationToken",
@@ -4169,79 +4200,6 @@
         },
         "additionalProperties": false
       },
-      "AuthenticationToken": {
-        "type": "object",
-        "properties": {
-          "referenceNumber": {
-            "type": "string",
-            "description": "Numer referencyjny tokena.",
-            "nullable": true
-          },
-          "authorIdentifier": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SubjectIdentifier"
-              }
-            ],
-            "description": "Identyfikator osoby która wygenerowała token.",
-            "nullable": true
-          },
-          "contextIdentifier": {
-            "required": [
-              "type",
-              "value"
-            ],
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ContextIdentifier"
-              }
-            ],
-            "description": "Identyfikator kontekstu, w którym został wygenerowany token i do którego daje dostęp.",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "description": "Opis tokena.",
-            "nullable": true
-          },
-          "requestedPermissions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TokenPermissionType"
-            },
-            "description": "Uprawnienia przypisane tokenowi.",
-            "nullable": true
-          },
-          "dateCreated": {
-            "type": "string",
-            "description": "Data i czas utworzenia tokena.",
-            "format": "date-time"
-          },
-          "lastUseDate": {
-            "type": "string",
-            "description": "Data ostatniego użycia tokena.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AuthenticationTokenStatus"
-              }
-            ],
-            "description": "Status tokena.\n| Wartość | Opis |\n| --- | --- |\n| Pending | Token został utworzony ale jest jeszcze w trakcie aktywacji i nadawania uprawnień. Nie może być jeszcze wykorzystywany do uwierzytelniania. |\n| Active | Token jest aktywny i może być wykorzystywany do uwierzytelniania. |\n| Revoking | Token jest w trakcie unieważniania. Nie może już być wykorzystywany do uwierzytelniania. |\n| Revoked | Token został unieważniony i nie może być wykorzystywany do uwierzytelniania. |\n| Failed | Nie udało się aktywować tokena. Należy wygenerować nowy token, obecny nie może być wykorzystywany do uwierzytelniania. |\n"
-          },
-          "statusDetails": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Dodatkowe informacje na temat statusu, zwracane w przypadku błędów.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "AuthenticationTokenRefreshResponse": {
         "required": [
           "accessToken"
@@ -4307,15 +4265,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "AuthorIdentifierType": {
-        "enum": [
-          "Nip",
-          "Pesel",
-          "Fingerprint"
-        ],
-        "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Nip | NIP. |\n| Pesel | PESEL. |\n| Fingerprint | Odcisk palca certyfikatu. |\n"
       },
       "AuthorizationPolicy": {
         "type": "object",
@@ -4649,40 +4598,6 @@
         ],
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| InProgress | Sesja aktywna. |\n| Succeeded | Sesja przetworzona poprawnie.            W trakcie przetwarzania sesji nie wystąpiły żadne błędy, ale część faktur nadal mogła zostać odrzucona. |\n| Failed | Sesja nie przetworzona z powodu błędów.            Na etapie rozpoczynania lub kończenia sesji wystąpiły błędy, które nie pozwoliły na jej poprawne przetworzenie. |\n| Cancelled | Sesja anulowania.            Został przekroczony czas na wysyłkę w sesji wsadowej, lub nie przesłano żadnych faktur w sesji interaktywnej. |\n"
-      },
-      "ContextIdentifier": {
-        "required": [
-          "type",
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "type": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ContextIdentifierType"
-              }
-            ],
-            "description": "Typ identyfikatora"
-          },
-          "value": {
-            "type": "string",
-            "description": "Wartość identyfikatora"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Identyfikator kontekstu działania.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |\n| NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru VAT-UE: `{nip}-{vat_ue}` |"
-      },
-      "ContextIdentifierType": {
-        "enum": [
-          "None",
-          "AllPartners",
-          "Nip",
-          "InternalId",
-          "NipVatUe",
-          "PeppolId"
-        ],
-        "type": "string"
       },
       "CurrencyCode": {
         "enum": [
@@ -5933,7 +5848,7 @@
             ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/ContextIdentifier"
+                "$ref": "#/components/schemas/AuthenticationContextIdentifier"
               }
             ],
             "description": "Indentyfikator kontekstu do którego następuje uwierzytelnienie."
@@ -7813,9 +7728,86 @@
           "tokens": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AuthenticationToken"
+              "$ref": "#/components/schemas/QueryTokensResponseItem"
             },
             "description": "Lista tokenów uwierzytelniających."
+          }
+        },
+        "additionalProperties": false
+      },
+      "QueryTokensResponseItem": {
+        "type": "object",
+        "properties": {
+          "referenceNumber": {
+            "type": "string",
+            "description": "Numer referencyjny tokena.",
+            "nullable": true
+          },
+          "authorIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAuthorIdentifierTypeIdentifier"
+              }
+            ],
+            "description": "Identyfikator osoby która wygenerowała token.",
+            "nullable": true
+          },
+          "contextIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenContextIdentifierTypeIdentifier"
+              }
+            ],
+            "description": "Identyfikator kontekstu, w którym został wygenerowany token i do którego daje dostęp.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Opis tokena.",
+            "nullable": true
+          },
+          "requestedPermissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenPermissionType"
+            },
+            "description": "Uprawnienia przypisane tokenowi.",
+            "nullable": true
+          },
+          "dateCreated": {
+            "type": "string",
+            "description": "Data i czas utworzenia tokena.",
+            "format": "date-time"
+          },
+          "lastUseDate": {
+            "type": "string",
+            "description": "Data ostatniego użycia tokena.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AuthenticationTokenStatus"
+              }
+            ],
+            "description": "Status tokena.\n| Wartość | Opis |\n| --- | --- |\n| Pending | Token został utworzony ale jest jeszcze w trakcie aktywacji i nadawania uprawnień. Nie może być jeszcze wykorzystywany do uwierzytelniania. |\n| Active | Token jest aktywny i może być wykorzystywany do uwierzytelniania. |\n| Revoking | Token jest w trakcie unieważniania. Nie może już być wykorzystywany do uwierzytelniania. |\n| Revoked | Token został unieważniony i nie może być wykorzystywany do uwierzytelniania. |\n| Failed | Nie udało się aktywować tokena. Należy wygenerować nowy token, obecny nie może być wykorzystywany do uwierzytelniania. |\n"
+          },
+          "statusDetails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Dodatkowe informacje na temat statusu, zwracane w przypadku błędów.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -8259,33 +8251,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "SubjectIdentifier": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SubjectIdentifierType"
-              }
-            ]
-          },
-          "value": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SubjectIdentifierType": {
-        "enum": [
-          "None",
-          "Nip",
-          "Pesel",
-          "Fingerprint",
-          "Token"
-        ],
-        "type": "string"
       },
       "SubjectRemoveRequest": {
         "type": "object",
@@ -8770,6 +8735,69 @@
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| Nip | Nip |\n| InternalId | Identyfikator wewnętrzny |\n| VatUe | VAT UE |\n| Other | Inny identyfikator |\n| None | Brak identyfikatora podmiotu trzeciego |\n"
       },
+      "TokenAuthorIdentifierType": {
+        "enum": [
+          "Nip",
+          "Pesel",
+          "Fingerprint"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Nip | NIP. |\n| Pesel | PESEL. |\n| Fingerprint | Odcisk palca certyfikatu. |\n"
+      },
+      "TokenAuthorIdentifierTypeIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAuthorIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora.\n| Wartość | Opis |\n| --- | --- |\n| Nip | NIP. |\n| Pesel | PESEL. |\n| Fingerprint | Odcisk palca certyfikatu. |\n"
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "additionalProperties": false
+      },
+      "TokenContextIdentifierType": {
+        "enum": [
+          "Nip",
+          "InternalId",
+          "NipVatUe",
+          "PeppolId"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Nip | NIP. |\n| InternalId | Identyfikator wewnętrzny. |\n| NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru VAT-UE: `{nip}-{vat_ue}`. |\n| PeppolId | Identyfikator dostawcy usług Peppol. |\n"
+      },
+      "TokenContextIdentifierTypeIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenContextIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora.\n| Wartość | Opis |\n| --- | --- |\n| Nip | NIP. |\n| InternalId | Identyfikator wewnętrzny. |\n| NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru VAT-UE: `{nip}-{vat_ue}`. |\n| PeppolId | Identyfikator dostawcy usług Peppol. |\n"
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "additionalProperties": false
+      },
       "TokenInfo": {
         "required": [
           "token",
@@ -8799,6 +8827,83 @@
           "EnforcementOperations"
         ],
         "type": "string"
+      },
+      "TokenStatusResponse": {
+        "type": "object",
+        "properties": {
+          "referenceNumber": {
+            "type": "string",
+            "description": "Numer referencyjny tokena.",
+            "nullable": true
+          },
+          "authorIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAuthorIdentifierTypeIdentifier"
+              }
+            ],
+            "description": "Identyfikator osoby która wygenerowała token.",
+            "nullable": true
+          },
+          "contextIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenContextIdentifierTypeIdentifier"
+              }
+            ],
+            "description": "Identyfikator kontekstu, w którym został wygenerowany token i do którego daje dostęp.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Opis tokena.",
+            "nullable": true
+          },
+          "requestedPermissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenPermissionType"
+            },
+            "description": "Uprawnienia przypisane tokenowi.",
+            "nullable": true
+          },
+          "dateCreated": {
+            "type": "string",
+            "description": "Data i czas utworzenia tokena.",
+            "format": "date-time"
+          },
+          "lastUseDate": {
+            "type": "string",
+            "description": "Data ostatniego użycia tokena.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AuthenticationTokenStatus"
+              }
+            ],
+            "description": "Status tokena.\n| Wartość | Opis |\n| --- | --- |\n| Pending | Token został utworzony ale jest jeszcze w trakcie aktywacji i nadawania uprawnień. Nie może być jeszcze wykorzystywany do uwierzytelniania. |\n| Active | Token jest aktywny i może być wykorzystywany do uwierzytelniania. |\n| Revoking | Token jest w trakcie unieważniania. Nie może już być wykorzystywany do uwierzytelniania. |\n| Revoked | Token został unieważniony i nie może być wykorzystywany do uwierzytelniania. |\n| Failed | Nie udało się aktywować tokena. Należy wygenerować nowy token, obecny nie może być wykorzystywany do uwierzytelniania. |\n"
+          },
+          "statusDetails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Dodatkowe informacje na temat statusu, zwracane w przypadku błędów.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "UpoPageResponse": {
         "required": [
