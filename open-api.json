@@ -6068,7 +6068,7 @@
           },
           "hasAttachment": {
             "type": "boolean",
-            "description": "Czy faktura posiada załącznik."
+            "description": "Określa, czy faktura posiada załącznik."
           },
           "invoiceHash": {
             "type": "string",
@@ -7597,7 +7597,7 @@
         "properties": {
           "hasMore": {
             "type": "boolean",
-            "description": "Flaga informująca o dostępności kolejnej strony wyników."
+            "description": "Określa, czy dostępna jest kolejna strona wyników."
           },
           "invoices": {
             "type": "array",
@@ -8159,7 +8159,7 @@
           },
           "dateCreated": {
             "type": "string",
-            "description": "Data utowrzenia sesji.",
+            "description": "Data utworzenia sesji.",
             "format": "date-time"
           },
           "dateUpdated": {
