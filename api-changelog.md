@@ -8,6 +8,9 @@
 - Ujednoznaczniono model odpowiedzi GET `/tokens`:  
   właściwości `authorIdentifier.type`, `authorIdentifier.value`, `contextIdentifier.type`, `contextIdentifier.value` oznaczono jako zawsze zwracane (required, non-nullable).
 
+- **Sesja wsadowa**  
+  Usunięto nadmiarowy kod błędu `21401`	- "Dokument nie jest zgodny ze schemą (json)".
+
 ### Wersja 2.0.0 RC5
 
 - **Obsługa faktur PEF i dostawców usług Peppol**
