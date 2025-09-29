@@ -1,23 +1,24 @@
 ## Zmiany w API 2.0
 
 ### Wersja 2.0.0 RC5.1
-- Usunięto nadmiarowe wartości enum `None`, `AllPartners` w następujących miejscach:
-  - we właściwości `contextIdentifier.type` żądania POST `/auth/ksef-token` ("Uwierzytelnienie z wykorzystaniem tokena KSeF"),
-  - we właściwościach `authorIdentifier.type` oraz `contextIdentifier.type` w modelu odpowiedzi GET `/tokens` ("Pobranie listy wygenerowanych tokenów").
 
-- Ujednoznaczniono model odpowiedzi GET `/tokens`:  
-  właściwości `authorIdentifier.type`, `authorIdentifier.value`, `contextIdentifier.type`, `contextIdentifier.value` oznaczono jako zawsze zwracane (required, non-nullable).
+- **Uwierzytelnienie z wykorzystaniem tokena KSeF**  
+  Usunięto nadmiarowe wartości enum `None`, `AllPartners` we właściwości `contextIdentifier.type` żądania POST `/auth/ksef-token`.
+
+- **Tokeny KSeF**  
+  - Ujednoznaczniono model odpowiedzi GET `/tokens`: właściwości `authorIdentifier.type`, `authorIdentifier.value`, `contextIdentifier.type`, `contextIdentifier.value` są zawsze zwracane (required, non-nullable),
+  - Usunięto nadmiarowe wartości enum `None`, `AllPartners` we właściwościach `authorIdentifier.type` oraz `contextIdentifier.type` w modelu odpowiedzi GET `/tokens` ("Pobranie listy wygenerowanych tokenów").
 
 - **Sesja wsadowa**  
   Usunięto nadmiarowy kod błędu `21401`	- "Dokument nie jest zgodny ze schemą (json)".
 
 - **Pobieranie metadanych faktur (GET `/invoices/query/metadata`)**  
   - Dodano w odpowiedzi (zawsze zwracaną) właściwość `isTruncated` (boolean) – "Określa, czy wynik został obcięty z powodu przekroczenia limitu liczby faktur (10 000)",
-  - Oznaczono właściwość `amount.type` jako wymaganą w filtrze żądania.
+  - Oznaczono właściwość `amount.type` w filtrze żądania jako wymaganą.
 
 - **Eksport paczki faktur: zlecenie (POST `/invoices/exports`)**
-  - Oznaczono `operationReferenceNumber` w modelu odpowiedzi jako zawsze zwracane,
-  - Oznaczono właściwość `amount.type` jako wymaganą w filtrze żądania.
+  - Oznaczono właściwość `operationReferenceNumber` w modelu odpowiedzi jako zawsze zwracaną,
+  - Oznaczono właściwość `amount.type` w filtrze żądania jako wymaganą.
 
 ### Wersja 2.0.0 RC5
 
