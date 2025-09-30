@@ -12,6 +12,9 @@
 - **Sesja wsadowa**  
   Usunięto nadmiarowy kod błędu `21401`	- "Dokument nie jest zgodny ze schemą (json)".
 
+- **Pobranie statusu sesji (GET /sessions/{referenceNumber})**  
+  - Dodano kod błędu `420` - "Przekroczony limit faktur w sesji".
+
 - **Pobieranie metadanych faktur (GET `/invoices/query/metadata`)**  
   - Dodano w odpowiedzi (zawsze zwracaną) właściwość `isTruncated` (boolean) – "Określa, czy wynik został obcięty z powodu przekroczenia limitu liczby faktur (10 000)",
   - Oznaczono właściwość `amount.type` w filtrze żądania jako wymaganą.
