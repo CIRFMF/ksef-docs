@@ -1212,7 +1212,7 @@
                   "subjectIdentifier",
                   "contextIdentifier",
                   "description",
-                  "subjectName"
+                  "euEntityName"
                 ],
                 "allOf": [
                   {
@@ -1220,7 +1220,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"contextIdentifier":{"type":"NipVatUe","value":"7762811692-DE123456789012"},"description":"Administrator podmiotu unijnego DE123456789012"}
+              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"contextIdentifier":{"type":"NipVatUe","value":"7762811692-DE123456789012"},"description":"Administrator podmiotu unijnego DE123456789012","euEntityName":"Nazwa podmiotu unijnego"}
             }
           }
         },
@@ -3406,7 +3406,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/QueryPersonalPermissionsResponse"
-                }
+                },
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","permissionScope":"InvoiceWrite","description":"Uprawnienie do odczytu faktur","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"hasMore":false}
               }
             }
           },
@@ -3484,7 +3485,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryPersonPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":"7762811692","authorizedIdentifierType":"Nip","targetIdentifier":"9786214922","targetIdentifierType":"Nip","authorIdentifier":"15062788702","authorIdentifierType":"Pesel","permissionScope":"InvoiceWrite","description":"Uprawnienie nadane pośrednio","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"hasMore":false}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":{"type":"Nip","value":"7762811692"},"targetIdentifier":{"type":"Nip","value":"9786214922"},"authorIdentifier":{"type":"Pesel","value":"15062788702"},"permissionScope":"InvoiceWrite","description":"Uprawnienie nadane pośrednio","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"hasMore":false}
               }
             }
           },
@@ -3566,7 +3567,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QuerySubunitPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59","authorizedIdentifierType":"Fingerprint","subunitIdentifier":"7762811692-12345","subunitIdentifierType":"InternalId","authorIdentifier":"15062788702","authorIdentifierType":"Pesel","permissionScope":"CredentialsManage","description":"administrator jednostki podrzędnej","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"subunitIdentifier":{"type":"InternalId","value":"7762811692-12345"},"authorIdentifier":{"type":"Pesel","value":"15062788702"},"permissionScope":"CredentialsManage","description":"administrator jednostki podrzędnej","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -3717,7 +3718,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QuerySubordinateEntityRolesResponse"
                 },
-                "example": {"roles":[{"subordinateEntityIdentifier":"7762811692","subordinateEntityIdentifierType":"Nip","role":"VatGroupSubUnit","description":"Członek grupy VAT","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {"roles":[{"subordinateEntityIdentifier":{"type":"Nip","value":"7762811692"},"role":"VatGroupSubUnit","description":"Członek grupy VAT","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -3803,7 +3804,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryEntityAuthorizationPermissionsResponse"
                 },
-                "example": {"authorizationGrants":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":"15062788702","authorIdentifierType":"Pesel","authorizedEntityIdentifier":"7762811692","authorizedEntityIdentifierType":"Nip","authorizingEntityIdentifier":"1134256681","authorizingEntityIdentifierType":"Nip","authorizationScope":"SelfInvoicing","description":"Uprawnienie podmiotowe do samofakturowania","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {"authorizationGrants":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":{"type":"Pesel","value":"15062788702"},"authorizedEntityIdentifier":{"type":"Nip","value":"7762811692"},"authorizingEntityIdentifier":{"type":"Nip","value":"1134256681"},"authorizationScope":"SelfInvoicing","description":"Uprawnienie podmiotowe do samofakturowania","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -3885,7 +3886,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryEuEntityPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":"15062788702","authorIdentifierType":"Pesel","vatUeIdentifier":"DE123456789012","euEntityName":"Podmiot unijny","authorizedFingerprintIdentifier":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59","permissionScope":"VatUeManage","description":"Administrator podmiotu unijnego","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":{"type":"Pesel","value":"15062788702"},"vatUeIdentifier":"DE123456789012","euEntityName":"Podmiot unijny","authorizedFingerprintIdentifier":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59","permissionScope":"VatUeManage","description":"Administrator podmiotu unijnego","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -4893,9 +4894,7 @@
         "required": [
           "authorizationScope",
           "authorizedEntityIdentifier",
-          "authorizedEntityIdentifierType",
           "authorizingEntityIdentifier",
-          "authorizingEntityIdentifierType",
           "description",
           "id",
           "startDate"
@@ -4907,42 +4906,41 @@
             "description": "Identyfikator uprawnienia."
           },
           "authorIdentifier": {
-            "type": "string",
-            "description": "Identyfikator osoby nadającej uprawnienie.",
-            "nullable": true
-          },
-          "authorIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/EntityAuthorizationsAuthorIdentifierType"
+                "$ref": "#/components/schemas/EntityAuthorizationsAuthorIdentifier"
               }
             ],
-            "description": "Typ identyfikatora osoby nadającej uprawnienie.",
+            "description": "Identyfikator osoby nadającej uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |",
             "nullable": true
           },
           "authorizedEntityIdentifier": {
-            "type": "string",
-            "description": "Identyfikator podmiotu uprawnionego."
-          },
-          "authorizedEntityIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/EntityAuthorizationsAuthorizedEntityIdentifierType"
+                "$ref": "#/components/schemas/EntityAuthorizationsAuthorizedEntityIdentifier"
               }
             ],
-            "description": "Typ identyfikatora podmiotu uprawnionego."
+            "description": "Identyfikator podmiotu uprawnionego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| PeppolId | Identyfikator dostawcy usług Peppol |"
           },
           "authorizingEntityIdentifier": {
-            "type": "string",
-            "description": "Identyfikator podmiotu uprawniającego."
-          },
-          "authorizingEntityIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/EntityAuthorizationsAuthorizingEntityIdentifierType"
+                "$ref": "#/components/schemas/EntityAuthorizationsAuthorizingEntityIdentifier"
               }
             ],
-            "description": "Typ identyfikatora podmiotu uprawniającego."
+            "description": "Identyfikator podmiotu uprawniającego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
           },
           "authorizationScope": {
             "allOf": [
@@ -5088,6 +5086,29 @@
           "PeppolId"
         ],
         "type": "string"
+      },
+      "EntityAuthorizationsAuthorIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityAuthorizationsAuthorIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora."
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Identyfikator osoby nadającej uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "EntityAuthorizationsAuthorIdentifierType": {
         "enum": [
@@ -5285,17 +5306,16 @@
         "type": "object",
         "properties": {
           "parentEntityIdentifier": {
-            "type": "string",
-            "description": "Identyfikator podmiotu nadrzędnego.",
-            "nullable": true
-          },
-          "parentEntityIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/EntityRolesParentEntityIdentifierType"
+                "$ref": "#/components/schemas/EntityRolesParentEntityIdentifier"
               }
             ],
-            "description": "Typ identyfikatora podmiotu nadrzędnego.",
+            "description": "Identyfikator podmiotu nadrzędnego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
             "nullable": true
           },
           "role": {
@@ -5328,6 +5348,29 @@
           "VatGroupSubUnit"
         ],
         "type": "string"
+      },
+      "EntityRolesParentEntityIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityRolesParentEntityIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora."
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Identyfikator podmiotu nadrzędnego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
       },
       "EntityRolesParentEntityIdentifierType": {
         "enum": [
@@ -5368,8 +5411,8 @@
         "required": [
           "contextIdentifier",
           "description",
-          "subjectIdentifier",
-          "subjectName"
+          "euEntityName",
+          "subjectIdentifier"
         ],
         "type": "object",
         "properties": {
@@ -5383,7 +5426,7 @@
                 "$ref": "#/components/schemas/EuEntityAdministrationPermissionsSubjectIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu.\n| Type | Value |\n| --- | --- |\n| Fingerprint | Odcisk palca certyfikatu |"
+            "description": "Identyfikator podmiotu uprawnionego.\n| Type | Value |\n| --- | --- |\n| Fingerprint | Odcisk palca certyfikatu |"
           },
           "contextIdentifier": {
             "required": [
@@ -5401,9 +5444,9 @@
             "type": "string",
             "description": "Opis nadawanych uprawnień."
           },
-          "subjectName": {
+          "euEntityName": {
             "type": "string",
-            "description": "Nazwa podmiotu."
+            "description": "Nazwa podmiotu unijnego."
           }
         },
         "additionalProperties": false
@@ -5429,7 +5472,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu.\n| Type | Value |\n| --- | --- |\n| Fingerprint | Odcisk palca certyfikatu |"
+        "description": "Identyfikator podmiotu uprawnionego.\n| Type | Value |\n| --- | --- |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "EuEntityAdministrationPermissionsSubjectIdentifierType": {
         "enum": [
@@ -5440,7 +5483,6 @@
       "EuEntityPermission": {
         "required": [
           "authorIdentifier",
-          "authorIdentifierType",
           "authorizedFingerprintIdentifier",
           "description",
           "euEntityName",
@@ -5456,16 +5498,16 @@
             "description": "Identyfikator uprawnienia."
           },
           "authorIdentifier": {
-            "type": "string",
-            "description": "Identyfikator uprawniającego."
-          },
-          "authorIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/EuEntityPermissionsAuthorIdentifierType"
+                "$ref": "#/components/schemas/EuEntityPermissionsAuthorIdentifier"
               }
             ],
-            "description": "Typ identyfikatora uprawniającego."
+            "description": "Identyfikator uprawniającego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
           },
           "vatUeIdentifier": {
             "type": "string",
@@ -5505,6 +5547,29 @@
           "InvoiceRead"
         ],
         "type": "string"
+      },
+      "EuEntityPermissionsAuthorIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EuEntityPermissionsAuthorIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora."
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Identyfikator uprawniającego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "EuEntityPermissionsAuthorIdentifierType": {
         "enum": [
@@ -6875,9 +6940,7 @@
       "PersonPermission": {
         "required": [
           "authorIdentifier",
-          "authorIdentifierType",
           "authorizedIdentifier",
-          "authorizedIdentifierType",
           "canDelegate",
           "description",
           "id",
@@ -6892,56 +6955,52 @@
             "description": "Identyfikator uprawnienia."
           },
           "authorizedIdentifier": {
-            "type": "string",
-            "description": "Identyfikator uprawnionego."
-          },
-          "authorizedIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/PersonPermissionsAuthorizedIdentifierType"
+                "$ref": "#/components/schemas/PersonPermissionsAuthorizedIdentifier"
               }
             ],
-            "description": "Typ identyfikatora uprawnionego."
+            "description": "Identyfikator osoby lub podmiotu uprawnionego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
           },
           "contextIdentifier": {
-            "type": "string",
-            "description": "Identyfikator kontekstu uprawnienia, jeśli inny niż kontekst uwierzytelnienia.",
-            "nullable": true
-          },
-          "contextIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/PersonPermissionsContextIdentifierType"
+                "$ref": "#/components/schemas/PersonPermissionsContextIdentifier"
               }
             ],
-            "description": "Typ identyfikatora kontekstu uprawnienia.",
+            "description": "Identyfikator kontekstu uprawnienia (dla uprawnień nadanych administratorom jednostek podrzędnych).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |",
             "nullable": true
           },
           "targetIdentifier": {
-            "type": "string",
-            "description": "Identyfikator podmiotu docelowego.",
-            "nullable": true
-          },
-          "targetIdentifierType": {
+            "required": [
+              "type"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/PersonPermissionsTargetIdentifierType"
+                "$ref": "#/components/schemas/PersonPermissionsTargetIdentifier"
               }
             ],
-            "description": "Typ identyfikatora podmiotu docelowego.",
+            "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
             "nullable": true
           },
           "authorIdentifier": {
-            "type": "string",
-            "description": "Identyfikator uprawniającego."
-          },
-          "authorIdentifierType": {
+            "required": [
+              "type"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/PersonPermissionsAuthorIdentifierType"
+                "$ref": "#/components/schemas/PersonPermissionsAuthorIdentifier"
               }
             ],
-            "description": "Typ identyfikatora uprawniającego."
+            "description": "Identyfikator osoby lub podmiotu nadającego uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |\n| System | Identyfikator systemowy KSeF |"
           },
           "permissionScope": {
             "allOf": [
@@ -7305,45 +7364,41 @@
             "description": "Identyfikator uprawnienia."
           },
           "contextIdentifier": {
-            "type": "string",
-            "description": "Identyfikator kontekstu uprawnienia, jeśli inny niż kontekst uwierzytelnienia.",
-            "nullable": true
-          },
-          "contextIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/PersonalPermissionsContextIdentifierType"
+                "$ref": "#/components/schemas/PersonalPermissionsContextIdentifier"
               }
             ],
-            "description": "Typ identyfikatora kontekstu uprawnienia.",
+            "description": "Identyfikator kontekstu uprawnienia (dla uprawnień nadanych podmiotom do obsługi faktur).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
             "nullable": true
           },
           "authorizedIdentifier": {
-            "type": "string",
-            "description": "Identyfikator podmiotu uprawnionego, jeśli inny niż podmiot uwierzytelnienia.",
-            "nullable": true
-          },
-          "authorizedIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/PersonalPermissionsAuthorizedIdentifierType"
+                "$ref": "#/components/schemas/PersonalPermissionsAuthorizedIdentifier"
               }
             ],
-            "description": "Typ identyfikatora podmiotu uprawnionego.",
+            "description": "Identyfikator podmiotu uprawnionego, jeśli inny niż podmiot uwierzytelnienia.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
             "nullable": true
           },
           "targetIdentifier": {
-            "type": "string",
-            "description": "Identyfikator podmiotu docelowego.",
-            "nullable": true
-          },
-          "targetIdentifierType": {
+            "required": [
+              "type"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/PersonalPermissionsTargetIdentifierType"
+                "$ref": "#/components/schemas/PersonalPermissionsTargetIdentifier"
               }
             ],
-            "description": "Typ identyfikatora podmiotu docelowego.",
+            "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
             "nullable": true
           },
           "permissionScope": {
@@ -7403,6 +7458,29 @@
           "EnforcementOperations"
         ],
         "type": "string"
+      },
+      "PersonalPermissionsAuthorizedIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonalPermissionsAuthorizedIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora."
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Identyfikator podmiotu uprawnionego, jeśli inny niż podmiot uwierzytelnienia.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
       },
       "PersonalPermissionsAuthorizedIdentifierType": {
         "enum": [
@@ -8109,7 +8187,7 @@
           },
           "permanentStorageDate": {
             "type": "string",
-            "description": "Data trwałego zapisu faktury w repozytorium systemu KSeF. Od tego momentu faktura jest dostępna do pobrania.",
+            "description": "Data trwałego zapisu faktury w repozytorium systemu KSeF.",
             "format": "date-time",
             "nullable": true
           },
@@ -8376,22 +8454,21 @@
           "description",
           "role",
           "startDate",
-          "subordinateEntityIdentifier",
-          "subordinateEntityIdentifierType"
+          "subordinateEntityIdentifier"
         ],
         "type": "object",
         "properties": {
           "subordinateEntityIdentifier": {
-            "type": "string",
-            "description": "Identyfikator podmiotu podrzędnego."
-          },
-          "subordinateEntityIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/SubordinateRoleSubordinateEntityIdentifierType"
+                "$ref": "#/components/schemas/SubordinateRoleSubordinateEntityIdentifier"
               }
             ],
-            "description": "Typ identyfikatora podmiotu podrzędnego."
+            "description": "Identyfikator podmiotu podrzędnego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
           },
           "role": {
             "allOf": [
@@ -8439,6 +8516,29 @@
         },
         "additionalProperties": false
       },
+      "SubordinateRoleSubordinateEntityIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SubordinateRoleSubordinateEntityIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora."
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Identyfikator podmiotu podrzędnego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
+      },
       "SubordinateRoleSubordinateEntityIdentifierType": {
         "enum": [
           "Nip"
@@ -8462,15 +8562,12 @@
       "SubunitPermission": {
         "required": [
           "authorIdentifier",
-          "authorIdentifierType",
           "authorizedIdentifier",
-          "authorizedIdentifierType",
           "description",
           "id",
           "permissionScope",
           "startDate",
-          "subunitIdentifier",
-          "subunitIdentifierType"
+          "subunitIdentifier"
         ],
         "type": "object",
         "properties": {
@@ -8479,40 +8576,40 @@
             "description": "Identyfikator uprawnienia."
           },
           "authorizedIdentifier": {
-            "type": "string",
-            "description": "Identyfikator uprawnionego."
-          },
-          "authorizedIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/SubunitPermissionsSubjectIdentifierType"
+                "$ref": "#/components/schemas/SubunitPermissionsAuthorizedIdentifier"
               }
             ],
-            "description": "Typ identyfikatora uprawnionego."
+            "description": "Identyfikator uprawnionego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
           },
           "subunitIdentifier": {
-            "type": "string",
-            "description": "Identyfikator podmiotu podrzędnego."
-          },
-          "subunitIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/SubunitPermissionsSubunitIdentifierType"
+                "$ref": "#/components/schemas/SubunitPermissionsSubunitIdentifier"
               }
             ],
-            "description": "Typ identyfikatora podmiotu podrzędnego."
+            "description": "Identyfikator jednostki lub podmiotu podrzędnego.\n| Type | Value |\n| --- | --- |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |\n| Nip | 10 cyfrowy numer NIP |"
           },
           "authorIdentifier": {
-            "type": "string",
-            "description": "Identyfikator uprawniającego."
-          },
-          "authorIdentifierType": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/SubunitPermissionsAuthorIdentifierType"
+                "$ref": "#/components/schemas/SubunitPermissionsAuthorIdentifier"
               }
             ],
-            "description": "Typ identyfikatora uprawniającego."
+            "description": "Identyfikator uprawniającego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
           },
           "permissionScope": {
             "allOf": [
@@ -8540,6 +8637,29 @@
         ],
         "type": "string"
       },
+      "SubunitPermissionsAuthorIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SubunitPermissionsAuthorIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora."
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Identyfikator uprawniającego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
+      },
       "SubunitPermissionsAuthorIdentifierType": {
         "enum": [
           "Nip",
@@ -8547,6 +8667,29 @@
           "Fingerprint"
         ],
         "type": "string"
+      },
+      "SubunitPermissionsAuthorizedIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SubunitPermissionsSubjectIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora."
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Identyfikator uprawnionego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "SubunitPermissionsContextIdentifier": {
         "required": [

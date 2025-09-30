@@ -5,6 +5,35 @@
 - **Pobranie listy metadanych certyfikatów (POST /certificates/query)**  
   Zmieniono reprezentację identyfikatora podmiotu z pary właściwości `subjectIdentifier` + `subjectIdentifierType` na obiekt złożony `subjectIdentifier` { `type`, `value` }.
 
+- **Uprawnienia**  
+  Zmieniono reprezentację wybranych identyfikatorów z par właściwości typ + value na obiekty złożone { type, value }: 
+    - "Pobranie listy własnych uprawnień" (POST `/permissions/query/personal/grants`):  
+      - `contextIdentifier` + `contextIdentifierType` -> `contextIdentifier` { `type`, `value` },
+      - `authorizedIdentifier` + `authorizedIdentifierType` -> `authorizedIdentifier` { `type`, `value` },
+      - `targetIdentifier` + `targetIdentifierType` -> `targetIdentifier` { type, value }.  
+    - "Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom" (POST `/permissions/query/persons/grants`),
+      - `contextIdentifier` + `contextIdentifierType` -> `contextIdentifier` { `type`, `value` },
+      - `authorizedIdentifier` + `authorizedIdentifierType` -> `authorizedIdentifier` { `type`, `value` },
+      - `targetIdentifier` + `targetIdentifierType` -> `targetIdentifier` { `type`, `value` },
+      - `authorIdentifier` + `authorIdentifierType` -> `authorIdentifier` { `type`, `value` }.    
+    - "Pobranie listy uprawnień administratorów jednostek i podmiotów podrzędnych" (POST `/permissions/query/subunits/grants`):
+      - `authorizedIdentifier` + `authorizedIdentifierType` -> `authorizedIdentifier` { `type`, `value` },
+      - `subunitIdentifier` + `subunitIdentifierType` -> `subunitIdentifier` { `type`, `value` },
+      - `authorIdentifier` + `authorIdentifierType` -> `authorIdentifier` { `type`, `value` }.
+    - "Pobranie listy ról podmiotu" (POST `/permissions/query/entities/roles`):
+      - `parentEntityIdentifier` + `parentEntityIdentifierType` -> `parentEntityIdentifier` { `type`, `value` }.
+    - "Pobranie listy podmiotów podrzędnych" (POST `/permissions/query/subordinate-entities/roles`):
+      - `subordinateEntityIdentifier` + `subordinateEntityIdentifierType` -> `subordinateEntityIdentifier` { `type`, `value` }.
+    - "Pobranie listy uprawnień podmiotowych do obsługi faktur" (POST `/permissions/query/authorizations/grants`):
+      - `authorizedEntityIdentifier` + `authorizedEntityIdentifierType` -> `authorizedEntityIdentifier` { `type`, `value` },
+      - `authorizingEntityIdentifier` + `authorizingEntityIdentifierType` -> `authorizingEntityIdentifier` { `type`, `value` },
+      - `authorIdentifier` + `authorIdentifierType` -> `authorIdentifier` { `type`, `value` }
+    - "Pobranie listy uprawnień administratorów lub reprezentantów podmiotów unijnych uprawnionych do samofakturowania" (POST `/permissions/query/eu-entities/grants`):
+      - `authorIdentifier` + `authorIdentifierType` -> `authorIdentifier` { `type`, `value` }        
+
+- **Nadanie uprawnień administratora podmiotu unijnego (POST permissions/eu-entities/administration/grants)**  
+  Zmieniono nazwę właściwości w żądaniu z `subjectName` na `euEntityName`.
+
 - **Uwierzytelnienie z wykorzystaniem tokena KSeF**  
   Usunięto nadmiarowe wartości enum `None`, `AllPartners` we właściwości `contextIdentifier.type` żądania POST `/auth/ksef-token`.
 
