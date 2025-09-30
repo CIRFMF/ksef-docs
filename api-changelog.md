@@ -2,6 +2,9 @@
 
 ### Wersja 2.0.0 RC5.1
 
+- **Pobranie listy metadanych certyfikatów (POST /certificates/query)**  
+  Zmieniono reprezentację identyfikatora podmiotu z pary właściwości `subjectIdentifier` + `subjectIdentifierType` na obiekt złożony `subjectIdentifier` { `type`, `value` }.
+
 - **Uwierzytelnienie z wykorzystaniem tokena KSeF**  
   Usunięto nadmiarowe wartości enum `None`, `AllPartners` we właściwości `contextIdentifier.type` żądania POST `/auth/ksef-token`.
 
