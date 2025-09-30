@@ -5,6 +5,14 @@
 - **Pobranie listy metadanych certyfikatów (POST /certificates/query)**  
   Zmieniono reprezentację identyfikatora podmiotu z pary właściwości `subjectIdentifier` + `subjectIdentifierType` na obiekt złożony `subjectIdentifier` { `type`, `value` }.
 
+- **Pobranie listy metadanych certyfikatów (POST /invoices/query/metadata)** 
+  - Zmieniono reprezentację wybranych identyfikatorów z par właściwości typ + value na obiekty złożone { type, value }: 
+    - `invoiceMetadataBuyer.identifier` + `invoiceMetadataBuyer.identifierType` na obiekt złożony `invoiceMetadataBuyerIdentifier` { `type`, `value` },
+    - `invoiceMetadataThirdSubject.identifier` + `invoiceMetadataThirdSubject.identifierType` na obiekt złożony `InvoiceMetadataThirdSubjectIdentifier` { `type`, `value` }.
+  - Usunięto `obsoleted` właściwości `Identitifer` z obiektów  `InvoiceMetadataSeller` oraz `InvoiceMetadataAuthorizedSubject`.
+  - Zmieniono właściwość `invoiceQuerySeller` na `sellerNip` w filtrze żądania.
+  - Zmieniono właściwość `invoiceQueryBuyer` na `invoiceQueryBuyerIdentifier` z właściwościami { `type`, `value` } w filtrze żądania.
+
 - **Uprawnienia**  
   Zmieniono reprezentację wybranych identyfikatorów z par właściwości typ + value na obiekty złożone { type, value }: 
     - "Pobranie listy własnych uprawnień" (POST `/permissions/query/personal/grants`):  

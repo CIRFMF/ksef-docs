@@ -1659,7 +1659,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryInvoicesMetadataResponse"
                 },
-                "example": {"hasMore":false,"isTruncated":false,"invoices":[{"ksefNumber":"5555555555-20250828-010080615740-E4","invoiceNumber":"FA/KUDYO1a7dddfe-610e-4843-84ba-6b887e35266e","issueDate":"2025-08-27","invoicingDate":"2025-08-28T09:22:13.388+00:00","acquisitionDate":"2025-08-28T09:22:56.388+00:00","permanentStorageDate":"2025-08-28T09:23:01.388+00:00","seller":{"nip":"5555555555","name":"Test Company 1"},"buyer":{"identifierType":"Nip","identifier":"7352765225","name":"Test Company 4"},"netAmount":35260.63,"grossAmount":43370.57,"vatAmount":8109.94,"currency":"PLN","invoicingMode":"Offline","invoiceType":"Vat","formCode":{"systemCode":"FA (3)","schemaVersion":"1-0E","value":"FA"},"isSelfInvoicing":false,"hasAttachment":false,"invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","thirdSubjects":[]},{"ksefNumber":"5555555555-20250828-010080615740-E4","invoiceNumber":"5265877635-20250925-010020A0A242-0A","issueDate":"2025-08-28","invoicingDate":"2025-08-28T10:23:13.388+00:00","acquisitionDate":"2025-08-28T10:23:56.388+00:00","permanentStorageDate":"2025-08-28T10:24:01.388+00:00","seller":{"nip":"5555555555","name":"Test Company 1"},"buyer":{"identifierType":"Nip","identifier":"3225081610","name":"Test Company 2"},"netAmount":35260.63,"grossAmount":43370.57,"vatAmount":8109.94,"currency":"PLN","invoicingMode":"Online","invoiceType":"Vat","formCode":{"systemCode":"FA (3)","schemaVersion":"1-0E","value":"FA"},"isSelfInvoicing":false,"hasAttachment":true,"invoiceHash":"o+nMBU8n8TAhy6EjbcdYdHSZVbUspqmCKqOPLhy3zIQ=","thirdSubjects":[{"identifierType":"InternalId","identifier":"5555555555-12345","name":"Wystawca faktury","role":4}]}]}
+                "example": {"hasMore":false,"isTruncated":false,"invoices":[{"ksefNumber":"5555555555-20250828-010080615740-E4","invoiceNumber":"FA/KUDYO1a7dddfe-610e-4843-84ba-6b887e35266e","issueDate":"2025-08-27","invoicingDate":"2025-08-28T09:22:13.388+00:00","acquisitionDate":"2025-08-28T09:22:56.388+00:00","permanentStorageDate":"2025-08-28T09:23:01.388+00:00","seller":{"nip":"5555555555","name":"Test Company 1"},"buyer":{"identifier":{"type":"Nip","value":"7352765225"},"name":"Test Company 4"},"netAmount":35260.63,"grossAmount":43370.57,"vatAmount":8109.94,"currency":"PLN","invoicingMode":"Offline","invoiceType":"Vat","formCode":{"systemCode":"FA (3)","schemaVersion":"1-0E","value":"FA"},"isSelfInvoicing":false,"hasAttachment":false,"invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","thirdSubjects":[]},{"ksefNumber":"5555555555-20250828-010080615740-E4","invoiceNumber":"5265877635-20250925-010020A0A242-0A","issueDate":"2025-08-28","invoicingDate":"2025-08-28T10:23:13.388+00:00","acquisitionDate":"2025-08-28T10:23:56.388+00:00","permanentStorageDate":"2025-08-28T10:24:01.388+00:00","seller":{"nip":"5555555555","name":"Test Company 1"},"buyer":{"identifier":{"type":"Nip","value":"3225081610"},"name":"Test Company 2"},"netAmount":35260.63,"grossAmount":43370.57,"vatAmount":8109.94,"currency":"PLN","invoicingMode":"Online","invoiceType":"Vat","formCode":{"systemCode":"FA (3)","schemaVersion":"1-0E","value":"FA"},"isSelfInvoicing":false,"hasAttachment":true,"invoiceHash":"o+nMBU8n8TAhy6EjbcdYdHSZVbUspqmCKqOPLhy3zIQ=","thirdSubjects":[{"identifier":{"type":"InternalId","value":"5555555555-12345"},"name":"Wystawca faktury","role":4}]}]}
               }
             }
           },
@@ -6104,7 +6104,7 @@
           },
           "buyer": {
             "required": [
-              "identifierType"
+              "identifier"
             ],
             "allOf": [
               {
@@ -6209,11 +6209,6 @@
         ],
         "type": "object",
         "properties": {
-          "identifiter": {
-            "type": "string",
-            "nullable": true,
-            "deprecated": true
-          },
           "nip": {
             "type": "string",
             "description": "Nip podmiotu upoważnionego"
@@ -6233,11 +6228,30 @@
       },
       "InvoiceMetadataBuyer": {
         "required": [
-          "identifierType"
+          "identifier"
         ],
         "type": "object",
         "properties": {
-          "identifierType": {
+          "identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceMetadataBuyerIdentifier"
+              }
+            ],
+            "description": "Identyfikator nabywcy."
+          },
+          "name": {
+            "type": "string",
+            "description": "Nazwa nabywcy.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceMetadataBuyerIdentifier": {
+        "type": "object",
+        "properties": {
+          "type": {
             "allOf": [
               {
                 "$ref": "#/components/schemas/BuyerIdentifierType"
@@ -6245,14 +6259,9 @@
             ],
             "description": "Typ identyfikatora nabywcy.\n| Wartość | Opis |\n| --- | --- |\n| None | Brak identyfikatora nabywcy |\n| Other | Inny |\n| Nip | NIP |\n| VatUe | VAT UE |\n"
           },
-          "identifier": {
+          "value": {
             "type": "string",
             "description": "Wartośc identyfikatora nabywcy.",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "description": "Nazwa nabywcy.",
             "nullable": true
           }
         },
@@ -6264,12 +6273,6 @@
         ],
         "type": "object",
         "properties": {
-          "identifier": {
-            "type": "string",
-            "description": "Identyfikator sprzedawcy.",
-            "nullable": true,
-            "deprecated": true
-          },
           "nip": {
             "type": "string",
             "description": "Nip sprzedawcy."
@@ -6284,23 +6287,18 @@
       },
       "InvoiceMetadataThirdSubject": {
         "required": [
-          "identifierType",
+          "identifier",
           "role"
         ],
         "type": "object",
         "properties": {
-          "identifierType": {
+          "identifier": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ThirdSubjectIdentifierType"
+                "$ref": "#/components/schemas/InvoiceMetadataThirdSubjectIdentifier"
               }
             ],
-            "description": "Typ identyfikatora podmiotu trzeciego.\n| Wartość | Opis |\n| --- | --- |\n| Nip | Nip |\n| InternalId | Identyfikator wewnętrzny |\n| VatUe | VAT UE |\n| Other | Inny identyfikator |\n| None | Brak identyfikatora podmiotu trzeciego |\n"
-          },
-          "identifier": {
-            "type": "string",
-            "description": "Wartość identyfikatora podmiotu trzeciego.",
-            "nullable": true
+            "description": "Identyfikator podmiotu trzeciego."
           },
           "name": {
             "type": "string",
@@ -6311,6 +6309,28 @@
             "type": "integer",
             "description": "Rola podmiotu trzeciego.",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceMetadataThirdSubjectIdentifier": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ThirdSubjectIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora podmiotu trzeciego.\n| Wartość | Opis |\n| --- | --- |\n| Nip | Nip |\n| InternalId | Identyfikator wewnętrzny |\n| VatUe | VAT UE |\n| Other | Inny identyfikator |\n| None | Brak identyfikatora podmiotu trzeciego |\n"
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora podmiotu trzeciego.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -6459,19 +6479,21 @@
         },
         "additionalProperties": false
       },
-      "InvoiceQueryBuyer": {
+      "InvoiceQueryBuyerIdentifier": {
+        "required": [
+          "type"
+        ],
         "type": "object",
         "properties": {
-          "identifierType": {
+          "type": {
             "allOf": [
               {
                 "$ref": "#/components/schemas/BuyerIdentifierType"
               }
             ],
-            "description": "Typ identyfikatora nabywcy.\n| Wartość | Opis |\n| --- | --- |\n| None | Brak identyfikatora nabywcy |\n| Other | Inny |\n| Nip | NIP |\n| VatUe | VAT UE |\n",
-            "nullable": true
+            "description": "Typ identyfikatora nabywcy.\n| Wartość | Opis |\n| --- | --- |\n| None | Brak identyfikatora nabywcy |\n| Other | Inny |\n| Nip | NIP |\n| VatUe | VAT UE |\n"
           },
-          "identifier": {
+          "value": {
             "type": "string",
             "description": "Wartość identyfikatora nabywcy.",
             "nullable": true
@@ -6566,22 +6588,21 @@
             "description": "Filtr kwotowy – brutto, netto lub VAT (z wartością).",
             "nullable": true
           },
-          "seller": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceQuerySeller"
-              }
-            ],
-            "description": "Dane sprzedawcy.",
+          "sellerNip": {
+            "type": "string",
+            "description": "Nip sprzedawcy.",
             "nullable": true
           },
-          "buyer": {
+          "buyerIdentifier": {
+            "required": [
+              "type"
+            ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/InvoiceQueryBuyer"
+                "$ref": "#/components/schemas/InvoiceQueryBuyerIdentifier"
               }
             ],
-            "description": "Dane nabywcy.",
+            "description": "Identyfikator nabywcy.",
             "nullable": true
           },
           "currencyCodes": {
@@ -6639,23 +6660,6 @@
         ],
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| FA | Faktura VAT |\n| PEF | Faktura PEF |\n| RR | Faktura RR |\n"
-      },
-      "InvoiceQuerySeller": {
-        "type": "object",
-        "properties": {
-          "identifier": {
-            "type": "string",
-            "description": "Identyfikator sprzedawcy.",
-            "nullable": true,
-            "deprecated": true
-          },
-          "nip": {
-            "type": "string",
-            "description": "Nip sprzedawcy.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
       },
       "InvoiceQuerySubjectType": {
         "enum": [
