@@ -3052,7 +3052,6 @@
         ],
         "summary": "Otwarcie sesji interaktywnej",
         "description": "Otwiera sesję do wysyłki pojedynczych faktur. Należy przekazać schemat wysyłanych faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Otwarcie sesji interaktywnej](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#1-otwarcie-sesji)\n> - [Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\nWymagane uprawnienia: `InvoiceWrite`, `PefInvoiceWrite`.",
-        "operationId": "onlineSession.open",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3251,7 +3250,6 @@
         ],
         "summary": "Otwarcie sesji wsadowej",
         "description": "Otwiera sesję do wysyłki wsadowej faktur. Należy przekazać schemat wysyłanych faktur, informacje o paczce faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Przygotwanie paczki faktur](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-wsadowa.md)\n> - [Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\nWymagane uprawnienia: `InvoiceWrite`.",
-        "operationId": "batch.open",
         "requestBody": {
           "content": {
             "application/json": {

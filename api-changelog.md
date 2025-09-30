@@ -26,6 +26,9 @@
 - **Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom (POST /permissions/query/persons/grants)**  
   - Dodano `contextIdentifier` w filrze żądania i w modelu odpowiedzi.
 
+- **OpenAPI**  
+  Usunięto nieużywany `operationId` ze specyfikacji. Zmiana porządkująca.
+
 ### Wersja 2.0.0 RC5
 
 - **Obsługa faktur PEF i dostawców usług Peppol**
