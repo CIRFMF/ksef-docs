@@ -20,6 +20,9 @@
   - Oznaczono właściwość `operationReferenceNumber` w modelu odpowiedzi jako zawsze zwracaną,
   - Oznaczono właściwość `amount.type` w filtrze żądania jako wymaganą.
 
+- **Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom (POST /permissions/query/persons/grants)**  
+  - Dodano `contextIdentifier` w filrze żądania i w modelu odpowiedzi.
+
 ### Wersja 2.0.0 RC5
 
 - **Obsługa faktur PEF i dostawców usług Peppol**

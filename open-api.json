@@ -6871,6 +6871,20 @@
             ],
             "description": "Typ identyfikatora uprawnionego."
           },
+          "contextIdentifier": {
+            "type": "string",
+            "description": "Identyfikator kontekstu uprawnienia, jeśli inny niż kontekst uwierzytelnienia.",
+            "nullable": true
+          },
+          "contextIdentifierType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonPermissionsContextIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora kontekstu uprawnienia.",
+            "nullable": true
+          },
           "targetIdentifier": {
             "type": "string",
             "description": "Identyfikator podmiotu docelowego.",
@@ -7017,6 +7031,36 @@
         ],
         "type": "string"
       },
+      "PersonPermissionsContextIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonPermissionsContextIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora."
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Identyfikator kontekstu uprawnienia (dla uprawnień nadanych administratorom jednostek podrzędnych).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
+      },
+      "PersonPermissionsContextIdentifierType": {
+        "enum": [
+          "Nip",
+          "InternalId"
+        ],
+        "type": "string"
+      },
       "PersonPermissionsGrantRequest": {
         "required": [
           "description",
@@ -7080,6 +7124,19 @@
               }
             ],
             "description": "Identyfikator osoby lub podmiotu uprawnionego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |",
+            "nullable": true
+          },
+          "contextIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonPermissionsContextIdentifier"
+              }
+            ],
+            "description": "Identyfikator kontekstu uprawnienia (dla uprawnień nadanych administratorom jednostek podrzędnych).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |",
             "nullable": true
           },
           "targetIdentifier": {
