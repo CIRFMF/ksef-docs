@@ -100,10 +100,9 @@ Każda faktura lub paczka faktur musi być zaszyfrowana lokalnie przez klienta z
 
 ## Szyfrowanie asymetryczne
 
-W wersji 1.0 para kluczy RSA oraz algorytm RSA PKCS\#1 v1.5 pozostają bez zmian. 
+W wersji 2.0 wprowadzono `RSA-OAEP` z `SHA-256` i `MGF1-SHA256`. Szyfrowanie tokenów KSeF realizowane jest oddzielnym kluczem niż szyfrowanie klucza symetrycznego używanego do faktur.
 
-W wersji 2.0 wprowadzono nową parę kluczy RSA o długości 4096 bit oraz padding OAEP z SHA-256 i MGF1-SHA256.
-
+Aktualne **certyfikaty kluczy publicznych** zwracane są przez publiczny endpoint: GET `/security/public-key-certificates`
 
 ## Spójność i nowa konwencja nazewnicza w API 2.0
 
