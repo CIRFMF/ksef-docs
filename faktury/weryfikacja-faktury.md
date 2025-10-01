@@ -4,7 +4,7 @@
 Faktura przesyłana do systemu KSeF podlega szeregowi kontroli technicznych i semantycznych. Weryfikacja obejmuje następujące kryteria:
 
 ## Zgodność ze schematem XSD
-Faktura musi być przygotowana w formacie XML, kodowana w UTF-8 oraz zgodna z aktualnym schematem opublikowanym przez Ministerstwo Finansów.
+Faktura musi być przygotowana w formacie XML, kodowana w UTF-8 bez znaku BOM (3 pierwsze bajty 0xEF 0xBB 0xBF), zgodna z zadeklarowanym schematem podanym przy otwarciu sesji.
 
 ## Unikalność faktury
 - KSeF wykrywa duplikaty faktur globalnie, w oparciu o dane przechowywane w systemie. Kryterium identyfikacji duplikatu stanowi kombinacja:
