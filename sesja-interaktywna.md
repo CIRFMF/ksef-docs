@@ -77,7 +77,7 @@ POST [sessions/online/{referenceNumber}/invoices/](https://ksef-test.mf.gov.pl/d
 
 Odpowiedź zawiera ```referenceNumber``` dokumentu – używany do identyfikacji faktury w kolejnych operacjach (np. listy dokumentów).
 
-Po prawidłowym przesłaniu faktury rozpoczyna się asynchroniczna weryfikacja faktury ([szczegóły weryfikacji](faktury\weryfikacja-faktury.md)).
+Po prawidłowym przesłaniu faktury rozpoczyna się asynchroniczna weryfikacja faktury ([szczegóły weryfikacji](faktury/weryfikacja-faktury.md)).
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
