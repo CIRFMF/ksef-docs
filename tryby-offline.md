@@ -9,6 +9,7 @@ W systemie KSeF dostępne są dwa podstawowe tryby wystawiania faktur:
 
 W trybie offline faktury wystawiane są elektronicznie, zgodnie z obowiązującym wzorem struktury FA(3). Najważniejsze aspekty techniczne:
 * Przy wysyłce faktury – zarówno w trybie interaktywnym, jak i wsadowym – należy ustawić parametr `offlineMode: true`.
+* W przypadku faktur przesyłanych jako online (offlineMode: false) system KSeF samodzielnie może przypisać im tryb offline - na podstawie porównania daty wystawienia z datą przyjęcia. Szczegóły mechanizmu: [Automatyczne określanie trybu wysyłki offline](offline/automatyczne-okreslanie-trybu-offline.md).
 * Za datę wystawienia system KSeF przyjmuje wyłącznie wartość zawartą w polu ```P_1``` struktury e-faktury.
 * Data otrzymania faktury to data nadania numeru KSeF lub w przypadku udostępnienia poza KSeF, data faktycznego jej otrzymania.
 * Po wystawieniu faktury w trybie offline aplikacja kliencka powinna wygenerować dwa [kody QR](kody-qr.md) służące do wizualizacji faktury:
