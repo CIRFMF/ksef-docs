@@ -1,5 +1,12 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.0 RC5.2
+- **Uprawnienia** 
+  - "Nadanie uprawnień administratora podmiotu podrzędnego" (POST `/permissions/subunits/grants`)  
+  Dodano właściwość `subunitName` ("Nazwa jednostki podrzędnej") w żądaniu. Pole jest wymagane, gdy jednostka podrzędna identyfikowana jest identyfikatorem wewnętrznym.
+  - "Pobranie listy uprawnień administratorów jednostek i podmiotów podrzędnych" (POST `/permissions/query/subunits/grants`)  
+  Dodano w odpowiedzi właściwość `subunitName` ("Nazwa jednostki podrzędnej").
+
 ### Wersja 2.0.0 RC5.1
 
 - **Pobranie listy metadanych certyfikatów (POST /certificates/query)**  

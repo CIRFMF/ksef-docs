@@ -8627,6 +8627,11 @@
             "type": "string",
             "description": "Opis uprawnienia."
           },
+          "subunitName": {
+            "type": "string",
+            "description": "Nazwa jednostki podrzędnej.",
+            "nullable": true
+          },
           "startDate": {
             "type": "string",
             "description": "Data rozpoczęcia obowiązywania uprawnienia.",
@@ -8760,6 +8765,11 @@
           "description": {
             "type": "string",
             "description": "Opis nadawanych uprawnień."
+          },
+          "subunitName": {
+            "type": "string",
+            "description": "Nazwa jednostki podrzędnej. W przypadku jednostki podrzędnej z identyfikatorem wewnętrznym pole jest wymagane.",
+            "nullable": true
           }
         },
         "additionalProperties": false
