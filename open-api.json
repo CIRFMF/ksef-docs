@@ -189,7 +189,7 @@
           "Certyfikaty"
         ],
         "summary": "Pobranie danych do wniosku certyfikacyjnego",
-        "description": "Zwraca dane wymagane do przygotowania wniosku certyfikacyjnego PKCS#10.\n\nDane te są zwracane na podstawie certyfikatu użytego w procesie uwierzytelnienia i identyfikują podmiot, który składa wniosek o certyfikat.\n\n\n> Więcej informacji:\n> - [Pobranie danych do wniosku certyfikacyjnego](https://github.com/CIRFMF/ksef-client-docs/blob/main/certyfikaty-wewn%C4%99trzne-KSeF.md#2-pobranie-danych-do-wniosku-certyfikacyjnego)\n> - [Przygotowanie wniosku](https://github.com/CIRFMF/ksef-client-docs/blob/main/certyfikaty-wewn%C4%99trzne-KSeF.md#3-przygotowanie-csr-certificate-signing-request)",
+        "description": "Zwraca dane wymagane do przygotowania wniosku certyfikacyjnego PKCS#10.\n\nDane te są zwracane na podstawie certyfikatu użytego w procesie uwierzytelnienia i identyfikują podmiot, który składa wniosek o certyfikat.\n\n\n> Więcej informacji:\n> - [Pobranie danych do wniosku certyfikacyjnego](https://github.com/CIRFMF/ksef-docs/blob/main/certyfikaty-KSeF.md#2-pobranie-danych-do-wniosku-certyfikacyjnego)\n> - [Przygotowanie wniosku](https://github.com/CIRFMF/ksef-docs/blob/main/certyfikaty-KSeF.md#3-przygotowanie-csr-certificate-signing-request)",
         "responses": {
           "200": {
             "description": "OK",
@@ -229,7 +229,7 @@
           "Certyfikaty"
         ],
         "summary": "Wysyłka wniosku certyfikacyjnego",
-        "description": "Przyjmuje wniosek certyfikacyjny i rozpoczyna jego przetwarzanie.\n\nDozwolone typy kluczy prywatnych:\n- RSA (OID: 1.2.840.113549.1.1.1), długość klucza równa 2048 bitów,\n- EC (klucze oparte na krzywych eliptycznych, OID: 1.2.840.10045.2.1), krzywa NIST P-256 (secp256r1)\n\nZalecane jest stosowanie kluczy EC.\n\nDozwolone algorytmy podpisu:\n- RSA PKCS#1 v1.5,\n- RSA PSS,\n- ECDSA (format podpisu zgodny z RFC 3279)\n\nDozwolone funkcje skrótu użyte do podpisu CSR:\n- SHA1,\n- SHA256,\n- SHA384,\n- SHA512\n\n> Więcej informacji:\n> - [Wysłanie wniosku certyfikacyjnego](https://github.com/CIRFMF/ksef-client-docs/blob/main/certyfikaty-wewn%C4%99trzne-KSeF.md#4-wys%C5%82anie-wniosku-certyfikacyjnego)",
+        "description": "Przyjmuje wniosek certyfikacyjny i rozpoczyna jego przetwarzanie.\n\nDozwolone typy kluczy prywatnych:\n- RSA (OID: 1.2.840.113549.1.1.1), długość klucza równa 2048 bitów,\n- EC (klucze oparte na krzywych eliptycznych, OID: 1.2.840.10045.2.1), krzywa NIST P-256 (secp256r1)\n\nZalecane jest stosowanie kluczy EC.\n\nDozwolone algorytmy podpisu:\n- RSA PKCS#1 v1.5,\n- RSA PSS,\n- ECDSA (format podpisu zgodny z RFC 3279)\n\nDozwolone funkcje skrótu użyte do podpisu CSR:\n- SHA1,\n- SHA256,\n- SHA384,\n- SHA512\n\n> Więcej informacji:\n> - [Wysłanie wniosku certyfikacyjnego](https://github.com/CIRFMF/ksef-docs/blob/main/certyfikaty-KSeF.md#4-wys%C5%82anie-wniosku-certyfikacyjnego)",
         "requestBody": {
           "description": "",
           "content": {
