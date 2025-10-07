@@ -20,13 +20,11 @@
     - POST/DELETE `/testdata/limits/subject/certificate`
   - Zaktualizowano [Limity](limity/limity.md)
 
-- **Dane testowe**  
-  Dodano atrybut `required` dla wymaganych właściwości w żądaniach.
-
 - **OpenAPI**
   - Doprecyzowano ograniczenia dla właściwości typu integer w requests poprzez dodanie atrybutów `minimum` / `exclusiveMinimum`, `maximum` / `exclusiveMaximum` oraz wartości domyślnych `default`.
   - Zaktualizowano przykłady (example) w definicjach endpointów.
   - Doprecyzowano opisy endpointów.
+  - Dodano atrybut `required` dla wymaganych właściwości w żądaniach i odpowiedziach.
 
 ### Wersja 2.0.0 RC5.1
 

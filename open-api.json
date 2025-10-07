@@ -2110,6 +2110,7 @@
             "name": "pageSize",
             "in": "query",
             "description": "Rozmiar strony.",
+            "required": true,
             "schema": {
               "maximum": 100,
               "exclusiveMaximum": false,
@@ -7469,6 +7470,12 @@
         "additionalProperties": false
       },
       "PartUploadRequest": {
+        "required": [
+          "headers",
+          "method",
+          "ordinalNumber",
+          "url"
+        ],
         "type": "object",
         "properties": {
           "ordinalNumber": {
@@ -7480,14 +7487,12 @@
           },
           "method": {
             "type": "string",
-            "description": "Metoda HTTP, której należy użyć przy wysyłce części pliku paczki.",
-            "nullable": true
+            "description": "Metoda HTTP, której należy użyć przy wysyłce części pliku paczki."
           },
           "url": {
             "type": "string",
             "description": "Adres pod który należy wysłać część pliku paczki.",
-            "format": "uri",
-            "nullable": true
+            "format": "uri"
           },
           "headers": {
             "type": "object",
@@ -7495,8 +7500,7 @@
               "type": "string",
               "nullable": true
             },
-            "description": "Nagłówki, których należy użyć przy wysyłce części pliku paczki.",
-            "nullable": true
+            "description": "Nagłówki, których należy użyć przy wysyłce części pliku paczki."
           }
         },
         "additionalProperties": false
@@ -7525,12 +7529,14 @@
         "type": "string"
       },
       "PermissionsOperationResponse": {
+        "required": [
+          "operationReferenceNumber"
+        ],
         "type": "object",
         "properties": {
           "operationReferenceNumber": {
             "type": "string",
-            "description": "Numer referencyjny asynchronicznej operacji nadawania lub odbierania uprawnień.",
-            "nullable": true
+            "description": "Numer referencyjny asynchronicznej operacji nadawania lub odbierania uprawnień."
           }
         },
         "additionalProperties": false
