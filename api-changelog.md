@@ -8,6 +8,8 @@
   Dodano w odpowiedzi właściwość `subunitName` ("Nazwa jednostki podrzędnej").
   - "Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom" (POST `permissions/query/persons/grants`)  
     Usunięto z wyników uprawnienie typu `Owner`. Uprawnienie `Owner` jest przypisywane systemowo do osoby fizycznej i nie podlega nadawaniu, więc nie powinno pojawiać się na liście nadanych uprawnień.
+  - "Pobranie listy własnych uprawnień" (POST `/permissions/query/personal/grants`)  
+    Rozszerzono enum filtra `PersonalPermissionType` o wartość `VatUeManage`.
 
 - **Limity**  
   - Dodano endpointy do sprawdzania ustawionych limitów (kontekst, podmiot uwierzytelniony):

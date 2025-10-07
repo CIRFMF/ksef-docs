@@ -8100,7 +8100,8 @@
           "InvoiceRead",
           "Introspection",
           "SubunitManage",
-          "EnforcementOperations"
+          "EnforcementOperations",
+          "VatUeManage"
         ],
         "type": "string"
       },
