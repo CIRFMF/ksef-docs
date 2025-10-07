@@ -19,6 +19,9 @@
 - **Dane testowe**  
   Dodano atrybut `required` określający właściwości obowiązkowe.
 
+- **OpenAPI**
+  Doprecyzowano ograniczenia dla właściwości typu integer w requests poprzez dodanie atrybutów `minimum` / `exclusiveMinimum`, `maximum` / `exclusiveMaximum` oraz wartości domyślnych `default`.
+
 ### Wersja 2.0.0 RC5.1
 
 - **Pobranie listy metadanych certyfikatów (POST /certificates/query)**  
