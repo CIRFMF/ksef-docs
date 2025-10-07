@@ -18,7 +18,10 @@
   - Dodano endpointy do zarządzania limitami (kontekst, podmiot uwierzytelniony) w środowisku testowym:
     - POST/DELETE `/testdata/limits/context/session`
     - POST/DELETE `/testdata/limits/subject/certificate`
-  - Zaktualizowano [Limity](limity/limity.md)
+  - Zaktualizowano [Limity](limity/limity.md).
+
+- **Status faktury**  
+  Dodano właściwość `invoicingMode` w modelu odpowiedzi. Zaktualizowano dokumentację: [Automatyczne określanie trybu wysyłki offline](offline/automatyczne-okreslanie-trybu-offline.md).
 
 - **OpenAPI**
   - Doprecyzowano ograniczenia dla właściwości typu integer w requests poprzez dodanie atrybutów `minimum` / `exclusiveMinimum`, `maximum` / `exclusiveMaximum` oraz wartości domyślnych `default`.

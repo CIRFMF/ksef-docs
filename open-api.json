@@ -8855,6 +8855,15 @@
             "format": "uri",
             "nullable": true
           },
+          "invoicingMode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoicingMode"
+              }
+            ],
+            "description": "Tryb fakturowania (online/offline).",
+            "nullable": true
+          },
           "status": {
             "allOf": [
               {
