@@ -7,6 +7,9 @@
   - "Pobranie listy uprawnień administratorów jednostek i podmiotów podrzędnych" (POST `/permissions/query/subunits/grants`)  
   Dodano w odpowiedzi właściwość `subunitName` ("Nazwa jednostki podrzędnej").
 
+- **Dane testowe**  
+  Dodano atrybut `required` określający właściwości obowiązkowe.
+
 ### Wersja 2.0.0 RC5.1
 
 - **Pobranie listy metadanych certyfikatów (POST /certificates/query)**  

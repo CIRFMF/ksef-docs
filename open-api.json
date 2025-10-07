@@ -574,6 +574,11 @@
           "content": {
             "application/json": {
               "schema": {
+                "required": [
+                  "subjectNip",
+                  "subjectType",
+                  "description"
+                ],
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/SubjectCreateRequest"
@@ -612,6 +617,9 @@
           "content": {
             "application/json": {
               "schema": {
+                "required": [
+                  "subjectNip"
+                ],
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/SubjectRemoveRequest"
@@ -650,6 +658,12 @@
           "content": {
             "application/json": {
               "schema": {
+                "required": [
+                  "nip",
+                  "pesel",
+                  "isBailiff",
+                  "description"
+                ],
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/PersonCreateRequest"
@@ -688,6 +702,9 @@
           "content": {
             "application/json": {
               "schema": {
+                "required": [
+                  "nip"
+                ],
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/PersonRemoveRequest"
@@ -726,6 +743,11 @@
           "content": {
             "application/json": {
               "schema": {
+                "required": [
+                  "contextIdentifier",
+                  "authorizedIdentifier",
+                  "permissions"
+                ],
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/TestDataPermissionsGrantRequest"
@@ -764,6 +786,10 @@
           "content": {
             "application/json": {
               "schema": {
+                "required": [
+                  "contextIdentifier",
+                  "authorizedIdentifier"
+                ],
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/TestDataPermissionsRevokeRequest"
@@ -802,6 +828,9 @@
           "content": {
             "application/json": {
               "schema": {
+                "required": [
+                  "nip"
+                ],
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/AttachmentPermissionGrantRequest"
@@ -840,6 +869,9 @@
           "content": {
             "application/json": {
               "schema": {
+                "required": [
+                  "nip"
+                ],
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/AttachmentPermissionRevokeRequest"
@@ -3962,21 +3994,25 @@
         "type": "string"
       },
       "AttachmentPermissionGrantRequest": {
+        "required": [
+          "nip"
+        ],
         "type": "object",
         "properties": {
           "nip": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "AttachmentPermissionRevokeRequest": {
+        "required": [
+          "nip"
+        ],
         "type": "object",
         "properties": {
           "nip": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -6233,6 +6269,9 @@
         "type": "object",
         "properties": {
           "identifier": {
+            "required": [
+              "type"
+            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/InvoiceMetadataBuyerIdentifier"
@@ -6249,6 +6288,9 @@
         "additionalProperties": false
       },
       "InvoiceMetadataBuyerIdentifier": {
+        "required": [
+          "type"
+        ],
         "type": "object",
         "properties": {
           "type": {
@@ -6916,22 +6958,25 @@
         "additionalProperties": false
       },
       "PersonCreateRequest": {
+        "required": [
+          "description",
+          "isBailiff",
+          "nip",
+          "pesel"
+        ],
         "type": "object",
         "properties": {
           "nip": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "pesel": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "isBailiff": {
             "type": "boolean"
           },
           "description": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "createdDate": {
             "type": "string",
@@ -7343,11 +7388,13 @@
         "type": "string"
       },
       "PersonRemoveRequest": {
+        "required": [
+          "nip"
+        ],
         "type": "object",
         "properties": {
           "nip": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -8403,11 +8450,15 @@
         "additionalProperties": false
       },
       "SubjectCreateRequest": {
+        "required": [
+          "description",
+          "subjectNip",
+          "subjectType"
+        ],
         "type": "object",
         "properties": {
           "subjectNip": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "subjectType": {
             "allOf": [
@@ -8424,8 +8475,7 @@
             "nullable": true
           },
           "description": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "createdDate": {
             "type": "string",
@@ -8436,11 +8486,13 @@
         "additionalProperties": false
       },
       "SubjectRemoveRequest": {
+        "required": [
+          "subjectNip"
+        ],
         "type": "object",
         "properties": {
           "subjectNip": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -8550,15 +8602,17 @@
         "type": "string"
       },
       "Subunit": {
+        "required": [
+          "description",
+          "subjectNip"
+        ],
         "type": "object",
         "properties": {
           "subjectNip": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -8855,6 +8909,10 @@
         "type": "string"
       },
       "TestDataAuthorizedIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "properties": {
           "type": {
@@ -8865,8 +8923,7 @@
             ]
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -8880,6 +8937,10 @@
         "type": "string"
       },
       "TestDataContextIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "properties": {
           "type": {
@@ -8890,8 +8951,7 @@
             ]
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -8903,11 +8963,14 @@
         "type": "string"
       },
       "TestDataPermission": {
+        "required": [
+          "description",
+          "permissionType"
+        ],
         "type": "object",
         "properties": {
           "description": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "permissionType": {
             "allOf": [
@@ -8932,52 +8995,72 @@
         "type": "string"
       },
       "TestDataPermissionsGrantRequest": {
+        "required": [
+          "authorizedIdentifier",
+          "contextIdentifier",
+          "permissions"
+        ],
         "type": "object",
         "properties": {
           "contextIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/TestDataContextIdentifier"
               }
-            ],
-            "nullable": true
+            ]
           },
           "authorizedIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/TestDataAuthorizedIdentifier"
               }
-            ],
-            "nullable": true
+            ]
           },
           "permissions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TestDataPermission"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
       },
       "TestDataPermissionsRevokeRequest": {
+        "required": [
+          "authorizedIdentifier",
+          "contextIdentifier"
+        ],
         "type": "object",
         "properties": {
           "contextIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/TestDataContextIdentifier"
               }
-            ],
-            "nullable": true
+            ]
           },
           "authorizedIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/TestDataAuthorizedIdentifier"
               }
-            ],
-            "nullable": true
+            ]
           }
         },
         "additionalProperties": false
