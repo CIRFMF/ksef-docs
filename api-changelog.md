@@ -21,7 +21,7 @@
   - Zaktualizowano [Limity](limity/limity.md)
 
 - **Dane testowe**  
-  Dodano atrybut `required` określający właściwości obowiązkowe.
+  Dodano atrybut `required` dla wymaganych właściwości w żądaniach.
 
 - **OpenAPI**
   - Doprecyzowano ograniczenia dla właściwości typu integer w requests poprzez dodanie atrybutów `minimum` / `exclusiveMinimum`, `maximum` / `exclusiveMaximum` oraz wartości domyślnych `default`.
