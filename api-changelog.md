@@ -6,6 +6,8 @@
   Dodano właściwość `subunitName` ("Nazwa jednostki podrzędnej") w żądaniu. Pole jest wymagane, gdy jednostka podrzędna identyfikowana jest identyfikatorem wewnętrznym.
   - "Pobranie listy uprawnień administratorów jednostek i podmiotów podrzędnych" (POST `/permissions/query/subunits/grants`)  
   Dodano w odpowiedzi właściwość `subunitName` ("Nazwa jednostki podrzędnej").
+  - "Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom" (POST `permissions/query/persons/grants`)  
+    Usunięto z wyników uprawnienie typu `Owner`. Uprawnienie `Owner` jest przypisywane systemowo do osoby fizycznej i nie podlega nadawaniu, więc nie powinno pojawiać się na liście nadanych uprawnień.
 
 - **Limity**  
   - Dodano endpointy do sprawdzania ustawionych limitów (kontekst, podmiot uwierzytelniony):

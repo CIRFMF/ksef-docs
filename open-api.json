@@ -7686,8 +7686,7 @@
           "InvoiceRead",
           "Introspection",
           "SubunitManage",
-          "EnforcementOperations",
-          "Owner"
+          "EnforcementOperations"
         ],
         "type": "string"
       },
