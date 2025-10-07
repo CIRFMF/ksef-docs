@@ -7,6 +7,15 @@
   - "Pobranie listy uprawnień administratorów jednostek i podmiotów podrzędnych" (POST `/permissions/query/subunits/grants`)  
   Dodano w odpowiedzi właściwość `subunitName` ("Nazwa jednostki podrzędnej").
 
+- **Limity**  
+  - Dodano endpointy do sprawdzania ustawionych limitów (kontekst, podmiot uwierzytelniony):
+    - GET `/limits/context`
+    - GET `/limits/subject`
+  - Dodano endpointy do zarządzania limitami (kontekst, podmiot uwierzytelniony) w środowisku testowym:
+    - POST/DELETE `/testdata/limits/context/session`
+    - POST/DELETE `/testdata/limits/subject/certificate`
+  - Zaktualizowano [Limity](limity/limity.md)
+
 - **Dane testowe**  
   Dodano atrybut `required` określający właściwości obowiązkowe.
 

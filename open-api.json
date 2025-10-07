@@ -899,6 +899,244 @@
         }
       }
     },
+    "/api/v2/limits/context": {
+      "get": {
+        "tags": [
+          "Limity i ograniczenia"
+        ],
+        "summary": "Pobranie limitów dla bieżącego kontekstu",
+        "description": "Zwraca wartości aktualnie obowiązujących limitów dla bieżącego kontekstu.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EffectiveContextLimits"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v2/limits/subject": {
+      "get": {
+        "tags": [
+          "Limity i ograniczenia"
+        ],
+        "summary": "Pobranie limitów dla bieżącego podmiotu",
+        "description": "Zwraca wartoście aktualnie obowiązujących limitów dla bieżącego podmiotu.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EffectiveSubjectLimits"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v2/testdata/limits/context/session": {
+      "post": {
+        "tags": [
+          "Limity i ograniczenia"
+        ],
+        "summary": "Zmiana limitów sesji dla bieżącego kontekstu",
+        "description": "Zmienia wartości aktualnie obowiązujących limitów sesji dla bieżącego kontekstu. **Tylko na środowiskach testowych.**",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "onlineSession",
+                  "batchSession"
+                ],
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SetSessionLimitsRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Limity i ograniczenia"
+        ],
+        "summary": "Przywrócenie domyślnych wartości limitów sesji dla bieżącego kontekstu",
+        "description": "Przywraca wartości aktualnie obowiązujących limitów sesji dla bieżącego kontekstu do wartości domyślnych. **Tylko na środowiskach testowych.**",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v2/testdata/limits/subject/certificate": {
+      "post": {
+        "tags": [
+          "Limity i ograniczenia"
+        ],
+        "summary": "Zmiana limitów certyfikatów dla bieżącego podmiotu",
+        "description": "Zmienia wartości aktualnie obowiązujących limitów certyfikatów dla bieżącego podmiotu. **Tylko na środowiskach testowych.**",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SetSubjectLimitsRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Limity i ograniczenia"
+        ],
+        "summary": "Przywrócenie domyślnych wartości limitów certyfikatów dla bieżącego podmiotu",
+        "description": "Przywraca wartości aktualnie obowiązujących limitów certyfikatów dla bieżącego podmiotu do wartości domyślnych. **Tylko na środowiskach testowych.**",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
     "/api/v2/permissions/persons/grants": {
       "post": {
         "tags": [
@@ -4373,6 +4611,76 @@
         },
         "additionalProperties": false
       },
+      "BatchSessionContextLimitsOverride": {
+        "required": [
+          "maxInvoices",
+          "maxInvoiceSizeInMib",
+          "maxInvoiceWithAttachmentSizeInMib"
+        ],
+        "type": "object",
+        "properties": {
+          "maxInvoiceSizeInMib": {
+            "maximum": 5,
+            "exclusiveMaximum": false,
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury w MiB.",
+            "format": "int32"
+          },
+          "maxInvoiceWithAttachmentSizeInMib": {
+            "maximum": 10,
+            "exclusiveMaximum": false,
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury z załącznikiem w MiB.",
+            "format": "int32"
+          },
+          "maxInvoices": {
+            "maximum": 100000,
+            "exclusiveMaximum": false,
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalna ilość faktur które można przesłać w pojedynczej sesji.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BatchSessionEffectiveContextLimits": {
+        "required": [
+          "maxInvoices",
+          "maxInvoiceSizeInMib",
+          "maxInvoiceWithAttachmentSizeInMib"
+        ],
+        "type": "object",
+        "properties": {
+          "maxInvoiceSizeInMib": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury w MiB.",
+            "format": "int32"
+          },
+          "maxInvoiceWithAttachmentSizeInMib": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury z załącznikiem w MiB.",
+            "format": "int32"
+          },
+          "maxInvoices": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalna ilość faktur które można przesłać w pojedynczej sesji.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "BuyerIdentifierType": {
         "enum": [
           "None",
@@ -4382,6 +4690,16 @@
         ],
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| None | Brak identyfikatora nabywcy |\n| Other | Inny |\n| Nip | NIP |\n| VatUe | VAT UE |\n"
+      },
+      "CertificateEffectiveSubjectLimits": {
+        "type": "object",
+        "properties": {
+          "maxCertificates": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
       },
       "CertificateEnrollmentDataResponse": {
         "required": [
@@ -4642,6 +4960,19 @@
         ],
         "type": "string"
       },
+      "CertificateSubjectLimitsOverride": {
+        "type": "object",
+        "properties": {
+          "maxCertificates": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CheckAttachmentPermissionStatusResponse": {
         "type": "object",
         "properties": {
@@ -4855,6 +5186,64 @@
         ],
         "type": "string"
       },
+      "EffectiveContextLimits": {
+        "required": [
+          "batchSession",
+          "onlineSession"
+        ],
+        "type": "object",
+        "properties": {
+          "onlineSession": {
+            "required": [
+              "maxInvoiceSizeInMib",
+              "maxInvoiceWithAttachmentSizeInMib",
+              "maxInvoices"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnlineSessionEffectiveContextLimits"
+              }
+            ],
+            "description": "Limity dla sesji interaktywnych."
+          },
+          "batchSession": {
+            "required": [
+              "maxInvoiceSizeInMib",
+              "maxInvoiceWithAttachmentSizeInMib",
+              "maxInvoices"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatchSessionEffectiveContextLimits"
+              }
+            ],
+            "description": "Limity dla sesji wsadowych."
+          }
+        },
+        "additionalProperties": false
+      },
+      "EffectiveSubjectLimits": {
+        "type": "object",
+        "properties": {
+          "enrollment": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EnrollmentEffectiveSubjectLimits"
+              }
+            ],
+            "nullable": true
+          },
+          "certificate": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CertificateEffectiveSubjectLimits"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "EncryptionInfo": {
         "required": [
           "encryptedSymmetricKey",
@@ -4922,6 +5311,29 @@
             "type": "string",
             "description": "Data złożenia wniosku certyfikacyjnego.",
             "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EnrollmentEffectiveSubjectLimits": {
+        "type": "object",
+        "properties": {
+          "maxEnrollments": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EnrollmentSubjectLimitsOverride": {
+        "type": "object",
+        "properties": {
+          "maxEnrollments": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -6746,6 +7158,76 @@
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany wyłącznie do potwierdzania autentyczności wystawcy i integralności faktury w trybie offline |\n"
       },
+      "OnlineSessionContextLimitsOverride": {
+        "required": [
+          "maxInvoices",
+          "maxInvoiceSizeInMib",
+          "maxInvoiceWithAttachmentSizeInMib"
+        ],
+        "type": "object",
+        "properties": {
+          "maxInvoiceSizeInMib": {
+            "maximum": 5,
+            "exclusiveMaximum": false,
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury w MiB.",
+            "format": "int32"
+          },
+          "maxInvoiceWithAttachmentSizeInMib": {
+            "maximum": 10,
+            "exclusiveMaximum": false,
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury z załącznikiem w MiB.",
+            "format": "int32"
+          },
+          "maxInvoices": {
+            "maximum": 100000,
+            "exclusiveMaximum": false,
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalna ilość faktur które można przesłać w pojedynczej sesji.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OnlineSessionEffectiveContextLimits": {
+        "required": [
+          "maxInvoices",
+          "maxInvoiceSizeInMib",
+          "maxInvoiceWithAttachmentSizeInMib"
+        ],
+        "type": "object",
+        "properties": {
+          "maxInvoiceSizeInMib": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury w MiB.",
+            "format": "int32"
+          },
+          "maxInvoiceWithAttachmentSizeInMib": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury z załącznikiem w MiB.",
+            "format": "int32"
+          },
+          "maxInvoices": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalna ilość faktur które można przesłać w pojedynczej sesji.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "OpenBatchSessionRequest": {
         "required": [
           "batchFile",
@@ -8421,6 +8903,71 @@
         },
         "additionalProperties": false
       },
+      "SetSessionLimitsRequest": {
+        "required": [
+          "batchSession",
+          "onlineSession"
+        ],
+        "type": "object",
+        "properties": {
+          "onlineSession": {
+            "required": [
+              "maxInvoiceSizeInMib",
+              "maxInvoiceWithAttachmentSizeInMib",
+              "maxInvoices"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnlineSessionContextLimitsOverride"
+              }
+            ],
+            "description": "Limity dla sesji interaktywnych."
+          },
+          "batchSession": {
+            "required": [
+              "maxInvoiceSizeInMib",
+              "maxInvoiceWithAttachmentSizeInMib",
+              "maxInvoices"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatchSessionContextLimitsOverride"
+              }
+            ],
+            "description": "Limity dla sesji wsadowych."
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetSubjectLimitsRequest": {
+        "type": "object",
+        "properties": {
+          "subjectIdentifierType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SubjectIdentifierType"
+              }
+            ]
+          },
+          "enrollment": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EnrollmentSubjectLimitsOverride"
+              }
+            ],
+            "nullable": true
+          },
+          "certificate": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CertificateSubjectLimitsOverride"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "StatusInfo": {
         "required": [
           "code",
@@ -8484,6 +9031,15 @@
           }
         },
         "additionalProperties": false
+      },
+      "SubjectIdentifierType": {
+        "enum": [
+          "Nip",
+          "Pesel",
+          "Fingerprint",
+          "Token"
+        ],
+        "type": "string"
       },
       "SubjectRemoveRequest": {
         "required": [
@@ -9305,6 +9861,9 @@
       "name": "Aktywne sesje"
     },
     {
+      "name": "Limity i ograniczenia"
+    },
+    {
       "name": "Certyfikaty klucza publicznego"
     },
     {
@@ -9355,6 +9914,12 @@
       "tags": [
         "Uzyskiwanie dostępu",
         "Aktywne sesje"
+      ]
+    },
+    {
+      "name": "Limity i ograniczenia",
+      "tags": [
+        "Limity i ograniczenia"
       ]
     },
     {
