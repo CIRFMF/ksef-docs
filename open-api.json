@@ -759,7 +759,8 @@
                     "$ref": "#/components/schemas/TestDataPermissionsGrantRequest"
                   }
                 ]
-              }
+              },
+              "example": {"contextIdentifier":{"type":"Nip","value":"5265877635"},"authorizedIdentifier":{"type":"Nip","value":"7762811692"},"permissions":[{"description":"Opis testowy","permissionType":"InvoiceRead"}]}
             }
           }
         },
@@ -801,7 +802,8 @@
                     "$ref": "#/components/schemas/TestDataPermissionsRevokeRequest"
                   }
                 ]
-              }
+              },
+              "example": {"contextIdentifier":{"type":"Nip","value":"5265877635"},"authorizedIdentifier":{"type":"Nip","value":"7762811692"}}
             }
           }
         },
@@ -1165,7 +1167,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"permissions":["InvoiceRead","InvoiceWrite"],"description":"Uprawnienia do odczytu i wysyłania faktur"}
+              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"permissions":["InvoiceRead","InvoiceWrite"],"description":"praca w kontekście 5265877635; uprawniony PESEL: 15062788702, Adam Abacki"}
             }
           }
         },
@@ -1231,7 +1233,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Nip","value":"7762811692"},"permissions":[{"type":"InvoiceRead","canDelegate":true},{"type":"InvoiceWrite","canDelegate":true}],"description":"Uprawnienia do odczytu i wysyłania faktur z możliwością nadania ich pośrednio"}
+              "example": {"subjectIdentifier":{"type":"Nip","value":"7762811692"},"permissions":[{"type":"InvoiceRead","canDelegate":true},{"type":"InvoiceWrite","canDelegate":true}],"description":"praca w kontekście 5265877635; uprawniony NIP: 7762811692, Firma \"FRM\" Sp. z o.o."}
             }
           }
         },
@@ -1297,7 +1299,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Nip","value":"7762811692"},"permission":"SelfInvoicing","description":"Uprawnienia do samofakturowania"}
+              "example": {"subjectIdentifier":{"type":"Nip","value":"7762811692"},"permission":"SelfInvoicing","description":"praca w kontekście 5265877635; uprawniony NIP: 7762811692, Firma \"FRM\" Sp. z o.o."}
             }
           }
         },
@@ -1363,7 +1365,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"permissions":["InvoiceWrite","InvoiceRead"],"description":"Uprawnienia generalne do odczytu i wysyłania faktur, nadane w sposób pośredni"}
+              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"targetIdentifier":{"type":"AllPartners"},"permissions":["InvoiceWrite","InvoiceRead"],"description":"praca w kontekście 5265877635; uprawniony PESEL: 15062788702, Adam Abacki"}
             }
           }
         },
@@ -1429,7 +1431,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"contextIdentifier":{"type":"InternalId","value":"7762811692-11111"},"description":"Administrator jednostki podrzędnej"}
+              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"contextIdentifier":{"type":"InternalId","value":"7762811692-11111"},"description":"praca w kontekście 7762811692-11111; uprawniony PESEL: 15062788702, Adam Abacki","subunitName":"Nazwa jednostki podrzędnej"}
             }
           }
         },
@@ -1496,7 +1498,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"contextIdentifier":{"type":"NipVatUe","value":"7762811692-DE123456789012"},"description":"Administrator podmiotu unijnego DE123456789012","euEntityName":"Nazwa podmiotu unijnego"}
+              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"contextIdentifier":{"type":"NipVatUe","value":"7762811692-DE123456789012"},"description":"praca w kontekście 7762811692-DE123456789012; uprawniony FP: CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59, Firma \"FRM\" Sp. z o.o.","euEntityName":"Nazwa podmiotu unijnego"}
             }
           }
         },
@@ -1562,7 +1564,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"permissions":["InvoiceRead","InvoiceWrite"],"description":"Reprezentant podmiotu unijnego"}
+              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"permissions":["InvoiceRead","InvoiceWrite"],"description":"praca w kontekście 5194084033-IT932928602745; uprawniony FP: CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59, Hans Fisher; 10.02.1990; paszport AT: AP759478"}
             }
           }
         },
@@ -1929,7 +1931,8 @@
                     "$ref": "#/components/schemas/InvoiceQueryFilters"
                   }
                 ]
-              }
+              },
+              "example": {"subjectType":"Subject1","dateRange":{"dateType":"PermanentStorage","from":"2025-08-28T09:22:13.388+00:00","to":"2025-09-28T09:22:13.388+00:00"},"amount":{"type":"Brutto","from":100.50,"to":250.00},"currencyCodes":["PLN","EUR"],"invoicingMode":"Online","formType":"FA","invoiceTypes":["Vat"],"hasAttachment":true}
             }
           }
         },
@@ -2912,7 +2915,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TokenStatusResponse"
-                }
+                },
+                "example": {"referenceNumber":"20251001-EC-220B0CE000-E228129563-96","authorIdentifier":{"type":"Nip","value":"7762811692"},"contextIdentifier":{"type":"Nip","value":"5265877635"},"description":"Wystawianie i przeglądanie faktur.","requestedPermissions":["InvoiceWrite","InvoiceRead"],"dateCreated":"2025-07-11T12:23:56.0154302+00:00","lastUseDate":"2025-07-11T12:23:56.0154302+00:00","status":"Pending","statusDetails":[]}
               }
             }
           },
@@ -3028,7 +3032,7 @@
             }
           },
           "400": {
-            "description": "",
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -3115,7 +3119,7 @@
             }
           },
           "400": {
-            "description": " | ExceptionCode      | ExceptionDescription                                                | Details                                                     | \n|---------------------|---------------------------------------------------------------------|-------------------------------------------------------------|\n| 21001               | Nieczytelna treść.                                                  |                                                             |\n| 21111               | Nieprawidłowe wyzwanie autoryzacyjne.                               |                                                             |\n| 21115               | Nieprawidłowy certyfikat.                                           |                                                             |\n| 21117               | Nieprawidłowy identyfikator podmiotu dla wskazanego typu kontekstu. |                                                             |\n| 21217               | Nieprawidłowe kodowanie znaków.                                     |                                                             |\n| 21401               | Dokument nie jest zgodny ze schemą (xsd).                           | {treść błędu walidacji}                                     |\n| 21406               | Konflikt podpisu i typu uwierzytelnienia.                           |                                                             |\n| 9101                | Nieprawidłowy dokument.                                             |                                                             |\n| 9102                | Brak podpisu.                                                       |                                                             |\n| 9103                | Przekroczona liczba dozwolonych podpisów.                           |                                                             |\n| 9105                | Nieprawidłowa treść podpisu.                                        |                                                             |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "description": " | ExceptionCode      | ExceptionDescription                                                | Details                                                     | \n|---------------------|---------------------------------------------------------------------|-------------------------------------------------------------|\n| 21001               | Nieczytelna treść.                                                  |                                                             |\n| 21111               | Nieprawidłowe wyzwanie autoryzacyjne.                               |                                                             |\n| 21115               | Nieprawidłowy certyfikat.                                           |                                                             |\n| 21117               | Nieprawidłowy identyfikator podmiotu dla wskazanego typu kontekstu. |                                                             |\n| 21217               | Nieprawidłowe kodowanie znaków.                                     |                                                             |\n| 21401               | Dokument nie jest zgodny ze schemą (xsd).                           | {treść błędu walidacji}                                     |\n| 21406               | Konflikt podpisu i typu uwierzytelnienia.                           |                                                             |\n| 9101                | Nieprawidłowy dokument.                                             |                                                             |\n| 9102                | Brak podpisu.                                                       |                                                             |\n| 9103                | Przekroczona liczba dozwolonych podpisów.                           |                                                             |\n| 9105                | Nieprawidłowy podpis.                                               |                                                             |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -3697,7 +3701,8 @@
                     "$ref": "#/components/schemas/PersonalPermissionsQueryRequest"
                   }
                 ]
-              }
+              },
+              "example": {"contextIdentifier":{"type":"Nip","value":"5265877635"},"targetIdentifier":{"type":"Nip","value":"7762811692"},"permissionTypes":["CredentialsManage"],"permissionState":"Active"}
             }
           }
         },
@@ -6388,7 +6393,7 @@
                 "$ref": "#/components/schemas/IndirectPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu, w którego kontekście chcemy pośrednio nadać uprawnienia. W przypadku nadawania uprawnienia generalnego, pole to powinno mieć wartość null.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
+            "description": "Identyfikator podmiotu, w którego kontekście chcemy pośrednio nadać uprawnienia.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
             "nullable": true
           },
           "permissions": {
@@ -6457,7 +6462,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu, w którego kontekście chcemy pośrednio nadać uprawnienia. W przypadku nadawania uprawnienia generalnego, pole to powinno mieć wartość null.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |"
+        "description": "Identyfikator podmiotu, w którego kontekście chcemy pośrednio nadać uprawnienia.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |"
       },
       "IndirectPermissionsTargetIdentifierType": {
         "enum": [
@@ -7904,7 +7909,7 @@
                 "$ref": "#/components/schemas/PersonPermissionsQueryType"
               }
             ],
-            "description": "Typ zapytania.\n| Type | Value |\n| --- | --- |\n| PermissionsInCurrentContext | Uprawnienia posiadane w aktualnym kontekście |\n| PermissionsGrantedInCurrentContext | Uprawnienia nadane w aktualnym kontekście |"
+            "description": "Typ zapytania.\n| Type | Value |\n| --- | --- |\n| PermissionsInCurrentContext | Uprawnienia obowiązujące w aktualnym kontekście |\n| PermissionsGrantedInCurrentContext | Uprawnienia nadane w aktualnym kontekście |"
           }
         },
         "additionalProperties": false

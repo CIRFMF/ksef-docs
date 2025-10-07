@@ -20,7 +20,9 @@
   Dodano atrybut `required` określający właściwości obowiązkowe.
 
 - **OpenAPI**
-  Doprecyzowano ograniczenia dla właściwości typu integer w requests poprzez dodanie atrybutów `minimum` / `exclusiveMinimum`, `maximum` / `exclusiveMaximum` oraz wartości domyślnych `default`.
+  - Doprecyzowano ograniczenia dla właściwości typu integer w requests poprzez dodanie atrybutów `minimum` / `exclusiveMinimum`, `maximum` / `exclusiveMaximum` oraz wartości domyślnych `default`.
+  - Zaktualizowano przykłady (example) w definicjach endpointów.
+  - Doprecyzowano opisy endpointów.
 
 ### Wersja 2.0.0 RC5.1
 
