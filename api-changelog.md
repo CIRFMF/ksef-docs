@@ -3,9 +3,13 @@
 ### Wersja 2.0.0 RC5.3
 
 - **Eksport paczki faktur (POST `/invoices/exports`)**  
-  Dodano możliwość dołączenia pliku `metadata.json` do paczki eksportu. Plik zawiera tablicę obiektów `InvoiceMetadata` (model zwracany przez POST `/invoices/query/metadata`).
+  - Dodano możliwość dołączenia pliku `metadata.json` do paczki eksportu. Plik zawiera tablicę obiektów `InvoiceMetadata` (model zwracany przez POST `/invoices/query/metadata`).
   Włączenie (preview): do nagłóweka żądania należy dodać `X-KSeF-Feature`: `include-metadata`.
   Od 2025-10-27 zmienia się domyślne zachowanie endpointu - paczka eksportu będzie zawsze zawierać plik `metadata.json` (nagłówek nie będzie wymagany).
+
+- **Status eksportu paczki faktur (GET `/invoices/exports/{referenceNumber}`)**  
+  - Zmiana nazwy parametru ścieżki z `operationReferenceNumber` na `referenceNumber`.  
+  Zmiana nie wpływa na kontrakt HTTP (ścieżka i znaczenie wartości bez zmian) ani na zachowanie endpointu.
 
 - **Uprawnienia**  
   - Zaktualizowano opisy endpointów przykłady endpointów z obszaru permissions/*. Zmiana dotyczy wyłącznie dokumentacji (doprecyzowanie opisów, formatów i przykładów); brak zmian w zachowaniu API oraz kontrakcie.

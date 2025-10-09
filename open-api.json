@@ -2044,7 +2044,7 @@
         ]
       }
     },
-    "/api/v2/invoices/exports/{operationReferenceNumber}": {
+    "/api/v2/invoices/exports/{referenceNumber}": {
       "get": {
         "tags": [
           "Pobieranie faktur"
@@ -2053,9 +2053,9 @@
         "description": "\n\nWymagane uprawnienia: `InvoiceRead`.",
         "parameters": [
           {
-            "name": "operationReferenceNumber",
+            "name": "referenceNumber",
             "in": "path",
-            "description": "Numer referencyjny operacji.",
+            "description": "Numer referencyjny operacji eksportu paczki faktur.",
             "required": true,
             "schema": {
               "type": "string"
