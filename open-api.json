@@ -1730,7 +1730,7 @@
         ]
       }
     },
-    "/api/v2/permissions/operations/{operationReferenceNumber}": {
+    "/api/v2/permissions/operations/{referenceNumber}": {
       "get": {
         "tags": [
           "Operacje"
@@ -1739,7 +1739,7 @@
         "description": "Zwraca status operacji asynchronicznej związanej z nadaniem lub odebraniem uprawnień.",
         "parameters": [
           {
-            "name": "operationReferenceNumber",
+            "name": "referenceNumber",
             "in": "path",
             "description": "Numer referencyjny operacji",
             "required": true,

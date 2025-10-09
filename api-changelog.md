@@ -8,7 +8,9 @@
   Od 2025-10-27 zmienia się domyślne zachowanie endpointu - paczka eksportu będzie zawsze zawierać plik `metadata.json` (nagłówek nie będzie wymagany).
 
 - **Uprawnienia**  
-  Zaktualizowano opisy endpointów przykłady endpointów z obszaru permissions/*. Zmiana dotyczy wyłącznie dokumentacji (doprecyzowanie opisów, formatów i przykładów); brak zmian w zachowaniu API oraz kontrakcie.
+  - Zaktualizowano opisy endpointów przykłady endpointów z obszaru permissions/*. Zmiana dotyczy wyłącznie dokumentacji (doprecyzowanie opisów, formatów i przykładów); brak zmian w zachowaniu API oraz kontrakcie.
+  - Zmiana nazwy parametru ścieżki z `operationReferenceNumber` na `referenceNumber` w "Pobranie statusu operacji" (GET `/permissions/operations/{referenceNumber}`).  
+  Zmiana nie wpływa na kontrakt HTTP (ścieżka i znaczenie wartości bez zmian) ani na zachowanie endpointu.
 
 - **OpenAPI**
   - Doprecyzowano ograniczenia dla właściwości typu integer w requests poprzez dodanie atrybutów `minimum` / `exclusiveMinimum`, `maximum` / `exclusiveMaximum`.  
