@@ -1183,7 +1183,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"operationReferenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
               }
             }
           },
@@ -1249,7 +1249,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"operationReferenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
               }
             }
           },
@@ -1315,7 +1315,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"operationReferenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
               }
             }
           },
@@ -1381,7 +1381,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"operationReferenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
               }
             }
           },
@@ -1447,7 +1447,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"operationReferenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
               }
             }
           },
@@ -1514,7 +1514,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"operationReferenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
               }
             }
           },
@@ -1580,7 +1580,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"operationReferenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
               }
             }
           },
@@ -1638,7 +1638,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"operationReferenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
               }
             }
           },
@@ -1698,7 +1698,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"operationReferenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
               }
             }
           },
@@ -6305,13 +6305,19 @@
       },
       "ExportInvoicesResponse": {
         "required": [
-          "operationReferenceNumber"
+          "operationReferenceNumber",
+          "referenceNumber"
         ],
         "type": "object",
         "properties": {
           "operationReferenceNumber": {
             "type": "string",
-            "description": "Numer referencyjny operacji."
+            "description": "Numer referencyjny operacji.",
+            "deprecated": true
+          },
+          "referenceNumber": {
+            "type": "string",
+            "description": "Numer referencyjny operacji eksportu paczki faktur."
           }
         },
         "additionalProperties": false
@@ -7552,11 +7558,17 @@
       },
       "PermissionsOperationResponse": {
         "required": [
-          "operationReferenceNumber"
+          "operationReferenceNumber",
+          "referenceNumber"
         ],
         "type": "object",
         "properties": {
           "operationReferenceNumber": {
+            "type": "string",
+            "description": "Numer referencyjny asynchronicznej operacji nadawania lub odbierania uprawnień.",
+            "deprecated": true
+          },
+          "referenceNumber": {
             "type": "string",
             "description": "Numer referencyjny asynchronicznej operacji nadawania lub odbierania uprawnień."
           }

@@ -18,6 +18,18 @@
 
 - **OpenAPI**
   - Doprecyzowano ograniczenia dla właściwości typu integer w requests poprzez dodanie atrybutów `minimum` / `exclusiveMinimum`, `maximum` / `exclusiveMaximum`.  
+  - Rozszerzono odpowiedź o pole `referenceNumber` (zawiera tę samą wartość, co dotychczasowe `operationReferenceNumber`). Oznaczono `operationReferenceNumber` jako `deprecated` i zostanie usunięte z odpowiedzi 2025-10-27; należy przejść na `referenceNumber`. Charakter zmiany: przejściowy rename z zachowaniem kompatybilności (obie właściwości zwracane równolegle do daty usunięcia).  
+  Dotyczy endpointów:
+    - POST `/permissions/persons/grants`,
+    - POST `/permissions/entities/grants`,
+    - POST `/permissions/authorizat/grants`,
+    - POST `/permissions/indirect/grants`,
+    - POST `/permissions/subunits/grants`,
+    - POST `/permissions/eu-entities/administration/grants`,
+    - POST `/permissions/eu-entities/grants`,
+    - DELETE `/permissions/common/grants/{permissionId}`,
+    - DELETE `/permissions/authorizations/grants/{permissionId}`,
+    - POST `/invoices/exports`.
 
 ### Wersja 2.0.0 RC5.2
 - **Uprawnienia** 
