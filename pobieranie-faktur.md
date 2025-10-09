@@ -23,6 +23,18 @@ byte[] invoice = ksefClient.getInvoice(ksefNumber, accessToken);
 ### Pobranie listy metadanych faktur
 Zwraca listę metadanych faktur spełniające podane kryteria wyszukiwania.
 
+**Plik metadata.json w paczce eksportu**  
+W paczce eksportu może znajdować się plik `metadata.json` zawierający tablicę obiektów `InvoiceMetadata` (model zwracany przez POST `/invoices/query/metadata` - "Pobieranie metadanych faktur").
+
+**Włączenie (preview)**  
+Aby dołączyć plik `metadata.json` już teraz, należy dodać do żądania nagłówek funkcji: 
+
+```
+X-KSeF-Feature: include-metadata
+```
+Od 27.10.2025 paczka zawsze będzie zawierać plik `metadata.json`. Nagłówek nie będzie wymagany.
+
+
 POST [/invoices/query/metadata](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1query~1metadata/post)
 
 Przykład w języku C#:

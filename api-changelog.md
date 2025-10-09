@@ -1,5 +1,12 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.0 RC5.3
+
+**Eksport paczki faktur (POST `/invoices/exports`)**  
+  Dodano możliwość dołączenia pliku `metadata.json` do paczki eksportu. Plik zawiera tablicę obiektów `InvoiceMetadata` (model zwracany przez POST `/invoices/query/metadata`).
+  Włączenie (preview): do nagłóweka żądania należy dodać `X-KSeF-Feature`: `include-metadata`.
+  Od 2025-10-27 zmienia się domyślne zachowanie endpointu - paczka eksportu będzie zawsze zawierać plik `metadata.json` (nagłówek nie będzie wymagany).
+
 ### Wersja 2.0.0 RC5.2
 - **Uprawnienia** 
   - "Nadanie uprawnień administratora podmiotu podrzędnego" (POST `/permissions/subunits/grants`)  

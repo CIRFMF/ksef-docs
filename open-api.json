@@ -6940,6 +6940,12 @@
             "description": "Data trwałego zapisu ostatniej faktury ujętej w paczce.\nPole występuje wyłącznie wtedy, gdy paczka została ucięta i eksport był filtrowany po typie daty `PermanentStorage`.",
             "format": "date-time",
             "nullable": true
+          },
+          "metadataFileName": {
+            "type": "string",
+            "description": "Nazwa pliku zawierającego metadane faktur, dołączonego do wyeksportowanej paczki.",
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false
