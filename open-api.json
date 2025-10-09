@@ -1151,7 +1151,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie osobom fizycznym uprawnień do pracy w KSeF",
-        "description": "Rozpoczyna asynchroniczną operację nadawania osobom fizycznym uprawnień do pracy w KSeF.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadawanie-uprawnie%C5%84-osobom-fizycznym-do-pracy-w-ksef)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Metoda pozwala na nadanie osobie wskazanej w żądaniu uprawnień do pracy w KSeF  \nw kontekście bieżącym.\n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur,  \n- **InvoiceRead** – przeglądanie faktur,  \n- **CredentialsManage** – zarządzanie uprawnieniami,  \n- **CredentialsRead** – przeglądanie uprawnień,  \n- **Introspection** – przeglądanie historii sesji i generowanie UPO,  \n- **SubunitManage** – zarządzanie jednostkami podrzędnymi,  \n- **EnforcementOperations** – wykonywanie operacji egzekucyjnych.\n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.  \nUprawnienie **EnforcementOperations** może być nadane wyłącznie wtedy,  \ngdy podmiot kontekstu ma rolę **EnforcementAuthority** (organ egzekucyjny)  \nlub **CourtBailiff** (komornik sądowy).\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadawanie-uprawnie%C5%84-osobom-fizycznym-do-pracy-w-ksef)\n\nWymagane uprawnienia: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1167,7 +1167,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"permissions":["InvoiceRead","InvoiceWrite"],"description":"praca w kontekście 5265877635; uprawniony PESEL: 15062788702, Adam Abacki"}
+              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"permissions":["InvoiceRead","InvoiceWrite","Introspection","CredentialsRead"],"description":"praca w kontekście 3393244202; uprawniony PESEL: 22271569167, Adam Abacki"}
             }
           }
         },
@@ -1217,7 +1217,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie podmiotom uprawnień do obsługi faktur",
-        "description": "Rozpoczyna asynchroniczną operację nadawania podmiotom uprawnień do obsługi faktur.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-podmiotom-uprawnie%C5%84-do-obs%C5%82ugi-faktur)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Metoda pozwala na nadanie podmiotowi wskazanemu w żądaniu uprawnień do obsługi faktur podmiotu kontekstu.  \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.  \nDla każdego uprawnienia może być ustawiona flaga **canDelegate**, mówiąca o możliwości jego dalszego przekazywania poprzez nadawanie w sposób pośredni.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-podmiotom-uprawnie%C5%84-do-obs%C5%82ugi-faktur)\n\nWymagane uprawnienia: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1233,7 +1233,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Nip","value":"7762811692"},"permissions":[{"type":"InvoiceRead","canDelegate":true},{"type":"InvoiceWrite","canDelegate":true}],"description":"praca w kontekście 5265877635; uprawniony NIP: 7762811692, Firma \"FRM\" Sp. z o.o."}
+              "example": {"subjectIdentifier":{"type":"Nip","value":"7762811692"},"permissions":[{"type":"InvoiceRead","canDelegate":true},{"type":"InvoiceWrite","canDelegate":true}],"description":"praca w kontekście 3393244202; uprawniony NIP: 7762811692, Firma sp. z o.o."}
             }
           }
         },
@@ -1283,7 +1283,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień podmiotowych",
-        "description": "Rozpoczyna asynchroniczną operację nadawania uprawnień podmiotowych.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-podmiotowych)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Metoda pozwala na nadanie jednego z uprawnień podmiotowych do obsługi podmiotu kontekstu  podmiotowi wskazanemu w żądaniu.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-podmiotowych)\n\nWymagane uprawnienia: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1299,7 +1299,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Nip","value":"7762811692"},"permission":"SelfInvoicing","description":"praca w kontekście 5265877635; uprawniony NIP: 7762811692, Firma \"FRM\" Sp. z o.o."}
+              "example": {"subjectIdentifier":{"type":"Nip","value":"7762811692"},"permission":"SelfInvoicing","description":"działanie w imieniu 3393244202 w kontekście 7762811692, Firma sp. z o.o."}
             }
           }
         },
@@ -1349,7 +1349,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień w sposób pośredni",
-        "description": "Rozpoczyna asynchroniczną operację nadawania uprawnień w sposób pośredni.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-w-spos%C3%B3b-po%C5%9Bredni)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Metoda pozwala na nadanie w sposób pośredni osobie wskazanej w żądaniu uprawnień do obsługi faktur innego podmiotu – klienta.  \nMoże to być jedna z możliwości:  \n- nadanie uprawnień generalnych – do obsługi wszystkich klientów  \n- nadanie uprawnień selektywnych – do obsługi wskazanego klienta  \n            \nUprawnienie selektywne może być nadane wyłącznie wtedy, gdy klient nadał wcześniej podmiotowi bieżącego kontekstu dowolne uprawnienie z prawem do jego dalszego przekazywania (patrz [POST /api/v2/permissions/entities/grants](/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1api~1v2~1permissions~1entities~1grants/post)).  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-w-spos%C3%B3b-po%C5%9Bredni)\n\nWymagane uprawnienia: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1365,7 +1365,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"targetIdentifier":{"type":"AllPartners"},"permissions":["InvoiceWrite","InvoiceRead"],"description":"praca w kontekście 5265877635; uprawniony PESEL: 15062788702, Adam Abacki"}
+              "example": {"subjectIdentifier":{"type":"Pesel","value":"22271569167"},"targetIdentifier":{"type":"Nip","value":"5687926712"},"permissions":["InvoiceWrite","InvoiceRead"],"description":"praca dla klienta 5687926712; uprawniony PESEL: 22271569167, Adam Abacki; pośrednik 3936518395"}
             }
           }
         },
@@ -1415,7 +1415,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień administratora podmiotu podrzędnego",
-        "description": "Rozpoczyna asynchroniczną operację nadawania uprawnień administratora podmiotu podrzędnego.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-podrz%C4%99dnego)\n\nWymagane uprawnienia: `SubunitManage`.",
+        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień administratora w kontekście:  \n- wskazanego NIP podmiotu podrzędnego – wyłącznie jeżeli podmiot bieżącego kontekstu logowania ma rolę podmiotu nadrzędnego:\n  - **LocalGovernmentUnit** \n  - **VatGroupUnit**  \n- wskazanego lub utworzonego identyfikatora wewnętrznego  \n            \nWraz z utworzeniem administratora jednostki podrzędnej tworzony jest identyfikator wewnętrzny składający się z numeru NIP podmiotu kontekstu logowania oraz 5 cyfr unikalnie identyfikujących jednostkę wewnętrzną.  \nW żądaniu podaje się również nazwę tej jednostki.  \n            \nUprawnienia administratora jednostki podrzędnej obejmują:  \n- **CredentialsManage** – zarządzanie uprawnieniami  \n            \nMetoda automatycznie nadaje powyższe uprawnienie, bez konieczności podawania go w żądaniu.\n            \n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-podrz%C4%99dnego)\n\nWymagane uprawnienia: `SubunitManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1431,7 +1431,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"contextIdentifier":{"type":"InternalId","value":"7762811692-11111"},"description":"praca w kontekście 7762811692-11111; uprawniony PESEL: 15062788702, Adam Abacki","subunitName":"Nazwa jednostki podrzędnej"}
+              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"contextIdentifier":{"type":"InternalId","value":"7762811692-12345"},"description":"praca w kontekście 7762811692-12345; uprawniony PESEL: 15062788702, Czesław Cabacki"}
             }
           }
         },
@@ -1481,7 +1481,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień administratora podmiotu unijnego",
-        "description": "Rozpoczyna asynchroniczną operację nadawania uprawnień administratora podmiotu unijnego.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-unijnego)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień administratora w kontekście złożonym z identyfikatora NIP podmiotu kontekstu bieżącego oraz numeru VAT UE podmiotu unijnego wskazanego w żądaniu.  \nWraz z utworzeniem administratora podmiotu unijnego tworzony jest kontekst złożony składający się z numeru NIP podmiotu kontekstu logowania oraz wskazanego numeru identyfikacyjnego VAT UE podmiotu unijnego.  \nW żądaniu podaje się również nazwę i adres podmiotu unijnego.  \n            \nJedynym sposobem identyfikacji uprawnianego jest odcisk palca certyfikatu kwalifikowanego:  \n- certyfikat podpisu elektronicznego dla osób fizycznych  \n- certyfikat pieczęci elektronicznej dla podmiotów  \n            \nUprawnienia administratora podmiotu unijnego obejmują:  \n- **VatEuManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n- **Introspection** – przeglądanie historii sesji  \n            \nMetoda automatycznie nadaje wszystkie powyższe uprawnienia, bez konieczności ich wskazywania w żądaniu.\n            \n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-unijnego)\n\nWymagane uprawnienia: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1498,7 +1498,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"contextIdentifier":{"type":"NipVatUe","value":"7762811692-DE123456789012"},"description":"praca w kontekście 7762811692-DE123456789012; uprawniony FP: CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59, Firma \"FRM\" Sp. z o.o.","euEntityName":"Nazwa podmiotu unijnego"}
+              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"contextIdentifier":{"type":"NipVatUe","value":"7762811692-DE123456789012"},"description":"praca w kontekście 7762811692-DE123456789012; uprawniony Hans Fisher; 10.02.1990; paszport AT: AP759478","euEntityName":"Firma G.m.b.H."}
             }
           }
         },
@@ -1548,7 +1548,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień reprezentanta podmiotu unijnego",
-        "description": "Rozpoczyna asynchroniczną operację nadawania uprawnień reprezentanta podmiotu unijnego.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-reprezentanta-podmiotu-unijnego)\n\nWymagane uprawnienia: `VatUeManage`.",
+        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień do wystawiania i/lub przeglądania faktur w kontekście złożonym kontekstu bieżącego.  \n            \nJedynym sposobem identyfikacji uprawnianego jest odcisk palca certyfikatu kwalifikowanego:  \n- certyfikat podpisu elektronicznego dla osób fizycznych  \n- certyfikat pieczęci elektronicznej dla podmiotów  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-reprezentanta-podmiotu-unijnego)\n\nWymagane uprawnienia: `VatUeManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1564,7 +1564,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"permissions":["InvoiceRead","InvoiceWrite"],"description":"praca w kontekście 5194084033-IT932928602745; uprawniony FP: CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59, Hans Fisher; 10.02.1990; paszport AT: AP759478"}
+              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"permissions":["InvoiceRead","InvoiceWrite"],"description":"praca w kontekście 7762811692-DE123456789012; uprawniony Hans Fisher; 10.02.1990; paszport AT: AP759478"}
             }
           }
         },
@@ -1614,7 +1614,7 @@
           "Odbieranie uprawnień"
         ],
         "summary": "Odebranie uprawnień",
-        "description": "Rozpoczyna asynchroniczną operacje odbierania uprawnienia o podanym identyfikatorze.\n\nTa metoda służy do odbierania uprawnień takich jak:\n- nadanych nadanych osobom fizycznym lub podmiotom do pracy w KSeF\n- nadanych podmiotom do obsługi faktur\n- nadanych w sposób pośredni\n- administratorów jednostek i podmiotów podrzędnych\n- administratorów podmiotów unijnych uprawnionych do samofakturowania\n- reprezentantów podmiotów unijnych\n\n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84)\n\nWymagane uprawnienia: `CredentialsManage`, `VatUeManage`, `SubunitManage`.",
+        "description": "Metoda pozwala na odebranie uprawnienia o wskazanym identyfikatorze.  \nWymagane jest wcześniejsze odczytanie uprawnień w celu uzyskania  \nidentyfikatora uprawnienia, które ma zostać odebrane.\n\n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84)\n\nWymagane uprawnienia: `CredentialsManage`, `VatUeManage`, `SubunitManage`.",
         "parameters": [
           {
             "name": "permissionId",
@@ -1674,7 +1674,7 @@
           "Odbieranie uprawnień"
         ],
         "summary": "Odebranie uprawnień podmiotowych",
-        "description": "Rozpoczyna asynchroniczną operacje odbierania uprawnienia o podanym identyfikatorze.\nTa metoda służy do odbierania uprawnień podmiotowych.\n\n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84-podmiotowych)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Metoda pozwala na odebranie uprawnienia podmiotowego o wskazanym identyfikatorze.  \nWymagane jest wcześniejsze odczytanie uprawnień w celu uzyskania  \nidentyfikatora uprawnienia, które ma zostać odebrane.\n            \n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84-podmiotowych)\n\nWymagane uprawnienia: `CredentialsManage`.",
         "parameters": [
           {
             "name": "permissionId",
@@ -3664,7 +3664,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy własnych uprawnień",
-        "description": "Zwraca listę uprawnień przysługujących uwierzytelnionemu podmiotowi.\n\n> Więcej informacji:\n> - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-w%C5%82asnych-uprawnie%C5%84)",
+        "description": " Metoda pozwala na odczytanie własnych uprawnień uwierzytelnionego klienta API w bieżącym kontekście logowania.  \n\n W odpowiedzi przekazywane są następujące uprawnienia:  \n - nadane w sposób bezpośredni w bieżącym kontekście  \n - nadane przez podmiot nadrzędny  \n - nadane w sposób pośredni, jeżeli podmiot kontekstu logowania jest w uprawnieniu pośrednikiem lub podmiotem docelowym  \n - nadane podmiotowi do obsługi faktur przez inny podmiot, jeśli podmiot uwierzytelniony ma w bieżącym kontekście uprawnienia właścicielskie  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **CredentialsManage** – zarządzanie uprawnieniami  \n - **CredentialsRead** – przeglądanie uprawnień  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n - **SubunitManage** – zarządzanie podmiotami podrzędnymi  \n - **EnforcementOperations** – wykonywanie operacji egzekucyjnych  \n - **VatEuManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **contextIdentifier** – identyfikator podmiotu, który nadał uprawnienie do obsługi faktur  \n - **targetIdentifier** – identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n - **permissionState** – status uprawnienia  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-w%C5%82asnych-uprawnie%C5%84)",
         "parameters": [
           {
             "name": "pageOffset",
@@ -3703,7 +3703,7 @@
                   }
                 ]
               },
-              "example": {"contextIdentifier":{"type":"Nip","value":"5265877635"},"targetIdentifier":{"type":"Nip","value":"7762811692"},"permissionTypes":["CredentialsManage"],"permissionState":"Active"}
+              "example": {"contextIdentifier":{"type":"Nip","value":"3568707925"},"permissionTypes":["InvoiceWrite"],"permissionState":"Active"}
             }
           }
         },
@@ -3715,7 +3715,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryPersonalPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","permissionScope":"InvoiceWrite","description":"Uprawnienie do odczytu faktur","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"hasMore":false}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","contextIdentifier":{"type":"Nip","value":"3568707925"},"authorizedIdentifier":{"type":"Nip","value":"5247677742"},"permissionScope":"InvoiceWrite","description":"praca w kontekście 3568707925; uprawniony NIP: 5247677742, Adam Abacki","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"hasMore":false}
               }
             }
           },
@@ -3747,7 +3747,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom",
-        "description": "Zwraca listę uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom.\n\n> Więcej informacji:\n> - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-do-pracy-w-ksef-nadanych-osobom-fizycznym-lub-podmiotom)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`.",
+        "description": " Metoda pozwala na odczytanie uprawnień nadanych osobie fizycznej lub podmiotowi.  \n Lista pobranych uprawnień może być dwóch rodzajów:  \n - Lista wszystkich uprawnień obowiązujących w bieżącym kontekście logowania (używana, gdy administrator chce przejrzeć uprawnienia wszystkich użytkowników w bieżącym kontekście)  \n - Lista wszystkich uprawnień nadanych w bieżącym kontekście przez uwierzytelnionego klienta API (używana, gdy administrator chce przejrzeć listę nadanych przez siebie uprawnień w bieżącym kontekście)  \n\n Dla pierwszej listy (obowiązujących uprawnień) w odpowiedzi przekazywane są:  \n - osoby i podmioty mogące pracować w bieżącym kontekście z wyjątkiem osób uprawnionych w sposób pośredni  \n - osoby uprawnione w sposób pośredni przez podmiot bieżącego kontekstu  \n\n Dla drugiej listy (nadanych uprawnień) w odpowiedzi przekazywane są:  \n - uprawnienia nadane w sposób bezpośredni do pracy w bieżącym kontekście lub w kontekście jednostek podrzędnych  \n - uprawnienia nadane w sposób pośredni do obsługi klientów podmiotu bieżącego kontekstu  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **CredentialsManage** – zarządzanie uprawnieniami  \n - **CredentialsRead** – przeglądanie uprawnień  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n - **SubunitManage** – zarządzanie podmiotami podrzędnymi  \n - **EnforcementOperations** – wykonywanie operacji egzekucyjnych  \n\n Odpowiedź może być filtrowana na podstawie parametrów:  \n - **authorIdentifier** – identyfikator osoby, która nadała uprawnienie  \n - **authorizedIdentifier** – identyfikator osoby lub podmiotu uprawnionego  \n - **targetIdentifier** – identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n - **permissionState** – status uprawnienia  \n - **queryType** – typ zapytania określający, która z dwóch list ma zostać zwrócona  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-do-pracy-w-ksef-nadanych-osobom-fizycznym-lub-podmiotom)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -3801,7 +3801,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryPersonPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":{"type":"Nip","value":"7762811692"},"targetIdentifier":{"type":"Nip","value":"9786214922"},"authorIdentifier":{"type":"Pesel","value":"15062788702"},"permissionScope":"InvoiceWrite","description":"Uprawnienie nadane pośrednio","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"hasMore":false}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":{"type":"Nip","value":"7762811692"},"targetIdentifier":{"type":"Nip","value":"9786214922"},"authorIdentifier":{"type":"Pesel","value":"15062788702"},"permissionScope":"InvoiceWrite","description":"praca dla klienta 9786214922; uprawniony NIP: 7762811692, Adam Abacki; pośrednik 3936518395","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"hasMore":false}
               }
             }
           },
@@ -3840,7 +3840,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień administratorów jednostek i podmiotów podrzędnych",
-        "description": "Zwraca listę uprawnień administratorów jednostek i podmiotów podrzędnych.\n\n> Więcej informacji:\n> - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-administrator%C3%B3w-jednostek-i-podmiot%C3%B3w-podrz%C4%99dnych)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
+        "description": " Metoda pozwala na odczytanie uprawnień do zarządzania uprawnieniami nadanych administratorom:  \n - jednostek podrzędnych identyfikowanych identyfikatorem wewnętrznym  \n - podmiotów podrzędnych (podrzędnych JST lub członków grupy VAT) identyfikowanych przez NIP  \n\n Lista zwraca wyłącznie uprawnienia do zarządzania uprawnieniami nadane z kontekstu bieżącego (z podmiotu nadrzędnego).  \n Nie są odczytywane uprawnienia nadane przez administratorów jednostek podrzędnych wewnątrz tych jednostek.  \n\n Odpowiedź może być filtrowana na podstawie parametru:  \n - **subunitIdentifier** – identyfikator jednostki lub podmiotu podrzędnego  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-administrator%C3%B3w-jednostek-i-podmiot%C3%B3w-podrz%C4%99dnych)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -3891,7 +3891,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QuerySubunitPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"subunitIdentifier":{"type":"InternalId","value":"7762811692-12345"},"authorIdentifier":{"type":"Pesel","value":"15062788702"},"permissionScope":"CredentialsManage","description":"administrator jednostki podrzędnej","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"subunitIdentifier":{"type":"InternalId","value":"7762811692-12345"},"authorIdentifier":{"type":"Pesel","value":"15062788702"},"permissionScope":"CredentialsManage","description":"praca w kontekście 7762811692-12345; uprawniony FP: CEB3643B..., Bogdan Babacki, 2.03.2004; dowód osob. PL: ABC 3729477","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -3931,7 +3931,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy ról podmiotu",
-        "description": "Zwraca listę ról podmiotu.\n\n> Więcej informacji:\n> - [Pobieranie listy ról](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-r%C3%B3l-podmiotu)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`.",
+        "description": " Metoda pozwala na **odczytanie listy ról podmiotu bieżącego kontekstu logowania**.\n\n#### Role podmiotów zwracane przez operację:\n- **CourtBailiff** – komornik sądowy  \n- **EnforcementAuthority** – organ egzekucyjny  \n- **LocalGovernmentUnit** – nadrzędna JST  \n- **LocalGovernmentSubUnit** – podrzędne JST  \n- **VatGroupUnit** – grupa VAT  \n- **VatGroupSubUnit** – członek grupy VAT\n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n \n > Więcej informacji:\n > - [Pobieranie listy ról](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-r%C3%B3l-podmiotu)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -4007,7 +4007,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy podmiotów podrzędnych",
-        "description": "Zwraca liste podmiotów podrzędnych.\n\n> Więcej informacji:\n> - [Pobieranie listy podmiotów podrzędnych](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-podmiot%C3%B3w-podrz%C4%99dnych)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
+        "description": " Metoda pozwala na odczytanie listy podmiotów podrzędnych,  \n jeżeli podmiot bieżącego kontekstu ma rolę podmiotu nadrzędnego:\n - **nadrzędna JST** – odczytywane są podrzędne JST,  \n - **grupa VAT** – odczytywane są podmioty będące członkami grupy VAT.\n\n Role podmiotów zwracane przez operację obejmują:  \n - **LocalGovernmentSubUnit** – podrzędne JST,  \n - **VatGroupSubUnit** – członek grupy VAT.\n\n Odpowiedź może być filtrowana według parametru:  \n - **subordinateEntityIdentifier** – identyfikator podmiotu podrzędnego.\n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n  \n > Więcej informacji:\n > - [Pobieranie listy podmiotów podrzędnych](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-podmiot%C3%B3w-podrz%C4%99dnych)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -4058,7 +4058,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QuerySubordinateEntityRolesResponse"
                 },
-                "example": {"roles":[{"subordinateEntityIdentifier":{"type":"Nip","value":"7762811692"},"role":"VatGroupSubUnit","description":"Członek grupy VAT","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {"roles":[{"subordinateEntityIdentifier":{"type":"Nip","value":"7762811692"},"role":"VatGroupSubUnit","description":"Członek grupy VAT 8373740478","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -4098,7 +4098,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień podmiotowych do obsługi faktur",
-        "description": "Zwraca listę uprawnień podmiotowych do obsługi faktur.\n\n> Więcej informacji:\n> - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-podmiotowych-do-obs%C5%82ugi-faktur)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`.",
+        "description": " Metoda pozwala na odczytanie uprawnień podmiotowych:  \n - otrzymanych przez podmiot bieżącego kontekstu  \n - nadanych przez podmiot bieżącego kontekstu  \n\n Wybór listy nadanych lub otrzymanych uprawnień odbywa się przy użyciu parametru **queryType**.  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **SelfInvoicing** – wystawianie faktur w trybie samofakturowania  \n - **TaxRepresentative** – wykonywanie operacji przedstawiciela podatkowego  \n - **RRInvoicing** – wystawianie faktur VAT RR  \n - **PefInvoicing** – wystawianie faktur PEF  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **authorizingIdentifier** – identyfikator podmiotu uprawniającego (stosowane przy queryType = Received)  \n - **authorizedIdentifier** – identyfikator podmiotu uprawnionego (stosowane przy queryType = Granted)  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-podmiotowych-do-obs%C5%82ugi-faktur)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -4191,7 +4191,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień administratorów lub reprezentantów podmiotów unijnych uprawnionych do samofakturowania",
-        "description": "Zwraca listę uprawnień administratorów lub reprezentantów podmiotów unijnych uprawnionych do samofakturowania.\n\n> Więcej informacji:\n> - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-administrator%C3%B3w-lub-reprezentant%C3%B3w-podmiot%C3%B3w-unijnych-uprawnionych-do-samofakturowania)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`, `VatUeManage`.",
+        "description": " Metoda pozwala na odczytanie uprawnień administratorów lub reprezentantów podmiotów unijnych:  \n - Jeżeli kontekstem logowania jest NIP, możliwe jest odczytanie uprawnień administratorów podmiotów unijnych powiązanych z podmiotem bieżącego kontekstu, czyli takich, dla których pierwszy człon kontekstu złożonego jest równy NIP-owi kontekstu logowania.  \n - Jeżeli kontekst logowania jest złożony (NIP-VAT UE), możliwe jest pobranie wszystkich uprawnień administratorów i reprezentantów podmiotu w bieżącym kontekście złożonym.  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **VatUeManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **vatUeIdentifier** – identyfikator podmiotu unijnego  \n - **authorizedFingerprintIdentifier** – odcisk palca certyfikatu uprawnionej osoby lub podmiotu  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n \n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-administrator%C3%B3w-lub-reprezentant%C3%B3w-podmiot%C3%B3w-unijnych-uprawnionych-do-samofakturowania)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`, `VatUeManage`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -4242,7 +4242,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryEuEntityPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":{"type":"Pesel","value":"15062788702"},"vatUeIdentifier":"DE123456789012","euEntityName":"Podmiot unijny","authorizedFingerprintIdentifier":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59","permissionScope":"VatUeManage","description":"Administrator podmiotu unijnego","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":{"type":"Pesel","value":"15062788702"},"vatUeIdentifier":"DE123456789012","euEntityName":"Podmiot unijny","authorizedFingerprintIdentifier":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59","permissionScope":"VatUeManage","description":"praca w kontekście 7762811692-DE123456789012; uprawniony Hans Fisher; 10.02.1990; paszport AT: AP759478","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -5492,7 +5492,7 @@
                 "$ref": "#/components/schemas/InvoicePermissionType"
               }
             ],
-            "description": "Uprawnienie."
+            "description": "Rodzaj uprawnienia."
           },
           "description": {
             "type": "string",
@@ -5533,7 +5533,7 @@
                 "$ref": "#/components/schemas/EntityAuthorizationPermissionsSubjectIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
+            "description": "Identyfikator podmiotu uprawnianego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| PeppolId | Identyfikator dostawcy usług Peppol |"
           },
           "permission": {
             "allOf": [
@@ -5541,11 +5541,11 @@
                 "$ref": "#/components/schemas/EntityAuthorizationPermissionType"
               }
             ],
-            "description": "Nadawane uprawnienie o charakterze upoważnienia."
+            "description": "Rodzaj uprawnienia."
           },
           "description": {
             "type": "string",
-            "description": "Opis nadawanego uprawnienia."
+            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n`działanie w imieniu: {contextIdentifier.value} w kontekście {subjectIdentifier.value}, {subjectName}`  \n            \ngdzie:  \n- **contextIdentifier.value** – wartość identyfikatora (NIP) kontekstu logowania  \n- **subjectIdentifier.value** – identyfikator podmiotu uprawnianego  \n- **subjectName** – nazwa podmiotu uprawnianego  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
           }
         },
         "additionalProperties": false
@@ -5595,7 +5595,7 @@
             "items": {
               "$ref": "#/components/schemas/InvoicePermissionType"
             },
-            "description": "Możliwe uprawnienia do filtrowania.",
+            "description": "Lista rodzajów wyszukiwanych uprawnień.",
             "nullable": true
           }
         },
@@ -5622,7 +5622,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
+        "description": "Identyfikator podmiotu uprawnianego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| PeppolId | Identyfikator dostawcy usług Peppol |"
       },
       "EntityAuthorizationPermissionsSubjectIdentifierType": {
         "enum": [
@@ -5733,7 +5733,7 @@
                 "$ref": "#/components/schemas/EntityPermissionType"
               }
             ],
-            "description": "Możliwe uprawnienia do nadania."
+            "description": "Rodzaj uprawnienia."
           },
           "canDelegate": {
             "type": "boolean",
@@ -5778,7 +5778,7 @@
           },
           "description": {
             "type": "string",
-            "description": "Opis nadawanych uprawnień."
+            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n`praca w kontekście {loginContextIdentifier.value}; uprawniony NIP: {subjectIdentifier.value}, {subjectName}`  \n            \ngdzie:  \n- **loginContextIdentifier.value** – wartość identyfikatora (NIP) kontekstu logowania  \n- **subjectIdentifier.value** – identyfikator podmiotu uprawnianego  \n- **subjectName** – nazwa podmiotu uprawnianego  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
           }
         },
         "additionalProperties": false
@@ -5868,11 +5868,11 @@
                 "$ref": "#/components/schemas/EntityRoleType"
               }
             ],
-            "description": "Rola."
+            "description": "Typ roli - powiązania z podmiotem nadrzędnym."
           },
           "description": {
             "type": "string",
-            "description": "Opis."
+            "description": "Opis roli."
           },
           "startDate": {
             "type": "string",
@@ -5943,7 +5943,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator zlożony z podmiotu polskiego i podmiotu unijnego.\n| Type | Value |\n| --- | --- |\n| NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru VAT-UE: `{nip}-{vat_ue}` |"
+        "description": "Identyfikator kontekstu złożonego.\n| Type | Value |\n| --- | --- |\n| NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru VAT-UE: `{nip}-{vat_ue}` |"
       },
       "EuEntityAdministrationPermissionsContextIdentifierType": {
         "enum": [
@@ -5982,15 +5982,15 @@
                 "$ref": "#/components/schemas/EuEntityAdministrationPermissionsContextIdentifier"
               }
             ],
-            "description": "Identyfikator zlożony z podmiotu polskiego i podmiotu unijnego.\n| Type | Value |\n| --- | --- |\n| NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru VAT-UE: `{nip}-{vat_ue}` |"
+            "description": "Identyfikator kontekstu złożonego.\n| Type | Value |\n| --- | --- |\n| NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru VAT-UE: `{nip}-{vat_ue}` |"
           },
           "description": {
             "type": "string",
-            "description": "Opis nadawanych uprawnień."
+            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n            \nDla osób fizycznych (certyfikat podpisu):  \n- `praca w kontekście {contextIdentifier.value}; uprawniony NIP: {authorizedNip}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony PESEL: {authorizedPesel}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony: {authorizedName} {authorizedSurname}, {dateOfBirth}; {documentType} {documentIssuingCountry}: {documentSerialNumber}`  \n            \nDla podmiotu (certyfikat pieczęci):  \n- `praca w kontekście {contextIdentifier.value}; uprawniony: {authorizedSubjectName}, {authorizedSubjectAddress}`  \n            \ngdzie:  \n- **authorizedName** – imię uprawnionego  \n- **authorizedSurname** – nazwisko uprawnionego  \n- **authorizedNip** – NIP osoby lub podmiotu uprawnianego  \n- **authorizedPesel** – PESEL osoby uprawnianej  \n- **dateOfBirth** – data urodzenia uprawnianego  \n- **documentType** – rodzaj dokumentu tożsamości uprawnianego  \n- **documentIssuingCountry** – kraj wydania dokumentu tożsamości  \n- **documentSerialNumber** – seria i numer dokumentu tożsamości  \n- **authorizedSubjectName** – nazwa podmiotu uprawnianego  \n- **authorizedSubjectAddress** – adres podmiotu uprawnianego  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
           },
           "euEntityName": {
             "type": "string",
-            "description": "Nazwa podmiotu unijnego."
+            "description": "Nazwa i adres podmiotu unijnego w formacie: \n`{euSubjectName}, {euSubjectAddress}`"
           }
         },
         "additionalProperties": false
@@ -6141,7 +6141,7 @@
                 "$ref": "#/components/schemas/EuEntityPermissionsSubjectIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu.\n| Type | Value |\n| --- | --- |\n| Fingerprint | Odcisk palca certyfikatu |"
+            "description": "Identyfikator podmiotu uprawnianego.\n| Type | Value |\n| --- | --- |\n| Fingerprint | Odcisk palca certyfikatu |"
           },
           "permissions": {
             "type": "array",
@@ -6152,7 +6152,7 @@
           },
           "description": {
             "type": "string",
-            "description": "Opis nadawanych uprawnień."
+            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n            \nDla osób fizycznych (certyfikat podpisu):  \n- `praca w kontekście {contextIdentifier.value}; uprawniony NIP: {authorizedNip}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony PESEL: {authorizedPesel}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony: {authorizedName} {authorizedSurname}, {dateOfBirth}; {documentType} {documentIssuingCountry}: {documentSerialNumber}`  \n            \nDla podmiotu (certyfikat pieczęci):  \n- `praca w kontekście {contextIdentifier.value}; uprawniony: {authorizedSubjectName}, {authorizedSubjectAddress}`  \n            \ngdzie:  \n- **authorizedName** – imię uprawnionego  \n- **authorizedSurname** – nazwisko uprawnionego  \n- **authorizedNip** – NIP osoby lub podmiotu uprawnianego  \n- **authorizedPesel** – PESEL osoby uprawnianej  \n- **dateOfBirth** – data urodzenia uprawnianego  \n- **documentType** – rodzaj dokumentu tożsamości uprawnianego  \n- **documentIssuingCountry** – kraj wydania dokumentu tożsamości  \n- **documentSerialNumber** – seria i numer dokumentu tożsamości  \n- **authorizedSubjectName** – nazwa podmiotu uprawnianego  \n- **authorizedSubjectAddress** – adres podmiotu uprawnianego  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
           }
         },
         "additionalProperties": false
@@ -6171,12 +6171,12 @@
         "properties": {
           "vatUeIdentifier": {
             "type": "string",
-            "description": "Identyfikator podmiotu unijnego.",
+            "description": "Wartość identyfikatora (numeru identyfikacyjnego VAT) podmiotu unijnego.",
             "nullable": true
           },
           "authorizedFingerprintIdentifier": {
             "type": "string",
-            "description": "Uprawniony odcisk palca certyfikatu.",
+            "description": "Odcisk palca certyfikatu kwalifikowanego uprawnionego.",
             "nullable": true
           },
           "permissionTypes": {
@@ -6184,7 +6184,7 @@
             "items": {
               "$ref": "#/components/schemas/EuEntityPermissionsQueryPermissionType"
             },
-            "description": "Możliwe uprawnienia do filtrowania.",
+            "description": "Lista rodzajów wyszukiwanych uprawnień.",
             "nullable": true
           }
         },
@@ -6211,7 +6211,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu.\n| Type | Value |\n| --- | --- |\n| Fingerprint | Odcisk palca certyfikatu |"
+        "description": "Identyfikator podmiotu uprawnianego.\n| Type | Value |\n| --- | --- |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "EuEntityPermissionsSubjectIdentifierType": {
         "enum": [
@@ -6394,7 +6394,7 @@
                 "$ref": "#/components/schemas/IndirectPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu, w którego kontekście chcemy pośrednio nadać uprawnienia.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
+            "description": "Identyfikator kontekstu klienta.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
             "nullable": true
           },
           "permissions": {
@@ -6406,7 +6406,7 @@
           },
           "description": {
             "type": "string",
-            "description": "Opis nadawanych uprawnień."
+            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n`praca w kontekście {loginContextIdentifier.value}; uprawniony NIP: {subjectIdentifier.value}, {subjectName}`  \n            \n1. Dla uprawnień selektywnych:  \n- `praca dla klienta {targetIdentifier.value}; uprawniony NIP {subjectIdentifier.value}, {subjectName} {subjectSurname}; pośrednik {loginContextIdentifier.value}`  \n- `praca dla klienta {targetIdentifier.value}; uprawniony PESEL {subjectIdentifier.value}, {subjectName} {subjectSurname}; pośrednik {loginContextIdentifier.value}`  \n- `praca dla klienta {targetIdentifier.value}; uprawniony FP: {subjectIdentifier.value (8 cyfr wiodących)}..., {subjectName} {subjectSurname}, {dateOfBirth}; {documentType} {documentIssuingCountry}: {documentSerialNumber}; pośrednik {loginContextIdentifier.value}`  \n            \n2. Dla uprawnień generalnych:  \n- `praca dla wszystkich klientów; uprawniony NIP {subjectIdentifier.value}, {subjectName} {subjectSurname}; pośrednik {loginContextIdentifier.value}`  \n- `praca dla wszystkich klientów; uprawniony PESEL {subjectIdentifier.value}, {subjectName} {subjectSurname}; pośrednik {loginContextIdentifier.value}`  \n- `praca dla wszystkich klientów; uprawniony FP: {subjectIdentifier.value (8 cyfr wiodących)}..., {subjectName} {subjectSurname}, {dateOfBirth}; {documentType} {documentIssuingCountry}: {documentSerialNumber}; pośrednik {loginContextIdentifier.value}`  \n            \ngdzie:  \n- **loginContextIdentifier.value** – wartość identyfikatora (NIP) kontekstu logowania  \n- **subjectName** – imię osoby uprawnianej  \n- **subjectSurname** – nazwisko osoby uprawnianej  \n- **dateOfBirth** – data urodzenia uprawnianego  \n- **documentType** – rodzaj dokumentu tożsamości uprawnianego  \n- **documentIssuingCountry** – kraj wydania dokumentu tożsamości  \n- **documentSerialNumber** – seria i numer dokumentu tożsamości  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
           }
         },
         "additionalProperties": false
@@ -6463,7 +6463,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu, w którego kontekście chcemy pośrednio nadać uprawnienia.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |"
+        "description": "Identyfikator kontekstu klienta.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |"
       },
       "IndirectPermissionsTargetIdentifierType": {
         "enum": [
@@ -7644,7 +7644,7 @@
                 "$ref": "#/components/schemas/PersonPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
+            "description": "Identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
             "nullable": true
           },
           "authorIdentifier": {
@@ -7664,7 +7664,7 @@
                 "$ref": "#/components/schemas/PersonPermissionScope"
               }
             ],
-            "description": "Uprawnienie."
+            "description": "Rodzaj uprawnienia."
           },
           "description": {
             "type": "string",
@@ -7685,7 +7685,7 @@
           },
           "canDelegate": {
             "type": "boolean",
-            "description": "Informacja o możliwości dalszego nadawania uprawnienia w sposób pośredni."
+            "description": "Flaga określająca, czy uprawnienie ma być możliwe do dalszego przekazywania."
           }
         },
         "additionalProperties": false
@@ -7836,7 +7836,7 @@
           },
           "description": {
             "type": "string",
-            "description": "Opis nadawanych uprawnień."
+            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n- `praca w kontekście {loginContextIdentifier.value}; uprawniony NIP: {subjectIdentifier.value}, {subjectName}`  \n- `praca w kontekście {loginContextIdentifier.value}; uprawniony NIP: {subjectIdentifier.value}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {loginContextIdentifier.value}; uprawniony PESEL: {subjectIdentifier.value}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {loginContextIdentifier.value}; uprawniony FP: {subjectIdentifier.value (8 cyfr wiodących)}..., {authorizedName} {authorizedSurname}, {dateOfBirth}; {documentType} {documentIssuingCountry}: {documentSerialNumber}`  \n            \ngdzie:  \n- **loginContextIdentifier.value** – wartość identyfikatora (NIP) kontekstu logowania  \n- **subjectName** – nazwa podmiotu uprawnianego  \n- **authorizedName** – imię uprawnionego  \n- **authorizedSurname** – nazwisko uprawnionego  \n- **authorizedNip** – NIP osoby lub podmiotu uprawnianego  \n- **authorizedPesel** – PESEL osoby uprawnianej  \n- **dateOfBirth** – data urodzenia uprawnianego  \n- **documentType** – rodzaj dokumentu tożsamości uprawnianego  \n- **documentIssuingCountry** – kraj wydania dokumentu tożsamości  \n- **documentSerialNumber** – seria i numer dokumentu tożsamości  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
           }
         },
         "additionalProperties": false
@@ -7894,7 +7894,7 @@
                 "$ref": "#/components/schemas/PersonPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
+            "description": "Identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
             "nullable": true
           },
           "permissionTypes": {
@@ -7902,7 +7902,7 @@
             "items": {
               "$ref": "#/components/schemas/PersonPermissionType"
             },
-            "description": "Możliwe uprawnienia do filtrowania.",
+            "description": "Lista rodzajów wyszukiwanych uprawnień.",
             "nullable": true
           },
           "permissionState": {
@@ -7920,7 +7920,7 @@
                 "$ref": "#/components/schemas/PersonPermissionsQueryType"
               }
             ],
-            "description": "Typ zapytania.\n| Type | Value |\n| --- | --- |\n| PermissionsInCurrentContext | Uprawnienia obowiązujące w aktualnym kontekście |\n| PermissionsGrantedInCurrentContext | Uprawnienia nadane w aktualnym kontekście |"
+            "description": "Typ zapytania.\n| Type | Value |\n| --- | --- |\n| PermissionsInCurrentContext | Lista uprawnień obowiązujących w bieżącym kontekście |\n| PermissionsGrantedInCurrentContext | Lista uprawmoeń nadanych w bieżącym kontekście |"
           }
         },
         "additionalProperties": false
@@ -7984,7 +7984,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |"
+        "description": "Identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |"
       },
       "PersonPermissionsTargetIdentifierType": {
         "enum": [
@@ -8030,7 +8030,7 @@
                 "$ref": "#/components/schemas/PersonalPermissionsContextIdentifier"
               }
             ],
-            "description": "Identyfikator kontekstu uprawnienia (dla uprawnień nadanych podmiotom do obsługi faktur).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
+            "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
             "nullable": true
           },
           "authorizedIdentifier": {
@@ -8043,7 +8043,7 @@
                 "$ref": "#/components/schemas/PersonalPermissionsAuthorizedIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu uprawnionego, jeśli inny niż podmiot uwierzytelnienia.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
+            "description": "Identyfikator podmiotu uprawnionego, jeżeli jest inny niż identyfikator uwierzytelnionego klienta API.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
             "nullable": true
           },
           "targetIdentifier": {
@@ -8055,7 +8055,7 @@
                 "$ref": "#/components/schemas/PersonalPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
+            "description": "Identyfikator podmiotu docelowego dla uprawnień selektywnych nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że wyszukiwanie dotyczy uprawnień generalnych nadanych w sposób pośredni |",
             "nullable": true
           },
           "permissionScope": {
@@ -8064,7 +8064,7 @@
                 "$ref": "#/components/schemas/PersonalPermissionScope"
               }
             ],
-            "description": "Uprawnienie."
+            "description": "Rodzaj uprawnienia."
           },
           "description": {
             "type": "string",
@@ -8085,7 +8085,7 @@
           },
           "canDelegate": {
             "type": "boolean",
-            "description": "Informacja o możliwości dalszego nadawania uprawnienia w sposób pośredni."
+            "description": "Flaga określająca, czy uprawnienie ma być możliwe do dalszego przekazywania."
           }
         },
         "additionalProperties": false
@@ -8138,7 +8138,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu uprawnionego, jeśli inny niż podmiot uwierzytelnienia.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
+        "description": "Identyfikator podmiotu uprawnionego, jeżeli jest inny niż identyfikator uwierzytelnionego klienta API.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
       },
       "PersonalPermissionsAuthorizedIdentifierType": {
         "enum": [
@@ -8169,7 +8169,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator kontekstu uprawnienia (dla uprawnień nadanych podmiotom do obsługi faktur).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
+        "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
       },
       "PersonalPermissionsContextIdentifierType": {
         "enum": [
@@ -8190,7 +8190,7 @@
                 "$ref": "#/components/schemas/PersonalPermissionsContextIdentifier"
               }
             ],
-            "description": "Identyfikator kontekstu uprawnienia (dla uprawnień nadanych podmiotom do obsługi faktur).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
+            "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
             "nullable": true
           },
           "targetIdentifier": {
@@ -8202,7 +8202,7 @@
                 "$ref": "#/components/schemas/PersonalPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
+            "description": "Identyfikator podmiotu docelowego dla uprawnień selektywnych nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że wyszukiwanie dotyczy uprawnień generalnych nadanych w sposób pośredni |",
             "nullable": true
           },
           "permissionTypes": {
@@ -8210,7 +8210,7 @@
             "items": {
               "$ref": "#/components/schemas/PersonalPermissionType"
             },
-            "description": "Możliwe uprawnienia do filtrowania.",
+            "description": "Lista rodzajów wyszukiwanych uprawnień.",
             "nullable": true
           },
           "permissionState": {
@@ -8219,7 +8219,7 @@
                 "$ref": "#/components/schemas/PermissionState"
               }
             ],
-            "description": "Stan uprawnienia. \n| Type | Value |\n| --- | --- |\n| Active | Uprawnienia aktywne |\n| Inactive | Uprawnienia nieaktywne, nadane w sposób pośredni |",
+            "description": "Stan uprawnienia. \n| Type | Value |\n| --- | --- |\n| Active | Uprawnienia aktywne |\n| Inactive | Uprawnienia nieaktywne |",
             "nullable": true
           }
         },
@@ -8246,7 +8246,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu docelowego (dla uprawnień pośrednich).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |"
+        "description": "Identyfikator podmiotu docelowego dla uprawnień selektywnych nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że wyszukiwanie dotyczy uprawnień generalnych nadanych w sposób pośredni |"
       },
       "PersonalPermissionsTargetIdentifierType": {
         "enum": [
@@ -8369,7 +8369,7 @@
             "items": {
               "$ref": "#/components/schemas/EntityAuthorizationGrant"
             },
-            "description": "Lista uprawnień."
+            "description": "Lista odczytanych uprawnień."
           },
           "hasMore": {
             "type": "boolean",
@@ -8390,7 +8390,7 @@
             "items": {
               "$ref": "#/components/schemas/EntityRole"
             },
-            "description": "Lista ról."
+            "description": "Lista odczytanych ról podmiotu."
           },
           "hasMore": {
             "type": "boolean",
@@ -8411,7 +8411,7 @@
             "items": {
               "$ref": "#/components/schemas/EuEntityPermission"
             },
-            "description": "Lista uprawnień."
+            "description": "Lista odczytanych uprawnień."
           },
           "hasMore": {
             "type": "boolean",
@@ -8479,7 +8479,7 @@
             "items": {
               "$ref": "#/components/schemas/PersonPermission"
             },
-            "description": "Lista uprawnień."
+            "description": "Lista odczytanych uprawnień."
           },
           "hasMore": {
             "type": "boolean",
@@ -8500,7 +8500,7 @@
             "items": {
               "$ref": "#/components/schemas/PersonalPermission"
             },
-            "description": "Lista uprawnień."
+            "description": "Lista odczytanych uprawnień."
           },
           "hasMore": {
             "type": "boolean",
@@ -8521,7 +8521,7 @@
             "items": {
               "$ref": "#/components/schemas/SubordinateEntityRole"
             },
-            "description": "Lista ról."
+            "description": "Lista odczytanych podmiotów podrzędnych i ich ról."
           },
           "hasMore": {
             "type": "boolean",
@@ -8542,7 +8542,7 @@
             "items": {
               "$ref": "#/components/schemas/SubunitPermission"
             },
-            "description": "Lista uprawnień."
+            "description": "Lista odczytanych uprawnień."
           },
           "hasMore": {
             "type": "boolean",
@@ -9240,11 +9240,11 @@
                 "$ref": "#/components/schemas/SubordinateEntityRoleType"
               }
             ],
-            "description": "Powiązanie."
+            "description": "Typ roli - powiązania z podmiotem nadrzędnym."
           },
           "description": {
             "type": "string",
-            "description": "Opis."
+            "description": "Opis powiązania."
           },
           "startDate": {
             "type": "string",
@@ -9383,7 +9383,7 @@
                 "$ref": "#/components/schemas/SubunitPermissionScope"
               }
             ],
-            "description": "Uprawnienie."
+            "description": "Rodzaj uprawnienia."
           },
           "description": {
             "type": "string",
@@ -9526,7 +9526,7 @@
           },
           "description": {
             "type": "string",
-            "description": "Opis nadawanych uprawnień."
+            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n- `praca w kontekście {contextIdentifier.value}; uprawniony NIP: {authorizedNip}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony PESEL: {authorizedPesel}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony: {authorizedName} {authorizedSurname}, {dateOfBirth}; {documentType} {documentIssuingCountry}: {documentSerialNumber}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony: {authorizedSubjectName}, {authorizedSubjectAddress}`  \n            \ngdzie:  \n- **authorizedName** – imię uprawnionego  \n- **authorizedSurname** – nazwisko uprawnionego  \n- **authorizedNip** – NIP osoby lub podmiotu uprawnianego  \n- **authorizedPesel** – PESEL osoby uprawnianej  \n- **dateOfBirth** – data urodzenia uprawnianego  \n- **documentType** – rodzaj dokumentu tożsamości uprawnianego  \n- **documentIssuingCountry** – kraj wydania dokumentu tożsamości  \n- **documentSerialNumber** – seria i numer dokumentu tożsamości  \n- **authorizedSubjectName** – nazwa podmiotu uprawnianego  \n- **authorizedSubjectAddress** – adres podmiotu uprawnianego  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
           },
           "subunitName": {
             "type": "string",
