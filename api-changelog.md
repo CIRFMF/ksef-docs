@@ -10,6 +10,9 @@
 - **Uprawnienia**  
   Zaktualizowano opisy endpointów przykłady endpointów z obszaru permissions/*. Zmiana dotyczy wyłącznie dokumentacji (doprecyzowanie opisów, formatów i przykładów); brak zmian w zachowaniu API oraz kontrakcie.
 
+- **OpenAPI**
+  - Doprecyzowano ograniczenia dla właściwości typu integer w requests poprzez dodanie atrybutów `minimum` / `exclusiveMinimum`, `maximum` / `exclusiveMaximum`.  
+
 ### Wersja 2.0.0 RC5.2
 - **Uprawnienia** 
   - "Nadanie uprawnień administratora podmiotu podrzędnego" (POST `/permissions/subunits/grants`)  

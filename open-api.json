@@ -27,6 +27,10 @@
             "in": "query",
             "description": "Rozmiar strony wyników.",
             "schema": {
+              "maximum": 100,
+              "exclusiveMaximum": false,
+              "minimum": 10,
+              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -2345,6 +2349,10 @@
             "in": "query",
             "description": "Rozmiar strony wyników.",
             "schema": {
+              "maximum": 100,
+              "exclusiveMaximum": false,
+              "minimum": 10,
+              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -2492,6 +2500,10 @@
             "in": "query",
             "description": "Rozmiar strony wyników.",
             "schema": {
+              "maximum": 100,
+              "exclusiveMaximum": false,
+              "minimum": 10,
+              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -2846,6 +2858,10 @@
             "in": "query",
             "description": "Rozmiar strony wyników.",
             "schema": {
+              "maximum": 100,
+              "exclusiveMaximum": false,
+              "minimum": 10,
+              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32"
             }
