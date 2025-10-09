@@ -22,6 +22,12 @@ Tokeny są automatycznie unieważniane w przypadku utraty uprawnień.
 
 ## Proces uwierzytelniania
 
+> **Szybki start (demo)**
+>
+> W celu demonstracji pełnego przebiegu procesu uwierzytelnienia (pobranie wyzwania, przygotowanie i podpisanie XAdES, przesłanie, sprawdzenie statusu, pobranie tokenów `accessToken` i `refreshToken`) można skorzystać z aplikacji demonstracyjnej. Szczegóły znajdują się w dokumencie: **[Testowe certyfikaty i podpisy XAdES](auth/testowe-certyfikaty-i-podpisy-xades.md)**.
+>
+> **Uwaga:** samopodpisane certyfikaty są dopuszczalne wyłącznie w środowisku testowym.
+
 ### 1. Uzyskanie auth challenge
 
 Proces uwierzytelniania rozpoczyna się od pobrania tzw. **auth challenge**, który stanowi element wymagany do dalszego utworzenia żądania uwierzytelniającego.
@@ -222,7 +228,7 @@ Po podpisaniu dokumentu AuthTokenRequest należy przesłać go do systemu KSeF z
 POST [/auth/xades-signature](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierzytelnianie/paths/~1api~1v2~1auth~1xades-signature/post). <br>
 Ponieważ proces uwierzytelniania jest asynchroniczny, w odpowiedzi zwracany jest tymczasowy token operacji uwierzytelnienia (JWT) (```authenticationToken```) wraz z numerem referencyjnym (```referenceNumber```). Oba identyfikatory służą do:
 * sprawdzenia statusu procesu uwierzytelnienia,
-* pobrania właściwego tokena dostępowego (```accessToken```) w formacie JWT.
+* pobrania właściwego tokena dostępowego (`accessToken`) w formacie JWT.
 
 
 Przykład w języku ```C#```:
