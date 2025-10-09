@@ -45,10 +45,10 @@ Przykład w języku Java:
 
 ```java
 KsefTokenRequest request = new KsefTokenRequestBuilder()
-    .withDescription("test description")
-    .withPermissions(List.of(TokenPermissionType.INVOICEREAD, TokenPermissionType.INVOICEWRITE))
-    .build();
-GenerateTokenResponse ksefToken = createKSeFClient().generateKsefToken(request, authToken.accessToken());
+        .withDescription("test description")
+        .withPermissions(List.of(TokenPermissionType.INVOICE_READ, TokenPermissionType.INVOICE_WRITE))
+        .build();
+GenerateTokenResponse ksefToken = ksefClient.generateKsefToken(request, authToken.accessToken());
 ```
 
 ### 2. Filtrowanie tokenów
@@ -77,7 +77,7 @@ Przykład w języku Java:
 ```java
 List<AuthenticationTokenStatus> status = List.of(AuthenticationTokenStatus.ACTIVE);
 Integer pageSize = 10;
-QueryTokensResponse tokens = createKSeFClient().queryKsefTokens(status, StringUtils.EMPTY, pageSize, authenticationToken);
+QueryTokensResponse tokens = ksefClient.queryKsefTokens(status, StringUtils.EMPTY, null, null, null, pageSize, accessToken);
 ```
 
 W odpowiedzi zwracane są metadane tokenów, między innymi informacja kto i w jakim kontekœcie wygenerował token KSef oraz uprawnienia do niego przypisane.
@@ -97,7 +97,7 @@ Przykład w języku Java:
 [KsefTokenIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/KsefTokenIntegrationTest.java)
 
 ```java
-AuthenticationToken ksefToken = createKSeFClient().getKsefToken(token.getReferenceNumber(), accessToken);
+AuthenticationToken ksefToken = ksefClient.getKsefToken(token.getReferenceNumber(), accessToken);
 ```
 
 ### 4. Unieważnienie tokena
@@ -116,5 +116,5 @@ Przykład w języku Java:
 [KsefTokenIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/KsefTokenIntegrationTest.java)
 
 ```java
-createKSeFClient().revokeKsefToken(token.getReferenceNumber(), accessToken);
+ksefClient.revokeKsefToken(token.getReferenceNumber(), accessToken);
 ```

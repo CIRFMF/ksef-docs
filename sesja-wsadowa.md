@@ -253,7 +253,7 @@ OpenBatchSessionRequest request = builder.endBatchFile()
 )
 .build();
 
-OpenBatchSessionResponse response = createKSeFClient().openBatchSession(request, accessToken);
+OpenBatchSessionResponse response = ksefClient.openBatchSession(request, accessToken);
 ```
 
 Metoda zwraca listę części paczki; dla każdej części podaje adres uploadu (URL), wymaganą metodę HTTP oraz komplet nagłówków, które należy przesłać razem z daną częścią.
@@ -273,7 +273,7 @@ Przykład w języku Java:
 [BatchIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/BatchIntegrationTest.java)
 
 ```java
-createKSeFClient().sendBatchParts(response, encryptedZipParts);
+ksefClient.sendBatchParts(response, encryptedZipParts);
 ```
 
 **Limit czasu na przesłanie partów w sesji wsadowej**  
@@ -300,7 +300,7 @@ Przykład w języku Java:
 [BatchIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/BatchIntegrationTest.java)
 
 ```java
-createKSeFClient().closeBatchSession(referenceNumber, accessToken);
+ksefClient.closeBatchSession(referenceNumber, accessToken);
 ```
 
 Zobacz 

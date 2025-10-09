@@ -69,14 +69,14 @@ Przykład w języku Java:
 [OnlineSessionController#sendTechnicalCorrection.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/main/java/pl/akmf/ksef/sdk/api/OnlineSessionController.java#L120)
 ```java
 SendInvoiceOnlineSessionRequest sendInvoiceOnlineSessionRequest = new SendInvoiceOnlineSessionRequestBuilder()
-                .withInvoiceHash(invoiceMetadata.getHashSHA())
-                .withInvoiceSize(invoiceMetadata.getFileSize())
-                .withEncryptedInvoiceHash(encryptedInvoiceMetadata.getHashSHA())
-                .withEncryptedInvoiceSize(encryptedInvoiceMetadata.getFileSize())
-                .withEncryptedInvoiceContent(Base64.getEncoder().encodeToString(encryptedInvoice))
-                .withHashOfCorrectedInvoice(hashOfCorrectedInvoice)
-                .withOfflineMode(true)
-                .build();
+           .withInvoiceHash(invoiceMetadata.getHashSHA())
+           .withInvoiceSize(invoiceMetadata.getFileSize())
+           .withEncryptedInvoiceHash(encryptedInvoiceMetadata.getHashSHA())
+           .withEncryptedInvoiceSize(encryptedInvoiceMetadata.getFileSize())
+           .withEncryptedInvoiceContent(Base64.getEncoder().encodeToString(encryptedInvoice))
+           .withOfflineMode(true)
+           .withHashOfCorrectedInvoice(hashOfCorrectedInvoice)
+        .build();
 ```
 
 ## Powiązane dokumenty

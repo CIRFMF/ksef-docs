@@ -46,7 +46,7 @@ Przykład w języku Java:
 [CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
 
 ```java
-CertificateLimitsResponse response = createKSeFClient().getCertificateLimits(accessToken);
+CertificateLimitsResponse response = ksefClient.getCertificateLimits(accessToken);
 ```
 
 ### 2. Pobranie danych do wniosku certyfikacyjnego
@@ -76,7 +76,7 @@ Przykład w języku Java:
 [CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
 
 ```java
-CertificateEnrollmentsInfoResponse response = createKSeFClient().getCertificateEnrollmentInfo(accessToken);
+CertificateEnrollmentsInfoResponse response = ksefClient.getCertificateEnrollmentInfo(accessToken);
 ```
 
 Oto pełna lista pól, które mogą być zwrócone, przedstawiona w formie tabeli zawierającej OID:
@@ -131,7 +131,7 @@ Przykład w języku Java:
 [CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
 
 ```java
-CsrResult csr = new DefaultCryptographyService(createKSeFClient()).generateCsr(enrollmentInfo);
+CsrResult csr = defaultCryptographyService.generateCsrWithRsa(enrollmentInfo);
 ```
 
 * ```csrBase64Encoded``` – zawiera żądanie CSR zakodowane w formacie Base64, gotowe do wysłania do KSeF
@@ -173,13 +173,13 @@ Przykład w języku Java:
 
 ```java
 SendCertificateEnrollmentRequest request = new SendCertificateEnrollmentRequestBuilder()
-        .withValidFrom(LocalDateTime.now().toString())
+        .withValidFrom(OffsetDateTime.now().toString())
         .withCsr(csr.csr())
         .withCertificateName("certificate")
-        .withCertificateType(CertificateType.Authentication)
+        .withCertificateType(CertificateType.AUTHENTICATION)
         .build();
 
-CertificateEnrollmentResponse response = createKSeFClient().sendCertificateEnrollment(request, accessToken);
+CertificateEnrollmentResponse response = ksefClient.sendCertificateEnrollment(request, accessToken);
 ```
 
 W odpowiedzi otrzymasz ```referenceNumber```, który umożliwia monitorowanie statusu wniosku oraz późniejsze pobranie wystawionego certyfikatu.
@@ -205,7 +205,8 @@ Przykład w języku Java:
 [CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
 
 ```java
-CertificateEnrollmentStatusResponse response = createKSeFClient().getCertificateEnrollmentStatus(referenceNumber, accessToken);
+CertificateEnrollmentStatusResponse response = ksefClient.getCertificateEnrollmentStatus(referenceNumber, accessToken);
+
 ```
 
 Po uzyskaniu numeru seryjnego certyfikatu (```certificateSerialNumber```), możliwe jest pobranie jego zawartości i metadanych w kolejnych krokach procesu.
@@ -230,9 +231,7 @@ Przykład w języku Java:
 [CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
 
 ```java
-CertificateListResponse certificateResponse =
-        createKSeFClient().getCertificateList(new CertificateListRequest(List.of(certificateSerialNumber)), accessToken);
-
+CertificateListResponse certificateResponse = ksefClient.getCertificateList(new CertificateListRequest(List.of(certificateSerialNumber)), accessToken);
 ```
 
 Każdy element odpowiedzi zawiera:
@@ -274,10 +273,10 @@ Przykład w języku Java:
 [CertificateIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/CertificateIntegrationTest.java)
 
 ```java
-QueryCertificatesRequest request = new certificateMetadataListRequestBuilder()
-        .build();
+QueryCertificatesRequest request = new CertificateMetadataListRequestBuilder().build();
 
-CertificateMetadataListResponse response = createKSeFClient().getCertificateMetadataList(request, 10, 0, accessToken);
+CertificateMetadataListResponse response = ksefClient.getCertificateMetadataList(request, 10, 0, accessToken);
+
 
 ```
 
@@ -312,7 +311,7 @@ CertificateRevokeRequest request = new CertificateRevokeRequestBuilder()
         .withRevocationReason(CertificateRevocationReason.KEYCOMPROMISE)
         .build();
 
-createKSeFClient().revokeCertificate(request, serialNumber, accessToken);
+ksefClient.revokeCertificate(request, serialNumber, accessToken);
 ```
 
 Po unieważnieniu certyfikat nie może zostać ponownie wykorzystany. Jeśli zajdzie potrzeba jego dalszego użycia, należy wystąpić o nowy certyfikat.

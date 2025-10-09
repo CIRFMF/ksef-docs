@@ -41,7 +41,8 @@ Przykład w języku Java:
 ```java
 SessionsQueryRequest request = new SessionsQueryRequest();
 request.setSessionType(SessionType.ONLINE);
-SessionsQueryResponse sessionsQueryResponse = createKSeFClient().getSessions(request, 10, null, accessToken);
+SessionsQueryResponse sessionsQueryResponse = ksefClient.getSessions(request, 10, null, accessToken);
+
 ```
 
 ### 2. Sprawdzenie stanu sesji
@@ -63,7 +64,7 @@ Przykład w języku Java:
 [OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
 
 ```java
-SessionStatusResponse statusResponse = createKSeFClient().getSessionStatus(sessionReferenceNumber, accessToken);
+SessionStatusResponse statusResponse = ksefClient.getSessionStatus(sessionReferenceNumber, accessToken);
 ```
 
 
@@ -103,7 +104,7 @@ Przykład w języku Java:
 [OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
 
 ```java
-SessionInvoicesResponse sessionInvoices = createKSeFClient().getSessionInvoices(sessionReferenceNumber, null, 10, accessToken);
+SessionInvoicesResponse sessionInvoices = ksefClient.getSessionInvoices(referenceNumber,continuationtoken, 10, authToken);
 
 ```
 ### 4. Pobranie informcji o pojedynczej fakturze
@@ -128,8 +129,8 @@ Przykład w języku Java:
 [QueryInvoiceIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QueryInvoiceIntegrationTest.java)
 
 ```java
-SessionInvoice sessionInvoiceStatus = ksefClient.getSessionInvoiceStatus(referenceNumber, invoiceReferenceNumber, accessToken);
-        SessionInvoiceStatusResponse statusResponse = createKSeFClient().getSessionInvoiceStatus(sessionReferenceNumber, invoiceReferenceNumber, accessToken);
+SessionInvoiceStatusResponse statusResponse = ksefClient.getSessionInvoiceStatus(sessionReferenceNumber, invoiceReferenceNumber, accessToken);
+
 ```
 
 ### 5. Pobranie UPO dla faktury
@@ -154,7 +155,7 @@ Przykład w języku Java:
 [OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
 
 ```java
-byte[] upoResponse = createKSeFClient().getSessionInvoiceUpoByReferenceNumber(sessionReferenceNumber, invoiceReferenceNumber, accessToken);
+byte[] upoResponse = ksefClient.getSessionInvoiceUpoByReferenceNumber(sessionReferenceNumber, invoiceReferenceNumber, accessToken);
 ```
 
 #### 5.2 Na podstawie numeru KSeF faktury
@@ -175,7 +176,7 @@ Przykład w języku Java:
 [OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
 
 ```java
-byte[] upoResponse = createKSeFClient().getSessionInvoiceUpoByKsefNumber(sessionReferenceNumber, ksefNumber, accessToken);
+byte[] upoResponse = ksefClient.getSessionInvoiceUpoByKsefNumber(sessionReferenceNumber, ksefNumber, accessToken);
 ```
 
 Otrzymany dokument XML jest: 
@@ -262,7 +263,7 @@ Przykład w języku Java:
 [OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
 
 ```java
-byte[] sessionUpo = createKSeFClient().getSessionUpo(sessionReferenceNumber, upoReferenceNumber, accessToken);
+byte[] sessionUpo = ksefClient.getSessionUpo(sessionReferenceNumber, upoReferenceNumber, accessToken);
 ```
 
 ## Powiązane dokumenty

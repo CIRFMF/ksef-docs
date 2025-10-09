@@ -66,7 +66,7 @@ OpenOnlineSessionRequest request = new OpenOnlineSessionRequestBuilder()
         .withEncryptionInfo(encryptionData.encryptionInfo())
         .build();
 
-OpenOnlineSessionResponse openOnlineSessionResponse = createKSeFClient().openOnlineSession(request, accessToken);
+OpenOnlineSessionResponse openOnlineSessionResponse = ksefClient.openOnlineSession(request, accessToken);
 ```
 
 ### 2. Wysłanie faktury
@@ -120,7 +120,7 @@ SendInvoiceOnlineSessionRequest sendInvoiceOnlineSessionRequest = new SendInvoic
     .withEncryptedInvoiceContent(Base64.getEncoder().encodeToString(encryptedInvoice))
     .build();
 
-SendInvoiceResponse sendInvoiceResponse = createKSeFClient().onlineSessionSendInvoice(sessionReferenceNumber, sendInvoiceOnlineSessionRequest, accessToken);
+SendInvoiceResponse sendInvoiceResponse = ksefClient.onlineSessionSendInvoice(sessionReferenceNumber, sendInvoiceOnlineSessionRequest, accessToken);
 ```
 
 ### 3. Zamknięcie sesji
@@ -141,7 +141,7 @@ Przykład w języku Java:
 [OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
 
 ```java
-createKSeFClient().closeOnlineSession(sessionReferenceNumber, accessToken);
+ksefClient.closeOnlineSession(sessionReferenceNumber, accessToken);
 ```
 
 Powiązane dokumenty: 

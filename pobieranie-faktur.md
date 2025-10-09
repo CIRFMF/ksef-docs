@@ -17,7 +17,7 @@ Przykład w języku Java:
 [OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
 
 ```java
-byte[] invoice = createKSeFClient().getInvoice(ksefNumber, accessToken);
+byte[] invoice = ksefClient.getInvoice(ksefNumber, accessToken);
 ```
 
 ### Pobranie listy metadanych faktur
@@ -53,13 +53,15 @@ Przykład w języku Java:
 [QueryInvoiceIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QueryInvoiceIntegrationTest.java)
 
 ```java
-InvoiceMetadataQueryRequest request = new InvoiceMetadataQueryRequestBuilder()
+InvoiceQueryFilters request = new InvoiceQueryFiltersBuilder()
         .withSubjectType(InvoiceQuerySubjectType.SUBJECT1)
-        .withDateRange(new InvoiceQueryDateRange(InvoiceQueryDateType.ISSUE,
-        OffsetDateTime.now().minusDays(10), OffsetDateTime.now().plusDays(10)))
+        .withDateRange(
+                new InvoiceQueryDateRange(InvoiceQueryDateType.INVOICING, OffsetDateTime.now().minusYears(1),
+                        OffsetDateTime.now()))
         .build();
 
-QueryInvoiceMetadataResponse response = createKSeFClient().queryInvoiceMetadata(0, 10, request, accessToken);
+QueryInvoiceMetadataResponse response = ksefClient.queryInvoiceMetadata(0, 10, request, accessToken);
+
 
 ```
 
@@ -95,15 +97,17 @@ Przykład w języku Java:
 [QueryInvoiceIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QueryInvoiceIntegrationTest.java)
 
 ```java
-InvoicesAsyncQueryRequest request = new InvoicesAsyncQueryRequestBuilder()
-        .withEncryption(new EncryptionInfo(encryptionData.encryptionInfo().getEncryptedSymmetricKey(),
-        encryptionData.encryptionInfo().getInitializationVector()))
+InvoiceExportFilters filters = new InvoicesAsyncQueryFiltersBuilder()
         .withSubjectType(InvoiceQuerySubjectType.SUBJECT1)
-        .withDateRange(new InvoiceQueryDateRange(InvoiceQueryDateType.ISSUE,
-        OffsetDateTime.now().minusDays(10), OffsetDateTime.now().plusDays(10)))
+        .withDateRange(
+                new InvoiceQueryDateRange(InvoiceQueryDateType.INVOICING, OffsetDateTime.now().minusDays(10), OffsetDateTime.now().plusDays(10)))
         .build();
 
-InitAsyncInvoicesQueryResponse response = createKSeFClient().initAsyncQueryInvoice(request, accessToken);
+InvoiceExportRequest request = new InvoiceExportRequest(
+        new EncryptionInfo(encryptionData.encryptionInfo().getEncryptedSymmetricKey(),
+                encryptionData.encryptionInfo().getInitializationVector()), filters);
+
+InitAsyncInvoicesQueryResponse response = ksefClient.initAsyncQueryInvoice(request, accessToken);
 
 ```
 
@@ -124,6 +128,6 @@ Przykład w języku Java:
 [QueryInvoiceIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QueryInvoiceIntegrationTest.java)
 
 ```java
-AsyncInvoicesQueryStatus response = createKSeFClient().checkStatusAsyncQueryInvoice(operationReferenceNumber, accessToken);
+InvoiceExportStatus response = ksefClient.checkStatusAsyncQueryInvoice(operationReferenceNumber, accessToken);
 
 ```

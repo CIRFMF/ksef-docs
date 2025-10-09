@@ -258,12 +258,12 @@ Przykład w języku Java:
 ```java
 
 GrantPersonPermissionsRequest request = new GrantPersonPermissionsRequestBuilder()
-   .withSubjectIdentifier(new PersonPermissionsSubjectIdentifier(PersonPermissionsSubjectIdentifierType.PESEL, personValue))
-   .withPermissions(List.of(PersonPermissionType.INVOICEWRITE, PersonPermissionType.INVOICEREAD))
-   .withDescription("e2e test grant")
-   .build();
+        .withSubjectIdentifier(new PersonPermissionsSubjectIdentifier(PersonPermissionsSubjectIdentifier.IdentifierType.PESEL, personValue))
+        .withPermissions(List.of(PersonPermissionType.INVOICEWRITE, PersonPermissionType.INVOICEREAD))
+        .withDescription("e2e test grant")
+        .build();
 
-OperationResponse response = createKSeFClient().grantsPermissionPerson(request, accessToken);
+OperationResponse response = ksefClient.grantsPermissionPerson(request, accessToken);
 ```
 
 Uprawnienia może nadawać ktoś kto jest:
@@ -315,10 +315,10 @@ Przykład w języku Java:
 ```java
 GrantEntityPermissionsRequest request = new GrantEntityPermissionsRequestBuilder()
         .withPermissions(List.of(
-                new EntityPermission(EntityPermissionType.INVOICEREAD, true),
-                new EntityPermission(EntityPermissionType.INVOICEWRITE, false)))
+                new EntityPermission(EntityPermissionType.INVOICE_READ, true),
+                new EntityPermission(EntityPermissionType.INVOICE_WRITE, false)))
         .withDescription(DESCRIPTION)
-        .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifierType.NIP, targetNip))
+        .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifier.IdentifierType.NIP, targetNip))
         .build();
 
 OperationResponse response = ksefClient.grantsPermissionEntity(request, accessToken);
@@ -368,12 +368,12 @@ Przykład w języku Java:
 
 ```java
 GrantAuthorizationPermissionsRequest request = new GrantAuthorizationPermissionsRequestBuilder()
-   .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifierType.NIP, subjectNip))
-   .withPermission(ProxyEntityPermissionType.SELFINVOICING)
-   .withDescription("e2e test grant")
-   .build();
+        .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifier.IdentifierType.NIP, subjectNip))
+        .withPermission(InvoicePermissionType.SELF_INVOICING)
+        .withDescription("e2e test grant")
+        .build();
 
-OperationResponse response = createKSeFClient().grantsPermissionsProxyEntity(request, accessToken);
+OperationResponse response = ksefClient.grantsPermissionsProxyEntity(request, accessToken);
 ```
 ---
 ### Nadanie uprawnień w sposób pośredni
@@ -413,13 +413,13 @@ Przykład w języku Java:
 
 ```java
 GrantIndirectEntityPermissionsRequest request = new GrantIndirectEntityPermissionsRequestBuilder()
-   .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifierType.NIP, subjectNip))
-   .withTargetIdentifier(new TargetIdentifier(TargetIdentifierType.NIP, targetNip))
-   .withPermissions(List.of(INVOICEWRITE))
-   .withDescription("E2E indirect grantE2E indirect grant")
-   .build();
+        .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifier.IdentifierType.NIP, subjectNip))
+        .withTargetIdentifier(new TargetIdentifier(TargetIdentifier.IdentifierType.NIP, targetNip))
+        .withPermissions(List.of(INVOICE_WRITE))
+        .withDescription("E2E indirect grantE2E indirect grant")
+        .build();
 
-OperationResponse response = createKSeFClient().grantsPermissionIndirectEntity(request, accessToken);
+OperationResponse response = ksefClient.grantsPermissionIndirectEntity(request, accessToken);
 
 ```
 ---
@@ -462,12 +462,13 @@ Przykład w języku Java:
 
 ```java
 SubunitPermissionsGrantRequest request = new SubunitPermissionsGrantRequestBuilder()
-   .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifierType.NIP, subjectNip))
-   .withContextIdentifier(new ContextIdentifier(ContextIdentifierType.INTERNALID, contextNip))
-   .withDescription("e2e subunit test")
-   .build();
+        .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifier.IdentifierType.NIP, subjectNip))
+        .withContextIdentifier(new ContextIdentifier(ContextIdentifier.IdentifierType.INTERNALID, contextNip))
+        .withDescription("e2e subunit test")
+        .withSubunitName("test")
+        .build();
 
-OperationResponse response = createKSeFClient().grantsPermissionSubUnit(request, accessToken);
+OperationResponse response = ksefClient.grantsPermissionSubUnit(request, accessToken);
 
 ```
 ---
@@ -505,13 +506,13 @@ Przykład w języku Java:
 
 ```java
 EuEntityPermissionsGrantRequest request = new GrantEUEntityPermissionsRequestBuilder()
-   .withSubject(new SubjectIdentifier(SubjectIdentifierType.FINGERPRINT, euEntity))
-   .withSubjectName("Sample Subject Name")
-   .withContext(new ContextIdentifier(ContextIdentifierType.NIPVATUE, nipVatUe))
-   .withDescription("E2E EU Entity Permission Test")
-   .build();
+        .withSubject(new SubjectIdentifier(SubjectIdentifier.IdentifierType.FINGERPRINT, euEntity))
+        .withEuEntityName("Sample Subject Name")
+        .withContext(new ContextIdentifier(ContextIdentifier.IdentifierType.NIP_VAT_UE, nipVatUe))
+        .withDescription("E2E EU Entity Permission Test")
+        .build();
 
-OperationResponse response = createKSeFClient().grantsPermissionEUEntity(request, accessToken);
+OperationResponse response = ksefClient.grantsPermissionEUEntity(request, accessToken);
 
 ```
 ---
@@ -556,12 +557,12 @@ Przykład w języku Java:
 
 ```java
 GrantEUEntityRepresentativePermissionsRequest request = new GrantEUEntityRepresentativePermissionsRequestBuilder()
-   .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifierType.FINGERPRINT, fingerprint))
-   .withPermissions(List.of(EuEntityPermissionType.INVOICEWRITE, EuEntityPermissionType.INVOICEREAD))
-   .withDescription("Representative for EU Entity")
-   .build();
+        .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifier.IdentifierType.FINGERPRINT, fingerprint))
+        .withPermissions(List.of(EuEntityPermissionType.INVOICE_WRITE, EuEntityPermissionType.INVOICE_READ))
+        .withDescription("Representative for EU Entity")
+        .build();
 
-OperationResponse response = createKSeFClient().grantsPermissionEUEntityRepresentative(request, accessToken);
+OperationResponse response = ksefClient.grantsPermissionEUEntityRepresentative(request, accessToken);
 
 ```
 
@@ -593,7 +594,7 @@ Przykład w języku Java:
 [EntityPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/EntityPermissionIntegrationTest.java)
 
 ```java
-createKSeFClient().revokeCommonPermission(operationId, accessToken)
+ksefClient.revokeCommonPermission(operationId, accessToken);
 ```
 ---
 ### Odebranie uprawnień podmiotowych
@@ -619,7 +620,7 @@ Przykład w języku Java:
 [ProxyPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/ProxyPermissionIntegrationTest.java)
 
 ```java
-createKSeFClient().revokeAuthorizationsPermission(operationId, accessToken)
+ksefClient.revokeAuthorizationsPermission(operationId, accessToken);
 ```
 
 
@@ -639,6 +640,14 @@ Zapytanie pozwala na pobranie listy uprawnień posiadanych przez uwierzytelniony
 
 POST [/permissions/query/personal/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1api~1v2~1permissions~1query~1personal~1grants/post)
 
+Przykład w języku Java:
+[SearchPersonalGrantPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SearchPersonalGrantPermissionIntegrationTest.java)
+
+```java
+QueryPersonalGrantRequest request = new QueryPersonalGrantRequest();
+QueryPersonalGrantResponse response = ksefClient.searchPersonalGrantPermission(request, 0, 10, token.accessToken());
+
+```
 ---
 ### Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom
 
@@ -673,12 +682,13 @@ Przykład w języku Java:
 
 ```java
 PersonPermissionsQueryRequest request = new PersonPermissionsQueryRequestBuilder()
-   .withAuthorizedIdentifier(new PersonPermissionsAuthorizedIdentifier(PersonPermissionsAuthorizedIdentifierType.PESEL, personValue))
-   .withQueryType(PersonPermissionQueryType.PERMISSION_GRANTED_IN_CURRENT_CONTEXT)
-   .withPermissionTypes(List.of(PersonPermissionType.INVOICEWRITE, PersonPermissionType.INVOICEREAD))
-   .build();
+        .withAuthorizedIdentifier(new PersonPermissionsAuthorizedIdentifier(PersonPermissionsAuthorizedIdentifier.IdentifierType.PESEL, personValue))
+        .withQueryType(PersonPermissionQueryType.PERMISSION_GRANTED_IN_CURRENT_CONTEXT)
+        .withPermissionTypes(List.of(PersonPermissionType.INVOICEWRITE, PersonPermissionType.INVOICEREAD))
+        .build();
 
-QueryPersonPermissionsResponse response = createKSeFClient().searchGrantedPersonPermissions(request, 0, 10, accessToken);
+QueryPersonPermissionsResponse response = ksefClient.searchGrantedPersonPermissions(request, 0, 10, accessToken);
+
 ```
 ---
 ### Pobranie listy uprawnień administratorów jednostek i podmiotów podrzędnych
@@ -711,10 +721,11 @@ Przykład w języku Java:
 
 ```java
 SubunitPermissionsQueryRequest request = new SubunitPermissionsQueryRequestBuilder()
-   .withSubunitIdentifier(new SubunitPermissionsSubunitIdentifier(SubunitPermissionsSubunitIdentifierType.INTERNALID, subUnitNip))
-   .build();
+        .withSubunitIdentifier(new SubunitPermissionsSubunitIdentifier(SubunitPermissionsSubunitIdentifier.IdentifierType.INTERNALID, subUnitNip))
+        .build();
 
-QuerySubunitPermissionsResponse response = createKSeFClient().searchSubunitAdminPermissions(request, 0, 10, accessToken);
+QuerySubunitPermissionsResponse response = ksefClient.searchSubunitAdminPermissions(request, 0, 10, accessToken);
+
 
 ```
 ---
@@ -738,10 +749,10 @@ PagedRolesResponse<EntityRole> response =
 ```
 
 Przykład w języku Java:
-[SearchPermissionTestEndpoint.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/main/java/pl/akmf/ksef/sdk/SearchPermissionTestEndpoint.java)
+[SearchEntityInvoiceRoleIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SearchEntityInvoiceRoleIntegrationTest.java)
 
 ```java
-ksefClient.searchEntityInvoiceRoles(pageOffset, pageSize, accessToken);
+QueryEntityRolesResponse response = ksefClient.searchEntityInvoiceRoles(0, 10, token);
 ```
 ---
 ### Pobranie listy podmiotów podrzędnych
@@ -771,10 +782,10 @@ PagedRolesResponse<SubordinateEntityRole> response =
 ```
 
 Przykład w języku Java:
-[SearchPermissionTestEndpoint.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/main/java/pl/akmf/ksef/sdk/SearchPermissionTestEndpoint.java)
+[SearchSubordinateQueryIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SearchSubordinateQueryIntegrationTest.java)
 
 ```java
-ksefClient.searchSubordinateEntityInvoiceRoles(request, pageOffset, pageSize, accessToken);
+SubordinateEntityRolesQueryResponse response = ksefClient.searchSubordinateEntityInvoiceRoles(queryRequest, 0, 10,accessToken);
 ```
 ---
 ### Pobranie listy uprawnień podmiotowych do obsługi faktur
@@ -811,11 +822,13 @@ Przykład w języku Java:
 [ProxyPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/ProxyPermissionIntegrationTest.java)
 
 ```java
-EntityAuthorizationPermissionsQueryRequest request = new EntityAuthorizationPermissionsQueryRequestBuilder()
-   .withQueryType(QueryType.GRANTED)
-   .build();
+GrantAuthorizationPermissionsRequest request = new GrantAuthorizationPermissionsRequestBuilder()
+        .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifier.IdentifierType.NIP, subjectNip))
+        .withPermission(InvoicePermissionType.SELF_INVOICING)
+        .withDescription("e2e test grant")
+        .build();
 
-QueryEntityAuthorizationPermissionsResponse response = createKSeFClient().searchEntityAuthorizationGrants(request, 0, 10, accessToken);
+OperationResponse response = ksefClient.grantsPermissionsProxyEntity(request, accessToken);
 
 ```
 ---
