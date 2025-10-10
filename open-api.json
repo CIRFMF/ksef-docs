@@ -1986,7 +1986,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Eksport paczki faktur",
-        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu `Encryption`, które służą do zabezpieczenia przygotowanej paczki z fakturami.\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu `Encryption`, które służą do zabezpieczenia przygotowanej paczki z fakturami.\n            \nSystem pobiera faktury rosnąco według daty określonej w filtrze (Invoicing, Issue, PermanentStorage) i dodaje je do paczki aż do osiągnięcia jednego z poniższych limitów:\n* Limit liczby faktur: 10 000 sztuk\n* Limit rozmiaru danych(skompresowanych): 20 × 50 MiB\n\nPlik z metadanymi nie jest wliczany do limitów algorytmu budowania paczki. `Do realizacji pobierania przyrostowego należy stosować filtrowanie po dacie PermanentStorage`.\n\nWymagane uprawnienia: `InvoiceRead`.",
         "requestBody": {
           "description": "Dane wejściowe określające kryteria i format eksportu paczki faktur.",
           "content": {
@@ -2050,7 +2050,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Pobranie statusu eksportu paczki faktur",
-        "description": "\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Wyniki sortowane są rosnąco według typu daty przekazanej w `DateRange` przy inicjalizacji. \n\nPaczka eksportowa jest dzielona na części o maksymalnym rozmiarze 50 MiB. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. \n\nW przypadku ucięcia wyniku eksportu z powodu przekroczenia limitów,  zwracana jest flaga `IsTruncated = true` oraz odpowiednia data,  którą należy wykorzystać do wykonania kolejnego eksportu, aż do momentu, gdy flaga `IsTruncated = false`.\n\nWymagane uprawnienia: `InvoiceRead`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -6925,12 +6925,10 @@
             "format": "int64"
           },
           "size": {
-            "maximum": 1073741824,
-            "exclusiveMaximum": false,
             "minimum": 0,
             "exclusiveMinimum": false,
             "type": "integer",
-            "description": "Rozmiar paczki w bajtach. Maksymalny rozmiar paczki to 1 GiB (1 073 741 824 bajtów).",
+            "description": "Rozmiar paczki w bajtach.",
             "format": "int64"
           },
           "parts": {
@@ -6938,7 +6936,7 @@
             "items": {
               "$ref": "#/components/schemas/InvoicePackagePart"
             },
-            "description": "Lista dostępnych części paczki do pobrania. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. Wyniki sortowane są rosnąco według typu daty przekazanej w `DateRange` przy inicjalizacji."
+            "description": "Lista dostępnych części paczki do pobrania."
           },
           "isTruncated": {
             "type": "boolean",
@@ -6961,12 +6959,6 @@
             "description": "Data trwałego zapisu ostatniej faktury ujętej w paczce.\nPole występuje wyłącznie wtedy, gdy paczka została ucięta i eksport był filtrowany po typie daty `PermanentStorage`.",
             "format": "date-time",
             "nullable": true
-          },
-          "metadataFileName": {
-            "type": "string",
-            "description": "Nazwa pliku zawierającego metadane faktur, dołączonego do wyeksportowanej paczki.",
-            "nullable": true,
-            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -7006,12 +6998,10 @@
             "format": "uri"
           },
           "partSize": {
-            "maximum": 52428800,
-            "exclusiveMaximum": false,
             "minimum": 1,
             "exclusiveMinimum": false,
             "type": "integer",
-            "description": "Rozmiar części paczki w bajtach. Maksymalny rozmiar części to 50MiB (52 428 800 bajtów).",
+            "description": "Rozmiar części paczki w bajtach.",
             "format": "int64"
           },
           "partHash": {
@@ -8457,7 +8447,7 @@
         "properties": {
           "hasMore": {
             "type": "boolean",
-            "description": "Określa, czy dostępna jest kolejna strona wyników."
+            "description": "Określa, czy dostępne są dalsze wyniki zapytania."
           },
           "isTruncated": {
             "type": "boolean",
