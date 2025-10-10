@@ -16,10 +16,16 @@
   - Zmiana nazwy parametru ścieżki z `operationReferenceNumber` na `referenceNumber` w "Pobranie statusu operacji" (GET `/permissions/operations/{referenceNumber}`).  
   Zmiana nie wpływa na kontrakt HTTP (ścieżka i znaczenie wartości bez zmian) ani na zachowanie endpointu.
 
+- **Status uwierzytelnianienia (GET `/auth/{referenceNumber}`)**  
+  Rozszerzono tabelę kodów błędów o `470` - "Uwierzytelnianie zakończone niepowodzeniem" z doprecyzowaniem: "Próba wykorzystania metod autoryzacyjnych osoby zmarłej".
+
 - **Obsługa faktur PEF**  
   Zmieniono wartości enuma (`FormCode`):
     - `FA_PEF (3)` na `PEF (3)`,
     - `FA_KOR_PEF (3)` na `PEF_KOR (3)`.
+
+- **Dane testowe - utworzenie osoby fizycznej (POST `/testdata/person`)**  
+  Rozszerzono żądanie o właściwość `isDeceased` (boolean) umożliwiając utworzenie testowej osoby zmarłej (np. do scenariuszy weryfikujących kod statusu `470`).
 
 - **OpenAPI**
   - Doprecyzowano ograniczenia dla właściwości typu integer w requests poprzez dodanie atrybutów `minimum` / `exclusiveMinimum`, `maximum` / `exclusiveMaximum`.  
