@@ -6725,7 +6725,7 @@
                 "$ref": "#/components/schemas/FormCode"
               }
             ],
-            "description": "Struktura dokumentu faktury.\n\nObsługiwane schematy:\n| SystemCode | SchemaVersion | Value |\n| --- | --- | --- |\n| FA (2) | 1-0E | FA |\n| FA (3) | 1-0E | FA |\n| FA_PEF (3) | 2-1 | FA_PEF |\n| FA_KOR_PEF (3) | 2-1 | FA_PEF |\n"
+            "description": "Struktura dokumentu faktury.\n\nObsługiwane schematy:\n| SystemCode | SchemaVersion | Value |\n| --- | --- | --- |\n| FA (2) | 1-0E | FA |\n| FA (3) | 1-0E | FA |\n| PEF (3) | 2-1 | PEF |\n| PEF_KOR (3) | 2-1 | PEF |\n"
           },
           "isSelfInvoicing": {
             "type": "boolean",
@@ -7461,7 +7461,7 @@
                 "$ref": "#/components/schemas/FormCode"
               }
             ],
-            "description": "Schemat faktur wysyłanych w ramach sesji.\n\nObsługiwane schematy:\n| SystemCode | SchemaVersion | Value |\n| --- | --- | --- |\n| FA (2) | 1-0E | FA |\n| FA (3) | 1-0E | FA |\n| FA_PEF (3) | 2-1 | FA_PEF |\n| FA_KOR_PEF (3) | 2-1 | FA_PEF |\n"
+            "description": "Schemat faktur wysyłanych w ramach sesji.\n\nObsługiwane schematy:\n| SystemCode | SchemaVersion | Value |\n| --- | --- | --- |\n| FA (2) | 1-0E | FA |\n| FA (3) | 1-0E | FA |\n| PEF (3) | 2-1 | PEF |\n| PEF_KOR (3) | 2-1 | PEF |\n"
           },
           "encryption": {
             "required": [
