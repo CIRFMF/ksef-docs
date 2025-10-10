@@ -1171,7 +1171,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"permissions":["InvoiceRead","InvoiceWrite","Introspection","CredentialsRead"],"description":"praca w kontekście 3393244202; uprawniony PESEL: 22271569167, Adam Abacki"}
+              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"permissions":["InvoiceRead","InvoiceWrite","Introspection","CredentialsRead"],"description":"Opis uprawnienia"}
             }
           }
         },
@@ -1237,7 +1237,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Nip","value":"7762811692"},"permissions":[{"type":"InvoiceRead","canDelegate":true},{"type":"InvoiceWrite","canDelegate":true}],"description":"praca w kontekście 3393244202; uprawniony NIP: 7762811692, Firma sp. z o.o."}
+              "example": {"subjectIdentifier":{"type":"Nip","value":"7762811692"},"permissions":[{"type":"InvoiceRead","canDelegate":true},{"type":"InvoiceWrite","canDelegate":true}],"description":"Opis uprawnienia"}
             }
           }
         },
@@ -1435,7 +1435,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"contextIdentifier":{"type":"InternalId","value":"7762811692-12345"},"description":"praca w kontekście 7762811692-12345; uprawniony PESEL: 15062788702, Czesław Cabacki"}
+              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"contextIdentifier":{"type":"InternalId","value":"7762811692-12345"},"description":"Opis uprawnienia"}
             }
           }
         },
@@ -1502,7 +1502,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"contextIdentifier":{"type":"NipVatUe","value":"7762811692-DE123456789012"},"description":"praca w kontekście 7762811692-DE123456789012; uprawniony Hans Fisher; 10.02.1990; paszport AT: AP759478","euEntityName":"Firma G.m.b.H."}
+              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"contextIdentifier":{"type":"NipVatUe","value":"7762811692-DE123456789012"},"description":"Opis uprawnienia","euEntityName":"Firma G.m.b.H."}
             }
           }
         },
@@ -1568,7 +1568,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"permissions":["InvoiceRead","InvoiceWrite"],"description":"praca w kontekście 7762811692-DE123456789012; uprawniony Hans Fisher; 10.02.1990; paszport AT: AP759478"}
+              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"permissions":["InvoiceRead","InvoiceWrite"],"description":"Opis uprawnienia"}
             }
           }
         },
@@ -3730,7 +3730,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryPersonalPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","contextIdentifier":{"type":"Nip","value":"3568707925"},"authorizedIdentifier":{"type":"Nip","value":"5247677742"},"permissionScope":"InvoiceWrite","description":"praca w kontekście 3568707925; uprawniony NIP: 5247677742, Adam Abacki","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"hasMore":false}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","contextIdentifier":{"type":"Nip","value":"3568707925"},"authorizedIdentifier":{"type":"Nip","value":"5247677742"},"permissionScope":"InvoiceWrite","description":"Opis uprawnienia","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"hasMore":false}
               }
             }
           },
@@ -3906,7 +3906,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QuerySubunitPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"subunitIdentifier":{"type":"InternalId","value":"7762811692-12345"},"authorIdentifier":{"type":"Pesel","value":"15062788702"},"permissionScope":"CredentialsManage","description":"praca w kontekście 7762811692-12345; uprawniony FP: CEB3643B..., Bogdan Babacki, 2.03.2004; dowód osob. PL: ABC 3729477","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"subunitIdentifier":{"type":"InternalId","value":"7762811692-12345"},"authorIdentifier":{"type":"Pesel","value":"15062788702"},"permissionScope":"CredentialsManage","description":"Opis uprawnienia","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -4257,7 +4257,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryEuEntityPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":{"type":"Pesel","value":"15062788702"},"vatUeIdentifier":"DE123456789012","euEntityName":"Podmiot unijny","authorizedFingerprintIdentifier":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59","permissionScope":"VatUeManage","description":"praca w kontekście 7762811692-DE123456789012; uprawniony Hans Fisher; 10.02.1990; paszport AT: AP759478","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":{"type":"Pesel","value":"15062788702"},"vatUeIdentifier":"DE123456789012","euEntityName":"Podmiot unijny","authorizedFingerprintIdentifier":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59","permissionScope":"VatUeManage","description":"Opis uprawnienia","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
               }
             }
           },
@@ -5560,7 +5560,7 @@
           },
           "description": {
             "type": "string",
-            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n`działanie w imieniu: {contextIdentifier.value} w kontekście {subjectIdentifier.value}, {subjectName}`  \n            \ngdzie:  \n- **contextIdentifier.value** – wartość identyfikatora (NIP) kontekstu logowania  \n- **subjectIdentifier.value** – identyfikator podmiotu uprawnianego  \n- **subjectName** – nazwa podmiotu uprawnianego  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
+            "description": "Opis uprawnienia"
           }
         },
         "additionalProperties": false
@@ -5793,7 +5793,7 @@
           },
           "description": {
             "type": "string",
-            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n`praca w kontekście {loginContextIdentifier.value}; uprawniony NIP: {subjectIdentifier.value}, {subjectName}`  \n            \ngdzie:  \n- **loginContextIdentifier.value** – wartość identyfikatora (NIP) kontekstu logowania  \n- **subjectIdentifier.value** – identyfikator podmiotu uprawnianego  \n- **subjectName** – nazwa podmiotu uprawnianego  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
+            "description": "Opis uprawnienia"
           }
         },
         "additionalProperties": false
@@ -6001,7 +6001,7 @@
           },
           "description": {
             "type": "string",
-            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n            \nDla osób fizycznych (certyfikat podpisu):  \n- `praca w kontekście {contextIdentifier.value}; uprawniony NIP: {authorizedNip}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony PESEL: {authorizedPesel}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony: {authorizedName} {authorizedSurname}, {dateOfBirth}; {documentType} {documentIssuingCountry}: {documentSerialNumber}`  \n            \nDla podmiotu (certyfikat pieczęci):  \n- `praca w kontekście {contextIdentifier.value}; uprawniony: {authorizedSubjectName}, {authorizedSubjectAddress}`  \n            \ngdzie:  \n- **authorizedName** – imię uprawnionego  \n- **authorizedSurname** – nazwisko uprawnionego  \n- **authorizedNip** – NIP osoby lub podmiotu uprawnianego  \n- **authorizedPesel** – PESEL osoby uprawnianej  \n- **dateOfBirth** – data urodzenia uprawnianego  \n- **documentType** – rodzaj dokumentu tożsamości uprawnianego  \n- **documentIssuingCountry** – kraj wydania dokumentu tożsamości  \n- **documentSerialNumber** – seria i numer dokumentu tożsamości  \n- **authorizedSubjectName** – nazwa podmiotu uprawnianego  \n- **authorizedSubjectAddress** – adres podmiotu uprawnianego  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
+            "description": "Opis uprawnienia"
           },
           "euEntityName": {
             "type": "string",
@@ -6167,7 +6167,7 @@
           },
           "description": {
             "type": "string",
-            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n            \nDla osób fizycznych (certyfikat podpisu):  \n- `praca w kontekście {contextIdentifier.value}; uprawniony NIP: {authorizedNip}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony PESEL: {authorizedPesel}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony: {authorizedName} {authorizedSurname}, {dateOfBirth}; {documentType} {documentIssuingCountry}: {documentSerialNumber}`  \n            \nDla podmiotu (certyfikat pieczęci):  \n- `praca w kontekście {contextIdentifier.value}; uprawniony: {authorizedSubjectName}, {authorizedSubjectAddress}`  \n            \ngdzie:  \n- **authorizedName** – imię uprawnionego  \n- **authorizedSurname** – nazwisko uprawnionego  \n- **authorizedNip** – NIP osoby lub podmiotu uprawnianego  \n- **authorizedPesel** – PESEL osoby uprawnianej  \n- **dateOfBirth** – data urodzenia uprawnianego  \n- **documentType** – rodzaj dokumentu tożsamości uprawnianego  \n- **documentIssuingCountry** – kraj wydania dokumentu tożsamości  \n- **documentSerialNumber** – seria i numer dokumentu tożsamości  \n- **authorizedSubjectName** – nazwa podmiotu uprawnianego  \n- **authorizedSubjectAddress** – adres podmiotu uprawnianego  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
+            "description": "Opis uprawnienia"
           }
         },
         "additionalProperties": false
@@ -6427,7 +6427,7 @@
           },
           "description": {
             "type": "string",
-            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n`praca w kontekście {loginContextIdentifier.value}; uprawniony NIP: {subjectIdentifier.value}, {subjectName}`  \n            \n1. Dla uprawnień selektywnych:  \n- `praca dla klienta {targetIdentifier.value}; uprawniony NIP {subjectIdentifier.value}, {subjectName} {subjectSurname}; pośrednik {loginContextIdentifier.value}`  \n- `praca dla klienta {targetIdentifier.value}; uprawniony PESEL {subjectIdentifier.value}, {subjectName} {subjectSurname}; pośrednik {loginContextIdentifier.value}`  \n- `praca dla klienta {targetIdentifier.value}; uprawniony FP: {subjectIdentifier.value (8 cyfr wiodących)}..., {subjectName} {subjectSurname}, {dateOfBirth}; {documentType} {documentIssuingCountry}: {documentSerialNumber}; pośrednik {loginContextIdentifier.value}`  \n            \n2. Dla uprawnień generalnych:  \n- `praca dla wszystkich klientów; uprawniony NIP {subjectIdentifier.value}, {subjectName} {subjectSurname}; pośrednik {loginContextIdentifier.value}`  \n- `praca dla wszystkich klientów; uprawniony PESEL {subjectIdentifier.value}, {subjectName} {subjectSurname}; pośrednik {loginContextIdentifier.value}`  \n- `praca dla wszystkich klientów; uprawniony FP: {subjectIdentifier.value (8 cyfr wiodących)}..., {subjectName} {subjectSurname}, {dateOfBirth}; {documentType} {documentIssuingCountry}: {documentSerialNumber}; pośrednik {loginContextIdentifier.value}`  \n            \ngdzie:  \n- **loginContextIdentifier.value** – wartość identyfikatora (NIP) kontekstu logowania  \n- **subjectName** – imię osoby uprawnianej  \n- **subjectSurname** – nazwisko osoby uprawnianej  \n- **dateOfBirth** – data urodzenia uprawnianego  \n- **documentType** – rodzaj dokumentu tożsamości uprawnianego  \n- **documentIssuingCountry** – kraj wydania dokumentu tożsamości  \n- **documentSerialNumber** – seria i numer dokumentu tożsamości  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
+            "description": "Opis uprawnienia"
           }
         },
         "additionalProperties": false
@@ -7853,7 +7853,7 @@
           },
           "description": {
             "type": "string",
-            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n- `praca w kontekście {loginContextIdentifier.value}; uprawniony NIP: {subjectIdentifier.value}, {subjectName}`  \n- `praca w kontekście {loginContextIdentifier.value}; uprawniony NIP: {subjectIdentifier.value}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {loginContextIdentifier.value}; uprawniony PESEL: {subjectIdentifier.value}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {loginContextIdentifier.value}; uprawniony FP: {subjectIdentifier.value (8 cyfr wiodących)}..., {authorizedName} {authorizedSurname}, {dateOfBirth}; {documentType} {documentIssuingCountry}: {documentSerialNumber}`  \n            \ngdzie:  \n- **loginContextIdentifier.value** – wartość identyfikatora (NIP) kontekstu logowania  \n- **subjectName** – nazwa podmiotu uprawnianego  \n- **authorizedName** – imię uprawnionego  \n- **authorizedSurname** – nazwisko uprawnionego  \n- **authorizedNip** – NIP osoby lub podmiotu uprawnianego  \n- **authorizedPesel** – PESEL osoby uprawnianej  \n- **dateOfBirth** – data urodzenia uprawnianego  \n- **documentType** – rodzaj dokumentu tożsamości uprawnianego  \n- **documentIssuingCountry** – kraj wydania dokumentu tożsamości  \n- **documentSerialNumber** – seria i numer dokumentu tożsamości  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
+            "description": "Opis uprawnienia"
           }
         },
         "additionalProperties": false
@@ -9543,7 +9543,7 @@
           },
           "description": {
             "type": "string",
-            "description": "**Opis uprawnienia** – oczekiwany tekst zgodny z szablonem:  \n- `praca w kontekście {contextIdentifier.value}; uprawniony NIP: {authorizedNip}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony PESEL: {authorizedPesel}, {authorizedName} {authorizedSurname}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony: {authorizedName} {authorizedSurname}, {dateOfBirth}; {documentType} {documentIssuingCountry}: {documentSerialNumber}`  \n- `praca w kontekście {contextIdentifier.value}; uprawniony: {authorizedSubjectName}, {authorizedSubjectAddress}`  \n            \ngdzie:  \n- **authorizedName** – imię uprawnionego  \n- **authorizedSurname** – nazwisko uprawnionego  \n- **authorizedNip** – NIP osoby lub podmiotu uprawnianego  \n- **authorizedPesel** – PESEL osoby uprawnianej  \n- **dateOfBirth** – data urodzenia uprawnianego  \n- **documentType** – rodzaj dokumentu tożsamości uprawnianego  \n- **documentIssuingCountry** – kraj wydania dokumentu tożsamości  \n- **documentSerialNumber** – seria i numer dokumentu tożsamości  \n- **authorizedSubjectName** – nazwa podmiotu uprawnianego  \n- **authorizedSubjectAddress** – adres podmiotu uprawnianego  \n            \nDane te muszą zostać zebrane przez aplikację klienta API i przekazane w sformatowany sposób w atrybucie **description**."
+            "description": "Opis uprawnienia"
           },
           "subunitName": {
             "type": "string",
