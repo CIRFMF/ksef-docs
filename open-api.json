@@ -2114,7 +2114,6 @@
             "name": "pageSize",
             "in": "query",
             "description": "Rozmiar strony.",
-            "required": true,
             "schema": {
               "maximum": 100,
               "exclusiveMaximum": false,

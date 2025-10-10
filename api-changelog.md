@@ -35,6 +35,7 @@
     - DELETE `/permissions/common/grants/{permissionId}`,
     - DELETE `/permissions/authorizations/grants/{permissionId}`,
     - POST `/invoices/exports`.
+  - Usunięto atrybut `required` z właściwości `pageSize` w żądaniu GET `/sessions` ("Pobranie listy sesji").
 
 ### Wersja 2.0.0 RC5.2
 - **Uprawnienia** 
