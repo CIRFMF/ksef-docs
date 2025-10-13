@@ -44,7 +44,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AuthenticationListResponse"
-                }
+                },
+                "example": {"continuationToken":"W3siY29tcG9zaXRlVG9rZW4iOnsidG9rZW4iOm51bGwsInJhbmdlIjp7Im1pbiI6IjA1QzFFMCIsIm1heCI6IkZGIn19LCJyZXN1bWVWYWx1ZXMiOlsiMjAyNS0xMC0wM1QxMjoxODo0OS4zNDY2ODQ3WiJdLCJyaWQiOiIzeHd0QVBJWDVRRlVoZ0FBQUFBQUJBPT0iLCJza2lwQ291bnQiOjF9XQ==","items":[{"referenceNumber":"20251010-AU-19F5E39000-39B5B182BA-B8","isCurrent":false,"startDate":"2025-10-11T12:23:56.0154302+00:00","authenticationMethod":"QualifiedSeal","status":{"code":200,"description":"Uwierzytelnianie zakończone sukcesem"},"isTokenRedeemed":true,"refreshTokenValidUntil":"2025-11-28T09:22:13.388+00:00"}]}
               }
             }
           },
@@ -201,7 +202,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CertificateEnrollmentDataResponse"
-                }
+                },
+                "example": {"commonName":"Firma Kowalski Certyfikat","countryName":"PL","serialNumber":"ABC123456789","uniqueIdentifier":"d9d22724-4696-460c-9e5e-b9e3aafb0af3","organizationName":"Firma Kowalski Sp. z o.o.","organizationIdentifier":"7762811692"}
               }
             }
           },
@@ -249,7 +251,8 @@
                     "$ref": "#/components/schemas/EnrollCertificateRequest"
                   }
                 ]
-              }
+              },
+              "example": {"certificateName":"Certyfikat-Auth-004","certificateType":"Authentication","csr":"MIIDJjCCAd4CAQAwgbAxIjAgBgNVBAMMGUZpcm1hIEtvd2Fsc2tpIENlcnR5ZmlrYXQxIjAgBgNVBAoMGUZpcm1hIEtvd2Fsc2tpIFNwLiB6IG8uby4xEzARBgNVBGEMCjc3NjI4MTE2OTIxCzAJBgNVBAYTAlBMMRUwEwYDVQQFEwxBQkMxMjM0NTY3ODkxLTArBgNVBC0MJGQ5ZDIyNzI0LTQ2OTYtNDYwYy05ZTVlLWI5ZTNhYWZiMGFmMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANZC1hJiB4ZBsxGy/a4yvtOUP0HQxDt7EUZrfKO78+cmI7KCO9aW96yr6O0R928/Y9vmymbgh6KvMUTzZZj24uyxar849O1laor5t8Wv63RDx/I4+9Rt7w+QPPofmpenOokJH+Fm+FDQwo2l07o8SppGfaZpvMak+cDSrh+73wfM37fvPImr9p4ckzzxA9q6f4uoqGqcGSDlSwRjfLQKzWZaEklpZBpY4jeCh54uN3+YLsMQYKdcIbW0Jart1UbwMd/wbHfzFhVmPGOAMMpwVEBw6E4A0CTWIiAX3Alqbx4+IkuqC+gEs3ETTec7eOqhxe9V9cywi7WR+Mz6JO6DJcUCAwEAAaAAMD0GCSqGSIb3DQEBCjAwoA0wCwYJYIZIAWUDBAIBoRowGAYJKoZIhvcNAQEIMAsGCWCGSAFlAwQCAaIDAgEgA4IBAQCJhtF2/2E+JmkWitE/BGbm3NU4fIxr1Z+w0UnHsP+F8n9UDwAnuncG1GH5wZFervldEMooegzEDnYaqxnEUnbZ4wxeAHqpbTZjOOfqrk7o0r66+mXUs5NnyD4M3j3ig98GcvhEdbcNH+RsIwi7FaLNXnOE4SLYL9KvW0geriywWjS+5MmA0Gcn1e4vCD6FeEls8EHzkhrWE+rUsoM5zT2a0OPNXG3fScyOqOZe+OdjT4Y7ScRGy711u3v2X9RoTqQUDfCJ3cob/KRcrzvs1TQVazGZPfcIa6an6SigUvZ7XAMHlUTyOeM4AwKqiEqQ0qfe/HhlDylgZSwulb9u0utT","validFrom":"2025-08-28T09:22:13.388+00:00"}
             }
           }
         },
@@ -260,7 +263,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EnrollCertificateResponse"
-                }
+                },
+                "example": {"referenceNumber":"20251010-EH-1B6C9EB000-4B15D3AEB9-89","timestamp":"2025-10-11T12:23:56.0154302+00:00"}
               }
             }
           },
@@ -311,7 +315,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CertificateEnrollmentStatusResponse"
-                }
+                },
+                "example": {"requestDate":"2025-10-11T12:23:56.0154302+00:00","status":{"code":100,"description":"Wniosek przyjęty do realizacji"}}
               }
             }
           },
@@ -499,7 +504,8 @@
                     "$ref": "#/components/schemas/QueryCertificatesRequest"
                   }
                 ]
-              }
+              },
+              "example": {"type":"Offline","status":"Active"}
             }
           }
         },
@@ -594,7 +600,8 @@
                     "$ref": "#/components/schemas/SubjectCreateRequest"
                   }
                 ]
-              }
+              },
+              "example": {"subjectNip":"7762811692","subjectType":"EnforcementAuthority","description":"Centrala","createdDate":"2025-08-25T14:15:22+00:00"}
             }
           }
         },
@@ -635,7 +642,8 @@
                     "$ref": "#/components/schemas/SubjectRemoveRequest"
                   }
                 ]
-              }
+              },
+              "example": {"subjectNip":"7762811692"}
             }
           }
         },
@@ -679,7 +687,8 @@
                     "$ref": "#/components/schemas/PersonCreateRequest"
                   }
                 ]
-              }
+              },
+              "example": {"nip":"7762811692","pesel":"15062788702","isBailiff":true,"description":"TestPerson_01","isDeceased":false,"createdDate":"2025-08-25T14:15:22+00:00"}
             }
           }
         },
@@ -720,7 +729,8 @@
                     "$ref": "#/components/schemas/PersonRemoveRequest"
                   }
                 ]
-              }
+              },
+              "example": {"nip":"7762811692"}
             }
           }
         },
@@ -764,7 +774,7 @@
                   }
                 ]
               },
-              "example": {"contextIdentifier":{"type":"Nip","value":"5265877635"},"authorizedIdentifier":{"type":"Nip","value":"7762811692"},"permissions":[{"description":"Opis testowy","permissionType":"InvoiceRead"}]}
+              "example": {"contextIdentifier":{"type":"Nip","value":"7762811692"},"authorizedIdentifier":{"type":"Nip","value":"7762811692"},"permissions":[{"description":"Opis testowy","permissionType":"InvoiceRead"}]}
             }
           }
         },
@@ -848,7 +858,8 @@
                     "$ref": "#/components/schemas/AttachmentPermissionGrantRequest"
                   }
                 ]
-              }
+              },
+              "example": {"nip":"7762811692"}
             }
           }
         },
@@ -889,7 +900,8 @@
                     "$ref": "#/components/schemas/AttachmentPermissionRevokeRequest"
                   }
                 ]
-              }
+              },
+              "example": {"nip":"7762811692"}
             }
           }
         },
@@ -1435,7 +1447,7 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"contextIdentifier":{"type":"InternalId","value":"7762811692-12345"},"description":"Opis uprawnienia"}
+              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"contextIdentifier":{"type":"InternalId","value":"7762811692-12345"},"description":"Opis uprawnienia","subunitName":"Jednostka 014"}
             }
           }
         },
@@ -2001,7 +2013,8 @@
                     "$ref": "#/components/schemas/InvoiceExportRequest"
                   }
                 ]
-              }
+              },
+              "example": {"encryption":{"encryptedSymmetricKey":"Rk1Qb1VhVjMyQ3NxQ1h1WlVtZUdHcDJSZ0pTbE5IbWQ=","initializationVector":"c29tZUluaXRWZWN0b3I="},"filters":{"subjectType":"Subject1","dateRange":{"dateType":"Issue","from":"2025-08-28T09:22:13.388+00:00","to":"2025-09-28T09:22:13.388+00:00"}}}
             }
           }
         },
@@ -2012,7 +2025,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExportInvoicesResponse"
-                }
+                },
+                "example": {"referenceNumber":"20251010-EH-1B6C9EB000-4B15D3AEB9-89"}
               }
             }
           },
@@ -2225,7 +2239,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SessionsQueryResponse"
-                }
+                },
+                "example": {"continuationToken":"W3sidG9rZW4iOiIrUklEOn4zeHd0QU1SM3dYYjRCd0FBQUFBQUNBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBZ2dBQUFBQUFDQUFBQVlBQUFBQUlBQUFBQUFBQUFBZ0FBQVVBUEVIQUVGdGdJUUFFUUJBQUJBRUFCQVVoZ1NBQXdBQUFBQWdBQUFHQUhFa0NFQWxnQVFBQUFBQUlBQUFGZ0F5Q0FVZ0VBRC9nRE9BRFlFdWdIcUF5SXBEZ0IrQUJnQUFBQUFnQUFBQ0FPNlYiLCJyYW5nZSI6eyJtaW4iOiIiLCJtYXgiOiIwNUMxREYyQjVGMzU5OCJ9fV0=","sessions":[{"referenceNumber":"20250925-SO-2F67776000-97273B191A-65","status":{"code":200,"description":"Sesja interaktywna przetworzona pomyślnie"},"dateCreated":"2025-09-25T13:48:26.8700925+00:00","dateUpdated":"2025-09-26T02:16:07+00:00","validUntil":"2025-09-26T01:48:26.8700925+00:00","totalInvoiceCount":2,"successfulInvoiceCount":2,"failedInvoiceCount":0},{"referenceNumber":"20250928-SO-494B541000-3AD87C01BA-5D","status":{"code":200,"description":"Sesja interaktywna przetworzona pomyślnie"},"dateCreated":"2025-09-28T21:20:54.5936927+00:00","dateUpdated":"2025-09-29T10:19:28+00:00","validUntil":"2025-09-29T09:20:54.5936927+00:00","totalInvoiceCount":3,"successfulInvoiceCount":3,"failedInvoiceCount":0}]}
               }
             }
           },
@@ -2771,7 +2786,8 @@
                     "$ref": "#/components/schemas/GenerateTokenRequest"
                   }
                 ]
-              }
+              },
+              "example": {"permissions":["InvoiceRead","InvoiceWrite"]}
             }
           }
         },
@@ -2782,7 +2798,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GenerateTokenResponse"
-                }
+                },
+                "example": {"referenceNumber":"20251010-EC-1DCE3E3000-12ECB5B36E-45","token":"20251010-EC-1DCE3E3000-12ECB5B36E-45|nip-5265877635|919f704466624ce29cd5ac7b65ded5e7cccc112eee314f2aaa76e02cd16df7b9"}
               }
             }
           },
@@ -2881,7 +2898,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/QueryTokensResponse"
-                }
+                },
+                "example": {"continuationToken":"W3sidG9rZW4iOiIrUklEOn4zeHd0QUlqZUc5VkhCQUFBQUFBQUJBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBZ2dBQUFBQUFCQUFBQUFBQUFBQUVBQUFBQUFBQUFBUUFBQUVBRWVFMllFPSIsInJhbmdlIjp7Im1pbiI6IjA1QzFERjIxOUY5OTIwIiwibWF4IjoiRkYifX1d","tokens":[{"referenceNumber":"20251001-EC-2DD3AFF000-A6B7F19A95-11","authorIdentifier":{"type":"Nip","value":"5265877635"},"contextIdentifier":{"type":"Nip","value":"5265877635"},"requestedPermissions":["InvoiceRead","InvoiceWrite"],"dateCreated":"2025-10-01T13:20:52.9919681+00:00","status":"Active","statusDetails":[]}]}
               }
             }
           },
@@ -6300,7 +6318,25 @@
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "example": {
+          "Exception": {
+            "ExceptionDetailList": [
+              {
+                "ExceptionCode": 12345,
+                "ExceptionDescription": "Opis błędu.",
+                "Details": [
+                  "Opcjonalne dodatkowe szczegóły błędu."
+                ]
+              }
+            ],
+            "ReferenceNumber": "a1b2c3d4-e5f6-4789-ab12-cd34ef567890",
+            "ServiceCode": "00-c02cc3747020c605be02159bf3324f0e-eee7647dc67aa74a-00",
+            "ServiceCtx": "srvABCDA",
+            "ServiceName": "Undefined",
+            "Timestamp": "2025-10-11T12:23:56.0154302"
+          }
+        }
       },
       "ExportInvoicesResponse": {
         "required": [

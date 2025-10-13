@@ -42,6 +42,7 @@
     - DELETE `/permissions/authorizations/grants/{permissionId}`,
     - POST `/invoices/exports`.
   - Usunięto atrybut `required` z właściwości `pageSize` w żądaniu GET `/sessions` ("Pobranie listy sesji").
+  - Zaktualizowano przykłady (example) w definicjach endpointów.
 
 ### Wersja 2.0.0 RC5.2
 - **Uprawnienia** 
