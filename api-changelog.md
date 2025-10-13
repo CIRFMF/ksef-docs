@@ -14,7 +14,7 @@
 - **Standaryzacja jednostek rozmiaru (MB, SI)**  
   Ujednolicono zapis limitów w dokumentacji i API: wartości prezentowane w MB (SI), gdzie 1 MB = 1 000 000 B.
 
-- **Pobranie limitów dla bieżącego kontekstu (POST `/limits/context`)**  
+- **Pobranie limitów dla bieżącego kontekstu (GET `/limits/context`)**  
   Dodano w modelu odpowiedzi `maxInvoiceSizeInMB`, `maxInvoiceWithAttachmentSizeInMB` dla właściwości `onlineSession` i `batchSession`.
   Właściwości `maxInvoiceSizeInMib`, `maxInvoiceWithAttachmentSizeInMib` oznaczono jako deprecated (planowane usunięcie: 2025-10-27).
 
