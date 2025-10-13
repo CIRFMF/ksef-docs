@@ -8167,8 +8167,7 @@
           "Introspection",
           "SubunitManage",
           "EnforcementOperations",
-          "VatUeManage",
-          "Owner"
+          "VatUeManage"
         ],
         "type": "string"
       },

@@ -18,7 +18,8 @@
   - "Nadanie uprawnień w sposób pośredni" (POST `permissions/indirect/grants`)  
     Dodano obsługę identyfikatora wewnętrznego - rozszerzono właściwość `targetIdentifier` o wartość `InternalId`.
   - "Pobranie listy własnych uprawnień" (POST `/permissions/query/personal/grants`)  
-    Rozszerzono w modelu żądania właściwość `targetIdentifier` o wartość `InternalId` (możliwość wskazania identyfikatora wewnętrznego).
+      - Rozszerzono w modelu żądania właściwość `targetIdentifier` o wartość `InternalId` (możliwość wskazania identyfikatora wewnętrznego).
+      - Usunięto w modelu odpowiedzi wartość `PersonalPermissionScope.Owner`. Uprawnienia właścicielskie (nadawane przez ZAW-FA lub powiązanie NIP/PESEL) nie są zwracane.
 
 - **Status uwierzytelnianienia (GET `/auth/{referenceNumber}`)**  
   Rozszerzono tabelę kodów błędów o `470` - "Uwierzytelnianie zakończone niepowodzeniem" z doprecyzowaniem: "Próba wykorzystania metod autoryzacyjnych osoby zmarłej".
