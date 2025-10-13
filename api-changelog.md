@@ -7,6 +7,9 @@
   Włączenie (preview): do nagłóweka żądania należy dodać `X-KSeF-Feature`: `include-metadata`.
   Od 2025-10-27 zmienia się domyślne zachowanie endpointu - paczka eksportu będzie zawsze zawierać plik `_metadata.json` (nagłówek nie będzie wymagany).
 
+- **Status faktury**  
+  W przypadku przetworzenia z błędem, gdy możliwe było odczytanie numeru faktury (np. kod błędu `440` - duplikat faktury), odpowiedź zawiera właściwość `invoiceNumber` z odczytanym numerem.
+
 - **Standaryzacja jednostek rozmiaru (MB, SI)**  
   Ujednolicono zapis limitów w dokumentacji i API: wartości prezentowane w MB (SI), gdzie 1 MB = 1 000 000 B.
 
