@@ -6451,7 +6451,7 @@
                 "$ref": "#/components/schemas/IndirectPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator kontekstu klienta.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
+            "description": "Identyfikator kontekstu klienta.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |",
             "nullable": true
           },
           "permissions": {
@@ -6520,12 +6520,13 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator kontekstu klienta.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |"
+        "description": "Identyfikator kontekstu klienta.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
       },
       "IndirectPermissionsTargetIdentifierType": {
         "enum": [
           "Nip",
-          "AllPartners"
+          "AllPartners",
+          "InternalId"
         ],
         "type": "string"
       },
@@ -7700,7 +7701,7 @@
                 "$ref": "#/components/schemas/PersonPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
+            "description": "Identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |",
             "nullable": true
           },
           "authorIdentifier": {
@@ -7950,7 +7951,7 @@
                 "$ref": "#/components/schemas/PersonPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |",
+            "description": "Identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |",
             "nullable": true
           },
           "permissionTypes": {
@@ -8040,12 +8041,13 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |"
+        "description": "Identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
       },
       "PersonPermissionsTargetIdentifierType": {
         "enum": [
           "Nip",
-          "AllPartners"
+          "AllPartners",
+          "InternalId"
         ],
         "type": "string"
       },
@@ -8111,7 +8113,7 @@
                 "$ref": "#/components/schemas/PersonalPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu docelowego dla uprawnień selektywnych nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że wyszukiwanie dotyczy uprawnień generalnych nadanych w sposób pośredni |",
+            "description": "Identyfikator podmiotu docelowego dla uprawnień selektywnych nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że wyszukiwanie dotyczy uprawnień generalnych nadanych w sposób pośredni |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |",
             "nullable": true
           },
           "permissionScope": {
@@ -8229,7 +8231,8 @@
       },
       "PersonalPermissionsContextIdentifierType": {
         "enum": [
-          "Nip"
+          "Nip",
+          "InternalId"
         ],
         "type": "string"
       },
@@ -8258,7 +8261,7 @@
                 "$ref": "#/components/schemas/PersonalPermissionsTargetIdentifier"
               }
             ],
-            "description": "Identyfikator podmiotu docelowego dla uprawnień selektywnych nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że wyszukiwanie dotyczy uprawnień generalnych nadanych w sposób pośredni |",
+            "description": "Identyfikator podmiotu docelowego dla uprawnień selektywnych nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że wyszukiwanie dotyczy uprawnień generalnych nadanych w sposób pośredni |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |",
             "nullable": true
           },
           "permissionTypes": {
@@ -8302,12 +8305,13 @@
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator podmiotu docelowego dla uprawnień selektywnych nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że wyszukiwanie dotyczy uprawnień generalnych nadanych w sposób pośredni |"
+        "description": "Identyfikator podmiotu docelowego dla uprawnień selektywnych nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że wyszukiwanie dotyczy uprawnień generalnych nadanych w sposób pośredni |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
       },
       "PersonalPermissionsTargetIdentifierType": {
         "enum": [
           "Nip",
-          "AllPartners"
+          "AllPartners",
+          "InternalId"
         ],
         "type": "string"
       },

@@ -15,6 +15,10 @@
   - Zaktualizowano opisy endpointów przykłady endpointów z obszaru permissions/*. Zmiana dotyczy wyłącznie dokumentacji (doprecyzowanie opisów, formatów i przykładów); brak zmian w zachowaniu API oraz kontrakcie.
   - Zmiana nazwy parametru ścieżki z `operationReferenceNumber` na `referenceNumber` w "Pobranie statusu operacji" (GET `/permissions/operations/{referenceNumber}`).  
   Zmiana nie wpływa na kontrakt HTTP (ścieżka i znaczenie wartości bez zmian) ani na zachowanie endpointu.
+  - "Nadanie uprawnień w sposób pośredni" (POST `permissions/indirect/grants`)  
+    Dodano obsługę identyfikatora wewnętrznego - rozszerzono właściwość `targetIdentifier` o wartość `InternalId`.
+  - "Pobranie listy własnych uprawnień" (POST `/permissions/query/personal/grants`)  
+    Rozszerzono w modelu żądania właściwość `targetIdentifier` o wartość `InternalId` (możliwość wskazania identyfikatora wewnętrznego).
 
 - **Status uwierzytelnianienia (GET `/auth/{referenceNumber}`)**  
   Rozszerzono tabelę kodów błędów o `470` - "Uwierzytelnianie zakończone niepowodzeniem" z doprecyzowaniem: "Próba wykorzystania metod autoryzacyjnych osoby zmarłej".
