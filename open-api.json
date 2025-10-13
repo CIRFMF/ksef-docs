@@ -2134,7 +2134,8 @@
               "minimum": 10,
               "exclusiveMinimum": false,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "default": 10
             }
           },
           {
@@ -2879,7 +2880,8 @@
               "minimum": 10,
               "exclusiveMinimum": false,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "default": 10
             }
           },
           {
