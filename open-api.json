@@ -8629,12 +8629,20 @@
         "additionalProperties": false
       },
       "QueryTokensResponseItem": {
+        "required": [
+          "authorIdentifier",
+          "contextIdentifier",
+          "dateCreated",
+          "description",
+          "referenceNumber",
+          "requestedPermissions",
+          "status"
+        ],
         "type": "object",
         "properties": {
           "referenceNumber": {
             "type": "string",
-            "description": "Numer referencyjny tokena.",
-            "nullable": true
+            "description": "Numer referencyjny tokena."
           },
           "authorIdentifier": {
             "required": [
@@ -8646,8 +8654,7 @@
                 "$ref": "#/components/schemas/TokenAuthorIdentifierTypeIdentifier"
               }
             ],
-            "description": "Identyfikator osoby która wygenerowała token.",
-            "nullable": true
+            "description": "Identyfikator osoby która wygenerowała token."
           },
           "contextIdentifier": {
             "required": [
@@ -8659,21 +8666,18 @@
                 "$ref": "#/components/schemas/TokenContextIdentifierTypeIdentifier"
               }
             ],
-            "description": "Identyfikator kontekstu, w którym został wygenerowany token i do którego daje dostęp.",
-            "nullable": true
+            "description": "Identyfikator kontekstu, w którym został wygenerowany token i do którego daje dostęp."
           },
           "description": {
             "type": "string",
-            "description": "Opis tokena.",
-            "nullable": true
+            "description": "Opis tokena."
           },
           "requestedPermissions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TokenPermissionType"
             },
-            "description": "Uprawnienia przypisane tokenowi.",
-            "nullable": true
+            "description": "Uprawnienia przypisane tokenowi."
           },
           "dateCreated": {
             "type": "string",
@@ -9934,12 +9938,20 @@
         "type": "string"
       },
       "TokenStatusResponse": {
+        "required": [
+          "authorIdentifier",
+          "contextIdentifier",
+          "dateCreated",
+          "description",
+          "referenceNumber",
+          "requestedPermissions",
+          "status"
+        ],
         "type": "object",
         "properties": {
           "referenceNumber": {
             "type": "string",
-            "description": "Numer referencyjny tokena.",
-            "nullable": true
+            "description": "Numer referencyjny tokena."
           },
           "authorIdentifier": {
             "required": [
@@ -9951,8 +9963,7 @@
                 "$ref": "#/components/schemas/TokenAuthorIdentifierTypeIdentifier"
               }
             ],
-            "description": "Identyfikator osoby która wygenerowała token.",
-            "nullable": true
+            "description": "Identyfikator osoby która wygenerowała token."
           },
           "contextIdentifier": {
             "required": [
@@ -9964,21 +9975,18 @@
                 "$ref": "#/components/schemas/TokenContextIdentifierTypeIdentifier"
               }
             ],
-            "description": "Identyfikator kontekstu, w którym został wygenerowany token i do którego daje dostęp.",
-            "nullable": true
+            "description": "Identyfikator kontekstu, w którym został wygenerowany token i do którego daje dostęp."
           },
           "description": {
             "type": "string",
-            "description": "Opis tokena.",
-            "nullable": true
+            "description": "Opis tokena."
           },
           "requestedPermissions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TokenPermissionType"
             },
-            "description": "Uprawnienia przypisane tokenowi.",
-            "nullable": true
+            "description": "Uprawnienia przypisane tokenowi."
           },
           "dateCreated": {
             "type": "string",

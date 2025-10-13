@@ -24,6 +24,12 @@
     - `FA_PEF (3)` na `PEF (3)`,
     - `FA_KOR_PEF (3)` na `PEF_KOR (3)`.
 
+- **Statusu tokena KSeF (GET /tokens/{referenceNumber})**
+  - Oznaczono właściwość `authorIdentifier`, `contextIdentifier`, `dateCreated`, `description`, `referenceNumber`, `requestedPermissions`, `status` w modelu odpowiedzi jako zawsze zwracaną.
+
+- **Pobranie listy wygenerowanych tokenów (GET /tokens)**
+  - Oznaczono właściwość `authorIdentifier`, `contextIdentifier`, `dateCreated`, `description`, `referenceNumber`, `requestedPermissions`, `status` w modelu odpowiedzi jako zawsze zwracaną.
+
 - **Dane testowe - utworzenie osoby fizycznej (POST `/testdata/person`)**  
   Rozszerzono żądanie o właściwość `isDeceased` (boolean) umożliwiając utworzenie testowej osoby zmarłej (np. do scenariuszy weryfikujących kod statusu `470`).
 
