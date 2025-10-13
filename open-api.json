@@ -2782,6 +2782,10 @@
           "content": {
             "application/json": {
               "schema": {
+                "required": [
+                  "permissions",
+                  "description"
+                ],
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/GenerateTokenRequest"
@@ -6383,6 +6387,10 @@
         "additionalProperties": false
       },
       "GenerateTokenRequest": {
+        "required": [
+          "description",
+          "permissions"
+        ],
         "type": "object",
         "properties": {
           "permissions": {
@@ -6390,29 +6398,29 @@
             "items": {
               "$ref": "#/components/schemas/TokenPermissionType"
             },
-            "description": "Uprawnienia przypisane tokenowi.",
-            "nullable": true
+            "description": "Uprawnienia przypisane tokenowi."
           },
           "description": {
             "type": "string",
-            "description": "Opis tokena.",
-            "nullable": true
+            "description": "Opis tokena."
           }
         },
         "additionalProperties": false
       },
       "GenerateTokenResponse": {
+        "required": [
+          "referenceNumber",
+          "token"
+        ],
         "type": "object",
         "properties": {
           "referenceNumber": {
             "type": "string",
-            "description": "Numer referencyjny tokena KSeF. Za jego pomocą można sprawdzić jego status lub go unieważnić.",
-            "nullable": true
+            "description": "Numer referencyjny tokena KSeF. Za jego pomocą można sprawdzić jego status lub go unieważnić."
           },
           "token": {
             "type": "string",
-            "description": "Token KSeF.",
-            "nullable": true
+            "description": "Token KSeF."
           }
         },
         "additionalProperties": false

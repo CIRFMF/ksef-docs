@@ -28,6 +28,12 @@
     - `FA_PEF (3)` na `PEF (3)`,
     - `FA_KOR_PEF (3)` na `PEF_KOR (3)`.
 
+
+- **Wygenerowanie nowego tokena (POST `/tokens`)**  
+  - W modelu żądania (`GenerateTokenRequest`) oznaczono pola `description` i `permissions` jako wymagane.
+  - W modelu odpowiedzi (`GenerateTokenResponse`) oznaczono pola `referenceNumber` i `token` jako zawsze zwracane.
+
+
 - **Statusu tokena KSeF (GET /tokens/{referenceNumber})**
   - Oznaczono właściwość `authorIdentifier`, `contextIdentifier`, `dateCreated`, `description`, `referenceNumber`, `requestedPermissions`, `status` w modelu odpowiedzi jako zawsze zwracaną.
 
