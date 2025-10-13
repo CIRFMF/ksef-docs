@@ -8,7 +8,8 @@
   Od 2025-10-27 zmienia się domyślne zachowanie endpointu - paczka eksportu będzie zawsze zawierać plik `_metadata.json` (nagłówek nie będzie wymagany).
 
 - **Status faktury**  
-  W przypadku przetworzenia z błędem, gdy możliwe było odczytanie numeru faktury (np. kod błędu `440` - duplikat faktury), odpowiedź zawiera właściwość `invoiceNumber` z odczytanym numerem.
+  - W przypadku przetworzenia z błędem, gdy możliwe było odczytanie numeru faktury (np. kod błędu `440` - duplikat faktury), odpowiedź zawiera właściwość `invoiceNumber` z odczytanym numerem.
+  - Oznaczono właściwość `invoiceHash`, `referenceNumber` w modelu odpowiedzi jako zawsze zwracaną.
 
 - **Standaryzacja jednostek rozmiaru (MB, SI)**  
   Ujednolicono zapis limitów w dokumentacji i API: wartości prezentowane w MB (SI), gdzie 1 MB = 1 000 000 B.

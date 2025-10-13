@@ -8955,8 +8955,10 @@
       },
       "SessionInvoiceStatusResponse": {
         "required": [
+          "invoiceHash",
           "invoicingDate",
           "ordinalNumber",
+          "referenceNumber",
           "status"
         ],
         "type": "object",
@@ -8980,13 +8982,11 @@
           },
           "referenceNumber": {
             "type": "string",
-            "description": "Numer referencyjny faktury.",
-            "nullable": true
+            "description": "Numer referencyjny faktury."
           },
           "invoiceHash": {
             "type": "string",
-            "description": "Skrót SHA256 faktury, zakodowany w formacie Base64.",
-            "nullable": true
+            "description": "Skrót SHA256 faktury, zakodowany w formacie Base64."
           },
           "invoiceFileName": {
             "type": "string",
