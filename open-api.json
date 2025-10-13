@@ -1998,7 +1998,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Eksport paczki faktur",
-        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu `Encryption`, które służą do zabezpieczenia przygotowanej paczki z fakturami.\n            \nSystem pobiera faktury rosnąco według daty określonej w filtrze (Invoicing, Issue, PermanentStorage) i dodaje je do paczki aż do osiągnięcia jednego z poniższych limitów:\n* Limit liczby faktur: 10 000 sztuk\n* Limit rozmiaru danych(skompresowanych): 1GB\n\nPlik z metadanymi nie jest wliczany do limitów algorytmu budowania paczki. \n\n`Do realizacji pobierania przyrostowego należy stosować filtrowanie po dacie PermanentStorage`.\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu `Encryption`, które służą do zabezpieczenia przygotowanej paczki z fakturami.\n            \nSystem pobiera faktury rosnąco według daty określonej w filtrze (Invoicing, Issue, PermanentStorage) i dodaje je do paczki aż do osiągnięcia jednego z poniższych limitów:\n* Limit liczby faktur: 10 000 sztuk\n* Limit rozmiaru danych(skompresowanych): 1GB\n\nPaczka eksportu może zawierać dodatkowy plik z metadanymi faktur w formacie JSON. Zawartość pliku to\nobiekt z tablicą `invoices`, gdzie każdy element jest obiektem typu `InvoiceMetadata`\n(taki jak zwracany przez endpoint `POST /invoices/query/metadata`).\n\n<b>Plik z metadanymi(_metadata.json) nie jest wliczany do limitów algorytmu budowania paczki</b>. \n\n<b>Tryb preview (włączany nagłówkiem):</b> aby dołączyć plik metadanych w wersji zapoznawczej,\ndodaj do nagłówka żądania: `X-KSeF-Feature: include-metadata`.\nW tym trybie do paczki zostanie dodany plik o nazwie `_metadata.json`.\n\n<b>Domyślne zachowanie od 2025-10-27:</b> od tego dnia paczka eksportu <u>zawsze</u> będzie zawierać plik\n`_metadata.json` z metadanymi, a nagłówek `X-KSeF-Feature` nie będzie wymagany.\n\n`Do realizacji pobierania przyrostowego należy stosować filtrowanie po dacie PermanentStorage`.\n\nWymagane uprawnienia: `InvoiceRead`.",
         "requestBody": {
           "description": "Dane wejściowe określające kryteria i format eksportu paczki faktur.",
           "content": {
@@ -2533,7 +2533,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/SessionInvoicesResponse"
                 },
-                "example": {"continuationToken":"...","invoices":[{"ordinalNumber":2,"referenceNumber":"20250626-EE-2F20AD2000-242386DF86-52","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","invoicingDate":"2025-07-11T12:23:56.0154302+00:00","status":{"code":440,"description":"Duplikat faktury","details":["Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"]}}]}
+                "example": {"continuationToken":"...","invoices":[{"ordinalNumber":2,"referenceNumber":"20250626-EE-2F20AD2000-242386DF86-52","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","invoiceFileName":"invoice1.xml","invoicingDate":"2025-07-11T12:23:56.0154302+00:00","status":{"code":440,"description":"Duplikat faktury","details":["Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"]}}]}
               }
             }
           },
@@ -4705,7 +4705,7 @@
             "items": {
               "$ref": "#/components/schemas/BatchFilePartInfo"
             },
-            "description": "Informacje o częściach pliku paczki. Maksymalna liczba części to 50."
+            "description": "Informacje o częściach pliku paczki. Maksymalna liczba części to 50. Maksymalny dozwolony rozmiar części przed zaszyfrowaniem to 100MB."
           }
         },
         "additionalProperties": false
@@ -4731,12 +4731,10 @@
             "description": "Nazwa części pliku paczki."
           },
           "fileSize": {
-            "maximum": 100000000,
-            "exclusiveMaximum": false,
             "minimum": 1,
             "exclusiveMinimum": false,
             "type": "integer",
-            "description": "Rozmiar zaszyfrowanej części pliku paczki w bajtach. Maksymalna dozwolona wartość to 100MB.",
+            "description": "Rozmiar zaszyfrowanej części pliku paczki w bajtach.",
             "format": "int64"
           },
           "fileHash": {
@@ -7192,12 +7190,12 @@
           },
           "from": {
             "type": "string",
-            "description": "Data początkowa zakresu.",
+            "description": "Data początkowa zakresu(UTC).",
             "format": "date-time"
           },
           "to": {
             "type": "string",
-            "description": "Data końcowa zakresu. Jeśli nie zostanie podana, przyjmowana jest bieżąca data i czas w UTC.",
+            "description": "Data końcowa zakresu(UTC). Jeśli nie zostanie podana, przyjmowana jest bieżąca data i czas w UTC.",
             "format": "date-time",
             "nullable": true
           }
