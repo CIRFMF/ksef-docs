@@ -19,12 +19,12 @@ Faktura musi być przygotowana w formacie XML, kodowana w UTF-8 bez znaku BOM (3
 Data wystawienia faktury (`P_1`) nie może być późniejsza niż data przyjęcia dokumentu do systemu KSeF.
 
 ## Rozmiar pliku
-- Maksymalny rozmiar faktury bez załączników: **1 MiB \*** (1 048 576 bajtów).
-- Maksymalny rozmiar faktury z załącznikami: **3 MiB \*** (3 145 728 bajtów).
+- Maksymalny rozmiar faktury bez załączników: **1 MB \*** (1 000 000 bajtów).
+- Maksymalny rozmiar faktury z załącznikami: **3 MB \*** (3 000 000 bajtów).
 
 ## Ograniczenia ilościowe
 - Maksymalna liczba faktur w jednej sesji (zarówno interaktywnej, jak i wsadowej) wynosi 10 000 *.
-- W ramach wysyłki wsadowej można przesłać maksymalnie 50 plików ZIP; rozmiar każdego pliku nie może przekroczyć 100 MiB (104 857 600 bajtów), a łączny rozmiar paczki - 5 GiB (5 368 709 120 bajtów).
+- W ramach wysyłki wsadowej można przesłać maksymalnie 50 plików ZIP; rozmiar każdego pliku przed zaszyfrowaniem nie może przekroczyć 100 MB (100 000 000 bajtów), a łączny rozmiar paczki ZIP - 5 GB (5 000 000 000 bajtów).
 
 ## Poprawne szyfrowanie
 - Faktura powinna być zaszyfrowana algorytmem AES-256-CBC (klucz symetryczny 256 bit, IV 128 bit, z dopełnieniem (padding) PKCS#7).

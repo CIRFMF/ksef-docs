@@ -7,6 +7,17 @@
   Włączenie (preview): do nagłóweka żądania należy dodać `X-KSeF-Feature`: `include-metadata`.
   Od 2025-10-27 zmienia się domyślne zachowanie endpointu - paczka eksportu będzie zawsze zawierać plik `_metadata.json` (nagłówek nie będzie wymagany).
 
+- **Standaryzacja jednostek rozmiaru (MB, SI)**  
+  Ujednolicono zapis limitów w dokumentacji i API: wartości prezentowane w MB (SI), gdzie 1 MB = 1 000 000 B.
+
+- **Pobranie limitów dla bieżącego kontekstu (POST `/limits/context`)**  
+  Dodano w modelu odpowiedzi `maxInvoiceSizeInMB`, `maxInvoiceWithAttachmentSizeInMB` dla właściwości `onlineSession` i `batchSession`.
+  Właściwości `maxInvoiceSizeInMib`, `maxInvoiceWithAttachmentSizeInMib` oznaczono jako deprecated (planowane usunięcie: 2025-10-27).
+
+- **Zmiana limitów sesji dla bieżącego kontekstu (POST `/testdata/limits/context/session`)**  
+  Dodano w modelu żądania `maxInvoiceSizeInMB`, `maxInvoiceWithAttachmentSizeInMB` dla właściwości `onlineSession` i `batchSession`.
+  Właściwości `maxInvoiceSizeInMib`, `maxInvoiceWithAttachmentSizeInMib` oznaczono jako deprecated (planowane usunięcie: 2025-10-27).
+
 - **Status eksportu paczki faktur (GET `/invoices/exports/{referenceNumber}`)**  
   Zmiana nazwy parametru ścieżki z `operationReferenceNumber` na `referenceNumber`.  
   Zmiana nie wpływa na kontrakt HTTP (ścieżka i znaczenie wartości bez zmian) ani na zachowanie endpointu.
@@ -29,11 +40,9 @@
     - `FA_PEF (3)` na `PEF (3)`,
     - `FA_KOR_PEF (3)` na `PEF_KOR (3)`.
 
-
 - **Wygenerowanie nowego tokena (POST `/tokens`)**  
   - W modelu żądania (`GenerateTokenRequest`) oznaczono pola `description` i `permissions` jako wymagane.
   - W modelu odpowiedzi (`GenerateTokenResponse`) oznaczono pola `referenceNumber` i `token` jako zawsze zwracane.
-
 
 - **Statusu tokena KSeF (GET /tokens/{referenceNumber})**
   - Oznaczono właściwość `authorIdentifier`, `contextIdentifier`, `dateCreated`, `description`, `referenceNumber`, `requestedPermissions`, `status` w modelu odpowiedzi jako zawsze zwracaną.

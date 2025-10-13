@@ -19,8 +19,8 @@ Więcej informacji znajduje się w [Limity żądań API](limity-api.md).
 
 | Parametr                                                    | Wartość domyślna                       |
 | ----------------------------------------------------------- | -------------------------------------- |
-| Maksymalny rozmiar faktury bez załącznika                | 1 MiB                                  |
-| Maksymalny rozmiar faktury z załącznikiem                 | 3 MiB                                  |
+| Maksymalny rozmiar faktury bez załącznika                | 1 MB                                  |
+| Maksymalny rozmiar faktury z załącznikiem                 | 3 MB                                  |
 | Maksymalna liczba faktur w sesji interaktywnej/wsadowej | 10 000                                 |
 
 ## Limity na uwierzytelniony podmiot ##

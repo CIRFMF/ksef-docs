@@ -1998,7 +1998,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Eksport paczki faktur",
-        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu `Encryption`, które służą do zabezpieczenia przygotowanej paczki z fakturami.\n            \nSystem pobiera faktury rosnąco według daty określonej w filtrze (Invoicing, Issue, PermanentStorage) i dodaje je do paczki aż do osiągnięcia jednego z poniższych limitów:\n* Limit liczby faktur: 10 000 sztuk\n* Limit rozmiaru danych(skompresowanych): 20 × 50 MiB\n\nPlik z metadanymi nie jest wliczany do limitów algorytmu budowania paczki. `Do realizacji pobierania przyrostowego należy stosować filtrowanie po dacie PermanentStorage`.\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu `Encryption`, które służą do zabezpieczenia przygotowanej paczki z fakturami.\n            \nSystem pobiera faktury rosnąco według daty określonej w filtrze (Invoicing, Issue, PermanentStorage) i dodaje je do paczki aż do osiągnięcia jednego z poniższych limitów:\n* Limit liczby faktur: 10 000 sztuk\n* Limit rozmiaru danych(skompresowanych): 1GB\n\nPlik z metadanymi nie jest wliczany do limitów algorytmu budowania paczki. \n\n`Do realizacji pobierania przyrostowego należy stosować filtrowanie po dacie PermanentStorage`.\n\nWymagane uprawnienia: `InvoiceRead`.",
         "requestBody": {
           "description": "Dane wejściowe określające kryteria i format eksportu paczki faktur.",
           "content": {
@@ -2064,7 +2064,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Pobranie statusu eksportu paczki faktur",
-        "description": "Wyniki sortowane są rosnąco według typu daty przekazanej w `DateRange` przy inicjalizacji. \n\nPaczka eksportowa jest dzielona na części o maksymalnym rozmiarze 50 MiB. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. \n\nW przypadku ucięcia wyniku eksportu z powodu przekroczenia limitów,  zwracana jest flaga `IsTruncated = true` oraz odpowiednia data,  którą należy wykorzystać do wykonania kolejnego eksportu, aż do momentu, gdy flaga `IsTruncated = false`.\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Wyniki sortowane są rosnąco według typu daty przekazanej w `DateRange` przy inicjalizacji. \n\nPaczka faktur jest dzielona na części o maksymalnym rozmiarze 50 MB. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. \n\nW przypadku ucięcia wyniku eksportu z powodu przekroczenia limitów, zwracana jest flaga `IsTruncated = true` oraz odpowiednia data, którą należy wykorzystać do wykonania kolejnego eksportu, aż do momentu, gdy flaga `IsTruncated = false`.\n\nWymagane uprawnienia: `InvoiceRead`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -4688,12 +4688,12 @@
         "type": "object",
         "properties": {
           "fileSize": {
-            "maximum": 5368709120,
+            "maximum": 5000000000,
             "exclusiveMaximum": false,
             "minimum": 1,
             "exclusiveMinimum": false,
             "type": "integer",
-            "description": "Rozmiar pliku paczki w bajtach. Maksymalny rozmiar paczki to 5GiB (5 368 709 120 bajtów).",
+            "description": "Rozmiar pliku paczki w bajtach. Maksymalny rozmiar paczki to 5GB.",
             "format": "int64"
           },
           "fileHash": {
@@ -4731,17 +4731,17 @@
             "description": "Nazwa części pliku paczki."
           },
           "fileSize": {
-            "maximum": 104857600,
+            "maximum": 100000000,
             "exclusiveMaximum": false,
             "minimum": 1,
             "exclusiveMinimum": false,
             "type": "integer",
-            "description": "Rozmiar części pliku paczki w bajtach. Maksymalna dozwolona wartość to 100MiB (104 857 600 bajtów).",
+            "description": "Rozmiar zaszyfrowanej części pliku paczki w bajtach. Maksymalna dozwolona wartość to 100MB.",
             "format": "int64"
           },
           "fileHash": {
             "type": "string",
-            "description": "Skrót SHA256 części pliku paczki, zakodowany w formacie Base64."
+            "description": "Skrót SHA256 zaszyfrowanej części pliku paczki, zakodowany w formacie Base64."
           }
         },
         "additionalProperties": false
@@ -4749,7 +4749,9 @@
       "BatchSessionContextLimitsOverride": {
         "required": [
           "maxInvoices",
+          "maxInvoiceSizeInMB",
           "maxInvoiceSizeInMib",
+          "maxInvoiceWithAttachmentSizeInMB",
           "maxInvoiceWithAttachmentSizeInMib"
         ],
         "type": "object",
@@ -4761,6 +4763,16 @@
             "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury w MiB.",
+            "format": "int32",
+            "deprecated": true
+          },
+          "maxInvoiceSizeInMB": {
+            "maximum": 5,
+            "exclusiveMaximum": false,
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury w MB.",
             "format": "int32"
           },
           "maxInvoiceWithAttachmentSizeInMib": {
@@ -4770,6 +4782,16 @@
             "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury z załącznikiem w MiB.",
+            "format": "int32",
+            "deprecated": true
+          },
+          "maxInvoiceWithAttachmentSizeInMB": {
+            "maximum": 10,
+            "exclusiveMaximum": false,
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury z załącznikiem w MB.",
             "format": "int32"
           },
           "maxInvoices": {
@@ -4787,7 +4809,9 @@
       "BatchSessionEffectiveContextLimits": {
         "required": [
           "maxInvoices",
+          "maxInvoiceSizeInMB",
           "maxInvoiceSizeInMib",
+          "maxInvoiceWithAttachmentSizeInMB",
           "maxInvoiceWithAttachmentSizeInMib"
         ],
         "type": "object",
@@ -4797,6 +4821,14 @@
             "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury w MiB.",
+            "format": "int32",
+            "deprecated": true
+          },
+          "maxInvoiceSizeInMB": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury w MB.",
             "format": "int32"
           },
           "maxInvoiceWithAttachmentSizeInMib": {
@@ -4804,6 +4836,14 @@
             "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury z załącznikiem w MiB.",
+            "format": "int32",
+            "deprecated": true
+          },
+          "maxInvoiceWithAttachmentSizeInMB": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury z załącznikiem w MB.",
             "format": "int32"
           },
           "maxInvoices": {
@@ -5331,7 +5371,9 @@
           "onlineSession": {
             "required": [
               "maxInvoiceSizeInMib",
+              "maxInvoiceSizeInMB",
               "maxInvoiceWithAttachmentSizeInMib",
+              "maxInvoiceWithAttachmentSizeInMB",
               "maxInvoices"
             ],
             "allOf": [
@@ -5344,7 +5386,9 @@
           "batchSession": {
             "required": [
               "maxInvoiceSizeInMib",
+              "maxInvoiceSizeInMB",
               "maxInvoiceWithAttachmentSizeInMib",
+              "maxInvoiceWithAttachmentSizeInMB",
               "maxInvoices"
             ],
             "allOf": [
@@ -7337,7 +7381,9 @@
       "OnlineSessionContextLimitsOverride": {
         "required": [
           "maxInvoices",
+          "maxInvoiceSizeInMB",
           "maxInvoiceSizeInMib",
+          "maxInvoiceWithAttachmentSizeInMB",
           "maxInvoiceWithAttachmentSizeInMib"
         ],
         "type": "object",
@@ -7349,6 +7395,16 @@
             "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury w MiB.",
+            "format": "int32",
+            "deprecated": true
+          },
+          "maxInvoiceSizeInMB": {
+            "maximum": 5,
+            "exclusiveMaximum": false,
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury w MB.",
             "format": "int32"
           },
           "maxInvoiceWithAttachmentSizeInMib": {
@@ -7358,6 +7414,16 @@
             "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury z załącznikiem w MiB.",
+            "format": "int32",
+            "deprecated": true
+          },
+          "maxInvoiceWithAttachmentSizeInMB": {
+            "maximum": 10,
+            "exclusiveMaximum": false,
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury z załącznikiem w MB.",
             "format": "int32"
           },
           "maxInvoices": {
@@ -7375,7 +7441,9 @@
       "OnlineSessionEffectiveContextLimits": {
         "required": [
           "maxInvoices",
+          "maxInvoiceSizeInMB",
           "maxInvoiceSizeInMib",
+          "maxInvoiceWithAttachmentSizeInMB",
           "maxInvoiceWithAttachmentSizeInMib"
         ],
         "type": "object",
@@ -7385,6 +7453,14 @@
             "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury w MiB.",
+            "format": "int32",
+            "deprecated": true
+          },
+          "maxInvoiceSizeInMB": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury w MB.",
             "format": "int32"
           },
           "maxInvoiceWithAttachmentSizeInMib": {
@@ -7392,6 +7468,14 @@
             "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury z załącznikiem w MiB.",
+            "format": "int32",
+            "deprecated": true
+          },
+          "maxInvoiceWithAttachmentSizeInMB": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "integer",
+            "description": "Maksymalny rozmiar faktury z załącznikiem w MB.",
             "format": "int32"
           },
           "maxInvoices": {
@@ -9138,7 +9222,9 @@
           "onlineSession": {
             "required": [
               "maxInvoiceSizeInMib",
+              "maxInvoiceSizeInMB",
               "maxInvoiceWithAttachmentSizeInMib",
+              "maxInvoiceWithAttachmentSizeInMB",
               "maxInvoices"
             ],
             "allOf": [
@@ -9151,7 +9237,9 @@
           "batchSession": {
             "required": [
               "maxInvoiceSizeInMib",
+              "maxInvoiceSizeInMB",
               "maxInvoiceWithAttachmentSizeInMib",
+              "maxInvoiceWithAttachmentSizeInMB",
               "maxInvoices"
             ],
             "allOf": [
