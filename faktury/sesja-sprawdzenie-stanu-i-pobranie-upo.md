@@ -41,6 +41,7 @@ Przykład w języku Java:
 ```java
 SessionsQueryRequest request = new SessionsQueryRequest();
 request.setSessionType(SessionType.ONLINE);
+request.setStatuses(List.of(CommonSessionStatus.INPROGRESS));
 SessionsQueryResponse sessionsQueryResponse = ksefClient.getSessions(request, 10, null, accessToken);
 
 ```
