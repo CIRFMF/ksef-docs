@@ -7736,6 +7736,7 @@
           },
           "createdDate": {
             "type": "string",
+            "description": "W przypadku wielokrotnego tworzenia danych testowych z tym samym identyfikatorem nie można podawać daty wcześniejszej ani takiej samej jak poprzednia.",
             "format": "date-time",
             "nullable": true
           }
@@ -9337,6 +9338,7 @@
           },
           "createdDate": {
             "type": "string",
+            "description": "W przypadku wielokrotnego tworzenia danych testowych z tym samym identyfikatorem nie można podawać daty wcześniejszej ani takiej samej jak poprzednia.",
             "format": "date-time",
             "nullable": true
           }
