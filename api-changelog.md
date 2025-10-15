@@ -5,10 +5,12 @@
 - **Pobranie listy metadanych certyfikatów (POST /invoices/query/metadata)**  
   - Dodano parametr `sortOrder`, umożliwiający określenie kierunku sortowania wyników.
 
+- **Status sesji**  
+  Usunięto błąd uniemożliwiający uzupełnianie tej właściwości w odpowiedziach API dotyczących faktur (pole nie było wcześniej zwracane). Wartość jest uzupełniana asynchronicznie w momencie trwałego zapisu i może być tymczasowo null.
+
 - **OpenAPI**  
   - Doprecyzowano definicje parametrów tablicowych w query; zastosowano `style: form`. Wiele wartości należy przekazywać przez powtórzenie parametru, np. `?statuses=InProgress&statuses=Succeeded`. Zmiana dokumentacyjna, bez wpływu na działanie API.
   - Zaktualizowano opisy właściwości (`partUploadRequests`, `encryptedSymmetricKey`, `initializationVector`).
-
 
 ### Wersja 2.0.0 RC5.3
 

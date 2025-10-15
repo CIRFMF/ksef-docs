@@ -9023,7 +9023,7 @@
           },
           "permanentStorageDate": {
             "type": "string",
-            "description": "Data trwałego zapisu faktury w repozytorium systemu KSeF.",
+            "description": "Data trwałego zapisu faktury w repozytorium KSeF. Wartość uzupełniana asynchronicznie w momencie trwałego zapisu; zawsze późniejsza niż <b>acquisitionDate</b>. Podczas sprawdzania statusu może być jeszcze niedostępna.",
             "format": "date-time",
             "nullable": true
           },
