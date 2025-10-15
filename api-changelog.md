@@ -2,6 +2,9 @@
 
 ### Wersja 2.0.0 RC5.4
 
+- **Pobranie listy metadanych certyfikatów (POST /invoices/query/metadata)**  
+  - Dodano parametr `sortOrder`, umożliwiający określenie kierunku sortowania wyników.
+
 - **OpenAPI**  
   - Doprecyzowano definicje parametrów tablicowych w query; zastosowano `style: form`. Wiele wartości należy przekazywać przez powtórzenie parametru, np. `?statuses=InProgress&statuses=Succeeded`. Zmiana dokumentacyjna, bez wpływu na działanie API.
   - Zaktualizowano opisy właściwości (`partUploadRequests`, `encryptedSymmetricKey`, `initializationVector`).

@@ -1904,8 +1904,22 @@
           "Pobieranie faktur"
         ],
         "summary": "Pobranie listy metadanych faktur",
-        "description": "Zwraca listę metadanych faktur spełniające podane kryteria wyszukiwania. Wyniki sortowane są rosnąco według typu daty przekazanej w `DateRange`. Do realizacji pobierania przyrostowego należy stosować typ `PermanentStorage`. Maksymalnie można pobrać faktury w zakresie do 10 000 rekordów\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Zwraca metadane faktur spełniających filtry.\n\nLimit techniczny: ≤ 10 000 rekordów na zestaw filtrów, po jego osiągnięciu <b>isTruncated = true</b> i należy ponownie ustawić <b>dateRange</b>, używając ostatniej daty z wyników (tj. ustawić from/to - w zależności od kierunku sortowania, od daty ostatniego zwróconego rekordu) oraz wyzerować <b>pageOffset</b>.\n\n`Do scenariusza przyrostowego należy używać daty PermanentStorage oraz kolejność sortowania Asc`.\n            \n<b>Scenariusz pobierania przyrostowego (skrót):</b>\n* Gdy <b>hasMore = false</b>, należy zakończyć,\n* Gdy <b>hasMore = true</b> i <b>isTruncated = false</b>, należy zwiększyć <b>pageOffset</b>,\n* Gdy <b>hasMore = true</b> i <b>isTruncated = true</b>, należy zawęzić <b>dateRange</b> (ustawić from od daty ostatniego rekordu), wyzerować <b>pageOffset</b> i kontynuować\n\nWymagane uprawnienia: `InvoiceRead`.",
         "parameters": [
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Kolejność sortowania wyników.\n| Wartość | Opis |\n| --- | --- |\n| Asc | Sortowanie rosnąco. |\n| Desc | Sortowanie malejąco. |\n",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SortOrder"
+                }
+              ],
+              "description": "| Wartość | Opis |\n| --- | --- |\n| Asc | Sortowanie rosnąco. |\n| Desc | Sortowanie malejąco. |\n",
+              "default": "Asc"
+            }
+          },
           {
             "name": "pageOffset",
             "in": "query",
@@ -8584,11 +8598,11 @@
         "properties": {
           "hasMore": {
             "type": "boolean",
-            "description": "Określa, czy dostępne są dalsze wyniki zapytania."
+            "description": "Określa, czy istnieją kolejne wyniki zapytania."
           },
           "isTruncated": {
             "type": "boolean",
-            "description": "Określa, czy wynik został obcięty z powodu przekroczenia limitu liczby faktur (10 000)."
+            "description": "Określa, czy osiągnięto maksymalny dopuszczalny zakres wyników zapytania (10 000)."
           },
           "invoices": {
             "type": "array",
@@ -9281,6 +9295,14 @@
           }
         },
         "additionalProperties": false
+      },
+      "SortOrder": {
+        "enum": [
+          "Asc",
+          "Desc"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Asc | Sortowanie rosnąco. |\n| Desc | Sortowanie malejąco. |\n"
       },
       "StatusInfo": {
         "required": [
