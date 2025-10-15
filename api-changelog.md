@@ -1,5 +1,11 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.0 RC5.4
+
+- **OpenAPI**  
+  - Doprecyzowano definicje parametrów tablicowych w query; zastosowano `style: form`. Wiele wartości należy przekazywać przez powtórzenie parametru, np. `?statuses=InProgress&statuses=Succeeded`. Zmiana dokumentacyjna, bez wpływu na działanie API.
+
+
 ### Wersja 2.0.0 RC5.3
 
 - **Eksport paczki faktur (POST `/invoices/exports`)**  
