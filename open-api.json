@@ -1998,7 +1998,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Eksport paczki faktur",
-        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu `Encryption`, które służą do zabezpieczenia przygotowanej paczki z fakturami.\n            \nSystem pobiera faktury rosnąco według daty określonej w filtrze (Invoicing, Issue, PermanentStorage) i dodaje je do paczki aż do osiągnięcia jednego z poniższych limitów:\n* Limit liczby faktur: 10 000 sztuk\n* Limit rozmiaru danych(skompresowanych): 1GB\n\nPaczka eksportu może zawierać dodatkowy plik z metadanymi faktur w formacie JSON. Zawartość pliku to\nobiekt z tablicą `invoices`, gdzie każdy element jest obiektem typu `InvoiceMetadata`\n(taki jak zwracany przez endpoint `POST /invoices/query/metadata`).\n\n<b>Plik z metadanymi(_metadata.json) nie jest wliczany do limitów algorytmu budowania paczki</b>. \n\n<b>Tryb preview (włączany nagłówkiem):</b> aby dołączyć plik metadanych w wersji zapoznawczej,\ndodaj do nagłówka żądania: `X-KSeF-Feature: include-metadata`.\nW tym trybie do paczki zostanie dodany plik o nazwie `_metadata.json`.\n\n<b>Domyślne zachowanie od 2025-10-27:</b> od tego dnia paczka eksportu <u>zawsze</u> będzie zawierać plik\n`_metadata.json` z metadanymi, a nagłówek `X-KSeF-Feature` nie będzie wymagany.\n\n`Do realizacji pobierania przyrostowego należy stosować filtrowanie po dacie PermanentStorage`.\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu <b>Encryption</b>, które służą do zabezpieczenia przygotowanej paczki z fakturami.\n            \nSystem pobiera faktury rosnąco według daty określonej w filtrze (Invoicing, Issue, PermanentStorage) i dodaje je do paczki aż do osiągnięcia jednego z poniższych limitów:\n* Limit liczby faktur: 10 000 sztuk\n* Limit rozmiaru danych(skompresowanych): 1GB\n\nPaczka eksportu może zawierać dodatkowy plik z metadanymi faktur w formacie JSON (`_metadata.json`). Zawartość pliku to\nobiekt z tablicą <b>invoices</b>, gdzie każdy element jest obiektem typu <b>InvoiceMetadata</b>\n(taki jak zwracany przez endpoint `POST /invoices/query/metadata`).\n\n<b>Plik z metadanymi(_metadata.json) nie jest wliczany do limitów algorytmu budowania paczki</b>. \n\n<b>Tryb preview (włączany nagłówkiem):</b> aby dołączyć plik metadanych w wersji zapoznawczej,\ndodaj do nagłówka żądania: `X-KSeF-Feature: include-metadata`.\nW tym trybie do paczki zostanie dodany plik o nazwie `_metadata.json`.\n\n<b>Domyślne zachowanie od 2025-10-27:</b> od tego dnia paczka eksportu <u>zawsze</u> będzie zawierać plik\n`_metadata.json` z metadanymi, a nagłówek `X-KSeF-Feature` nie będzie wymagany.\n\n`Do realizacji pobierania przyrostowego należy stosować filtrowanie po dacie PermanentStorage`.\n\nWymagane uprawnienia: `InvoiceRead`.",
         "requestBody": {
           "description": "Dane wejściowe określające kryteria i format eksportu paczki faktur.",
           "content": {
@@ -2064,7 +2064,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Pobranie statusu eksportu paczki faktur",
-        "description": "Wyniki sortowane są rosnąco według typu daty przekazanej w `DateRange` przy inicjalizacji. \n\nPaczka faktur jest dzielona na części o maksymalnym rozmiarze 50 MB. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. \n\nW przypadku ucięcia wyniku eksportu z powodu przekroczenia limitów, zwracana jest flaga `IsTruncated = true` oraz odpowiednia data, którą należy wykorzystać do wykonania kolejnego eksportu, aż do momentu, gdy flaga `IsTruncated = false`.\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Wyniki sortowane są rosnąco według typu daty przekazanej w <b>DateRange</b> przy inicjalizacji. \n\nPaczka faktur jest dzielona na części o maksymalnym rozmiarze 50 MB. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. \n\nW przypadku ucięcia wyniku eksportu z powodu przekroczenia limitów, zwracana jest flaga <b>IsTruncated = true</b> oraz odpowiednia data, którą należy wykorzystać do wykonania kolejnego eksportu, aż do momentu, gdy flaga <b>IsTruncated = false</b>.\n\nWymagane uprawnienia: `InvoiceRead`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -5432,11 +5432,11 @@
         "properties": {
           "encryptedSymmetricKey": {
             "type": "string",
-            "description": "Klucz symetryczny zaszyfrowany algorytmem RSA (Padding: OAEP z SHA-256), zakodowany w formacie Base64.\n\n[Klucz publiczny RSA](/public-keys/publicKey.pem)"
+            "description": "Klucz symetryczny o długości 32 bajtów, zaszyfrowany algorytmem RSA (Padding: OAEP z SHA-256), zakodowany w formacie Base64.\n\n[Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)"
           },
           "initializationVector": {
             "type": "string",
-            "description": "Wektor inicjalizujący (IV) używany do szyfrowania symetrycznego, zakodowany w formacie Base64."
+            "description": "Wektor inicjalizujący (IV) o długości 16 bajtów, używany do szyfrowania symetrycznego, zakodowany w formacie Base64."
           }
         },
         "additionalProperties": false
@@ -7558,7 +7558,7 @@
             "items": {
               "$ref": "#/components/schemas/PartUploadRequest"
             },
-            "description": "Dane wymagane do poprawnego przesłania poszczególnych części pliku paczki faktur."
+            "description": "Dane wymagane do poprawnego przesłania poszczególnych części pliku paczki faktur.\n\nKażdą część pliku paczki zadeklarowaną w <b>fileParts</b> należy przesłać zgodnie z odpowiadającym jej obiektem w <b>partUploadRequests</b>.\nŁącznikiem pomiędzy deklaracją a instrukcją wysyłki jest pole <b>ordinalNumber</b>.\n\nDla każdej części należy:\n* zastosować metodę HTTP wskazaną w <b>method</b>,\n* ustawić adres z <b>url</b>,\n* dołączyć nagłówki z <b>headers</b>,\n* dołączyć treść części pliku w korpusie żądania.\n\n`Uwaga: nie należy dodawać do nagłówków token dostępu (accessToken).`\n \nKażdą część przesyła się oddzielnym żądaniem HTTP.Zwracane kody odpowiedzi:\n * <b>201</b> – poprawne przyjęcie pliku,\n * <b>400</b> – błędne dane,\n * <b>401</b> – nieprawidłowe uwierzytelnienie,\n * <b>403</b> – brak uprawnień do zapisu (np.upłynął czas na zapis)."
           }
         },
         "additionalProperties": false
