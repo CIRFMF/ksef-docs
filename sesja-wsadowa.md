@@ -263,7 +263,17 @@ Metoda zwraca listę części paczki; dla każdej części podaje adres uploadu 
 
 ### 5. Przesłanie zadeklarowanych części paczki
 
-Na podstawie danych zwróconych przy otwarciu sesji (unikalny URL, metoda HTTP, wymagane nagłówki) należy przesłać każdą zadeklarowaną część paczki pod wskazany adres, stosując dokładnie podaną metodę i nagłówki dla danej części.
+Korzystając z danych zwróconych przy otwarciu sesji w `partUploadRequests`, tj. unikalnego adresu url z kluczem dostępu, metody HTTP (method) oraz wymaganych nagłówków (headers), należy przesłać każdą zadeklarowaną część paczki (`fileParts`) pod wskazany adres, stosując dokładnie te wartości dla danej części. Łącznikiem pomiędzy deklaracją a instrukcją wysyłki jest właściwość `ordinalNumber`.
+
+W treści żądania (body) należy umieścić bajty odpowiedniej części pliku (bez opakowania w JSON).
+
+> Uwaga: nie należy dodawać do nagłówków token dostępu (`accessToken`).
+
+Każdą część przesyła się oddzielnym żądaniem HTTP. Zwracane kody odpowiedzi:
+* `201` - poprawne przyjęcie pliku,
+* `400` - błędne dane,
+* `401` - nieprawidłowe uwierzytelnienie,
+* `403` - brak uprawnień do zapisu (np. upłynął czas na zapis).
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
