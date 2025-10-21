@@ -25,12 +25,13 @@ Więcej informacji znajduje się w [Limity żądań API](limity-api.md).
 
 ## Limity na uwierzytelniony podmiot ##
 
-| Parametr                                                    | Wartość domyślna                       |
-| ----------------------------------------------------------- | -------------------------------------- |
-| Limit wniosków o certyfikat KSeF dla organizacji (NIP)                 | 300        |
-| Limit aktywnych certyfikatów KSeF dla organizacji (NIP)                          | 100        |
-| Limit wniosków o certyfikat KSeF dla osoby fizycznej (PESEL/NIP)       | 6        |
-| Limit aktywnych certyfikatów KSeF dla osoby fizycznej (PESEL/NIP)                             | 2        |
+### Wnioski i aktywne certyfikaty
+
+| Identyfikator z certyfikatu            | Wnioski o certyfikat KSeF | Aktywne certyfikaty KSeF |
+| -------------------------------------- | ------------------------- | ------------------------ |
+| NIP                                    | 300                       | 100                      |
+| PESEL                                  | 6                         | 2                        |
+| Odcisk palca certyfikatu (fingerprint) | 6                         | 2                        |
 
 
 
@@ -39,7 +40,7 @@ Więcej informacji znajduje się w [Limity żądań API](limity-api.md).
 System KSeF umożliwia indywidualne dostosowanie wybranych limitów technicznych dla:
 - limitów API - np. zwiększenie liczby żądań dla wybranego endpointu,
 - kontekstu - np. zwiększenie maksymalnego rozmiaru faktury,
-- podmiotu uwierzytelniającego - np. zwiększenie limitów aktywnych certyfikatów KSeF dla osoby fizycznej (PESEL/NIP).
+- podmiotu uwierzytelniającego - np. zwiększenie limitów aktywnych certyfikatów KSeF dla osoby fizycznej (PESEL).
 
 Na **środowisku produkcyjnym** zwiększenie limitów możliwe jest wyłącznie na podstawie uzasadnionego wniosku, popartego realną potrzebą operacyjną.
 Wniosek składa się za pośrednictwem [formularza kontaktowego](https://ksef.podatki.gov.pl/formularz/), wraz ze szczegółowym opisem zastosowania.
