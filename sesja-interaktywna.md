@@ -45,6 +45,7 @@ W odpowiedzi zwracany jest obiekt zawierający:
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
+
 ```csharp
 OpenOnlineSessionRequest openOnlineSessionRequest = OpenOnlineSessionRequestBuilder
     .Create()
@@ -54,7 +55,7 @@ OpenOnlineSessionRequest openOnlineSessionRequest = OpenOnlineSessionRequestBuil
         initializationVector: encryptionData.EncryptionInfo.InitializationVector)
     .Build();
 
-OpenOnlineSessionResponse openOnlineSessionResponse = KsefClient.OpenOnlineSessionAsync(openOnlineSessionRequest, accessToken, CancellationToken);
+OpenOnlineSessionResponse openOnlineSessionResponse = await KsefClient.OpenOnlineSessionAsync(openOnlineSessionRequest, accessToken, CancellationToken);
 ```
 
 Przykład w języku Java:
@@ -94,7 +95,7 @@ SendInvoiceRequest sendOnlineInvoiceRequest = SendInvoiceOnlineSessionRequestBui
     .WithEncryptedDocumentContent(Convert.ToBase64String(encryptedInvoice))
     .Build();
 
-SendInvoiceResponse sendInvoiceResponse = KsefClient.SendOnlineSessionInvoiceAsync(sendOnlineInvoiceRequest, referenceNumber, accessToken);
+SendInvoiceResponse sendInvoiceResponse = await KsefClient.SendOnlineSessionInvoiceAsync(sendOnlineInvoiceRequest, referenceNumber, accessToken);
 ```
 
 Przykład w języku Java:

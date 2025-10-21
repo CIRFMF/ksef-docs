@@ -86,10 +86,10 @@ Po uzyskaniu auth challenge należy przygotować dokument XML zgodny ze schemate
 | `Type: nip`<br>`Value: 1234567890` | `certificateSubject`<br>` (pesel 88102341294 w certyfikacie)` | Uwierzytelnienie dotyczy firmy o NIP 1234567890. Podpis zostanie złożony certyfikatem osoby fizycznej zawierającym w polu 2.5.4.5 numer PESEL 88102341294. System KSeF sprawdzi, czy ta osoba posiada **uprawnienia do działania** w imieniu firmy (np. na podstawie zgłoszenia ZAW-FA). |
 | `Type: nip`<br>`Value: 1234567890` | `certificateFingerprint:`<br>` (odcisk certyfikatu  70a992150f837d5b4d8c8a1c5269cef62cf500bd)` | Uwierzytelnienie dotyczy firmy o NIP 1234567890. Podpis zostanie złożony certyfikatem o odcisku 70a992150f837d5b4d8c8a1c5269cef62cf500bd na który złożono **uprawnienia do działania** w imieniu firmy (np. na podstawie zgłoszenia ZAW-FA). |
 
+Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Authorization\AuthorizationE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Authorization/AuthorizationE2ETests.cs)
 
-Przykład w języku ```C#```:
-
- ```csharp
+```csharp
 var authorizationPolicy = new AuthorizationPolicy
 {
     AllowedIps = new AllowedIps
@@ -100,11 +100,11 @@ var authorizationPolicy = new AuthorizationPolicy
     }
 };
 
-var authTokenRequest = AuthTokenRequestBuilder
+AuthenticationTokenRequest authTokenRequest = AuthTokenRequestBuilder
     .Create()
     .WithChallenge(challengeResponse.Challenge)
-    .WithContext(ContextIdentifierType.Nip, ownerNip)
-    .WithIdentifierType(SubjectIdentifierTypeEnum.CertificateSubject)
+    .WithContext(AuthenticationTokenContextIdentifierType.Nip, ownerNip)
+    .WithIdentifierType(AuthenticationTokenSubjectIdentifierTypeEnum.CertificateSubject)
     .WithAuthorizationPolicy(authorizationPolicy)
     .Build();
 ```
@@ -151,7 +151,8 @@ public static X509Certificate2 GetPersonalCertificate(
     string surname,
     string serialNumberPrefix,
     string serialNumber,
-    string commonName)
+    string commonName,
+    EncryptionMethodEnum encryptionType = EncryptionMethodEnum.Rsa)
 {
     X509Certificate2 certificate = SelfSignedCertificateForSignatureBuilder
                 .Create()
@@ -159,11 +160,13 @@ public static X509Certificate2 GetPersonalCertificate(
                 .WithSurname(surname)
                 .WithSerialNumber($"{serialNumberPrefix}-{serialNumber}")
                 .WithCommonName(commonName)
+                .AndEncryptionType(encryptionType)
                 .Build();
     return certificate;
 }
 ```
-Wygenerowanie testowego certyfikatu (możliwego do użycia tylko na środowisku testowym) organizacji z przykładowymi identyfikatorami
+Wygenerowanie testowego certyfikatu (możliwego do użycia tylko na środowisku testowym) organizacji z przykładowymi identyfikatorami:
+
 ```csharp
 // Odpowiednik certyfikatu kwalifikowanego organizacji (tzw. pieczęć firmowa)
 X509Certificate2 euEntitySealCertificate = CertificateUtils.GetCompanySeal("Kowalski sp. z o.o", euEntityNipVatEu, "Kowalski");
@@ -305,12 +308,12 @@ var builder = AuthKsefTokenRequestBuilder
 var authKsefTokenRequest = builder.Build();
 
 // Sposób 2: manualne tworzenie obiektu
-AuthKsefTokenRequest request = new AuthKsefTokenRequest
+AuthenticationKsefTokenRequest request = new AuthenticationKsefTokenRequest
 {
     Challenge = challenge.Challenge,
-    ContextIdentifier = new AuthContextIdentifier
+    ContextIdentifier = new AuthenticationTokenContextIdentifier
     {
-        Type = ContextIdentifierType.Nip,
+        Type = AuthenticationTokenContextIdentifierType.Nip,
         Value = nip
     },
     EncryptedToken = encryptedTokenB64,
