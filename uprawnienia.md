@@ -845,7 +845,7 @@ POST [/permissions/query/eu-entities/grants](https://ksef-test.mf.gov.pl/docs/v2
 | `permissionTypes`           | Typy uprawnień do filtrowania. Możliwe wartości to: `VatUeManage`, `InvoiceWrite`, `InvoiceRead`, `Introspection`. |
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\E2E\Permissions\EuEntityPermission\EuEntityPermissionAdminAuthenticationE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/EuEntityPermission/EuEntityPermissionAdminAuthenticationE2ETests.cs)
 
 ```csharp
 PagedPermissionsResponse<Client.Core.Models.Permissions.EuEntityPermission> response =

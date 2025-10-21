@@ -7,6 +7,7 @@ Zwraca fakturę o podanym numerze KSeF.
 GET [/invoices/ksef/\{ksefReferenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1ksef~1%7BksefNumber%7D/get)
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Invoice\InvoiceE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Invoice/InvoiceE2ETests.cs)
 
 ```csharp
 string invoice = await ksefClient.GetInvoiceAsync(ksefReferenceNumber, accessToken, cancellationToken);
@@ -84,23 +85,35 @@ Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawi
 POST [/invoices/exports](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1exports/post)
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Invoice\InvoiceE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Invoice/InvoiceE2ETests.cs)
+
 ```csharp
+EncryptionData encryptionData = CryptographyService.GetEncryptionData();
+
 InvoiceQueryFilters query = new InvoiceQueryFilters
 {
     DateRange = new DateRange
     {
         From = DateTime.Now.AddDays(-1),
         To = DateTime.Now.AddDays(1),
-        DateType = DateType.Issue
+        DateType = DateType.Invoicing
     },
     SubjectType = SubjectType.Subject1
 };
 
-ExportInvoicesResponse exportInvoicesResponse = await KsefClient.ExportInvoicesAsync(
-    query,
-    accessToken);
+InvoiceExportRequest invoiceExportRequest = new InvoiceExportRequest
+{
+    Encryption = encryptionData.EncryptionInfo,
+    Filters = query
+};
+
+OperationResponse invoicesForSellerResponse = await KsefClient.ExportInvoicesAsync(
+    invoiceExportRequest,
+    _accessToken,
+    CancellationToken);
 ```
-Dostępne wartości `DateType` oraz `SubjectType` są opisane [tutaj](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1query~1metadata/post) 
+
+Dostępne wartości `DateType` oraz `SubjectType` są opisane [tutaj](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1query~1metadata/post).
 
 Faktury w paczce są sortowane rosnąco według typu daty wskazanego w `DateRange` podczas inicjalizacji eksportu.
 
@@ -130,11 +143,14 @@ Pobiera status wcześniej zainicjalizowanego zapytania asynchronicznego na podst
 GET [/invoices/exports/{operationReferenceNumber}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1exports~1%7BoperationReferenceNumber%7D/get)
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Invoice\InvoiceE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Invoice/InvoiceE2ETests.cs)
+
 ```csharp
 InvoiceExportStatusResponse exportStatus = await KsefClient.GetInvoiceExportStatusAsync(
     exportInvoicesResponse.OperationReferenceNumber,
     accessToken);
 ```
+
 Przykład w języku Java:
 
 [QueryInvoiceIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QueryInvoiceIntegrationTest.java)
