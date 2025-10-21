@@ -159,3 +159,7 @@ Przykład w języku Java:
 InvoiceExportStatus response = ksefClient.checkStatusAsyncQueryInvoice(operationReferenceNumber, accessToken);
 
 ```
+
+## Powiązane dokumenty
+
+- [Przyrostowe pobieranie faktur](przyrostowe-pobieranie-faktur.md)
