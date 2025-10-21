@@ -105,7 +105,7 @@ Przykład w języku C#:
 
  // Pobierz metadane ZIP-a (przed szyfrowaniem)
  var zipMetadata = cryptographyService.GetMetaData(zipBytes);
-int maxPartSize = 100 * 1024 * 1024; // 100 MB
+int maxPartSize = 100 * 1000 * 1000; // 100 MB
 int partCount = (int)Math.Ceiling((double)zipBytes.Length / maxPartSize);
 int partSize = (int)Math.Ceiling((double)zipBytes.Length / partCount);
 var zipParts = new List<byte[]>();
