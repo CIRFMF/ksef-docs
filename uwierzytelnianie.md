@@ -52,7 +52,7 @@ AuthenticationChallengeResponse challenge = createKSeFClient().getAuthChallenge(
 ```
 Odpowiedź zwraca challenge i timestamp.
 
-## 2. Wybór metody potwierdzenia tożsamości
+### 2. Wybór metody potwierdzenia tożsamości
 
 ### 2.1. Uwierzytelnianie **kwalifikowanym podpisem elektronicznym**
 
@@ -346,10 +346,13 @@ Po przesłaniu podpisanego dokumentu XML (```AuthTokenRequest```) i otrzymaniu o
 GET [/auth/{referenceNumber}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierzytelnianie/paths/~1api~1v2~1auth~1%7BreferenceNumber%7D/get)
 W odpowiedzi zwracany jest status – kod i opis stanu operacji (np. "Uwierzytelnianie w toku", Uwierzytelnianie "zakończone sukcesem").
 
-**Uwaga**<br>
-Na środowisku produkcyjnym czas oczekiwania na zakończenie operacji uwierzytelnienia rozpoczętej przy użyciu certyfikatu kwalifikowanego może się wydłużyć, ponieważ obejmuje weryfikację certyfikatu u zewnętrznego dostawcy (OCSP lub CRL). Czas weryfikacji zależy od wydawcy certyfikatu.
+**Uwaga**  
+Na środowiskach przedprodukcyjnym i produkcyjnym system, oprócz poprawności podpisu XAdES, sprawdza aktualny status certyfikatu u jego wystawcy (usługi OCSP/CRL). Do czasu uzyskania wiążącej odpowiedzi od dostawcy certyfikatu status operacji będzie zwracał "Uwierzytelnianie w toku" - jest to normalna konsekwencja procesu weryfikacji i nie oznacza błędu systemu. Sprawdzanie statusu jest asynchroniczne; wynik należy odpytywać do skutku. Czas weryfikacji zależy od wydawcy certyfikatu.
 
-**Obsługa błędów**
+**Rekomendacja dla środowiska produkcyjnego - certyfikat KSeF**  
+Aby wyeliminować oczekiwanie na weryfikację statusu certyfikatu w usługach OCSP/CRL po stronie kwalifikowanych dostawców usług zaufania, zaleca się uwierzytelnianie [certyfikatem KSeF](certyfikaty-KSeF.md). Weryfikacja certyfikatu KSeF odbywa się wewnątrz systemu i następuje niezwłocznie po odbiorze podpisu.
+
+**Obsługa błędów**  
 W przypadku niepowodzenia, w odpowiedzi mogą pojawić się kody błędów związane z niepoprawnym podpisem, brakiem uprawnień lub problemami technicznymi. Szczegółowa lista kodów błędów będzie dostępna w dokumentacji technicznej endpointa.
 
 Przykład w języku ```C#```:
@@ -420,3 +423,9 @@ AuthenticationTokenRefreshResponse refreshTokenResult = createKSeFClient().refre
 
 #### 6. Zarządzanie sesjami uwierzytelniania 
 Szczegółowe informacje o zarządzaniu aktywnymi sesjami uwierzytelniania znajdują się w dokumencie [Zarządzanie sesjami](auth/sesje.md).
+
+Powiązane dokumenty: 
+- [Certyfikaty KSeF](certyfikaty-KSeF.md)
+- [Testowe certyfikaty i podpisy XAdES](auth/testowe-certyfikaty-i-podpisy-xades.md)
+- [Podpis XAdES](auth/podpis-xades.md)
+- [Token KSeF](tokeny-ksef.md)
