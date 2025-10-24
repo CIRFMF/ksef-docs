@@ -117,39 +117,11 @@ Takie podejście jest dopuszczalne jedynie w profilach o niskim wolumenie; przy 
 
 ### Szczegółowe limity
 
-<table style="width:100%; border-collapse: collapse;" border="1">
-	<thead>
-		<tr>
-			<th colspan="2">Endpoint</th>
-			<th>req/s</th>
-			<th>req/min</th>
-			<th>req/h</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>Pobranie listy metadanych faktur</td>
-			<td>POST /invoices/query/metadata</td>
-			<td>8</td>
-			<td>16</td>
-			<td>20</td>
-		</tr>	
-		<tr>
-			<td>Eksport paczki faktur</td>
-			<td>POST /invoices/exports</td>
-			<td>4</td>
-			<td>8</td>
-			<td>20</td>
-		</tr>
-		<tr>
-			<td>Pobranie faktury po numerze KSeF</td>
-			<td>GET /invoices/ksef/{ksefNumber}</td>
-			<td>8</td>
-			<td>16</td>
-			<td>64</td>
-		</tr>		
-	</tbody>
-</table>
+| Endpoint | | req/s | req/min | req/h |
+|----------|---|-------|---------|-------|
+| Pobranie listy metadanych faktur | POST /invoices/query/metadata | 8 | 16 | 20 |
+| Eksport paczki faktur | POST /invoices/exports | 4 | 8 | 20 |
+| Pobranie faktury po numerze KSeF | GET /invoices/ksef/{ksefNumber} | 8 | 16 | 64 |
 
 **Uwaga:** Jeżeli w scenariuszach biznesowych organizacji dostępne limity pobierania faktur są niewystarczające, prosimy o kontakt z działem wsparcia KSeF w celu indywidualnej analizy i dobrania odpowiedniego rozwiązania.
 
@@ -178,32 +150,10 @@ Przykładowe scenariusze zastosowania trybu wsadowego:
 
 **Szczegółowe limity**
 
-<table style="width:100%; border-collapse: collapse;" border="1">
-	<thead>
-		<tr>
-			<th colspan="2">Endpoint</th>
-			<th>req/s</th>
-			<th>req/min</th>
-			<th>req/h</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>Otwarcie sesji wsadowej *</td>
-			<td>POST /sessions/batch</td>
-			<td>10</td>
-			<td>20</td>
-			<td>120</td>
-		</tr>		
-		<tr>
-			<td>Zamknięcie sesji wsadowej</td>
-			<td>POST /sessions/batch/{referenceNumber}/close</td>
-			<td>10</td>
-			<td>20</td>
-			<td>120</td>
-		</tr>
-	</tbody>
-</table>
+| Endpoint | | req/s | req/min | req/h |
+|----------|---|-------|---------|-------|
+| Otwarcie sesji wsadowej * | POST /sessions/batch | 10 | 20 | 120 |
+| Zamknięcie sesji wsadowej | POST /sessions/batch/{referenceNumber}/close | 10 | 20 | 120 |
 
 **Wysyłka części paczki** - żądania przesyłające części paczki w ramach jednej sesji wsadowej nie są objęte limitami API. W przypadku paczek podzielonych na wiele części zaleca się ich równoległe (wielowątkowe) przesyłanie, co znacząco skraca czas wysyłki.
 
@@ -219,39 +169,11 @@ Tryb interaktywny, mimo większego narzutu sieciowego w przypadku większych wol
 
 **Szczegółowe limity**
 
-<table style="width:100%; border-collapse: collapse;" border="1">
-	<thead>
-		<tr>
-			<th colspan="2">Endpoint</th>
-			<th>req/s</th>
-			<th>req/min</th>
-			<th>req/h</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>Otwarcie sesji interaktywnej</td>
-			<td>POST /sessions/online</td>
-			<td>10</td>
-			<td>30</td>
-			<td>120</td>
-		</tr>
-		<tr>
-			<td>Wysłanie faktury *</td>
-			<td>POST /sessions/online/{referenceNumber}/invoices</td>
-			<td>10</td>
-			<td>30</td>
-			<td>180</td>
-		</tr>
-		<tr>
-			<td>Zamknięcie sesji interaktywnej</td>
-			<td>POST /sessions/online/{referenceNumber}/close</td>
-			<td>10</td>
-			<td>30</td>
-			<td>120</td>
-		</tr>		
-	</tbody>
-</table>
+| Endpoint | | req/s | req/min | req/h |
+|----------|---|-------|---------|-------|
+| Otwarcie sesji interaktywnej | POST /sessions/online | 10 | 30 | 120 |
+| Wysłanie faktury * | POST /sessions/online/{referenceNumber}/invoices | 10 | 30 | 180 |
+| Zamknięcie sesji interaktywnej | POST /sessions/online/{referenceNumber}/close | 10 | 30 | 120 |
 
 \* **Uwaga:** Jeżeli w scenariuszach biznesowych organizacji regularnie osiągane są limity wysyłki w sesji interaktywnej, w pierwszej kolejności należy rozważyć zastosowanie trybu wsadowego, który pozwala efektywniej wykorzystać dostępne zasoby i limity.
 W sytuacjach, gdy użycie sesji interaktywnej jest niezbędne, a osiągane limity pozostają niewystarczające, prosimy o kontakt z działem wsparcia KSeF w celu indywidualnej analizy i pomocy w doborze rozwiązania.
@@ -260,53 +182,13 @@ W sytuacjach, gdy użycie sesji interaktywnej jest niezbędne, a osiągane limit
 
 **Szczegółowe limity**
 
-<table style="width:100%; border-collapse: collapse;" border="1">
-	<thead>
-		<tr>
-			<th colspan="2">Endpoint</th>
-			<th>req/s</th>
-			<th>req/min</th>
-			<th>req/h</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>Pobranie statusu faktury z sesji</td>
-			<td>GET /sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}</td>
-			<td>30</td>
-			<td>120</td>
-			<td>720</td>
-		</tr>	
-		<tr>
-			<td>Pobranie listy sesji</td>
-			<td>GET /sessions</td>
-			<td>5</td>
-			<td>10</td>
-			<td>60</td>
-		</tr>
-		<tr>
-			<td>Pobranie faktur sesji</td>
-			<td>GET /sessions/{referenceNumber}/invoices</td>
-			<td>10</td>
-			<td>20</td>
-			<td>200</td>
-		</tr>	
-		<tr>
-			<td>Pobranie niepoprawnie przetworzonych faktur sesji</td>
-			<td>GET /sessions/{referenceNumber}/invoices/failed</td>
-			<td>10</td>
-			<td>20</td>
-			<td>200</td>
-		</tr>
-		<tr>
-			<td>Pozostałe</td>
-			<td>GET /sessions/*</td>
-			<td>10</td>
-			<td>120</td>
-			<td>720</td>
-		</tr>		
-	</tbody>
-</table>
+| Endpoint | | req/s | req/min | req/h |
+|----------|---|-------|---------|-------|
+| Pobranie statusu faktury z sesji | GET /sessions/{referenceNumber}/invoices/{invoiceReferenceNumber} | 30 | 120 | 720 |
+| Pobranie listy sesji | GET /sessions | 5 | 10 | 60 |
+| Pobranie faktur sesji | GET /sessions/{referenceNumber}/invoices | 10 | 20 | 200 |
+| Pobranie niepoprawnie przetworzonych faktur sesji | GET /sessions/{referenceNumber}/invoices/failed | 10 | 20 | 200 |
+| Pozostałe | GET /sessions/* | 10 | 120 | 720 |
 
 ## Pozostałe
 
@@ -314,25 +196,9 @@ Domyślne limity obowiązują dla wszystkich zasobów API, które nie mają okre
 
 Limity te dotyczą wyłącznie zasobów chronionych. Nie obejmują one publicznych zasobów API, takich jak `/auth/challenge`, które nie wymagają uwierzytelnienia i posiadają własne mechanizmy ochrony - limit wynosi 60 żądań na sekundę dla jednego adresu IP.
 
-<table style="width:100%; border-collapse: collapse;" border="1">
-	<thead>
-		<tr>
-			<th colspan="2">Endpoint</th>
-			<th>req/s</th>
-			<th>req/min</th>
-			<th>req/h</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>Pozostałe</td>
-			<td>POST/GET /* </td>
-			<td>10</td>
-			<td>30</td>
-			<td>120</td>
-		</tr>	
-	</tbody>
-</table>
+| Endpoint | | req/s | req/min | req/h |
+|----------|---|-------|---------|-------|
+| Pozostałe | POST/GET /* | 10 | 30 | 120 |
 
-Powiązane dokumenty: 
+Powiązane dokumenty:
 - [Limity](limity.md)
