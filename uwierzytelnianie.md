@@ -126,12 +126,12 @@ Po przygotowaniu dokumentu ```AuthTokenRequest``` należy go podpisać cyfrowo w
 * Certyfikat kwalifikowany osoby fizycznej – zawierający numer PESEL lub NIP osoby posiadającej uprawnienia do działania w imieniu firmy,
 * Certyfikat kwalifikowany organizacji (tzw. pieczęć firmowa) - zawierający numer NIP.
 * Profil Zaufany (ePUAP) – umożliwia podpisanie dokumentu; wykorzystywany przez osoby fizyczne, które mogą go złożyć za pośrednictwem [gov.pl](https://www.gov.pl/web/gov/podpisz-dokument-elektronicznie-wykorzystaj-podpis-zaufany).
-* [Certyfikat KSeF](certyfikaty-KSeF.md) – wystawiany przez system KSeF. Certyfikat ten nie jest certyfikatem kwalifikowanym, ale jest honorowany w procesie uwierzytelniania. Certyfikat KSeF jesy wyłącznie wykorzystywany na potrzeby systemu KSeF.
+* [Certyfikat KSeF](certyfikaty-KSeF.md) – wystawiany przez system KSeF. Certyfikat ten nie jest certyfikatem kwalifikowanym, ale jest honorowany w procesie uwierzytelniania. Certyfikat KSeF jest wyłącznie wykorzystywany na potrzeby systemu KSeF.
 * Certyfikat dostawcy usług Peppol - zawierający identyfikator dostawcy.
 
 Na środowisku testowym dopuszcza się użycie samodzielnie wygenerowanego certyfikatu będącego odpowiednikiem certyfikatów kwalifikowanych, co umożliwia wygodne testowanie podpisu bez potrzeby posiadania certyfikatu kwalifikowanego.
 
-Biblioteka KSeF Client ([csharp]((https://github.com/CIRFMF/ksef-client-csharp)), [java]((https://github.com/CIRFMF/ksef-client-java))) posiada funkcjonaloność składania podpisu cyfrowego w formacie XAdES.
+Biblioteka KSeF Client ([csharp]((https://github.com/CIRFMF/ksef-client-csharp)), [java]((https://github.com/CIRFMF/ksef-client-java))) posiada funkcjonalność składania podpisu cyfrowego w formacie XAdES.
 
 Po podpisaniu dokumentu XML powinien on zostać przesłany do systemu KSeF w celu uzyskania tymczasowego tokena (```authenticationToken```).
 
@@ -299,7 +299,7 @@ Przykład w języku ```C#```:
 [KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 
 ```csharp
-// Sposób 1: Budowa requesta za pomocą builder
+// Sposób 1: Budowa zapytania za pomocą buildera
 var builder = AuthKsefTokenRequestBuilder
     .Create()
     .WithChallenge(challenge)

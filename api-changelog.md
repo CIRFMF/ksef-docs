@@ -64,7 +64,7 @@
 
 - **Eksport paczki faktur (POST `/invoices/exports`)**  
   Dodano możliwość dołączenia pliku `_metadata.json` do paczki eksportu. Plik ma postać obiektu JSON z tablicą `invoices`, zawierającą obiekty `InvoiceMetadata` (model zwracany przez POST `/invoices/query/metadata`).
-  Włączenie (preview): do nagłóweka żądania należy dodać `X-KSeF-Feature`: `include-metadata`.
+  Włączenie (preview): do nagłówka żądania należy dodać `X-KSeF-Feature`: `include-metadata`.
   Od 2025-10-27 zmienia się domyślne zachowanie endpointu - paczka eksportu będzie zawsze zawierać plik `_metadata.json` (nagłówek nie będzie wymagany).
 
 - **Status faktury**  
@@ -96,7 +96,7 @@
       - Rozszerzono w modelu żądania właściwość `targetIdentifier` o wartość `InternalId` (możliwość wskazania identyfikatora wewnętrznego).
       - Usunięto w modelu odpowiedzi wartość `PersonalPermissionScope.Owner`. Uprawnienia właścicielskie (nadawane przez ZAW-FA lub powiązanie NIP/PESEL) nie są zwracane.
 
-- **Status uwierzytelnianienia (GET `/auth/{referenceNumber}`)**  
+- **Status uwierzytelniania (GET `/auth/{referenceNumber}`)**  
   Rozszerzono tabelę kodów błędów o `470` - "Uwierzytelnianie zakończone niepowodzeniem" z doprecyzowaniem: "Próba wykorzystania metod autoryzacyjnych osoby zmarłej".
 
 - **Obsługa faktur PEF**  
@@ -123,7 +123,7 @@
   Dotyczy endpointów:
     - POST `/permissions/persons/grants`,
     - POST `/permissions/entities/grants`,
-    - POST `/permissions/authorizat/grants`,
+    - POST `/permissions/authorizations/grants`,
     - POST `/permissions/indirect/grants`,
     - POST `/permissions/subunits/grants`,
     - POST `/permissions/eu-entities/administration/grants`,
@@ -227,7 +227,7 @@
   - Oznaczono właściwość `amount.type` w filtrze żądania jako wymaganą.
 
 - **Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom (POST /permissions/query/persons/grants)**  
-  - Dodano `contextIdentifier` w filrze żądania i w modelu odpowiedzi.
+  - Dodano `contextIdentifier` w filtrze żądania i w modelu odpowiedzi.
 
 - **OpenAPI**  
   Usunięto nieużywany `operationId` ze specyfikacji. Zmiana porządkująca.
@@ -238,7 +238,7 @@
   - Dodano obsługę faktur `PEF` wysyłanych przez dostawcę usług Peppol. Nowe możliwości nie zmieniają dotychczasowych zachowań KSeF dla innych formatów, są rozszerzeniem API.
   - Wprowadzono nowy typ kontekstu uwierzytelniania: `PeppolId`, umożliwiający pracę w kontekście dostawcy usług Peppol.
   - Automatyczna rejestracja dostawcy: przy pierwszym uwierzytelnieniu dostawcy usług Peppol (z użyciem dedykowanego certyfikatu) następuje jego automatyczna rejestracja w systemie.
-  - Dodano enpoint GET `/peppol/query` ("Lista dostawców usług Peppol") zwracający zarejestrowanych dostawców.
+  - Dodano endpoint GET `/peppol/query` ("Lista dostawców usług Peppol") zwracający zarejestrowanych dostawców.
   - Zaktualizowano reguły dostępu dla otwarcia i zamknięcia sesji, wysyłka faktur wymagaja uprawnienia `PefInvoiceWrite`.
   - Dodano nowe schematy faktur: `FA_PEF (3)`, `FA_KOR_PEF (3)`,
   - Rozszerzono `ContextIdentifier` o `PeppolId` w xsd `AuthTokenRequest`.
@@ -440,7 +440,7 @@ Rozszerzono model odpowiedzi o pola:
   - Doprecyzowano proces pobierania paczki faktur:
     - `/invoices/exports` – rozpoczęcie procesu tworzenia paczki faktur,
     - `/invoices/async-query/{operationReferenceNumber}` – sprawdzenie statusu i odbiór gotowej paczki.
-  - Zmieniono nazwę modelu `InvoiceMetadataQueryRequest` na `QueryInvoicesMetadataReponse`.
+  - Zmieniono nazwę modelu `InvoiceMetadataQueryRequest` na `QueryInvoicesMetadataResponse`.
   - Rozszerzono typ `PersonPermissionsAuthorIdentifier` o nową wartość `System` (Identyfikator systemowy). Wartość ta wykorzystywana jest do oznaczania uprawnień nadawanych przez KSeF na podstawie złożonego wniosku ZAW-FA. Zmiana dotyczy endpointu: `/permissions/query/persons/grants`.
 
 ### Wersja 2.0.0 RC3
@@ -463,7 +463,7 @@ Rozszerzono model odpowiedzi o pola:
 
 - **Status sesji**
   - Dodano status ```Cancelled``` - "Sesja anulowania. Został przekroczony czas na wysyłkę w sesji wsadowej, lub nie przesłano żadnych faktur w sesji interaktywnej."
-  - Dodano nowe kody błedów:
+  - Dodano nowe kody błędów:
     - 415 - "Brak możliwości wysyłania faktury z załącznikiem"
     - 440 - "Sesja anulowana, przekroczono czas wysyłki"
     - 445 - "Błąd weryfikacji, brak poprawnych faktur"
@@ -487,7 +487,7 @@ Rozszerzono model odpowiedzi o pola:
 - **Dane testowe - obsługa faktur z załącznikami**  
   Dodano nowe endpointy umożliwiające testowanie wysyłki faktur z załącznikami.
 
-- **Certificaty KSeF - Walidacja typu i długości klucza w CSR**  
+- **Certyfikaty KSeF - Walidacja typu i długości klucza w CSR**  
   - Uzupełniono opis endpointu POST ```/certificates/enrollments``` o wymagania dotyczące typów kluczy prywatnych w CSR (RSA, EC),
   - Dodano nowy kod błędu 25010 w odpowiedzi 400: „Nieprawidłowy typ lub długość klucza.”
 

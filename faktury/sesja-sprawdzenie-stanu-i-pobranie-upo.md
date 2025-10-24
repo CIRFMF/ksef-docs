@@ -108,15 +108,15 @@ Przykład w języku Java:
 SessionInvoicesResponse sessionInvoices = ksefClient.getSessionInvoices(referenceNumber,continuationtoken, 10, authToken);
 
 ```
-### 4. Pobranie informcji o pojedynczej fakturze
+### 4. Pobranie informacji o pojedynczej fakturze
 
 Umożliwia pobranie szczegółowych informacji o pojedynczej fakturze w sesji, w tym jej statusu i metadanych.
 
-Należey podać numer referencyjny sesji `referenceNumber` oraz numer referencyjny faktury `invoiceReferenceNumber`.
+Należy podać numer referencyjny sesji `referenceNumber` oraz numer referencyjny faktury `invoiceReferenceNumber`.
 
 GET [sessions/\{referenceNumber\}/invoices/\{invoiceReferenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions~1%7BreferenceNumber%7D~1invoices~1%7BinvoiceReferenceNumber%7D/get)
 
-Przyklad w języku C#:
+Przykład w języku C#:
 ```csharp
 var invoice = await ksefClient
                 .GetSessionInvoiceAsync(
@@ -249,13 +249,13 @@ GET [/sessions/\{referenceNumber\}/upo/\{upoReferenceNumber\}](https://ksef-test
 
 Otrzymany dokument XML jest zgodny ze schematem [XSD](/faktury/upo/schemy/upo-v4-2.xsd) i może zawierać maksymalnie 10 000 pozycji faktur.
 
-Przyklad w języku C#:
+Przykład w języku C#:
 
 ```csharp
  var upo = await ksefClient.GetSessionUpoAsync(
             sessionReferenceNumber,
             upoReferenceNumber,
-            accesToken,
+            accessToken,
             cancellationToken
         );
 ```

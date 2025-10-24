@@ -43,7 +43,7 @@ Przykład w języku ```C#```:
 string url = linkSvc.BuildInvoiceVerificationUrl(nip, issueDate, invoiceHash);
 ```
 
-Przyklad w języku Java:
+Przykład w języku Java:
 ```java
 String url = linkSvc.buildInvoiceVerificationUrl(nip, issueDate, xml);
 ```
@@ -57,7 +57,7 @@ private const int PixelsPerModule = 5;
 byte[] qrBytes = qrCodeService.GenerateQrCode(url, PixelsPerModule);
 ```
 
-Przyklad w języku Java:
+Przykład w języku Java:
 [QrCodeOnlineIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QrCodeOnlineIntegrationTest.java)
 
 ```java
@@ -82,7 +82,7 @@ Przykład w języku ```C#```:
 byte[] labeled = qrCodeService.AddLabelToQrCode(qrBytes, GeneratedQrCodeLabel);
 ```
 
-Przyklad w języku Java:
+Przykład w języku Java:
 [QrCodeOnlineIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QrCodeOnlineIntegrationTest.java)
 
 ```java

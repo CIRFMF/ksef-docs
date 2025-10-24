@@ -21,29 +21,29 @@ Uprawnienia mogą być nadawane przez:
 W praktyce oznacza to, że każda organizacja musi zarządzać uprawnieniami swoich pracowników np. nadając uprawnienia pracownikowi działu księgowości podczas przyjmowaniu nowego pracownika lub też odbierając uprawnienia gdy taki pracownik kończy stosunek pracy.
 
 ### Kiedy nadaje się uprawnienia?
-#### Przyklady:  
+#### Przykłady:
 - podczas rozpoczęcia współpracy z nowym pracownikiem,
 - w przypadku gdy firma wchodzi we współpracę np. z biurem rachunkowym powinna nadać uprawnienia do odczytu faktur na to biuro rachunkowe, aby to biuro mogło rozliczać faktury tej firmy,
 - w zwiazku ze zmianami relacji pomiedzy podmiotami.
 
 ### Struktura nadanych uprawnień:
 Uprawnienia są nadawane:
-1) osobom fizycznym identyfikowanym przez PESEL, NIP lub odcisk palca certyfikatu – do pracy w KSeF: 
-    - w kontekście podmiotu nadającego uprawnienie (uprawnienia nadawane bezpośrednio) lub 
-    - w kontekście innego podmiotu lub innych podmiotów: 
-        - w kontekście podmiotu podrzędnego identyfikowanego przez NIP (podrzędnej jednostki samorządu terytorialnego lub członka grupy VAT), 
-        - w kontekście jednostki podrzędnej identyfikowanej identyfikatorem wewnętrznym 
-        - w kontekście złożonym NIP- VAT UE łączącym podmiot polski z podmiotem unijnym uprawnionym do samofakturowania w imieniu tego podmiotu polskiego, 
-        - w kontekście wskazanego podmiotu identyfikowanego przez NIP – klienta podmiotu nadającego uprawnienia (uprawnienia selektywne nadawane w sposób pośredni), 
+1) Osobom fizycznym identyfikowanym przez PESEL, NIP lub odcisk palca certyfikatu – do pracy w KSeF:
+    - w kontekście podmiotu nadającego uprawnienie (uprawnienia nadawane bezpośrednio) lub
+    - w kontekście innego podmiotu lub innych podmiotów:
+        - w kontekście podmiotu podrzędnego identyfikowanego przez NIP (podrzędnej jednostki samorządu terytorialnego lub członka grupy VAT),
+        - w kontekście jednostki podrzędnej identyfikowanej identyfikatorem wewnętrznym,
+        - w kontekście złożonym NIP- VAT UE łączącym podmiot polski z podmiotem unijnym uprawnionym do samofakturowania w imieniu tego podmiotu polskiego,
+        - w kontekście wskazanego podmiotu identyfikowanego przez NIP – klienta podmiotu nadającego uprawnienia (uprawnienia selektywne nadawane w sposób pośredni),
         - w kontekście wszystkich podmiotów – klientów podmiotu nadającego uprawnienia (uprawnienia generalne nadawane w sposób pośredni).
-2) Innym podmiotom – identyfikowanym przez NIP,  
-    - jako końcowym odbiorcom uprawnień do wystawiania lub przeglądania faktur, 
-    - jako pośrednikom - z włączoną opcją zezwolenia na dalsze przekazywanie uprawnień, aby uprawniony podmiot miał mozliwość nadawania uprawnień w sposób pośredni (patrz p. Iv i v powyzej) 
+2) Innym podmiotom – identyfikowanym przez NIP:
+    - jako końcowym odbiorcom uprawnień do wystawiania lub przeglądania faktur,
+    - jako pośrednikom - z włączoną opcją zezwolenia na dalsze przekazywanie uprawnień, aby uprawniony podmiot miał możliwość nadawania uprawnień w sposób pośredni (patrz p. IV i V powyzej).
 
-3) innym podmiotom do działania w swoim kontekście w imieniu podmiotu uprawniającego (uprawnienia podmiotowe).: 
-    - przedstawicielom podatkowym, 
-    - podmiotom uprawnionym do samofakturowania, 
-    - podmiotom uprawnionym do wystawiania faktur VAT RR. 
+3) Innym podmiotom do działania w swoim kontekście w imieniu podmiotu uprawniającego (uprawnienia podmiotowe):
+    - przedstawicielom podatkowym,
+    - podmiotom uprawnionym do samofakturowania,
+    - podmiotom uprawnionym do wystawiania faktur VAT RR.
 
 Dostęp do funkcji systemu zależy kontekstu, w którym nastąpiło uwierzytelnienie oraz od zakresu uprawnień, jakie nadano uwierzytelnionemu podmiotowi/osobie w tym kontekście.
 
@@ -84,7 +84,7 @@ System KSeF umożliwia przypisywanie uprawnień w sposób precyzyjny, z uwzględ
 | **Operator (księgowość / fakturowanie)** | Osoba odpowiedzialna za wystawianie lub przeglądanie faktur.                                        | `InvoiceWrite`, `InvoiceRead`.                                                      |
 | **Podmiot upoważniony**                | Inny podmiot gospodarczy, któremu nadano określone uprawnienia do wystawiania faktur w imieniu podmiotu, np. Przedstawiciel podatkowy.             | `SelfInvoicing`, `RRInvoicing`, `TaxRepresentative`                             |
 | **Podmiot pośredniczący**              | Podmiot, który otrzymał uprawnienia z opcją delegacji (`canDelegate`) i może nadać je dalej.       | `InvoiceRead`, `InvoiceWrite` z flagą `canDelegate = true`.   
-| **Administrator podmiotu unijnego**     | Osoba identyfikująca się certyfikatem  posiadająca prawa do nadawania i odbierania uprawnienń innym użytkownikom w ramach podmiotu unijnego powiązanego z danym podmiotem polskim.                                     | `InvoiceWrite`, `InvoiceRead`,                                    `VatUeManage`,  `Introspection`.                      |                      |
+| **Administrator podmiotu unijnego**     | Osoba identyfikująca się certyfikatem  posiadająca prawa do nadawania i odbierania uprawnień innym użytkownikom w ramach podmiotu unijnego powiązanego z danym podmiotem polskim.                                     | `InvoiceWrite`, `InvoiceRead`,                                    `VatUeManage`,  `Introspection`.                      |                      |
 | **Reprezentant podmiotu unijnego**     | Osoba identyfikująca się certyfikatem działająca na rzecz podmiotu unijnego powiązanego z danym podmiotem polskim.                                     | `InvoiceWrite`, `InvoiceRead`.                                                      |
 | **Administrator jednostki podrzędnej** | Użytkownik mający możliwość powoływania administratorów w jednostkach lub podmiotach podrzędnych.               | `CredentialsManage`.                                                                    |
 
@@ -123,7 +123,7 @@ Biuro rachunkowe XYZ otrzymało od firmy ABC uprawnienie `InvoiceRead` z flagą 
 
 Uprawnienia ogólne to takie, które nadawane są bez wskazania konkretnego partnera, co oznacza, że odbiorca zyskuje dostęp do operacji w kontekście **wszystkich podmiotów, których dane przetwarza podmiot pośredniczący**.
 
-**Przykład:**  
+**Przykład:**
 Podmiot A posiada uprawnienie `InvoiceRead` z `canDelegate = true` dla wielu klientów. Przekazuje pracownikowi B ogólne uprawnienie `InvoiceRead` – B może teraz działać w imieniu każdego z klientów A (np. przeglądać faktury wszystkich kontrahentów).
 
 **Cechy generalności:**
@@ -184,7 +184,7 @@ Podmiot A posiada uprawnienie `InvoiceRead` z `canDelegate = true` dla wielu kli
 | `Nip`              | Podmiot krajowy     | Dla podmiotów zarejestrowanych w Polsce oraz osób fizycznych |
 | `Pesel`            | Osoba fizyczna       | Wymagane m.in. przy nadaniu uprawnień pracownikom posługującym się profilem zaufanym lub certyfikatem kwalifikowanym z numerem PESEL  |
 | `Fingerprint`      | Właściciel certyfikatu      | Wykorzystywane w sytuacji, gdy certyfikat kwalifikowany nie zawiera identyfikatora NIP ani PESEL oraz przy identyfikowaniu administratorów lub reprezentantów podmiotów unijnych   |
-| `NipVatUe`         | Podmioty unijne powiązane z podmiotami polskimi       | Wymagane przy nadawaniu uprawnieńniu administratorom i przedstawicielom podmiotów unijnych |
+| `NipVatUe`         | Podmioty unijne powiązane z podmiotami polskimi       | Wymagane przy nadawaniu uprawnień administratorom i przedstawicielom podmiotów unijnych |
 | `InternalId`       | Jednostki podrzędne  | Wykorzystywane w podmiotach o strukturze złożonej z jednostek podrzędnych |
 
 ---
@@ -380,7 +380,7 @@ OperationResponse response = ksefClient.grantsPermissionsProxyEntity(request, ac
 
 Mechanizm pośredniego nadawania uprawnień umożliwia działanie tzw. podmiotu pośredniczącego, który – na podstawie uprzednio uzyskanych delegacji – może przekazywać wybrane uprawnienia dalej, w kontekście innego podmiotu. Najczęściej dotyczy to biur rachunkowych, które obsługują wielu klientów. W sekcji opisano warunki, jakie muszą zostać spełnione, aby skorzystać z tej funkcjonalności oraz przedstawiono strukturę danych wymaganych do wykonania takiego nadania.
 
-Uprawnienia `InvoiceWrite` i `InvoiceRead` to jedyne uprawnienia, które mogą być nadawane w sposób pośredni. Oznacza to, że podmiot pośredniczący może nadać te uprawnienia innemu podmiotowi (uprawnionemu), które będą obowiązywać w kontekście podmiotu docelowego (partnera). Uprawnienia te mogą być selektywne (dla konkretnego partnera) lub generalne (dla wszystkich partnerów podmiotu pośredniczącego). W przypadku selektywnego nadania w identyfikatorze podmiotu decelowego należy podać typ `"Nip"` i wartość konkretnego numeru nip. Natomiast w przypadku uprawnień generalnych w identyfikatorze podmiotu decelowego należy podać typ `"AllPartners"`, bez uzupełnionego pola `value`.
+Uprawnienia `InvoiceWrite` i `InvoiceRead` to jedyne uprawnienia, które mogą być nadawane w sposób pośredni. Oznacza to, że podmiot pośredniczący może nadać te uprawnienia innemu podmiotowi (uprawnionemu), które będą obowiązywać w kontekście podmiotu docelowego (partnera). Uprawnienia te mogą być selektywne (dla konkretnego partnera) lub generalne (dla wszystkich partnerów podmiotu pośredniczącego). W przypadku selektywnego nadania w identyfikatorze podmiotu docelowego należy podać typ `"Nip"` i wartość konkretnego numeru nip. Natomiast w przypadku uprawnień generalnych w identyfikatorze podmiotu docelowego należy podać typ `"AllPartners"`, bez uzupełnionego pola `value`.
 
 POST [/permissions/indirect/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1api~1v2~1permissions~1indirect~1grants/post)
 
@@ -534,12 +534,12 @@ Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Permissions\EuAdministrationPermission\EuRepresentativePermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/EuAdministrationPermission/EuRepresentativePermissionE2ETests.cs)
 
 ```csharp
-GrantPermissionsEUEntitRepresentativeRequest grantRepresentativePermissionsRequest = GrantEUEntityRepresentativePermissionsRequestBuilder
+GrantPermissionsEUEntityRepresentativeRequest grantRepresentativePermissionsRequest = GrantEUEntityRepresentativePermissionsRequestBuilder
     .Create()
     .WithSubject(new Client.Core.Models.Permissions.EUEntityRepresentative.SubjectIdentifier
     {
         Type = Client.Core.Models.Permissions.EUEntityRepresentative.SubjectIdentifierType.Fingerprint,
-        Value = euRepresentativeEntityCerticateFingerprint
+        Value = euRepresentativeEntityCertificateFingerprint
     })
     .WithPermissions(
         StandardPermissionType.InvoiceWrite,
@@ -585,7 +585,7 @@ Ta metoda służy do odbierania uprawnień takich jak:
 - administratora podmiotu unijnego,
 - reprezentanta podmiotu unijnego.
 
-Przyklad w języku C#:
+Przykład w języku C#:
 ```csharp
 OperationResponse operationResponse = await KsefClient.RevokeCommonPermissionAsync(permission.Id, accessToken, CancellationToken);
 ```
@@ -636,7 +636,7 @@ Zapytanie pozwala na pobranie listy uprawnień posiadanych przez uwierzytelniony
 - nadane w sposób bezpośredni w bieżącym kontekście
 - nadane przez podmiot nadrzędny
 - nadane w sposób pośredni, gdzie kontekstem jest pośrednik lub podmiot docelowy
-- nadane podmiotowi do obsługi faktur (`"InvoiceRead"` i `"InvoiceWrite"`) przez inny podmiot, jeśli uwierzytelniony podmiot ma uprawnienia właścieilskie (`"Owner"`) 
+- nadane podmiotowi do obsługi faktur (`"InvoiceRead"` i `"InvoiceWrite"`) przez inny podmiot, jeśli uwierzytelniony podmiot ma uprawnienia właścicielskie (`"Owner"`) 
 
 POST [/permissions/query/personal/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1api~1v2~1permissions~1query~1personal~1grants/post)
 
@@ -804,7 +804,7 @@ POST [/permissions/query/authorizations/grants](https://ksef-test.mf.gov.pl/docs
 | `permissionTypes`        | Typy uprawnień do filtrowania.   `"SelfInvoicing"`, `"TaxRepresentative"`, `"RRInvoicing"`,                       |
  
 
-Przyklad w języku C#:
+Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
 
 ```csharp
@@ -845,7 +845,7 @@ POST [/permissions/query/eu-entities/grants](https://ksef-test.mf.gov.pl/docs/v2
 | `permissionTypes`           | Typy uprawnień do filtrowania. Możliwe wartości to: `VatUeManage`, `InvoiceWrite`, `InvoiceRead`, `Introspection`. |
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\E2E\Permissions\EuEntityPermission\EuEntityPermissionAdminAuthenticationE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/EuEntityPermission/EuEntityPermissionAdminAuthenticationE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
 
 ```csharp
 PagedPermissionsResponse<Client.Core.Models.Permissions.EuEntityPermission> response =
