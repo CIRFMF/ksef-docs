@@ -22,7 +22,9 @@
   - POST `/permissions/operations/{referenceNumber}` - "Pobranie statusu operacji uprawnień".
 
 - **Eksport paczki faktur (POST `/invoices/exports`)**  
-  Dodano nowy kod błędu: `21182` - "Osiągnięto limit trwających eksportów. Dla uwierzytelnionego podmiotu w bieżącym kontekście osiągnięto maksymalny limit {count} równoczesnych eksportów faktur. Spróbuj ponownie później".
+  - Dodano nowy kod błędu: `21182` - "Osiągnięto limit trwających eksportów. Dla uwierzytelnionego podmiotu w bieżącym kontekście osiągnięto maksymalny limit {count} równoczesnych eksportów faktur. Spróbuj ponownie później".
+  - Rozszerzono modelu odpowiedzi o właściwość `packageExpirationDate` wskazującą datę wygaśnięcia przygotowanej paczki. Po upływie tej daty paczka nie będzie dostępna do pobrania.
+  - Dodano kod błędu `210` - "Eksport faktur wygasł i nie jest już dostępny do pobrania".
 
 - **Autoryzacja**
   - Rozszerzono reguły dostępu o `SubunitManage` dla POST `/permissions/query/persons/grants`: operację można wykonać, jeżeli podmiot posiada `CredentialsManage`, `CredentialsRead`, `SubunitManage`.

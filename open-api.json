@@ -7133,11 +7133,17 @@
                 "$ref": "#/components/schemas/StatusInfo"
               }
             ],
-            "description": "Status eksportu.\n\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Eksport faktur w toku | - |\n| 200 | Eksport faktur zakończony sukcesem | - |\n| 415 | Błąd odszyfrowania dostarczonego klucza  | - |\n| 500 | Nieznany błąd ({statusCode}) | - |"
+            "description": "Status eksportu.\n\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Eksport faktur w toku | - |\n| 200 | Eksport faktur zakończony sukcesem | - |\n| 210 | Eksport faktur wygasł i nie jest już dostępny do pobrania | - |\n| 415 | Błąd odszyfrowania dostarczonego klucza  | - |\n| 500 | Nieznany błąd ({statusCode}) | - |"
           },
           "completedDate": {
             "type": "string",
-            "description": "Data zakończenia przetwarzania żądania.",
+            "description": "Data zakończenia przetwarzania żądania eksportu faktur.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "packageExpirationDate": {
+            "type": "string",
+            "description": "Data wygaśnięcia paczki faktur przygotowanej do pobrania.\nPo upływie tej daty paczka nie będzie już dostępna do pobrania.",
             "format": "date-time",
             "nullable": true
           },
