@@ -977,7 +977,49 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EffectiveSubjectLimits"
+                },
+                "example": {"enrollment":{"maxEnrollments":6},"certificate":{"maxCertificates":2}}
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v2/rate-limits": {
+      "get": {
+        "tags": [
+          "Limity i ograniczenia"
+        ],
+        "summary": "Pobranie aktualnie obowiązujących limitów API",
+        "description": "Zwraca wartości aktualnie obowiązujących limitów ilości żądań przesyłanych do API.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EffectiveApiRateLimits"
+                },
+                "example": {"onlineSession":{"perSecond":10,"perMinute":30,"perHour":120},"batchSession":{"perSecond":10,"perMinute":20,"perHour":120},"invoiceSend":{"perSecond":10,"perMinute":30,"perHour":180},"invoiceStatus":{"perSecond":30,"perMinute":120,"perHour":720},"sessionList":{"perSecond":5,"perMinute":10,"perHour":60},"sessionInvoiceList":{"perSecond":10,"perMinute":20,"perHour":200},"sessionMisc":{"perSecond":10,"perMinute":120,"perHour":720},"invoiceMetadata":{"perSecond":8,"perMinute":16,"perHour":20},"invoiceExport":{"perSecond":4,"perMinute":8,"perHour":20},"invoiceDownload":{"perSecond":8,"perMinute":16,"perHour":64},"other":{"perSecond":10,"perMinute":30,"perHour":120}}
               }
             }
           },
@@ -5335,6 +5377,194 @@
           "ZWL"
         ],
         "type": "string"
+      },
+      "EffectiveApiRateLimitValues": {
+        "required": [
+          "perHour",
+          "perMinute",
+          "perSecond"
+        ],
+        "type": "object",
+        "properties": {
+          "perSecond": {
+            "type": "integer",
+            "description": "Limit na sekundę.",
+            "format": "int32"
+          },
+          "perMinute": {
+            "type": "integer",
+            "description": "Limit na minutę.",
+            "format": "int32"
+          },
+          "perHour": {
+            "type": "integer",
+            "description": "Limit na godzinę.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EffectiveApiRateLimits": {
+        "required": [
+          "batchSession",
+          "invoiceDownload",
+          "invoiceExport",
+          "invoiceMetadata",
+          "invoiceSend",
+          "invoiceStatus",
+          "onlineSession",
+          "other",
+          "sessionInvoiceList",
+          "sessionList",
+          "sessionMisc"
+        ],
+        "type": "object",
+        "properties": {
+          "onlineSession": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
+              }
+            ],
+            "description": "Limity dla otwierania/zamykania sesji interaktywnych."
+          },
+          "batchSession": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
+              }
+            ],
+            "description": "Limity dla otwierania/zamykania sesji wsadowych."
+          },
+          "invoiceSend": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
+              }
+            ],
+            "description": "Limity dla wysyłki faktur."
+          },
+          "invoiceStatus": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
+              }
+            ],
+            "description": "Limity dla pobierania statusu faktury z sesji."
+          },
+          "sessionList": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
+              }
+            ],
+            "description": "Limity dla pobierania listy sesji."
+          },
+          "sessionInvoiceList": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
+              }
+            ],
+            "description": "Limity dla pobierania listy faktur w sesji."
+          },
+          "sessionMisc": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
+              }
+            ],
+            "description": "Limity dla pozostałych operacji w ramach sesji."
+          },
+          "invoiceMetadata": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
+              }
+            ],
+            "description": "Limity dla pobierania metadanych faktur."
+          },
+          "invoiceExport": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
+              }
+            ],
+            "description": "Limity dla eksportu paczku faktur."
+          },
+          "invoiceDownload": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
+              }
+            ],
+            "description": "Limity dla pobierania faktur po numerze KSeF."
+          },
+          "other": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
+              }
+            ],
+            "description": "Limity dla pozostałych operacji API."
+          }
+        },
+        "additionalProperties": false
       },
       "EffectiveContextLimits": {
         "required": [

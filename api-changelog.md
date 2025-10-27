@@ -2,6 +2,9 @@
 
 ### Wersja 2.0.0 RC5.5
 
+- **Pobranie aktualnych limitów API (GET `/api/v2/rate-limits`)**  
+  Dodano endpoint zwracający efektywne limity wywołań API w układzie `perSecond`/`perMinute`/`perHour` dla poszczególnych obszarów (m.in. `onlineSession`, `batchSession`, `invoiceSend`, `invoiceStatus`, `invoiceExport`, `invoiceDownload`, `other`).
+
 - **Status faktury w sesji**  
   Rozszerzono odpowiedź dla GET `/sessions/{referenceNumber}/invoices` ("Pobranie faktur sesji") oraz GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}` ("Pobranie statusu faktury z sesji") o właściwości: `upoDownloadUrlExpirationDate` - "data i godzina wygaśnięcia adresu. Po tej dacie link `UpoDownloadUrl` nie będzie już aktywny". Rozszerzono opis `upoDownloadUrl`.
 
