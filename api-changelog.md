@@ -1,5 +1,15 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.0 RC5.5
+
+- **Usunięcie pól *InMib (zmiana zgodna z zapowiedzią z 5.3)**  
+  Usunięto właściwości `maxInvoiceSizeInMib` oraz `maxInvoiceWithAttachmentSizeInMib`.
+  Zmiana dotyczy:
+    - GET `/limits/context` – odpowiedzi (`onlineSession`, `batchSession`),
+    - POST `/testdata/limits/context/session` – modelu żądania (`onlineSession`, `batchSession`),
+    - Modeli: `BatchSessionContextLimitsOverride`, `BatchSessionEffectiveContextLimits`, `OnlineSessionContextLimitsOverride`, `OnlineSessionEffectiveContextLimits`.
+  Do wskazywania rozmiarów używane są wyłącznie pola *InMB (1 MB = 1 000 000 B).
+
 ### Wersja 2.0.0 RC5.4
 
 - **Pobranie listy metadanych certyfikatów (POST /invoices/query/metadata)**  
