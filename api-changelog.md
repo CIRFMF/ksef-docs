@@ -3,15 +3,18 @@
 ### Wersja 2.0.0 RC5.5
 
 - **Status faktury w sesji**  
-  - Rozszerzono odpowiedź dla GET `/sessions/{referenceNumber}/invoices` ("Pobranie faktur sesji") oraz GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}` ("Pobranie statusu faktury z sesji") o właściwości: `upoDownloadUrlExpirationDate` - "data i godzina wygaśnięcia adresu. Po tej dacie link `UpoDownloadUrl` nie będzie już aktywny". Rozszerzono opis `upoDownloadUrl`.
+  Rozszerzono odpowiedź dla GET `/sessions/{referenceNumber}/invoices` ("Pobranie faktur sesji") oraz GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}` ("Pobranie statusu faktury z sesji") o właściwości: `upoDownloadUrlExpirationDate` - "data i godzina wygaśnięcia adresu. Po tej dacie link `UpoDownloadUrl` nie będzie już aktywny". Rozszerzono opis `upoDownloadUrl`.
 
-- **Usunięcie pól *InMib (zmiana zgodna z zapowiedzią z 5.3)**  
+- **Usunięcie pól \*InMib (zmiana zgodna z zapowiedzią z 5.3)**  
   Usunięto właściwości `maxInvoiceSizeInMib` oraz `maxInvoiceWithAttachmentSizeInMib`.
   Zmiana dotyczy:
     - GET `/limits/context` – odpowiedzi (`onlineSession`, `batchSession`),
     - POST `/testdata/limits/context/session` – modelu żądania (`onlineSession`, `batchSession`),
     - Modeli: `BatchSessionContextLimitsOverride`, `BatchSessionEffectiveContextLimits`, `OnlineSessionContextLimitsOverride`, `OnlineSessionEffectiveContextLimits`.
   Do wskazywania rozmiarów używane są wyłącznie pola *InMB (1 MB = 1 000 000 B).
+
+- **Eksport paczki faktur (POST `/invoices/exports`)**  
+  Dodano nowy kod błędu: `21182` - "Osiągnięto limit trwających eksportów. Dla uwierzytelnionego podmiotu w bieżącym kontekście osiągnięto maksymalny limit {count} równoczesnych eksportów faktur. Spróbuj ponownie później".
 
 ### Wersja 2.0.0 RC5.4
 
