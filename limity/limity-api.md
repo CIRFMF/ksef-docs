@@ -27,6 +27,21 @@ Biuro księgowe A pobiera faktury w imieniu firmy B, korzystając z kontekstu fi
 Równocześnie firma B pobiera faktury samodzielnie, w tym samym kontekście (swoim NIP-ie), ale z innego adresu IP - IP2. Mimo wspólnego kontekstu, różne adresy IP powodują, że limity są naliczane niezależnie.
 W takiej sytuacji system traktuje każde połączenie jako oddzielną parę (kontekst + adres IP) i nalicza limity niezależnie: osobno dla biura księgowego A i osobno dla firmy B.
 
+**Jednostki limitów**  
+W tabelach limitów stosowane są następujące oznaczenia:
+- req/s - liczba żądań na sekundę,
+- req/min - liczba żądań na minutę,
+- req/h - liczba żądań na godzinę.
+
+**Model naliczania limitów (przesuwające się okno czasowe - sliding/rolling window)**  
+Limity są egzekwowane w modelu przesuwającego się okna czasowego. W każdej chwili zliczane są żądania wykonane w okresie:
+
+- dla progu req/h - w ostatnich 60 minutach,
+- dla progu req/min - w ostatnich 60 sekundach,
+- dla progu req/s - w ostatniej sekundzie.
+
+Okna nie są wyrównywane do pełnych godzin ani minut (nie "zerują się" o :00). Wszystkie progi (req/s, req/min, req/h) obowiązują równolegle - blokada jest wyzwalana przy pierwszym przekroczeniu któregokolwiek z nich.
+
 #### 2. Po przekroczeniu limitu system blokuje dostęp do API
 W przypadku przekroczenia limitów żądań API zwracany jest kod HTTP **429 Too Many Requests**, a kolejne żądania są tymczasowo blokowane.  
 Okres trwania blokady jest **dynamiczny** i zależy od częstotliwości oraz skali przekroczeń. Dokładny czas blokady jest zwracany w nagłówku odpowiedzi `Retry-After` (w sekundach). Wielokrotne przekroczenia mogą skutkować znacznym wydłużeniem blokady.
@@ -65,12 +80,6 @@ Limity żądań API zostały określone na podstawie przewidywanych scenariuszy 
 Rzeczywisty charakter ruchu będzie zależeć od sposobu implementacji integracji w systemach zewnętrznych oraz od generowanych przez nie wzorców obciążenia. Oznacza to, że limity ustalone na etapie projektowym mogą różnić się od wartości utrzymywanych w środowisku produkcyjnym.
 
 Z tego względu limity mają charakter dynamiczny i mogą być dostosowywane w zależności od warunków eksploatacyjnych oraz zachowania integratorów. W szczególności dopuszcza się ich czasowe obniżenie w przypadku intensywnego lub nieefektywnego korzystania z API.
-
-**Jednostki limitów**  
-W tabelach limitów stosowane są następujące oznaczenia:
-- req/s - liczba żądań na sekundę,
-- req/min - liczba żądań na minutę,
-- req/h - liczba żądań na godzinę.
 
 ## Pobieranie faktur - limity
 
