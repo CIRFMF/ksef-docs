@@ -2,6 +2,9 @@
 
 ### Wersja 2.0.0 RC5.5
 
+- **Status faktury w sesji**  
+  - Rozszerzono odpowiedź dla GET `/sessions/{referenceNumber}/invoices` ("Pobranie faktur sesji") oraz GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}` ("Pobranie statusu faktury z sesji") o właściwości: `upoDownloadUrlExpirationDate` - "data i godzina wygaśnięcia adresu. Po tej dacie link `UpoDownloadUrl` nie będzie już aktywny". Rozszerzono opis `upoDownloadUrl`.
+
 - **Usunięcie pól *InMib (zmiana zgodna z zapowiedzią z 5.3)**  
   Usunięto właściwości `maxInvoiceSizeInMib` oraz `maxInvoiceWithAttachmentSizeInMib`.
   Zmiana dotyczy:

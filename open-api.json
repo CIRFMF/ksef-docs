@@ -8945,8 +8945,14 @@
           },
           "upoDownloadUrl": {
             "type": "string",
-            "description": "Adres do pobrania UPO.",
+            "description": "Adres do pobrania UPO. Link generowany jest przy każdym odpytaniu o status. \nDostęp odbywa się metodą `HTTP GET` i <b>nie należy</b> wysyłać tokenu dostępowego. \nLink nie podlega limitom API i wygasa po określonym czasie w `UpoDownloadUrlExpirationDate`.",
             "format": "uri",
+            "nullable": true
+          },
+          "upoDownloadUrlExpirationDate": {
+            "type": "string",
+            "description": "Data i godzina wygaśnięcia adresu. Po tej dacie link `UpoDownloadUrl` nie będzie już aktywny.",
+            "format": "date-time",
             "nullable": true
           },
           "invoicingMode": {
