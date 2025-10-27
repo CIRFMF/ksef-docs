@@ -28,6 +28,8 @@
 
 - **Autoryzacja**
   - Rozszerzono reguły dostępu o `SubunitManage` dla POST `/permissions/query/persons/grants`: operację można wykonać, jeżeli podmiot posiada `CredentialsManage`, `CredentialsRead`, `SubunitManage`.
+  - Nadanie uprawnień w sposób pośredni (POST `/permissions/indirect/grants`)
+    Zaktualizowano opis właściwości `targetIdentifier.description`: doprecyzowano, że brak identyfikatora kontekstu oznacza nadanie uprawnienia pośredniego typu generalnego.
 
 - **OpenAPI**  
   Zwiększono maksymalną wartość `pageSize` z 100 do 500 dla endpointów:
