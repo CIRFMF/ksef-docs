@@ -7555,7 +7555,7 @@
           },
           "url": {
             "type": "string",
-            "description": "Adres URL, pod który należy wysłać żądanie pobrania.",
+            "description": "Adres URL, pod który należy wysłać żądanie pobrania części paczki.\nLink jest generowany dynamicznie w momencie odpytania o status operacji eksportu.\nNie podlega limitom API i nie wymaga przesyłania tokenu dostępowego przy pobraniu.",
             "format": "uri"
           },
           "partSize": {
@@ -7582,7 +7582,7 @@
           },
           "expirationDate": {
             "type": "string",
-            "description": "Moment wygaśnięcia linku do pobrania części.",
+            "description": "Data i godzina wygaśnięcia linku umożliwiającego pobranie części paczki.\nPo upływie tego momentu link przestaje być aktywny.",
             "format": "date-time"
           }
         },

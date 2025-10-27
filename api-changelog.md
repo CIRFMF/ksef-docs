@@ -26,6 +26,11 @@
   - Rozszerzono modelu odpowiedzi o właściwość `packageExpirationDate` wskazującą datę wygaśnięcia przygotowanej paczki. Po upływie tej daty paczka nie będzie dostępna do pobrania.
   - Dodano kod błędu `210` - "Eksport faktur wygasł i nie jest już dostępny do pobrania".
 
+- **Status eksportu paczki faktur (GET `/invoices/exports/{referenceNumber}`)**  
+  Doprecyzowano opisy pól linków do pobrania części paczki:
+  - `url` - "Adres URL, pod który należy wysłać żądanie pobrania części paczki. Link jest generowany dynamicznie w momencie odpytania o status operacji eksportu. Nie podlega limitom API i nie wymaga przesyłania tokenu dostępowego przy pobraniu".
+  - `expirationDate` - "Data i godzina wygaśnięcia linku umożliwiającego pobranie części paczki.Po upływie tego momentu link przestaje być aktywny".
+
 - **Autoryzacja**
   - Rozszerzono reguły dostępu o `SubunitManage` dla POST `/permissions/query/persons/grants`: operację można wykonać, jeżeli podmiot posiada `CredentialsManage`, `CredentialsRead`, `SubunitManage`.
   - Nadanie uprawnień w sposób pośredni (POST `/permissions/indirect/grants`)
