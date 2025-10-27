@@ -21,6 +21,9 @@
 - **Eksport paczki faktur (POST `/invoices/exports`)**  
   Dodano nowy kod błędu: `21182` - "Osiągnięto limit trwających eksportów. Dla uwierzytelnionego podmiotu w bieżącym kontekście osiągnięto maksymalny limit {count} równoczesnych eksportów faktur. Spróbuj ponownie później".
 
+- **Autoryzacja**
+  - Rozszerzono reguły dostępu o `SubunitManage` dla POST `/permissions/query/persons/grants`: operację można wykonać, jeżeli podmiot posiada `CredentialsManage`, `CredentialsRead`, `SubunitManage`.
+
 - **OpenAPI**  
   Zwiększono maksymalną wartość `pageSize` z 100 do 500 dla endpointów:
   - GET `/sessions`
