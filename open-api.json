@@ -1203,6 +1203,86 @@
         ]
       }
     },
+    "/api/v2/testdata/rate-limits": {
+      "post": {
+        "tags": [
+          "Limity i ograniczenia"
+        ],
+        "summary": "Zmiana limitów API dla bieżącego kontekstu",
+        "description": "Zmienia wartości aktualnie obowiązujących limitów żądań przesyłąnych do API dla bieżącego kontekstu. **Tylko na środowiskach testowych.**",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "rateLimits"
+                ],
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SetRateLimitsRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Limity i ograniczenia"
+        ],
+        "summary": "Przywrócenie domyślnych wartości limitów API dla bieżącego kontekstu",
+        "description": "Przywraca wartości aktualnie obowiązujących limitów żądań przesyłąnych do API dla bieżącego kontekstu do wartości domyślnych. **Tylko na środowiskach testowych.**",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
     "/api/v2/permissions/persons/grants": {
       "post": {
         "tags": [
@@ -4414,6 +4494,194 @@
           "Vat"
         ],
         "type": "string"
+      },
+      "ApiRateLimitValuesOverride": {
+        "required": [
+          "perHour",
+          "perMinute",
+          "perSecond"
+        ],
+        "type": "object",
+        "properties": {
+          "perSecond": {
+            "type": "integer",
+            "description": "Limit na sekundę.",
+            "format": "int32"
+          },
+          "perMinute": {
+            "type": "integer",
+            "description": "Limit na minutę.",
+            "format": "int32"
+          },
+          "perHour": {
+            "type": "integer",
+            "description": "Limit na godzinę.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiRateLimitsOverride": {
+        "required": [
+          "batchSession",
+          "invoiceDownload",
+          "invoiceExport",
+          "invoiceMetadata",
+          "invoiceSend",
+          "invoiceStatus",
+          "onlineSession",
+          "other",
+          "sessionInvoiceList",
+          "sessionList",
+          "sessionMisc"
+        ],
+        "type": "object",
+        "properties": {
+          "onlineSession": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
+              }
+            ],
+            "description": "Limity dla otwierania/zamykania sesji interaktywnych."
+          },
+          "batchSession": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
+              }
+            ],
+            "description": "Limity dla otwierania/zamykania sesji wsadowych."
+          },
+          "invoiceSend": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
+              }
+            ],
+            "description": "Limity dla wysyłki faktur."
+          },
+          "invoiceStatus": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
+              }
+            ],
+            "description": "Limity dla pobierania statusu faktury z sesji."
+          },
+          "sessionList": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
+              }
+            ],
+            "description": "Limity dla pobierania listy sesji."
+          },
+          "sessionInvoiceList": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
+              }
+            ],
+            "description": "Limity dla pobierania listy faktur w sesji."
+          },
+          "sessionMisc": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
+              }
+            ],
+            "description": "Limity dla pozostałych operacji w ramach sesji."
+          },
+          "invoiceMetadata": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
+              }
+            ],
+            "description": "Limity dla pobierania metadanych faktur."
+          },
+          "invoiceExport": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
+              }
+            ],
+            "description": "Limity dla eksportu paczku faktur."
+          },
+          "invoiceDownload": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
+              }
+            ],
+            "description": "Limity dla pobierania faktur po numerze KSeF."
+          },
+          "other": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
+              }
+            ],
+            "description": "Limity dla pozostałych operacji API."
+          }
+        },
+        "additionalProperties": false
       },
       "AttachmentPermissionGrantRequest": {
         "required": [
@@ -9364,6 +9632,36 @@
             "type": "integer",
             "description": "Liczba błędnie przetworzonych faktur.",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetRateLimitsRequest": {
+        "required": [
+          "rateLimits"
+        ],
+        "type": "object",
+        "properties": {
+          "rateLimits": {
+            "required": [
+              "onlineSession",
+              "batchSession",
+              "invoiceSend",
+              "invoiceStatus",
+              "sessionList",
+              "sessionInvoiceList",
+              "sessionMisc",
+              "invoiceMetadata",
+              "invoiceExport",
+              "invoiceDownload",
+              "other"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitsOverride"
+              }
+            ],
+            "description": "Limity dla ilości żądań do API."
           }
         },
         "additionalProperties": false

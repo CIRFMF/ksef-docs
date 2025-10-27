@@ -41,6 +41,12 @@
 - **Status sesji**  
   Usunięto błąd uniemożliwiający uzupełnianie tej właściwości w odpowiedziach API dotyczących faktur (pole nie było wcześniej zwracane). Wartość jest uzupełniana asynchronicznie w momencie trwałego zapisu i może być tymczasowo null.
 
+- **Dane testowe (tylko na środowiskach testowych)**
+  - Zmiana limitów API dla bieżącego kontekstu (POST `testdata/rate-limits`)  
+  Dodano endpoint umożliwiający tymczasowe nadpisanie efektywnych limitów API dla bieżącego kontekstu. Zmiana przygotowuje uruchomienie symulatora limitów na środowisku TE.
+  - Przywrócenie domyślnych limitów (DELETE `/testdata/rate-limits`)
+  Dodano endpoint przywracający domyślne wartości limitów dla bieżącego kontekstu.
+
 - **OpenAPI**  
   - Doprecyzowano definicje parametrów tablicowych w query; zastosowano `style: form`. Wiele wartości należy przekazywać przez powtórzenie parametru, np. `?statuses=InProgress&statuses=Succeeded`. Zmiana dokumentacyjna, bez wpływu na działanie API.
   - Zaktualizowano opisy właściwości (`partUploadRequests`, `encryptedSymmetricKey`, `initializationVector`).
