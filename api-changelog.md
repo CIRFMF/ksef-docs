@@ -13,6 +13,11 @@
     - Modeli: `BatchSessionContextLimitsOverride`, `BatchSessionEffectiveContextLimits`, `OnlineSessionContextLimitsOverride`, `OnlineSessionEffectiveContextLimits`.
   Do wskazywania rozmiarów używane są wyłącznie pola *InMB (1 MB = 1 000 000 B).
 
+- **Usunięcie `operationReferenceNumber` (zmiana zgodna z zapowiedzią z 5.3)**  
+  Usunięto właściwość `operationReferenceNumber` z modelu odpowiedzi; jedyną obowiązującą nazwą jest `referenceNumber`. Zmiana obejmuje:
+  - GET `/invoices/exports/{referenceNumber}` - "Status eksportu paczki faktur",
+  - POST `/permissions/operations/{referenceNumber}` - "Pobranie statusu operacji uprawnień".
+
 - **Eksport paczki faktur (POST `/invoices/exports`)**  
   Dodano nowy kod błędu: `21182` - "Osiągnięto limit trwających eksportów. Dla uwierzytelnionego podmiotu w bieżącym kontekście osiągnięto maksymalny limit {count} równoczesnych eksportów faktur. Spróbuj ponownie później".
 
@@ -56,7 +61,7 @@
 
 - **Uprawnienia**  
   - Zaktualizowano opisy endpointów przykłady endpointów z obszaru permissions/*. Zmiana dotyczy wyłącznie dokumentacji (doprecyzowanie opisów, formatów i przykładów); brak zmian w zachowaniu API oraz kontrakcie.
-  - Zmiana nazwy parametru ścieżki z `operationReferenceNumber` na `referenceNumber` w "Pobranie statusu operacji" (GET `/permissions/operations/{referenceNumber}`).  
+  - Zmiana nazwy parametru ścieżki z `operationReferenceNumber` na `referenceNumber` w "Pobranie statusu operacji" (POST `/permissions/operations/{referenceNumber}`).  
   Zmiana nie wpływa na kontrakt HTTP (ścieżka i znaczenie wartości bez zmian) ani na zachowanie endpointu.
   - "Nadanie uprawnień w sposób pośredni" (POST `permissions/indirect/grants`)  
     Dodano obsługę identyfikatora wewnętrznego - rozszerzono właściwość `targetIdentifier` o wartość `InternalId`.

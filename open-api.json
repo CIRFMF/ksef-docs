@@ -6360,16 +6360,10 @@
       },
       "ExportInvoicesResponse": {
         "required": [
-          "operationReferenceNumber",
           "referenceNumber"
         ],
         "type": "object",
         "properties": {
-          "operationReferenceNumber": {
-            "type": "string",
-            "description": "Numer referencyjny operacji.",
-            "deprecated": true
-          },
           "referenceNumber": {
             "type": "string",
             "description": "Numer referencyjny operacji eksportu paczki faktur."
@@ -7608,16 +7602,10 @@
       },
       "PermissionsOperationResponse": {
         "required": [
-          "operationReferenceNumber",
           "referenceNumber"
         ],
         "type": "object",
         "properties": {
-          "operationReferenceNumber": {
-            "type": "string",
-            "description": "Numer referencyjny asynchronicznej operacji nadawania lub odbierania uprawnień.",
-            "deprecated": true
-          },
           "referenceNumber": {
             "type": "string",
             "description": "Numer referencyjny asynchronicznej operacji nadawania lub odbierania uprawnień."
