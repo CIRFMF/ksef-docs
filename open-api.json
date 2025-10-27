@@ -2143,7 +2143,7 @@
             "in": "query",
             "description": "Rozmiar strony.",
             "schema": {
-              "maximum": 100,
+              "maximum": 500,
               "exclusiveMaximum": false,
               "minimum": 10,
               "exclusiveMinimum": false,
@@ -2379,7 +2379,7 @@
             "in": "query",
             "description": "Rozmiar strony wyników.",
             "schema": {
-              "maximum": 100,
+              "maximum": 500,
               "exclusiveMaximum": false,
               "minimum": 10,
               "exclusiveMinimum": false,
@@ -2530,7 +2530,7 @@
             "in": "query",
             "description": "Rozmiar strony wyników.",
             "schema": {
-              "maximum": 100,
+              "maximum": 500,
               "exclusiveMaximum": false,
               "minimum": 10,
               "exclusiveMinimum": false,

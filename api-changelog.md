@@ -21,6 +21,12 @@
 - **Eksport paczki faktur (POST `/invoices/exports`)**  
   Dodano nowy kod błędu: `21182` - "Osiągnięto limit trwających eksportów. Dla uwierzytelnionego podmiotu w bieżącym kontekście osiągnięto maksymalny limit {count} równoczesnych eksportów faktur. Spróbuj ponownie później".
 
+- **OpenAPI**  
+  Zwiększono maksymalną wartość `pageSize` z 100 do 500 dla endpointów:
+  - GET `/sessions`
+  - GET `/sessions/{referenceNumber}/invoices`
+  - GET `/sessions/{referenceNumber}/invoices/failed`
+
 ### Wersja 2.0.0 RC5.4
 
 - **Pobranie listy metadanych certyfikatów (POST /invoices/query/metadata)**  
