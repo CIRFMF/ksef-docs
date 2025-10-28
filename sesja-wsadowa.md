@@ -319,4 +319,4 @@ ksefClient.closeBatchSession(referenceNumber, accessToken);
 Zobacz 
 - [Sprawdzenie stanu i pobranie UPO](faktury/sesja-sprawdzenie-stanu-i-pobranie-upo.md)
 - [Weryfikacja faktury](faktury/weryfikacja-faktury.md)
-- [Numer KSeF – struktura i walidacja](numer-ksef.md)
+- [Numer KSeF – struktura i walidacja](faktury/numer-ksef.md)

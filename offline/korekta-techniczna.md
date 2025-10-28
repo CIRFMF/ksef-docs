@@ -80,5 +80,5 @@ SendInvoiceOnlineSessionRequest sendInvoiceOnlineSessionRequest = new SendInvoic
 ```
 
 ## Powiązane dokumenty
-- [Tryby offline](tryby-offline.md)
-- [Kody QR](kody-qr.md)  
+- [Tryby offline](../tryby-offline.md)
+- [Kody QR](../kody-qr.md)  

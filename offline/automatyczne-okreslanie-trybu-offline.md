@@ -28,4 +28,4 @@ Jeżeli `P_1` = 2025-10-03, system oznaczy je jako offline – ponieważ dzień 
 
 
 ## Powiązane dokumenty
-- [Tryby offline](tryby-offline.md)
+- [Tryby offline](../tryby-offline.md)

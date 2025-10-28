@@ -54,7 +54,7 @@ foreach (ExportTask task in exportTasks)
 ### Zalecane wielkości okien
 
 - **Częstotliwość i limity**  
-    POST `/invoice/exports` wymaga wskazania typu podmiotu (`Podmiot 1`, `Podmiot 2`, `Podmiot 3`, `Podmiot upoważniony`). Zgodnie z [limitami API](limity/limity-api.md) można zainicjować maksymalnie 20 eksportów na godzinę; harmonogram powinien dzielić tę pulę między wybrane typy podmiotów.
+    POST `/invoice/exports` wymaga wskazania typu podmiotu (`Podmiot 1`, `Podmiot 2`, `Podmiot 3`, `Podmiot upoważniony`). Zgodnie z [limitami API](../limity/limity-api.md) można zainicjować maksymalnie 20 eksportów na godzinę; harmonogram powinien dzielić tę pulę między wybrane typy podmiotów.
 - **Strategia harmonogramu**  
     W trybie ciągłej synchronizacji można przyjąć 4 eksporty/h na każdy typ podmiotu. W praktyce role `Podmiot 3` i `Podmiot upoważniony` zwykle występują rzadziej i mogą być uruchamiane sporadycznie, np. raz na dobę w oknie nocnym.
 - **Minimalny interwał**  
@@ -72,7 +72,7 @@ foreach (ExportTask task in exportTasks)
 
 ### Limity według typu endpointów
 
-Wszystkie endpointy związane z pobieraniem faktur podlegają ścisłym limitom API określonym w dokumentacji [Limity API](limity/limity-api.md). Limity te są wiążące i muszą być respektowane przez każdą implementację przyrostowego pobierania.
+Wszystkie endpointy związane z pobieraniem faktur podlegają ścisłym limitom API określonym w dokumentacji [Limity API](../limity/limity-api.md). Limity te są wiążące i muszą być respektowane przez każdą implementację przyrostowego pobierania.
 
 W przypadku przekroczenia limitów system zwraca kod HTTP `429` (Too Many Requests) wraz z nagłówkiem `Retry-After` wskazującym czas oczekiwania przed kolejną próbą.
 

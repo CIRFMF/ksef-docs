@@ -180,7 +180,7 @@ W wersji KSeF API 2.0 wprowadzono precyzyjny i przewidywalny mechanizm ogranicze
 Każdy endpoint w systemie objęty jest limitem liczby żądań w zadanych przedziałach czasowych: na sekundę, minutę, godzinę.
 
 Zakresy i wartości limitów są:
-* publicznie udostępniane: [limity API](limity-api.md),  
+* publicznie udostępniane: [limity API](limity/limity-api.md),  
 * zróżnicowane w zależności od środowiska (środowisko testowe ma limity mniej restrykcyjne niż produkcyjne),  
 * dostosowane do charakteru operacji:  
   * dla endpointów chronionych – limity stosowane są per kontekst i adres IP,  
