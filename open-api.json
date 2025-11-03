@@ -3042,6 +3042,7 @@
             "in": "query",
             "description": "Umożliwia filtrowanie tokenów po opisie. Wartość parametru jest wyszukiwana w opisie tokena (operacja nie rozróżnia wielkości liter). Należy podać co najmniej 3 znaki.",
             "schema": {
+              "minLength": 3,
               "type": "string"
             }
           },
@@ -3050,6 +3051,7 @@
             "in": "query",
             "description": "Umożliwia filtrowanie tokenów po ich twórcy. Wartość parametru jest wyszukiwana w identyfikatorze (operacja nie rozróżnia wielkości liter). Należy podać co najmniej 3 znaki.",
             "schema": {
+              "minLength": 3,
               "type": "string"
             }
           },
@@ -5161,6 +5163,7 @@
             "format": "int32"
           },
           "fileName": {
+            "maxLength": 100,
             "type": "string",
             "description": "Nazwa części pliku paczki."
           },
@@ -5423,6 +5426,7 @@
             "description": "Numer seryjny certyfikatu (w formacie szesnastkowym)."
           },
           "name": {
+            "maxLength": 100,
             "type": "string",
             "description": "Nazwa własna certyfikatu."
           },
@@ -6026,6 +6030,7 @@
         "type": "object",
         "properties": {
           "certificateName": {
+            "maxLength": 100,
             "type": "string",
             "description": "Nazwa własna certyfikatu."
           },
@@ -6154,6 +6159,7 @@
             "description": "Rodzaj uprawnienia."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis uprawnienia."
           },
@@ -6203,6 +6209,7 @@
             "description": "Rodzaj uprawnienia."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis uprawnienia"
           }
@@ -6436,6 +6443,7 @@
             "description": "Lista nadawanych uprawnień. Każda wartość może wystąpić tylko raz."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis uprawnienia"
           }
@@ -6530,6 +6538,7 @@
             "description": "Typ roli - powiązania z podmiotem nadrzędnym."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis roli."
           },
@@ -6644,10 +6653,12 @@
             "description": "Identyfikator kontekstu złożonego.\n| Type | Value |\n| --- | --- |\n| NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru VAT-UE: `{nip}-{vat_ue}` |"
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis uprawnienia"
           },
           "euEntityName": {
+            "maxLength": 256,
             "type": "string",
             "description": "Nazwa i adres podmiotu unijnego w formacie: \n`{euSubjectName}, {euSubjectAddress}`"
           }
@@ -6717,6 +6728,7 @@
             "description": "Identyfikator podmiotu unijnego."
           },
           "euEntityName": {
+            "maxLength": 256,
             "type": "string",
             "description": "Nazwa podmiotu unijnego."
           },
@@ -6733,6 +6745,7 @@
             "description": "Uprawnienie."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis uprawnienia."
           },
@@ -6810,6 +6823,7 @@
             "description": "Lista nadawanych uprawnień. Każda wartość może wystąpić tylko raz."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis uprawnienia"
           }
@@ -7015,6 +7029,7 @@
             "description": "Uprawnienia przypisane tokenowi."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis tokena."
           }
@@ -7033,6 +7048,7 @@
             "description": "Numer referencyjny tokena KSeF. Za jego pomocą można sprawdzić jego status lub go unieważnić."
           },
           "token": {
+            "maxLength": 160,
             "type": "string",
             "description": "Token KSeF."
           }
@@ -7086,6 +7102,7 @@
             "description": "Lista nadawanych uprawnień. Każda wartość może wystąpić tylko raz."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis uprawnienia"
           }
@@ -7300,6 +7317,7 @@
             "description": "Numer KSeF faktury."
           },
           "invoiceNumber": {
+            "maxLength": 256,
             "type": "string",
             "description": "Numer faktury nadany przez wystawcę."
           },
@@ -7361,6 +7379,8 @@
             "format": "double"
           },
           "currency": {
+            "maxLength": 3,
+            "minLength": 3,
             "type": "string",
             "description": "Kod waluty."
           },
@@ -7446,6 +7466,7 @@
             "description": "Nip podmiotu upoważnionego"
           },
           "name": {
+            "maxLength": 512,
             "type": "string",
             "description": "Nazwa podmiotu upoważnionego.",
             "nullable": true
@@ -7476,6 +7497,7 @@
             "description": "Identyfikator nabywcy."
           },
           "name": {
+            "maxLength": 512,
             "type": "string",
             "description": "Nazwa nabywcy.",
             "nullable": true
@@ -7516,6 +7538,7 @@
             "description": "Nip sprzedawcy."
           },
           "name": {
+            "maxLength": 512,
             "type": "string",
             "description": "Nazwa sprzedawcy.",
             "nullable": true
@@ -7539,6 +7562,7 @@
             "description": "Identyfikator podmiotu trzeciego."
           },
           "name": {
+            "maxLength": 512,
             "type": "string",
             "description": "Nazwa podmiotu trzeciego.",
             "nullable": true
@@ -7652,6 +7676,7 @@
             "format": "int32"
           },
           "partName": {
+            "maxLength": 100,
             "type": "string",
             "description": "Nazwa pliku części paczki."
           },
@@ -7822,6 +7847,7 @@
             "nullable": true
           },
           "invoiceNumber": {
+            "maxLength": 256,
             "type": "string",
             "description": "Numer faktury nadany przez wystawcę.",
             "nullable": true
@@ -8198,6 +8224,7 @@
             "nullable": true
           },
           "name": {
+            "maxLength": 256,
             "type": "string",
             "description": "Nazwa dostawcy usług Peppol.",
             "nullable": true
@@ -8261,6 +8288,7 @@
             "type": "boolean"
           },
           "description": {
+            "maxLength": 256,
             "type": "string"
           },
           "isDeceased": {
@@ -8349,6 +8377,7 @@
             "description": "Rodzaj uprawnienia."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis uprawnienia."
           },
@@ -8517,6 +8546,7 @@
             "description": "Lista nadawanych uprawnień. Każda wartość może wystąpić tylko raz."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis uprawnienia"
           }
@@ -8750,6 +8780,7 @@
             "description": "Rodzaj uprawnienia."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis uprawnienia."
           },
@@ -9297,6 +9328,7 @@
             "description": "Identyfikator kontekstu, w którym został wygenerowany token i do którego daje dostęp."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis tokena."
           },
@@ -9504,6 +9536,7 @@
             "format": "int32"
           },
           "invoiceNumber": {
+            "maxLength": 256,
             "type": "string",
             "description": "Numer faktury.",
             "nullable": true
@@ -9522,6 +9555,7 @@
             "description": "Skrót SHA256 faktury, zakodowany w formacie Base64."
           },
           "invoiceFileName": {
+            "maxLength": 128,
             "type": "string",
             "description": "Nazwa pliku faktury (zwracana dla faktur wysyłanych wsadowo).",
             "nullable": true
@@ -9906,6 +9940,7 @@
             "nullable": true
           },
           "description": {
+            "maxLength": 256,
             "type": "string"
           },
           "createdDate": {
@@ -9976,6 +10011,7 @@
             "description": "Typ roli - powiązania z podmiotem nadrzędnym."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis powiązania."
           },
@@ -10053,6 +10089,7 @@
             "type": "string"
           },
           "description": {
+            "maxLength": 256,
             "type": "string"
           }
         },
@@ -10119,10 +10156,12 @@
             "description": "Rodzaj uprawnienia."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis uprawnienia."
           },
           "subunitName": {
+            "maxLength": 256,
             "type": "string",
             "description": "Nazwa jednostki podrzędnej.",
             "nullable": true
@@ -10258,10 +10297,12 @@
             "description": "Identyfikator podmiotu podrzędnego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis uprawnienia"
           },
           "subunitName": {
+            "maxLength": 256,
             "type": "string",
             "description": "Nazwa jednostki podrzędnej. W przypadku jednostki podrzędnej z identyfikatorem wewnętrznym pole jest wymagane.",
             "nullable": true
@@ -10411,6 +10452,7 @@
         "type": "object",
         "properties": {
           "description": {
+            "maxLength": 256,
             "type": "string"
           },
           "permissionType": {
@@ -10651,6 +10693,7 @@
             "description": "Identyfikator kontekstu, w którym został wygenerowany token i do którego daje dostęp."
           },
           "description": {
+            "maxLength": 256,
             "type": "string",
             "description": "Opis tokena."
           },
