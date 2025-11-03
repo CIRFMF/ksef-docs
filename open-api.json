@@ -523,7 +523,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryCertificatesResponse"
                 },
-                "example": {"certificates":[{"certificateSerialNumber":"018209160C631F1E","name":"Certyfikat 1","type":"Authentication","commonName":"Jan Kowalski","status":"Active","subjectIdentifier":{"type":"Nip","value":"1234445678"},"validFrom":"2025-08-24T14:15:22+00:00","validTo":"2027-08-24T14:15:22+00:00","lastUseDate":"2025-08-25T14:15:22+00:00"}],"hasMore":false}
+                "example": {"certificates":[{"certificateSerialNumber":"018209160C631F1E","name":"Certyfikat 1","type":"Authentication","commonName":"Jan Kowalski","status":"Active","subjectIdentifier":{"type":"Nip","value":"1234445678"},"validFrom":"2025-08-24T14:15:22+00:00","validTo":"2027-08-24T14:15:22+00:00","lastUseDate":"2025-08-25T14:15:22+00:00","requestDate":"2025-08-24T14:15:22+00:00"}],"hasMore":false}
               }
             }
           },
@@ -2981,7 +2981,7 @@
                   }
                 ]
               },
-              "example": {"permissions":["InvoiceRead","InvoiceWrite"]}
+              "example": {"permissions":["InvoiceRead","InvoiceWrite"],"description":"Wystawianie i przeglądanie faktur."}
             }
           }
         },
@@ -2993,7 +2993,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/GenerateTokenResponse"
                 },
-                "example": {"referenceNumber":"20251010-EC-1DCE3E3000-12ECB5B36E-45","token":"20251010-EC-1DCE3E3000-12ECB5B36E-45|nip-5265877635|919f704466624ce29cd5ac7b65ded5e7cccc112eee314f2aaa76e02cd16df7b9"}
+                "example": {"referenceNumber":"20251010-EC-1DCE3E3000-12ECB5B36E-45","token":"20251010-EC-1DCE3E3000-12ECB5B36E-45|internalId-5265877635-12345|919f704466624ce29cd5ac7b65ded5e7cccc112eee314f2aaa76e02cd16df7b9"}
               }
             }
           },
@@ -3266,7 +3266,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryPeppolProvidersResponse"
                 },
-                "example": {"peppolProviders":[{"id":"P123456789","name":"Dostawca usług Peppol"}],"hasMore":false}
+                "example": {"peppolProviders":[{"id":"P123456789","name":"Dostawca usług Peppol","dateCreated":"2025-07-11T12:23:56.0154302+00:00"}],"hasMore":false}
               }
             }
           },
@@ -7852,7 +7852,7 @@
           },
           "value": {
             "type": "string",
-            "description": "Wartość identyfikatora nabywcy.",
+            "description": "Wartość identyfikatora nabywcy (exact match).",
             "nullable": true
           }
         },
@@ -7931,7 +7931,7 @@
           "invoiceNumber": {
             "maxLength": 256,
             "type": "string",
-            "description": "Numer faktury nadany przez wystawcę.",
+            "description": "Numer faktury nadany przez wystawcę (exact match).",
             "nullable": true
           },
           "amount": {
