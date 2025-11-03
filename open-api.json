@@ -5133,7 +5133,11 @@
             "format": "int64"
           },
           "fileHash": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Sha256HashBase64"
+              }
+            ],
             "description": "Skrót SHA256 pliku paczki, zakodowany w formacie Base64."
           },
           "fileParts": {
@@ -5175,7 +5179,11 @@
             "format": "int64"
           },
           "fileHash": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Sha256HashBase64"
+              }
+            ],
             "description": "Skrót SHA256 zaszyfrowanej części pliku paczki, zakodowany w formacie Base64."
           }
         },
@@ -7431,11 +7439,19 @@
             "description": "Określa, czy faktura posiada załącznik."
           },
           "invoiceHash": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Sha256HashBase64"
+              }
+            ],
             "description": "Skrót SHA256 faktury."
           },
           "hashOfCorrectedInvoice": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Sha256HashBase64"
+              }
+            ],
             "description": "Skrót SHA256 korygowanej faktury.",
             "nullable": true
           },
@@ -7706,7 +7722,11 @@
             "format": "int64"
           },
           "partHash": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Sha256HashBase64"
+              }
+            ],
             "description": "Skrót SHA256 pliku części paczki, zakodowany w formacie Base64."
           },
           "encryptedPartSize": {
@@ -7717,7 +7737,11 @@
             "format": "int64"
           },
           "encryptedPartHash": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Sha256HashBase64"
+              }
+            ],
             "description": "Skrót SHA256 zaszyfrowanej części paczki, zakodowany w formacie Base64."
           },
           "expirationDate": {
@@ -9476,7 +9500,11 @@
         "type": "object",
         "properties": {
           "invoiceHash": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Sha256HashBase64"
+              }
+            ],
             "description": "Skrót SHA256 oryginalnej faktury, zakodowany w formacie Base64."
           },
           "invoiceSize": {
@@ -9487,7 +9515,11 @@
             "format": "int64"
           },
           "encryptedInvoiceHash": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Sha256HashBase64"
+              }
+            ],
             "description": "Skrót SHA256 zaszyfrowanej faktury, zakodowany w formacie Base64."
           },
           "encryptedInvoiceSize": {
@@ -9508,7 +9540,11 @@
             "default": false
           },
           "hashOfCorrectedInvoice": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Sha256HashBase64"
+              }
+            ],
             "description": "Skrót SHA256 korygowanej faktury, zakodowany w formacie Base64. Wymagany przy wysyłaniu korekty technicznej faktury.",
             "nullable": true
           }
@@ -9561,7 +9597,11 @@
             "description": "Numer referencyjny faktury."
           },
           "invoiceHash": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Sha256HashBase64"
+              }
+            ],
             "description": "Skrót SHA256 faktury, zakodowany w formacie Base64."
           },
           "invoiceFileName": {
@@ -9887,6 +9927,13 @@
           }
         },
         "additionalProperties": false
+      },
+      "Sha256HashBase64": {
+        "maxLength": 44,
+        "minLength": 44,
+        "type": "string",
+        "description": "SHA-256 w Base64",
+        "format": "byte"
       },
       "SortOrder": {
         "enum": [
