@@ -4572,6 +4572,7 @@
           "ip4Addresses": {
             "type": "array",
             "items": {
+              "pattern": "^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$",
               "type": "string"
             },
             "description": "Lista adresów IPv4 w notacji dziesiętnej kropkowanej, np. `192.168.0.10`.",
@@ -4580,6 +4581,7 @@
           "ip4Ranges": {
             "type": "array",
             "items": {
+              "pattern": "^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}-((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$",
               "type": "string"
             },
             "description": "Lista adresów IPv4 podana w formie zakresu początek–koniec, oddzielonego pojedynczym myślnikiem, np. `10.0.0.1–10.0.0.254`.",
@@ -4588,6 +4590,7 @@
           "ip4Masks": {
             "type": "array",
             "items": {
+              "pattern": "^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}\\/(0|[1-9]|1[0-9]|2[0-9]|3[0-2])$",
               "type": "string"
             },
             "description": "Lista adresów IPv4 w notacji CIDR, np. `172.16.0.0/16`.",
@@ -6060,6 +6063,7 @@
         "properties": {
           "certificateName": {
             "maxLength": 100,
+            "pattern": "^[a-zA-Z0-9_\\-\\ ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$",
             "type": "string",
             "description": "Nazwa własna certyfikatu."
           },

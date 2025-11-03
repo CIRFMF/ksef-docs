@@ -18,6 +18,7 @@
   - Zdefiniowano wspólny schemat `KsefNumber` (string, 35-36 znaków, regex pattern) i zastosowano go do wszystkich właściwości reprezentujących numer KSeF.  
   - Zdefiniowano schemat `Challenge` (string, 36 znaków) i zastosowano w `AuthenticationChallengeResponse`.`challenge`.
   - Zdefiniowano wspólny schemat `PermissionId` (string, 36 znaków) i zastosowano go we wszystkich miejscach: w parametrach oraz we właściwościach odpowiedzi.
+  - Dodano wyrażenia regularne dla wybranych pól tekstowych.
 
 ### Wersja 2.0.0 RC5.5
 
