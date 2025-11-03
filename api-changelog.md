@@ -8,7 +8,7 @@
 - **Pobranie listy metadanych certyfikatów (POST `/certificates/query`)**  
   Rozszerzono odpowiedź (`CertificateListItem`) o właściwość `requestDate` - data złożenia wniosku certyfikacyjnego.  
 
-- **Pobranie listy dostawców usług Peppol (GET /peppol/query)**  
+- **Pobranie listy dostawców usług Peppol (GET `/peppol/query`)**  
   - Rozszerzono model odpowiedzi o pole `dateCreated` - data rejestracji dostawcy usług Peppol w systemie.
   - Oznaczono właściwość `dateCreated`, `id`, `name` w modelu odpowiedzi jako zawsze zwracaną.
   - Zdefiniowano schemat `PeppolI` (string, 9 znaków) i zastosowano w `PeppolProvider`.
