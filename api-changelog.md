@@ -8,6 +8,11 @@
 - **Pobranie listy metadanych certyfikatów (POST `/certificates/query`)**  
   Rozszerzono odpowiedź (`CertificateListItem`) o właściwość `requestDate` - data złożenia wniosku certyfikacyjnego.  
 
+- **Pobranie listy dostawców usług Peppol (GET /peppol/query)**  
+  - Rozszerzono model odpowiedzi o pole `dateCreated` - data rejestracji dostawcy usług Peppol w systemie.
+  - Oznaczono właściwość `dateCreated`, `id`, `name` w modelu odpowiedzi jako zawsze zwracaną.
+  - Zdefiniowano schemat `PeppolI` (string, 9 znaków) i zastosowano w `PeppolProvider`.
+
 - **OpenAPI**  
   - Dodano metadane `x-sort` do wszystkich endpointów zwracających listy. W opisach endpointów dodano sekcję Sortowanie z domyślnym porządkiem (np. "requestDate (Desc)").
   - Dodano ograniczenia długości dla właściwości typu string: `minLength` oraz `maxLength`.

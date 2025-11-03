@@ -8335,19 +8335,37 @@
         },
         "additionalProperties": false
       },
+      "PeppolId": {
+        "maxLength": 9,
+        "minLength": 9,
+        "type": "string",
+        "description": "Identyfikator dostawcy usług Peppol"
+      },
       "PeppolProvider": {
+        "required": [
+          "dateCreated",
+          "id",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": "Identyfikator dostawcy usług Peppol.",
-            "nullable": true
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PeppolId"
+              }
+            ],
+            "description": "Identyfikator dostawcy usług Peppol."
           },
           "name": {
             "maxLength": 256,
             "type": "string",
-            "description": "Nazwa dostawcy usług Peppol.",
-            "nullable": true
+            "description": "Nazwa dostawcy usług Peppol."
+          },
+          "dateCreated": {
+            "type": "string",
+            "description": "Data rejestracji dostawcy usług Peppol w systemie.",
+            "format": "date-time"
           }
         },
         "additionalProperties": false
