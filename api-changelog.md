@@ -1,5 +1,10 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.0 RC5.6
+
+- **OpenAPI**  
+  - Dodano metadane `x-sort` do wszystkich endpointów zwracających listy. W opisach endpointów dodano sekcję Sortowanie z domyślnym porządkiem (np. "requestDate (Desc)").
+
 ### Wersja 2.0.0 RC5.5
 
 - **Pobranie aktualnych limitów API (GET `/api/v2/rate-limits`)**  

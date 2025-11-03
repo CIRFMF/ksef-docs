@@ -12,7 +12,7 @@
           "Aktywne sesje"
         ],
         "summary": "Pobranie listy aktywnych sesji",
-        "description": "Zwraca listę aktywnych sesji uwierzytelnienia.",
+        "description": "Zwraca listę aktywnych sesji uwierzytelnienia.\n\n**Sortowanie:**\n\n- startDate (Desc)\n\n",
         "parameters": [
           {
             "name": "x-continuation-token",
@@ -67,6 +67,12 @@
         "security": [
           {
             "Bearer": [ ]
+          }
+        ],
+        "x-sort": [
+          {
+            "field": "startDate",
+            "direction": "Desc"
           }
         ]
       }
@@ -465,7 +471,7 @@
           "Certyfikaty"
         ],
         "summary": "Pobranie listy metadanych certyfikatów",
-        "description": "Zwraca listę certyfikatów spełniających podane kryteria wyszukiwania.\nW przypadku braku podania kryteriów wyszukiwania zwrócona zostanie nieprzefiltrowana lista.",
+        "description": "Zwraca listę certyfikatów spełniających podane kryteria wyszukiwania.\nW przypadku braku podania kryteriów wyszukiwania zwrócona zostanie nieprzefiltrowana lista.\n\n**Sortowanie:**\n\n- requestDate (Desc)\n\n",
         "parameters": [
           {
             "name": "pageSize",
@@ -539,6 +545,12 @@
         "security": [
           {
             "Bearer": [ ]
+          }
+        ],
+        "x-sort": [
+          {
+            "field": "requestDate",
+            "direction": "Desc"
           }
         ]
       }
@@ -1290,7 +1302,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie osobom fizycznym uprawnień do pracy w KSeF",
-        "description": "Metoda pozwala na nadanie osobie wskazanej w żądaniu uprawnień do pracy w KSeF  \nw kontekście bieżącym.\n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur,  \n- **InvoiceRead** – przeglądanie faktur,  \n- **CredentialsManage** – zarządzanie uprawnieniami,  \n- **CredentialsRead** – przeglądanie uprawnień,  \n- **Introspection** – przeglądanie historii sesji i generowanie UPO,  \n- **SubunitManage** – zarządzanie jednostkami podrzędnymi,  \n- **EnforcementOperations** – wykonywanie operacji egzekucyjnych.\n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.  \nUprawnienie **EnforcementOperations** może być nadane wyłącznie wtedy,  \ngdy podmiot kontekstu ma rolę **EnforcementAuthority** (organ egzekucyjny)  \nlub **CourtBailiff** (komornik sądowy).\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadawanie-uprawnie%C5%84-osobom-fizycznym-do-pracy-w-ksef)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Metoda pozwala na nadanie osobie wskazanej w żądaniu uprawnień do pracy w KSeF  \nw kontekście bieżącym.\n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur,  \n- **InvoiceRead** – przeglądanie faktur,  \n- **CredentialsManage** – zarządzanie uprawnieniami,  \n- **CredentialsRead** – przeglądanie uprawnień,  \n- **Introspection** – przeglądanie historii sesji i generowanie UPO,  \n- **SubunitManage** – zarządzanie jednostkami podrzędnymi,  \n- **EnforcementOperations** – wykonywanie operacji egzekucyjnych.\n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.  \nUprawnienie **EnforcementOperations** może być nadane wyłącznie wtedy,  \ngdy podmiot kontekstu ma rolę **EnforcementAuthority** (organ egzekucyjny)  \nlub **CourtBailiff** (komornik sądowy).\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadawanie-uprawnie%C5%84-osobom-fizycznym-do-pracy-w-ksef)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1356,7 +1368,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie podmiotom uprawnień do obsługi faktur",
-        "description": "Metoda pozwala na nadanie podmiotowi wskazanemu w żądaniu uprawnień do obsługi faktur podmiotu kontekstu.  \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.  \nDla każdego uprawnienia może być ustawiona flaga **canDelegate**, mówiąca o możliwości jego dalszego przekazywania poprzez nadawanie w sposób pośredni.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-podmiotom-uprawnie%C5%84-do-obs%C5%82ugi-faktur)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Metoda pozwala na nadanie podmiotowi wskazanemu w żądaniu uprawnień do obsługi faktur podmiotu kontekstu.  \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.  \nDla każdego uprawnienia może być ustawiona flaga **canDelegate**, mówiąca o możliwości jego dalszego przekazywania poprzez nadawanie w sposób pośredni.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-podmiotom-uprawnie%C5%84-do-obs%C5%82ugi-faktur)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1422,7 +1434,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień podmiotowych",
-        "description": "Metoda pozwala na nadanie jednego z uprawnień podmiotowych do obsługi podmiotu kontekstu  podmiotowi wskazanemu w żądaniu.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-podmiotowych)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Metoda pozwala na nadanie jednego z uprawnień podmiotowych do obsługi podmiotu kontekstu  podmiotowi wskazanemu w żądaniu.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-podmiotowych)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1488,7 +1500,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień w sposób pośredni",
-        "description": "Metoda pozwala na nadanie w sposób pośredni osobie wskazanej w żądaniu uprawnień do obsługi faktur innego podmiotu – klienta.  \nMoże to być jedna z możliwości:  \n- nadanie uprawnień generalnych – do obsługi wszystkich klientów  \n- nadanie uprawnień selektywnych – do obsługi wskazanego klienta  \n            \nUprawnienie selektywne może być nadane wyłącznie wtedy, gdy klient nadał wcześniej podmiotowi bieżącego kontekstu dowolne uprawnienie z prawem do jego dalszego przekazywania (patrz [POST /api/v2/permissions/entities/grants](/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1api~1v2~1permissions~1entities~1grants/post)).  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-w-spos%C3%B3b-po%C5%9Bredni)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Metoda pozwala na nadanie w sposób pośredni osobie wskazanej w żądaniu uprawnień do obsługi faktur innego podmiotu – klienta.  \nMoże to być jedna z możliwości:  \n- nadanie uprawnień generalnych – do obsługi wszystkich klientów  \n- nadanie uprawnień selektywnych – do obsługi wskazanego klienta  \n            \nUprawnienie selektywne może być nadane wyłącznie wtedy, gdy klient nadał wcześniej podmiotowi bieżącego kontekstu dowolne uprawnienie z prawem do jego dalszego przekazywania (patrz [POST /api/v2/permissions/entities/grants](/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1api~1v2~1permissions~1entities~1grants/post)).  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-w-spos%C3%B3b-po%C5%9Bredni)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1554,7 +1566,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień administratora podmiotu podrzędnego",
-        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień administratora w kontekście:  \n- wskazanego NIP podmiotu podrzędnego – wyłącznie jeżeli podmiot bieżącego kontekstu logowania ma rolę podmiotu nadrzędnego:\n  - **LocalGovernmentUnit** \n  - **VatGroupUnit**  \n- wskazanego lub utworzonego identyfikatora wewnętrznego  \n            \nWraz z utworzeniem administratora jednostki podrzędnej tworzony jest identyfikator wewnętrzny składający się z numeru NIP podmiotu kontekstu logowania oraz 5 cyfr unikalnie identyfikujących jednostkę wewnętrzną.  \nW żądaniu podaje się również nazwę tej jednostki.  \n            \nUprawnienia administratora jednostki podrzędnej obejmują:  \n- **CredentialsManage** – zarządzanie uprawnieniami  \n            \nMetoda automatycznie nadaje powyższe uprawnienie, bez konieczności podawania go w żądaniu.\n            \n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-podrz%C4%99dnego)\n\nWymagane uprawnienia: `SubunitManage`.",
+        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień administratora w kontekście:  \n- wskazanego NIP podmiotu podrzędnego – wyłącznie jeżeli podmiot bieżącego kontekstu logowania ma rolę podmiotu nadrzędnego:\n  - **LocalGovernmentUnit** \n  - **VatGroupUnit**  \n- wskazanego lub utworzonego identyfikatora wewnętrznego  \n            \nWraz z utworzeniem administratora jednostki podrzędnej tworzony jest identyfikator wewnętrzny składający się z numeru NIP podmiotu kontekstu logowania oraz 5 cyfr unikalnie identyfikujących jednostkę wewnętrzną.  \nW żądaniu podaje się również nazwę tej jednostki.  \n            \nUprawnienia administratora jednostki podrzędnej obejmują:  \n- **CredentialsManage** – zarządzanie uprawnieniami  \n            \nMetoda automatycznie nadaje powyższe uprawnienie, bez konieczności podawania go w żądaniu.\n            \n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-podrz%C4%99dnego)\n\n**Wymagane uprawnienia**: `SubunitManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1620,7 +1632,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień administratora podmiotu unijnego",
-        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień administratora w kontekście złożonym z identyfikatora NIP podmiotu kontekstu bieżącego oraz numeru VAT UE podmiotu unijnego wskazanego w żądaniu.  \nWraz z utworzeniem administratora podmiotu unijnego tworzony jest kontekst złożony składający się z numeru NIP podmiotu kontekstu logowania oraz wskazanego numeru identyfikacyjnego VAT UE podmiotu unijnego.  \nW żądaniu podaje się również nazwę i adres podmiotu unijnego.  \n            \nJedynym sposobem identyfikacji uprawnianego jest odcisk palca certyfikatu kwalifikowanego:  \n- certyfikat podpisu elektronicznego dla osób fizycznych  \n- certyfikat pieczęci elektronicznej dla podmiotów  \n            \nUprawnienia administratora podmiotu unijnego obejmują:  \n- **VatEuManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n- **Introspection** – przeglądanie historii sesji  \n            \nMetoda automatycznie nadaje wszystkie powyższe uprawnienia, bez konieczności ich wskazywania w żądaniu.\n            \n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-unijnego)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień administratora w kontekście złożonym z identyfikatora NIP podmiotu kontekstu bieżącego oraz numeru VAT UE podmiotu unijnego wskazanego w żądaniu.  \nWraz z utworzeniem administratora podmiotu unijnego tworzony jest kontekst złożony składający się z numeru NIP podmiotu kontekstu logowania oraz wskazanego numeru identyfikacyjnego VAT UE podmiotu unijnego.  \nW żądaniu podaje się również nazwę i adres podmiotu unijnego.  \n            \nJedynym sposobem identyfikacji uprawnianego jest odcisk palca certyfikatu kwalifikowanego:  \n- certyfikat podpisu elektronicznego dla osób fizycznych  \n- certyfikat pieczęci elektronicznej dla podmiotów  \n            \nUprawnienia administratora podmiotu unijnego obejmują:  \n- **VatEuManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n- **Introspection** – przeglądanie historii sesji  \n            \nMetoda automatycznie nadaje wszystkie powyższe uprawnienia, bez konieczności ich wskazywania w żądaniu.\n            \n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-unijnego)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1687,7 +1699,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień reprezentanta podmiotu unijnego",
-        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień do wystawiania i/lub przeglądania faktur w kontekście złożonym kontekstu bieżącego.  \n            \nJedynym sposobem identyfikacji uprawnianego jest odcisk palca certyfikatu kwalifikowanego:  \n- certyfikat podpisu elektronicznego dla osób fizycznych  \n- certyfikat pieczęci elektronicznej dla podmiotów  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-reprezentanta-podmiotu-unijnego)\n\nWymagane uprawnienia: `VatUeManage`.",
+        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień do wystawiania i/lub przeglądania faktur w kontekście złożonym kontekstu bieżącego.  \n            \nJedynym sposobem identyfikacji uprawnianego jest odcisk palca certyfikatu kwalifikowanego:  \n- certyfikat podpisu elektronicznego dla osób fizycznych  \n- certyfikat pieczęci elektronicznej dla podmiotów  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-reprezentanta-podmiotu-unijnego)\n\n**Wymagane uprawnienia**: `VatUeManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1753,7 +1765,7 @@
           "Odbieranie uprawnień"
         ],
         "summary": "Odebranie uprawnień",
-        "description": "Metoda pozwala na odebranie uprawnienia o wskazanym identyfikatorze.  \nWymagane jest wcześniejsze odczytanie uprawnień w celu uzyskania  \nidentyfikatora uprawnienia, które ma zostać odebrane.\n\n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84)\n\nWymagane uprawnienia: `CredentialsManage`, `VatUeManage`, `SubunitManage`.",
+        "description": "Metoda pozwala na odebranie uprawnienia o wskazanym identyfikatorze.  \nWymagane jest wcześniejsze odczytanie uprawnień w celu uzyskania  \nidentyfikatora uprawnienia, które ma zostać odebrane.\n\n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84)\n\n**Wymagane uprawnienia**: `CredentialsManage`, `VatUeManage`, `SubunitManage`.",
         "parameters": [
           {
             "name": "permissionId",
@@ -1813,7 +1825,7 @@
           "Odbieranie uprawnień"
         ],
         "summary": "Odebranie uprawnień podmiotowych",
-        "description": "Metoda pozwala na odebranie uprawnienia podmiotowego o wskazanym identyfikatorze.  \nWymagane jest wcześniejsze odczytanie uprawnień w celu uzyskania  \nidentyfikatora uprawnienia, które ma zostać odebrane.\n            \n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84-podmiotowych)\n\nWymagane uprawnienia: `CredentialsManage`.",
+        "description": "Metoda pozwala na odebranie uprawnienia podmiotowego o wskazanym identyfikatorze.  \nWymagane jest wcześniejsze odczytanie uprawnień w celu uzyskania  \nidentyfikatora uprawnienia, które ma zostać odebrane.\n            \n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84-podmiotowych)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "parameters": [
           {
             "name": "permissionId",
@@ -1923,7 +1935,7 @@
           "Operacje"
         ],
         "summary": "Sprawdzenie statusu zgody na wystawianie faktur z załącznikiem",
-        "description": "Sprawdzenie czy obecny kontekst posiada zgodę na wystawianie faktur z załącznikiem.\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`.",
+        "description": "Sprawdzenie czy obecny kontekst posiada zgodę na wystawianie faktur z załącznikiem.\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`.",
         "responses": {
           "200": {
             "description": "OK",
@@ -1970,7 +1982,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Pobranie faktury po numerze KSeF",
-        "description": "Zwraca fakturę o podanym numerze KSeF.\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Zwraca fakturę o podanym numerze KSeF.\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
         "parameters": [
           {
             "name": "ksefNumber",
@@ -2027,7 +2039,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Pobranie listy metadanych faktur",
-        "description": "Zwraca metadane faktur spełniających filtry.\n\nLimit techniczny: ≤ 10 000 rekordów na zestaw filtrów, po jego osiągnięciu <b>isTruncated = true</b> i należy ponownie ustawić <b>dateRange</b>, używając ostatniej daty z wyników (tj. ustawić from/to - w zależności od kierunku sortowania, od daty ostatniego zwróconego rekordu) oraz wyzerować <b>pageOffset</b>.\n\n`Do scenariusza przyrostowego należy używać daty PermanentStorage oraz kolejność sortowania Asc`.\n            \n<b>Scenariusz pobierania przyrostowego (skrót):</b>\n* Gdy <b>hasMore = false</b>, należy zakończyć,\n* Gdy <b>hasMore = true</b> i <b>isTruncated = false</b>, należy zwiększyć <b>pageOffset</b>,\n* Gdy <b>hasMore = true</b> i <b>isTruncated = true</b>, należy zawęzić <b>dateRange</b> (ustawić from od daty ostatniego rekordu), wyzerować <b>pageOffset</b> i kontynuować\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Zwraca metadane faktur spełniających filtry.\n\nLimit techniczny: ≤ 10 000 rekordów na zestaw filtrów, po jego osiągnięciu <b>isTruncated = true</b> i należy ponownie ustawić <b>dateRange</b>, używając ostatniej daty z wyników (tj. ustawić from/to - w zależności od kierunku sortowania, od daty ostatniego zwróconego rekordu) oraz wyzerować <b>pageOffset</b>.\n\n`Do scenariusza przyrostowego należy używać daty PermanentStorage oraz kolejność sortowania Asc`.\n            \n<b>Scenariusz pobierania przyrostowego (skrót):</b>\n* Gdy <b>hasMore = false</b>, należy zakończyć,\n* Gdy <b>hasMore = true</b> i <b>isTruncated = false</b>, należy zwiększyć <b>pageOffset</b>,\n* Gdy <b>hasMore = true</b> i <b>isTruncated = true</b>, należy zawęzić <b>dateRange</b> (ustawić from od daty ostatniego rekordu), wyzerować <b>pageOffset</b> i kontynuować\n\n**Sortowanie:**\n\n- permanentStorageDate | invoicingDate | issueDate (Asc | Desc) - pole wybierane na podstawie filtrów\n\n\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
         "parameters": [
           {
             "name": "sortOrder",
@@ -2071,7 +2083,7 @@
           }
         ],
         "requestBody": {
-          "description": "Zestaw filtrów dla wyszukiwania metadanych.",
+          "description": "Kryteria filtrowania.",
           "content": {
             "application/json": {
               "schema": {
@@ -2124,6 +2136,19 @@
             "Bearer": [ ]
           }
         ],
+        "x-sort": [
+          {
+            "allowedFields": [
+              "permanentStorageDate",
+              "invoicingDate",
+              "issueDate"
+            ],
+            "allowedDirections": [
+              "Asc",
+              "Desc"
+            ]
+          }
+        ],
         "x-required-permissions": [
           "InvoiceRead"
         ]
@@ -2135,7 +2160,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Eksport paczki faktur",
-        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu <b>Encryption</b>, które służą do zabezpieczenia przygotowanej paczki z fakturami.\nMaksymalnie można uruchomić 10 równoczesnych eksportów w zalogowanym kontekście.\n            \nSystem pobiera faktury rosnąco według daty określonej w filtrze (Invoicing, Issue, PermanentStorage) i dodaje je do paczki aż do osiągnięcia jednego z poniższych limitów:\n* Limit liczby faktur: 10 000 sztuk\n* Limit rozmiaru danych(skompresowanych): 1GB\n\nPaczka eksportu zawiera dodatkowy plik z metadanymi faktur w formacie JSON (`_metadata.json`). Zawartość pliku to\nobiekt z tablicą <b>invoices</b>, gdzie każdy element jest obiektem typu <b>InvoiceMetadata</b>\n(taki jak zwracany przez endpoint `POST /invoices/query/metadata`).\n\n<b>Plik z metadanymi(_metadata.json) nie jest wliczany do limitów algorytmu budowania paczki</b>. \n\n`Do realizacji pobierania przyrostowego należy stosować filtrowanie po dacie PermanentStorage`.\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu <b>Encryption</b>, które służą do zabezpieczenia przygotowanej paczki z fakturami.\nMaksymalnie można uruchomić 10 równoczesnych eksportów w zalogowanym kontekście.\n            \nSystem pobiera faktury rosnąco według daty określonej w filtrze (Invoicing, Issue, PermanentStorage) i dodaje je do paczki aż do osiągnięcia jednego z poniższych limitów:\n* Limit liczby faktur: 10 000 sztuk\n* Limit rozmiaru danych(skompresowanych): 1GB\n\nPaczka eksportu zawiera dodatkowy plik z metadanymi faktur w formacie JSON (`_metadata.json`). Zawartość pliku to\nobiekt z tablicą <b>invoices</b>, gdzie każdy element jest obiektem typu <b>InvoiceMetadata</b>\n(taki jak zwracany przez endpoint `POST /invoices/query/metadata`).\n\n<b>Plik z metadanymi(_metadata.json) nie jest wliczany do limitów algorytmu budowania paczki</b>. \n\n`Do realizacji pobierania przyrostowego należy stosować filtrowanie po dacie PermanentStorage`.\n\n**Sortowanie:**\n\n- permanentStorageDate | invoicingDate | issueDate (Asc) - pole wybierane na podstawie filtrów\n\n\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
         "requestBody": {
           "description": "Dane wejściowe określające kryteria i format eksportu paczki faktur.",
           "content": {
@@ -2190,6 +2215,16 @@
             "Bearer": [ ]
           }
         ],
+        "x-sort": [
+          {
+            "allowedFields": [
+              "permanentStorageDate",
+              "invoicingDate",
+              "issueDate"
+            ],
+            "allowedDirections": "Asc"
+          }
+        ],
         "x-required-permissions": [
           "InvoiceRead"
         ]
@@ -2201,7 +2236,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Pobranie statusu eksportu paczki faktur",
-        "description": "Wyniki sortowane są rosnąco według typu daty przekazanej w <b>DateRange</b> przy inicjalizacji. \n\nPaczka faktur jest dzielona na części o maksymalnym rozmiarze 50 MB. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. \n\nW przypadku ucięcia wyniku eksportu z powodu przekroczenia limitów, zwracana jest flaga <b>IsTruncated = true</b> oraz odpowiednia data, którą należy wykorzystać do wykonania kolejnego eksportu, aż do momentu, gdy flaga <b>IsTruncated = false</b>.\n\nWymagane uprawnienia: `InvoiceRead`.",
+        "description": "Paczka faktur jest dzielona na części o maksymalnym rozmiarze 50 MB. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. \n\nW przypadku ucięcia wyniku eksportu z powodu przekroczenia limitów, zwracana jest flaga <b>IsTruncated = true</b> oraz odpowiednia data, którą należy wykorzystać do wykonania kolejnego eksportu, aż do momentu, gdy flaga <b>IsTruncated = false</b>.\n\n**Sortowanie:**\n\n- permanentStorageDate | invoicingDate | issueDate (Asc) - pole wybierane na podstawie filtrów\n\n\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -2248,6 +2283,16 @@
             "Bearer": [ ]
           }
         ],
+        "x-sort": [
+          {
+            "allowedFields": [
+              "permanentStorageDate",
+              "invoicingDate",
+              "issueDate"
+            ],
+            "allowedDirections": "Asc"
+          }
+        ],
         "x-required-permissions": [
           "InvoiceRead"
         ]
@@ -2259,7 +2304,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie listy sesji",
-        "description": "Zwraca listę sesji spełniających podane kryteria wyszukiwania.\n\nWymagane uprawnienia:\n- `Introspection` – pozwala pobrać wszystkie sesje w bieżącym kontekście uwierzytelnienia `(ContextIdentifier)`.\n- `InvoiceWrite` – pozwala pobrać wyłącznie sesje utworzone przez podmiot uwierzytelniający, czyli podmiot inicjujący uwierzytelnienie.",
+        "description": "Zwraca listę sesji spełniających podane kryteria wyszukiwania.\n\n\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n\n\n**Wymagane uprawnienia**:\n- `Introspection` – pozwala pobrać wszystkie sesje w bieżącym kontekście uwierzytelnienia `(ContextIdentifier)`.\n- `InvoiceWrite` – pozwala pobrać wyłącznie sesje utworzone przez podmiot uwierzytelniający, czyli podmiot inicjujący uwierzytelnienie.",
         "parameters": [
           {
             "name": "pageSize",
@@ -2406,6 +2451,12 @@
             "Bearer": [ ]
           }
         ],
+        "x-sort": [
+          {
+            "field": "dateCreated",
+            "direction": "Desc"
+          }
+        ],
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection"
@@ -2418,7 +2469,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie statusu sesji",
-        "description": "Sprawdza bieżący status sesji o podanym numerze referencyjnym.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Sprawdza bieżący status sesji o podanym numerze referencyjnym.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -2478,7 +2529,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie faktur sesji",
-        "description": "Zwraca listę faktur przesłanych w sesji wraz z ich statusami, oraz informacje na temat ilości poprawnie i niepoprawnie przetworzonych faktur.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Zwraca listę faktur przesłanych w sesji wraz z ich statusami, oraz informacje na temat ilości poprawnie i niepoprawnie przetworzonych faktur.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "x-continuation-token",
@@ -2560,7 +2611,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie statusu faktury z sesji",
-        "description": "Zwraca fakturę przesłaną w sesji wraz ze statusem.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Zwraca fakturę przesłaną w sesji wraz ze statusem.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -2629,7 +2680,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie niepoprawnie przetworzonych faktur sesji",
-        "description": "Zwraca listę niepoprawnie przetworzonych faktur przesłanych w sesji wraz z ich statusami.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Zwraca listę niepoprawnie przetworzonych faktur przesłanych w sesji wraz z ich statusami.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "x-continuation-token",
@@ -2711,7 +2762,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie UPO faktury z sesji na podstawie numeru KSeF",
-        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -2779,7 +2830,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie UPO faktury z sesji na podstawie numeru referencyjnego faktury",
-        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -2847,7 +2898,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie UPO dla sesji",
-        "description": "Zwraca XML zawierający zbiorcze UPO dla sesji.\n\nWymagane uprawnienia: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Zwraca XML zawierający zbiorcze UPO dla sesji.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -2972,6 +3023,7 @@
           "Tokeny KSeF"
         ],
         "summary": "Pobranie listy wygenerowanych tokenów",
+        "description": "\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n\n",
         "parameters": [
           {
             "name": "status",
@@ -3066,6 +3118,12 @@
         "security": [
           {
             "Bearer": [ ]
+          }
+        ],
+        "x-sort": [
+          {
+            "field": "dateCreated",
+            "direction": "Desc"
           }
         ]
       }
@@ -3169,7 +3227,7 @@
           "Usługi Peppol"
         ],
         "summary": "Pobranie listy dostawców usług Peppol",
-        "description": "Zwraca listę dostawców usług Peppol zarejestrowanych w systemie.",
+        "description": "Zwraca listę dostawców usług Peppol zarejestrowanych w systemie.\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n\n",
         "parameters": [
           {
             "name": "pageOffset",
@@ -3206,7 +3264,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryPeppolProvidersResponse"
                 },
-                "example": {"peppolProviders":[{"id":"1234567890","name":"Dostawca usług Peppol"}],"hasMore":false}
+                "example": {"peppolProviders":[{"id":"P123456789","name":"Dostawca usług Peppol"}],"hasMore":false}
               }
             }
           },
@@ -3221,7 +3279,13 @@
             },
             "x-summary": "Bad Request"
           }
-        }
+        },
+        "x-sort": [
+          {
+            "field": "dateCreated",
+            "direction": "Desc"
+          }
+        ]
       }
     },
     "/api/v2/auth/challenge": {
@@ -3528,7 +3592,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Otwarcie sesji interaktywnej",
-        "description": "Otwiera sesję do wysyłki pojedynczych faktur. Należy przekazać schemat wysyłanych faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Otwarcie sesji interaktywnej](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#1-otwarcie-sesji)\n> - [Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\nWymagane uprawnienia: `InvoiceWrite`, `PefInvoiceWrite`.",
+        "description": "Otwiera sesję do wysyłki pojedynczych faktur. Należy przekazać schemat wysyłanych faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Otwarcie sesji interaktywnej](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#1-otwarcie-sesji)\n> - [Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3594,7 +3658,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Wysłanie faktury",
-        "description": "Przyjmuje zaszyfrowaną fakturę oraz jej metadane i rozpoczyna jej przetwarzanie.\n\n> Więcej informacji:\n> - [Wysłanie faktury](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#2-wys%C5%82anie-faktury)\n\nWymagane uprawnienia: `InvoiceWrite`, `PefInvoiceWrite`.",
+        "description": "Przyjmuje zaszyfrowaną fakturę oraz jej metadane i rozpoczyna jej przetwarzanie.\n\n> Więcej informacji:\n> - [Wysłanie faktury](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#2-wys%C5%82anie-faktury)\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -3675,7 +3739,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Zamknięcie sesji interaktywnej",
-        "description": "Zamyka sesję interaktywną i rozpoczyna generowanie zbiorczego UPO dla sesji.\n\nWymagane uprawnienia: `InvoiceWrite`, `PefInvoiceWrite`.",
+        "description": "Zamyka sesję interaktywną i rozpoczyna generowanie zbiorczego UPO dla sesji.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -3726,7 +3790,7 @@
           "Wysyłka wsadowa"
         ],
         "summary": "Otwarcie sesji wsadowej",
-        "description": "Otwiera sesję do wysyłki wsadowej faktur. Należy przekazać schemat wysyłanych faktur, informacje o paczce faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Przygotwanie paczki faktur](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-wsadowa.md)\n> - [Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\nWymagane uprawnienia: `InvoiceWrite`.",
+        "description": "Otwiera sesję do wysyłki wsadowej faktur. Należy przekazać schemat wysyłanych faktur, informacje o paczce faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Przygotwanie paczki faktur](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-wsadowa.md)\n> - [Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\n**Wymagane uprawnienia**: `InvoiceWrite`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3792,7 +3856,7 @@
           "Wysyłka wsadowa"
         ],
         "summary": "Zamknięcie sesji wsadowej",
-        "description": "Zamyka sesję wsadową, rozpoczyna procesowanie paczki faktur i generowanie UPO dla prawidłowych faktur oraz zbiorczego UPO dla sesji.\n\nWymagane uprawnienia: `InvoiceWrite`.",
+        "description": "Zamyka sesję wsadową, rozpoczyna procesowanie paczki faktur i generowanie UPO dla prawidłowych faktur oraz zbiorczego UPO dla sesji.\n\n**Wymagane uprawnienia**: `InvoiceWrite`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -3842,7 +3906,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy własnych uprawnień",
-        "description": " Metoda pozwala na odczytanie własnych uprawnień uwierzytelnionego klienta API w bieżącym kontekście logowania.  \n\n W odpowiedzi przekazywane są następujące uprawnienia:  \n - nadane w sposób bezpośredni w bieżącym kontekście  \n - nadane przez podmiot nadrzędny  \n - nadane w sposób pośredni, jeżeli podmiot kontekstu logowania jest w uprawnieniu pośrednikiem lub podmiotem docelowym  \n - nadane podmiotowi do obsługi faktur przez inny podmiot, jeśli podmiot uwierzytelniony ma w bieżącym kontekście uprawnienia właścicielskie  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **CredentialsManage** – zarządzanie uprawnieniami  \n - **CredentialsRead** – przeglądanie uprawnień  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n - **SubunitManage** – zarządzanie podmiotami podrzędnymi  \n - **EnforcementOperations** – wykonywanie operacji egzekucyjnych  \n - **VatEuManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **contextIdentifier** – identyfikator podmiotu, który nadał uprawnienie do obsługi faktur  \n - **targetIdentifier** – identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n - **permissionState** – status uprawnienia  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-w%C5%82asnych-uprawnie%C5%84)",
+        "description": " Metoda pozwala na odczytanie własnych uprawnień uwierzytelnionego klienta API w bieżącym kontekście logowania.  \n\n W odpowiedzi przekazywane są następujące uprawnienia:  \n - nadane w sposób bezpośredni w bieżącym kontekście  \n - nadane przez podmiot nadrzędny  \n - nadane w sposób pośredni, jeżeli podmiot kontekstu logowania jest w uprawnieniu pośrednikiem lub podmiotem docelowym  \n - nadane podmiotowi do obsługi faktur przez inny podmiot, jeśli podmiot uwierzytelniony ma w bieżącym kontekście uprawnienia właścicielskie  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **CredentialsManage** – zarządzanie uprawnieniami  \n - **CredentialsRead** – przeglądanie uprawnień  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n - **SubunitManage** – zarządzanie podmiotami podrzędnymi  \n - **EnforcementOperations** – wykonywanie operacji egzekucyjnych  \n - **VatEuManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **contextIdentifier** – identyfikator podmiotu, który nadał uprawnienie do obsługi faktur  \n - **targetIdentifier** – identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n - **permissionState** – status uprawnienia  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-w%C5%82asnych-uprawnie%C5%84)\n\n**Sortowanie:**\n\n- startDate (Desc)\n\n",
         "parameters": [
           {
             "name": "pageOffset",
@@ -3916,6 +3980,12 @@
           {
             "Bearer": [ ]
           }
+        ],
+        "x-sort": [
+          {
+            "field": "startDate",
+            "direction": "Desc"
+          }
         ]
       }
     },
@@ -3925,7 +3995,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom",
-        "description": " Metoda pozwala na odczytanie uprawnień nadanych osobie fizycznej lub podmiotowi.  \n Lista pobranych uprawnień może być dwóch rodzajów:  \n - Lista wszystkich uprawnień obowiązujących w bieżącym kontekście logowania (używana, gdy administrator chce przejrzeć uprawnienia wszystkich użytkowników w bieżącym kontekście)  \n - Lista wszystkich uprawnień nadanych w bieżącym kontekście przez uwierzytelnionego klienta API (używana, gdy administrator chce przejrzeć listę nadanych przez siebie uprawnień w bieżącym kontekście)  \n\n Dla pierwszej listy (obowiązujących uprawnień) w odpowiedzi przekazywane są:  \n - osoby i podmioty mogące pracować w bieżącym kontekście z wyjątkiem osób uprawnionych w sposób pośredni  \n - osoby uprawnione w sposób pośredni przez podmiot bieżącego kontekstu  \n\n Dla drugiej listy (nadanych uprawnień) w odpowiedzi przekazywane są:  \n - uprawnienia nadane w sposób bezpośredni do pracy w bieżącym kontekście lub w kontekście jednostek podrzędnych  \n - uprawnienia nadane w sposób pośredni do obsługi klientów podmiotu bieżącego kontekstu  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **CredentialsManage** – zarządzanie uprawnieniami  \n - **CredentialsRead** – przeglądanie uprawnień  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n - **SubunitManage** – zarządzanie podmiotami podrzędnymi  \n - **EnforcementOperations** – wykonywanie operacji egzekucyjnych  \n\n Odpowiedź może być filtrowana na podstawie parametrów:  \n - **authorIdentifier** – identyfikator osoby, która nadała uprawnienie  \n - **authorizedIdentifier** – identyfikator osoby lub podmiotu uprawnionego  \n - **targetIdentifier** – identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n - **permissionState** – status uprawnienia  \n - **queryType** – typ zapytania określający, która z dwóch list ma zostać zwrócona  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-do-pracy-w-ksef-nadanych-osobom-fizycznym-lub-podmiotom)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
+        "description": " Metoda pozwala na odczytanie uprawnień nadanych osobie fizycznej lub podmiotowi.  \n Lista pobranych uprawnień może być dwóch rodzajów:  \n - Lista wszystkich uprawnień obowiązujących w bieżącym kontekście logowania (używana, gdy administrator chce przejrzeć uprawnienia wszystkich użytkowników w bieżącym kontekście)  \n - Lista wszystkich uprawnień nadanych w bieżącym kontekście przez uwierzytelnionego klienta API (używana, gdy administrator chce przejrzeć listę nadanych przez siebie uprawnień w bieżącym kontekście)  \n\n Dla pierwszej listy (obowiązujących uprawnień) w odpowiedzi przekazywane są:  \n - osoby i podmioty mogące pracować w bieżącym kontekście z wyjątkiem osób uprawnionych w sposób pośredni  \n - osoby uprawnione w sposób pośredni przez podmiot bieżącego kontekstu  \n\n Dla drugiej listy (nadanych uprawnień) w odpowiedzi przekazywane są:  \n - uprawnienia nadane w sposób bezpośredni do pracy w bieżącym kontekście lub w kontekście jednostek podrzędnych  \n - uprawnienia nadane w sposób pośredni do obsługi klientów podmiotu bieżącego kontekstu  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **CredentialsManage** – zarządzanie uprawnieniami  \n - **CredentialsRead** – przeglądanie uprawnień  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n - **SubunitManage** – zarządzanie podmiotami podrzędnymi  \n - **EnforcementOperations** – wykonywanie operacji egzekucyjnych  \n\n Odpowiedź może być filtrowana na podstawie parametrów:  \n - **authorIdentifier** – identyfikator osoby, która nadała uprawnienie  \n - **authorizedIdentifier** – identyfikator osoby lub podmiotu uprawnionego  \n - **targetIdentifier** – identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n - **permissionState** – status uprawnienia  \n - **queryType** – typ zapytania określający, która z dwóch list ma zostać zwrócona  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-do-pracy-w-ksef-nadanych-osobom-fizycznym-lub-podmiotom)\n\n**Sortowanie:**\n\n- startDate (Desc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -4006,6 +4076,12 @@
             "Bearer": [ ]
           }
         ],
+        "x-sort": [
+          {
+            "field": "startDate",
+            "direction": "Desc"
+          }
+        ],
         "x-required-permissions": [
           "CredentialsManage",
           "CredentialsRead",
@@ -4019,7 +4095,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień administratorów jednostek i podmiotów podrzędnych",
-        "description": " Metoda pozwala na odczytanie uprawnień do zarządzania uprawnieniami nadanych administratorom:  \n - jednostek podrzędnych identyfikowanych identyfikatorem wewnętrznym  \n - podmiotów podrzędnych (podrzędnych JST lub członków grupy VAT) identyfikowanych przez NIP  \n\n Lista zwraca wyłącznie uprawnienia do zarządzania uprawnieniami nadane z kontekstu bieżącego (z podmiotu nadrzędnego).  \n Nie są odczytywane uprawnienia nadane przez administratorów jednostek podrzędnych wewnątrz tych jednostek.  \n\n Odpowiedź może być filtrowana na podstawie parametru:  \n - **subunitIdentifier** – identyfikator jednostki lub podmiotu podrzędnego  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-administrator%C3%B3w-jednostek-i-podmiot%C3%B3w-podrz%C4%99dnych)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
+        "description": " Metoda pozwala na odczytanie uprawnień do zarządzania uprawnieniami nadanych administratorom:  \n - jednostek podrzędnych identyfikowanych identyfikatorem wewnętrznym  \n - podmiotów podrzędnych (podrzędnych JST lub członków grupy VAT) identyfikowanych przez NIP  \n\n Lista zwraca wyłącznie uprawnienia do zarządzania uprawnieniami nadane z kontekstu bieżącego (z podmiotu nadrzędnego).  \n Nie są odczytywane uprawnienia nadane przez administratorów jednostek podrzędnych wewnątrz tych jednostek.  \n\n Odpowiedź może być filtrowana na podstawie parametru:  \n - **subunitIdentifier** – identyfikator jednostki lub podmiotu podrzędnego  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-administrator%C3%B3w-jednostek-i-podmiot%C3%B3w-podrz%C4%99dnych)\n\n**Sortowanie:**\n\n- startDate (Desc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -4097,6 +4173,12 @@
             "Bearer": [ ]
           }
         ],
+        "x-sort": [
+          {
+            "field": "startDate",
+            "direction": "Desc"
+          }
+        ],
         "x-required-permissions": [
           "CredentialsManage",
           "CredentialsRead",
@@ -4110,7 +4192,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy ról podmiotu",
-        "description": " Metoda pozwala na **odczytanie listy ról podmiotu bieżącego kontekstu logowania**.\n\n#### Role podmiotów zwracane przez operację:\n- **CourtBailiff** – komornik sądowy  \n- **EnforcementAuthority** – organ egzekucyjny  \n- **LocalGovernmentUnit** – nadrzędna JST  \n- **LocalGovernmentSubUnit** – podrzędne JST  \n- **VatGroupUnit** – grupa VAT  \n- **VatGroupSubUnit** – członek grupy VAT\n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n \n > Więcej informacji:\n > - [Pobieranie listy ról](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-r%C3%B3l-podmiotu)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`.",
+        "description": " Metoda pozwala na **odczytanie listy ról podmiotu bieżącego kontekstu logowania**.\n\n#### Role podmiotów zwracane przez operację:\n- **CourtBailiff** – komornik sądowy  \n- **EnforcementAuthority** – organ egzekucyjny  \n- **LocalGovernmentUnit** – nadrzędna JST  \n- **LocalGovernmentSubUnit** – podrzędne JST  \n- **VatGroupUnit** – grupa VAT  \n- **VatGroupSubUnit** – członek grupy VAT\n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n \n > Więcej informacji:\n > - [Pobieranie listy ról](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-r%C3%B3l-podmiotu)\n\n**Sortowanie:**\n\n- startDate (Desc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -4174,6 +4256,12 @@
             "Bearer": [ ]
           }
         ],
+        "x-sort": [
+          {
+            "field": "startDate",
+            "direction": "Desc"
+          }
+        ],
         "x-required-permissions": [
           "CredentialsManage",
           "CredentialsRead"
@@ -4186,7 +4274,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy podmiotów podrzędnych",
-        "description": " Metoda pozwala na odczytanie listy podmiotów podrzędnych,  \n jeżeli podmiot bieżącego kontekstu ma rolę podmiotu nadrzędnego:\n - **nadrzędna JST** – odczytywane są podrzędne JST,  \n - **grupa VAT** – odczytywane są podmioty będące członkami grupy VAT.\n\n Role podmiotów zwracane przez operację obejmują:  \n - **LocalGovernmentSubUnit** – podrzędne JST,  \n - **VatGroupSubUnit** – członek grupy VAT.\n\n Odpowiedź może być filtrowana według parametru:  \n - **subordinateEntityIdentifier** – identyfikator podmiotu podrzędnego.\n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n  \n > Więcej informacji:\n > - [Pobieranie listy podmiotów podrzędnych](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-podmiot%C3%B3w-podrz%C4%99dnych)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
+        "description": " Metoda pozwala na odczytanie listy podmiotów podrzędnych,  \n jeżeli podmiot bieżącego kontekstu ma rolę podmiotu nadrzędnego:\n - **nadrzędna JST** – odczytywane są podrzędne JST,  \n - **grupa VAT** – odczytywane są podmioty będące członkami grupy VAT.\n\n Role podmiotów zwracane przez operację obejmują:  \n - **LocalGovernmentSubUnit** – podrzędne JST,  \n - **VatGroupSubUnit** – członek grupy VAT.\n\n Odpowiedź może być filtrowana według parametru:  \n - **subordinateEntityIdentifier** – identyfikator podmiotu podrzędnego.\n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n  \n > Więcej informacji:\n > - [Pobieranie listy podmiotów podrzędnych](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-podmiot%C3%B3w-podrz%C4%99dnych)\n\n**Sortowanie:**\n\n- startDate (Desc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -4264,6 +4352,12 @@
             "Bearer": [ ]
           }
         ],
+        "x-sort": [
+          {
+            "field": "startDate",
+            "direction": "Desc"
+          }
+        ],
         "x-required-permissions": [
           "CredentialsManage",
           "CredentialsRead",
@@ -4277,7 +4371,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień podmiotowych do obsługi faktur",
-        "description": " Metoda pozwala na odczytanie uprawnień podmiotowych:  \n - otrzymanych przez podmiot bieżącego kontekstu  \n - nadanych przez podmiot bieżącego kontekstu  \n\n Wybór listy nadanych lub otrzymanych uprawnień odbywa się przy użyciu parametru **queryType**.  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **SelfInvoicing** – wystawianie faktur w trybie samofakturowania  \n - **TaxRepresentative** – wykonywanie operacji przedstawiciela podatkowego  \n - **RRInvoicing** – wystawianie faktur VAT RR  \n - **PefInvoicing** – wystawianie faktur PEF  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **authorizingIdentifier** – identyfikator podmiotu uprawniającego (stosowane przy queryType = Received)  \n - **authorizedIdentifier** – identyfikator podmiotu uprawnionego (stosowane przy queryType = Granted)  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-podmiotowych-do-obs%C5%82ugi-faktur)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`.",
+        "description": " Metoda pozwala na odczytanie uprawnień podmiotowych:  \n - otrzymanych przez podmiot bieżącego kontekstu  \n - nadanych przez podmiot bieżącego kontekstu  \n\n Wybór listy nadanych lub otrzymanych uprawnień odbywa się przy użyciu parametru **queryType**.  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **SelfInvoicing** – wystawianie faktur w trybie samofakturowania  \n - **TaxRepresentative** – wykonywanie operacji przedstawiciela podatkowego  \n - **RRInvoicing** – wystawianie faktur VAT RR  \n - **PefInvoicing** – wystawianie faktur PEF  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **authorizingIdentifier** – identyfikator podmiotu uprawniającego (stosowane przy queryType = Received)  \n - **authorizedIdentifier** – identyfikator podmiotu uprawnionego (stosowane przy queryType = Granted)  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-podmiotowych-do-obs%C5%82ugi-faktur)\n\n**Sortowanie:**\n\n- startDate (Desc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -4358,6 +4452,12 @@
             "Bearer": [ ]
           }
         ],
+        "x-sort": [
+          {
+            "field": "startDate",
+            "direction": "Desc"
+          }
+        ],
         "x-required-permissions": [
           "CredentialsManage",
           "CredentialsRead"
@@ -4370,7 +4470,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień administratorów lub reprezentantów podmiotów unijnych uprawnionych do samofakturowania",
-        "description": " Metoda pozwala na odczytanie uprawnień administratorów lub reprezentantów podmiotów unijnych:  \n - Jeżeli kontekstem logowania jest NIP, możliwe jest odczytanie uprawnień administratorów podmiotów unijnych powiązanych z podmiotem bieżącego kontekstu, czyli takich, dla których pierwszy człon kontekstu złożonego jest równy NIP-owi kontekstu logowania.  \n - Jeżeli kontekst logowania jest złożony (NIP-VAT UE), możliwe jest pobranie wszystkich uprawnień administratorów i reprezentantów podmiotu w bieżącym kontekście złożonym.  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **VatUeManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **vatUeIdentifier** – identyfikator podmiotu unijnego  \n - **authorizedFingerprintIdentifier** – odcisk palca certyfikatu uprawnionej osoby lub podmiotu  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n \n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-administrator%C3%B3w-lub-reprezentant%C3%B3w-podmiot%C3%B3w-unijnych-uprawnionych-do-samofakturowania)\n\nWymagane uprawnienia: `CredentialsManage`, `CredentialsRead`, `VatUeManage`.",
+        "description": " Metoda pozwala na odczytanie uprawnień administratorów lub reprezentantów podmiotów unijnych:  \n - Jeżeli kontekstem logowania jest NIP, możliwe jest odczytanie uprawnień administratorów podmiotów unijnych powiązanych z podmiotem bieżącego kontekstu, czyli takich, dla których pierwszy człon kontekstu złożonego jest równy NIP-owi kontekstu logowania.  \n - Jeżeli kontekst logowania jest złożony (NIP-VAT UE), możliwe jest pobranie wszystkich uprawnień administratorów i reprezentantów podmiotu w bieżącym kontekście złożonym.  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **VatUeManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **vatUeIdentifier** – identyfikator podmiotu unijnego  \n - **authorizedFingerprintIdentifier** – odcisk palca certyfikatu uprawnionej osoby lub podmiotu  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n \n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-administrator%C3%B3w-lub-reprezentant%C3%B3w-podmiot%C3%B3w-unijnych-uprawnionych-do-samofakturowania)\n\n**Sortowanie:**\n\n- startDate (Desc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `VatUeManage`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -4446,6 +4546,12 @@
         "security": [
           {
             "Bearer": [ ]
+          }
+        ],
+        "x-sort": [
+          {
+            "field": "startDate",
+            "direction": "Desc"
           }
         ],
         "x-required-permissions": [
