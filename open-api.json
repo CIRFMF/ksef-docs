@@ -10737,6 +10737,7 @@
       "UpoPageResponse": {
         "required": [
           "downloadUrl",
+          "downloadUrlExpirationDate",
           "referenceNumber"
         ],
         "type": "object",
@@ -10747,8 +10748,13 @@
           },
           "downloadUrl": {
             "type": "string",
-            "description": "Adres do pobrania strony UPO.",
+            "description": "Adres do pobrania strony UPO. Link generowany jest przy każdym odpytaniu o status. \nDostęp odbywa się metodą `HTTP GET` i <b>nie należy</b> wysyłać tokenu dostępowego. \nLink nie podlega limitom API i wygasa po określonym czasie w `DownloadUrlExpirationDate`.",
             "format": "uri"
+          },
+          "downloadUrlExpirationDate": {
+            "type": "string",
+            "description": "Data i godzina wygaśnięcia adresu. Po tej dacie link `DownloadUrl` nie będzie już aktywny.",
+            "format": "date-time"
           }
         },
         "additionalProperties": false

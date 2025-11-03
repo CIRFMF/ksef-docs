@@ -2,6 +2,9 @@
 
 ### Wersja 2.0.0 RC5.6
 
+- **Pobranie statusu sesji (GET `/sessions/{referenceNumber}`)**  
+  Dodano w odpowiedzi pole `UpoPageResponse.downloadUrlExpirationDate` - data i godzina wygaśnięcia adresu pobrania UPO; po tym momencie `downloadUrl` nie jest już aktywny.
+
 - **OpenAPI**  
   - Dodano metadane `x-sort` do wszystkich endpointów zwracających listy. W opisach endpointów dodano sekcję Sortowanie z domyślnym porządkiem (np. "requestDate (Desc)").
   - Dodano ograniczenia długości dla pól typu string: minLength oraz maxLength.
