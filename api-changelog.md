@@ -15,6 +15,7 @@
   - Zdefiniowano wspólny schemat `Sha256HashBase64` i zastosowano go do wszystkich właściwości reprezentujących skrót `SHA-256` w `Base64` (m.in. `invoiceHash`).
   - Zdefiniowano wspólny schemat `ReferenceNumber` (string, długość 36) i zastosowano go do wszystkich parametrów i właściwości reprezentujących numer referencyjny operacji asynchronicznej (w ścieżkach, zapytaniach i odpowiedziach).
   - Zdefiniowano wspólny schemat `Nip` (string, 10 znaków, regex pattern) i zastosowano go do wszystkich właściwości reprezentujących NIP.
+  - Zdefiniowano schemat `Challenge` (string, 36 znaków) i zastosowano w `AuthenticationChallengeResponse`.`challenge`.
 
 ### Wersja 2.0.0 RC5.5
 
