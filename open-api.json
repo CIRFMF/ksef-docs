@@ -8430,7 +8430,7 @@
             "$ref": "#/components/schemas/Nip"
           },
           "pesel": {
-            "type": "string"
+            "$ref": "#/components/schemas/Pesel"
           },
           "isBailiff": {
             "type": "boolean"
@@ -9125,6 +9125,13 @@
           "InternalId"
         ],
         "type": "string"
+      },
+      "Pesel": {
+        "maxLength": 11,
+        "minLength": 11,
+        "pattern": "^\\d{2}(?:0[1-9]|1[0-2]|2[1-9]|3[0-2]|4[1-9]|5[0-2]|6[1-9]|7[0-2]|8[1-9]|9[0-2])\\d{7}$",
+        "type": "string",
+        "description": "11 cyfrowy numer PESEL"
       },
       "PublicKeyCertificate": {
         "required": [
