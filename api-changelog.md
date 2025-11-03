@@ -5,6 +5,9 @@
 - **Pobranie statusu sesji (GET `/sessions/{referenceNumber}`)**  
   Dodano w odpowiedzi pole `UpoPageResponse.downloadUrlExpirationDate` - data i godzina wygaśnięcia adresu pobrania UPO; po tym momencie `downloadUrl` nie jest już aktywny.
 
+- **Pobranie listy metadanych certyfikatów (POST `/certificates/query`)**  
+  Rozszerzono odpowiedź (`CertificateListItem`) o właściwość `requestDate` - data złożenia wniosku certyfikacyjnego.  
+
 - **OpenAPI**  
   - Dodano metadane `x-sort` do wszystkich endpointów zwracających listy. W opisach endpointów dodano sekcję Sortowanie z domyślnym porządkiem (np. "requestDate (Desc)").
   - Dodano ograniczenia długości dla pól typu string: minLength oraz maxLength.
