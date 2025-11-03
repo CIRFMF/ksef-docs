@@ -4799,7 +4799,7 @@
         "type": "object",
         "properties": {
           "nip": {
-            "type": "string"
+            "$ref": "#/components/schemas/Nip"
           }
         },
         "additionalProperties": false
@@ -4811,7 +4811,7 @@
         "type": "object",
         "properties": {
           "nip": {
-            "type": "string"
+            "$ref": "#/components/schemas/Nip"
           }
         },
         "additionalProperties": false
@@ -7511,7 +7511,11 @@
         "type": "object",
         "properties": {
           "nip": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Nip"
+              }
+            ],
             "description": "Nip podmiotu upoważnionego"
           },
           "name": {
@@ -7583,7 +7587,11 @@
         "type": "object",
         "properties": {
           "nip": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Nip"
+              }
+            ],
             "description": "Nip sprzedawcy."
           },
           "name": {
@@ -7922,8 +7930,12 @@
             "nullable": true
           },
           "sellerNip": {
-            "type": "string",
-            "description": "Nip sprzedawcy.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Nip"
+              }
+            ],
+            "description": "Nip sprzedawcy (exact match).",
             "nullable": true
           },
           "buyerIdentifier": {
@@ -8036,6 +8048,13 @@
         ],
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany wyłącznie do potwierdzania autentyczności wystawcy i integralności faktury w trybie offline |\n"
+      },
+      "Nip": {
+        "maxLength": 10,
+        "minLength": 10,
+        "pattern": "^[1-9]((\\d[1-9])|([1-9]\\d))\\d{7}$",
+        "type": "string",
+        "description": "10 cyfrowy numer NIP"
       },
       "OnlineSessionContextLimitsOverride": {
         "required": [
@@ -8348,7 +8367,7 @@
         "type": "object",
         "properties": {
           "nip": {
-            "type": "string"
+            "$ref": "#/components/schemas/Nip"
           },
           "pesel": {
             "type": "string"
@@ -8782,7 +8801,7 @@
         "type": "object",
         "properties": {
           "nip": {
-            "type": "string"
+            "$ref": "#/components/schemas/Nip"
           }
         },
         "additionalProperties": false
@@ -10038,7 +10057,7 @@
         "type": "object",
         "properties": {
           "subjectNip": {
-            "type": "string"
+            "$ref": "#/components/schemas/Nip"
           },
           "subjectType": {
             "allOf": [
@@ -10083,7 +10102,7 @@
         "type": "object",
         "properties": {
           "subjectNip": {
-            "type": "string"
+            "$ref": "#/components/schemas/Nip"
           }
         },
         "additionalProperties": false
@@ -10201,7 +10220,7 @@
         "type": "object",
         "properties": {
           "subjectNip": {
-            "type": "string"
+            "$ref": "#/components/schemas/Nip"
           },
           "description": {
             "maxLength": 256,
