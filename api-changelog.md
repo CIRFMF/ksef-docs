@@ -10,9 +10,10 @@
 
 - **OpenAPI**  
   - Dodano metadane `x-sort` do wszystkich endpointów zwracających listy. W opisach endpointów dodano sekcję Sortowanie z domyślnym porządkiem (np. "requestDate (Desc)").
-  - Dodano ograniczenia długości dla pól typu string: `minLength` oraz `maxLength`.
-  - Doprecyzowano format pól reprezentujących dane binarne kodowane `Base64`: ustawiono format: `byte` (`encryptedInvoiceContent`, `encryptedSymmetricKey`, `initializationVector`, `encryptedToken`).
-  - Zdefiniowano wspólny schemat `Sha256HashBase64` i zastosowano go do wszystkich pól reprezentujących skrót `SHA-256` w `Base64` (m.in. `invoiceHash`).
+  - Dodano ograniczenia długości dla właściwości typu string: `minLength` oraz `maxLength`.
+  - Doprecyzowano format właściwości reprezentujących dane binarne kodowane `Base64`: ustawiono format: `byte` (`encryptedInvoiceContent`, `encryptedSymmetricKey`, `initializationVector`, `encryptedToken`).
+  - Zdefiniowano wspólny schemat `Sha256HashBase64` i zastosowano go do wszystkich właściwości reprezentujących skrót `SHA-256` w `Base64` (m.in. `invoiceHash`).
+  - Zdefiniowano wspólny schemat `ReferenceNumber` (string, długość 36) i zastosowano go do wszystkich parametrów i właściwości reprezentujących numer referencyjny operacji asynchronicznej (w ścieżkach, zapytaniach i odpowiedziach).
 
 ### Wersja 2.0.0 RC5.5
 

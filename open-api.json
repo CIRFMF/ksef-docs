@@ -124,7 +124,7 @@
             "description": "Numer referencyjny sesji uwierzytelnienia.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -310,7 +310,7 @@
             "description": "Numer referencyjny wniosku certyfikacyjnego",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -1888,10 +1888,10 @@
           {
             "name": "referenceNumber",
             "in": "path",
-            "description": "Numer referencyjny operacji",
+            "description": "Numer referencyjny operacji nadania lub odbierania uprawnień.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -2241,10 +2241,10 @@
           {
             "name": "referenceNumber",
             "in": "path",
-            "description": "Numer referencyjny operacji eksportu paczki faktur.",
+            "description": "Numer referencyjny eksportu faktur.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -2338,7 +2338,7 @@
             "in": "query",
             "description": "Numer referencyjny sesji.",
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           },
           {
@@ -2477,7 +2477,7 @@
             "description": "Numer referencyjny sesji.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -2489,7 +2489,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/SessionStatusResponse"
                 },
-                "example": {"status":{"code":200,"description":"Sesja interaktywna przetworzona pomyślnie"},"upo":{"pages":[{"referenceNumber":"20250626-EU-2EBD6FA000-242EB9B66D-43","downloadUrl":"https://ksef-test.mf.gov.pl/storage/01/20250918-sb-3789a40000-20373e1269-a3/session-upo/upo_00.xml?sv=2025-01-05&st=2025-09-18T14%3A55%3A50Z&se=2025-09-21T15%3A00%3A50Z&sr=b&sp=r&sig=ZlQO6Xtzu3VQQDwmEMfb0VryMxe9WcUgWtkdiB6X2Qo%3D"}]},"invoiceCount":10,"successfulInvoiceCount":8,"failedInvoiceCount":2}
+                "example": {"status":{"code":200,"description":"Sesja interaktywna przetworzona pomyślnie"},"upo":{"pages":[{"referenceNumber":"20250918-EU-2EBD6FA000-242EB9B66D-43","downloadUrl":"https://ksef-test.mf.gov.pl/storage/01/20250918-sb-3789a40000-20373e1269-a3/session-upo/upo_00.xml?sv=2025-01-05&st=2025-09-18T14%3A55%3A50Z&se=2025-09-21T15%3A00%3A50Z&sr=b&sp=r&sig=ZlQO6Xtzu3VQQDwmEMfb0VryMxe9WcUgWtkdiB6X2Qo%3D","downloadUrlExpirationDate":"2025-09-21T15:00:50+00:00"}]},"invoiceCount":10,"successfulInvoiceCount":8,"failedInvoiceCount":2}
               }
             }
           },
@@ -2545,7 +2545,7 @@
             "description": "Numer referencyjny sesji.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           },
           {
@@ -2571,7 +2571,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/SessionInvoicesResponse"
                 },
-                "example": {"continuationToken":"W34idG9rZW4iOiIrUklEOn4xUE5BQU5hcXJVOUFBQUFBQUFBQUFBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBVUFBQUFBQUFBQUFRZ0FBQUFBQUFBQT0iLCJyYW5nZSI6eyJtaW4iOiIiLCJtYXgiOiJGRiJ9fV0=","invoices":[{"ordinalNumber":1,"invoiceNumber":"FA/XPWIC-7900685789/06/2025","ksefNumber":"5265877635-20250626-010080DD2B5E-26","referenceNumber":"20250626-EE-2F15D39000-242207E5C4-1B","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","acquisitionDate":"2025-07-11T12:24:16.0154302+00:00","invoicingDate":"2025-07-11T12:23:56.0154302+00:00","permanentStorageDate":"2025-07-11T12:24:01.0154302+00:00","upoDownloadUrl":"https://ksef-test.mf.gov.pl/storage/01/20250918-SB-3789A40000-20373E1269-A3/invoice-upo/upo_5265877635-20250626-010080DD2B5E-26.xml?sv=2025-01-05&st=2025-09-18T14%3A49%3A20Z&se=2025-09-21T14%3A54%3A20Z&sr=b&sp=r&sig=%2BUWFPA10gS580VhngGKW%2FZiOOtiHPOiTyMlxhG6ZvWs%3D","upoDownloadUrlExpirationDate":"2025-07-14T12:24:01.0154302+00:00","status":{"code":200,"description":"Sukces"}},{"ordinalNumber":2,"referenceNumber":"20250626-EE-2F20AD2000-242386DF86-52","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","invoicingDate":"2025-07-11T12:23:56.0154302+00:00","status":{"code":440,"description":"Duplikat faktury","details":["Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"]}}]}
+                "example": {"continuationToken":"W34idG9rZW4iOiIrUklEOn4xUE5BQU5hcXJVOUFBQUFBQUFBQUFBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBVUFBQUFBQUFBQUFRZ0FBQUFBQUFBQT0iLCJyYW5nZSI6eyJtaW4iOiIiLCJtYXgiOiJGRiJ9fV0=","invoices":[{"ordinalNumber":1,"invoiceNumber":"FA/XPWIC-7900685789/06/2025","ksefNumber":"5265877635-20250626-010080DD2B5E-26","referenceNumber":"20250918-EE-2F15D39000-242207E5C4-1B","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","acquisitionDate":"2025-09-18T12:24:16.0154302+00:00","invoicingDate":"2025-09-18T12:23:56.0154302+00:00","permanentStorageDate":"2025-09-18T12:24:01.0154302+00:00","upoDownloadUrl":"https://ksef-test.mf.gov.pl/storage/01/20250918-SB-3789A40000-20373E1269-A3/invoice-upo/upo_5265877635-20250626-010080DD2B5E-26.xml?sv=2025-01-05&st=2025-09-18T14%3A49%3A20Z&se=2025-09-21T14%3A54%3A20Z&sr=b&sp=r&sig=%2BUWFPA10gS580VhngGKW%2FZiOOtiHPOiTyMlxhG6ZvWs%3D","upoDownloadUrlExpirationDate":"2025-09-21T14:54:20+00:00","status":{"code":200,"description":"Sukces"}},{"ordinalNumber":2,"referenceNumber":"20250918-EE-2F20AD2000-242386DF86-52","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","invoicingDate":"2025-09-18T12:23:56.0154302+00:00","status":{"code":440,"description":"Duplikat faktury","details":["Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"]}}]}
               }
             }
           },
@@ -2619,7 +2619,7 @@
             "description": "Numer referencyjny sesji.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           },
           {
@@ -2628,7 +2628,7 @@
             "description": "Numer referencyjny faktury.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -2696,7 +2696,7 @@
             "description": "Numer referencyjny sesji.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           },
           {
@@ -2770,7 +2770,7 @@
             "description": "Numer referencyjny sesji.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           },
           {
@@ -2838,7 +2838,7 @@
             "description": "Numer referencyjny sesji.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           },
           {
@@ -2847,7 +2847,7 @@
             "description": "Numer referencyjny faktury.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -2906,7 +2906,7 @@
             "description": "Numer referencyjny sesji.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           },
           {
@@ -2915,7 +2915,7 @@
             "description": "Numer referencyjny UPO.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -3140,10 +3140,10 @@
           {
             "name": "referenceNumber",
             "in": "path",
-            "description": "Numer referencyjny tokena.",
+            "description": "Numer referencyjny tokena KSeF.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -3190,10 +3190,10 @@
           {
             "name": "referenceNumber",
             "in": "path",
-            "description": "Numer referencyjny tokena do unieważeniania.",
+            "description": "Numer referencyjny tokena KSeF.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -3443,7 +3443,7 @@
             "description": "Numer referencyjny tokena otrzymanego przy inicjalizacji operacji uwierzytelniania.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -3668,7 +3668,7 @@
             "description": "Numer referencyjny sesji",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -3749,7 +3749,7 @@
             "description": "Numer referencyjny sesji",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -3866,7 +3866,7 @@
             "description": "Numer referencyjny sesji",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReferenceNumber"
             }
           }
         ],
@@ -4874,8 +4874,12 @@
         "type": "object",
         "properties": {
           "referenceNumber": {
-            "type": "string",
-            "description": "Numer referencyjny operacji uwierzytelnienia."
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
+            "description": "Numer referencyjny sesji uwierzytelnienia."
           },
           "authenticationToken": {
             "required": [
@@ -4940,8 +4944,12 @@
             "nullable": true
           },
           "referenceNumber": {
-            "type": "string",
-            "description": "Numer referencyjny operacji uwierzytelnienia."
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
+            "description": "Numer referencyjny sesji uwierzytelnienia."
           },
           "isCurrent": {
             "type": "boolean",
@@ -6080,8 +6088,12 @@
         "type": "object",
         "properties": {
           "referenceNumber": {
-            "type": "string",
-            "description": "Numer referencyjny operacji przetwarzania wniosku certyfikacyjnego."
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
+            "description": "Numer referencyjny wniosku certyfikacyjnego."
           },
           "timestamp": {
             "type": "string",
@@ -6940,7 +6952,11 @@
             "nullable": true
           },
           "referenceNumber": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
             "nullable": true
           },
           "serviceCode": {
@@ -7001,8 +7017,12 @@
         "type": "object",
         "properties": {
           "referenceNumber": {
-            "type": "string",
-            "description": "Numer referencyjny operacji eksportu paczki faktur."
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
+            "description": "Numer referencyjny eksportu faktur."
           }
         },
         "additionalProperties": false
@@ -7060,8 +7080,12 @@
         "type": "object",
         "properties": {
           "referenceNumber": {
-            "type": "string",
-            "description": "Numer referencyjny tokena KSeF. Za jego pomocą można sprawdzić jego status lub go unieważnić."
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
+            "description": "Numer referencyjny tokena KSeF."
           },
           "token": {
             "maxLength": 160,
@@ -8145,7 +8169,11 @@
         "type": "object",
         "properties": {
           "referenceNumber": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
             "description": "Numer referencyjny sesji."
           },
           "partUploadRequests": {
@@ -8201,7 +8229,11 @@
         "type": "object",
         "properties": {
           "referenceNumber": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
             "description": "Numer referencyjny sesji."
           },
           "validUntil": {
@@ -8279,8 +8311,12 @@
         "type": "object",
         "properties": {
           "referenceNumber": {
-            "type": "string",
-            "description": "Numer referencyjny asynchronicznej operacji nadawania lub odbierania uprawnień."
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
+            "description": "Numer referencyjny operacji nadania lub odbierania uprawnień."
           }
         },
         "additionalProperties": false
@@ -9333,8 +9369,12 @@
         "type": "object",
         "properties": {
           "referenceNumber": {
-            "type": "string",
-            "description": "Numer referencyjny tokena."
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
+            "description": "Numer referencyjny tokena KSeF."
           },
           "authorIdentifier": {
             "required": [
@@ -9408,6 +9448,12 @@
           "Received"
         ],
         "type": "string"
+      },
+      "ReferenceNumber": {
+        "maxLength": 36,
+        "minLength": 36,
+        "type": "string",
+        "description": "Numer referencyjny"
       },
       "RetrieveCertificatesListItem": {
         "required": [
@@ -9558,7 +9604,11 @@
         "type": "object",
         "properties": {
           "referenceNumber": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
             "description": "Numer referencyjny faktury."
           }
         },
@@ -9593,7 +9643,11 @@
             "nullable": true
           },
           "referenceNumber": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
             "description": "Numer referencyjny faktury."
           },
           "invoiceHash": {
@@ -9782,7 +9836,11 @@
         "type": "object",
         "properties": {
           "referenceNumber": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
             "description": "Numer referencyjny sesji."
           },
           "status": {
@@ -10722,8 +10780,12 @@
         "type": "object",
         "properties": {
           "referenceNumber": {
-            "type": "string",
-            "description": "Numer referencyjny tokena."
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
+            "description": "Numer referencyjny tokena KSeF."
           },
           "authorIdentifier": {
             "required": [
@@ -10800,7 +10862,11 @@
         "type": "object",
         "properties": {
           "referenceNumber": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceNumber"
+              }
+            ],
             "description": "Numer referencyjny strony UPO."
           },
           "downloadUrl": {
