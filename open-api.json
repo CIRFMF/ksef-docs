@@ -6018,11 +6018,13 @@
         "properties": {
           "encryptedSymmetricKey": {
             "type": "string",
-            "description": "Klucz symetryczny o długości 32 bajtów, zaszyfrowany algorytmem RSA (Padding: OAEP z SHA-256), zakodowany w formacie Base64.\n\n[Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)"
+            "description": "Klucz symetryczny o długości 32 bajtów, zaszyfrowany algorytmem RSA (Padding: OAEP z SHA-256), zakodowany w formacie Base64.\n\n[Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)",
+            "format": "byte"
           },
           "initializationVector": {
             "type": "string",
-            "description": "Wektor inicjalizujący (IV) o długości 16 bajtów, używany do szyfrowania symetrycznego, zakodowany w formacie Base64."
+            "description": "Wektor inicjalizujący (IV) o długości 16 bajtów, używany do szyfrowania symetrycznego, zakodowany w formacie Base64.",
+            "format": "byte"
           }
         },
         "additionalProperties": false
@@ -7203,7 +7205,8 @@
           },
           "encryptedToken": {
             "type": "string",
-            "description": "Zaszyfrowany token wraz z timestampem z challenge'a, w formacie `token|timestamp`."
+            "description": "Zaszyfrowany token wraz z timestampem z challenge'a, w formacie `token|timestamp`.",
+            "format": "byte"
           },
           "authorizationPolicy": {
             "allOf": [
@@ -9496,7 +9499,8 @@
           },
           "encryptedInvoiceContent": {
             "type": "string",
-            "description": "Faktura zaszyfrowana algorytmem AES-256-CBC z dopełnianiem PKCS#7 (kluczem przekazanym przy otwarciu sesji), zakodowana w formacie Base64."
+            "description": "Faktura zaszyfrowana algorytmem AES-256-CBC z dopełnianiem PKCS#7 (kluczem przekazanym przy otwarciu sesji), zakodowana w formacie Base64.",
+            "format": "byte"
           },
           "offlineMode": {
             "type": "boolean",
