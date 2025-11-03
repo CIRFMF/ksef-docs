@@ -1773,7 +1773,7 @@
             "description": "Id uprawnienia.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/PermissionId"
             }
           }
         ],
@@ -1833,7 +1833,7 @@
             "description": "Id uprawnienia.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/PermissionId"
             }
           }
         ],
@@ -6143,7 +6143,11 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionId"
+              }
+            ],
             "description": "Identyfikator uprawnienia."
           },
           "authorIdentifier": {
@@ -6741,7 +6745,11 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionId"
+              }
+            ],
             "description": "Identyfikator uprawnienia."
           },
           "authorIdentifier": {
@@ -8325,6 +8333,12 @@
         },
         "additionalProperties": false
       },
+      "PermissionId": {
+        "maxLength": 36,
+        "minLength": 36,
+        "type": "string",
+        "description": "Techniczny identyfikator nadanego uprawnienia – wymagany m.in. przy operacjach odbierania."
+      },
       "PermissionState": {
         "enum": [
           "Active",
@@ -8414,7 +8428,11 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionId"
+              }
+            ],
             "description": "Identyfikator uprawnienia."
           },
           "authorizedIdentifier": {
@@ -8827,7 +8845,11 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionId"
+              }
+            ],
             "description": "Identyfikator uprawnienia."
           },
           "contextIdentifier": {
@@ -10251,7 +10273,11 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionId"
+              }
+            ],
             "description": "Identyfikator uprawnienia."
           },
           "authorizedIdentifier": {

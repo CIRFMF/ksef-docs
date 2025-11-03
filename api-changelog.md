@@ -16,6 +16,7 @@
   - Zdefiniowano wspólny schemat `ReferenceNumber` (string, długość 36) i zastosowano go do wszystkich parametrów i właściwości reprezentujących numer referencyjny operacji asynchronicznej (w ścieżkach, zapytaniach i odpowiedziach).
   - Zdefiniowano wspólny schemat `Nip` (string, 10 znaków, regex pattern) i zastosowano go do wszystkich właściwości reprezentujących NIP.
   - Zdefiniowano schemat `Challenge` (string, 36 znaków) i zastosowano w `AuthenticationChallengeResponse`.`challenge`.
+  - Zdefiniowano wspólny schemat `PermissionId` (string, 36 znaków) i zastosowano go we wszystkich miejscach: w parametrach oraz we właściwościach odpowiedzi.
 
 ### Wersja 2.0.0 RC5.5
 
