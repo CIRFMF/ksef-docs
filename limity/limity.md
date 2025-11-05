@@ -54,11 +54,27 @@ GET [/limits/context](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Limity-
 
 Zwraca wartości obowiązujących limitów sesji interaktywnych i wsadowych dla bieżącego kontekstu.
 
+Przykład w języku Java:
+
+[ContextLimitIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/ContextLimitIntegrationTest.java)
+
+```java
+GetContextLimitResponse response = ksefClient.getContextSessionLimit(accessToken);
+```
+
 ### Pobranie limitów dla bieżącego podmiotu ###
 
 GET [/limits/subject](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Limity-i-ograniczenia/paths/~1api~1v2~1limits~1subject/get)
 
 Zwraca obowiązujące limity certyfikatów i wniosków certyfikacyjnych dla bieżącego podmiotu uwierzytelnionego.
+
+Przykład w języku Java:
+
+[SubjectLimitIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SubjectLimitIntegrationTest.java)
+
+```java
+GetSubjectLimitResponse response = ksefClient.getSubjectCertificateLimit(accessToken);
+```
 
 ## Modyfikacja limitów na środowisku testowym ##
 
@@ -69,18 +85,62 @@ Operacje te dostępne są wyłącznie dla uwierzytelnionych podmiotów i nie maj
 
 POST [/testdata/limits/context/session](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Limity-i-ograniczenia/paths/~1api~1v2~1testdata~1limits~1context~1session/post)
 
+Przykład w języku Java:
+
+[ContextLimitIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/ContextLimitIntegrationTest.java)
+
+```java
+ChangeContextLimitRequest request = new ChangeContextLimitRequest();
+OnlineSessionLimit onlineSessionLimit = new OnlineSessionLimit();
+onlineSessionLimit.setMaxInvoiceSizeInMB(4);
+onlineSessionLimit.setMaxInvoiceWithAttachmentSizeInMB(5);
+onlineSessionLimit.setMaxInvoices(6);
+
+BatchSessionLimit batchSessionLimit = new BatchSessionLimit();
+batchSessionLimit.setMaxInvoiceSizeInMB(4);
+batchSessionLimit.setMaxInvoiceWithAttachmentSizeInMB(5);
+batchSessionLimit.setMaxInvoices(6);
+
+request.setOnlineSession(onlineSessionLimit);
+request.setBatchSession(batchSessionLimit);
+
+ksefClient.changeContextLimitTest(request, accessToken);
+```
+
 ### Przywrócenie limitów sesji dla kontekstu do wartości domyślnych ###
 
 DELETE [/testdata/limits/context/session](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Limity-i-ograniczenia/paths/~1api~1v2~1testdata~1limits~1context~1session/delete)
+
+[ContextLimitIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/ContextLimitIntegrationTest.java)
+
+```java
+ksefClient.resetContextLimitTest(accessToken);
+```
 
 ### Zmiana limitów certyfikatów dla bieżącego podmiotu ###
 
 POST [/testdata/limits/subject/certificate](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Limity-i-ograniczenia/paths/~1api~1v2~1testdata~1limits~1subject~1certificate/post)
 
+[SubjectLimitIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SubjectLimitIntegrationTest.java)
+
+```java
+ChangeSubjectCertificateLimitRequest request = new ChangeSubjectCertificateLimitRequest();
+request.setCertificate(new CertificateLimit(15));
+request.setEnrollment(new EnrollmentLimit(15));
+request.setSubjectIdentifierType(ChangeSubjectCertificateLimitRequest.SubjectType.NIP);
+
+ksefClient.changeSubjectLimitTest(request, accessToken);
+```
+
 ### Przywrócenie limitów certyfikatów dla podmiotu do wartości domyślnych ###
 
 DELETE [/testdata/limits/subject/certificate](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Limity-i-ograniczenia/paths/~1api~1v2~1testdata~1limits~1subject~1certificate/delete)
 
+[SubjectLimitIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SubjectLimitIntegrationTest.java)
+
+```java
+ksefClient.resetSubjectCertificateLimit(accessToken);
+```
 
 Powiązane dokumenty: 
 - [Limity żądań api](limity-api.md)

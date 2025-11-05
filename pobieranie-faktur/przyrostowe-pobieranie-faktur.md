@@ -50,6 +50,33 @@ foreach (ExportTask task in exportTasks)
 
     // Dalsza obsługa eksportu...
 ```
+Przykład w języku ```java```:
+[IncrementalInvoiceRetrieveIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/IncrementalInvoiceRetrieveIntegrationTest.java)
+
+
+```java
+Map<InvoiceQuerySubjectType, OffsetDateTime> continuationPoints = new HashMap<>();
+
+List<TimeWindows> timeWindows = buildIncrementalWindows(batchCreationStart, batchCreationCompleted);
+List<InvoiceQuerySubjectType> subjectTypes = Arrays.stream(InvoiceQuerySubjectType.values())
+        .filter(x -> x != InvoiceQuerySubjectType.SUBJECTAUTHORIZED)
+        .toList();
+
+List<ExportTask> exportTasks = timeWindows.stream()
+        .flatMap(window -> subjectTypes.stream()
+                .map(subjectType -> new ExportTask(window.getFrom(), window.getTo(), subjectType)))
+        .sorted(Comparator.comparing(ExportTask::getFrom)
+                .thenComparing(ExportTask::getSubjectType))
+        .toList();
+exportTasks.forEach(task -> {
+        EncryptionData encryptionData = defaultCryptographyService.getEncryptionData();
+        OffsetDateTime effectiveFrom = getEffectiveStartDate(continuationPoints, task.getSubjectType(), task.getFrom());
+        String operationReferenceNumber = initiateInvoiceExportAsync(effectiveFrom, task.getTo(),
+            task.getSubjectType(), accessToken, encryptionData.encryptionInfo());
+
+// Dalsza obsługa eksportu...
+```
+
 
 ### Zalecane wielkości okien
 
@@ -112,6 +139,25 @@ OperationResponse response = await KsefRateLimitWrapper.ExecuteWithRetryAsync(
     cancellationToken: CancellationToken);
 ```
 
+Przykład w języku ```java```:
+[IncrementalInvoiceRetrieveIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/IncrementalInvoiceRetrieveIntegrationTest.java)
+
+
+```java
+EncryptionData encryptionData = defaultCryptographyService.getEncryptionData();
+InvoiceExportFilters filters = new InvoiceExportFilters();
+filters.setSubjectType(subjectType);
+filters.setDateRange(new InvoiceQueryDateRange(
+        InvoiceQueryDateType.PERMANENTSTORAGE, windowFrom, windowTo)
+);
+
+InvoiceExportRequest request = new InvoiceExportRequest();
+request.setFilters(filters);
+request.setEncryption(encryptionInfo);
+
+InitAsyncInvoicesQueryResponse response = ksefClient.initAsyncQueryInvoice(request, accessToken);
+```
+
 ## Pobieranie i przetwarzanie paczek
 
 Po zakończeniu eksportu paczka faktur jest dostępna do pobrania jako zaszyfrowane archiwum ZIP dzielone na części. Proces pobierania i przetwarzania obejmuje:
@@ -172,6 +218,29 @@ foreach ((string fileName, string content) in unzippedFiles)
 }
 ```
 
+Przykład w języku ```java```:
+[IncrementalInvoiceRetrieveIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/IncrementalInvoiceRetrieveIntegrationTest.java)
+
+
+```java
+ List<InvoicePackagePart> parts = invoiceExportStatus.getPackageParts().getParts();
+byte[] mergedZip = FilesUtil.mergeZipParts(
+        encryptionData,
+        parts,
+        part -> ksefClient.downloadPackagePart(part),
+        (encryptedPackagePart, key, iv) -> defaultCryptographyService.decryptBytesWithAes256(encryptedPackagePart, key, iv)
+);
+Map<String, String> downloadedFiles = FilesUtil.unzip(mergedZip);
+
+String metadataJson = downloadedFiles.keySet()
+        .stream()
+        .filter(fileName -> fileName.endsWith(".json"))
+        .findFirst()
+        .map(downloadedFiles::get)
+        .orElse(null);
+InvoicePackageMetadata invoicePackageMetadata = objectMapper.readValue(metadataJson, InvoicePackageMetadata.class);
+```
+
 ## Obsługa obciętych paczek (IsTruncated)
 
 Flaga `IsTruncated = true` jest ustawiana, gdy podczas budowy paczki osiągnięto limity algorytmu (liczba faktur lub rozmiar danych po kompresji). W takim przypadku w statusie operacji dostępna jest właściwość `LastPermanentStorageDate` - data ostatniej faktury ujętej w paczce.
@@ -204,6 +273,22 @@ private static void UpdateContinuationPointIfNeeded(
 }
 ```
 
+Przykład w języku ```java```:
+[IncrementalInvoiceRetrieveIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/IncrementalInvoiceRetrieveIntegrationTest.java)
+
+
+```java
+private void updateContinuationPointIfNeeded(Map<InvoiceQuerySubjectType, OffsetDateTime> continuationPoints,
+                                                 InvoiceQuerySubjectType subjectType,
+                                                 InvoiceExportPackage invoiceExportPackage) {
+    if (Boolean.TRUE.equals(invoiceExportPackage.getIsTruncated()) && Objects.nonNull(invoiceExportPackage.getLastPermanentStorageDate())) {
+        continuationPoints.put(subjectType, invoiceExportPackage.getLastPermanentStorageDate());
+    } else {
+        continuationPoints.remove(subjectType);
+    }
+}
+```
+
 ## Deduplikacja faktur
 
 ### Strategia deduplikacji
@@ -221,6 +306,21 @@ bool hasDuplicates = false;
 hasDuplicates = packageResult.MetadataSummaries
     .DistinctBy(s => s.KsefNumber, StringComparer.OrdinalIgnoreCase)
     .Any(summary => !uniqueInvoices.TryAdd(summary.KsefNumber, summary));
+```
+
+Przykład w języku ```java```:
+[IncrementalInvoiceRetrieveIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/IncrementalInvoiceRetrieveIntegrationTest.java)
+
+
+```java
+hasDuplicates.set(packageProcessingResult.getInvoiceMetadataList()
+        .stream()
+        .anyMatch(summary -> uniqueInvoices.containsKey(summary.getKsefNumber())));
+
+packageProcessingResult.getInvoiceMetadataList()
+        .stream()
+        .distinct()
+        .forEach(summary -> uniqueInvoices.put(summary.getKsefNumber(), summary));
 ```
 
 ## Powiązane dokumenty

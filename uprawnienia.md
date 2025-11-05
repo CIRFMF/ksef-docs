@@ -564,6 +564,7 @@ GrantEUEntityRepresentativePermissionsRequest request = new GrantEUEntityReprese
 
 OperationResponse response = ksefClient.grantsPermissionEUEntityRepresentative(request, accessToken);
 
+
 ```
 
 ## Odbieranie uprawnień
@@ -594,7 +595,7 @@ Przykład w języku Java:
 [EntityPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/EntityPermissionIntegrationTest.java)
 
 ```java
-ksefClient.revokeCommonPermission(operationId, accessToken);
+OperationResponse response = ksefClient.revokeCommonPermission(permissionId, accessToken);
 ```
 ---
 ### Odebranie uprawnień podmiotowych
@@ -620,7 +621,7 @@ Przykład w języku Java:
 [ProxyPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/ProxyPermissionIntegrationTest.java)
 
 ```java
-ksefClient.revokeAuthorizationsPermission(operationId, accessToken);
+OperationResponse response = ksefClient.revokeAuthorizationsPermission(operationId, accessToken);
 ```
 
 
@@ -644,8 +645,7 @@ Przykład w języku Java:
 [SearchPersonalGrantPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SearchPersonalGrantPermissionIntegrationTest.java)
 
 ```java
-QueryPersonalGrantRequest request = new QueryPersonalGrantRequest();
-QueryPersonalGrantResponse response = ksefClient.searchPersonalGrantPermission(request, 0, 10, token.accessToken());
+QueryPersonalGrantResponse response = ksefClient.searchPersonalGrantPermission(request, pageOffset, pageSize, token.accessToken());
 
 ```
 ---
@@ -682,12 +682,11 @@ Przykład w języku Java:
 
 ```java
 PersonPermissionsQueryRequest request = new PersonPermissionsQueryRequestBuilder()
-        .withAuthorizedIdentifier(new PersonPermissionsAuthorizedIdentifier(PersonPermissionsAuthorizedIdentifier.IdentifierType.PESEL, personValue))
         .withQueryType(PersonPermissionQueryType.PERMISSION_GRANTED_IN_CURRENT_CONTEXT)
-        .withPermissionTypes(List.of(PersonPermissionType.INVOICEWRITE, PersonPermissionType.INVOICEREAD))
         .build();
 
-QueryPersonPermissionsResponse response = ksefClient.searchGrantedPersonPermissions(request, 0, 10, accessToken);
+QueryPersonPermissionsResponse response = ksefClient.searchGrantedPersonPermissions(request, pageOffset, pageSize, accessToken);
+
 
 ```
 ---
@@ -724,7 +723,7 @@ SubunitPermissionsQueryRequest request = new SubunitPermissionsQueryRequestBuild
         .withSubunitIdentifier(new SubunitPermissionsSubunitIdentifier(SubunitPermissionsSubunitIdentifier.IdentifierType.INTERNALID, subUnitNip))
         .build();
 
-QuerySubunitPermissionsResponse response = ksefClient.searchSubunitAdminPermissions(request, 0, 10, accessToken);
+QuerySubunitPermissionsResponse response = ksefClient.searchSubunitAdminPermissions(request, pageOffset, pageSize, accessToken);
 
 
 ```
@@ -785,7 +784,7 @@ Przykład w języku Java:
 [SearchSubordinateQueryIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SearchSubordinateQueryIntegrationTest.java)
 
 ```java
-SubordinateEntityRolesQueryResponse response = ksefClient.searchSubordinateEntityInvoiceRoles(queryRequest, 0, 10,accessToken);
+SubordinateEntityRolesQueryResponse response = ksefClient.searchSubordinateEntityInvoiceRoles(queryRequest, pageOffset, pageSize,accessToken);
 ```
 ---
 ### Pobranie listy uprawnień podmiotowych do obsługi faktur
@@ -822,13 +821,12 @@ Przykład w języku Java:
 [ProxyPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/ProxyPermissionIntegrationTest.java)
 
 ```java
-GrantAuthorizationPermissionsRequest request = new GrantAuthorizationPermissionsRequestBuilder()
-        .withSubjectIdentifier(new SubjectIdentifier(SubjectIdentifier.IdentifierType.NIP, subjectNip))
-        .withPermission(InvoicePermissionType.SELF_INVOICING)
-        .withDescription("e2e test grant")
+        EntityAuthorizationPermissionsQueryRequest request = new EntityAuthorizationPermissionsQueryRequestBuilder()
+        .withQueryType(QueryType.GRANTED)
         .build();
 
-OperationResponse response = ksefClient.grantsPermissionsProxyEntity(request, accessToken);
+QueryEntityAuthorizationPermissionsResponse response = ksefClient.searchEntityAuthorizationGrants(request, pageOffset, pageSize, accessToken);
+
 
 ```
 ---
@@ -866,7 +864,7 @@ EuEntityPermissionsQueryRequest request = new EuEntityPermissionsQueryRequestBui
    .withAuthorizedFingerprintIdentifier(subjectContext)
    .build();
 
-QueryEuEntityPermissionsResponse response = createKSeFClient().searchGrantedEuEntityPermissions(request, 0, 10, accessToken);
+QueryEuEntityPermissionsResponse response = createKSeFClient().searchGrantedEuEntityPermissions(request, pageOffset, pageSize, accessToken);
 ```
 
 ## Operacje 
@@ -892,7 +890,7 @@ Przykład w języku Java:
 [EuEntityPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/EuEntityPermissionIntegrationTest.java)
 
 ```java
-PermissionStatusInfo operations = createKSeFClient().permissionOperationStatus(referenceNumber, accessToken);
+PermissionStatusInfo status = ksefClient.permissionOperationStatus(referenceNumber, accessToken);
 ```
 
 ### Sprawdzenie statusu zgody na wystawianie faktur z załącznikiem
@@ -902,6 +900,13 @@ Zgoda jest wymagana do wystawiania faktur zawierających załączniki i obowiąz
 GET [/permissions/attachments/status](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Operacje/paths/~1api~1v2~1permissions~1attachments~1status/get)
 
 Zwraca status zgody dla bieżącego kontekstu. Jeżeli zgoda nie jest aktywna, faktura z załącznikiem wysłana do API KSeF zostanie odrzucona.
+
+Przykład w języku Java:
+[PermissionAttachmentStatusIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/PermissionAttachmentStatusIntegrationTest.java)
+
+```java
+PermissionAttachmentStatusResponse trueResponse = ksefClient.checkPermissionAttachmentInvoiceStatus(token.accessToken());
+```
 
 **Środowisko testowe**  
 Na środowisku testowym dostępny jest endpoint POST `/testdata/attachment`, który nadaje możliwość wysyłania faktur z załącznikiem przez wskazany podmiot. Endpoint służy wyłącznie do zasymulowania nadania zgody w testach i działa w zakresie bieżącego kontekstu.

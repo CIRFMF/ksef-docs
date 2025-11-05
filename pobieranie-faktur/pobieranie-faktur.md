@@ -64,7 +64,7 @@ InvoiceQueryFilters request = new InvoiceQueryFiltersBuilder()
                         OffsetDateTime.now()))
         .build();
 
-QueryInvoiceMetadataResponse response = ksefClient.queryInvoiceMetadata(0, 10, request, accessToken);
+QueryInvoiceMetadataResponse response = ksefClient.queryInvoiceMetadata(pageOffset, pageSize, SortOrder.ASC, request, accessToken);
 
 
 ```

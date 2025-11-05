@@ -42,8 +42,12 @@ Przykład w języku Java:
 SessionsQueryRequest request = new SessionsQueryRequest();
 request.setSessionType(SessionType.ONLINE);
 request.setStatuses(List.of(CommonSessionStatus.INPROGRESS));
-SessionsQueryResponse sessionsQueryResponse = ksefClient.getSessions(request, 10, null, accessToken);
 
+SessionsQueryResponse sessionsQueryResponse = ksefClient.getSessions(request, pageSize, continuationToken, accessToken();
+
+while (Strings.isNotBlank(activeSessions.getContinuationToken())) {
+        sessionsQueryResponse = ksefClient.getSessions(pageSize, sessionsQueryResponse.getContinuationToken(), accessToken);
+}
 ```
 
 ### 2. Sprawdzenie stanu sesji
@@ -105,8 +109,11 @@ Przykład w języku Java:
 [OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
 
 ```java
-SessionInvoicesResponse sessionInvoices = ksefClient.getSessionInvoices(referenceNumber,continuationtoken, 10, authToken);
+SessionInvoicesResponse sessionInvoices = ksefClient.getSessionInvoices(referenceNumber,continuationtoken, pageSize, authToken);
 
+while (Strings.isNotBlank(sessionInvoices.getContinuationToken())) {
+    sessionInvoices = ksefClient.getSessions(pageSize, sessionInvoices.getContinuationToken(), accessToken);
+}
 ```
 ### 4. Pobranie informacji o pojedynczej fakturze
 
@@ -216,6 +223,10 @@ Przykład w języku Java:
 
 ```java
 SessionInvoicesResponse response = ksefClient.getSessionFailedInvoices(referenceNumber, continuationToken, pageSize, authToken);
+
+while (Strings.isNotBlank(response.getContinuationToken())) {
+        response = ksefClient.getSessionFailedInvoices(pageSize, response.getContinuationToken(), accessToken);
+}
 ```
 
 Endpoint umożliwia selektywne pobranie wyłącznie odrzuconych faktur, co ułatwia analizę błędów w sesjach zawierających dużą liczbę faktur.

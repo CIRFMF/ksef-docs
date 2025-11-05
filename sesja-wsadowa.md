@@ -76,22 +76,10 @@ Przykład w języku Java:
 [BatchIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/BatchIntegrationTest.java)
 
 ```java
-byte[] zipBytes;
-try (ByteArrayOutputStream zipStream = new ByteArrayOutputStream();
-    ZipOutputStream archive = new ZipOutputStream(zipStream)) {
-    
-    for (Path file : invoices) {
-        archive.putNextEntry(new ZipEntry(file.getFileName().toString()));
-        byte[] fileContent = Files.readAllBytes(file);
-        archive.write(fileContent);
-        archive.closeEntry();
-    }
-    archive.finish();
-    zipBytes = zipStream.toByteArray();
-}
+byte[] zipBytes = FilesUtil.createZip(invoicesInMemory);
 
 // get ZIP metadata (before crypto)
-FileMetadata zipMetadata = cryptographyService.getMetaData(zipBytes);
+FileMetadata zipMetadata = defaultCryptographyService.getMetaData(zipBytes);
 ```
 
 ### 2. Podział binarny paczki ZIP na części
@@ -125,16 +113,7 @@ Przykład w języku Java:
 [BatchIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/BatchIntegrationTest.java)
 
 ```java
-int NUMBER_OF_PARTS = 11;
-List<byte[]> zipParts = new ArrayList<>();
-for (int i = 0; i < NUMBER_OF_PARTS; i++) {
-    int start = i * partSize;
-    int size = Math.min(partSize, zipBytes.length - start);
-    if (size <= 0) break;
-    
-    byte[] part = Arrays.copyOfRange(zipBytes, start, start + size);
-    zipParts.add(part);
-}
+List<byte[]> zipParts = FilesUtil.splitZip(partsCount, zipBytes);
 ```
 
 ### 3. Zaszyfrowanie części paczki
@@ -160,16 +139,17 @@ Przykład w języku Java:
 [BatchIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/BatchIntegrationTest.java)
 
 ```java
-List<BatchPartSendingInfo> encryptedZipParts = new ArrayList<>();
-for (int i = 0; i < zipParts.size(); i++) {
-    byte[] encryptedZipPart = cryptographyService.encryptBytesWithAES256(
-    zipParts.get(i),
-    encryptionData.cipherKey(),
-    encryptionData.cipherIv()
-    );
-    FileMetadata zipPartMetadata = cryptographyService.getMetaData(encryptedZipPart);
-    encryptedZipParts.add(new BatchPartSendingInfo(encryptedZipPart, zipPartMetadata, (i + 1)));
-}            
+ List<BatchPartSendingInfo> encryptedZipParts = new ArrayList<>();
+ for (int i = 0; i < zipParts.size(); i++) {
+     byte[] encryptedZipPart = defaultCryptographyService.encryptBytesWithAES256(
+             zipParts.get(i),
+             cipherKey,
+             cipherIv
+     );
+     FileMetadata zipPartMetadata = defaultCryptographyService.getMetaData(encryptedZipPart);
+     encryptedZipParts.add(new BatchPartSendingInfo(encryptedZipPart, zipPartMetadata, (i + 1)));
+ }
+
 ```
 
 ### 4. Otwarcie sesji wsadowej
@@ -239,22 +219,21 @@ Przykład w języku Java:
 
 ```java
 OpenBatchSessionRequestBuilder builder = OpenBatchSessionRequestBuilder.create()
-.withFormCode(SystemCode.FA_2, "1-0E", "FA")
-.withOfflineMode(false)
-.withBatchFile(zipMetadata.getFileSize(), zipMetadata.getHashSHA());
+        .withFormCode(SystemCode.FA_2, SchemaVersion.VERSION_1_0E, SessionValue.FA)
+        .withOfflineMode(false)
+        .withBatchFile(zipMetadata.getFileSize(), zipMetadata.getHashSHA());
 
 for (int i = 0; i < encryptedZipParts.size(); i++) {
-    BatchPartSendingInfo part = encryptedZipParts.get(i);
-    builder = builder.addBatchFilePart(i + 1, "faktura_part" + (i + 1) + ".zip.aes",
-    part.getMetadata().getFileSize(), part.getMetadata().getHashSHA());
+        BatchPartSendingInfo part = encryptedZipParts.get(i);
+        builder = builder.addBatchFilePart(i + 1, "faktura_part" + (i + 1) + ".zip.aes",part.getMetadata().getFileSize(), part.getMetadata().getHashSHA());
 }
 
 OpenBatchSessionRequest request = builder.endBatchFile()
-.withEncryption(
-    encryptionData.encryptionInfo().getEncryptedSymmetricKey(),
-    encryptionData.encryptionInfo().getInitializationVector()
-)
-.build();
+        .withEncryption(
+                        encryptionData.encryptionInfo().getEncryptedSymmetricKey(),
+                        encryptionData.encryptionInfo().getInitializationVector()
+                )
+        .build();
 
 OpenBatchSessionResponse response = ksefClient.openBatchSession(request, accessToken);
 ```

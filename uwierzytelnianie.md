@@ -48,7 +48,7 @@ Przykład w języku ```Java```:
 [BaseIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/configuration/BaseIntegrationTest.java)
 
 ```java
-AuthenticationChallengeResponse challenge = createKSeFClient().getAuthChallenge();
+AuthenticationChallengeResponse challenge = ksefClient.getAuthChallenge();
 ```
 Odpowiedź zwraca challenge i timestamp.
 
@@ -114,10 +114,11 @@ Przykład w języku ```Java```:
 
 ```java
 AuthTokenRequest authTokenRequest = new AuthTokenRequestBuilder()
-    .withChallenge(challenge.getChallenge())
-    .withContextNip(context)
-    .withSubjectType(SubjectIdentifierTypeEnum.CERTIFICATE_SUBJECT)
-    .build();
+        .withChallenge(challenge.getChallenge())
+        .withContextNip(context)
+        .withSubjectType(SubjectIdentifierTypeEnum.CERTIFICATE_SUBJECT)
+        .withAuthorizationPolicy(authorizationPolicy)
+        .build();
 ```
 
 #### 2. Podpisanie dokumentu (XAdES)
@@ -202,19 +203,13 @@ Wygenerowanie testowego certyfikatu (możliwego do użycia tylko na środowisku 
 Dla organizacji
 
 ```java
-X500Name x500 = new CertificateBuilders()
-    .buildForOrganization("Kowalski sp. z o.o", "VATPL-" + subject, "Kowalski", "PL");
-
-SelfSignedCertificate cert = certificateService.generateSelfSignedCertificateRsa(x500);
+SelfSignedCertificate cert = certificateService.getCompanySeal("Kowalski sp. z o.o", "VATPL-" + subject, "Kowalski", encryptionMethod);
 ```
 
 Lub dla osoby prywatnej
 
 ```java
-X500Name x500 = new CertificateBuilders()
-        .buildForPerson("Jan", "Kowalski", context, "Kowalski");
-
-SelfSignedCertificate cert = certificateService.generateSelfSignedCertificateRsa(x500);
+SelfSignedCertificate cert = certificateService.getPersonalCertificate("M", "B", "TINPL", ownerNip,"M B",encryptionMethod);
 ```
 
 Używając SignatureService oraz posiadając certyfikat z kluczem prywatnym można podpisać dokument
@@ -244,7 +239,7 @@ Przykład w języku ```Java```:
 [BaseIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/configuration/BaseIntegrationTest.java)
 
 ```java
-SignatureResponse submitAuthTokenResponse = createKSeFClient().submitAuthTokenRequest(signedXml, false);
+SignatureResponse submitAuthTokenResponse = ksefClient.submitAuthTokenRequest(signedXml, false);
 ```
 
 ### 2.2. Uwierzytelnianie **tokenem KSeF**
@@ -276,10 +271,12 @@ Przykład w języku ```Java```:
 
 ```java
 AuthenticationChallengeResponse challenge = ksefClient.getAuthChallenge();
-String ksefToken = $otrzymanyToken;
-byte[] encryptedToken;
-encryptedToken = new DefaultCryptographyService(createKSeFClient())
-    .encryptKsefTokenWithRSAUsingPublicKey(ksefToken.getToken(), challenge.getTimestamp());
+byte[] encryptedToken = switch (encryptionMethod) {
+    case Rsa -> defaultCryptographyService
+            .encryptKsefTokenWithRSAUsingPublicKey(ksefToken.getToken(), challenge.getTimestamp());
+    case ECDsa -> defaultCryptographyService
+            .encryptKsefTokenWithECDsaUsingPublicKey(ksefToken.getToken(), challenge.getTimestamp());
+};
 ```
 
 #### 2. Wysłanie żądania uwierzytelnienia [tokenem KSeF](tokeny-ksef.md)
@@ -327,13 +324,13 @@ Przykład w języku ```Java```:
 [KsefTokenIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/KsefTokenIntegrationTest.java)
 
 ```java
-AuthKsefTokenRequest authTokenRequest = new AuthKsefTokenRequestBuilder()
+ AuthKsefTokenRequest authTokenRequest = new AuthKsefTokenRequestBuilder()
         .withChallenge(challenge.getChallenge())
-        .withContextIdentifier(new ContextIdentifier(ContextIdentifierType.NIP, contextNip))
+        .withContextIdentifier(new ContextIdentifier(ContextIdentifier.IdentifierType.NIP, contextNip))
         .withEncryptedToken(Base64.getEncoder().encodeToString(encryptedToken))
         .build();
 
-        SignatureResponse response = createKSeFClient().authenticateByKSeFToken(authTokenRequest);
+SignatureResponse response = ksefClient.authenticateByKSeFToken(authTokenRequest);
 ```
 
 Ponieważ proces uwierzytelniania jest asynchroniczny, w odpowiedzi zwracany jest tymczasowy token operacyjny (```authenticationToken```) wraz z numerem referencyjnym (```referenceNumber```). Oba identyfikatory służą do:
@@ -367,7 +364,7 @@ Przykład w języku ```Java```:
 [BaseIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/configuration/BaseIntegrationTest.java)
 
 ```java
-AuthStatus authStatus = createKSeFClient().getAuthStatus(referenceNumber, tempToken);
+AuthStatus authStatus = ksefClient.getAuthStatus(referenceNumber, tempToken);
 ```
 
 ### 4. Uzyskanie tokena dostępowego (accessToken)
@@ -386,7 +383,7 @@ Przykład w języku ```Java```:
 [BaseIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/configuration/BaseIntegrationTest.java)
 
 ```java
-AuthOperationStatusResponse tokenResponse = createKSeFClient().redeemToken(response.getAuthenticationToken().getToken());
+AuthOperationStatusResponse tokenResponse = ksefClient.redeemToken(response.getAuthenticationToken().getToken());
 ```
 
 W odpowiedzi zwracane są:
@@ -418,7 +415,7 @@ Przykład w języku ```Java```:
 [AuthorizationIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/AuthorizationIntegrationTest.java)
 
 ```java
-AuthenticationTokenRefreshResponse refreshTokenResult = createKSeFClient().refreshAccessToken(token.refreshToken());
+AuthenticationTokenRefreshResponse refreshTokenResult = ksefClient.refreshAccessToken(initialRefreshToken);
 ```
 
 #### 6. Zarządzanie sesjami uwierzytelniania 

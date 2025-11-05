@@ -275,7 +275,7 @@ Przykład w języku Java:
 ```java
 QueryCertificatesRequest request = new CertificateMetadataListRequestBuilder().build();
 
-CertificateMetadataListResponse response = ksefClient.getCertificateMetadataList(request, 10, 0, accessToken);
+CertificateMetadataListResponse response = ksefClient.getCertificateMetadataList(request, pageSize, pageOffset, accessToken);
 
 
 ```

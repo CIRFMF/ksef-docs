@@ -202,7 +202,7 @@ Przykład w języku Java:
 [QrCodeOnlineIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QrCodeOnlineIntegrationTest.java)
 
 ```java
-qrOnline = qrCodeService.addLabelToQrCode(qrOnline, invoiceKsefNumber);
+byte[] qrOnline = qrCodeService.addLabelToQrCode(qrOnline, invoiceKsefNumber);
 ```
 
 ![QR  Certyfikat](qr/qr-cert.png)

@@ -102,26 +102,25 @@ Przykład w języku Java:
 [OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
 
 ```java
-String invoiceTemplate = ""; // xml z fakturą
+byte[] invoice = "";
 
-byte[] invoice = invoiceTemplate.getBytes(StandardCharsets.UTF_8);
+byte[] encryptedInvoice = defaultCryptographyService.encryptBytesWithAES256(invoice,
+        encryptionData.cipherKey(),
+        encryptionData.cipherIv());
 
-byte[] encryptedInvoice = cryptographyService.encryptBytesWithAES256(invoice,
-    encryptionData.cipherKey(),
-    encryptionData.cipherIv());
-
-FileMetadata invoiceMetadata = cryptographyService.getMetaData(invoice);
-FileMetadata encryptedInvoiceMetadata = cryptographyService.getMetaData(encryptedInvoice);
+FileMetadata invoiceMetadata = defaultCryptographyService.getMetaData(invoice);
+FileMetadata encryptedInvoiceMetadata = defaultCryptographyService.getMetaData(encryptedInvoice);
 
 SendInvoiceOnlineSessionRequest sendInvoiceOnlineSessionRequest = new SendInvoiceOnlineSessionRequestBuilder()
-    .withInvoiceHash(invoiceMetadata.getHashSHA())
-    .withInvoiceSize(invoiceMetadata.getFileSize())
-    .withEncryptedInvoiceHash(encryptedInvoiceMetadata.getHashSHA())
-    .withEncryptedInvoiceSize(encryptedInvoiceMetadata.getFileSize())
-    .withEncryptedInvoiceContent(Base64.getEncoder().encodeToString(encryptedInvoice))
-    .build();
+        .withInvoiceHash(invoiceMetadata.getHashSHA())
+        .withInvoiceSize(invoiceMetadata.getFileSize())
+        .withEncryptedInvoiceHash(encryptedInvoiceMetadata.getHashSHA())
+        .withEncryptedInvoiceSize(encryptedInvoiceMetadata.getFileSize())
+        .withEncryptedInvoiceContent(Base64.getEncoder().encodeToString(encryptedInvoice))
+        .build();
 
 SendInvoiceResponse sendInvoiceResponse = ksefClient.onlineSessionSendInvoice(sessionReferenceNumber, sendInvoiceOnlineSessionRequest, accessToken);
+
 ```
 
 ### 3. Zamknięcie sesji
