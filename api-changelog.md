@@ -3,11 +3,14 @@
 ### Wersja 2.0.0 RC5.7
 
 - **Otwarcie sesji wsadowej (POST `/sessions/batch`)**  
-Oznaczono w modelu żądania `BatchFilePartInfo.fileName` jako `deprecated` (planowane usunięcie: 2025-12-05).
+  Oznaczono w modelu żądania `BatchFilePartInfo.fileName` jako `deprecated` (planowane usunięcie: 2025-12-05).
+
+- **Statusy operacji asynchronicznych**  
+  Dodano status `550` - "Operacja została anulowana przez system". Opis: "Przetwarzanie zostało przerwane z przyczyn wewnętrznych systemu. Spróbuj ponownie."
 
 - **OpenAPI**  
   - Dodano ograniczenia liczby elementów w tablicy: `minItems`, `maxItems`.
-  - Dodano ograniczenia długości dla właściwości typu string: `minLength` oraz `maxLength`.
+  - Dodano ograniczenia długości dla właściwości typu string: `minLength` oraz `maxLength`.  
 
 ### Wersja 2.0.0 RC5.6
 
