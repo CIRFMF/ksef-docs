@@ -5151,6 +5151,8 @@
             "description": "Skrót SHA256 pliku paczki, zakodowany w formacie Base64."
           },
           "fileParts": {
+            "maxItems": 50,
+            "minItems": 1,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/BatchFilePartInfo"
@@ -6065,6 +6067,7 @@
         "properties": {
           "certificateName": {
             "maxLength": 100,
+            "minLength": 5,
             "pattern": "^[a-zA-Z0-9_\\-\\ ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$",
             "type": "string",
             "description": "Nazwa własna certyfikatu."
@@ -6203,6 +6206,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia."
           },
@@ -6253,6 +6257,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia"
           }
@@ -6487,6 +6492,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia"
           }
@@ -6582,6 +6588,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis roli."
           },
@@ -6697,11 +6704,13 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia"
           },
           "euEntityName": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Nazwa i adres podmiotu unijnego w formacie: \n`{euSubjectName}, {euSubjectAddress}`"
           }
@@ -6793,6 +6802,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia."
           },
@@ -6871,6 +6881,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia"
           }
@@ -7085,6 +7096,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis tokena."
           }
@@ -7162,6 +7174,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia"
           }
@@ -8439,6 +8452,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string"
           },
           "isDeceased": {
@@ -8532,6 +8546,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia."
           },
@@ -8701,6 +8716,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia"
           }
@@ -8939,6 +8955,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia."
           },
@@ -9498,6 +9515,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis tokena."
           },
@@ -9591,6 +9609,8 @@
         "type": "object",
         "properties": {
           "certificateSerialNumbers": {
+            "maxItems": 10,
+            "minItems": 1,
             "type": "array",
             "items": {
               "type": "string"
@@ -10156,6 +10176,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string"
           },
           "createdDate": {
@@ -10227,6 +10248,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis powiązania."
           },
@@ -10305,6 +10327,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string"
           }
         },
@@ -10376,11 +10399,13 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia."
           },
           "subunitName": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Nazwa jednostki podrzędnej.",
             "nullable": true
@@ -10517,11 +10542,13 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia"
           },
           "subunitName": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Nazwa jednostki podrzędnej. W przypadku jednostki podrzędnej z identyfikatorem wewnętrznym pole jest wymagane.",
             "nullable": true
@@ -10672,6 +10699,7 @@
         "properties": {
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string"
           },
           "permissionType": {
@@ -10917,6 +10945,7 @@
           },
           "description": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Opis tokena."
           },
