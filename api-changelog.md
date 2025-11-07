@@ -1,5 +1,10 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.0 RC5.7
+
+- **Otwarcie sesji wsadowej (POST `/sessions/batch`)**  
+Oznaczono w modelu żądania `BatchFilePartInfo.fileName` jako `deprecated` (planowane usunięcie: 2025-12-05).
+
 ### Wersja 2.0.0 RC5.6
 
 - **Pobranie statusu sesji (GET `/sessions/{referenceNumber}`)**  

@@ -3808,7 +3808,7 @@
                   }
                 ]
               },
-              "example": {"formCode":{"systemCode":"FA (2)","schemaVersion":"1-0E","value":"FA"},"batchFile":{"fileSize":16037,"fileHash":"WO86CC+1Lef11wEosItld/NPwxGN8tobOMLqk9PQjgs=","fileParts":[{"ordinalNumber":1,"fileName":"92cca5be-7f37-4d36-98bb-1f5369841038.zip.aes","fileSize":16048,"fileHash":"23ZyDAN0H/+yhC/En2xbNfF0tajAWSfejDaXD7fc2AE="}]},"encryption":{"encryptedSymmetricKey":"bYqmPAglF01AxZim4oNa+1NerhZYfFgLMnvksBprUur1aesQ0Y5jsmOIfCrozfMkF2tjdO+uOsBg4FPlDgjChwN2/tz2Hqwtxq3RkTr1SjY4x8jxJFpPedcS7EI+XO8C+i9mLj7TFx9p/bg07yM9vHtMAk5b88Ay9Qc3+T5Ch1DM2ClR3sVu2DqdlKzmbINY+rhfGtXn58Qo0XRyESGgc6M0iTZVBRPuPXLnD8a1KpOneCpNzLwxgT6Ei3ivLOpPWT53PxkRTaQ8puj6CIiCKo4FHQzHuI/NmrAhYU7TkNm2kymP/OxBgWdg3XB74tqNFfT8RZN1bZXuPhBidDOqa+xsqY3E871FSDmQwZf58HmoNl31XNvpnryiRGfnAISt+m+ELqgksAresVu6E9poUL1yiff+IOHSZABoYpNiqwnbT8qyW1uk8lKLyFVFu+kOsbzBk1OWWHqSkNFDaznDa2MKjHonOXI0uyKaKWvoBFC4dWN1PVumfpSSFAeYgNpAyVrZdcVOuiliEWepTDjGzJoOafTvwr5za2S6B5bPECDpX7JXazV7Olkq7ezG0w8y3olx+0C+NHoCk8B5/cm4gtVHTgKjiLSGpKJVOJABLXFkOyIOjbQsVe4ryX0Qy+SfL7JIQvTWvM5xkCoOMbzLdMo9tNo5qE34sguFI+lIevY=","initializationVector":"jWpJLNBHJ5pQEGCBglmIAw=="},"offlineMode":false}
+              "example": {"formCode":{"systemCode":"FA (2)","schemaVersion":"1-0E","value":"FA"},"batchFile":{"fileSize":16037,"fileHash":"WO86CC+1Lef11wEosItld/NPwxGN8tobOMLqk9PQjgs=","fileParts":[{"ordinalNumber":1,"fileSize":16048,"fileHash":"23ZyDAN0H/+yhC/En2xbNfF0tajAWSfejDaXD7fc2AE="}]},"encryption":{"encryptedSymmetricKey":"bYqmPAglF01AxZim4oNa+1NerhZYfFgLMnvksBprUur1aesQ0Y5jsmOIfCrozfMkF2tjdO+uOsBg4FPlDgjChwN2/tz2Hqwtxq3RkTr1SjY4x8jxJFpPedcS7EI+XO8C+i9mLj7TFx9p/bg07yM9vHtMAk5b88Ay9Qc3+T5Ch1DM2ClR3sVu2DqdlKzmbINY+rhfGtXn58Qo0XRyESGgc6M0iTZVBRPuPXLnD8a1KpOneCpNzLwxgT6Ei3ivLOpPWT53PxkRTaQ8puj6CIiCKo4FHQzHuI/NmrAhYU7TkNm2kymP/OxBgWdg3XB74tqNFfT8RZN1bZXuPhBidDOqa+xsqY3E871FSDmQwZf58HmoNl31XNvpnryiRGfnAISt+m+ELqgksAresVu6E9poUL1yiff+IOHSZABoYpNiqwnbT8qyW1uk8lKLyFVFu+kOsbzBk1OWWHqSkNFDaznDa2MKjHonOXI0uyKaKWvoBFC4dWN1PVumfpSSFAeYgNpAyVrZdcVOuiliEWepTDjGzJoOafTvwr5za2S6B5bPECDpX7JXazV7Olkq7ezG0w8y3olx+0C+NHoCk8B5/cm4gtVHTgKjiLSGpKJVOJABLXFkOyIOjbQsVe4ryX0Qy+SfL7JIQvTWvM5xkCoOMbzLdMo9tNo5qE34sguFI+lIevY=","initializationVector":"jWpJLNBHJ5pQEGCBglmIAw=="},"offlineMode":false}
             }
           }
         },
@@ -3820,7 +3820,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/OpenBatchSessionResponse"
                 },
-                "example": {"referenceNumber":"20250626-SB-213D593000-4DE10D80A5-E9","partUploadRequests":[{"ordinalNumber":1,"method":"PUT","url":"https://ksef-api-storage/storage/00/20250626-sb-213d593000-4de10d80a5-e9/batch-parts/92cca5be-7f37-4d36-98bb-1f5369841038.zip.aes?skoid=1ad7cfe8-2cb2-406b-b96c-6eefb55794db&sktid=647754c7-3974-4442-a425-c61341b61c69&skt=2025-06-26T09%3A40%3A54Z&ske=2025-06-26T10%3A10%3A54Z&sks=b&skv=2025-01-05&sv=2025-01-05&se=2025-06-26T10%3A10%3A54Z&sr=b&sp=w&sig=8mKZEU8Reuz%2Fn7wHi4T%2FY8BzLeD5l8bR2xJsBxIgDEY%3D","headers":{"x-ms-blob-type":"BlockBlob"}}]}
+                "example": {"referenceNumber":"20250626-SB-213D593000-4DE10D80A5-E9","partUploadRequests":[{"ordinalNumber":1,"method":"PUT","url":"https://ksef-api-storage/storage/00/20250626-sb-213d593000-4de10d80a5-e9/batch-parts/1?skoid=1ad7cfe8-2cb2-406b-b96c-6eefb55794db&sktid=647754c7-3974-4442-a425-c61341b61c69&skt=2025-06-26T09%3A40%3A54Z&ske=2025-06-26T10%3A10%3A54Z&sks=b&skv=2025-01-05&sv=2025-01-05&se=2025-06-26T10%3A10%3A54Z&sr=b&sp=w&sig=8mKZEU8Reuz%2Fn7wHi4T%2FY8BzLeD5l8bR2xJsBxIgDEY%3D","headers":{"x-ms-blob-type":"BlockBlob"}}]}
               }
             }
           },
@@ -5163,7 +5163,6 @@
       "BatchFilePartInfo": {
         "required": [
           "fileHash",
-          "fileName",
           "fileSize",
           "ordinalNumber"
         ],
@@ -5179,7 +5178,10 @@
           "fileName": {
             "maxLength": 100,
             "type": "string",
-            "description": "Nazwa części pliku paczki."
+            "description": "Nazwa części pliku paczki.",
+            "nullable": true,
+            "deprecated": true,
+            "x-removal-date": "2025-12-07"
           },
           "fileSize": {
             "minimum": 1,
