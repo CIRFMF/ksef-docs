@@ -6901,11 +6901,13 @@
         "type": "object",
         "properties": {
           "vatUeIdentifier": {
+            "pattern": "^(ATU\\d{8}|BE[01]{1}\\d{9}|BG\\d{9,10}|CY\\d{8}[A-Z]|CZ\\d{8,10}|DE\\d{9}|DK\\d{8}|EE\\d{9}|EL\\d{9}|ES([A-Z]\\d{8}|\\d{8}[A-Z]|[A-Z]\\d{7}[A-Z])|FI\\d{8}|FR[A-Z0-9]{2}\\d{9}|HR\\d{11}|HU\\d{8}|IE(\\d{7}[A-Z]{2}|\\d[A-Z0-9+*]\\d{5}[A-Z])|IT\\d{11}|LT(\\d{9}|\\d{12})|LU\\d{8}|LV\\d{11}|MT\\d{8}|NL[A-Z0-9+*]{12}|PT\\d{9}|RO\\d{2,10}|SE\\d{12}|SI\\d{8}|SK\\d{10}|XI((\\d{9}|\\d{12})|(GD|HA)\\d{3}))$",
             "type": "string",
             "description": "Wartość identyfikatora (numeru identyfikacyjnego VAT) podmiotu unijnego.",
             "nullable": true
           },
           "authorizedFingerprintIdentifier": {
+            "pattern": "^[0-9A-F]{64}$",
             "type": "string",
             "description": "Odcisk palca certyfikatu kwalifikowanego uprawnionego.",
             "nullable": true
@@ -7287,6 +7289,13 @@
           }
         },
         "additionalProperties": false
+      },
+      "InternalId": {
+        "maxLength": 16,
+        "minLength": 16,
+        "pattern": "^[1-9]((\\d[1-9])|([1-9]\\d))\\d{7}-\\d{5}$",
+        "type": "string",
+        "description": "Identyfikator wewnętrzny, składający się z numeru NIP i 5 cyfr."
       },
       "InvoiceExportRequest": {
         "required": [
@@ -8106,6 +8115,11 @@
         "type": "string",
         "description": "10 cyfrowy numer NIP."
       },
+      "NipVatUe": {
+        "pattern": "^[1-9]((\\d[1-9])|([1-9]\\d))\\d{7}-(ATU\\d{8}|BE[01]{1}\\d{9}|BG\\d{9,10}|CY\\d{8}[A-Z]|CZ\\d{8,10}|DE\\d{9}|DK\\d{8}|EE\\d{9}|EL\\d{9}|ES([A-Z]\\d{8}|\\d{8}[A-Z]|[A-Z]\\d{7}[A-Z])|FI\\d{8}|FR[A-Z0-9]{2}\\d{9}|HR\\d{11}|HU\\d{8}|IE(\\d{7}[A-Z]{2}|\\d[A-Z0-9+*]\\d{5}[A-Z])|IT\\d{11}|LT(\\d{9}|\\d{12})|LU\\d{8}|LV\\d{11}|MT\\d{8}|NL[A-Z0-9+*]{12}|PT\\d{9}|RO\\d{2,10}|SE\\d{12}|SI\\d{8}|SK\\d{10}|XI((\\d{9}|\\d{12})|(GD|HA)\\d{3}))$",
+        "type": "string",
+        "description": "Identyfikator złożony, czyli dwuczłonowy identyfikator składający się z nr NIP podmiotu polskiego oraz numeru VAT UE podmiotu unijnego."
+      },
       "OnlineSessionContextLimitsOverride": {
         "required": [
           "maxInvoices",
@@ -8352,6 +8366,7 @@
       "PeppolId": {
         "maxLength": 9,
         "minLength": 9,
+        "pattern": "^P[A-Z]{2}[0-9]{6}$",
         "type": "string",
         "description": "Identyfikator dostawcy usług Peppol."
       },
@@ -9149,7 +9164,7 @@
         "minLength": 11,
         "pattern": "^\\d{2}(?:0[1-9]|1[0-2]|2[1-9]|3[0-2]|4[1-9]|5[0-2]|6[1-9]|7[0-2]|8[1-9]|9[0-2])\\d{7}$",
         "type": "string",
-        "description": "11 cyfrowy numer PESEL"
+        "description": "11 cyfrowy numer PESEL."
       },
       "PublicKeyCertificate": {
         "required": [
@@ -9566,7 +9581,7 @@
         "maxLength": 36,
         "minLength": 36,
         "type": "string",
-        "description": "Numer referencyjny"
+        "description": "Numer referencyjny."
       },
       "RetrieveCertificatesListItem": {
         "required": [
@@ -10109,7 +10124,7 @@
         "maxLength": 44,
         "minLength": 44,
         "type": "string",
-        "description": "SHA-256 w Base64",
+        "description": "SHA-256 w Base64.",
         "format": "byte"
       },
       "SortOrder": {
