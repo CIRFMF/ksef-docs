@@ -7566,7 +7566,7 @@
           },
           "role": {
             "type": "integer",
-            "description": "Rola podmiotu upoważnionego.",
+            "description": "Rola podmiotu upoważnionego.\n| Wartość | Opis |\n| ---- | --- |\n| 1 | Organ egzekucyjny - w przypadku, o którym mowa w art. 106c pkt 1 ustawy |\n| 2 | Komornik sądowy - w przypadku, o którym mowa w art. 106c pkt 2 ustawy |\n| 3 | Przedstawiciel podatkowy - w przypadku gdy na fakturze występują dane przedstawiciela podatkowego, o którym mowa w art. 18a - 18d ustawy |",
             "format": "int32"
           }
         },
@@ -7587,7 +7587,7 @@
                 "$ref": "#/components/schemas/InvoiceMetadataBuyerIdentifier"
               }
             ],
-            "description": "Identyfikator nabywcy."
+            "description": "Identyfikator nabywcy.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| VatUe | Identyfikator VAT UE podmiotu unijnego. |\n| Other | Inny identyfikator|\n| None  | Brak identyfikatora nabywcy |"
           },
           "name": {
             "maxLength": 512,
@@ -7655,8 +7655,7 @@
               {
                 "$ref": "#/components/schemas/InvoiceMetadataThirdSubjectIdentifier"
               }
-            ],
-            "description": "Identyfikator podmiotu trzeciego."
+            ]
           },
           "name": {
             "maxLength": 512,
@@ -7666,7 +7665,7 @@
           },
           "role": {
             "type": "integer",
-            "description": "Rola podmiotu trzeciego.",
+            "description": "Rola podmiotu trzeciego.\n| Wartość | Opis |\n| ---- | --- |\n| 0 | Inna rola |\n| 1 | Faktor - w przypadku gdy na fakturze występują dane faktora |\n| 2 | Odbiorca - w przypadku gdy na fakturze występują dane jednostek wewnętrznych, oddziałów, wyodrębnionych w ramach nabywcy, które same nie stanowią nabywcy w rozumieniu ustawy |\n| 3 | Podmiot pierwotny - w przypadku gdy na fakturze występują dane podmiotu będącego w stosunku do podatnika podmiotem przejętym lub przekształconym, który dokonywał dostawy lub świadczył usługę. Z wyłączeniem przypadków, o których mowa w art. 106j ust.2 pkt 3 ustawy, gdy dane te wykazywane są w części Podmiot1K |\n| 4 | Dodatkowy nabywca - w przypadku gdy na fakturze występują dane kolejnych (innych niż wymieniony w części Podmiot2) nabywców |\n| 5 | Wystawca faktury - w przypadku gdy na fakturze występują dane podmiotu wystawiającego fakturę w imieniu podatnika. Nie dotyczy przypadku, gdy wystawcą faktury jest nabywca |\n| 6 | Dokonujący płatności - w przypadku gdy na fakturze występują dane podmiotu regulującego zobowiązanie w miejsce nabywcy |\n| 7 | Jednostka samorządu terytorialnego - wystawca |\n| 8 | Jednostka samorządu terytorialnego - odbiorca |\n| 9 | Członek grupy VAT - wystawca |\n| 10 | Członek grupy VAT - odbiorca |\n| 11 | Pracownik |",
             "format": "int32"
           }
         },
@@ -7932,7 +7931,7 @@
                 "$ref": "#/components/schemas/InvoiceQuerySubjectType"
               }
             ],
-            "description": "Typ podmiotu, którego dotyczą kryteria filtrowania metadanych faktur.\nOkreśla kontekst, w jakim przeszukiwane są dane.\n| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 |\n| Subject2 | Podmiot 2 |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
+            "description": "Typ podmiotu, którego dotyczą kryteria filtrowania metadanych faktur.\nOkreśla kontekst, w jakim przeszukiwane są dane.\n| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 - sprzedawca |\n| Subject2 | Podmiot 2 - nabywca |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
           },
           "dateRange": {
             "required": [
@@ -7991,7 +7990,7 @@
                 "$ref": "#/components/schemas/InvoiceQueryBuyerIdentifier"
               }
             ],
-            "description": "Identyfikator nabywcy.",
+            "description": "Identyfikator nabywcy.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| VatUe | Identyfikator VAT UE podmiotu unijnego. |\n| Other | Inny identyfikator|\n| None  | Brak identyfikatora nabywcy |",
             "nullable": true
           },
           "currencyCodes": {
@@ -8058,7 +8057,7 @@
           "SubjectAuthorized"
         ],
         "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 |\n| Subject2 | Podmiot 2 |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 - sprzedawca |\n| Subject2 | Podmiot 2 - nabywca |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
       },
       "InvoiceType": {
         "enum": [
@@ -8098,14 +8097,14 @@
         "minLength": 35,
         "pattern": "^([1-9](\\d[1-9]|[1-9]\\d)\\d{7})-(20[2-9][0-9]|2[1-9]\\d{2}|[3-9]\\d{3})(0[1-9]|1[0-2])(0[1-9]|[12]\\d|3[01])-([0-9A-F]{6})-?([0-9A-F]{6})-([0-9A-F]{2})$",
         "type": "string",
-        "description": "Numer KSeF o długości 35 znaków jest akceptowany, by zachować kompatybilność wsteczna z KSeF 1.0. W KSeF 2.0 numery są generowane wyłącznie w formacie 36-znakowym"
+        "description": "Numer KSeF o długości 35 znaków jest akceptowany, by zachować kompatybilność wsteczna z KSeF 1.0. W KSeF 2.0 numery są generowane wyłącznie w formacie 36-znakowym."
       },
       "Nip": {
         "maxLength": 10,
         "minLength": 10,
         "pattern": "^[1-9]((\\d[1-9])|([1-9]\\d))\\d{7}$",
         "type": "string",
-        "description": "10 cyfrowy numer NIP"
+        "description": "10 cyfrowy numer NIP."
       },
       "OnlineSessionContextLimitsOverride": {
         "required": [
@@ -8354,7 +8353,7 @@
         "maxLength": 9,
         "minLength": 9,
         "type": "string",
-        "description": "Identyfikator dostawcy usług Peppol"
+        "description": "Identyfikator dostawcy usług Peppol."
       },
       "PeppolProvider": {
         "required": [

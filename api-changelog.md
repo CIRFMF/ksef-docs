@@ -11,6 +11,7 @@
 - **OpenAPI**  
   - Dodano ograniczenia liczby elementów w tablicy: `minItems`, `maxItems`.
   - Dodano ograniczenia długości dla właściwości typu string: `minLength` oraz `maxLength`.  
+  - Zaktualizowano opisy właściwości (`invoiceMetadataAuthorizedSubject.role`, `invoiceMetadataBuyer`, `invoiceMetadataThirdSubject.role`, `buyerIdentifier`).
 
 ### Wersja 2.0.0 RC5.6
 
