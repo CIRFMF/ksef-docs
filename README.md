@@ -1,5 +1,5 @@
-# **KSeF 2.0 RC5.6 \- Przewodnik dla Integratorów**
-03.11.2025
+# **KSeF 2.0 RC5.7 \- Przewodnik dla Integratorów**
+07.11.2025
 
 Niniejszy dokument stanowi kompendium wiedzy dla deweloperów, analityków i integratorów systemów, którzy realizują integrację z Krajowym Systemem e-Faktur (KSeF) w wersji 2.0. Przewodnik koncentruje się na aspektach technicznych i praktycznych związanych z komunikacją z API systemu KSeF.
 
