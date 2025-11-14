@@ -89,25 +89,89 @@ Przykład w języku Java:
 byte[] qrOnline = qrCodeService.addLabelToQrCode(qrOnline, invoiceKsefNumber);
 ```
 
-### 2. KOD II – Weryfikacja certyfikatu
+### 2. KOD II - Weryfikacja certyfikatu
 
-```KOD II``` jest generowany wyłącznie dla faktur wystawianych w trybie offline (offline24, offline-niedostępność systemu, tryb awaryjny) i pełni funkcję potwierdzenia autentyczności wystawcy oraz integralności faktury. Generowanie wymaga posiadania aktywnego [certyfikatu KSeF typu Offline](/certyfikaty-KSeF.md) – link zawiera kryptograficzny podpis URL przy użyciu klucza prywatnego certyfikatu KSeF typu Offline, co zapobiega sfałszowaniu linku przez podmioty nieposiadające dostępu do certyfikatu. 
+```KOD II``` jest generowany wyłącznie dla faktur wystawianych w trybie offline (offline24, offline-niedostępność systemu, tryb awaryjny) i pełni funkcję potwierdzenia autentyczności **wystawcy** oraz jego uprawnień do wystawienia faktury w imieniu sprzedawcy. Generowanie wymaga posiadania aktywnego [certyfikatu KSeF typu Offline](/certyfikaty-KSeF.md) – link zawiera kryptograficzny podpis URL przy użyciu klucza prywatnego certyfikatu KSeF typu Offline, co zapobiega sfałszowaniu linku przez podmioty nieposiadające dostępu do certyfikatu. 
 
-> **Uwaga**: Certyfikat typu `Authentication` nie może być używany do generowania KODU II. Jego przeznaczeniem jest wyłącznie uwierzytelnienie w API.
-
+> **Uwaga**: Certyfikat typu `Authentication` nie może być używany do generowania KODU II. Jego przeznaczeniem jest wyłącznie uwierzytelnienie w API.  
 
 Certyfikat KSeF typu Offline można pozyskać za pomocą endpointu [`/certificates`](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1enrollments/post).
+
+
+#### Weryfikacja po zeskanowaniu kodu QR II
+
+Po przejściu do linku z kodu QR system KSeF dokonuje automatycznej weryfikacji certyfikatu wystawcy.
+Proces ten obejmuje następujące etapy:
+
+1. **Certyfikat KSeF wystawcy**
+
+   * Certyfikat istnieje w rejestrze certyfikatów KSeF i jest **ważny**.
+   * Certyfikat nie został **odwołany**, **zablokowany** ani nie utracił ważności (`validTo`).
+
+2. **Podpis wystawcy**
+
+   * System weryfikuje **poprawność podpisu** dołączonego w URL.
+
+3. **Uprawnienia wystawcy**
+
+   * Podmiot identyfikowany przez certyfikat wystawcy posiada **aktywne uprawnienia** do wystawienia faktury w kontekście (`ContextIdentifier`),
+   * Weryfikacja odbywa się zgodnie z zasadami opisanymi w dokumencie [uwierzytelnianie.md](uwierzytelnianie.md),
+   * Przykładowo: księgowa podpisująca fakturę w imieniu firmy A musi mieć nadane prawo `InvoiceWrite` w kontekście tej firmy.
+
+4. **Zgodność kontekstu i NIP sprzedawcy**
+
+   * System sprawdza, czy kontekst (`ContextIdentifier`) ma prawo do wystawiania faktury dla danego **NIP-u sprzedawcy** (`Podmiot1` faktury).
+     Dotyczy to m.in. przypadków:
+     * samofakturowania (`SelfInvoicing`),
+     * przedstawiciel podatkowy (`TaxRepresentative`),
+     * grup VAT,
+     * jednostek JST,
+     * jednostek podrzędnych identyfikowanych identyfikatorem wewnętrzym,
+     * komornik,
+     * organ egzekucyjny,
+     * faktur PEF wystawianych w imieniu innego podmiotu przez dostawcę usług Peppol,
+     * faktur wystawionych przez podmiot europejski.
+
+    **Przykład 1. Wystawienie faktury przez podmiot we własnym kontekście**
+
+    Podmiot wystawia fakturę, używając certyfikatu zawierającego jego własny numer NIP.
+    Faktura jest wystawiana w kontekście tego samego podmiotu, a w polu NIP sprzedawcy wskazany jest jego własny numer NIP.
+
+    | Identyfikator wystawcy (certyfikat) | Kontekst   | NIP sprzedawcy |
+    | -------------------------------------------- | ---------- | -------------- |
+    | 1111111111                                   | 1111111111 | 1111111111     |
+
+    **Przykład 2. Wystawienie faktury przez osobę uprawnioną w imieniu podmiotu**
+
+    Osoba fizyczna (np. księgowa) posługująca się certyfikatem KSeF zawierającym numer PESEL wystawia fakturę w kontekście podmiotu, w imieniu którego posiada odpowiednie uprawnienia.
+    W polu NIP sprzedawcy wskazany jest numer NIP tego podmiotu.
+
+
+    | Identyfikator wystawcy (certyfikat) | Kontekst   | NIP sprzedawcy |
+    | -------------------------------------------- | ---------- | -------------- |
+    | 22222222222                                  | 1111111111 | 1111111111     |
+
+
+    **Przykład 3. Wystawienie faktury w imieniu innego podmiotu**
+
+    Osoba fizyczna wystawia fakturę w kontekście podmiotu A, jednak na fakturze w polu NIP sprzedawcy wskazany jest numer NIP innego podmiotu B.
+    Sytuacja ta jest możliwa, gdy podmiot A posiada nadane uprawnienia wystawiania faktur w imieniu podmiotu B np. przedstawiciel podatkowy, samofakturowanie.
+
+    | Identyfikator wystawcy (certyfikat) | Kontekst   | NIP sprzedawcy |
+    | -------------------------------------------- | ---------- | -------------- |
+    | 22222222222                                  | 1111111111 | 3333333333     |
+
 
 #### Generowanie linku
 
 Link weryfikacyjny składa się z:
 - adresu URL: `https://ksef-test.mf.gov.pl/client-app/certificate`,
-- typu identyfikatora kontekstu: "Nip", "InternalId", "NipVatUe", "PeppolId"
-- wartości identyfikatora kontekstu,
+- typu identyfikatora kontekstu logowania ([`ContextIdentifier`](uwierzytelnianie.md)): "Nip", "InternalId", "NipVatUe", "PeppolId"
+- wartości identyfikatora kontekstu logowania,
 - NIP-u sprzedawcy,
-- numeru seryjnego certyfikatu KSeF,
+- numeru seryjnego certyfikatu KSeF wystawcy,
 - skrótu pliku faktury SHA-256 w formacie Base64URL,
-- podpisu linku przy użyciu klucza prywatnego certyfikatu KSeF (zakodowany w formacie Base64URL).
+- podpisu linku przy użyciu klucza prywatnego certyfikatu KSeF wystawcy (zakodowany w formacie Base64URL).
 
 **Format podpisu**  
 Do podpisu używany jest fragment ścieżki URL bez prefiksu protokołu (https://) i bez końcowego znaku /, np.:
@@ -136,12 +200,12 @@ W obu przypadkach (niezależnie od wyboru RSA czy ESDSA) otrzymaną wartość po
 
 
 Przykładowo dla faktury:
-- typ identyfikatora kontekstu: "Nip",
+- typ identyfikatora kontekstu logowania: "Nip",
 - wartość identyfikatora kontekstu: "1111111111",
 - NIP sprzedawcy: "1111111111",
-- numer seryjny certyfikatu KSeF: "01F20A5D352AE590",
+- numer seryjny certyfikatu KSeF wystawcy: "01F20A5D352AE590",
 - skrót SHA-256 w formacie Base64URL: "UtQp9Gpc51y-u3xApZjIjgkpZ01js-J8KflSPW8WzIE",
-- podpisu linku przy użyciu klucza prywatnego certyfikatu KSeF: "BRoRSfcLRh71PAonJCFPg55JYXZW24aEsQrZBRctRjQUnxngrVUJmWhMSHH7ikTp7VMnWYkfWOrUTXELmhJ6x-PNZn3cjm0e741c59h6Q5E-KWIQKONvBmn3XWLkncMrOlFMufwP3lFFXz58hSOvnoOzu3j87nLr7niV0jfkwmWZVV2oEjrWZTBCKueWX7Dk7WBUX9pPjFFafkE2iCQdm8MuaW8l-y94xTXYesn3mi8IxpCNo3hcTw_yrGnw-ucAABdhVw7K7MJJacCT2-7_Luh4qiWFiPNcP7Jp_IiI9RQH05xWsxXKA-Z9kgDyjP2KADyKu_vro82bAab4_VW8zQ"
+- podpisu linku przy użyciu klucza prywatnego certyfikatu KSeF wystawcy: "BRoRSfcLRh71PAonJCFPg55JYXZW24aEsQrZBRctRjQUnxngrVUJmWhMSHH7ikTp7VMnWYkfWOrUTXELmhJ6x-PNZn3cjm0e741c59h6Q5E-KWIQKONvBmn3XWLkncMrOlFMufwP3lFFXz58hSOvnoOzu3j87nLr7niV0jfkwmWZVV2oEjrWZTBCKueWX7Dk7WBUX9pPjFFafkE2iCQdm8MuaW8l-y94xTXYesn3mi8IxpCNo3hcTw_yrGnw-ucAABdhVw7K7MJJacCT2-7_Luh4qiWFiPNcP7Jp_IiI9RQH05xWsxXKA-Z9kgDyjP2KADyKu_vro82bAab4_VW8zQ"
 
 Wygenerowany link wygląda następująco:
 
