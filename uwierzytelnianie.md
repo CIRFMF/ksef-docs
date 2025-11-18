@@ -190,9 +190,9 @@ public static X509Certificate2 GetCompanySeal(
 
 Używając ```ISignatureService``` oraz posiadając certyfikat z kluczem prywatnym do podpisania dokumentu:
 ```csharp
-string unsignedXml = AuthTokenRequestSerializer.SerializeToXmlString(authTokenRequest);
+string unsignedXml = authTokenRequest.SerializeToXmlString(authTokenRequest);
 
-string signedXml = await signatureService.SignAsync(unsignedXml, certificate);
+string signedXml = signatureService.Sign(unsignedXml, certificate);
 ```
 
 Przykład w języku ```Java```:
