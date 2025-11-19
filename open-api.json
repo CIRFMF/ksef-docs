@@ -76,6 +76,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -85,6 +89,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-sort": [
           {
             "field": "startDate",
@@ -115,6 +124,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -123,7 +136,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/auth/sessions/{referenceNumber}": {
@@ -159,6 +177,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -167,7 +189,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/certificates/limits": {
@@ -199,6 +226,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -207,7 +238,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/certificates/enrollments/data": {
@@ -247,6 +283,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -255,7 +295,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/certificates/enrollments": {
@@ -316,6 +361,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -324,7 +373,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/certificates/enrollments/{referenceNumber}": {
@@ -374,6 +428,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -382,7 +440,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/certificates/retrieve": {
@@ -447,6 +510,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -455,7 +522,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/certificates/{certificateSerialNumber}/revoke": {
@@ -505,6 +577,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -513,7 +589,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/certificates/query": {
@@ -611,6 +692,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -620,6 +705,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-sort": [
           {
             "field": "requestDate",
@@ -670,7 +760,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         }
       }
     },
@@ -719,7 +816,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         }
       }
     },
@@ -763,7 +867,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         }
       }
     },
@@ -815,7 +926,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         }
       }
     },
@@ -859,7 +977,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         }
       }
     },
@@ -918,7 +1043,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         }
       }
     },
@@ -970,7 +1102,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         }
       }
     },
@@ -1014,7 +1153,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         }
       }
     },
@@ -1058,7 +1204,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         }
       }
     },
@@ -1103,6 +1256,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -1111,7 +1268,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/limits/subject": {
@@ -1151,6 +1313,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -1159,7 +1325,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/rate-limits": {
@@ -1248,6 +1419,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -1256,7 +1431,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/testdata/limits/context/session": {
@@ -1298,6 +1478,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -1306,7 +1490,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       },
       "delete": {
         "tags": [
@@ -1329,6 +1518,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -1337,7 +1530,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/testdata/limits/subject/certificate": {
@@ -1375,6 +1573,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -1383,7 +1585,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       },
       "delete": {
         "tags": [
@@ -1406,6 +1613,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -1414,7 +1625,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/testdata/rate-limits": {
@@ -1455,6 +1671,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -1463,7 +1683,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       },
       "delete": {
         "tags": [
@@ -1486,6 +1711,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -1494,7 +1723,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/permissions/persons/grants": {
@@ -1560,6 +1794,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -1572,6 +1810,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "CredentialsManage"
         ]
@@ -1644,6 +1887,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -1656,6 +1903,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "CredentialsManage"
         ]
@@ -1719,6 +1971,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -1731,6 +1987,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "CredentialsManage"
         ]
@@ -1801,6 +2062,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -1813,6 +2078,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "CredentialsManage"
         ]
@@ -1880,6 +2150,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -1892,6 +2166,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "SubunitManage"
         ]
@@ -1960,6 +2239,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -1972,6 +2255,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "CredentialsManage"
         ]
@@ -2038,6 +2326,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -2050,6 +2342,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "VatUeManage"
         ]
@@ -2098,6 +2395,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -2110,6 +2411,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "CredentialsManage",
           "VatUeManage",
@@ -2160,6 +2466,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -2172,6 +2482,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "CredentialsManage"
         ]
@@ -2223,6 +2538,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -2231,7 +2550,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/permissions/attachments/status": {
@@ -2263,6 +2587,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -2275,6 +2603,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "CredentialsManage",
           "CredentialsRead"
@@ -2321,6 +2654,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 80 | 160 | 640 | invoiceDownload\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -2333,6 +2670,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 80,
+          "perMinute": 160,
+          "perHour": 640
+        },
         "x-required-permissions": [
           "InvoiceRead"
         ]
@@ -2533,6 +2875,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 80 | 160 | 200 | invoiceMetadata\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -2545,6 +2891,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 80,
+          "perMinute": 160,
+          "perHour": 200
+        },
         "x-sort": [
           {
             "allowedFields": [
@@ -2627,6 +2978,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 40 | 80 | 200 | invoiceExport\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -2639,6 +2994,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 40,
+          "perMinute": 80,
+          "perHour": 200
+        },
         "x-sort": [
           {
             "allowedFields": [
@@ -2918,6 +3278,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 50 | 100 | 600 | sessionList\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -2930,6 +3294,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 50,
+          "perMinute": 100,
+          "perHour": 600
+        },
         "x-sort": [
           {
             "field": "dateCreated",
@@ -3000,6 +3369,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 1200 | 7200 | sessionMisc\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -3012,6 +3385,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 1200,
+          "perHour": 7200
+        },
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
@@ -3119,6 +3497,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 200 | 2000 | sessionInvoiceList\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -3131,6 +3513,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 200,
+          "perHour": 2000
+        },
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
@@ -3203,6 +3590,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 300 | 1200 | 7200 | invoiceStatus\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -3215,6 +3606,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 300,
+          "perMinute": 1200,
+          "perHour": 7200
+        },
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
@@ -3307,6 +3703,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 200 | 2000 | sessionInvoiceList\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -3319,6 +3719,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 200,
+          "perHour": 2000
+        },
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
@@ -3375,6 +3780,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 1200 | 7200 | sessionMisc\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -3387,6 +3796,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 1200,
+          "perHour": 7200
+        },
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
@@ -3443,6 +3857,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 1200 | 7200 | sessionMisc\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -3455,6 +3873,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 1200,
+          "perHour": 7200
+        },
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
@@ -3511,6 +3934,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 1200 | 7200 | sessionMisc\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -3523,6 +3950,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 1200,
+          "perHour": 7200
+        },
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
@@ -3587,6 +4019,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -3595,7 +4031,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       },
       "get": {
         "tags": [
@@ -3715,6 +4156,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -3724,6 +4169,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-sort": [
           {
             "field": "dateCreated",
@@ -3791,6 +4241,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -3799,7 +4253,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       },
       "delete": {
         "tags": [
@@ -3833,6 +4292,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -3841,7 +4304,12 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
       }
     },
     "/api/v2/peppol/query": {
@@ -3910,7 +4378,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         },
         "x-sort": [
           {
@@ -3952,7 +4427,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         }
       }
     },
@@ -4012,7 +4494,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         }
       }
     },
@@ -4077,7 +4566,14 @@
               }
             },
             "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
           }
+        },
+        "x-rate-limits": {
+          "perSecond": 60
         }
       }
     },
@@ -4218,6 +4714,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -4226,7 +4726,10 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 60
+        }
       }
     },
     "/api/v2/auth/token/redeem": {
@@ -4268,6 +4771,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -4276,7 +4783,10 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 60
+        }
       }
     },
     "/api/v2/auth/token/refresh": {
@@ -4314,6 +4824,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 60 | - | - | -\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -4322,7 +4836,10 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-rate-limits": {
+          "perSecond": 60
+        }
       }
     },
     "/api/v2/sessions/online": {
@@ -4386,6 +4903,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | onlineSession\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -4398,6 +4919,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "InvoiceWrite",
           "PefInvoiceWrite"
@@ -4476,6 +5002,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1800 | invoiceSend\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -4488,6 +5018,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1800
+        },
         "x-required-permissions": [
           "InvoiceWrite",
           "PefInvoiceWrite"
@@ -4527,6 +5062,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | onlineSession\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -4539,6 +5078,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "InvoiceWrite",
           "PefInvoiceWrite"
@@ -4628,6 +5172,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 200 | 1200 | batchSession\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -4640,6 +5188,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 200,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "InvoiceWrite"
         ]
@@ -4678,6 +5231,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 200 | 1200 | batchSession\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -4690,6 +5247,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 200,
+          "perHour": 1200
+        },
         "x-required-permissions": [
           "InvoiceWrite"
         ]
@@ -4796,6 +5358,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -4805,6 +5371,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-sort": [
           {
             "field": "startDate",
@@ -4924,6 +5495,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -4936,6 +5511,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-sort": [
           {
             "field": "startDate",
@@ -5048,6 +5628,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -5060,6 +5644,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-sort": [
           {
             "field": "startDate",
@@ -5140,6 +5729,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -5152,6 +5745,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-sort": [
           {
             "field": "startDate",
@@ -5254,6 +5852,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -5266,6 +5868,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-sort": [
           {
             "field": "startDate",
@@ -5387,6 +5994,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -5399,6 +6010,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-sort": [
           {
             "field": "startDate",
@@ -5506,6 +6122,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -5518,6 +6138,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
         "x-sort": [
           {
             "field": "startDate",

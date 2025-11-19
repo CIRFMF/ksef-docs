@@ -1,5 +1,11 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.0 RC6.0
+
+- **OpenAPI**  
+  - Dodano odpowiedź HTTP `429` - "Too Many Requests" do wszystkich endpointów. We właściwości `description` tej odpowiedzi publikowana jest tabelaryczna prezentacja limitów (`req/s`, `req/min`, `req/h`) oraz nazwy grupy limitowej przypisanej do endpointu. Mechanizm i semantyka `429` pozostają zgodne z opisem w dokumentacji [limitów](/limity/limity-api.md).
+  - Do każdego endpointu dodano metadane `x-rate-limits` z wartościami limitów (`req/s`, `req/min`, `req/h`).
+
 ### Wersja 2.0.0 RC5.7
 
 - **Otwarcie sesji wsadowej (POST `/sessions/batch`)**  
