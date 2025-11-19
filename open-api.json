@@ -45,7 +45,23 @@
                 "schema": {
                   "$ref": "#/components/schemas/AuthenticationListResponse"
                 },
-                "example": {"continuationToken":"W3siY29tcG9zaXRlVG9rZW4iOnsidG9rZW4iOm51bGwsInJhbmdlIjp7Im1pbiI6IjA1QzFFMCIsIm1heCI6IkZGIn19LCJyZXN1bWVWYWx1ZXMiOlsiMjAyNS0xMC0wM1QxMjoxODo0OS4zNDY2ODQ3WiJdLCJyaWQiOiIzeHd0QVBJWDVRRlVoZ0FBQUFBQUJBPT0iLCJza2lwQ291bnQiOjF9XQ==","items":[{"referenceNumber":"20251010-AU-19F5E39000-39B5B182BA-B8","isCurrent":false,"startDate":"2025-10-11T12:23:56.0154302+00:00","authenticationMethod":"QualifiedSeal","status":{"code":200,"description":"Uwierzytelnianie zakończone sukcesem"},"isTokenRedeemed":true,"refreshTokenValidUntil":"2025-11-28T09:22:13.388+00:00"}]}
+                "example": {
+                  "continuationToken": "W3siY29tcG9zaXRlVG9rZW4iOnsidG9rZW4iOm51bGwsInJhbmdlIjp7Im1pbiI6IjA1QzFFMCIsIm1heCI6IkZGIn19LCJyZXN1bWVWYWx1ZXMiOlsiMjAyNS0xMC0wM1QxMjoxODo0OS4zNDY2ODQ3WiJdLCJyaWQiOiIzeHd0QVBJWDVRRlVoZ0FBQUFBQUJBPT0iLCJza2lwQ291bnQiOjF9XQ==",
+                  "items": [
+                    {
+                      "referenceNumber": "20251010-AU-19F5E39000-39B5B182BA-B8",
+                      "isCurrent": false,
+                      "startDate": "2025-10-11T12:23:56.0154302+00:00",
+                      "authenticationMethod": "QualifiedSeal",
+                      "status": {
+                        "code": 200,
+                        "description": "Uwierzytelnianie zakończone sukcesem"
+                      },
+                      "isTokenRedeemed": true,
+                      "refreshTokenValidUntil": "2025-11-28T09:22:13.388+00:00"
+                    }
+                  ]
+                }
               }
             }
           },
@@ -209,7 +225,14 @@
                 "schema": {
                   "$ref": "#/components/schemas/CertificateEnrollmentDataResponse"
                 },
-                "example": {"commonName":"Firma Kowalski Certyfikat","countryName":"PL","serialNumber":"ABC123456789","uniqueIdentifier":"d9d22724-4696-460c-9e5e-b9e3aafb0af3","organizationName":"Firma Kowalski Sp. z o.o.","organizationIdentifier":"7762811692"}
+                "example": {
+                  "commonName": "Firma Kowalski Certyfikat",
+                  "countryName": "PL",
+                  "serialNumber": "ABC123456789",
+                  "uniqueIdentifier": "d9d22724-4696-460c-9e5e-b9e3aafb0af3",
+                  "organizationName": "Firma Kowalski Sp. z o.o.",
+                  "organizationIdentifier": "7762811692"
+                }
               }
             }
           },
@@ -258,7 +281,12 @@
                   }
                 ]
               },
-              "example": {"certificateName":"Certyfikat-Auth-004","certificateType":"Authentication","csr":"MIIDJjCCAd4CAQAwgbAxIjAgBgNVBAMMGUZpcm1hIEtvd2Fsc2tpIENlcnR5ZmlrYXQxIjAgBgNVBAoMGUZpcm1hIEtvd2Fsc2tpIFNwLiB6IG8uby4xEzARBgNVBGEMCjc3NjI4MTE2OTIxCzAJBgNVBAYTAlBMMRUwEwYDVQQFEwxBQkMxMjM0NTY3ODkxLTArBgNVBC0MJGQ5ZDIyNzI0LTQ2OTYtNDYwYy05ZTVlLWI5ZTNhYWZiMGFmMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANZC1hJiB4ZBsxGy/a4yvtOUP0HQxDt7EUZrfKO78+cmI7KCO9aW96yr6O0R928/Y9vmymbgh6KvMUTzZZj24uyxar849O1laor5t8Wv63RDx/I4+9Rt7w+QPPofmpenOokJH+Fm+FDQwo2l07o8SppGfaZpvMak+cDSrh+73wfM37fvPImr9p4ckzzxA9q6f4uoqGqcGSDlSwRjfLQKzWZaEklpZBpY4jeCh54uN3+YLsMQYKdcIbW0Jart1UbwMd/wbHfzFhVmPGOAMMpwVEBw6E4A0CTWIiAX3Alqbx4+IkuqC+gEs3ETTec7eOqhxe9V9cywi7WR+Mz6JO6DJcUCAwEAAaAAMD0GCSqGSIb3DQEBCjAwoA0wCwYJYIZIAWUDBAIBoRowGAYJKoZIhvcNAQEIMAsGCWCGSAFlAwQCAaIDAgEgA4IBAQCJhtF2/2E+JmkWitE/BGbm3NU4fIxr1Z+w0UnHsP+F8n9UDwAnuncG1GH5wZFervldEMooegzEDnYaqxnEUnbZ4wxeAHqpbTZjOOfqrk7o0r66+mXUs5NnyD4M3j3ig98GcvhEdbcNH+RsIwi7FaLNXnOE4SLYL9KvW0geriywWjS+5MmA0Gcn1e4vCD6FeEls8EHzkhrWE+rUsoM5zT2a0OPNXG3fScyOqOZe+OdjT4Y7ScRGy711u3v2X9RoTqQUDfCJ3cob/KRcrzvs1TQVazGZPfcIa6an6SigUvZ7XAMHlUTyOeM4AwKqiEqQ0qfe/HhlDylgZSwulb9u0utT","validFrom":"2025-08-28T09:22:13.388+00:00"}
+              "example": {
+                "certificateName": "Certyfikat-Auth-004",
+                "certificateType": "Authentication",
+                "csr": "MIIDJjCCAd4CAQAwgbAxIjAgBgNVBAMMGUZpcm1hIEtvd2Fsc2tpIENlcnR5ZmlrYXQxIjAgBgNVBAoMGUZpcm1hIEtvd2Fsc2tpIFNwLiB6IG8uby4xEzARBgNVBGEMCjc3NjI4MTE2OTIxCzAJBgNVBAYTAlBMMRUwEwYDVQQFEwxBQkMxMjM0NTY3ODkxLTArBgNVBC0MJGQ5ZDIyNzI0LTQ2OTYtNDYwYy05ZTVlLWI5ZTNhYWZiMGFmMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANZC1hJiB4ZBsxGy/a4yvtOUP0HQxDt7EUZrfKO78+cmI7KCO9aW96yr6O0R928/Y9vmymbgh6KvMUTzZZj24uyxar849O1laor5t8Wv63RDx/I4+9Rt7w+QPPofmpenOokJH+Fm+FDQwo2l07o8SppGfaZpvMak+cDSrh+73wfM37fvPImr9p4ckzzxA9q6f4uoqGqcGSDlSwRjfLQKzWZaEklpZBpY4jeCh54uN3+YLsMQYKdcIbW0Jart1UbwMd/wbHfzFhVmPGOAMMpwVEBw6E4A0CTWIiAX3Alqbx4+IkuqC+gEs3ETTec7eOqhxe9V9cywi7WR+Mz6JO6DJcUCAwEAAaAAMD0GCSqGSIb3DQEBCjAwoA0wCwYJYIZIAWUDBAIBoRowGAYJKoZIhvcNAQEIMAsGCWCGSAFlAwQCAaIDAgEgA4IBAQCJhtF2/2E+JmkWitE/BGbm3NU4fIxr1Z+w0UnHsP+F8n9UDwAnuncG1GH5wZFervldEMooegzEDnYaqxnEUnbZ4wxeAHqpbTZjOOfqrk7o0r66+mXUs5NnyD4M3j3ig98GcvhEdbcNH+RsIwi7FaLNXnOE4SLYL9KvW0geriywWjS+5MmA0Gcn1e4vCD6FeEls8EHzkhrWE+rUsoM5zT2a0OPNXG3fScyOqOZe+OdjT4Y7ScRGy711u3v2X9RoTqQUDfCJ3cob/KRcrzvs1TQVazGZPfcIa6an6SigUvZ7XAMHlUTyOeM4AwKqiEqQ0qfe/HhlDylgZSwulb9u0utT",
+                "validFrom": "2025-08-28T09:22:13.388+00:00"
+              }
             }
           }
         },
@@ -270,7 +298,10 @@
                 "schema": {
                   "$ref": "#/components/schemas/EnrollCertificateResponse"
                 },
-                "example": {"referenceNumber":"20251010-EH-1B6C9EB000-4B15D3AEB9-89","timestamp":"2025-10-11T12:23:56.0154302+00:00"}
+                "example": {
+                  "referenceNumber": "20251010-EH-1B6C9EB000-4B15D3AEB9-89",
+                  "timestamp": "2025-10-11T12:23:56.0154302+00:00"
+                }
               }
             }
           },
@@ -322,7 +353,13 @@
                 "schema": {
                   "$ref": "#/components/schemas/CertificateEnrollmentStatusResponse"
                 },
-                "example": {"requestDate":"2025-10-11T12:23:56.0154302+00:00","status":{"code":100,"description":"Wniosek przyjęty do realizacji"}}
+                "example": {
+                  "requestDate": "2025-10-11T12:23:56.0154302+00:00",
+                  "status": {
+                    "code": 100,
+                    "description": "Wniosek przyjęty do realizacji"
+                  }
+                }
               }
             }
           },
@@ -369,7 +406,12 @@
                   }
                 ]
               },
-              "example": {"certificateSerialNumbers":["0321C82DA41B4362","0321F21DA462A362"]}
+              "example": {
+                "certificateSerialNumbers": [
+                  "0321C82DA41B4362",
+                  "0321F21DA462A362"
+                ]
+              }
             }
           }
         },
@@ -381,7 +423,16 @@
                 "schema": {
                   "$ref": "#/components/schemas/RetrieveCertificatesResponse"
                 },
-                "example": {"certificates":[{"certificate":"AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/wABAgMEBQYHCAkKCwwNDg8QERITFBUWFxgZGhscHR4fICEiIyQlJicoKSorLC0uLzAxMjM0NTY3ODk6Ozw9Pj9AQUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVpbXF1eX2BhYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ent8fX5/gIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/w==","certificateName":"Cert 00023","certificateSerialNumber":"0321C82DA41B4362","certificateType":"Authentication"}]}
+                "example": {
+                  "certificates": [
+                    {
+                      "certificate": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/wABAgMEBQYHCAkKCwwNDg8QERITFBUWFxgZGhscHR4fICEiIyQlJicoKSorLC0uLzAxMjM0NTY3ODk6Ozw9Pj9AQUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVpbXF1eX2BhYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ent8fX5/gIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/w==",
+                      "certificateName": "Cert 00023",
+                      "certificateSerialNumber": "0321C82DA41B4362",
+                      "certificateType": "Authentication"
+                    }
+                  ]
+                }
               }
             }
           },
@@ -511,7 +562,10 @@
                   }
                 ]
               },
-              "example": {"type":"Offline","status":"Active"}
+              "example": {
+                "type": "Offline",
+                "status": "Active"
+              }
             }
           }
         },
@@ -523,7 +577,26 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryCertificatesResponse"
                 },
-                "example": {"certificates":[{"certificateSerialNumber":"018209160C631F1E","name":"Certyfikat 1","type":"Authentication","commonName":"Jan Kowalski","status":"Active","subjectIdentifier":{"type":"Nip","value":"1234445678"},"validFrom":"2025-08-24T14:15:22+00:00","validTo":"2027-08-24T14:15:22+00:00","lastUseDate":"2025-08-25T14:15:22+00:00","requestDate":"2025-08-24T14:15:22+00:00"}],"hasMore":false}
+                "example": {
+                  "certificates": [
+                    {
+                      "certificateSerialNumber": "018209160C631F1E",
+                      "name": "Certyfikat 1",
+                      "type": "Authentication",
+                      "commonName": "Jan Kowalski",
+                      "status": "Active",
+                      "subjectIdentifier": {
+                        "type": "Nip",
+                        "value": "1234445678"
+                      },
+                      "validFrom": "2025-08-24T14:15:22+00:00",
+                      "validTo": "2027-08-24T14:15:22+00:00",
+                      "lastUseDate": "2025-08-25T14:15:22+00:00",
+                      "requestDate": "2025-08-24T14:15:22+00:00"
+                    }
+                  ],
+                  "hasMore": false
+                }
               }
             }
           },
@@ -573,7 +646,17 @@
                     "$ref": "#/components/schemas/PublicKeyCertificate"
                   }
                 },
-                "example": [{"certificate":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwocTwdNgt2+PXJ2fcB7k1kn5eFUTXBeep9pH...","validFrom":"2024-07-11T12:23:56.0154302+00:00","validTo":"2028-07-11T12:23:56.0154302+00:00","usage":["KsefTokenEncryption","SymmetricKeyEncryption"]}]
+                "example": [
+                  {
+                    "certificate": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwocTwdNgt2+PXJ2fcB7k1kn5eFUTXBeep9pH...",
+                    "validFrom": "2024-07-11T12:23:56.0154302+00:00",
+                    "validTo": "2028-07-11T12:23:56.0154302+00:00",
+                    "usage": [
+                      "KsefTokenEncryption",
+                      "SymmetricKeyEncryption"
+                    ]
+                  }
+                ]
               }
             }
           },
@@ -613,7 +696,12 @@
                   }
                 ]
               },
-              "example": {"subjectNip":"7762811692","subjectType":"EnforcementAuthority","description":"Centrala","createdDate":"2025-08-25T14:15:22+00:00"}
+              "example": {
+                "subjectNip": "7762811692",
+                "subjectType": "EnforcementAuthority",
+                "description": "Centrala",
+                "createdDate": "2025-08-25T14:15:22+00:00"
+              }
             }
           }
         },
@@ -655,7 +743,9 @@
                   }
                 ]
               },
-              "example": {"subjectNip":"7762811692"}
+              "example": {
+                "subjectNip": "7762811692"
+              }
             }
           }
         },
@@ -700,7 +790,14 @@
                   }
                 ]
               },
-              "example": {"nip":"7762811692","pesel":"15062788702","isBailiff":true,"description":"TestPerson_01","isDeceased":false,"createdDate":"2025-08-25T14:15:22+00:00"}
+              "example": {
+                "nip": "7762811692",
+                "pesel": "15062788702",
+                "isBailiff": true,
+                "description": "TestPerson_01",
+                "isDeceased": false,
+                "createdDate": "2025-08-25T14:15:22+00:00"
+              }
             }
           }
         },
@@ -742,7 +839,9 @@
                   }
                 ]
               },
-              "example": {"nip":"7762811692"}
+              "example": {
+                "nip": "7762811692"
+              }
             }
           }
         },
@@ -786,7 +885,22 @@
                   }
                 ]
               },
-              "example": {"contextIdentifier":{"type":"Nip","value":"7762811692"},"authorizedIdentifier":{"type":"Nip","value":"7762811692"},"permissions":[{"description":"Opis testowy","permissionType":"InvoiceRead"}]}
+              "example": {
+                "contextIdentifier": {
+                  "type": "Nip",
+                  "value": "7762811692"
+                },
+                "authorizedIdentifier": {
+                  "type": "Nip",
+                  "value": "7762811692"
+                },
+                "permissions": [
+                  {
+                    "description": "Opis testowy",
+                    "permissionType": "InvoiceRead"
+                  }
+                ]
+              }
             }
           }
         },
@@ -829,7 +943,16 @@
                   }
                 ]
               },
-              "example": {"contextIdentifier":{"type":"Nip","value":"5265877635"},"authorizedIdentifier":{"type":"Nip","value":"7762811692"}}
+              "example": {
+                "contextIdentifier": {
+                  "type": "Nip",
+                  "value": "5265877635"
+                },
+                "authorizedIdentifier": {
+                  "type": "Nip",
+                  "value": "7762811692"
+                }
+              }
             }
           }
         },
@@ -871,7 +994,9 @@
                   }
                 ]
               },
-              "example": {"nip":"7762811692"}
+              "example": {
+                "nip": "7762811692"
+              }
             }
           }
         },
@@ -913,7 +1038,9 @@
                   }
                 ]
               },
-              "example": {"nip":"7762811692"}
+              "example": {
+                "nip": "7762811692"
+              }
             }
           }
         },
@@ -950,7 +1077,18 @@
                 "schema": {
                   "$ref": "#/components/schemas/EffectiveContextLimits"
                 },
-                "example": {"onlineSession":{"maxInvoiceSizeInMB":1,"maxInvoiceWithAttachmentSizeInMB":3,"maxInvoices":10000},"batchSession":{"maxInvoiceSizeInMB":1,"maxInvoiceWithAttachmentSizeInMB":3,"maxInvoices":10000}}
+                "example": {
+                  "onlineSession": {
+                    "maxInvoiceSizeInMB": 1,
+                    "maxInvoiceWithAttachmentSizeInMB": 3,
+                    "maxInvoices": 10000
+                  },
+                  "batchSession": {
+                    "maxInvoiceSizeInMB": 1,
+                    "maxInvoiceWithAttachmentSizeInMB": 3,
+                    "maxInvoices": 10000
+                  }
+                }
               }
             }
           },
@@ -991,7 +1129,14 @@
                 "schema": {
                   "$ref": "#/components/schemas/EffectiveSubjectLimits"
                 },
-                "example": {"enrollment":{"maxEnrollments":6},"certificate":{"maxCertificates":2}}
+                "example": {
+                  "enrollment": {
+                    "maxEnrollments": 6
+                  },
+                  "certificate": {
+                    "maxCertificates": 2
+                  }
+                }
               }
             }
           },
@@ -1032,7 +1177,63 @@
                 "schema": {
                   "$ref": "#/components/schemas/EffectiveApiRateLimits"
                 },
-                "example": {"onlineSession":{"perSecond":10,"perMinute":30,"perHour":120},"batchSession":{"perSecond":10,"perMinute":20,"perHour":120},"invoiceSend":{"perSecond":10,"perMinute":30,"perHour":180},"invoiceStatus":{"perSecond":30,"perMinute":120,"perHour":720},"sessionList":{"perSecond":5,"perMinute":10,"perHour":60},"sessionInvoiceList":{"perSecond":10,"perMinute":20,"perHour":200},"sessionMisc":{"perSecond":10,"perMinute":120,"perHour":720},"invoiceMetadata":{"perSecond":8,"perMinute":16,"perHour":20},"invoiceExport":{"perSecond":4,"perMinute":8,"perHour":20},"invoiceDownload":{"perSecond":8,"perMinute":16,"perHour":64},"other":{"perSecond":10,"perMinute":30,"perHour":120}}
+                "example": {
+                  "onlineSession": {
+                    "perSecond": 100,
+                    "perMinute": 300,
+                    "perHour": 1200
+                  },
+                  "batchSession": {
+                    "perSecond": 100,
+                    "perMinute": 200,
+                    "perHour": 1200
+                  },
+                  "invoiceSend": {
+                    "perSecond": 100,
+                    "perMinute": 300,
+                    "perHour": 1800
+                  },
+                  "invoiceStatus": {
+                    "perSecond": 300,
+                    "perMinute": 1200,
+                    "perHour": 7200
+                  },
+                  "sessionList": {
+                    "perSecond": 50,
+                    "perMinute": 100,
+                    "perHour": 600
+                  },
+                  "sessionInvoiceList": {
+                    "perSecond": 100,
+                    "perMinute": 200,
+                    "perHour": 2000
+                  },
+                  "sessionMisc": {
+                    "perSecond": 100,
+                    "perMinute": 1200,
+                    "perHour": 7200
+                  },
+                  "invoiceMetadata": {
+                    "perSecond": 80,
+                    "perMinute": 160,
+                    "perHour": 200
+                  },
+                  "invoiceExport": {
+                    "perSecond": 40,
+                    "perMinute": 80,
+                    "perHour": 200
+                  },
+                  "invoiceDownload": {
+                    "perSecond": 80,
+                    "perMinute": 160,
+                    "perHour": 640
+                  },
+                  "other": {
+                    "perSecond": 100,
+                    "perMinute": 300,
+                    "perHour": 1200
+                  }
+                }
               }
             }
           },
@@ -1318,7 +1519,19 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"permissions":["InvoiceRead","InvoiceWrite","Introspection","CredentialsRead"],"description":"Opis uprawnienia"}
+              "example": {
+                "subjectIdentifier": {
+                  "type": "Pesel",
+                  "value": "15062788702"
+                },
+                "permissions": [
+                  "InvoiceRead",
+                  "InvoiceWrite",
+                  "Introspection",
+                  "CredentialsRead"
+                ],
+                "description": "Opis uprawnienia"
+              }
             }
           }
         },
@@ -1330,7 +1543,9 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {
+                  "referenceNumber": "20250626-EG-333C814000-C529F710D8-D2"
+                }
               }
             }
           },
@@ -1384,7 +1599,23 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Nip","value":"7762811692"},"permissions":[{"type":"InvoiceRead","canDelegate":true},{"type":"InvoiceWrite","canDelegate":true}],"description":"Opis uprawnienia"}
+              "example": {
+                "subjectIdentifier": {
+                  "type": "Nip",
+                  "value": "7762811692"
+                },
+                "permissions": [
+                  {
+                    "type": "InvoiceRead",
+                    "canDelegate": true
+                  },
+                  {
+                    "type": "InvoiceWrite",
+                    "canDelegate": true
+                  }
+                ],
+                "description": "Opis uprawnienia"
+              }
             }
           }
         },
@@ -1396,7 +1627,9 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {
+                  "referenceNumber": "20250626-EG-333C814000-C529F710D8-D2"
+                }
               }
             }
           },
@@ -1450,7 +1683,14 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Nip","value":"7762811692"},"permission":"SelfInvoicing","description":"działanie w imieniu 3393244202 w kontekście 7762811692, Firma sp. z o.o."}
+              "example": {
+                "subjectIdentifier": {
+                  "type": "Nip",
+                  "value": "7762811692"
+                },
+                "permission": "SelfInvoicing",
+                "description": "działanie w imieniu 3393244202 w kontekście 7762811692, Firma sp. z o.o."
+              }
             }
           }
         },
@@ -1462,7 +1702,9 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {
+                  "referenceNumber": "20250626-EG-333C814000-C529F710D8-D2"
+                }
               }
             }
           },
@@ -1516,7 +1758,21 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Pesel","value":"22271569167"},"targetIdentifier":{"type":"Nip","value":"5687926712"},"permissions":["InvoiceWrite","InvoiceRead"],"description":"praca dla klienta 5687926712; uprawniony PESEL: 22271569167, Adam Abacki; pośrednik 3936518395"}
+              "example": {
+                "subjectIdentifier": {
+                  "type": "Pesel",
+                  "value": "22271569167"
+                },
+                "targetIdentifier": {
+                  "type": "Nip",
+                  "value": "5687926712"
+                },
+                "permissions": [
+                  "InvoiceWrite",
+                  "InvoiceRead"
+                ],
+                "description": "praca dla klienta 5687926712; uprawniony PESEL: 22271569167, Adam Abacki; pośrednik 3936518395"
+              }
             }
           }
         },
@@ -1528,7 +1784,9 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {
+                  "referenceNumber": "20250626-EG-333C814000-C529F710D8-D2"
+                }
               }
             }
           },
@@ -1582,7 +1840,18 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Pesel","value":"15062788702"},"contextIdentifier":{"type":"InternalId","value":"7762811692-12345"},"description":"Opis uprawnienia","subunitName":"Jednostka 014"}
+              "example": {
+                "subjectIdentifier": {
+                  "type": "Pesel",
+                  "value": "15062788702"
+                },
+                "contextIdentifier": {
+                  "type": "InternalId",
+                  "value": "7762811692-12345"
+                },
+                "description": "Opis uprawnienia",
+                "subunitName": "Jednostka 014"
+              }
             }
           }
         },
@@ -1594,7 +1863,9 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {
+                  "referenceNumber": "20250626-EG-333C814000-C529F710D8-D2"
+                }
               }
             }
           },
@@ -1649,7 +1920,18 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"contextIdentifier":{"type":"NipVatUe","value":"7762811692-DE123456789012"},"description":"Opis uprawnienia","euEntityName":"Firma G.m.b.H."}
+              "example": {
+                "subjectIdentifier": {
+                  "type": "Fingerprint",
+                  "value": "CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"
+                },
+                "contextIdentifier": {
+                  "type": "NipVatUe",
+                  "value": "7762811692-DE123456789012"
+                },
+                "description": "Opis uprawnienia",
+                "euEntityName": "Firma G.m.b.H."
+              }
             }
           }
         },
@@ -1661,7 +1943,9 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {
+                  "referenceNumber": "20250626-EG-333C814000-C529F710D8-D2"
+                }
               }
             }
           },
@@ -1715,7 +1999,17 @@
                   }
                 ]
               },
-              "example": {"subjectIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"permissions":["InvoiceRead","InvoiceWrite"],"description":"Opis uprawnienia"}
+              "example": {
+                "subjectIdentifier": {
+                  "type": "Fingerprint",
+                  "value": "CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"
+                },
+                "permissions": [
+                  "InvoiceRead",
+                  "InvoiceWrite"
+                ],
+                "description": "Opis uprawnienia"
+              }
             }
           }
         },
@@ -1727,7 +2021,9 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {
+                  "referenceNumber": "20250626-EG-333C814000-C529F710D8-D2"
+                }
               }
             }
           },
@@ -1785,7 +2081,9 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {
+                  "referenceNumber": "20250626-EG-333C814000-C529F710D8-D2"
+                }
               }
             }
           },
@@ -1845,7 +2143,9 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationResponse"
                 },
-                "example": {"referenceNumber":"20250626-EG-333C814000-C529F710D8-D2"}
+                "example": {
+                  "referenceNumber": "20250626-EG-333C814000-C529F710D8-D2"
+                }
               }
             }
           },
@@ -1903,7 +2203,12 @@
                 "schema": {
                   "$ref": "#/components/schemas/PermissionsOperationStatusResponse"
                 },
-                "example": {"status":{"code":200,"description":"Operacja zakończona sukcesem"}}
+                "example": {
+                  "status": {
+                    "code": 200,
+                    "description": "Operacja zakończona sukcesem"
+                  }
+                }
               }
             }
           },
@@ -2097,7 +2402,29 @@
                   }
                 ]
               },
-              "example": {"subjectType":"Subject1","dateRange":{"dateType":"PermanentStorage","from":"2025-08-28T09:22:13.388+00:00","to":"2025-09-28T09:22:13.388+00:00"},"amount":{"type":"Brutto","from":100.50,"to":250.00},"currencyCodes":["PLN","EUR"],"invoicingMode":"Online","formType":"FA","invoiceTypes":["Vat"],"hasAttachment":true}
+              "example": {
+                "subjectType": "Subject1",
+                "dateRange": {
+                  "dateType": "PermanentStorage",
+                  "from": "2025-08-28T09:22:13.388+00:00",
+                  "to": "2025-09-28T09:22:13.388+00:00"
+                },
+                "amount": {
+                  "type": "Brutto",
+                  "from": 100.50,
+                  "to": 250.00
+                },
+                "currencyCodes": [
+                  "PLN",
+                  "EUR"
+                ],
+                "invoicingMode": "Online",
+                "formType": "FA",
+                "invoiceTypes": [
+                  "Vat"
+                ],
+                "hasAttachment": true
+              }
             }
           }
         },
@@ -2109,7 +2436,89 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryInvoicesMetadataResponse"
                 },
-                "example": {"hasMore":false,"isTruncated":false,"invoices":[{"ksefNumber":"5555555555-20250828-010080615740-E4","invoiceNumber":"FA/KUDYO1a7dddfe-610e-4843-84ba-6b887e35266e","issueDate":"2025-08-27","invoicingDate":"2025-08-28T09:22:13.388+00:00","acquisitionDate":"2025-08-28T09:22:56.388+00:00","permanentStorageDate":"2025-08-28T09:23:01.388+00:00","seller":{"nip":"5555555555","name":"Test Company 1"},"buyer":{"identifier":{"type":"Nip","value":"7352765225"},"name":"Test Company 4"},"netAmount":35260.63,"grossAmount":43370.57,"vatAmount":8109.94,"currency":"PLN","invoicingMode":"Offline","invoiceType":"Vat","formCode":{"systemCode":"FA (3)","schemaVersion":"1-0E","value":"FA"},"isSelfInvoicing":false,"hasAttachment":false,"invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","thirdSubjects":[]},{"ksefNumber":"5555555555-20250828-010080615740-E4","invoiceNumber":"5265877635-20250925-010020A0A242-0A","issueDate":"2025-08-28","invoicingDate":"2025-08-28T10:23:13.388+00:00","acquisitionDate":"2025-08-28T10:23:56.388+00:00","permanentStorageDate":"2025-08-28T10:24:01.388+00:00","seller":{"nip":"5555555555","name":"Test Company 1"},"buyer":{"identifier":{"type":"Nip","value":"3225081610"},"name":"Test Company 2"},"netAmount":35260.63,"grossAmount":43370.57,"vatAmount":8109.94,"currency":"PLN","invoicingMode":"Online","invoiceType":"Vat","formCode":{"systemCode":"FA (3)","schemaVersion":"1-0E","value":"FA"},"isSelfInvoicing":false,"hasAttachment":true,"invoiceHash":"o+nMBU8n8TAhy6EjbcdYdHSZVbUspqmCKqOPLhy3zIQ=","thirdSubjects":[{"identifier":{"type":"InternalId","value":"5555555555-12345"},"name":"Wystawca faktury","role":4}]}]}
+                "example": {
+                  "hasMore": false,
+                  "isTruncated": false,
+                  "invoices": [
+                    {
+                      "ksefNumber": "5555555555-20250828-010080615740-E4",
+                      "invoiceNumber": "FA/KUDYO1a7dddfe-610e-4843-84ba-6b887e35266e",
+                      "issueDate": "2025-08-27",
+                      "invoicingDate": "2025-08-28T09:22:13.388+00:00",
+                      "acquisitionDate": "2025-08-28T09:22:56.388+00:00",
+                      "permanentStorageDate": "2025-08-28T09:23:01.388+00:00",
+                      "seller": {
+                        "nip": "5555555555",
+                        "name": "Test Company 1"
+                      },
+                      "buyer": {
+                        "identifier": {
+                          "type": "Nip",
+                          "value": "7352765225"
+                        },
+                        "name": "Test Company 4"
+                      },
+                      "netAmount": 35260.63,
+                      "grossAmount": 43370.57,
+                      "vatAmount": 8109.94,
+                      "currency": "PLN",
+                      "invoicingMode": "Offline",
+                      "invoiceType": "Vat",
+                      "formCode": {
+                        "systemCode": "FA (3)",
+                        "schemaVersion": "1-0E",
+                        "value": "FA"
+                      },
+                      "isSelfInvoicing": false,
+                      "hasAttachment": false,
+                      "invoiceHash": "mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=",
+                      "thirdSubjects": [ ]
+                    },
+                    {
+                      "ksefNumber": "5555555555-20250828-010080615740-E4",
+                      "invoiceNumber": "5265877635-20250925-010020A0A242-0A",
+                      "issueDate": "2025-08-28",
+                      "invoicingDate": "2025-08-28T10:23:13.388+00:00",
+                      "acquisitionDate": "2025-08-28T10:23:56.388+00:00",
+                      "permanentStorageDate": "2025-08-28T10:24:01.388+00:00",
+                      "seller": {
+                        "nip": "5555555555",
+                        "name": "Test Company 1"
+                      },
+                      "buyer": {
+                        "identifier": {
+                          "type": "Nip",
+                          "value": "3225081610"
+                        },
+                        "name": "Test Company 2"
+                      },
+                      "netAmount": 35260.63,
+                      "grossAmount": 43370.57,
+                      "vatAmount": 8109.94,
+                      "currency": "PLN",
+                      "invoicingMode": "Online",
+                      "invoiceType": "Vat",
+                      "formCode": {
+                        "systemCode": "FA (3)",
+                        "schemaVersion": "1-0E",
+                        "value": "FA"
+                      },
+                      "isSelfInvoicing": false,
+                      "hasAttachment": true,
+                      "invoiceHash": "o+nMBU8n8TAhy6EjbcdYdHSZVbUspqmCKqOPLhy3zIQ=",
+                      "thirdSubjects": [
+                        {
+                          "identifier": {
+                            "type": "InternalId",
+                            "value": "5555555555-12345"
+                          },
+                          "name": "Wystawca faktury",
+                          "role": 4
+                        }
+                      ]
+                    }
+                  ]
+                }
               }
             }
           },
@@ -2176,7 +2585,20 @@
                   }
                 ]
               },
-              "example": {"encryption":{"encryptedSymmetricKey":"Rk1Qb1VhVjMyQ3NxQ1h1WlVtZUdHcDJSZ0pTbE5IbWQ=","initializationVector":"c29tZUluaXRWZWN0b3I="},"filters":{"subjectType":"Subject1","dateRange":{"dateType":"Issue","from":"2025-08-28T09:22:13.388+00:00","to":"2025-09-28T09:22:13.388+00:00"}}}
+              "example": {
+                "encryption": {
+                  "encryptedSymmetricKey": "Rk1Qb1VhVjMyQ3NxQ1h1WlVtZUdHcDJSZ0pTbE5IbWQ=",
+                  "initializationVector": "c29tZUluaXRWZWN0b3I="
+                },
+                "filters": {
+                  "subjectType": "Subject1",
+                  "dateRange": {
+                    "dateType": "Issue",
+                    "from": "2025-08-28T09:22:13.388+00:00",
+                    "to": "2025-09-28T09:22:13.388+00:00"
+                  }
+                }
+              }
             }
           }
         },
@@ -2188,7 +2610,9 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExportInvoicesResponse"
                 },
-                "example": {"referenceNumber":"20251010-EH-1B6C9EB000-4B15D3AEB9-89"}
+                "example": {
+                  "referenceNumber": "20251010-EH-1B6C9EB000-4B15D3AEB9-89"
+                }
               }
             }
           },
@@ -2256,7 +2680,32 @@
                 "schema": {
                   "$ref": "#/components/schemas/InvoiceExportStatusResponse"
                 },
-                "example": {"status":{"code":200,"description":"Eksport faktur zakończony sukcesem"},"completedDate":"2025-09-16T16:09:40.901091+00:00","package":{"invoiceCount":10000,"size":22425060,"parts":[{"ordinalNumber":1,"partName":"20250925-EH-2D2C11B000-E9C9ED8340-EE-001.zip.aes","method":"GET","url":"https://ksef-api-storage/storage/00/20250626-eh-2d2c11b000-e9c9ed8340-ee/invoice-part/20250925-EH-2D2C11B000-E9C9ED8340-EE-001.zip.aes?skoid=1ad7cfe8-2cb2-406b-b96c-6eefb55794db&sktid=647754c7-3974-4442-a425-c61341b61c69&skt=2025-06-26T09%3A40%3A54Z&ske=2025-06-26T10%3A10%3A54Z&sks=b&skv=2025-01-05&sv=2025-01-05&se=2025-06-26T10%3A10%3A54Z&sr=b&sp=w&sig=8mKZEU8Reuz%2Fn7wHi4T%2FY8BzLeD5l8bR2xJsBxIgDEY%3D","partSize":22425060,"partHash":"BKH9Uy1CjBFXiQdDUM2CJYk5LxWTm4fE1lljnl83Ajw=","encryptedPartSize":22425072,"encryptedPartHash":"HlvwRLc59EJH7O5GoeHEZxTQO5TJ/WP1QH0aFi4x2Ss=","expirationDate":"2025-09-16T17:09:40.901091+00:00"}],"isTruncated":true,"lastPermanentStorageDate":"2025-09-11T11:40:40.266578+00:00"}}
+                "example": {
+                  "status": {
+                    "code": 200,
+                    "description": "Eksport faktur zakończony sukcesem"
+                  },
+                  "completedDate": "2025-09-16T16:09:40.901091+00:00",
+                  "package": {
+                    "invoiceCount": 10000,
+                    "size": 22425060,
+                    "parts": [
+                      {
+                        "ordinalNumber": 1,
+                        "partName": "20250925-EH-2D2C11B000-E9C9ED8340-EE-001.zip.aes",
+                        "method": "GET",
+                        "url": "https://ksef-api-storage/storage/00/20250626-eh-2d2c11b000-e9c9ed8340-ee/invoice-part/20250925-EH-2D2C11B000-E9C9ED8340-EE-001.zip.aes?skoid=1ad7cfe8-2cb2-406b-b96c-6eefb55794db&sktid=647754c7-3974-4442-a425-c61341b61c69&skt=2025-06-26T09%3A40%3A54Z&ske=2025-06-26T10%3A10%3A54Z&sks=b&skv=2025-01-05&sv=2025-01-05&se=2025-06-26T10%3A10%3A54Z&sr=b&sp=w&sig=8mKZEU8Reuz%2Fn7wHi4T%2FY8BzLeD5l8bR2xJsBxIgDEY%3D",
+                        "partSize": 22425060,
+                        "partHash": "BKH9Uy1CjBFXiQdDUM2CJYk5LxWTm4fE1lljnl83Ajw=",
+                        "encryptedPartSize": 22425072,
+                        "encryptedPartHash": "HlvwRLc59EJH7O5GoeHEZxTQO5TJ/WP1QH0aFi4x2Ss=",
+                        "expirationDate": "2025-09-16T17:09:40.901091+00:00"
+                      }
+                    ],
+                    "isTruncated": true,
+                    "lastPermanentStorageDate": "2025-09-11T11:40:40.266578+00:00"
+                  }
+                }
               }
             }
           },
@@ -2424,7 +2873,37 @@
                 "schema": {
                   "$ref": "#/components/schemas/SessionsQueryResponse"
                 },
-                "example": {"continuationToken":"W3sidG9rZW4iOiIrUklEOn4zeHd0QU1SM3dYYjRCd0FBQUFBQUNBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBZ2dBQUFBQUFDQUFBQVlBQUFBQUlBQUFBQUFBQUFBZ0FBQVVBUEVIQUVGdGdJUUFFUUJBQUJBRUFCQVVoZ1NBQXdBQUFBQWdBQUFHQUhFa0NFQWxnQVFBQUFBQUlBQUFGZ0F5Q0FVZ0VBRC9nRE9BRFlFdWdIcUF5SXBEZ0IrQUJnQUFBQUFnQUFBQ0FPNlYiLCJyYW5nZSI6eyJtaW4iOiIiLCJtYXgiOiIwNUMxREYyQjVGMzU5OCJ9fV0=","sessions":[{"referenceNumber":"20250925-SO-2F67776000-97273B191A-65","status":{"code":200,"description":"Sesja interaktywna przetworzona pomyślnie"},"dateCreated":"2025-09-25T13:48:26.8700925+00:00","dateUpdated":"2025-09-26T02:16:07+00:00","validUntil":"2025-09-26T01:48:26.8700925+00:00","totalInvoiceCount":2,"successfulInvoiceCount":2,"failedInvoiceCount":0},{"referenceNumber":"20250928-SO-494B541000-3AD87C01BA-5D","status":{"code":200,"description":"Sesja interaktywna przetworzona pomyślnie"},"dateCreated":"2025-09-28T21:20:54.5936927+00:00","dateUpdated":"2025-09-29T10:19:28+00:00","validUntil":"2025-09-29T09:20:54.5936927+00:00","totalInvoiceCount":3,"successfulInvoiceCount":3,"failedInvoiceCount":0}]}
+                "example": {
+                  "continuationToken": "W3sidG9rZW4iOiIrUklEOn4zeHd0QU1SM3dYYjRCd0FBQUFBQUNBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBZ2dBQUFBQUFDQUFBQVlBQUFBQUlBQUFBQUFBQUFBZ0FBQVVBUEVIQUVGdGdJUUFFUUJBQUJBRUFCQVVoZ1NBQXdBQUFBQWdBQUFHQUhFa0NFQWxnQVFBQUFBQUlBQUFGZ0F5Q0FVZ0VBRC9nRE9BRFlFdWdIcUF5SXBEZ0IrQUJnQUFBQUFnQUFBQ0FPNlYiLCJyYW5nZSI6eyJtaW4iOiIiLCJtYXgiOiIwNUMxREYyQjVGMzU5OCJ9fV0=",
+                  "sessions": [
+                    {
+                      "referenceNumber": "20250925-SO-2F67776000-97273B191A-65",
+                      "status": {
+                        "code": 200,
+                        "description": "Sesja interaktywna przetworzona pomyślnie"
+                      },
+                      "dateCreated": "2025-09-25T13:48:26.8700925+00:00",
+                      "dateUpdated": "2025-09-26T02:16:07+00:00",
+                      "validUntil": "2025-09-26T01:48:26.8700925+00:00",
+                      "totalInvoiceCount": 2,
+                      "successfulInvoiceCount": 2,
+                      "failedInvoiceCount": 0
+                    },
+                    {
+                      "referenceNumber": "20250928-SO-494B541000-3AD87C01BA-5D",
+                      "status": {
+                        "code": 200,
+                        "description": "Sesja interaktywna przetworzona pomyślnie"
+                      },
+                      "dateCreated": "2025-09-28T21:20:54.5936927+00:00",
+                      "dateUpdated": "2025-09-29T10:19:28+00:00",
+                      "validUntil": "2025-09-29T09:20:54.5936927+00:00",
+                      "totalInvoiceCount": 3,
+                      "successfulInvoiceCount": 3,
+                      "failedInvoiceCount": 0
+                    }
+                  ]
+                }
               }
             }
           },
@@ -2489,7 +2968,24 @@
                 "schema": {
                   "$ref": "#/components/schemas/SessionStatusResponse"
                 },
-                "example": {"status":{"code":200,"description":"Sesja interaktywna przetworzona pomyślnie"},"upo":{"pages":[{"referenceNumber":"20250918-EU-2EBD6FA000-242EB9B66D-43","downloadUrl":"https://ksef-test.mf.gov.pl/storage/01/20250918-sb-3789a40000-20373e1269-a3/session-upo/upo_00.xml?sv=2025-01-05&st=2025-09-18T14%3A55%3A50Z&se=2025-09-21T15%3A00%3A50Z&sr=b&sp=r&sig=ZlQO6Xtzu3VQQDwmEMfb0VryMxe9WcUgWtkdiB6X2Qo%3D","downloadUrlExpirationDate":"2025-09-21T15:00:50+00:00"}]},"invoiceCount":10,"successfulInvoiceCount":8,"failedInvoiceCount":2}
+                "example": {
+                  "status": {
+                    "code": 200,
+                    "description": "Sesja interaktywna przetworzona pomyślnie"
+                  },
+                  "upo": {
+                    "pages": [
+                      {
+                        "referenceNumber": "20250918-EU-2EBD6FA000-242EB9B66D-43",
+                        "downloadUrl": "https://ksef-test.mf.gov.pl/storage/01/20250918-sb-3789a40000-20373e1269-a3/session-upo/upo_00.xml?sv=2025-01-05&st=2025-09-18T14%3A55%3A50Z&se=2025-09-21T15%3A00%3A50Z&sr=b&sp=r&sig=ZlQO6Xtzu3VQQDwmEMfb0VryMxe9WcUgWtkdiB6X2Qo%3D",
+                        "downloadUrlExpirationDate": "2025-09-21T15:00:50+00:00"
+                      }
+                    ]
+                  },
+                  "invoiceCount": 10,
+                  "successfulInvoiceCount": 8,
+                  "failedInvoiceCount": 2
+                }
               }
             }
           },
@@ -2571,7 +3067,44 @@
                 "schema": {
                   "$ref": "#/components/schemas/SessionInvoicesResponse"
                 },
-                "example": {"continuationToken":"W34idG9rZW4iOiIrUklEOn4xUE5BQU5hcXJVOUFBQUFBQUFBQUFBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBVUFBQUFBQUFBQUFRZ0FBQUFBQUFBQT0iLCJyYW5nZSI6eyJtaW4iOiIiLCJtYXgiOiJGRiJ9fV0=","invoices":[{"ordinalNumber":1,"invoiceNumber":"FA/XPWIC-7900685789/06/2025","ksefNumber":"5265877635-20250626-010080DD2B5E-26","referenceNumber":"20250918-EE-2F15D39000-242207E5C4-1B","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","acquisitionDate":"2025-09-18T12:24:16.0154302+00:00","invoicingDate":"2025-09-18T12:23:56.0154302+00:00","permanentStorageDate":"2025-09-18T12:24:01.0154302+00:00","upoDownloadUrl":"https://ksef-test.mf.gov.pl/storage/01/20250918-SB-3789A40000-20373E1269-A3/invoice-upo/upo_5265877635-20250626-010080DD2B5E-26.xml?sv=2025-01-05&st=2025-09-18T14%3A49%3A20Z&se=2025-09-21T14%3A54%3A20Z&sr=b&sp=r&sig=%2BUWFPA10gS580VhngGKW%2FZiOOtiHPOiTyMlxhG6ZvWs%3D","upoDownloadUrlExpirationDate":"2025-09-21T14:54:20+00:00","status":{"code":200,"description":"Sukces"}},{"ordinalNumber":2,"referenceNumber":"20250918-EE-2F20AD2000-242386DF86-52","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","invoicingDate":"2025-09-18T12:23:56.0154302+00:00","status":{"code":440,"description":"Duplikat faktury","details":["Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"]}}]}
+                "example": {
+                  "continuationToken": "W34idG9rZW4iOiIrUklEOn4xUE5BQU5hcXJVOUFBQUFBQUFBQUFBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBVUFBQUFBQUFBQUFRZ0FBQUFBQUFBQT0iLCJyYW5nZSI6eyJtaW4iOiIiLCJtYXgiOiJGRiJ9fV0=",
+                  "invoices": [
+                    {
+                      "ordinalNumber": 1,
+                      "invoiceNumber": "FA/XPWIC-7900685789/06/2025",
+                      "ksefNumber": "5265877635-20250626-010080DD2B5E-26",
+                      "referenceNumber": "20250918-EE-2F15D39000-242207E5C4-1B",
+                      "invoiceHash": "mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=",
+                      "acquisitionDate": "2025-09-18T12:24:16.0154302+00:00",
+                      "invoicingDate": "2025-09-18T12:23:56.0154302+00:00",
+                      "permanentStorageDate": "2025-09-18T12:24:01.0154302+00:00",
+                      "upoDownloadUrl": "https://ksef-test.mf.gov.pl/storage/01/20250918-SB-3789A40000-20373E1269-A3/invoice-upo/upo_5265877635-20250626-010080DD2B5E-26.xml?sv=2025-01-05&st=2025-09-18T14%3A49%3A20Z&se=2025-09-21T14%3A54%3A20Z&sr=b&sp=r&sig=%2BUWFPA10gS580VhngGKW%2FZiOOtiHPOiTyMlxhG6ZvWs%3D",
+                      "upoDownloadUrlExpirationDate": "2025-09-21T14:54:20+00:00",
+                      "status": {
+                        "code": 200,
+                        "description": "Sukces"
+                      }
+                    },
+                    {
+                      "ordinalNumber": 2,
+                      "referenceNumber": "20250918-EE-2F20AD2000-242386DF86-52",
+                      "invoiceHash": "mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=",
+                      "invoicingDate": "2025-09-18T12:23:56.0154302+00:00",
+                      "status": {
+                        "code": 440,
+                        "description": "Duplikat faktury",
+                        "details": [
+                          "Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"
+                        ],
+                        "extensions": {
+                          "originalSessionReferenceNumber": "20250626-SO-2F14610000-242991F8C9-B4",
+                          "originalKsefNumber": "5265877635-20250626-010080DD2B5E-26"
+                        }
+                      }
+                    }
+                  ]
+                }
               }
             }
           },
@@ -2640,7 +3173,22 @@
                 "schema": {
                   "$ref": "#/components/schemas/SessionInvoiceStatusResponse"
                 },
-                "example": {"ordinalNumber":2,"referenceNumber":"20250626-EE-2F20AD2000-242386DF86-52","invoicingDate":"2025-07-11T12:23:56.0154302+00:00","status":{"code":440,"description":"Duplikat faktury","details":["Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"]}}
+                "example": {
+                  "ordinalNumber": 2,
+                  "referenceNumber": "20250626-EE-2F20AD2000-242386DF86-52",
+                  "invoicingDate": "2025-07-11T12:23:56.0154302+00:00",
+                  "status": {
+                    "code": 440,
+                    "description": "Duplikat faktury",
+                    "details": [
+                      "Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"
+                    ],
+                    "extensions": {
+                      "originalSessionReferenceNumber": "20250626-SO-2F14610000-242991F8C9-B4",
+                      "originalKsefNumber": "5265877635-20250626-010080DD2B5E-26"
+                    }
+                  }
+                }
               }
             }
           },
@@ -2722,7 +3270,29 @@
                 "schema": {
                   "$ref": "#/components/schemas/SessionInvoicesResponse"
                 },
-                "example": {"continuationToken":"...","invoices":[{"ordinalNumber":2,"referenceNumber":"20250626-EE-2F20AD2000-242386DF86-52","invoiceHash":"mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=","invoiceFileName":"invoice1.xml","invoicingDate":"2025-07-11T12:23:56.0154302+00:00","status":{"code":440,"description":"Duplikat faktury","details":["Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"]}}]}
+                "example": {
+                  "continuationToken": "...",
+                  "invoices": [
+                    {
+                      "ordinalNumber": 2,
+                      "referenceNumber": "20250626-EE-2F20AD2000-242386DF86-52",
+                      "invoiceHash": "mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=",
+                      "invoiceFileName": "invoice1.xml",
+                      "invoicingDate": "2025-07-11T12:23:56.0154302+00:00",
+                      "status": {
+                        "code": 440,
+                        "description": "Duplikat faktury",
+                        "details": [
+                          "Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"
+                        ],
+                        "extensions": {
+                          "originalSessionReferenceNumber": "20250626-SO-2F14610000-242991F8C9-B4",
+                          "originalKsefNumber": "5265877635-20250626-010080DD2B5E-26"
+                        }
+                      }
+                    }
+                  ]
+                }
               }
             }
           },
@@ -2981,7 +3551,13 @@
                   }
                 ]
               },
-              "example": {"permissions":["InvoiceRead","InvoiceWrite"],"description":"Wystawianie i przeglądanie faktur."}
+              "example": {
+                "permissions": [
+                  "InvoiceRead",
+                  "InvoiceWrite"
+                ],
+                "description": "Wystawianie i przeglądanie faktur."
+              }
             }
           }
         },
@@ -2993,7 +3569,10 @@
                 "schema": {
                   "$ref": "#/components/schemas/GenerateTokenResponse"
                 },
-                "example": {"referenceNumber":"20251010-EC-1DCE3E3000-12ECB5B36E-45","token":"20251010-EC-1DCE3E3000-12ECB5B36E-45|internalId-5265877635-12345|919f704466624ce29cd5ac7b65ded5e7cccc112eee314f2aaa76e02cd16df7b9"}
+                "example": {
+                  "referenceNumber": "20251010-EC-1DCE3E3000-12ECB5B36E-45",
+                  "token": "20251010-EC-1DCE3E3000-12ECB5B36E-45|internalId-5265877635-12345|919f704466624ce29cd5ac7b65ded5e7cccc112eee314f2aaa76e02cd16df7b9"
+                }
               }
             }
           },
@@ -3098,7 +3677,30 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryTokensResponse"
                 },
-                "example": {"continuationToken":"W3sidG9rZW4iOiIrUklEOn4zeHd0QUlqZUc5VkhCQUFBQUFBQUJBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBZ2dBQUFBQUFCQUFBQUFBQUFBQUVBQUFBQUFBQUFBUUFBQUVBRWVFMllFPSIsInJhbmdlIjp7Im1pbiI6IjA1QzFERjIxOUY5OTIwIiwibWF4IjoiRkYifX1d","tokens":[{"referenceNumber":"20251001-EC-2DD3AFF000-A6B7F19A95-11","authorIdentifier":{"type":"Nip","value":"5265877635"},"contextIdentifier":{"type":"Nip","value":"5265877635"},"description":"Wystawianie i przeglądanie faktur.","requestedPermissions":["InvoiceRead","InvoiceWrite"],"dateCreated":"2025-10-01T13:20:52.9919681+00:00","status":"Active","statusDetails":[]}]}
+                "example": {
+                  "continuationToken": "W3sidG9rZW4iOiIrUklEOn4zeHd0QUlqZUc5VkhCQUFBQUFBQUJBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBZ2dBQUFBQUFCQUFBQUFBQUFBQUVBQUFBQUFBQUFBUUFBQUVBRWVFMllFPSIsInJhbmdlIjp7Im1pbiI6IjA1QzFERjIxOUY5OTIwIiwibWF4IjoiRkYifX1d",
+                  "tokens": [
+                    {
+                      "referenceNumber": "20251001-EC-2DD3AFF000-A6B7F19A95-11",
+                      "authorIdentifier": {
+                        "type": "Nip",
+                        "value": "5265877635"
+                      },
+                      "contextIdentifier": {
+                        "type": "Nip",
+                        "value": "5265877635"
+                      },
+                      "description": "Wystawianie i przeglądanie faktur.",
+                      "requestedPermissions": [
+                        "InvoiceRead",
+                        "InvoiceWrite"
+                      ],
+                      "dateCreated": "2025-10-01T13:20:52.9919681+00:00",
+                      "status": "Active",
+                      "statusDetails": [ ]
+                    }
+                  ]
+                }
               }
             }
           },
@@ -3155,7 +3757,26 @@
                 "schema": {
                   "$ref": "#/components/schemas/TokenStatusResponse"
                 },
-                "example": {"referenceNumber":"20251001-EC-220B0CE000-E228129563-96","authorIdentifier":{"type":"Nip","value":"7762811692"},"contextIdentifier":{"type":"Nip","value":"5265877635"},"description":"Wystawianie i przeglądanie faktur.","requestedPermissions":["InvoiceWrite","InvoiceRead"],"dateCreated":"2025-07-11T12:23:56.0154302+00:00","lastUseDate":"2025-07-11T12:23:56.0154302+00:00","status":"Pending","statusDetails":[]}
+                "example": {
+                  "referenceNumber": "20251001-EC-220B0CE000-E228129563-96",
+                  "authorIdentifier": {
+                    "type": "Nip",
+                    "value": "7762811692"
+                  },
+                  "contextIdentifier": {
+                    "type": "Nip",
+                    "value": "5265877635"
+                  },
+                  "description": "Wystawianie i przeglądanie faktur.",
+                  "requestedPermissions": [
+                    "InvoiceWrite",
+                    "InvoiceRead"
+                  ],
+                  "dateCreated": "2025-07-11T12:23:56.0154302+00:00",
+                  "lastUseDate": "2025-07-11T12:23:56.0154302+00:00",
+                  "status": "Pending",
+                  "statusDetails": [ ]
+                }
               }
             }
           },
@@ -3266,7 +3887,16 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryPeppolProvidersResponse"
                 },
-                "example": {"peppolProviders":[{"id":"P123456789","name":"Dostawca usług Peppol","dateCreated":"2025-07-11T12:23:56.0154302+00:00"}],"hasMore":false}
+                "example": {
+                  "peppolProviders": [
+                    {
+                      "id": "P123456789",
+                      "name": "Dostawca usług Peppol",
+                      "dateCreated": "2025-07-11T12:23:56.0154302+00:00"
+                    }
+                  ],
+                  "hasMore": false
+                }
               }
             }
           },
@@ -3305,7 +3935,10 @@
                 "schema": {
                   "$ref": "#/components/schemas/AuthenticationChallengeResponse"
                 },
-                "example": {"challenge":"20250514-CR-226FB7B000-3ACF9BE4C0-10","timestamp":"2025-07-11T12:23:56.0154302+00:00"}
+                "example": {
+                  "challenge": "20250514-CR-226FB7B000-3ACF9BE4C0-10",
+                  "timestamp": "2025-07-11T12:23:56.0154302+00:00"
+                }
               }
             }
           },
@@ -3359,7 +3992,13 @@
                 "schema": {
                   "$ref": "#/components/schemas/AuthenticationInitResponse"
                 },
-                "example": {"referenceNumber":"20250514-AU-2DFC46C000-3AC6D5877F-D4","authenticationToken":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbi10eXBlIjoiT3BlcmF0aW9uVG9rZW4iLCJvcGVyYXRpb24tcmVmZXJlbmNlLW51bWJlciI6IjIwMjUwNTE0LUFVLTJERkM0NkMwMDAtM0FDNkQ1ODc3Ri1ENCIsImV4cCI6MTc0NzIzMTcxOSwiaWF0IjoxNzQ3MjI5MDE5LCJpc3MiOiJrc2VmLWFwaS10aSIsImF1ZCI6ImtzZWYtYXBpLXRpIn0.rtRcV2mR9SiuJwpQaQHsbAXvvVsdNKG4DJsdiJctIeU","validUntil":"2025-07-11T12:23:56.0154302+00:00"}}
+                "example": {
+                  "referenceNumber": "20250514-AU-2DFC46C000-3AC6D5877F-D4",
+                  "authenticationToken": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbi10eXBlIjoiT3BlcmF0aW9uVG9rZW4iLCJvcGVyYXRpb24tcmVmZXJlbmNlLW51bWJlciI6IjIwMjUwNTE0LUFVLTJERkM0NkMwMDAtM0FDNkQ1ODc3Ri1ENCIsImV4cCI6MTc0NzIzMTcxOSwiaWF0IjoxNzQ3MjI5MDE5LCJpc3MiOiJrc2VmLWFwaS10aSIsImF1ZCI6ImtzZWYtYXBpLXRpIn0.rtRcV2mR9SiuJwpQaQHsbAXvvVsdNKG4DJsdiJctIeU",
+                    "validUntil": "2025-07-11T12:23:56.0154302+00:00"
+                  }
+                }
               }
             }
           },
@@ -3399,7 +4038,14 @@
                   }
                 ]
               },
-              "example": {"challenge":"20250625-CR-2FDC223000-C2BFC98A9C-4E","contextIdentifier":{"type":"Nip","value":"5265877635"},"encryptedToken":"..."}
+              "example": {
+                "challenge": "20250625-CR-2FDC223000-C2BFC98A9C-4E",
+                "contextIdentifier": {
+                  "type": "Nip",
+                  "value": "5265877635"
+                },
+                "encryptedToken": "..."
+              }
             }
           }
         },
@@ -3411,7 +4057,13 @@
                 "schema": {
                   "$ref": "#/components/schemas/AuthenticationInitResponse"
                 },
-                "example": {"referenceNumber":"20250514-AU-2DFC46C000-3AC6D5877F-D4","authenticationToken":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbi10eXBlIjoiT3BlcmF0aW9uVG9rZW4iLCJvcGVyYXRpb24tcmVmZXJlbmNlLW51bWJlciI6IjIwMjUwNTE0LUFVLTJERkM0NkMwMDAtM0FDNkQ1ODc3Ri1ENCIsImV4cCI6MTc0NzIzMTcxOSwiaWF0IjoxNzQ3MjI5MDE5LCJpc3MiOiJrc2VmLWFwaS10aSIsImF1ZCI6ImtzZWYtYXBpLXRpIn0.rtRcV2mR9SiuJwpQaQHsbAXvvVsdNKG4DJsdiJctIeU","validUntil":"2025-07-11T12:23:56.0154302+00:00"}}
+                "example": {
+                  "referenceNumber": "20250514-AU-2DFC46C000-3AC6D5877F-D4",
+                  "authenticationToken": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbi10eXBlIjoiT3BlcmF0aW9uVG9rZW4iLCJvcGVyYXRpb24tcmVmZXJlbmNlLW51bWJlciI6IjIwMjUwNTE0LUFVLTJERkM0NkMwMDAtM0FDNkQ1ODc3Ri1ENCIsImV4cCI6MTc0NzIzMTcxOSwiaWF0IjoxNzQ3MjI5MDE5LCJpc3MiOiJrc2VmLWFwaS10aSIsImF1ZCI6ImtzZWYtYXBpLXRpIn0.rtRcV2mR9SiuJwpQaQHsbAXvvVsdNKG4DJsdiJctIeU",
+                    "validUntil": "2025-07-11T12:23:56.0154302+00:00"
+                  }
+                }
               }
             }
           },
@@ -3457,28 +4109,99 @@
                 },
                 "examples": {
                   "Kod 100 | Uwierzytelnianie w toku": {
-                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":100,"description":"Uwierzytelnianie w toku"}}
+                    "value": {
+                      "startDate": "0001-01-01T00:00:00+00:00",
+                      "authenticationMethod": "Token",
+                      "status": {
+                        "code": 100,
+                        "description": "Uwierzytelnianie w toku"
+                      }
+                    }
                   },
                   "Kod 200 | Uwierzytelnianie zakończone sukcesem": {
-                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":200,"description":"Uwierzytelnianie zakończone sukcesem"}}
+                    "value": {
+                      "startDate": "0001-01-01T00:00:00+00:00",
+                      "authenticationMethod": "Token",
+                      "status": {
+                        "code": 200,
+                        "description": "Uwierzytelnianie zakończone sukcesem"
+                      }
+                    }
                   },
                   "Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Nieważny certyfikat": {
-                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Nieważny certyfikat."]}}
+                    "value": {
+                      "startDate": "0001-01-01T00:00:00+00:00",
+                      "authenticationMethod": "Token",
+                      "status": {
+                        "code": 400,
+                        "description": "Uwierzytelnianie zakończone niepowodzeniem",
+                        "details": [
+                          "Nieważny certyfikat."
+                        ]
+                      }
+                    }
                   },
                   "Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Błąd weryfikacji łańcucha certyfikatów": {
-                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Błąd weryfikacji łańcucha certyfikatów."]}}
+                    "value": {
+                      "startDate": "0001-01-01T00:00:00+00:00",
+                      "authenticationMethod": "Token",
+                      "status": {
+                        "code": 400,
+                        "description": "Uwierzytelnianie zakończone niepowodzeniem",
+                        "details": [
+                          "Błąd weryfikacji łańcucha certyfikatów."
+                        ]
+                      }
+                    }
                   },
                   "Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Niezaufany łańcuch certyfikatów": {
-                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Niezaufany łańcuch certyfikatów."]}}
+                    "value": {
+                      "startDate": "0001-01-01T00:00:00+00:00",
+                      "authenticationMethod": "Token",
+                      "status": {
+                        "code": 400,
+                        "description": "Uwierzytelnianie zakończone niepowodzeniem",
+                        "details": [
+                          "Niezaufany łańcuch certyfikatów."
+                        ]
+                      }
+                    }
                   },
                   "Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Certyfikat odwołany": {
-                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Certyfikat odwołany."]}}
+                    "value": {
+                      "startDate": "0001-01-01T00:00:00+00:00",
+                      "authenticationMethod": "Token",
+                      "status": {
+                        "code": 400,
+                        "description": "Uwierzytelnianie zakończone niepowodzeniem",
+                        "details": [
+                          "Certyfikat odwołany."
+                        ]
+                      }
+                    }
                   },
                   "Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Niepoprawny certyfikat": {
-                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":400,"description":"Uwierzytelnianie zakończone niepowodzeniem","details":["Niepoprawny certyfikat."]}}
+                    "value": {
+                      "startDate": "0001-01-01T00:00:00+00:00",
+                      "authenticationMethod": "Token",
+                      "status": {
+                        "code": 400,
+                        "description": "Uwierzytelnianie zakończone niepowodzeniem",
+                        "details": [
+                          "Niepoprawny certyfikat."
+                        ]
+                      }
+                    }
                   },
                   "Kod 500 | Nieznany błąd": {
-                    "value": {"startDate":"0001-01-01T00:00:00+00:00","authenticationMethod":"Token","status":{"code":500,"description":"Nieznany błąd ({statusCode})"}}
+                    "value": {
+                      "startDate": "0001-01-01T00:00:00+00:00",
+                      "authenticationMethod": "Token",
+                      "status": {
+                        "code": 500,
+                        "description": "Nieznany błąd ({statusCode})"
+                      }
+                    }
                   }
                 }
               }
@@ -3521,7 +4244,16 @@
                 "schema": {
                   "$ref": "#/components/schemas/AuthenticationTokensResponse"
                 },
-                "example": {"accessToken":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbi10eXBlIjoiQ29udGV4dFRva2VuIiwiY29udGV4dC1pZGVudGlmaWVyLXR5cGUiOiJOaXAiLCJjb250ZXh0LWlkZW50aWZpZXItdmFsdWUiOiIzNzU2OTc3MDQ5IiwiYXV0aGVudGljYXRpb24tbWV0aG9kIjoiUXVhbGlmaWVkU2VhbCIsInN1YmplY3QtZGV0YWlscyI6IntcIlN1YmplY3RJZGVudGlmaWVyXCI6e1wiVHlwZVwiOlwiTmlwXCIsXCJWYWx1ZVwiOlwiMzc1Njk3NzA0OVwifX0iLCJleHAiOjE3NDcyMjAxNDksImlhdCI6MTc0NzIxOTI0OSwiaXNzIjoia3NlZi1hcGktdGkiLCJhdWQiOiJrc2VmLWFwaS10aSJ9.R_3_R2PbdCk8T4WP_0XGOO1iVNu2ugNxmkDvsD0soIE","validUntil":"2025-07-11T12:23:56.0154302+00:00"},"refreshToken":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbi10eXBlIjoiQ29udGV4dFRva2VuIiwiY29udGV4dC1pZGVudGlmaWVyLXR5cGUiOiJOaXAiLCJjb250ZXh0LWlkZW50aWZpZXItdmFsdWUiOiIzNzU2OTc3MDQ5IiwiYXV0aGVudGljYXRpb24tbWV0aG9kIjoiUXVhbGlmaWVkU2VhbCIsInN1YmplY3QtZGV0YWlscyI6IntcIlN1YmplY3RJZGVudGlmaWVyXCI6e1wiVHlwZVwiOlwiTmlwXCIsXCJWYWx1ZVwiOlwiMzc1Njk3NzA0OVwifX0iLCJleHAiOjE3NDcyMjAxNDksImlhdCI6MTc0NzIxOTI0OSwiaXNzIjoia3NlZi1hcGktdGkiLCJhdWQiOiJrc2VmLWFwaS10aSJ9.R_3_R2PbdCk8T4WP_0XGOO1iVNu2ugNxmkDvsD0soIE","validUntil":"2025-07-11T12:23:56.0154302+00:00"}}
+                "example": {
+                  "accessToken": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbi10eXBlIjoiQ29udGV4dFRva2VuIiwiY29udGV4dC1pZGVudGlmaWVyLXR5cGUiOiJOaXAiLCJjb250ZXh0LWlkZW50aWZpZXItdmFsdWUiOiIzNzU2OTc3MDQ5IiwiYXV0aGVudGljYXRpb24tbWV0aG9kIjoiUXVhbGlmaWVkU2VhbCIsInN1YmplY3QtZGV0YWlscyI6IntcIlN1YmplY3RJZGVudGlmaWVyXCI6e1wiVHlwZVwiOlwiTmlwXCIsXCJWYWx1ZVwiOlwiMzc1Njk3NzA0OVwifX0iLCJleHAiOjE3NDcyMjAxNDksImlhdCI6MTc0NzIxOTI0OSwiaXNzIjoia3NlZi1hcGktdGkiLCJhdWQiOiJrc2VmLWFwaS10aSJ9.R_3_R2PbdCk8T4WP_0XGOO1iVNu2ugNxmkDvsD0soIE",
+                    "validUntil": "2025-07-11T12:23:56.0154302+00:00"
+                  },
+                  "refreshToken": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbi10eXBlIjoiQ29udGV4dFRva2VuIiwiY29udGV4dC1pZGVudGlmaWVyLXR5cGUiOiJOaXAiLCJjb250ZXh0LWlkZW50aWZpZXItdmFsdWUiOiIzNzU2OTc3MDQ5IiwiYXV0aGVudGljYXRpb24tbWV0aG9kIjoiUXVhbGlmaWVkU2VhbCIsInN1YmplY3QtZGV0YWlscyI6IntcIlN1YmplY3RJZGVudGlmaWVyXCI6e1wiVHlwZVwiOlwiTmlwXCIsXCJWYWx1ZVwiOlwiMzc1Njk3NzA0OVwifX0iLCJleHAiOjE3NDcyMjAxNDksImlhdCI6MTc0NzIxOTI0OSwiaXNzIjoia3NlZi1hcGktdGkiLCJhdWQiOiJrc2VmLWFwaS10aSJ9.R_3_R2PbdCk8T4WP_0XGOO1iVNu2ugNxmkDvsD0soIE",
+                    "validUntil": "2025-07-11T12:23:56.0154302+00:00"
+                  }
+                }
               }
             }
           },
@@ -3562,7 +4294,12 @@
                 "schema": {
                   "$ref": "#/components/schemas/AuthenticationTokenRefreshResponse"
                 },
-                "example": {"accessToken":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbi10eXBlIjoiQ29udGV4dFRva2VuIiwiY29udGV4dC1pZGVudGlmaWVyLXR5cGUiOiJOaXAiLCJjb250ZXh0LWlkZW50aWZpZXItdmFsdWUiOiIzNzU2OTc3MDQ5IiwiYXV0aGVudGljYXRpb24tbWV0aG9kIjoiUXVhbGlmaWVkU2VhbCIsInN1YmplY3QtZGV0YWlscyI6IntcIlN1YmplY3RJZGVudGlmaWVyXCI6e1wiVHlwZVwiOlwiTmlwXCIsXCJWYWx1ZVwiOlwiMzc1Njk3NzA0OVwifX0iLCJleHAiOjE3NDcyMjAxNDksImlhdCI6MTc0NzIxOTI0OSwiaXNzIjoia3NlZi1hcGktdGkiLCJhdWQiOiJrc2VmLWFwaS10aSJ9.R_3_R2PbdCk8T4WP_0XGOO1iVNu2ugNxmkDvsD0soIE","validUntil":"2025-07-11T12:23:56.0154302+00:00"}}
+                "example": {
+                  "accessToken": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbi10eXBlIjoiQ29udGV4dFRva2VuIiwiY29udGV4dC1pZGVudGlmaWVyLXR5cGUiOiJOaXAiLCJjb250ZXh0LWlkZW50aWZpZXItdmFsdWUiOiIzNzU2OTc3MDQ5IiwiYXV0aGVudGljYXRpb24tbWV0aG9kIjoiUXVhbGlmaWVkU2VhbCIsInN1YmplY3QtZGV0YWlscyI6IntcIlN1YmplY3RJZGVudGlmaWVyXCI6e1wiVHlwZVwiOlwiTmlwXCIsXCJWYWx1ZVwiOlwiMzc1Njk3NzA0OVwifX0iLCJleHAiOjE3NDcyMjAxNDksImlhdCI6MTc0NzIxOTI0OSwiaXNzIjoia3NlZi1hcGktdGkiLCJhdWQiOiJrc2VmLWFwaS10aSJ9.R_3_R2PbdCk8T4WP_0XGOO1iVNu2ugNxmkDvsD0soIE",
+                    "validUntil": "2025-07-11T12:23:56.0154302+00:00"
+                  }
+                }
               }
             }
           },
@@ -3609,7 +4346,17 @@
                   }
                 ]
               },
-              "example": {"formCode":{"systemCode":"FA (3)","schemaVersion":"1-0E","value":"FA"},"encryption":{"encryptedSymmetricKey":"bdUVjqLj+y2q6aBUuLxxXYAMqeDuIBRTyr+hB96DaWKaGzuVHw9p+Nk9vhzgF/Q5cavK2k6eCh6SdsrWI0s9mFFj4A4UJtsyD8Dn3esLfUZ5A1juuG3q3SBi/XOC/+9W+0T/KdwdE393mbiUNyx1K/0bw31vKJL0COeJIDP7usAMDl42/H1TNvkjk+8iZ80V0qW7D+RZdz+tdiY1xV0f2mfgwJ46V0CpZ+sB9UAssRj+eVffavJ0TOg2b5JaBxE8MCAvrF6rO5K4KBjUmoy7PP7g1qIbm8xI2GO0KnfPOO5OWj8rsotRwBgu7x19Ine3qYUvuvCZlXRGGZ5NHIzWPM4O74+gNalaMgFCsmv8mMhETSU4SfAGmJr9edxPjQSbgD5i2X4eDRDMwvyaAa7CP1b2oICju+0L7Fywd2ZtUcr6El++eTVoi8HYsTArntET++gULT7XXjmb8e3O0nxrYiYsE9GMJ7HBGv3NOoJ1NTm3a7U6+c0ZJiBVLvn6xXw10LQX243xH+ehsKo6djQJKYtqcNPaXtCwM1c9RrsOx/wRXyWCtTffqLiaR0LbYvfMJAcEWceG+RaeAx4p37OiQqdJypd6LAv9/0ECWK8Bip8yyoA+0EYiAJb9YuDz2YlQX9Mx9E9FzFIAsgEQ2w723HZYWgPywLb+dlsum4lTZKQ=","initializationVector":"OmtDQdl6vkOI1GLKZSjgEg=="}}
+              "example": {
+                "formCode": {
+                  "systemCode": "FA (3)",
+                  "schemaVersion": "1-0E",
+                  "value": "FA"
+                },
+                "encryption": {
+                  "encryptedSymmetricKey": "bdUVjqLj+y2q6aBUuLxxXYAMqeDuIBRTyr+hB96DaWKaGzuVHw9p+Nk9vhzgF/Q5cavK2k6eCh6SdsrWI0s9mFFj4A4UJtsyD8Dn3esLfUZ5A1juuG3q3SBi/XOC/+9W+0T/KdwdE393mbiUNyx1K/0bw31vKJL0COeJIDP7usAMDl42/H1TNvkjk+8iZ80V0qW7D+RZdz+tdiY1xV0f2mfgwJ46V0CpZ+sB9UAssRj+eVffavJ0TOg2b5JaBxE8MCAvrF6rO5K4KBjUmoy7PP7g1qIbm8xI2GO0KnfPOO5OWj8rsotRwBgu7x19Ine3qYUvuvCZlXRGGZ5NHIzWPM4O74+gNalaMgFCsmv8mMhETSU4SfAGmJr9edxPjQSbgD5i2X4eDRDMwvyaAa7CP1b2oICju+0L7Fywd2ZtUcr6El++eTVoi8HYsTArntET++gULT7XXjmb8e3O0nxrYiYsE9GMJ7HBGv3NOoJ1NTm3a7U6+c0ZJiBVLvn6xXw10LQX243xH+ehsKo6djQJKYtqcNPaXtCwM1c9RrsOx/wRXyWCtTffqLiaR0LbYvfMJAcEWceG+RaeAx4p37OiQqdJypd6LAv9/0ECWK8Bip8yyoA+0EYiAJb9YuDz2YlQX9Mx9E9FzFIAsgEQ2w723HZYWgPywLb+dlsum4lTZKQ=",
+                  "initializationVector": "OmtDQdl6vkOI1GLKZSjgEg=="
+                }
+              }
             }
           }
         },
@@ -3621,7 +4368,10 @@
                 "schema": {
                   "$ref": "#/components/schemas/OpenOnlineSessionResponse"
                 },
-                "example": {"referenceNumber":"20250625-SO-2C3E6C8000-B675CF5D68-07","validUntil":"2025-07-11T12:23:56.0154302+00:00"}
+                "example": {
+                  "referenceNumber": "20250625-SO-2C3E6C8000-B675CF5D68-07",
+                  "validUntil": "2025-07-11T12:23:56.0154302+00:00"
+                }
               }
             }
           },
@@ -3690,7 +4440,14 @@
                   }
                 ]
               },
-              "example": {"invoiceHash":"EbrK4cOSjW4hEpJaHU71YXSOZZmqP5++dK9nLgTzgV4=","invoiceSize":6480,"encryptedInvoiceHash":"miYb1z3Ljw5VucTZslv3Tlt+V/EK1V8Q8evD8HMQ0dc=","encryptedInvoiceSize":6496,"encryptedInvoiceContent":"...","offlineMode":false}
+              "example": {
+                "invoiceHash": "EbrK4cOSjW4hEpJaHU71YXSOZZmqP5++dK9nLgTzgV4=",
+                "invoiceSize": 6480,
+                "encryptedInvoiceHash": "miYb1z3Ljw5VucTZslv3Tlt+V/EK1V8Q8evD8HMQ0dc=",
+                "encryptedInvoiceSize": 6496,
+                "encryptedInvoiceContent": "...",
+                "offlineMode": false
+              }
             }
           }
         },
@@ -3702,7 +4459,9 @@
                 "schema": {
                   "$ref": "#/components/schemas/SendInvoiceResponse"
                 },
-                "example": {"referenceNumber":"20250625-EE-319D7EE000-B67F415CDC-2C"}
+                "example": {
+                  "referenceNumber": "20250625-EE-319D7EE000-B67F415CDC-2C"
+                }
               }
             }
           },
@@ -3808,7 +4567,29 @@
                   }
                 ]
               },
-              "example": {"formCode":{"systemCode":"FA (2)","schemaVersion":"1-0E","value":"FA"},"batchFile":{"fileSize":16037,"fileHash":"WO86CC+1Lef11wEosItld/NPwxGN8tobOMLqk9PQjgs=","fileParts":[{"ordinalNumber":1,"fileSize":16048,"fileHash":"23ZyDAN0H/+yhC/En2xbNfF0tajAWSfejDaXD7fc2AE="}]},"encryption":{"encryptedSymmetricKey":"bYqmPAglF01AxZim4oNa+1NerhZYfFgLMnvksBprUur1aesQ0Y5jsmOIfCrozfMkF2tjdO+uOsBg4FPlDgjChwN2/tz2Hqwtxq3RkTr1SjY4x8jxJFpPedcS7EI+XO8C+i9mLj7TFx9p/bg07yM9vHtMAk5b88Ay9Qc3+T5Ch1DM2ClR3sVu2DqdlKzmbINY+rhfGtXn58Qo0XRyESGgc6M0iTZVBRPuPXLnD8a1KpOneCpNzLwxgT6Ei3ivLOpPWT53PxkRTaQ8puj6CIiCKo4FHQzHuI/NmrAhYU7TkNm2kymP/OxBgWdg3XB74tqNFfT8RZN1bZXuPhBidDOqa+xsqY3E871FSDmQwZf58HmoNl31XNvpnryiRGfnAISt+m+ELqgksAresVu6E9poUL1yiff+IOHSZABoYpNiqwnbT8qyW1uk8lKLyFVFu+kOsbzBk1OWWHqSkNFDaznDa2MKjHonOXI0uyKaKWvoBFC4dWN1PVumfpSSFAeYgNpAyVrZdcVOuiliEWepTDjGzJoOafTvwr5za2S6B5bPECDpX7JXazV7Olkq7ezG0w8y3olx+0C+NHoCk8B5/cm4gtVHTgKjiLSGpKJVOJABLXFkOyIOjbQsVe4ryX0Qy+SfL7JIQvTWvM5xkCoOMbzLdMo9tNo5qE34sguFI+lIevY=","initializationVector":"jWpJLNBHJ5pQEGCBglmIAw=="},"offlineMode":false}
+              "example": {
+                "formCode": {
+                  "systemCode": "FA (2)",
+                  "schemaVersion": "1-0E",
+                  "value": "FA"
+                },
+                "batchFile": {
+                  "fileSize": 16037,
+                  "fileHash": "WO86CC+1Lef11wEosItld/NPwxGN8tobOMLqk9PQjgs=",
+                  "fileParts": [
+                    {
+                      "ordinalNumber": 1,
+                      "fileSize": 16048,
+                      "fileHash": "23ZyDAN0H/+yhC/En2xbNfF0tajAWSfejDaXD7fc2AE="
+                    }
+                  ]
+                },
+                "encryption": {
+                  "encryptedSymmetricKey": "bYqmPAglF01AxZim4oNa+1NerhZYfFgLMnvksBprUur1aesQ0Y5jsmOIfCrozfMkF2tjdO+uOsBg4FPlDgjChwN2/tz2Hqwtxq3RkTr1SjY4x8jxJFpPedcS7EI+XO8C+i9mLj7TFx9p/bg07yM9vHtMAk5b88Ay9Qc3+T5Ch1DM2ClR3sVu2DqdlKzmbINY+rhfGtXn58Qo0XRyESGgc6M0iTZVBRPuPXLnD8a1KpOneCpNzLwxgT6Ei3ivLOpPWT53PxkRTaQ8puj6CIiCKo4FHQzHuI/NmrAhYU7TkNm2kymP/OxBgWdg3XB74tqNFfT8RZN1bZXuPhBidDOqa+xsqY3E871FSDmQwZf58HmoNl31XNvpnryiRGfnAISt+m+ELqgksAresVu6E9poUL1yiff+IOHSZABoYpNiqwnbT8qyW1uk8lKLyFVFu+kOsbzBk1OWWHqSkNFDaznDa2MKjHonOXI0uyKaKWvoBFC4dWN1PVumfpSSFAeYgNpAyVrZdcVOuiliEWepTDjGzJoOafTvwr5za2S6B5bPECDpX7JXazV7Olkq7ezG0w8y3olx+0C+NHoCk8B5/cm4gtVHTgKjiLSGpKJVOJABLXFkOyIOjbQsVe4ryX0Qy+SfL7JIQvTWvM5xkCoOMbzLdMo9tNo5qE34sguFI+lIevY=",
+                  "initializationVector": "jWpJLNBHJ5pQEGCBglmIAw=="
+                },
+                "offlineMode": false
+              }
             }
           }
         },
@@ -3820,7 +4601,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/OpenBatchSessionResponse"
                 },
-                "example": {"referenceNumber":"20250626-SB-213D593000-4DE10D80A5-E9","partUploadRequests":[{"ordinalNumber":1,"method":"PUT","url":"https://ksef-api-storage/storage/00/20250626-sb-213d593000-4de10d80a5-e9/batch-parts/1?skoid=1ad7cfe8-2cb2-406b-b96c-6eefb55794db&sktid=647754c7-3974-4442-a425-c61341b61c69&skt=2025-06-26T09%3A40%3A54Z&ske=2025-06-26T10%3A10%3A54Z&sks=b&skv=2025-01-05&sv=2025-01-05&se=2025-06-26T10%3A10%3A54Z&sr=b&sp=w&sig=8mKZEU8Reuz%2Fn7wHi4T%2FY8BzLeD5l8bR2xJsBxIgDEY%3D","headers":{"x-ms-blob-type":"BlockBlob"}}]}
+                "example": {
+                  "referenceNumber": "20250626-SB-213D593000-4DE10D80A5-E9",
+                  "partUploadRequests": [
+                    {
+                      "ordinalNumber": 1,
+                      "method": "PUT",
+                      "url": "https://ksef-api-storage/storage/00/20250626-sb-213d593000-4de10d80a5-e9/batch-parts/1?skoid=1ad7cfe8-2cb2-406b-b96c-6eefb55794db&sktid=647754c7-3974-4442-a425-c61341b61c69&skt=2025-06-26T09%3A40%3A54Z&ske=2025-06-26T10%3A10%3A54Z&sks=b&skv=2025-01-05&sv=2025-01-05&se=2025-06-26T10%3A10%3A54Z&sr=b&sp=w&sig=8mKZEU8Reuz%2Fn7wHi4T%2FY8BzLeD5l8bR2xJsBxIgDEY%3D",
+                      "headers": {
+                        "x-ms-blob-type": "BlockBlob"
+                      }
+                    }
+                  ]
+                }
               }
             }
           },
@@ -3947,7 +4740,16 @@
                   }
                 ]
               },
-              "example": {"contextIdentifier":{"type":"Nip","value":"3568707925"},"permissionTypes":["InvoiceWrite"],"permissionState":"Active"}
+              "example": {
+                "contextIdentifier": {
+                  "type": "Nip",
+                  "value": "3568707925"
+                },
+                "permissionTypes": [
+                  "InvoiceWrite"
+                ],
+                "permissionState": "Active"
+              }
             }
           }
         },
@@ -3959,7 +4761,27 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryPersonalPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","contextIdentifier":{"type":"Nip","value":"3568707925"},"authorizedIdentifier":{"type":"Nip","value":"5247677742"},"permissionScope":"InvoiceWrite","description":"Opis uprawnienia","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"hasMore":false}
+                "example": {
+                  "permissions": [
+                    {
+                      "id": "0c9a72e8-f344-457f-9c16-7c640eb60242",
+                      "contextIdentifier": {
+                        "type": "Nip",
+                        "value": "3568707925"
+                      },
+                      "authorizedIdentifier": {
+                        "type": "Nip",
+                        "value": "5247677742"
+                      },
+                      "permissionScope": "InvoiceWrite",
+                      "description": "Opis uprawnienia",
+                      "permissionState": "Active",
+                      "startDate": "2025-06-22T10:41:11+00:00",
+                      "canDelegate": false
+                    }
+                  ],
+                  "hasMore": false
+                }
               }
             }
           },
@@ -4039,7 +4861,19 @@
                   }
                 ]
               },
-              "example": {"authorIdentifier":{"type":"Nip","value":"7762811692"},"permissionTypes":["CredentialsManage","CredentialsRead","InvoiceWrite"],"permissionState":"Active","queryType":"PermissionsInCurrentContext"}
+              "example": {
+                "authorIdentifier": {
+                  "type": "Nip",
+                  "value": "7762811692"
+                },
+                "permissionTypes": [
+                  "CredentialsManage",
+                  "CredentialsRead",
+                  "InvoiceWrite"
+                ],
+                "permissionState": "Active",
+                "queryType": "PermissionsInCurrentContext"
+              }
             }
           }
         },
@@ -4051,7 +4885,31 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryPersonPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":{"type":"Nip","value":"7762811692"},"targetIdentifier":{"type":"Nip","value":"9786214922"},"authorIdentifier":{"type":"Pesel","value":"15062788702"},"permissionScope":"InvoiceWrite","description":"praca dla klienta 9786214922; uprawniony NIP: 7762811692, Adam Abacki; pośrednik 3936518395","permissionState":"Active","startDate":"2025-06-22T10:41:11+00:00","canDelegate":false}],"hasMore":false}
+                "example": {
+                  "permissions": [
+                    {
+                      "id": "0c9a72e8-f344-457f-9c16-7c640eb60242",
+                      "authorizedIdentifier": {
+                        "type": "Nip",
+                        "value": "7762811692"
+                      },
+                      "targetIdentifier": {
+                        "type": "Nip",
+                        "value": "9786214922"
+                      },
+                      "authorIdentifier": {
+                        "type": "Pesel",
+                        "value": "15062788702"
+                      },
+                      "permissionScope": "InvoiceWrite",
+                      "description": "praca dla klienta 9786214922; uprawniony NIP: 7762811692, Adam Abacki; pośrednik 3936518395",
+                      "permissionState": "Active",
+                      "startDate": "2025-06-22T10:41:11+00:00",
+                      "canDelegate": false
+                    }
+                  ],
+                  "hasMore": false
+                }
               }
             }
           },
@@ -4136,7 +4994,12 @@
                   }
                 ]
               },
-              "example": {"subunitIdentifier":{"type":"InternalId","value":"7762811692-12345"}}
+              "example": {
+                "subunitIdentifier": {
+                  "type": "InternalId",
+                  "value": "7762811692-12345"
+                }
+              }
             }
           }
         },
@@ -4148,7 +5011,29 @@
                 "schema": {
                   "$ref": "#/components/schemas/QuerySubunitPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorizedIdentifier":{"type":"Fingerprint","value":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"},"subunitIdentifier":{"type":"InternalId","value":"7762811692-12345"},"authorIdentifier":{"type":"Pesel","value":"15062788702"},"permissionScope":"CredentialsManage","description":"Opis uprawnienia","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {
+                  "permissions": [
+                    {
+                      "id": "0c9a72e8-f344-457f-9c16-7c640eb60242",
+                      "authorizedIdentifier": {
+                        "type": "Fingerprint",
+                        "value": "CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59"
+                      },
+                      "subunitIdentifier": {
+                        "type": "InternalId",
+                        "value": "7762811692-12345"
+                      },
+                      "authorIdentifier": {
+                        "type": "Pesel",
+                        "value": "15062788702"
+                      },
+                      "permissionScope": "CredentialsManage",
+                      "description": "Opis uprawnienia",
+                      "startDate": "2025-06-22T10:41:11+00:00"
+                    }
+                  ],
+                  "hasMore": false
+                }
               }
             }
           },
@@ -4231,7 +5116,16 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryEntityRolesResponse"
                 },
-                "example": {"roles":[{"role":"EnforcementAuthority","description":"Organ egzekucyjny","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {
+                  "roles": [
+                    {
+                      "role": "EnforcementAuthority",
+                      "description": "Organ egzekucyjny",
+                      "startDate": "2025-06-22T10:41:11+00:00"
+                    }
+                  ],
+                  "hasMore": false
+                }
               }
             }
           },
@@ -4315,7 +5209,12 @@
                   }
                 ]
               },
-              "example": {"subordinateEntityIdentifier":{"type":"Nip","value":"7762811692"}}
+              "example": {
+                "subordinateEntityIdentifier": {
+                  "type": "Nip",
+                  "value": "7762811692"
+                }
+              }
             }
           }
         },
@@ -4327,7 +5226,20 @@
                 "schema": {
                   "$ref": "#/components/schemas/QuerySubordinateEntityRolesResponse"
                 },
-                "example": {"roles":[{"subordinateEntityIdentifier":{"type":"Nip","value":"7762811692"},"role":"VatGroupSubUnit","description":"Członek grupy VAT 8373740478","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {
+                  "roles": [
+                    {
+                      "subordinateEntityIdentifier": {
+                        "type": "Nip",
+                        "value": "7762811692"
+                      },
+                      "role": "VatGroupSubUnit",
+                      "description": "Członek grupy VAT 8373740478",
+                      "startDate": "2025-06-22T10:41:11+00:00"
+                    }
+                  ],
+                  "hasMore": false
+                }
               }
             }
           },
@@ -4415,7 +5327,18 @@
                   }
                 ]
               },
-              "example": {"authorizedIdentifier":{"type":"Nip","value":"7762811692"},"queryType":"Granted","permissionTypes":["SelfInvoicing","TaxRepresentative","RRInvoicing"]}
+              "example": {
+                "authorizedIdentifier": {
+                  "type": "Nip",
+                  "value": "7762811692"
+                },
+                "queryType": "Granted",
+                "permissionTypes": [
+                  "SelfInvoicing",
+                  "TaxRepresentative",
+                  "RRInvoicing"
+                ]
+              }
             }
           }
         },
@@ -4427,7 +5350,29 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryEntityAuthorizationPermissionsResponse"
                 },
-                "example": {"authorizationGrants":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":{"type":"Pesel","value":"15062788702"},"authorizedEntityIdentifier":{"type":"Nip","value":"7762811692"},"authorizingEntityIdentifier":{"type":"Nip","value":"1134256681"},"authorizationScope":"SelfInvoicing","description":"Uprawnienie podmiotowe do samofakturowania","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {
+                  "authorizationGrants": [
+                    {
+                      "id": "0c9a72e8-f344-457f-9c16-7c640eb60242",
+                      "authorIdentifier": {
+                        "type": "Pesel",
+                        "value": "15062788702"
+                      },
+                      "authorizedEntityIdentifier": {
+                        "type": "Nip",
+                        "value": "7762811692"
+                      },
+                      "authorizingEntityIdentifier": {
+                        "type": "Nip",
+                        "value": "1134256681"
+                      },
+                      "authorizationScope": "SelfInvoicing",
+                      "description": "Uprawnienie podmiotowe do samofakturowania",
+                      "startDate": "2025-06-22T10:41:11+00:00"
+                    }
+                  ],
+                  "hasMore": false
+                }
               }
             }
           },
@@ -4511,7 +5456,13 @@
                   }
                 ]
               },
-              "example": {"vatUeIdentifier":"DE123456789012","permissionTypes":["VatUeManage","Introspection"]}
+              "example": {
+                "vatUeIdentifier": "DE123456789012",
+                "permissionTypes": [
+                  "VatUeManage",
+                  "Introspection"
+                ]
+              }
             }
           }
         },
@@ -4523,7 +5474,24 @@
                 "schema": {
                   "$ref": "#/components/schemas/QueryEuEntityPermissionsResponse"
                 },
-                "example": {"permissions":[{"id":"0c9a72e8-f344-457f-9c16-7c640eb60242","authorIdentifier":{"type":"Pesel","value":"15062788702"},"vatUeIdentifier":"DE123456789012","euEntityName":"Podmiot unijny","authorizedFingerprintIdentifier":"CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59","permissionScope":"VatUeManage","description":"Opis uprawnienia","startDate":"2025-06-22T10:41:11+00:00"}],"hasMore":false}
+                "example": {
+                  "permissions": [
+                    {
+                      "id": "0c9a72e8-f344-457f-9c16-7c640eb60242",
+                      "authorIdentifier": {
+                        "type": "Pesel",
+                        "value": "15062788702"
+                      },
+                      "vatUeIdentifier": "DE123456789012",
+                      "euEntityName": "Podmiot unijny",
+                      "authorizedFingerprintIdentifier": "CEB3643BAC2C111ADDE971BDA5A80163441867D65389FC0BC0DFF8B4C1CD4E59",
+                      "permissionScope": "VatUeManage",
+                      "description": "Opis uprawnienia",
+                      "startDate": "2025-06-22T10:41:11+00:00"
+                    }
+                  ],
+                  "hasMore": false
+                }
               }
             }
           },
@@ -7024,21 +7992,21 @@
         },
         "additionalProperties": false,
         "example": {
-          "Exception": {
-            "ExceptionDetailList": [
+          "exception": {
+            "exceptionDetailList": [
               {
-                "ExceptionCode": 12345,
-                "ExceptionDescription": "Opis błędu.",
-                "Details": [
+                "exceptionCode": 12345,
+                "exceptionDescription": "Opis błędu.",
+                "details": [
                   "Opcjonalne dodatkowe szczegóły błędu."
                 ]
               }
             ],
-            "ReferenceNumber": "a1b2c3d4-e5f6-4789-ab12-cd34ef567890",
-            "ServiceCode": "00-c02cc3747020c605be02159bf3324f0e-eee7647dc67aa74a-00",
-            "ServiceCtx": "srvABCDA",
-            "ServiceName": "Undefined",
-            "Timestamp": "2025-10-11T12:23:56.0154302"
+            "referenceNumber": "a1b2c3d4-e5f6-4789-ab12-cd34ef567890",
+            "serviceCode": "00-c02cc3747020c605be02159bf3324f0e-eee7647dc67aa74a-00",
+            "serviceCtx": "srvABCDA",
+            "serviceName": "Undefined",
+            "timestamp": "2025-10-11T12:23:56.0154302"
           }
         }
       },
