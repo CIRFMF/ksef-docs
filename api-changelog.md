@@ -2,6 +2,11 @@
 
 ### Wersja 2.0.0 RC6.0
 
+- **Limity API**  
+  - Na środowisku **TE** (testowe) włączono i zdefiniowano politykę [limitów api](limity/limity-api.md) z wartościami 10x wyższymi niż na **PRD**; szczegóły: ["Limity na środowiskach"](/limity/limity-api.md#limity-na-środowiskach).
+  - Na środowisku **TR** (DEMO) włączono [limity api](limity/limity-api.md) z wartościami identycznymi jak na **PRD**. Wartości są replikowane z produkcji; szczegóły: ["Limity na środowiskach"](/limity/limity-api.md#limity-na-środowiskach).
+  - Dodano endpoint POST `/testdata/rate-limits/production` - ustawia w bieżącym kontekście wartości limitów api zgodne z profilem produkcyjnym. Dostępny tylko na środowisku **TE**.
+
 - **OpenAPI**  
   - Dodano odpowiedź HTTP `429` - "Too Many Requests" do wszystkich endpointów. We właściwości `description` tej odpowiedzi publikowana jest tabelaryczna prezentacja limitów (`req/s`, `req/min`, `req/h`) oraz nazwy grupy limitowej przypisanej do endpointu. Mechanizm i semantyka `429` pozostają zgodne z opisem w dokumentacji [limitów](/limity/limity-api.md).
   - Do każdego endpointu dodano metadane `x-rate-limits` z wartościami limitów (`req/s`, `req/min`, `req/h`).

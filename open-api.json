@@ -1731,6 +1731,48 @@
         }
       }
     },
+    "/api/v2/testdata/rate-limits/production": {
+      "post": {
+        "tags": [
+          "Limity i ograniczenia"
+        ],
+        "summary": "Zmiana limitów API dla bieżącego kontekstu na wartości produkcyjne",
+        "description": "Zmienia wartości aktualnie obowiązujących limitów żądań przesyłanych do API dla bieżącego kontekstu na wartości takie jakie będą na środowisku produkcyjnym. **Tylko na środowiskach testowych.**",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "x-summary": "Too Many Requests"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
+      }
+    },
     "/api/v2/permissions/persons/grants": {
       "post": {
         "tags": [
