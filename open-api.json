@@ -28,9 +28,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 100,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -611,9 +609,7 @@
             "description": "Rozmiar strony wyników",
             "schema": {
               "maximum": 50,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -625,7 +621,6 @@
             "description": "Numer strony wyników",
             "schema": {
               "minimum": 0,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 0
@@ -2750,7 +2745,6 @@
             "description": "Indeks pierwszej strony wyników (0 = pierwsza strona).",
             "schema": {
               "minimum": 0,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 0
@@ -2762,9 +2756,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 250,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -3163,9 +3155,7 @@
             "description": "Rozmiar strony.",
             "schema": {
               "maximum": 500,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -3470,9 +3460,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 500,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -3691,9 +3679,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 500,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -4135,9 +4121,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 100,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -4368,7 +4352,6 @@
             "description": "Numer strony wyników.",
             "schema": {
               "minimum": 0,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 0
@@ -4380,9 +4363,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 100,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -5313,7 +5294,6 @@
             "description": "Numer strony wyników.",
             "schema": {
               "minimum": 0,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 0
@@ -5325,9 +5305,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 100,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -5440,7 +5418,6 @@
             "description": "Numer strony wyników.",
             "schema": {
               "minimum": 0,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 0
@@ -5452,9 +5429,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 100,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -5585,7 +5560,6 @@
             "description": "Numer strony wyników.",
             "schema": {
               "minimum": 0,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 0
@@ -5597,9 +5571,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 100,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -5718,7 +5690,6 @@
             "description": "Numer strony wyników.",
             "schema": {
               "minimum": 0,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 0
@@ -5730,9 +5701,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 100,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -5818,7 +5787,6 @@
             "description": "Numer strony wyników.",
             "schema": {
               "minimum": 0,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 0
@@ -5830,9 +5798,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 100,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -5942,7 +5908,6 @@
             "description": "Numer strony wyników.",
             "schema": {
               "minimum": 0,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 0
@@ -5954,9 +5919,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 100,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -6083,7 +6046,6 @@
             "description": "Numer strony wyników.",
             "schema": {
               "minimum": 0,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 0
@@ -6095,9 +6057,7 @@
             "description": "Rozmiar strony wyników.",
             "schema": {
               "maximum": 100,
-              "exclusiveMaximum": false,
               "minimum": 10,
-              "exclusiveMinimum": false,
               "type": "integer",
               "format": "int32",
               "default": 10
@@ -6770,9 +6730,7 @@
         "properties": {
           "fileSize": {
             "maximum": 5000000000,
-            "exclusiveMaximum": false,
             "minimum": 1,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Rozmiar pliku paczki w bajtach. Maksymalny rozmiar paczki to 5GB.",
             "format": "int64"
@@ -6807,7 +6765,6 @@
         "properties": {
           "ordinalNumber": {
             "minimum": 1,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Numer sekwencyjny części pliku paczki.",
             "format": "int32"
@@ -6822,7 +6779,6 @@
           },
           "fileSize": {
             "minimum": 1,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Rozmiar zaszyfrowanej części pliku paczki w bajtach.",
             "format": "int64"
@@ -6848,27 +6804,21 @@
         "properties": {
           "maxInvoiceSizeInMB": {
             "maximum": 5,
-            "exclusiveMaximum": false,
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury w MB.",
             "format": "int32"
           },
           "maxInvoiceWithAttachmentSizeInMB": {
             "maximum": 10,
-            "exclusiveMaximum": false,
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury z załącznikiem w MB.",
             "format": "int32"
           },
           "maxInvoices": {
             "maximum": 100000,
-            "exclusiveMaximum": false,
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalna ilość faktur które można przesłać w pojedynczej sesji.",
             "format": "int32"
@@ -6886,21 +6836,18 @@
         "properties": {
           "maxInvoiceSizeInMB": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury w MB.",
             "format": "int32"
           },
           "maxInvoiceWithAttachmentSizeInMB": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury z załącznikiem w MB.",
             "format": "int32"
           },
           "maxInvoices": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalna ilość faktur które można przesłać w pojedynczej sesji.",
             "format": "int32"
@@ -7199,7 +7146,6 @@
         "properties": {
           "maxCertificates": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -7767,7 +7713,6 @@
         "properties": {
           "maxEnrollments": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -9348,16 +9293,13 @@
         "properties": {
           "invoiceCount": {
             "maximum": 10000,
-            "exclusiveMaximum": false,
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Łączna liczba faktur w paczce.",
             "format": "int64"
           },
           "size": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Rozmiar paczki w bajtach.",
             "format": "int64"
@@ -9410,7 +9352,6 @@
         "properties": {
           "ordinalNumber": {
             "minimum": 1,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Numer sekwencyjny pliku części paczki.",
             "format": "int32"
@@ -9431,7 +9372,6 @@
           },
           "partSize": {
             "minimum": 1,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Rozmiar części paczki w bajtach.",
             "format": "int64"
@@ -9446,7 +9386,6 @@
           },
           "encryptedPartSize": {
             "minimum": 1,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Rozmiar zaszyfrowanej części paczki w bajtach.",
             "format": "int64"
@@ -9765,27 +9704,21 @@
         "properties": {
           "maxInvoiceSizeInMB": {
             "maximum": 5,
-            "exclusiveMaximum": false,
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury w MB.",
             "format": "int32"
           },
           "maxInvoiceWithAttachmentSizeInMB": {
             "maximum": 10,
-            "exclusiveMaximum": false,
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury z załącznikiem w MB.",
             "format": "int32"
           },
           "maxInvoices": {
             "maximum": 100000,
-            "exclusiveMaximum": false,
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalna ilość faktur które można przesłać w pojedynczej sesji.",
             "format": "int32"
@@ -9803,21 +9736,18 @@
         "properties": {
           "maxInvoiceSizeInMB": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury w MB.",
             "format": "int32"
           },
           "maxInvoiceWithAttachmentSizeInMB": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalny rozmiar faktury z załącznikiem w MB.",
             "format": "int32"
           },
           "maxInvoices": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Maksymalna ilość faktur które można przesłać w pojedynczej sesji.",
             "format": "int32"
@@ -9973,7 +9903,6 @@
         "properties": {
           "ordinalNumber": {
             "minimum": 1,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Numer sekwencyjny części pliku paczki.",
             "format": "int32"
@@ -11320,7 +11249,6 @@
           },
           "invoiceSize": {
             "minimum": 1,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Rozmiar oryginalnej faktury w bajtach. Maksymalny rozmiar zależy od limitów ustawionych dla uwierzytelnionego kontekstu.",
             "format": "int64"
@@ -11335,7 +11263,6 @@
           },
           "encryptedInvoiceSize": {
             "minimum": 1,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Rozmiar zaszyfrowanej faktury w bajtach.",
             "format": "int64"
@@ -11391,7 +11318,6 @@
         "properties": {
           "ordinalNumber": {
             "minimum": 1,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Numer sekwencyjny faktury w ramach sesji.",
             "format": "int32"
@@ -11538,7 +11464,6 @@
           },
           "invoiceCount": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Liczba przyjętych faktur w ramach sesji.",
             "format": "int32",
@@ -11546,7 +11471,6 @@
           },
           "successfulInvoiceCount": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Liczba faktur przeprocesowanych w ramach sesji z sukcesem .",
             "format": "int32",
@@ -11554,7 +11478,6 @@
           },
           "failedInvoiceCount": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Liczba faktur przeprocesowanych w ramach sesji z błędem.",
             "format": "int32",
@@ -11638,21 +11561,18 @@
           },
           "totalInvoiceCount": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Łączna liczba faktur (uwzględnia również te w trakcie przetwarzania).",
             "format": "int32"
           },
           "successfulInvoiceCount": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Liczba poprawnie przetworzonych faktur.",
             "format": "int32"
           },
           "failedInvoiceCount": {
             "minimum": 0,
-            "exclusiveMinimum": false,
             "type": "integer",
             "description": "Liczba błędnie przetworzonych faktur.",
             "format": "int32"
