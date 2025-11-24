@@ -12,6 +12,7 @@
   - Do każdego endpointu dodano metadane `x-rate-limits` z wartościami limitów (`req/s`, `req/min`, `req/h`).
   - Usunięto jawne właściwości `exclusiveMaximum`: `false` i `exclusiveMinimum`: `false` z definicji liczbowych (pozostawiono tylko minimum/maximum). Zmiana porządkująca – bez wpływu na walidację (w OpenAPI domyślne wartości tych właściwości to `false`).
   - Dodano ograniczenia długości dla właściwości typu string: `minLength`.
+  - Usunięto jawne ustawienia `style`: `form` dla parametrów w in: query.
 
 ### Wersja 2.0.0 RC5.7
 
