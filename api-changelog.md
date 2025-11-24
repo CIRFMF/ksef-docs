@@ -11,6 +11,7 @@
   - Dodano odpowiedź HTTP `429` - "Too Many Requests" do wszystkich endpointów. We właściwości `description` tej odpowiedzi publikowana jest tabelaryczna prezentacja limitów (`req/s`, `req/min`, `req/h`) oraz nazwy grupy limitowej przypisanej do endpointu. Mechanizm i semantyka `429` pozostają zgodne z opisem w dokumentacji [limitów](/limity/limity-api.md).
   - Do każdego endpointu dodano metadane `x-rate-limits` z wartościami limitów (`req/s`, `req/min`, `req/h`).
   - Usunięto jawne właściwości `exclusiveMaximum`: `false` i `exclusiveMinimum`: `false` z definicji liczbowych (pozostawiono tylko minimum/maximum). Zmiana porządkująca – bez wpływu na walidację (w OpenAPI domyślne wartości tych właściwości to `false`).
+  - Dodano ograniczenia długości dla właściwości typu string: `minLength`.
 
 ### Wersja 2.0.0 RC5.7
 

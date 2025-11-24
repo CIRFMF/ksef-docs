@@ -8365,6 +8365,7 @@
           },
           "euEntityName": {
             "maxLength": 256,
+            "minLength": 5,
             "type": "string",
             "description": "Nazwa podmiotu unijnego."
           },
