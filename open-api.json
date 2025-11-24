@@ -12617,30 +12617,21 @@
   },
   "tags": [
     {
-      "name": "Uzyskiwanie dostępu",
-      "description": "Uwierzytelnianie w systemie KSeF API 2.0 jest obowiązkowym etapem, który należy wykonać przed dostępem do chronionych zasobów systemu. Proces ten oparty jest na **uzyskaniu tokenu dostępu** (```accessToken```) w formacie ```JWT```, który następnie wykorzystywany jest do autoryzacji operacji API.\n\n> Więcej informacji:\n> - [Uwierzytelnianie](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md)"
-    },
-    {
       "name": "Aktywne sesje"
     },
     {
-      "name": "Limity i ograniczenia"
+      "name": "Certyfikaty",
+      "description": "Certyfikat KSeF to cyfrowe poświadczenie tożsamości podmiotu, wydawane przez system KSeF na wniosek uwierzytelnionego podmiotu. \nCertyfikat ten może być wykorzystywany do:\n\n- uwierzytelniania się w systemie KSeF,\n- realizacji operacji w trybie offline, w tym wystawiania faktur bezpośrednio w aplikacji użytkownika.\n\n**Uwaga**: Wnioskowanie o certyfikat KSeF jest możliwe wyłącznie po uwierzytelnieniu z wykorzystaniem podpisu (XAdES). Uwierzytelnienie przy użyciu tokenu systemowego KSeF nie pozwala na złożenie wniosku."
     },
     {
       "name": "Certyfikaty klucza publicznego"
     },
     {
-      "name": "Wysyłka interaktywna"
+      "name": "Dane testowe",
+      "description": "API służy do tworzenia i zarządzania danymi testowymi, takimi jak podmioty, osoby fizyczne oraz uprawnienia. Możliwe do utworzenia podmioty to: organ egzekucyjny, grupa VAT oraz jednostki samorządu terytorialnego. W przypadku osób fizycznych można określić, czy dana osoba jest komornikiem. Funkcjonalność nadawania i odbierania uprawnień ma na celu odwzorowanie działania formularza ZAW-FA w środowisku testowym.\n\nWięcej informacji:\n- [Scenariusze testowe](https://github.com/CIRFMF/ksef-docs/blob/main/dane-testowe-scenariusze.md)"
     },
     {
-      "name": "Wysyłka wsadowa",
-      "description": ""
-    },
-    {
-      "name": "Status wysyłki i UPO"
-    },
-    {
-      "name": "Pobieranie faktur"
+      "name": "Limity i ograniczenia"
     },
     {
       "name": "Nadawanie uprawnień"
@@ -12649,14 +12640,13 @@
       "name": "Odbieranie uprawnień"
     },
     {
-      "name": "Wyszukiwanie nadanych uprawnień"
-    },
-    {
       "name": "Operacje"
     },
     {
-      "name": "Certyfikaty",
-      "description": "Certyfikat KSeF to cyfrowe poświadczenie tożsamości podmiotu, wydawane przez system KSeF na wniosek uwierzytelnionego podmiotu. \nCertyfikat ten może być wykorzystywany do:\n\n- uwierzytelniania się w systemie KSeF,\n- realizacji operacji w trybie offline, w tym wystawiania faktur bezpośrednio w aplikacji użytkownika.\n\n**Uwaga**: Wnioskowanie o certyfikat KSeF jest możliwe wyłącznie po uwierzytelnieniu z wykorzystaniem podpisu (XAdES). Uwierzytelnienie przy użyciu tokenu systemowego KSeF nie pozwala na złożenie wniosku."
+      "name": "Pobieranie faktur"
+    },
+    {
+      "name": "Status wysyłki i UPO"
     },
     {
       "name": "Tokeny KSeF",
@@ -12667,8 +12657,18 @@
       "description": ""
     },
     {
-      "name": "Dane testowe",
-      "description": "API służy do tworzenia i zarządzania danymi testowymi, takimi jak podmioty, osoby fizyczne oraz uprawnienia. Możliwe do utworzenia podmioty to: organ egzekucyjny, grupa VAT oraz jednostki samorządu terytorialnego. W przypadku osób fizycznych można określić, czy dana osoba jest komornikiem. Funkcjonalność nadawania i odbierania uprawnień ma na celu odwzorowanie działania formularza ZAW-FA w środowisku testowym.\n\nWięcej informacji:\n- [Scenariusze testowe](https://github.com/CIRFMF/ksef-docs/blob/main/dane-testowe-scenariusze.md)"
+      "name": "Uzyskiwanie dostępu",
+      "description": "Uwierzytelnianie w systemie KSeF API 2.0 jest obowiązkowym etapem, który należy wykonać przed dostępem do chronionych zasobów systemu. Proces ten oparty jest na **uzyskaniu tokenu dostępu** (```accessToken```) w formacie ```JWT```, który następnie wykorzystywany jest do autoryzacji operacji API.\n\n> Więcej informacji:\n> - [Uwierzytelnianie](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md)"
+    },
+    {
+      "name": "Wysyłka interaktywna"
+    },
+    {
+      "name": "Wysyłka wsadowa",
+      "description": ""
+    },
+    {
+      "name": "Wyszukiwanie nadanych uprawnień"
     }
   ],
   "x-tagGroups": [
