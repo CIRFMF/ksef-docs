@@ -12,7 +12,7 @@ Ten przewodnik pokazuje, jak **szybko uruchomić** konsolową aplikację demonst
 ---
 
 ## Wymagania wstępne
-- **.NET 9 SDK**
+- **.NET 10 SDK**
 - Git
 - Windows lub Linux
 
@@ -31,9 +31,9 @@ Ten przewodnik pokazuje, jak **szybko uruchomić** konsolową aplikację demonst
 
 ## Windows
 
-1. **Zainstaluj .NET 9 SDK**:
+1. **Zainstaluj .NET 10 SDK**:
    ```powershell
-   winget install Microsoft.DotNet.SDK.9
+   winget install Microsoft.DotNet.SDK.10
    ```
    Alternatywnie: pobierz instalator z witryny .NET.
 
@@ -43,7 +43,7 @@ Ten przewodnik pokazuje, jak **szybko uruchomić** konsolową aplikację demonst
    ```powershell
    dotnet --version
    ```
-   Oczekiwany numer wersji: `9.x.x`.
+   Oczekiwany numer wersji: `10.x.x`.
 
 4. **Sklonuj repozytorium i przejdź do projektu**:
    ```powershell
@@ -53,7 +53,7 @@ Ten przewodnik pokazuje, jak **szybko uruchomić** konsolową aplikację demonst
 
 5. **Uruchom (domyślnie losowy NIP, wynik na ekranie)**:
    ```powershell
-   dotnet run --framework net9.0
+   dotnet run --framework net10.0
    ```
 
 6. **Uruchomienie z parametrami**:
@@ -62,7 +62,7 @@ Ten przewodnik pokazuje, jak **szybko uruchomić** konsolową aplikację demonst
    - opcjonalnie: `--no-startup-warnings`.
 
    ```powershell
-   dotnet run --framework net9.0 --output file --nip 8976111986 --no-startup-warnings
+   dotnet run --framework net10.0 --output file --nip 8976111986 --no-startup-warnings
    ```
 
 ---
@@ -76,9 +76,9 @@ Ten przewodnik pokazuje, jak **szybko uruchomić** konsolową aplikację demonst
    sudo apt-get update
    ```
 
-2. **Zainstaluj .NET 9 SDK**:
+2. **Zainstaluj .NET 10 SDK**:
    ```bash
-   sudo apt-get install -y dotnet-sdk-9.0
+   sudo apt-get install -y dotnet-sdk-10.0
    ```
 
 3. **Odśwież środowisko powłoki lub otwórz nowy terminal**:
@@ -90,7 +90,7 @@ Ten przewodnik pokazuje, jak **szybko uruchomić** konsolową aplikację demonst
    ```bash
    dotnet --version
    ```
-   Oczekiwany numer wersji: `9.x.x`.
+   Oczekiwany numer wersji: `10.x.x`.
 
 5. **Sklonuj repozytorium i przejdź do projektu**:
    ```bash
@@ -100,7 +100,7 @@ Ten przewodnik pokazuje, jak **szybko uruchomić** konsolową aplikację demonst
 
 6. **Uruchom (wynik na ekranie, losowy NIP)**:
    ```bash
-   dotnet run --framework net9.0
+   dotnet run --framework net10.0
    ```
 
 7. **Uruchomienie z parametrami**:
@@ -109,7 +109,7 @@ Ten przewodnik pokazuje, jak **szybko uruchomić** konsolową aplikację demonst
    - opcjonalnie: `--no-startup-warnings`.
 
    ```bash
-   dotnet run --framework net9.0 --output file --nip 8976111986 --no-startup-warnings
+   dotnet run --framework net10.0 --output file --nip 8976111986 --no-startup-warnings
    ```
 
 ---
