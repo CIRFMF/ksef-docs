@@ -7,6 +7,9 @@
   - Na środowisku **TR** (DEMO) włączono [limity api](limity/limity-api.md) z wartościami identycznymi jak na **PRD**. Wartości są replikowane z produkcji; szczegóły: ["Limity na środowiskach"](/limity/limity-api.md#limity-na-środowiskach).
   - Dodano endpoint POST `/testdata/rate-limits/production` - ustawia w bieżącym kontekście wartości limitów api zgodne z profilem produkcyjnym. Dostępny tylko na środowisku **TE**.
 
+- **Uprawnienia**  
+    Dodano właściwość `subjectDetails` - "Dane podmiotu, któremu nadawane są uprawnienia" do wszystkich endpointów nadających uprawnienia (/permissions/.../grants). W RC6.0 pole jest opcjonalne; od 2025-12-19 będzie wymagane.  
+
 - **OpenAPI**  
   - Dodano odpowiedź HTTP `429` - "Too Many Requests" do wszystkich endpointów. We właściwości `description` tej odpowiedzi publikowana jest tabelaryczna prezentacja limitów (`req/s`, `req/min`, `req/h`) oraz nazwy grupy limitowej przypisanej do endpointu. Mechanizm i semantyka `429` pozostają zgodne z opisem w dokumentacji [limitów](/limity/limity-api.md).
   - Do każdego endpointu dodano metadane `x-rate-limits` z wartościami limitów (`req/s`, `req/min`, `req/h`).

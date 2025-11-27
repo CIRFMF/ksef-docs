@@ -7788,6 +7788,19 @@
             "type": "string",
             "description": "Opis uprawnienia."
           },
+          "subjectEntityDetails": {
+            "required": [
+              "subjectDetailsType",
+              "fullName"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionsSubjectEntityDetails"
+              }
+            ],
+            "description": "Dane podmiotu, którego dotyczy uprawnienie.",
+            "nullable": true
+          },
           "startDate": {
             "type": "string",
             "description": "Data rozpoczęcia obowiązywania uprawnienia.",
@@ -7838,6 +7851,18 @@
             "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia"
+          },
+          "subjectDetails": {
+            "required": [
+              "fullName"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityDetails"
+              }
+            ],
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -8013,6 +8038,37 @@
         ],
         "type": "string"
       },
+      "EntityByFingerprintDetails": {
+        "required": [
+          "address",
+          "fullName"
+        ],
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "description": "Pełna nazwa podmiotu."
+          },
+          "address": {
+            "type": "string",
+            "description": "Adres podmiotu."
+          }
+        },
+        "additionalProperties": false
+      },
+      "EntityDetails": {
+        "required": [
+          "fullName"
+        ],
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "description": "Pełna nazwa podmiotu."
+          }
+        },
+        "additionalProperties": false
+      },
       "EntityPermission": {
         "required": [
           "type"
@@ -8073,6 +8129,18 @@
             "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia"
+          },
+          "subjectDetails": {
+            "required": [
+              "fullName"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityDetails"
+              }
+            ],
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -8218,6 +8286,14 @@
         ],
         "type": "string"
       },
+      "EntitySubjectDetailsType": {
+        "enum": [
+          "EntityByIdentifier",
+          "EntityByFingerprint"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| EntityByIdentifier | Podmiot identyfikowany numerem NIP. |\n| EntityByFingerprint | Podmiot identyfikowany odciskiem palca pieczęci kwalifikowanej. |\n"
+      },
       "EuEntityAdministrationPermissionsContextIdentifier": {
         "required": [
           "type",
@@ -8291,6 +8367,31 @@
             "minLength": 5,
             "type": "string",
             "description": "Nazwa i adres podmiotu unijnego w formacie: \n`{euSubjectName}, {euSubjectAddress}`"
+          },
+          "subjectDetails": {
+            "required": [
+              "subjectDetailsType"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EuEntityPermissionSubjectDetails"
+              }
+            ],
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
+            "nullable": true
+          },
+          "euEntityDetails": {
+            "required": [
+              "fullName",
+              "address"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EuEntityDetails"
+              }
+            ],
+            "description": "Dane podmiotu unijnego, którego dotyczy nadawane uprawnienie.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -8323,6 +8424,27 @@
           "Fingerprint"
         ],
         "type": "string"
+      },
+      "EuEntityDetails": {
+        "required": [
+          "address",
+          "fullName"
+        ],
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "maxLength": 256,
+            "minLength": 5,
+            "type": "string",
+            "description": "Pełna nazwa podmiotu."
+          },
+          "address": {
+            "maxLength": 256,
+            "type": "string",
+            "description": "Adres podmiotu."
+          }
+        },
+        "additionalProperties": false
       },
       "EuEntityPermission": {
         "required": [
@@ -8385,6 +8507,46 @@
             "type": "string",
             "description": "Opis uprawnienia."
           },
+          "subjectPersonDetails": {
+            "required": [
+              "subjectDetailsType",
+              "firstName",
+              "lastName"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionsSubjectPersonDetails"
+              }
+            ],
+            "description": "Dane osoby, której dotyczy uprawnienie.",
+            "nullable": true
+          },
+          "subjectEntityDetails": {
+            "required": [
+              "subjectDetailsType",
+              "fullName"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionsSubjectEntityDetails"
+              }
+            ],
+            "description": "Dane podmiotu, którego dotyczy uprawnienie.",
+            "nullable": true
+          },
+          "euEntityDetails": {
+            "required": [
+              "fullName",
+              "address"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionsEuEntityDetails"
+              }
+            ],
+            "description": "Dane podmiotu unijnego, którego dotyczy uprawnienie.",
+            "nullable": true
+          },
           "startDate": {
             "type": "string",
             "description": "Data rozpoczęcia obowiązywania uprawnienia.",
@@ -8392,6 +8554,59 @@
           }
         },
         "additionalProperties": false
+      },
+      "EuEntityPermissionSubjectDetails": {
+        "required": [
+          "subjectDetailsType"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectDetailsType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EuEntityPermissionSubjectDetailsType"
+              }
+            ],
+            "description": "Typ danych podmiotu.\n| Wartość | Opis |\n| --- | --- |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n| EntityByFingerprint | Podmiot identyfikowany odciskiem palca pieczęci kwalifikowanej. |\n"
+          },
+          "personByFpNoId": {
+            "required": [
+              "firstName",
+              "lastName",
+              "birthDate",
+              "idDocument"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonByFingerprintWithoutIdentifierDetails"
+              }
+            ],
+            "description": "Dane podmiotu.\n*Wymagane, gdy subjectDetailsType = PersonByFingerprintWithoutIdentifier.*",
+            "nullable": true
+          },
+          "entityByFp": {
+            "required": [
+              "fullName",
+              "address"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityByFingerprintDetails"
+              }
+            ],
+            "description": "Dane podmiotu.\n*Wymagane, gdy subjectDetailsType = EntityByFingerprint.*",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EuEntityPermissionSubjectDetailsType": {
+        "enum": [
+          "PersonByFingerprintWithoutIdentifier",
+          "EntityByFingerprint"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n| EntityByFingerprint | Podmiot identyfikowany odciskiem palca pieczęci kwalifikowanej. |\n"
       },
       "EuEntityPermissionType": {
         "enum": [
@@ -8463,6 +8678,18 @@
             "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia"
+          },
+          "subjectDetails": {
+            "required": [
+              "subjectDetailsType"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EuEntityPermissionSubjectDetails"
+              }
+            ],
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -8707,6 +8934,30 @@
         },
         "additionalProperties": false
       },
+      "IdDocument": {
+        "required": [
+          "country",
+          "number",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Rodzaj dokumentu tożsamości."
+          },
+          "number": {
+            "type": "string",
+            "description": "Seria i numer dokumentu tożsamości."
+          },
+          "country": {
+            "type": "string",
+            "description": "Kraj wydania dokumentu tożsamości."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Dane dokumentu tożsamości osoby fizycznej."
+      },
       "IndirectPermissionType": {
         "enum": [
           "InvoiceRead",
@@ -8758,6 +9009,18 @@
             "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia"
+          },
+          "subjectDetails": {
+            "required": [
+              "subjectDetailsType"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonPermissionSubjectDetails"
+              }
+            ],
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -9975,6 +10238,24 @@
         ],
         "type": "string"
       },
+      "PermissionsEuEntityDetails": {
+        "required": [
+          "address",
+          "fullName"
+        ],
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "description": "Pełna nazwa podmiotu unijnego."
+          },
+          "address": {
+            "type": "string",
+            "description": "Adres podmiotu unijnego."
+          }
+        },
+        "additionalProperties": false
+      },
       "PermissionsOperationResponse": {
         "required": [
           "referenceNumber"
@@ -10005,6 +10286,162 @@
               }
             ],
             "description": "Informacje o aktualnym statusie.\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Operacja przyjęta do realizacji | - |\n| 200 | Operacja zakończona sukcesem | - |\n| 400 | Operacja zakończona niepowodzeniem | - |\n| 410 | Podane identyfikatory są niezgodne lub pozostają w niewłaściwej relacji | - |\n| 420 | Użyte poświadczenia nie mają uprawnień do wykonania tej operacji | - |\n| 430 | Kontekst identyfikatora nie odpowiada wymaganej roli lub uprawnieniom | - |\n| 440 | Operacja niedozwolona dla wskazanych powiązań identyfikatorów | - |\n| 450 | Operacja niedozwolona dla wskazanego identyfikatora lub jego typu | - |\n| 500 | Nieznany błąd | - |\n| 550 | Operacja została anulowana przez system | Przetwarzanie zostało przerwane z przyczyn wewnętrznych systemu. Spróbuj ponownie później. |"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PermissionsSubjectEntityDetails": {
+        "required": [
+          "fullName",
+          "subjectDetailsType"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectDetailsType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitySubjectDetailsType"
+              }
+            ],
+            "description": "Typ danych podmiotu, którego dotyczy uprawnienie.\n| Wartość | Opis |\n| --- | --- |\n| EntityByIdentifier | Podmiot identyfikowany numerem NIP. |\n| EntityByFingerprint | Podmiot identyfikowany odciskiem palca pieczęci kwalifikowanej. |\n"
+          },
+          "fullName": {
+            "type": "string",
+            "description": "Pełna nazwa podmiotu."
+          },
+          "address": {
+            "type": "string",
+            "description": "Adres podmiotu.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PermissionsSubjectPersonDetails": {
+        "required": [
+          "firstName",
+          "lastName",
+          "subjectDetailsType"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectDetailsType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonSubjectDetailsType"
+              }
+            ],
+            "description": "Typ danych osoby fizycznej, której dotyczy uprawnienie.\n| Wartość | Opis |\n| --- | --- |\n| PersonByIdentifier | Osoba fizyczna posługująca się Profilem Zaufanym lub certyfikatem zawierającym identyfikator NIP lub PESEL. |\n| PersonByFingerprintWithIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL, ale mająca NIP lub PESEL. |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "Imię osoby fizycznej."
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Nazwisko osoby fizycznej."
+          },
+          "personIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonIdentifier"
+              }
+            ],
+            "description": "Identyfikator osoby fizycznej.",
+            "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "Data urodzenia osoby fizycznej.",
+            "format": "date",
+            "nullable": true
+          },
+          "idDocument": {
+            "required": [
+              "type",
+              "number",
+              "country"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdDocument"
+              }
+            ],
+            "description": "Dane dokumentu tożsamości osoby fizycznej.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PersonByFingerprintWithIdentifierDetails": {
+        "required": [
+          "firstName",
+          "identifier",
+          "lastName"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "Imię osoby fizycznej."
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Nazwisko osoby fizycznej."
+          },
+          "identifier": {
+            "required": [
+              "type",
+              "value"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonIdentifier"
+              }
+            ],
+            "description": "Identyfikator osoby fizycznej."
+          }
+        },
+        "additionalProperties": false
+      },
+      "PersonByFingerprintWithoutIdentifierDetails": {
+        "required": [
+          "birthDate",
+          "firstName",
+          "idDocument",
+          "lastName"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "Imię osoby fizycznej."
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Nazwisko osoby fizycznej."
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "Data urodzenia osoby fizycznej.",
+            "format": "date"
+          },
+          "idDocument": {
+            "required": [
+              "type",
+              "number",
+              "country"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdDocument"
+              }
+            ],
+            "description": "Dane dokumentu tożsamości osoby fizycznej."
           }
         },
         "additionalProperties": false
@@ -10043,6 +10480,54 @@
           }
         },
         "additionalProperties": false
+      },
+      "PersonDetails": {
+        "required": [
+          "firstName",
+          "lastName"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "Imię osoby fizycznej."
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Nazwisko osoby fizycznej."
+          }
+        },
+        "additionalProperties": false
+      },
+      "PersonIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora."
+          },
+          "value": {
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "additionalProperties": false
+      },
+      "PersonIdentifierType": {
+        "enum": [
+          "Pesel",
+          "Nip"
+        ],
+        "type": "string",
+        "description": "Typ identyfikatora osoby fizycznej."
       },
       "PersonPermission": {
         "required": [
@@ -10127,6 +10612,33 @@
             "type": "string",
             "description": "Opis uprawnienia."
           },
+          "subjectPersonDetails": {
+            "required": [
+              "subjectDetailsType",
+              "firstName",
+              "lastName"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionsSubjectPersonDetails"
+              }
+            ],
+            "description": "Dane osoby, której dotyczy uprawnienie.",
+            "nullable": true
+          },
+          "subjectEntityDetails": {
+            "required": [
+              "subjectDetailsType",
+              "fullName"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionsSubjectEntityDetails"
+              }
+            ],
+            "description": "Dane podmiotu, którego dotyczy uprawnienie.",
+            "nullable": true
+          },
           "permissionState": {
             "allOf": [
               {
@@ -10158,6 +10670,74 @@
           "EnforcementOperations"
         ],
         "type": "string"
+      },
+      "PersonPermissionSubjectDetails": {
+        "required": [
+          "subjectDetailsType"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectDetailsType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonPermissionSubjectDetailsType"
+              }
+            ],
+            "description": "Typ danych podmiotu.\n| Wartość | Opis |\n| --- | --- |\n| PersonByIdentifier | Osoba fizyczna posługująca się Profilem Zaufanym lub certyfikatem zawierającym identyfikator NIP lub PESEL. |\n| PersonByFingerprintWithIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL, ale mająca NIP lub PESEL. |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n"
+          },
+          "personById": {
+            "required": [
+              "firstName",
+              "lastName"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonDetails"
+              }
+            ],
+            "description": "Dane podmiotu.\n*Wymagane, gdy subjectDetailsType = PersonByIdentifier.*",
+            "nullable": true
+          },
+          "personByFpWithId": {
+            "required": [
+              "firstName",
+              "lastName",
+              "identifier"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonByFingerprintWithIdentifierDetails"
+              }
+            ],
+            "description": "Dane podmiotu.\n*Wymagane, gdy subjectDetailsType = PersonByFingerprintWithIdentifier.*",
+            "nullable": true
+          },
+          "personByFpNoId": {
+            "required": [
+              "firstName",
+              "lastName",
+              "birthDate",
+              "idDocument"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonByFingerprintWithoutIdentifierDetails"
+              }
+            ],
+            "description": "Dane podmiotu.\n*Wymagane, gdy subjectDetailsType = PersonByFingerprintWithoutIdentifier.*",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PersonPermissionSubjectDetailsType": {
+        "enum": [
+          "PersonByIdentifier",
+          "PersonByFingerprintWithIdentifier",
+          "PersonByFingerprintWithoutIdentifier"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| PersonByIdentifier | Osoba fizyczna posługująca się Profilem Zaufanym lub certyfikatem zawierającym identyfikator NIP lub PESEL. |\n| PersonByFingerprintWithIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL, ale mająca NIP lub PESEL. |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n"
       },
       "PersonPermissionType": {
         "enum": [
@@ -10296,6 +10876,18 @@
             "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia"
+          },
+          "subjectDetails": {
+            "required": [
+              "subjectDetailsType"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonPermissionSubjectDetails"
+              }
+            ],
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -10465,6 +11057,15 @@
         },
         "additionalProperties": false
       },
+      "PersonSubjectDetailsType": {
+        "enum": [
+          "PersonByIdentifier",
+          "PersonByFingerprintWithIdentifier",
+          "PersonByFingerprintWithoutIdentifier"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| PersonByIdentifier | Osoba fizyczna posługująca się Profilem Zaufanym lub certyfikatem zawierającym identyfikator NIP lub PESEL. |\n| PersonByFingerprintWithIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL, ale mająca NIP lub PESEL. |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n"
+      },
       "PersonalPermission": {
         "required": [
           "canDelegate",
@@ -10535,6 +11136,33 @@
             "minLength": 5,
             "type": "string",
             "description": "Opis uprawnienia."
+          },
+          "subjectPersonDetails": {
+            "required": [
+              "subjectDetailsType",
+              "firstName",
+              "lastName"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionsSubjectPersonDetails"
+              }
+            ],
+            "description": "Dane osoby, której dotyczy uprawnienie.",
+            "nullable": true
+          },
+          "subjectEntityDetails": {
+            "required": [
+              "subjectDetailsType",
+              "fullName"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionsSubjectEntityDetails"
+              }
+            ],
+            "description": "Dane podmiotu, którego dotyczy uprawnienie.",
+            "nullable": true
           },
           "permissionState": {
             "allOf": [
@@ -11971,6 +12599,20 @@
             "type": "string",
             "description": "Opis uprawnienia."
           },
+          "subjectPersonDetails": {
+            "required": [
+              "subjectDetailsType",
+              "firstName",
+              "lastName"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionsSubjectPersonDetails"
+              }
+            ],
+            "description": "Dane osoby, której dotyczy uprawnienie.",
+            "nullable": true
+          },
           "subunitName": {
             "maxLength": 256,
             "minLength": 5,
@@ -12119,6 +12761,18 @@
             "minLength": 5,
             "type": "string",
             "description": "Nazwa jednostki podrzędnej. W przypadku jednostki podrzędnej z identyfikatorem wewnętrznym pole jest wymagane.",
+            "nullable": true
+          },
+          "subjectDetails": {
+            "required": [
+              "subjectDetailsType"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonPermissionSubjectDetails"
+              }
+            ],
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
             "nullable": true
           }
         },
