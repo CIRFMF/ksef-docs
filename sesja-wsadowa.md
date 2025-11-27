@@ -279,7 +279,7 @@ Wielkość parta nie ma znaczenia dla ustalenia limitu czasu – jedynym kryteri
 Autoryzacja jest weryfikowana na początku każdego żądania HTTP. Jeżeli w momencie przyjęcia żądania adres jest ważny, operacja przesłania zostaje zrealizowana w całości. Wygaśnięcie ważności w trakcie trwania przesyłania nie przerywa rozpoczętej operacji.
 
 ### 6. Zamknięcie sesji wsadowej
-Po przesłaniu wszystkich części paczki należy zamknąć sesję wsadową, co inicjuje asynchronicznie przetwarzanie paczki faktur ([szczegóły weryfikacji](faktury\weryfikacja-faktury.md)), oraz generowanie zbiorczego UPO.
+Po przesłaniu wszystkich części paczki należy zamknąć sesję wsadową, co inicjuje asynchronicznie przetwarzanie paczki faktur ([szczegóły weryfikacji](faktury/weryfikacja-faktury.md)), oraz generowanie zbiorczego UPO.
 
 POST [/sessions/batch/\{referenceNumber\}/close](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wysylka-wsadowa/paths/~1api~1v2~1sessions~1batch~1%7BreferenceNumber%7D~1close/post)}]
 
