@@ -5898,7 +5898,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień podmiotowych do obsługi faktur",
-        "description": " Metoda pozwala na odczytanie uprawnień podmiotowych:  \n - otrzymanych przez podmiot bieżącego kontekstu  \n - nadanych przez podmiot bieżącego kontekstu  \n\n Wybór listy nadanych lub otrzymanych uprawnień odbywa się przy użyciu parametru **queryType**.  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **SelfInvoicing** – wystawianie faktur w trybie samofakturowania  \n - **TaxRepresentative** – wykonywanie operacji przedstawiciela podatkowego  \n - **RRInvoicing** – wystawianie faktur VAT RR  \n - **PefInvoicing** – wystawianie faktur PEF  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **authorizingIdentifier** – identyfikator podmiotu uprawniającego (stosowane przy queryType = Received)  \n - **authorizedIdentifier** – identyfikator podmiotu uprawnionego (stosowane przy queryType = Granted)  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-podmiotowych-do-obs%C5%82ugi-faktur)\n\n**Sortowanie:**\n\n- startDate (Desc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`.",
+        "description": " Metoda pozwala na odczytanie uprawnień podmiotowych:  \n - otrzymanych przez podmiot bieżącego kontekstu  \n - nadanych przez podmiot bieżącego kontekstu  \n\n Wybór listy nadanych lub otrzymanych uprawnień odbywa się przy użyciu parametru **queryType**.  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **SelfInvoicing** – wystawianie faktur w trybie samofakturowania  \n - **TaxRepresentative** – wykonywanie operacji przedstawiciela podatkowego  \n - **RRInvoicing** – wystawianie faktur VAT RR  \n - **PefInvoicing** – wystawianie faktur PEF  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **authorizingIdentifier** – identyfikator podmiotu uprawniającego (stosowane przy queryType = Received)  \n - **authorizedIdentifier** – identyfikator podmiotu uprawnionego (stosowane przy queryType = Granted)  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-podmiotowych-do-obs%C5%82ugi-faktur)\n\n**Sortowanie:**\n\n- startDate (Desc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -6026,7 +6026,8 @@
         ],
         "x-required-permissions": [
           "CredentialsManage",
-          "CredentialsRead"
+          "CredentialsRead",
+          "PefInvoiceWrite"
         ]
       }
     },
