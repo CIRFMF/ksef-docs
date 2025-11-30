@@ -6856,13 +6856,13 @@
       },
       "BuyerIdentifierType": {
         "enum": [
-          "None",
-          "Other",
           "Nip",
-          "VatUe"
+          "VatUe",
+          "Other",
+          "None"
         ],
         "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| None | Brak identyfikatora nabywcy |\n| Other | Inny identyfikator |\n| Nip | 10 cyfrowy numer NIP |\n| VatUe | Identyfikator VAT UE podmiotu unijnego |\n"
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| VatUe | Identyfikator VAT UE podmiotu unijnego |\n| Other | Inny identyfikator |\n| None | Brak identyfikatora nabywcy |\n"
       },
       "CertificateEffectiveSubjectLimits": {
         "type": "object",
@@ -9462,7 +9462,7 @@
                 "$ref": "#/components/schemas/BuyerIdentifierType"
               }
             ],
-            "description": "Typ identyfikatora nabywcy.\n| Wartość | Opis |\n| --- | --- |\n| None | Brak identyfikatora nabywcy |\n| Other | Inny identyfikator |\n| Nip | 10 cyfrowy numer NIP |\n| VatUe | Identyfikator VAT UE podmiotu unijnego |\n"
+            "description": "Typ identyfikatora nabywcy.\n| Wartość | Opis |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| VatUe | Identyfikator VAT UE podmiotu unijnego |\n| Other | Inny identyfikator |\n| None | Brak identyfikatora nabywcy |\n"
           },
           "value": {
             "type": "string",
@@ -9716,7 +9716,7 @@
                 "$ref": "#/components/schemas/BuyerIdentifierType"
               }
             ],
-            "description": "Typ identyfikatora nabywcy.\n| Wartość | Opis |\n| --- | --- |\n| None | Brak identyfikatora nabywcy |\n| Other | Inny identyfikator |\n| Nip | 10 cyfrowy numer NIP |\n| VatUe | Identyfikator VAT UE podmiotu unijnego |\n"
+            "description": "Typ identyfikatora nabywcy.\n| Wartość | Opis |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| VatUe | Identyfikator VAT UE podmiotu unijnego |\n| Other | Inny identyfikator |\n| None | Brak identyfikatora nabywcy |\n"
           },
           "value": {
             "type": "string",

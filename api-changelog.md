@@ -19,6 +19,7 @@
   - Usunięto jawne właściwości `exclusiveMaximum`: `false` i `exclusiveMinimum`: `false` z definicji liczbowych (pozostawiono tylko minimum/maximum). Zmiana porządkująca – bez wpływu na walidację (w OpenAPI domyślne wartości tych właściwości to `false`).
   - Dodano ograniczenia długości dla właściwości typu string: `minLength`.
   - Usunięto jawne ustawienia `style`: `form` dla parametrów w in: query.
+  - Zmieniono kolejność wartości enuma `BuyerIdentifierType` (obecnie: `None`, `Other`, `Nip`, `VatUe`). Zmiana porządkowa - bez wpływu na działanie.
 
 ### Wersja 2.0.0 RC5.7
 
