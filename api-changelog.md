@@ -7,6 +7,9 @@
   - Na środowisku **TR** (DEMO) włączono [limity api](limity/limity-api.md) z wartościami identycznymi jak na **PRD**. Wartości są replikowane z produkcji; szczegóły: ["Limity na środowiskach"](/limity/limity-api.md#limity-na-środowiskach).
   - Dodano endpoint POST `/testdata/rate-limits/production` - ustawia w bieżącym kontekście wartości limitów api zgodne z profilem produkcyjnym. Dostępny tylko na środowisku **TE**.
 
+- **Status sesji** (GET `/sessions/{referenceNumber}`)  
+    Doprecyzowano opis kodu `440` - Sesja anulowana: możliwe przyczyny to "Przekroczono czas wysyłki" lub "Nie przesłano faktur".    
+
 - **Uprawnienia**  
     Dodano właściwość `subjectDetails` - "Dane podmiotu, któremu nadawane są uprawnienia" do wszystkich endpointów nadających uprawnienia (/permissions/.../grants). W RC6.0 pole jest opcjonalne; od 2025-12-19 będzie wymagane.  
 
