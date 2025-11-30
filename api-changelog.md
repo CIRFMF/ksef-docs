@@ -10,6 +10,23 @@
 - **Status sesji** (GET `/sessions/{referenceNumber}`)  
     Doprecyzowano opis kodu `440` - Sesja anulowana: możliwe przyczyny to "Przekroczono czas wysyłki" lub "Nie przesłano faktur".    
 
+- **Status faktury** (GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}`)  
+    Dodano typ `InvoiceStatusInfo` (rozszerza `StatusInfo`) o pole `extensions` - obiekt z ustrukturyzowanymi szczegółami statusu. Pole `details` pozostaje bez zmian. Przykład (duplikat faktury):
+    
+    ```json
+    "status": {
+      "code": 440,
+      "description": "Duplikat faktury",
+      "details": [
+        "Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26 została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4"
+      ],
+      "extensions": {
+        "originalSessionReferenceNumber": "20250626-SO-2F14610000-242991F8C9-B4",
+        "originalKsefNumber": "5265877635-20250626-010080DD2B5E-26"
+      }
+    }    
+    ```
+
 - **Uprawnienia**  
     Dodano właściwość `subjectDetails` - "Dane podmiotu, któremu nadawane są uprawnienia" do wszystkich endpointów nadających uprawnienia (/permissions/.../grants). W RC6.0 pole jest opcjonalne; od 2025-12-19 będzie wymagane.  
 

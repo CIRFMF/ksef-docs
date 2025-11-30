@@ -9905,6 +9905,43 @@
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| Subject1 | Podmiot 1 - sprzedawca |\n| Subject2 | Podmiot 2 - nabywca |\n| Subject3 | Podmiot 3 |\n| SubjectAuthorized | Podmiot upoważniony |\n"
       },
+      "InvoiceStatusInfo": {
+        "required": [
+          "code",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "Kod statusu faktury",
+            "format": "int32"
+          },
+          "description": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Opis statusu"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Dodatkowe szczegóły statusu",
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Zbiór dodatkowych informacji związanych ze statusem faktury, zapisanych jako pary klucz–wartość.\nUmożliwia rozszerzenie modelu o dane specyficzne dla danego przypadku.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "InvoiceType": {
         "enum": [
           "Vat",
@@ -12028,10 +12065,10 @@
           "status": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/StatusInfo"
+                "$ref": "#/components/schemas/InvoiceStatusInfo"
               }
             ],
-            "description": "Status faktury.\n\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Faktura przyjęta do dalszego przetwarzania | - |\n| 150 | Trwa przetwarzanie | - |\n| 200 | Sukces | - |\n| 405 | Przetwarzanie anulowane | - |\n| 410 | Nieprawidłowy zakres uprawnień | - |\n| 415 | Brak możliwości wysyłania faktury z załącznikiem | - |\n| 430 | Błąd weryfikacji pliku faktury | - |\n| 435 | Błąd odszyfrowania pliku | - |\n| 440 | Duplikat faktury | - |\n| 450 | Błąd weryfikacji semantyki dokumentu faktury | - |\n| 500 | Nieznany błąd ({statusCode}) | - |\n| 550 | Operacja została anulowana przez system | Przetwarzanie zostało przerwane z przyczyn wewnętrznych systemu. Spróbuj ponownie |"
+            "description": "Status faktury.\n\n| Code | Description | Details | Extensions |\n| --- | --- | --- | ---|\n| 100 | Faktura przyjęta do dalszego przetwarzania | - | - |\n| 150 | Trwa przetwarzanie | - | - |\n| 200 | Sukces | - | - |\n| 405 | Przetwarzanie anulowane z powodu błędu sesji | - | - |\n| 410 | Nieprawidłowy zakres uprawnień | - |  - |\n| 415 | Brak możliwości wysyłania faktury z załącznikiem | - | - |\n| 430 | Błąd weryfikacji pliku faktury | - | -  |\n| 435 | Błąd odszyfrowania pliku | - | - |\n| 440 | Duplikat faktury | - | 'originalSessionReferenceNumber', 'originalKsefNumber'|\n| 450 | Błąd weryfikacji semantyki dokumentu faktury | - | - |\n| 500 | Nieznany błąd ({statusCode}) | - | - |\n| 550 | Operacja została anulowana przez system | Przetwarzanie zostało przerwane z przyczyn wewnętrznych systemu. Spróbuj ponownie |- |"
           }
         },
         "additionalProperties": false
