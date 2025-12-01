@@ -7,6 +7,19 @@
   - Na środowisku **TR** (DEMO) włączono [limity api](limity/limity-api.md) z wartościami identycznymi jak na **PRD**. Wartości są replikowane z produkcji; szczegóły: ["Limity na środowiskach"](/limity/limity-api.md#limity-na-środowiskach).
   - Dodano endpoint POST `/testdata/rate-limits/production` - ustawia w bieżącym kontekście wartości limitów api zgodne z profilem produkcyjnym. Dostępny tylko na środowisku **TE**.
 
+- **UPO - aktualizacja XSD do v4-3**
+  - Zmieniono wzorzec (`pattern`) elementu `NumerKSeFDokumentu`, aby dopuszczał także numery KSeF generowane dla faktur z KSeF 1.0 (36 znaków).
+  - Dodano element `TrybWysylki` - tryb przesłania dokumentu do KSeF: `Online` lub `Offline`.
+  - Zmieniono wartość `NazwaStrukturyLogicznej` na format : Schemat_{systemCode}_v{schemaVersion}.xsd (np. Schemat_FA(3)_v1-0E.xsd).
+  - Zmieniono wartość `NazwaPodmiotuPrzyjmujacego` na środowiskach testowych poprzez dodanie sufiksu z nazwą środowiska:
+    - `TE`: Ministerstwo Finansów - środowisko testowe (TE),
+    - `TR`: Ministerstwo Finansów - środowisko przedprodukcyjne (TR).
+    
+    `PRD`: bez zmian - Ministerstwo Finansów.  
+  - Obecnie domyślnie zwracane jest UPO v4-2. Aby otrzymać UPO v4-3, należy dodać nagłówek: `X-KSeF-Feature: upo-v4-3` przy otwieraniu sesji (online/wsadowej).
+  - Od `2025-12-22` domyślną wersją będzie UPO v4-3.
+  - XSD UPO v4-3: [schema](/faktury/upo/schemy/upo-v4-3.xsd).
+
 - **Status sesji** (GET `/sessions/{referenceNumber}`)  
     Doprecyzowano opis kodu `440` - Sesja anulowana: możliwe przyczyny to "Przekroczono czas wysyłki" lub "Nie przesłano faktur".    
 
