@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	++++++++++++++++++++++++++++++++++++++ HISTORY (common to all XSDs) ++++++++++++++++++++++++++++++++++
+	Change											Date			XSD version 		User Guide version
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	Implementation of APOs (no impact on XSD)		08/08/2023		v4.02				v4.60
+	Implementation of RfC:							01/08/2023		v4.02				v4.50
+		CESOP-1113 (corrective, impacting only commontypes.xsd)
+	Implementation of APOs 							14/06/2023		v4.02				v4.40
+	Implementation of RfCs: 							02/06/2023		v4.02				v4.30
+		CESOP-818	CESOP-819	CESOP-821
+		CESOP-864	CESOP-878	CESOP-930
+	Implementation of APOs (no impact on XSD)		02/06/2023		v4.01				v4.20
+	Implementation of RfCs: 							22/05/2023		v4.01				v4.10
+		CESOP-567	CESOP-568	CESOP-903				
+	Initial version of the XSD for CESOP go live		13/01/2023		v4.00				v4.00
+-->
+<xs:schema xmlns:cm="urn:eu:taxud:commontypes:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:iso="urn:eu:taxud:isotypes:v1" targetNamespace="urn:eu:taxud:commontypes:v1" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.0">
+	<xs:import namespace="urn:eu:taxud:isotypes:v1" schemaLocation="isotypes.xsd"/>
+	<xs:simpleType name="Refund_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The element indicates if the transaction is a payment or a payment refund.
+			 </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="Year_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The element represents the year to which the payment data refers.
+			 </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Quarter_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The element represents the quarter to which the payment data refers. The possible values are 1 for the first quarter, 2 for the second quarter, 3 for the third quarter and 4 for the fourth quarter.
+			 </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PSPRole_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The role of the Payment Service Provider acting on behalf of the payee.
+			 </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PSPRoleType" type="cm:PSPRoleType_Type">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Type of PSP.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PSPRoleOther" type="cm:StringMin1Max200_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Specification of the 'Other' type of PSP.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PSPIdType_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The element represents the type of the Payment Service Provider identifier.
+			 </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BIC">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The PSP Identifier is a BIC code.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Other">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Other PSP Identifier type.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PSPRoleType_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The element represents the type of the Payment Service Provider.
+			 </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Three party card scheme">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The market category of the Payment Service Provider is Three party card scheme.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Four party card scheme">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The market category of the Payment Service Provider is Four party card scheme.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E-money provider">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The market category of the Payment Service Provider is E-money provider.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Acquirer">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The market category of the Payment Service Provider is Acquirer.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="e-Wallet provider">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The market category of the Payment Service Provider is e-Wallet provider.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Money Transfer operator">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The market category of the Payment Service Provider is Money Transfer operator.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Issuer of payment instruments">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The market category of the Payment Service Provider is Issuer of payment instruments.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Payment Processor">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The market category of the Payment Service Provider is Payment Processor.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E-payment">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The market category of the Payment Service Provider is E-payment.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Payment collector">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The market category of the Payment Service Provider is Payment collector.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Other">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Other category of Payment Service Provider.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="VATId_Type">
+		<xs:simpleContent>
+			<xs:extension base="cm:VATIdentification_Type">
+				<xs:attribute name="issuedBy" type="iso:MSCountryCode_Type" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">The Member State issuing the identifier (ISO-3166 Alpha 2).
+				</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="VATIdentification_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The confirmed VAT identification number of the payee.
+			 </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:pattern value="[A-Za-z0-9]{0,20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="TAXId_Type">
+		<xs:simpleContent>
+			<xs:extension base="cm:TAXIdentification_Type">
+				<xs:attribute name="issuedBy" type="iso:CountryCode_Type" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">The country issuing the identifier (ISO-3166 Alpha 2).
+				</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="type" type="cm:TAXIdType_Type" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">The type of the tax identifier.
+				</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="TAXIdType_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Type of the national tax number of the payee.
+			 </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="UNCONFIRMED_VAT">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Unconfirmed VAT identifier.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TIN">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Tax Identification Number (TIN).
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IOSS">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Import One Stop Shop (IOSS-Id).
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OTHER">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Other tax identifier.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TAXIdentification_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Any national tax number of the payee.
+			 </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:pattern value="[A-Za-z0-9\-+]{0,20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Amount_Type">
+		<xs:simpleContent>
+			<xs:extension base="cm:AmountCurrency_Type">
+				<xs:attribute name="currency" type="iso:currCode_Type" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">The currency of the amount (ISO-4217 Alpha 3).
+				</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="AmountCurrency_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Article 243d (2b). The amount and the currency of the payment or of the payment refund. The currency code refers to ISO-4217 three-byte alpha version.
+			 </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:pattern value="-?[0-9]*\.[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Name_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The name of a company.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cm:StringMin1Max200_Type">
+				<xs:attribute name="nameType" type="cm:NameType_EnumType" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Type of the name.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="AccountIdentifierType_Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="IBAN">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The IBAN of the payer/payee's payment account which unambiguously identifies, and gives the location of the payer/payee.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OBAN">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The OBAN of the payer/payee’s payment account which unambiguously identifies, and gives the location of the payer/payee.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Other">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Other identifier which unambiguously identifies, and gives the location of the payer/payee.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NameType_EnumType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+				This is a qualifier to indicate the usage of a particular name. Such types include business names, trading names etc.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BUSINESS">
+				<xs:annotation>
+					<xs:documentation>Business name</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TRADE">
+				<xs:annotation>
+					<xs:documentation>Trade name</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LEGAL">
+				<xs:annotation>
+					<xs:documentation>Legal name</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PERSON">
+				<xs:annotation>
+					<xs:documentation>Person name</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OTHER">
+				<xs:annotation>
+					<xs:documentation>Other name</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Email_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">This element specifies the type of email address.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="320"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WebPage_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">This element specifies the type of web page.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PaymentMethod_Type">
+		<xs:sequence>
+			<xs:element name="PaymentMethodType" type="cm:PaymentMethodType_Type">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Method of payment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PaymentMethodOther" type="cm:StringMin1Max200_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Specification of the 'Other' method of payment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PaymentMethodType_Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:enumeration value="Card payment">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The credit card as a means of payment.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Bank transfer">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The bank transfer as a means of payment.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Direct debit">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The direct debit as a means of payment.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E-money">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The e-Money as a means of payment.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Money Remittance">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The money remittance as a means of payment.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Marketplace">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The marketplace as a means of payment.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Intermediary">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The intermediary as a means of payment.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Other">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Other mean of payment.
+					Please specify it in the element PaymentMethodOther.
+			 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="TransactionDate_Type">
+		<xs:simpleContent>
+			<xs:extension base="cm:dateTimeWithRequiredTimeZone">
+				<xs:attribute name="transactionDateType" type="cm:TransactionDateType_Type" use="required">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">The type of transaction date.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="TransactionDateType_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">This element specifies the type of transaction date.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CESOP701">
+				<xs:annotation>
+					<xs:documentation>Execution Date</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CESOP702">
+				<xs:annotation>
+					<xs:documentation>Clearing Date</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CESOP703">
+				<xs:annotation>
+					<xs:documentation>Authorisation Date</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CESOP704">
+				<xs:annotation>
+					<xs:documentation>Purchase Date</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CESOP709">
+				<xs:annotation>
+					<xs:documentation>Other Date</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Defines a string with maximum length of 20 -->
+	<xs:simpleType name="StringMin1Max20_Type">
+		<xs:annotation>
+			<xs:documentation>Defines a string with minimum length of 1 and maximum length of 20.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Defines a string with maximum length of 40 -->
+	<xs:simpleType name="StringMin1Max40_Type">
+		<xs:annotation>
+			<xs:documentation>Defines a string with minimum length of 1 and maximum length of 40.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="40"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Defines a string with maximum length of 100 -->
+	<xs:simpleType name="StringMin1Max100_Type">
+		<xs:annotation>
+			<xs:documentation>Defines a string with minimum length of 1 and maximum length of 100.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Defines a string with maximum length of 200 -->
+	<xs:simpleType name="StringMin1Max200_Type">
+		<xs:annotation>
+			<xs:documentation>Defines a string with minimum length of 1 and maximum length of 200.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="200"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Defines a string with minimum length of 0 and maximum length of 200 -->
+	<xs:simpleType name="StringMin0Max200_Type">
+		<xs:annotation>
+			<xs:documentation>Defines a string with minimum length of 0 and maximum length of 200.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="200"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Defines a string with maximum length of 400 -->
+	<xs:simpleType name="StringMin1Max400_Type">
+		<xs:annotation>
+			<xs:documentation>Defines a string with minimum length of 1 and maximum length of 400.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="400"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Defines a string with maximum length of 1000 -->
+	<xs:simpleType name="StringMin1Max1000_Type">
+		<xs:annotation>
+			<xs:documentation>Defines a string with minimum length of 1 and maximum length of 1000.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Defines a string with maximum length of 4000 -->
+	<xs:simpleType name="StringMin1Max4000_Type">
+		<xs:annotation>
+			<xs:documentation>Defines a string with minimum length of 1 and maximum length of 4000.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4000"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- Address Fix -->
+	<xs:complexType name="AddressFix_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+			Structure of the address broken down into logical parts.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Street" type="cm:StringMin1Max200_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Street of the AddressFix_Type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BuildingIdentifier" type="cm:StringMin1Max200_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Building Identifier of the AddressFix_Type (Name of the building or house number).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SuiteIdentifier" type="cm:StringMin1Max200_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Suite Identifier of the AddressFix_Type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FloorIdentifier" type="cm:StringMin1Max200_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Floor Identifier of the AddressFix_Type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DistrictName" type="cm:StringMin1Max200_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">District Name of the AddressFix_Type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="POB" type="cm:StringMin1Max200_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Post Office Box of the AddressFix_Type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PostCode" type="cm:StringMin1Max200_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Post Code of the AddressFix_Type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="City" type="cm:StringMin1Max200_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">City of the AddressFix_Type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CountrySubentity" type="cm:StringMin1Max200_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Sub-Entity of the AddressFix_Type (The political or administrative division of a country in which this address is located, such as the name of its province, or state).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Address_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+			The user has the option to enter the data about the address either as one long field or to spread the data over up to nine elements or even to use both formats. If the user chooses the option to enter the data required in separate elements, the container element for this will be 'AddressFix'. If the user chooses the option to enter the data required in a less structured way in 'AddressFree' all available address details shall be presented as one string of bytes, blank or "/" (slash) or carriage return- line feed used as a delimiter between parts of the address. PLEASE NOTE that the address country code is outside  both of these elements. If available, the 'AddressFix format is preferred.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CountryCode" type="iso:CountryCode_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The Country Code of the payee’s address (ISO-3166 Alpha 2).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence>
+				<xs:element name="AddressFix" type="cm:AddressFix_Type" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Structured address.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AddressFree" type="cm:StringMin1Max1000_Type" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Free text address.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="legalAddressType" type="cm:LegalAddressType_EnumType" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">This is a datatype for an attribute to an address. It serves to indicate the legal character of that address (residential, business etc.)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!-- Type of the address considered from a legal point of view -->
+	<xs:simpleType name="LegalAddressType_EnumType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">This is a datatype for an attribute to an address. It serves to indicate the legal character of that address (residential, business etc.).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="CESOP301">
+				<xs:annotation>
+					<xs:documentation>residentialOrBusiness</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CESOP302">
+				<xs:annotation>
+					<xs:documentation>residential</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CESOP303">
+				<xs:annotation>
+					<xs:documentation>business</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CESOP304">
+				<xs:annotation>
+					<xs:documentation>registeredOffice</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CESOP309">
+				<xs:annotation>
+					<xs:documentation>unspecified</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<xs:complexType name="DocSpec_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The DocSpec type defines data to make it possible to correct records in the message.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocTypeIndic" type="cm:DocTypeIndic_EnumType">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The element specifies whether the data for the reported payee is New Data, Corrected Data or Deletion of Data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocRefId" type="cm:UUID">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">A unique reference of the parent element, in form of a UUID version 4.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CorrMessageRefId" type="cm:UUID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The element is a reference to the initial MessageRefId in the MessageSpec element, if the correlation between the messages is important.
+					This element shall not be used in the scope of CESOP. If provided, the value will be ignored.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CorrDocRefId" type="cm:UUID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The element is a reference to the initial DocrefId in the DocSpec in case of a correction.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="DocTypeIndic_EnumType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">This element specifies the type of data being submitted.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CESOP1">
+				<xs:annotation>
+					<xs:documentation>New Data</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CESOP2">
+				<xs:annotation>
+					<xs:documentation>Corrected Data</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CESOP3">
+				<xs:annotation>
+					<xs:documentation>Deletion of Data</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="dateTimeWithRequiredTimeZone">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Date and time format with time zone.
+			This element provides the date, the time of the day (second or milisecond-precise) as specified in [ISO-8601] and the time zone: 'YYYY-MM-DDThh:mm:ss.SSSZ' if the time refers to the UTC time zone, otherwise 'YYYY-MM-DDThh:mm:ss.SSS-hh:mm' where hh:mm is the time shift from the UTC time zone. Note that the milliseconds part ".SSS" is optional may be omitted.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime">
+			<xs:pattern value="\d*-\d{2}-\d{2}T(2[0-3]|[0-1][0-9]):[0-5][0-9]:[0-5][0-9](\.[0-9]{3})?(([\-+]((0[0-9])|(1[0-4])):[0-5][0-9])|Z)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UUID">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">UUID version 4.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-4[0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12})"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

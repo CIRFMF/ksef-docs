@@ -155,7 +155,7 @@ Przykład w języku Java:
 ### 4. Otwarcie sesji wsadowej
 
 Inicjalizacja nowej sesji wsadowej z podaniem:
-* wersji schematu faktury: [FA(2)](faktury/schemat-FA(2)-v1-0E.xsd), [FA(3)](faktury/schemat-FA(3)-v1-0E.xsd) <br>
+* wersji schematu faktury: [FA(2)](faktury/schemy/FA/schemat_FA(2)_v1-0E.xsd), [FA(3)](faktury/schemy/FA/schemat_FA(3)_v1-0E.xsd) <br>
 określa, którą wersję XSD system będzie stosować do walidacji przesyłanych faktur.
 * zaszyfrowanego klucza symetrycznego<br>
 symetryczny klucz szyfrujący pliki XML, zaszyfrowany kluczem publicznym Ministerstwa Finansów; rekomendowane jest użycie nowo wygenerowanego klucza dla każdej sesji.
