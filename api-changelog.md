@@ -53,6 +53,7 @@
   - Dodano ograniczenia długości dla właściwości typu string: `minLength`.
   - Usunięto jawne ustawienia `style`: `form` dla parametrów w in: query.
   - Zmieniono kolejność wartości enuma `BuyerIdentifierType` (obecnie: `None`, `Other`, `Nip`, `VatUe`). Zmiana porządkowa - bez wpływu na działanie.
+  - Poprawiono literówkę w opisie właściwości `KsefNumber`.
 
 ### Wersja 2.0.0 RC5.7
 
