@@ -6,6 +6,16 @@
   - Na środowisku **TE** (testowe) włączono i zdefiniowano politykę [limitów api](limity/limity-api.md) z wartościami 10x wyższymi niż na **PRD**; szczegóły: ["Limity na środowiskach"](/limity/limity-api.md#limity-na-środowiskach).
   - Na środowisku **TR** (DEMO) włączono [limity api](limity/limity-api.md) z wartościami identycznymi jak na **PRD**. Wartości są replikowane z produkcji; szczegóły: ["Limity na środowiskach"](/limity/limity-api.md#limity-na-środowiskach).
   - Dodano endpoint POST `/testdata/rate-limits/production` - ustawia w bieżącym kontekście wartości limitów api zgodne z profilem produkcyjnym. Dostępny tylko na środowisku **TE**.
+  
+- **Eksport paczki faktur (POST `/invoices/exports`). Pobranie listy metadanych faktur (POST /invoices/query/metadata)**   
+  - Dodano dokument [High Water Mark (HWM)](pobieranie-faktur/hwm.md) opisujący mechanizm zarządzania kompletnością danych w czasie.
+  - Zaktualizowano [Przyrostowe pobieranie faktur](pobieranie-faktur/przyrostowe-pobieranie-faktur.md) o zalecenia wykorzystania mechanizmu `HWM`.
+  - Rozszerzono model odpowiedzi o właściwość `permanentStorageHwmDate` (string, date-time, nullable). Dotyczy wyłącznie zapytań z `dateType = PermanentStorage` i oznacza punkt, poniżej którego dane są kompletne; dla `dateType = Issue/Invoicing` - null.  
+  - Dodano właściwość `restrictToPermanentStorageHwmDate` (boolean, nullable) w obiekcie `dateRange`, który włącza mechanizm High Water Mark (`HWM`) i ogranicza zakres dat do bieżącej wartości `HWM`. Dotyczy wyłącznie zapytań z `dateType = PermanentStorage`. Zastosowanie parametru znacząco redukuje duplikaty między kolejnymi eksportami i zapewnia spójność podczas długotrwałej synchronizacji przyrostowej.
+
+- **Dokumentacja**  
+  - Dodano dokument [High Water Mark (HWM)](pobieranie-faktur/hwm.md) opisujący mechanizm zarządzania kompletnością danych w czasie.
+  - Zaktualizowano [Przyrostowe pobieranie faktur](pobieranie-faktur/przyrostowe-pobieranie-faktur.md) o zalecenia wykorzystania mechanizmu HWM.    
 
 - **UPO - aktualizacja XSD do v4-3**
   - Zmieniono wzorzec (`pattern`) elementu `NumerKSeFDokumentu`, aby dopuszczał także numery KSeF generowane dla faktur z KSeF 1.0 (36 znaków).

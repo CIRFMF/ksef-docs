@@ -2815,6 +2815,7 @@
                 "example": {
                   "hasMore": false,
                   "isTruncated": false,
+                  "permanentStorageHwmDate": "2025-08-28T09:23:55.388+00:00",
                   "invoices": [
                     {
                       "ksefNumber": "5555555555-20250828-010080615740-E4",
@@ -2899,7 +2900,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "description": "| ExceptionCode | ExceptionDescription                                      | Details                                                                                                                        | \n|---------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|\n| 21183         | Zakres filtrowania wykracza poza dostępny zakres danych.  | Parametr dateRange.from jest późniejszy niż PermanentStorageHwmDate przy włączonym restrictToPermanentStorageHwmDate. |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -2978,9 +2979,10 @@
                 "filters": {
                   "subjectType": "Subject1",
                   "dateRange": {
-                    "dateType": "Issue",
+                    "dateType": "PermanentStorage",
                     "from": "2025-08-28T09:22:13.388+00:00",
-                    "to": "2025-09-28T09:22:13.388+00:00"
+                    "to": "2025-09-28T09:22:13.388+00:00",
+                    "restrictToPermanentStorageHwmDate": true
                   }
                 }
               }
@@ -3097,7 +3099,8 @@
                       }
                     ],
                     "isTruncated": true,
-                    "lastPermanentStorageDate": "2025-09-11T11:40:40.266578+00:00"
+                    "lastPermanentStorageDate": "2025-09-11T11:40:40.266578+00:00",
+                    "permanentStorageHwmDate": "2025-09-11T12:00:40.266578+00:00"
                   }
                 }
               }
@@ -9192,7 +9195,7 @@
                 "$ref": "#/components/schemas/StatusInfo"
               }
             ],
-            "description": "Status eksportu.\n\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Eksport faktur w toku | - |\n| 200 | Eksport faktur zakończony sukcesem | - |\n| 210 | Eksport faktur wygasł i nie jest już dostępny do pobrania | - |\n| 415 | Błąd odszyfrowania dostarczonego klucza  | - |\n| 500 | Nieznany błąd ({statusCode}) | - |\n| 550 | Operacja została anulowana przez system | Przetwarzanie zostało przerwane z przyczyn wewnętrznych systemu. Spróbuj ponownie |"
+            "description": "Status eksportu.\n\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Eksport faktur w toku | - |\n| 200 | Eksport faktur zakończony sukcesem | - |\n| 210 | Eksport faktur wygasł i nie jest już dostępny do pobrania | - |\n| 415 | Błąd odszyfrowania dostarczonego klucza  | - |\n| 420 | Zakres filtrowania wykracza poza dostępny zakres danych | Parametr dateRange.from jest późniejszy niż PermanentStorageHwmDate przy włączonym restrictToPermanentStorageHwmDate. |\n| 500 | Nieznany błąd ({statusCode}) | - |\n| 550 | Operacja została anulowana przez system | Przetwarzanie zostało przerwane z przyczyn wewnętrznych systemu. Spróbuj ponownie |"
           },
           "completedDate": {
             "type": "string",
@@ -9601,6 +9604,12 @@
             "description": "Data trwałego zapisu ostatniej faktury ujętej w paczce.\nPole występuje wyłącznie wtedy, gdy paczka została ucięta i eksport był filtrowany po typie daty `PermanentStorage`.",
             "format": "date-time",
             "nullable": true
+          },
+          "permanentStorageHwmDate": {
+            "type": "string",
+            "description": "Dotyczy wyłącznie zapytań filtrowanych po typie daty <b>PermanentStorage</b>.\nJeśli zapytanie dotyczyło najnowszego okresu, wartość ta może być wartością nieznacznie skorygowaną względem górnej granicy podanej w warunkach zapytania.\nDla okresów starszych, będzie to zgodne z warunkami zapytania. \n\nSystem gwarantuje, że dane poniżej tej wartości są spójne i kompletne.\nPonowne zapytania obejmujące zakresem dane poniżej tego kroczącego znacznika czasu nie zwrócą w przyszłości innych wyników (np.dodatkowych faktur). \n\nDla dateType = Issue lub Invoicing – null.",
+            "format": "date-time",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -9756,6 +9765,11 @@
             "type": "string",
             "description": "Data końcowa zakresu(UTC). Jeśli nie zostanie podana, przyjmowana jest bieżąca data i czas w UTC.",
             "format": "date-time",
+            "nullable": true
+          },
+          "restrictToPermanentStorageHwmDate": {
+            "type": "boolean",
+            "description": "Określa, czy system ma ograniczyć filtrowanie (zakres dateRange.to) do wartości `PermanentStorageHwmDate`.\n\n* Dotyczy wyłącznie zapytań z `dateType = PermanentStorage`,  \n* Gdy `true`, system ogranicza filtrowanie tak, aby wartość `dateRange.to` nie przekraczała wartości `PermanentStorageHwmDate`,  \n* Gdy `null` lub `false`, filtrowanie może wykraczać poza `PermanentStorageHwmDate`.",
             "nullable": true
           }
         },
@@ -11582,6 +11596,12 @@
           "isTruncated": {
             "type": "boolean",
             "description": "Określa, czy osiągnięto maksymalny dopuszczalny zakres wyników zapytania (10 000)."
+          },
+          "permanentStorageHwmDate": {
+            "type": "string",
+            "description": "Dotyczy wyłącznie zapytań filtrowanych po typie daty <b>PermanentStorage</b>.\nJeśli zapytanie dotyczyło najnowszego okresu, wartość ta może być wartością nieznacznie skorygowaną względem górnej granicy podanej w warunkach zapytania.\nDla okresów starszych, będzie to zgodne z warunkami zapytania. \n\nWartość jest stała dla wszystkich stron tego samego zapytania\ni nie zależy od paginacji ani sortowania.\n\nSystem gwarantuje, że dane poniżej tej wartości są spójne i kompletne.\nPonowne zapytania obejmujące zakresem dane poniżej tego kroczącego znacznika czasu nie zwrócą w przyszłości innych wyników (np.dodatkowych faktur). \n\nDla dateType = Issue lub Invoicing – null.",
+            "format": "date-time",
+            "nullable": true
           },
           "invoices": {
             "type": "array",

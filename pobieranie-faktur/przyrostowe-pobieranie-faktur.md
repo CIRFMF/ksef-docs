@@ -1,16 +1,17 @@
 # Przyrostowe pobieranie faktur
-
-21.10.2025
+21.11.2025
 
 ## Wprowadzenie
 
 Przyrostowe pobieranie faktur, oparte na eksporcie paczek (POST [`/invoice/exports`](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1exports/post)), jest rekomendowanym mechanizmem synchronizacji między centralnym repozytorium KSeF a lokalnymi bazami danych systemów zewnętrznych. 
 
+Kluczową rolę odgrywa tu mechanizm **[High Water Mark (HWM)](hwm.md)** - stabilny punkt w czasie, do którego system gwarantuje kompletność danych.
+
 ## Architektura rozwiązania
 
 Przyrostowe pobieranie opiera się na trzech kluczowych komponentach:
 
-1. **Synchronizacja w oknach czasowych** - wykorzystanie przylegających okien czasowych wyznaczanych względem daty `PermanentStorage` co zapewnia ciągłość i brak pominięć.
+1. **Synchronizacja w oknach czasowych** - wykorzystanie przylegających okien czasowych z uwzględnieniem HWM co zapewnia ciągłość i brak pominięć
 2. **Obsługa limitów API** - sterowanie tempem wywołań, obsługa HTTP 429 oraz Retry-After.
 3. **Deduplikacja** - eliminacja duplikatów na podstawie metadanych z plików `_metadata.json`.
 
@@ -20,9 +21,10 @@ Metoda bazowa: POST [`/invoice/exports`](https://ksef-test.mf.gov.pl/docs/v2/ind
 
 ### Koncepcja
 
-Pobieranie faktur odbywa się w przylegających oknach czasowych z wykorzystaniem daty `PermanentStorage`, gdzie każde kolejne okno rozpoczyna się dokładnie w momencie zakończenia poprzedniego (z wyjątkiem sytuacji opisanej w sekcji [Obsługa obciętych paczek (IsTruncated)](#obsługa-obciętych-paczek-istruncated)). Przez „moment zakończenia” rozumie się:
+Pobieranie faktur odbywa się w przylegających oknach czasowych z wykorzystaniem daty `PermanentStorageHwmDate`. Aby włączyć mechanizm HWM, należy ustawić parametr `restrictToPermanentStorageHwmDate = true` w żądaniu eksportu. Każde kolejne okno rozpoczyna się dokładnie w momencie zakończenia poprzedniego z uwzględnieniem HWM (z wyjątkiem sytuacji opisanej w sekcji [Mechanizm High Water Mark (HWM) i obsługa obciętych paczek](#mechanizm-high-water-mark-hwm-i-obsługa-obciętych-paczek-istruncated)). Przez „moment zakończenia" rozumie się:
+
 - wartość `dateRange.to`, gdy została podana, lub
-- `PermanentStorageDate` ostatniej faktury ujętej w paczce, gdy `dateRange.to` pominięto.  
+- `PermanentStorageHwmDate` gdy `dateRange.to` pominięto.  
 
 Takie podejście zapewnia ciągłość zakresów i eliminuje ryzyko pominięcia jakiejkolwiek faktury. Faktury powinny być pobierane oddzielnie dla każdego typu podmiotu (`Podmiot 1`, `Podmiot 2`, `Podmiot 3`, `Podmiot upoważniony`) występującego w dokumencie. Iteracja przez podmioty zapewnia kompletność danych - firma może występować w różnych rolach na fakturach.
 
@@ -50,9 +52,9 @@ foreach (ExportTask task in exportTasks)
 
     // Dalsza obsługa eksportu...
 ```
+
 Przykład w języku ```java```:
 [IncrementalInvoiceRetrieveIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/IncrementalInvoiceRetrieveIntegrationTest.java)
-
 
 ```java
 Map<InvoiceQuerySubjectType, OffsetDateTime> continuationPoints = new HashMap<>();
@@ -77,7 +79,6 @@ exportTasks.forEach(task -> {
 // Dalsza obsługa eksportu...
 ```
 
-
 ### Zalecane wielkości okien
 
 - **Częstotliwość i limity**  
@@ -87,11 +88,11 @@ exportTasks.forEach(task -> {
 - **Minimalny interwał**  
     Interwał cykliczny nie powinien być krótszy niż 15 minut dla każdego typu podmiotu (zgodnie z zaleceniami w limitach API).
 - **Wielkość okna**
-    W scenariuszu ciągłej synchronizacji zalecane jest wywołanie eksportu bez określej daty końcowej (`DateRange.To` pominięte). W takim przypadku system KSeF przygotowuje możliwie duży, spójny pakiet w granicach limitów algorytmu (liczba faktur, rozmiar danych po kompresji), co ogranicza liczbę wywołań i obciążenie po obu stronach. Gdy `IsTruncated = true`, kolejne wywołanie należy rozpocząć od `LastPermanentStorageDate`.
+    W scenariuszu ciągłej synchronizacji zalecane jest wywołanie eksportu bez określonej daty końcowej (`DateRange.To` pominięte). W takim przypadku system KSeF przygotowuje możliwie duży, spójny pakiet w granicach limitów algorytmu (liczba faktur, rozmiar danych po kompresji), co ogranicza liczbę wywołań i obciążenie po obu stronach. Gdy `IsTruncated = true`, kolejne wywołanie należy rozpocząć od `LastPermanentStorageDate`, gdy `IsTruncated = false` , kolejne wywołanie należy rozpocząć od zwróconego `PermanentStorageHwmDate`.
 - **Brak nakładania**
     Zakresy muszą być przylegające; koniec jednego okna jest początkiem następnego.
 - **Punkt kontrolny**
-    Ostatnia wartość `PermanentStorageDate` z poprawnie pobranej paczki stanowi początek kolejnego okna.
+    Punkt kontynuacji wyznaczony przez HWM - `PermanentStorageHwmDate` lub `LastPermanentStorageDate` dla obciętych paczek stanowi początek kolejnego okna.
 
 >Datą otrzymania faktury jest data nadania numeru KSeF. Numer nadawany jest podczas przetwarzania faktury po stronie KSeF i nie zależy od momentu pobrania do systemu zewnętrznego.
 
@@ -121,9 +122,10 @@ InvoiceQueryFilters filters = new()
     SubjectType = subjectType,
     DateRange = new DateRange
     {
-        DateType = DateType.PermanentStorage, // WAŻNE: Użyj PermanentStorage dla przyrostowego pobierania
+        DateType = DateType.PermanentStorage,
         From = windowFromUtc,
-        To = windowToUtc
+        To = windowToUtc,
+        RestrictToPermanentStorageHwmDate = true
     }
 };
 
@@ -141,7 +143,6 @@ OperationResponse response = await KsefRateLimitWrapper.ExecuteWithRetryAsync(
 
 Przykład w języku ```java```:
 [IncrementalInvoiceRetrieveIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/IncrementalInvoiceRetrieveIntegrationTest.java)
-
 
 ```java
 EncryptionData encryptionData = defaultCryptographyService.getEncryptionData();
@@ -221,7 +222,6 @@ foreach ((string fileName, string content) in unzippedFiles)
 Przykład w języku ```java```:
 [IncrementalInvoiceRetrieveIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/IncrementalInvoiceRetrieveIntegrationTest.java)
 
-
 ```java
  List<InvoicePackagePart> parts = invoiceExportStatus.getPackageParts().getParts();
 byte[] mergedZip = FilesUtil.mergeZipParts(
@@ -241,14 +241,31 @@ String metadataJson = downloadedFiles.keySet()
 InvoicePackageMetadata invoicePackageMetadata = objectMapper.readValue(metadataJson, InvoicePackageMetadata.class);
 ```
 
-## Obsługa obciętych paczek (IsTruncated)
+## Mechanizm High Water Mark (HWM) i obsługa obciętych paczek (IsTruncated)
 
-Flaga `IsTruncated = true` jest ustawiana, gdy podczas budowy paczki osiągnięto limity algorytmu (liczba faktur lub rozmiar danych po kompresji). W takim przypadku w statusie operacji dostępna jest właściwość `LastPermanentStorageDate` - data ostatniej faktury ujętej w paczce.
+### Koncepcja HWM
 
-Aby zachować ciągłość pobierania i nie pominąć żadnego dokumentu:
-- następne wywołanie eksportu należy rozpocząć od `LastPermanentStorageDate` (ustawić `DateRange.From` = `LastPermanentStorageDate`, a `DateRange.To` można pominąć),
+High Water Mark (HWM) to mechanizm zapewniający optymalne zarządzanie punktami startowymi dla kolejnych eksportów w przyrostowym pobieraniu faktur. HWM składa się z dwóch komplementarnych składników:
+
+- **`PermanentStorageHwmDate`** - stabilna górna granica danych uwzględnionych w paczce, reprezentująca moment, do którego system gwarantuje kompletność danych.
+- **`LastPermanentStorageDate`** - data ostatniej faktury w paczce, używana gdy paczka została obcięta (`IsTruncated = true`).
+
+#### Korzyści mechanizmu HWM
+
+- **Minimalizacja duplikatów** - HWM znacząco redukuje liczbę duplikatów między kolejnymi paczkami
+- **Optymalizacja wydajności** - zmniejsza obciążenie mechanizmu deduplikacji  
+- **Zachowanie kompletności** - zapewnia, że żadne faktury nie zostaną pominięte
+- **Stabilność synchronizacji** - dostarcza niezawodne punkty kontynuacji dla długotrwałych procesów
+
+### Strategia kontynuacji paczek
+
+Flaga `IsTruncated = true` jest ustawiana, gdy podczas budowy paczki osiągnięto limity algorytmu (liczba faktur lub rozmiar danych po kompresji). W takim przypadku w statusie operacji dostępne są obydwie właściwości HWM.
+Mechanizm HWM wykorzystuje następującą hierarchię priorytetów dla wyznaczania punktu kontynuacji, Aby zachować ciągłość pobierania i nie pominąć żadnego dokumentu, następne wywołanie eksportu należy rozpocząć od:
+
+1. **Paczka obcięta** (`IsTruncated = true`) - następne wywołanie rozpoczyna się od `LastPermanentStorageDate`
+2. **Stabilny HWM** - wykorzystanie `PermanentStorageHwmDate` jako punktu startowego dla następnego okna
+
 - kolejne okno rozpoczyna się w tym samym punkcie co zakończone (przyległość); ewentualne duplikaty zostaną usunięte w etapie deduplikacji na podstawie numerów KSeF z _metadata.json.
-
 Poniżej przykład utrzymywania punktu kontynuacji:
 
 Przykład w języku ```C#```:
@@ -256,18 +273,23 @@ Przykład w języku ```C#```:
 
 ```csharp
 private static void UpdateContinuationPointIfNeeded(
-    Dictionary<SubjectType, DateTime?> continuationPoints,
-    SubjectType subjectType,
+    Dictionary<InvoiceSubjectType, DateTime?> continuationPoints,
+    InvoiceSubjectType subjectType,
     InvoiceExportPackage package)
 {
+    // Priorytet 1: Paczka obcięta - LastPermanentStorageDate
     if (package.IsTruncated && package.LastPermanentStorageDate.HasValue)
     {
-        // Ustaw continuation point na datę ostatniej faktury w obciętym pakiecie
         continuationPoints[subjectType] = package.LastPermanentStorageDate.Value.UtcDateTime;
+    }
+    // Priorytet 2: Stabilny HWM jako granica kolejnego okna
+    else if (package.PermanentStorageHwmDate.HasValue)
+    {
+        continuationPoints[subjectType] = package.PermanentStorageHwmDate.Value.UtcDateTime;
     }
     else
     {
-        // Jeśli pakiet nie jest obcięty, usuń continuation point - zakres został w pełni przetworzony
+        // Zakres w pełni przetworzony - usunięcie punktu kontynuacji
         continuationPoints.Remove(subjectType);
     }
 }
@@ -275,7 +297,6 @@ private static void UpdateContinuationPointIfNeeded(
 
 Przykład w języku ```java```:
 [IncrementalInvoiceRetrieveIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/IncrementalInvoiceRetrieveIntegrationTest.java)
-
 
 ```java
 private void updateContinuationPointIfNeeded(Map<InvoiceQuerySubjectType, OffsetDateTime> continuationPoints,
@@ -311,7 +332,6 @@ hasDuplicates = packageResult.MetadataSummaries
 Przykład w języku ```java```:
 [IncrementalInvoiceRetrieveIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/IncrementalInvoiceRetrieveIntegrationTest.java)
 
-
 ```java
 hasDuplicates.set(packageProcessingResult.getInvoiceMetadataList()
         .stream()
@@ -325,5 +345,6 @@ packageProcessingResult.getInvoiceMetadataList()
 
 ## Powiązane dokumenty
 
+- [High Water Mark](hwm.md)
 - [Limity API](../limity/limity-api.md)
 - [Pobieranie faktur](pobieranie-faktur.md)
