@@ -11412,7 +11412,8 @@
         "properties": {
           "certificate": {
             "type": "string",
-            "description": "Certyfikat klucza publicznego w formacie DER zakodowany w Base64."
+            "description": "Certyfikat klucza publicznego w formacie DER zakodowany w Base64.",
+            "format": "byte"
           },
           "validFrom": {
             "type": "string",
