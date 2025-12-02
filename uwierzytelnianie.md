@@ -90,9 +90,9 @@ Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Authorization\AuthorizationE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Authorization/AuthorizationE2ETests.cs)
 
 ```csharp
-var authorizationPolicy = new AuthorizationPolicy
+var authorizationPolicy = new AuthenticationTokenAuthorizationPolicy
 {
-    AllowedIps = new AllowedIps
+    AllowedIps = new AuthenticationTokenAllowedIps
     {
         Ip4Addresses = ["192.168.0.1", "192.222.111.1"],
         Ip4Masks = ["192.168.1.0/24"], // Przykładowa maska
@@ -189,10 +189,15 @@ public static X509Certificate2 GetCompanySeal(
 ```
 
 Używając ```ISignatureService``` oraz posiadając certyfikat z kluczem prywatnym do podpisania dokumentu:
-```csharp
-string unsignedXml = AuthTokenRequestSerializer.SerializeToXmlString(authTokenRequest);
 
-string signedXml = await signatureService.SignAsync(unsignedXml, certificate);
+Przykład w języku ```C#```:
+
+[KSeF.Client.Tests.Utils\AuthenticationUtils.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Utils/AuthenticationUtils.cs)
+
+```csharp
+string unsignedXml = AuthenticationTokenRequestSerializer.SerializeToXmlString(authTokenRequest);
+
+string signedXml = signatureService.Sign(unsignedXml, certificate);
 ```
 
 Przykład w języku ```Java```:
