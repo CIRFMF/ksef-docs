@@ -13,10 +13,6 @@
   - Rozszerzono model odpowiedzi o właściwość `permanentStorageHwmDate` (string, date-time, nullable). Dotyczy wyłącznie zapytań z `dateType = PermanentStorage` i oznacza punkt, poniżej którego dane są kompletne; dla `dateType = Issue/Invoicing` - null.  
   - Dodano właściwość `restrictToPermanentStorageHwmDate` (boolean, nullable) w obiekcie `dateRange`, który włącza mechanizm High Water Mark (`HWM`) i ogranicza zakres dat do bieżącej wartości `HWM`. Dotyczy wyłącznie zapytań z `dateType = PermanentStorage`. Zastosowanie parametru znacząco redukuje duplikaty między kolejnymi eksportami i zapewnia spójność podczas długotrwałej synchronizacji przyrostowej.
 
-- **Dokumentacja**  
-  - Dodano dokument [High Water Mark (HWM)](pobieranie-faktur/hwm.md) opisujący mechanizm zarządzania kompletnością danych w czasie.
-  - Zaktualizowano [Przyrostowe pobieranie faktur](pobieranie-faktur/przyrostowe-pobieranie-faktur.md) o zalecenia wykorzystania mechanizmu HWM.    
-
 - **UPO - aktualizacja XSD do v4-3**
   - Zmieniono wzorzec (`pattern`) elementu `NumerKSeFDokumentu`, aby dopuszczał także numery KSeF generowane dla faktur z KSeF 1.0 (36 znaków).
   - Dodano element `TrybWysylki` - tryb przesłania dokumentu do KSeF: `Online` lub `Offline`.
