@@ -46,6 +46,9 @@
 - **Wyszukiwanie nadanych uprawnień** (POST `/permissions/query/authorizations/grants`)  
     Rozszerzono reguły dostępu o `PefInvoiceWrite`.
 
+- **Dane testowe - załączniki (POST /testdata/attachment/revoke)**  
+  Rozszerzono model żądania `AttachmentPermissionRevokeRequest` o pole `expectedEndDate` (opcjonalne) - data wycofania zgody na przesyłanie faktur z załącznikiem.    
+
 - **OpenAPI**  
   - Dodano odpowiedź HTTP `429` - "Too Many Requests" do wszystkich endpointów. We właściwości `description` tej odpowiedzi publikowana jest tabelaryczna prezentacja limitów (`req/s`, `req/min`, `req/h`) oraz nazwy grupy limitowej przypisanej do endpointu. Mechanizm i semantyka `429` pozostają zgodne z opisem w dokumentacji [limitów](/limity/limity-api.md).
   - Do każdego endpointu dodano metadane `x-rate-limits` z wartościami limitów (`req/s`, `req/min`, `req/h`).
