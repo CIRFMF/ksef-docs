@@ -1,5 +1,10 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.0 RC6.1
+
+- **Uprawnienia**  
+  Rozszerzono reguły dostępu dla operacji sesji (GET/POST `/sessions/...`): do listy akceptowanych uprawnień dodano `EnforcementOperations` (organ egzekucyjny).
+
 ### Wersja 2.0.0 RC6.0
 
 - **Limity API**  

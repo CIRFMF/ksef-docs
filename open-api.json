@@ -3150,7 +3150,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie listy sesji",
-        "description": "Zwraca listę sesji spełniających podane kryteria wyszukiwania.\n\n\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n\n\n**Wymagane uprawnienia**:\n- `Introspection` – pozwala pobrać wszystkie sesje w bieżącym kontekście uwierzytelnienia `(ContextIdentifier)`.\n- `InvoiceWrite` – pozwala pobrać wyłącznie sesje utworzone przez podmiot uwierzytelniający, czyli podmiot inicjujący uwierzytelnienie.",
+        "description": "Zwraca listę sesji spełniających podane kryteria wyszukiwania.\n\n\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n\n\n**Wymagane uprawnienia**:\n- `Introspection`/`EnforcementOperations` – pozwala pobrać wszystkie sesje w bieżącym kontekście uwierzytelnienia `(ContextIdentifier)`.\n- `InvoiceWrite` – pozwala pobrać wyłącznie sesje utworzone przez podmiot uwierzytelniający, czyli podmiot inicjujący uwierzytelnienie.",
         "parameters": [
           {
             "name": "pageSize",
@@ -3341,7 +3341,8 @@
         ],
         "x-required-permissions": [
           "InvoiceWrite",
-          "Introspection"
+          "Introspection",
+          "EnforcementOperations"
         ]
       }
     },
@@ -3351,7 +3352,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie statusu sesji",
-        "description": "Sprawdza bieżący status sesji o podanym numerze referencyjnym.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Sprawdza bieżący status sesji o podanym numerze referencyjnym.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -3427,7 +3428,8 @@
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
-          "PefInvoiceWrite"
+          "PefInvoiceWrite",
+          "EnforcementOperations"
         ]
       }
     },
@@ -3437,7 +3439,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie faktur sesji",
-        "description": "Zwraca listę faktur przesłanych w sesji wraz z ich statusami, oraz informacje na temat ilości poprawnie i niepoprawnie przetworzonych faktur.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Zwraca listę faktur przesłanych w sesji wraz z ich statusami, oraz informacje na temat ilości poprawnie i niepoprawnie przetworzonych faktur.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "x-continuation-token",
@@ -3553,7 +3555,8 @@
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
-          "PefInvoiceWrite"
+          "PefInvoiceWrite",
+          "EnforcementOperations"
         ]
       }
     },
@@ -3563,7 +3566,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie statusu faktury z sesji",
-        "description": "Zwraca fakturę przesłaną w sesji wraz ze statusem.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Zwraca fakturę przesłaną w sesji wraz ze statusem.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -3646,7 +3649,8 @@
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
-          "PefInvoiceWrite"
+          "PefInvoiceWrite",
+          "EnforcementOperations"
         ]
       }
     },
@@ -3656,7 +3660,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie niepoprawnie przetworzonych faktur sesji",
-        "description": "Zwraca listę niepoprawnie przetworzonych faktur przesłanych w sesji wraz z ich statusami.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Zwraca listę niepoprawnie przetworzonych faktur przesłanych w sesji wraz z ich statusami.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "x-continuation-token",
@@ -3757,7 +3761,8 @@
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
-          "PefInvoiceWrite"
+          "PefInvoiceWrite",
+          "EnforcementOperations"
         ]
       }
     },
@@ -3767,7 +3772,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie UPO faktury z sesji na podstawie numeru KSeF",
-        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -3834,7 +3839,8 @@
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
-          "PefInvoiceWrite"
+          "PefInvoiceWrite",
+          "EnforcementOperations"
         ]
       }
     },
@@ -3844,7 +3850,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie UPO faktury z sesji na podstawie numeru referencyjnego faktury",
-        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -3911,7 +3917,8 @@
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
-          "PefInvoiceWrite"
+          "PefInvoiceWrite",
+          "EnforcementOperations"
         ]
       }
     },
@@ -3921,7 +3928,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie UPO dla sesji",
-        "description": "Zwraca XML zawierający zbiorcze UPO dla sesji.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.",
+        "description": "Zwraca XML zawierający zbiorcze UPO dla sesji.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -3988,7 +3995,8 @@
         "x-required-permissions": [
           "InvoiceWrite",
           "Introspection",
-          "PefInvoiceWrite"
+          "PefInvoiceWrite",
+          "EnforcementOperations"
         ]
       }
     },
@@ -4872,7 +4880,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Otwarcie sesji interaktywnej",
-        "description": "Otwiera sesję do wysyłki pojedynczych faktur. Należy przekazać schemat wysyłanych faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Otwarcie sesji interaktywnej](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#1-otwarcie-sesji)\n> - [Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\nAby generować dokumenty UPO w wersji v4-3 w ramach sesji, należy przy jej otwarciu przesłać nagłówek <b>X-KSeF-Feature: upo-v4-3</b>.\nOd 22 grudnia 2025 wersja UPO v4-3 będzie generowana domyślnie.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`.",
+        "description": "Otwiera sesję do wysyłki pojedynczych faktur. Należy przekazać schemat wysyłanych faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Otwarcie sesji interaktywnej](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#1-otwarcie-sesji)\n> - [Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\nAby generować dokumenty UPO w wersji v4-3 w ramach sesji, należy przy jej otwarciu przesłać nagłówek <b>X-KSeF-Feature: upo-v4-3</b>.\nOd 22 grudnia 2025 wersja UPO v4-3 będzie generowana domyślnie.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -4950,7 +4958,8 @@
         },
         "x-required-permissions": [
           "InvoiceWrite",
-          "PefInvoiceWrite"
+          "PefInvoiceWrite",
+          "EnforcementOperations"
         ]
       }
     },
@@ -4960,7 +4969,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Wysłanie faktury",
-        "description": "Przyjmuje zaszyfrowaną fakturę oraz jej metadane i rozpoczyna jej przetwarzanie.\n\n> Więcej informacji:\n> - [Wysłanie faktury](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#2-wys%C5%82anie-faktury)\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`.",
+        "description": "Przyjmuje zaszyfrowaną fakturę oraz jej metadane i rozpoczyna jej przetwarzanie.\n\n> Więcej informacji:\n> - [Wysłanie faktury](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#2-wys%C5%82anie-faktury)\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -5049,7 +5058,8 @@
         },
         "x-required-permissions": [
           "InvoiceWrite",
-          "PefInvoiceWrite"
+          "PefInvoiceWrite",
+          "EnforcementOperations"
         ]
       }
     },
@@ -5059,7 +5069,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Zamknięcie sesji interaktywnej",
-        "description": "Zamyka sesję interaktywną i rozpoczyna generowanie zbiorczego UPO dla sesji.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`.",
+        "description": "Zamyka sesję interaktywną i rozpoczyna generowanie zbiorczego UPO dla sesji.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -5109,7 +5119,8 @@
         },
         "x-required-permissions": [
           "InvoiceWrite",
-          "PefInvoiceWrite"
+          "PefInvoiceWrite",
+          "EnforcementOperations"
         ]
       }
     },
@@ -5119,7 +5130,7 @@
           "Wysyłka wsadowa"
         ],
         "summary": "Otwarcie sesji wsadowej",
-        "description": "Otwiera sesję do wysyłki wsadowej faktur. Należy przekazać schemat wysyłanych faktur, informacje o paczce faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Przygotwanie paczki faktur](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-wsadowa.md)\n> - [Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\nAby generować dokumenty UPO w wersji v4-3 w ramach sesji, należy przy jej otwarciu przesłać nagłówek <b>X-KSeF-Feature: upo-v4-3</b>.\nOd 22 grudnia 2025 wersja UPO v4-3 będzie generowana domyślnie.\n\n**Wymagane uprawnienia**: `InvoiceWrite`.",
+        "description": "Otwiera sesję do wysyłki wsadowej faktur. Należy przekazać schemat wysyłanych faktur, informacje o paczce faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Przygotwanie paczki faktur](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-wsadowa.md)\n> - [Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\nAby generować dokumenty UPO w wersji v4-3 w ramach sesji, należy przy jej otwarciu przesłać nagłówek <b>X-KSeF-Feature: upo-v4-3</b>.\nOd 22 grudnia 2025 wersja UPO v4-3 będzie generowana domyślnie.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `EnforcementOperations`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -5218,7 +5229,8 @@
           "perHour": 1200
         },
         "x-required-permissions": [
-          "InvoiceWrite"
+          "InvoiceWrite",
+          "EnforcementOperations"
         ]
       }
     },
@@ -5228,7 +5240,7 @@
           "Wysyłka wsadowa"
         ],
         "summary": "Zamknięcie sesji wsadowej",
-        "description": "Zamyka sesję wsadową, rozpoczyna procesowanie paczki faktur i generowanie UPO dla prawidłowych faktur oraz zbiorczego UPO dla sesji.\n\n**Wymagane uprawnienia**: `InvoiceWrite`.",
+        "description": "Zamyka sesję wsadową, rozpoczyna procesowanie paczki faktur i generowanie UPO dla prawidłowych faktur oraz zbiorczego UPO dla sesji.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -5277,7 +5289,8 @@
           "perHour": 1200
         },
         "x-required-permissions": [
-          "InvoiceWrite"
+          "InvoiceWrite",
+          "EnforcementOperations"
         ]
       }
     },
