@@ -5,6 +5,7 @@
 - **Uprawnienia**  
   - Rozszerzono reguły dostępu dla operacji sesji (GET/POST `/sessions/...`): do listy akceptowanych uprawnień dodano `EnforcementOperations` (organ egzekucyjny).
   - Dodano ograniczenia długości dla właściwości typu string: `minLength` oraz `maxLength`.
+  - Dodano `id` (`Asc`) jako drugi klucz sortowania w metadanych `x-sort` dla zapytań wyszukujących uprawnienia. Domyślna kolejność: `dateCreated` (`Desc`), następnie `id` (`Asc`) - zmiana porządkowa zwiększająca deterministyczność paginacji.
 
 ### Wersja 2.0.0 RC6.0
 
