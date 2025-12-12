@@ -7957,6 +7957,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 10,
+            "minLength": 9,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -7987,6 +7989,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -8018,6 +8022,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 10,
+            "minLength": 9,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -8048,6 +8054,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 10,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -8069,10 +8077,12 @@
         "type": "object",
         "properties": {
           "fullName": {
+            "maxLength": 100,
             "type": "string",
             "description": "Pełna nazwa podmiotu."
           },
           "address": {
+            "maxLength": 512,
             "type": "string",
             "description": "Adres podmiotu."
           }
@@ -8086,6 +8096,8 @@
         "type": "object",
         "properties": {
           "fullName": {
+            "maxLength": 90,
+            "minLength": 5,
             "type": "string",
             "description": "Pełna nazwa podmiotu."
           }
@@ -8184,6 +8196,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 10,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -8213,6 +8227,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 10,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -8296,6 +8312,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 10,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -8333,6 +8351,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 25,
+            "minLength": 15,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -8435,6 +8455,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 64,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -8456,13 +8478,12 @@
         "type": "object",
         "properties": {
           "fullName": {
-            "maxLength": 256,
-            "minLength": 5,
+            "maxLength": 100,
             "type": "string",
             "description": "Pełna nazwa podmiotu."
           },
           "address": {
-            "maxLength": 256,
+            "maxLength": 512,
             "type": "string",
             "description": "Adres podmiotu."
           }
@@ -8513,6 +8534,8 @@
             "description": "Nazwa podmiotu unijnego."
           },
           "authorizedFingerprintIdentifier": {
+            "maxLength": 64,
+            "minLength": 64,
             "type": "string",
             "description": "Uprawniony odcisk palca certyfikatu."
           },
@@ -8654,6 +8677,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -8768,6 +8793,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 64,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -8966,14 +8993,18 @@
         "type": "object",
         "properties": {
           "type": {
+            "maxLength": 20,
             "type": "string",
             "description": "Rodzaj dokumentu tożsamości."
           },
           "number": {
+            "maxLength": 20,
             "type": "string",
             "description": "Seria i numer dokumentu tożsamości."
           },
           "country": {
+            "maxLength": 2,
+            "minLength": 2,
             "type": "string",
             "description": "Kraj wydania dokumentu tożsamości."
           }
@@ -9064,6 +9095,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -9094,6 +9127,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 16,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora. W przypadku typu AllPartners należy pozostawić puste. W pozostałych przypadkach pole jest wymagane.",
             "nullable": true
@@ -9487,6 +9522,7 @@
             "description": "Typ identyfikatora nabywcy.\n| Wartość | Opis |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| VatUe | Identyfikator VAT UE podmiotu unijnego |\n| Other | Inny identyfikator |\n| None | Brak identyfikatora nabywcy |\n"
           },
           "value": {
+            "maxLength": 50,
             "type": "string",
             "description": "Wartośc identyfikatora nabywcy.",
             "nullable": true
@@ -9560,6 +9596,7 @@
             "description": "Typ identyfikatora podmiotu trzeciego.\n| Wartość | Opis |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Identyfikator wewnętrzny, składający się z numeru NIP i 5 cyfr. |\n| VatUe | Identyfikator VAT UE podmiotu unijnego |\n| Other | Inny identyfikator |\n| None | Brak identyfikatora podmiotu trzeciego |\n"
           },
           "value": {
+            "maxLength": 50,
             "type": "string",
             "description": "Wartość identyfikatora podmiotu trzeciego.",
             "nullable": true
@@ -9747,6 +9784,7 @@
             "description": "Typ identyfikatora nabywcy.\n| Wartość | Opis |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| VatUe | Identyfikator VAT UE podmiotu unijnego |\n| Other | Inny identyfikator |\n| None | Brak identyfikatora nabywcy |\n"
           },
           "value": {
+            "maxLength": 50,
             "type": "string",
             "description": "Wartość identyfikatora nabywcy (exact match).",
             "nullable": true
@@ -10317,10 +10355,12 @@
         "type": "object",
         "properties": {
           "fullName": {
+            "maxLength": 100,
             "type": "string",
             "description": "Pełna nazwa podmiotu unijnego."
           },
           "address": {
+            "maxLength": 512,
             "type": "string",
             "description": "Adres podmiotu unijnego."
           }
@@ -10377,10 +10417,12 @@
             "description": "Typ danych podmiotu, którego dotyczy uprawnienie.\n| Wartość | Opis |\n| --- | --- |\n| EntityByIdentifier | Podmiot identyfikowany numerem NIP. |\n| EntityByFingerprint | Podmiot identyfikowany odciskiem palca pieczęci kwalifikowanej. |\n"
           },
           "fullName": {
+            "maxLength": 100,
             "type": "string",
             "description": "Pełna nazwa podmiotu."
           },
           "address": {
+            "maxLength": 512,
             "type": "string",
             "description": "Adres podmiotu.",
             "nullable": true
@@ -10405,10 +10447,14 @@
             "description": "Typ danych osoby fizycznej, której dotyczy uprawnienie.\n| Wartość | Opis |\n| --- | --- |\n| PersonByIdentifier | Osoba fizyczna posługująca się Profilem Zaufanym lub certyfikatem zawierającym identyfikator NIP lub PESEL. |\n| PersonByFingerprintWithIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL, ale mająca NIP lub PESEL. |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n"
           },
           "firstName": {
+            "maxLength": 30,
+            "minLength": 2,
             "type": "string",
             "description": "Imię osoby fizycznej."
           },
           "lastName": {
+            "maxLength": 81,
+            "minLength": 2,
             "type": "string",
             "description": "Nazwisko osoby fizycznej."
           },
@@ -10457,10 +10503,14 @@
         "type": "object",
         "properties": {
           "firstName": {
+            "maxLength": 30,
+            "minLength": 2,
             "type": "string",
             "description": "Imię osoby fizycznej."
           },
           "lastName": {
+            "maxLength": 81,
+            "minLength": 2,
             "type": "string",
             "description": "Nazwisko osoby fizycznej."
           },
@@ -10489,10 +10539,14 @@
         "type": "object",
         "properties": {
           "firstName": {
+            "maxLength": 30,
+            "minLength": 2,
             "type": "string",
             "description": "Imię osoby fizycznej."
           },
           "lastName": {
+            "maxLength": 81,
+            "minLength": 2,
             "type": "string",
             "description": "Nazwisko osoby fizycznej."
           },
@@ -10560,10 +10614,14 @@
         "type": "object",
         "properties": {
           "firstName": {
+            "maxLength": 30,
+            "minLength": 2,
             "type": "string",
             "description": "Imię osoby fizycznej."
           },
           "lastName": {
+            "maxLength": 81,
+            "minLength": 2,
             "type": "string",
             "description": "Nazwisko osoby fizycznej."
           }
@@ -10586,6 +10644,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 11,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -10837,6 +10897,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora. W przypadku typu System należy pozostawić puste. W pozostałych przypadkach pole jest wymagane.",
             "nullable": true
@@ -10870,6 +10932,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -10901,6 +10965,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 16,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -11070,6 +11136,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -11100,6 +11168,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 16,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora. W przypadku typu AllPartners należy pozostawić puste. W pozostałych przypadkach pole jest wymagane.",
             "nullable": true
@@ -11297,6 +11367,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -11328,6 +11400,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 10,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -11405,6 +11479,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 16,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora. W przypadku typu AllPartners należy pozostawić puste. W pozostałych przypadkach pole jest wymagane.",
             "nullable": true
@@ -12576,6 +12652,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 10,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -12728,6 +12806,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -12759,6 +12839,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -12782,6 +12864,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 16,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -12883,6 +12967,8 @@
         "type": "object",
         "properties": {
           "type": {
+            "maxLength": 64,
+            "minLength": 10,
             "allOf": [
               {
                 "$ref": "#/components/schemas/SubunitPermissionsSubjectIdentifierType"
@@ -12922,6 +13008,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 16,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -12951,6 +13039,8 @@
             ]
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 10,
             "type": "string"
           }
         },
@@ -12979,6 +13069,8 @@
             ]
           },
           "value": {
+            "maxLength": 10,
+            "minLength": 10,
             "type": "string"
           }
         },

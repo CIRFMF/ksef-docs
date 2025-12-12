@@ -3,7 +3,8 @@
 ### Wersja 2.0.0 RC6.1
 
 - **Uprawnienia**  
-  Rozszerzono reguły dostępu dla operacji sesji (GET/POST `/sessions/...`): do listy akceptowanych uprawnień dodano `EnforcementOperations` (organ egzekucyjny).
+  - Rozszerzono reguły dostępu dla operacji sesji (GET/POST `/sessions/...`): do listy akceptowanych uprawnień dodano `EnforcementOperations` (organ egzekucyjny).
+  - Dodano ograniczenia długości dla właściwości typu string: `minLength` oraz `maxLength`.
 
 ### Wersja 2.0.0 RC6.0
 
