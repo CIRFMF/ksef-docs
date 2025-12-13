@@ -6,6 +6,7 @@
   - Rozszerzono reguły dostępu dla operacji sesji (GET/POST `/sessions/...`): do listy akceptowanych uprawnień dodano `EnforcementOperations` (organ egzekucyjny).
   - Dodano ograniczenia długości dla właściwości typu string: `minLength` oraz `maxLength`.
   - Dodano `id` (`Asc`) jako drugi klucz sortowania w metadanych `x-sort` dla zapytań wyszukujących uprawnienia. Domyślna kolejność: `dateCreated` (`Desc`), następnie `id` (`Asc`) - zmiana porządkowa zwiększająca deterministyczność paginacji.
+  - Dodano walidację właściwości `IdDocument.country` w endpoint POST `/permissions/persons/grants` ("Nadanie osobom fizycznym uprawnień do pracy w KSeF") - wymagana zgodność z **ISO 3166-1 alpha-2** (np. `PL`, `DE`, `US`).
 
 - **Otwarcie sesji wsadowej (POST `/sessions/batch`)**
   Usunięto z modelu `BatchFilePartInfo` właściwość `fileName` (wcześniej oznaczoną jako deprecated; x-removal-date: 2025-12-07).  
