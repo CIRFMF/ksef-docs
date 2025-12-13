@@ -12566,8 +12566,7 @@
         "enum": [
           "Nip",
           "Pesel",
-          "Fingerprint",
-          "Token"
+          "Fingerprint"
         ],
         "type": "string"
       },

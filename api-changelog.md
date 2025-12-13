@@ -16,8 +16,9 @@
 - **Otwarcie sesji wsadowej (POST `/sessions/batch`)**  
   Usunięto z modelu `BatchFilePartInfo` właściwość `fileName` (wcześniej oznaczoną jako deprecated; x-removal-date: 2025-12-07).  
 
-- **Dane testowe - załączniki (POST /testdata/attachment/revoke)**  
-  Doprecyzowano typ właściwości `expectedEndDate`: format: `date`.  
+- **Dane testowe**
+  - Doprecyzowano typ właściwości `expectedEndDate`: format: `date` w (POST `/testdata/attachment/revoke`).
+  - Usunięto wartość `Token` z enum `SubjectIdentifierType` w endpoint POST `/testdata/limits/subject/certificate`. Wartość była nieużywana: w KSeF podmiot nie może być "tokenem" - tożsamość zawsze wynika z `NIP/PESEL` lub odcisku palca certyfikatu, który przenosi tożsamość podmiotu, który go utworzył.
 
 ### Wersja 2.0.0 RC6.0
 
