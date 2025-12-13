@@ -7,6 +7,9 @@
   - Dodano ograniczenia długości dla właściwości typu string: `minLength` oraz `maxLength`.
   - Dodano `id` (`Asc`) jako drugi klucz sortowania w metadanych `x-sort` dla zapytań wyszukujących uprawnienia. Domyślna kolejność: `dateCreated` (`Desc`), następnie `id` (`Asc`) - zmiana porządkowa zwiększająca deterministyczność paginacji.
 
+- **Otwarcie sesji wsadowej (POST `/sessions/batch`)**
+  Usunięto z modelu `BatchFilePartInfo` właściwość `fileName` (wcześniej oznaczoną jako deprecated; x-removal-date: 2025-12-07).  
+
 ### Wersja 2.0.0 RC6.0
 
 - **Limity API**  
