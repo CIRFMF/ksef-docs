@@ -6460,8 +6460,8 @@
           },
           "expectedEndDate": {
             "type": "string",
-            "description": "Data wycofania zgody na przesyłanie faktur z załącznikiem. \n\nPole jest zdefiniowane w OpenAPI jako string w formacie date-time (ISO 8601), aby zapewnić kompatybilność z popularnymi generatorami klienta (m.in. starsze wersje .NET Framework nie obsługują formatu date). \n\nSystem ignoruje część czasową - wykorzystywana jest wyłącznie data (YYYY-MM-DD).",
-            "format": "date-time",
+            "description": "Data wycofania zgody na przesyłanie faktur z załącznikiem.",
+            "format": "date",
             "nullable": true
           }
         },

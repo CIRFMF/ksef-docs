@@ -16,6 +16,9 @@
 - **Otwarcie sesji wsadowej (POST `/sessions/batch`)**  
   Usunięto z modelu `BatchFilePartInfo` właściwość `fileName` (wcześniej oznaczoną jako deprecated; x-removal-date: 2025-12-07).  
 
+- **Dane testowe - załączniki (POST /testdata/attachment/revoke)**  
+  Doprecyzowano typ właściwości `expectedEndDate`: format: `date`.  
+
 ### Wersja 2.0.0 RC6.0
 
 - **Limity API**  
