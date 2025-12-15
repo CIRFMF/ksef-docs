@@ -130,6 +130,7 @@ Takie podejście jest dopuszczalne jedynie w profilach o niskim wolumenie; przy 
 |----------|---|-------|---------|-------|
 | Pobranie listy metadanych faktur | POST /invoices/query/metadata | 8 | 16 | 20 |
 | Eksport paczki faktur | POST /invoices/exports | 4 | 8 | 20 |
+| Pobranie statusu eksportu paczki faktur | /invoices/exports/{referenceNumber} | 10 | 60 | 600 |
 | Pobranie faktury po numerze KSeF | GET /invoices/ksef/{ksefNumber} | 8 | 16 | 64 |
 
 **Uwaga:** Jeżeli w scenariuszach biznesowych organizacji dostępne limity pobierania faktur są niewystarczające, prosimy o kontakt z działem wsparcia KSeF w celu indywidualnej analizy i dobrania odpowiedniego rozwiązania.
@@ -161,8 +162,8 @@ Przykładowe scenariusze zastosowania trybu wsadowego:
 
 | Endpoint | | req/s | req/min | req/h |
 |----------|---|-------|---------|-------|
-| Otwarcie sesji wsadowej * | POST /sessions/batch | 10 | 20 | 120 |
-| Zamknięcie sesji wsadowej | POST /sessions/batch/{referenceNumber}/close | 10 | 20 | 120 |
+| Otwarcie sesji wsadowej * | POST /sessions/batch | 10 | 20 | 60 |
+| Zamknięcie sesji wsadowej | POST /sessions/batch/{referenceNumber}/close | 10 | 20 | 60 |
 
 **Wysyłka części paczki** - żądania przesyłające części paczki w ramach jednej sesji wsadowej nie są objęte limitami API. W przypadku paczek podzielonych na wiele części zaleca się ich równoległe (wielowątkowe) przesyłanie, co znacząco skraca czas wysyłki.
 
@@ -193,11 +194,11 @@ W sytuacjach, gdy użycie sesji interaktywnej jest niezbędne, a osiągane limit
 
 | Endpoint | | req/s | req/min | req/h |
 |----------|---|-------|---------|-------|
-| Pobranie statusu faktury z sesji | GET /sessions/{referenceNumber}/invoices/{invoiceReferenceNumber} | 30 | 120 | 720 |
+| Pobranie statusu faktury z sesji | GET /sessions/{referenceNumber}/invoices/{invoiceReferenceNumber} | 30 | 120 | 1200 |
 | Pobranie listy sesji | GET /sessions | 5 | 10 | 60 |
 | Pobranie faktur sesji | GET /sessions/{referenceNumber}/invoices | 10 | 20 | 200 |
 | Pobranie niepoprawnie przetworzonych faktur sesji | GET /sessions/{referenceNumber}/invoices/failed | 10 | 20 | 200 |
-| Pozostałe | GET /sessions/* | 10 | 120 | 720 |
+| Pozostałe | GET /sessions/* | 10 | 120 | 1200 |
 
 ## Pozostałe
 

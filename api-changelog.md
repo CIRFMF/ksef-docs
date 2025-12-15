@@ -13,6 +13,19 @@
     - `21166` - Korekta techniczna niedostępna.
     - `21167` - Status faktury nie pozwala na korektę techniczną.
 
+- **Limity API**  
+  - Zwiększono limit godzinowy dla grupy `invoiceStatus` (pobranie statusu faktury z sesji) z 720 na 1200 req/h: 
+    - GET /sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}.
+  - Zwiększono limit godzinowy dla grupy `sessionMisc` (zasoby GET `/sessions/*`) z 720 do 1200 req/h:
+    - GET `/sessions/{referenceNumber}`, 
+    - GET `/sessions/{referenceNumber}/invoices/ksef/{ksefNumber}/upo`,
+    - GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}/upo`,
+    - GET `/sessions/{referenceNumber}/upo/{upoReferenceNumber}`.
+  - Zmniejszono limit godzinowy dla grupy `batchSession` (otwarcie/zamknięcie sesji wsadowej) z 120 na 60 req/h: 
+    - POST `/sessions/batch`, 
+    - POST `/sessions/batch/{referenceNumber}/close`.
+  - Zwiększono limity dla endpointu `/invoices/exports/{referenceNumber}` ("Pobranie statusu eksportu paczki faktur") poprzez dodanie nowej grupy `invoiceExportStatus` o parametrach: 10 req/s, 60 req/min, 600 req/h. 
+
 - **Otwarcie sesji wsadowej (POST `/sessions/batch`)**  
   Usunięto z modelu `BatchFilePartInfo` właściwość `fileName` (wcześniej oznaczoną jako deprecated; x-removal-date: 2025-12-07).  
 

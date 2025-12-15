@@ -1352,7 +1352,7 @@
                   "batchSession": {
                     "perSecond": 100,
                     "perMinute": 200,
-                    "perHour": 1200
+                    "perHour": 600
                   },
                   "invoiceSend": {
                     "perSecond": 100,
@@ -1362,7 +1362,7 @@
                   "invoiceStatus": {
                     "perSecond": 300,
                     "perMinute": 1200,
-                    "perHour": 7200
+                    "perHour": 12000
                   },
                   "sessionList": {
                     "perSecond": 50,
@@ -1377,7 +1377,7 @@
                   "sessionMisc": {
                     "perSecond": 100,
                     "perMinute": 1200,
-                    "perHour": 7200
+                    "perHour": 12000
                   },
                   "invoiceMetadata": {
                     "perSecond": 80,
@@ -1388,6 +1388,11 @@
                     "perSecond": 40,
                     "perMinute": 80,
                     "perHour": 200
+                  },
+                  "invoiceExportStatus": {
+                    "perSecond": 100,
+                    "perMinute": 600,
+                    "perHour": 6000
                   },
                   "invoiceDownload": {
                     "perSecond": 80,
@@ -3117,6 +3122,10 @@
             },
             "x-summary": "Bad Request"
           },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 600 | 6000 | invoiceExportStatus\n",
+            "x-summary": "Too Many Requests"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -3129,6 +3138,11 @@
             "Bearer": [ ]
           }
         ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 600,
+          "perHour": 6000
+        },
         "x-sort": [
           {
             "allowedFields": [
@@ -3405,7 +3419,7 @@
             "x-summary": "Bad Request"
           },
           "429": {
-            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 1200 | 7200 | sessionMisc\n",
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 1200 | 12000 | sessionMisc\n",
             "x-summary": "Too Many Requests"
           },
           "403": {
@@ -3423,7 +3437,7 @@
         "x-rate-limits": {
           "perSecond": 100,
           "perMinute": 1200,
-          "perHour": 7200
+          "perHour": 12000
         },
         "x-required-permissions": [
           "InvoiceWrite",
@@ -3626,7 +3640,7 @@
             "x-summary": "Bad Request"
           },
           "429": {
-            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 300 | 1200 | 7200 | invoiceStatus\n",
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 300 | 1200 | 18000 | invoiceStatus\n",
             "x-summary": "Too Many Requests"
           },
           "403": {
@@ -3644,7 +3658,7 @@
         "x-rate-limits": {
           "perSecond": 300,
           "perMinute": 1200,
-          "perHour": 7200
+          "perHour": 18000
         },
         "x-required-permissions": [
           "InvoiceWrite",
@@ -3816,7 +3830,7 @@
             "x-summary": "Bad Request"
           },
           "429": {
-            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 1200 | 7200 | sessionMisc\n",
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 1200 | 12000 | sessionMisc\n",
             "x-summary": "Too Many Requests"
           },
           "403": {
@@ -3834,7 +3848,7 @@
         "x-rate-limits": {
           "perSecond": 100,
           "perMinute": 1200,
-          "perHour": 7200
+          "perHour": 12000
         },
         "x-required-permissions": [
           "InvoiceWrite",
@@ -3894,7 +3908,7 @@
             "x-summary": "Bad Request"
           },
           "429": {
-            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 1200 | 7200 | sessionMisc\n",
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 1200 | 12000 | sessionMisc\n",
             "x-summary": "Too Many Requests"
           },
           "403": {
@@ -3912,7 +3926,7 @@
         "x-rate-limits": {
           "perSecond": 100,
           "perMinute": 1200,
-          "perHour": 7200
+          "perHour": 12000
         },
         "x-required-permissions": [
           "InvoiceWrite",
@@ -3972,7 +3986,7 @@
             "x-summary": "Bad Request"
           },
           "429": {
-            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 1200 | 7200 | sessionMisc\n",
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 1200 | 12000 | sessionMisc\n",
             "x-summary": "Too Many Requests"
           },
           "403": {
@@ -3990,7 +4004,7 @@
         "x-rate-limits": {
           "perSecond": 100,
           "perMinute": 1200,
-          "perHour": 7200
+          "perHour": 12000
         },
         "x-required-permissions": [
           "InvoiceWrite",
@@ -5213,7 +5227,7 @@
             "x-summary": "Bad Request"
           },
           "429": {
-            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 200 | 1200 | batchSession\n",
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 200 | 600 | batchSession\n",
             "x-summary": "Too Many Requests"
           },
           "403": {
@@ -5231,7 +5245,7 @@
         "x-rate-limits": {
           "perSecond": 100,
           "perMinute": 200,
-          "perHour": 1200
+          "perHour": 600
         },
         "x-required-permissions": [
           "InvoiceWrite",
@@ -5273,7 +5287,7 @@
             "x-summary": "Bad Request"
           },
           "429": {
-            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 200 | 1200 | batchSession\n",
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 200 | 600 | batchSession\n",
             "x-summary": "Too Many Requests"
           },
           "403": {
@@ -5291,7 +5305,7 @@
         "x-rate-limits": {
           "perSecond": 100,
           "perMinute": 200,
-          "perHour": 1200
+          "perHour": 600
         },
         "x-required-permissions": [
           "InvoiceWrite",
@@ -6281,6 +6295,7 @@
           "batchSession",
           "invoiceDownload",
           "invoiceExport",
+          "invoiceExportStatus",
           "invoiceMetadata",
           "invoiceSend",
           "invoiceStatus",
@@ -6407,7 +6422,20 @@
                 "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
               }
             ],
-            "description": "Limity dla eksportu paczku faktur."
+            "description": "Limity dla eksportu paczki faktur."
+          },
+          "invoiceExportStatus": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ApiRateLimitValuesOverride"
+              }
+            ],
+            "description": "Limity dla pobierania statusu eksportu paczki faktur."
           },
           "invoiceDownload": {
             "required": [
@@ -7455,6 +7483,7 @@
           "batchSession",
           "invoiceDownload",
           "invoiceExport",
+          "invoiceExportStatus",
           "invoiceMetadata",
           "invoiceSend",
           "invoiceStatus",
@@ -7581,7 +7610,20 @@
                 "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
               }
             ],
-            "description": "Limity dla eksportu paczku faktur."
+            "description": "Limity dla eksportu paczki faktur."
+          },
+          "invoiceExportStatus": {
+            "required": [
+              "perSecond",
+              "perMinute",
+              "perHour"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EffectiveApiRateLimitValues"
+              }
+            ],
+            "description": "Limity dla pobierana statusu eksportu paczki faktur."
           },
           "invoiceDownload": {
             "required": [
@@ -12409,6 +12451,7 @@
               "sessionMisc",
               "invoiceMetadata",
               "invoiceExport",
+              "invoiceExportStatus",
               "invoiceDownload",
               "other"
             ],
