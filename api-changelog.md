@@ -10,6 +10,9 @@
   - Dodano ograniczenia długości dla właściwości typu string: `minLength` oraz `maxLength`.
   - Dodano `id` (`Asc`) jako drugi klucz sortowania w metadanych `x-sort` dla zapytań wyszukujących uprawnienia. Domyślna kolejność: `dateCreated` (`Desc`), następnie `id` (`Asc`) - zmiana porządkowa zwiększająca deterministyczność paginacji.
   - Dodano walidację właściwości `IdDocument.country` w endpoint POST `/permissions/persons/grants` ("Nadanie osobom fizycznym uprawnień do pracy w KSeF") - wymagana zgodność z **ISO 3166-1 alpha-2** (np. `PL`, `DE`, `US`).
+  - "Pobranie listy uprawnień administratorów lub reprezentantów podmiotów unijnych uprawnionych do samofakturowania" (POST `/permissions/query/eu-entities/grants`):
+    - usunięto walidację pattern (regex) oraz doprecyzowano opis właściwości `EuEntityPermissionsQueryRequest.authorizedFingerprintIdentifier`.
+    - doprecyzowano opis właściwości `EuEntityPermissionsQueryRequest.vatUeIdentifier`.
 
 - **Sesja interaktywnej**  
   Dodano nowe kody błędów dla POST `/sessions/online/{referenceNumber}/invoices` ("Wysłanie faktury"):
