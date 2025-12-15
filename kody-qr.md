@@ -8,7 +8,19 @@ Kody QR wprowadzono z myślą o sytuacjach, gdy faktura trafia do odbiorcy innym
 - pobrać jej wersję ustrukturyzowaną (plik XML) bez potrzeby kontaktu z wystawcą,
 - potwierdzić autentyczność wystawcy (w przypadku faktur offline).
 
-Generowanie kodów (zarówno dla faktur online, jak i offline) odbywa się lokalnie w aplikacji klienta na podstawie danych zawartych w wystawionej fakturze. Kod QR musi być zgodny z normą ISO/IEC 18004:2024. Jeśli nie ma możliwości umieszczenia kodu bezpośrednio na fakturze (np. format danych tego nie pozwala), należy dostarczyć go odbiorcy jako oddzielny plik graficzny lub link.
+Generowanie kodów (zarówno dla faktur online, jak i offline) odbywa się lokalnie w aplikacji klienta na podstawie danych zawartych w wystawionej fakturze. Kod QR musi być zgodny z normą ISO/IEC 18004:2024. Jeśli nie ma możliwości umieszczenia kodu bezpośrednio na fakturze (np. format danych tego nie pozwala), należy dostarczyć go odbiorcy jako oddzielny plik graficzny lub link.
+
+### Środowiska
+
+Poniżej zestawiono adresy URL dla poszczególnych środowisk KSeF używanych do generowania kodów QR:
+
+| Skrót     | Środowisko                        | Adres (QR)                                    |
+|-----------|-----------------------------------|-----------------------------------------------|
+| **TE**    | Testowe <br/> (Release Candidate) | https://qr-test.ksef.mf.gov.pl                |
+| **DEMO**  | Przedprodukcyjne (Demo/Preprod)   | https://qr-demo.ksef.mf.gov.pl                |
+| **PRD**   | Produkcyjne                       | https://qr.ksef.mf.gov.pl                     |
+
+> **Uwaga**: Poniższe przykłady są przygotowane dla środowiska testowego (TE). Dla pozostałych środowisk należy wykonać analogicznie, używając odpowiedniego adresu URL z powyższej tabeli.
 
 W zależności od trybu wystawienia (online czy offline) na wizualizacji faktury umieszczany jest:
 - w trybie **online** — jeden kod QR (KOD I), umożliwiający weryfikację i pobranie faktury z KSeF,
@@ -23,7 +35,7 @@ Po zeskanowaniu kodu QR lub kliknięciu w link użytkownik otrzyma uproszczoną 
 
 #### Generowanie linku
 Link składa się z:
-- adresu URL: `https://ksef-test.mf.gov.pl/client-app/invoice`,
+- adresu URL: `https://qr-test.ksef.mf.gov.pl/invoice`,
 - daty wystawienia faktury (pole `P_1`) w formacie DD-MM-RRRR,
 - NIP-u sprzedawcy,
 - skrótu pliku faktury obliczonego algorytmem SHA-256 (wyróżnik pliku faktury) w formacie Base64URL.
@@ -35,10 +47,11 @@ Przykładowo dla faktury:
 
 Wygenerowany link wygląda następująco:
 ```
-https://ksef-test.mf.gov.pl/client-app/invoice/1111111111/01-02-2026/UtQp9Gpc51y-u3xApZjIjgkpZ01js-J8KflSPW8WzIE
+https://qr-test.ksef.mf.gov.pl/invoice/1111111111/01-02-2026/UtQp9Gpc51y-u3xApZjIjgkpZ01js-J8KflSPW8WzIE
 ```
 
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeOnlineE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeOnlineE2ETests.cs)
 ```csharp
 string url = linkSvc.BuildInvoiceVerificationUrl(nip, issueDate, invoiceHash);
 ```
@@ -165,7 +178,7 @@ Proces ten obejmuje następujące etapy:
 #### Generowanie linku
 
 Link weryfikacyjny składa się z:
-- adresu URL: `https://ksef-test.mf.gov.pl/client-app/certificate`,
+- adresu URL: `https://qr-test.ksef.mf.gov.pl/certificate`,
 - typu identyfikatora kontekstu logowania ([`ContextIdentifier`](uwierzytelnianie.md)): "Nip", "InternalId", "NipVatUe", "PeppolId"
 - wartości identyfikatora kontekstu logowania,
 - NIP-u sprzedawcy,
@@ -176,7 +189,7 @@ Link weryfikacyjny składa się z:
 **Format podpisu**  
 Do podpisu używany jest fragment ścieżki URL bez prefiksu protokołu (https://) i bez końcowego znaku /, np.:
 ```
-ksef-test.mf.gov.pl/client-app/certificate/Nip/1111111111/1111111111/01F20A5D352AE590/UtQp9Gpc51y-u3xApZjIjgkpZ01js-J8KflSPW8WzIE
+qr-test.ksef.mf.gov.pl/certificate/Nip/1111111111/1111111111/01F20A5D352AE590/UtQp9Gpc51y-u3xApZjIjgkpZ01js-J8KflSPW8WzIE
 ```
 
 **Algorytmy podpisu:**  
@@ -205,18 +218,27 @@ Przykładowo dla faktury:
 - NIP sprzedawcy: "1111111111",
 - numer seryjny certyfikatu KSeF wystawcy: "01F20A5D352AE590",
 - skrót SHA-256 w formacie Base64URL: "UtQp9Gpc51y-u3xApZjIjgkpZ01js-J8KflSPW8WzIE",
-- podpisu linku przy użyciu klucza prywatnego certyfikatu KSeF wystawcy: "BRoRSfcLRh71PAonJCFPg55JYXZW24aEsQrZBRctRjQUnxngrVUJmWhMSHH7ikTp7VMnWYkfWOrUTXELmhJ6x-PNZn3cjm0e741c59h6Q5E-KWIQKONvBmn3XWLkncMrOlFMufwP3lFFXz58hSOvnoOzu3j87nLr7niV0jfkwmWZVV2oEjrWZTBCKueWX7Dk7WBUX9pPjFFafkE2iCQdm8MuaW8l-y94xTXYesn3mi8IxpCNo3hcTw_yrGnw-ucAABdhVw7K7MJJacCT2-7_Luh4qiWFiPNcP7Jp_IiI9RQH05xWsxXKA-Z9kgDyjP2KADyKu_vro82bAab4_VW8zQ"
+- podpisu linku przy użyciu klucza prywatnego certyfikatu KSeF wystawcy: "mSkm_XmM9fq7PgAJwiL32L9ujhyguOEV48cDB0ncemD2r9TMGa3lr0iRoFk588agCi8QPsOuscUY1rZ7ff76STbGquO-gZtQys5_fHdf2HUfDqPqVTnUS6HknBu0zLkyf9ygoW7WbH06Ty_8BgQTlOmJFzNWSt9WZa7tAGuAE9JOooNps-KG2PYkkIP4q4jPMp3FKypAygHVnXtS0RDGgOxhhM7LWtFP7D-dWINbh5yXD8Lr-JVbeOpyQjHa6WmMYavCDQJ3X_Z-iS01LZu2s1B3xuOykl1h0sLObCdADrbxOONsXrvQa61Xt_rxyprVraj2Uf9pANQgR4-12HEcMw"
 
 Wygenerowany link wygląda następująco:
 
 ```
-https://ksef-test.mf.gov.pl/client-app/certificate/Nip/1111111111/1111111111/01635E98D9669239/UtQp9Gpc51y-u3xApZjIjgkpZ01js-J8KflSPW8WzIE/BRoRSfcLRh71PAonJCFPg55JYXZW24aEsQrZBRctRjQUnxngrVUJmWhMSHH7ikTp7VMnWYkfWOrUTXELmhJ6x-PNZn3cjm0e741c59h6Q5E-KWIQKONvBmn3XWLkncMrOlFMufwP3lFFXz58hSOvnoOzu3j87nLr7niV0jfkwmWZVV2oEjrWZTBCKueWX7Dk7WBUX9pPjFFafkE2iCQdm8MuaW8l-y94xTXYesn3mi8IxpCNo3hcTw_yrGnw-ucAABdhVw7K7MJJacCT2-7_Luh4qiWFiPNcP7Jp_IiI9RQH05xWsxXKA-Z9kgDyjP2KADyKu_vro82bAab4_VW8zQ
+https://qr-test.ksef.mf.gov.pl/certificate/Nip/1111111111/1111111111/01F20A5D352AE590/UtQp9Gpc51y-u3xApZjIjgkpZ01js-J8KflSPW8WzIE/mSkm_XmM9fq7PgAJwiL32L9ujhyguOEV48cDB0ncemD2r9TMGa3lr0iRoFk588agCi8QPsOuscUY1rZ7ff76STbGquO-gZtQys5_fHdf2HUfDqPqVTnUS6HknBu0zLkyf9ygoW7WbH06Ty_8BgQTlOmJFzNWSt9WZa7tAGuAE9JOooNps-KG2PYkkIP4q4jPMp3FKypAygHVnXtS0RDGgOxhhM7LWtFP7D-dWINbh5yXD8Lr-JVbeOpyQjHa6WmMYavCDQJ3X_Z-iS01LZu2s1B3xuOykl1h0sLObCdADrbxOONsXrvQa61Xt_rxyprVraj2Uf9pANQgR4-12HEcMw
 ```
 
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core\E2E\QrCode\QrCodeOfflineE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/QrCode/QrCodeOfflineE2ETests.cs)
 ```csharp
- var cert = new X509Certificate2(Convert.FromBase64String(certbase64));
- var url = linkSvc.BuildCertificateVerificationUrl(nip, certSerial, invoiceHash, cert, privateKey);
+ var certificate = new X509Certificate2(Convert.FromBase64String(certbase64));
+
+ byte[] qrOfflineCode = QrCodeService.GenerateQrCode(
+    linkService.BuildCertificateVerificationUrl(
+        nip,
+        QRCodeContextIdentifierType.Nip,
+        nip,
+        certificate.CertificateSerialNumber,
+        invoiceHash,
+        certificate));
 ```
 
 Przykład w języku Java:

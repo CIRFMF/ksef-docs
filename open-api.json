@@ -2,11 +2,21 @@
   "openapi": "3.0.4",
   "info": {
     "title": "KSeF API TE",
-    "description": "**Wersja API:** 2.0.0 (build 2.0.0-rc5.6-te-20251103)<br>\n**Klucze publiczne** Ministerstwa Finansów (dla danego środowiska): [Pobierz klucze](#tag/Certyfikaty-klucza-publicznego)<br>\n**Historia zmian:** [Changelog](https://github.com/CIRFMF/ksef-docs/blob/main/api-changelog.md)<br>\n**Rozszerzona dokumentacja API:** [ksef-docs](https://github.com/CIRFMF/ksef-docs/tree/main)\n",
+    "description": "**Wersja API:** 2.0.0 (build 2.0.0-rc6.1-te-20251215)<br>\n**Klucze publiczne** Ministerstwa Finansów (dla danego środowiska): [Pobierz klucze](#tag/Certyfikaty-klucza-publicznego)<br>\n**Historia zmian:** [Changelog](https://github.com/CIRFMF/ksef-docs/blob/main/api-changelog.md)<br>\n**Rozszerzona dokumentacja API:** [ksef-docs](https://github.com/CIRFMF/ksef-docs/tree/main)\n",
     "version": "v2"
   },
+  "servers": [
+    {
+      "url": "https://api-test.ksef.mf.gov.pl/v2",
+      "description": "Środowisko TEST"
+    },
+    {
+      "url": "https://ksef-test.mf.gov.pl/api/v2",
+      "description": "[deprecated] Środowisko TEST"
+    }
+  ],
   "paths": {
-    "/api/v2/auth/sessions": {
+    "/auth/sessions": {
       "get": {
         "tags": [
           "Aktywne sesje"
@@ -100,7 +110,7 @@
         ]
       }
     },
-    "/api/v2/auth/sessions/current": {
+    "/auth/sessions/current": {
       "delete": {
         "tags": [
           "Aktywne sesje"
@@ -142,7 +152,7 @@
         }
       }
     },
-    "/api/v2/auth/sessions/{referenceNumber}": {
+    "/auth/sessions/{referenceNumber}": {
       "delete": {
         "tags": [
           "Aktywne sesje"
@@ -195,7 +205,7 @@
         }
       }
     },
-    "/api/v2/certificates/limits": {
+    "/certificates/limits": {
       "get": {
         "tags": [
           "Certyfikaty"
@@ -244,7 +254,7 @@
         }
       }
     },
-    "/api/v2/certificates/enrollments/data": {
+    "/certificates/enrollments/data": {
       "get": {
         "tags": [
           "Certyfikaty"
@@ -301,7 +311,7 @@
         }
       }
     },
-    "/api/v2/certificates/enrollments": {
+    "/certificates/enrollments": {
       "post": {
         "tags": [
           "Certyfikaty"
@@ -379,7 +389,7 @@
         }
       }
     },
-    "/api/v2/certificates/enrollments/{referenceNumber}": {
+    "/certificates/enrollments/{referenceNumber}": {
       "get": {
         "tags": [
           "Certyfikaty"
@@ -446,7 +456,7 @@
         }
       }
     },
-    "/api/v2/certificates/retrieve": {
+    "/certificates/retrieve": {
       "post": {
         "tags": [
           "Certyfikaty"
@@ -528,7 +538,7 @@
         }
       }
     },
-    "/api/v2/certificates/{certificateSerialNumber}/revoke": {
+    "/certificates/{certificateSerialNumber}/revoke": {
       "post": {
         "tags": [
           "Certyfikaty"
@@ -595,7 +605,7 @@
         }
       }
     },
-    "/api/v2/certificates/query": {
+    "/certificates/query": {
       "post": {
         "tags": [
           "Certyfikaty"
@@ -713,7 +723,7 @@
         ]
       }
     },
-    "/api/v2/security/public-key-certificates": {
+    "/security/public-key-certificates": {
       "get": {
         "tags": [
           "Certyfikaty klucza publicznego"
@@ -766,7 +776,7 @@
         }
       }
     },
-    "/api/v2/testdata/subject": {
+    "/testdata/subject": {
       "post": {
         "tags": [
           "Dane testowe"
@@ -822,7 +832,7 @@
         }
       }
     },
-    "/api/v2/testdata/subject/remove": {
+    "/testdata/subject/remove": {
       "post": {
         "tags": [
           "Dane testowe"
@@ -873,7 +883,7 @@
         }
       }
     },
-    "/api/v2/testdata/person": {
+    "/testdata/person": {
       "post": {
         "tags": [
           "Dane testowe"
@@ -932,7 +942,7 @@
         }
       }
     },
-    "/api/v2/testdata/person/remove": {
+    "/testdata/person/remove": {
       "post": {
         "tags": [
           "Dane testowe"
@@ -983,7 +993,7 @@
         }
       }
     },
-    "/api/v2/testdata/permissions": {
+    "/testdata/permissions": {
       "post": {
         "tags": [
           "Dane testowe"
@@ -1049,7 +1059,7 @@
         }
       }
     },
-    "/api/v2/testdata/permissions/revoke": {
+    "/testdata/permissions/revoke": {
       "post": {
         "tags": [
           "Dane testowe"
@@ -1108,7 +1118,7 @@
         }
       }
     },
-    "/api/v2/testdata/attachment": {
+    "/testdata/attachment": {
       "post": {
         "tags": [
           "Dane testowe"
@@ -1159,7 +1169,7 @@
         }
       }
     },
-    "/api/v2/testdata/attachment/revoke": {
+    "/testdata/attachment/revoke": {
       "post": {
         "tags": [
           "Dane testowe"
@@ -1210,7 +1220,7 @@
         }
       }
     },
-    "/api/v2/limits/context": {
+    "/limits/context": {
       "get": {
         "tags": [
           "Limity i ograniczenia"
@@ -1271,7 +1281,7 @@
         }
       }
     },
-    "/api/v2/limits/subject": {
+    "/limits/subject": {
       "get": {
         "tags": [
           "Limity i ograniczenia"
@@ -1328,7 +1338,7 @@
         }
       }
     },
-    "/api/v2/rate-limits": {
+    "/rate-limits": {
       "get": {
         "tags": [
           "Limity i ograniczenia"
@@ -1439,7 +1449,7 @@
         }
       }
     },
-    "/api/v2/testdata/limits/context/session": {
+    "/testdata/limits/context/session": {
       "post": {
         "tags": [
           "Limity i ograniczenia"
@@ -1538,7 +1548,7 @@
         }
       }
     },
-    "/api/v2/testdata/limits/subject/certificate": {
+    "/testdata/limits/subject/certificate": {
       "post": {
         "tags": [
           "Limity i ograniczenia"
@@ -1633,7 +1643,7 @@
         }
       }
     },
-    "/api/v2/testdata/rate-limits": {
+    "/testdata/rate-limits": {
       "post": {
         "tags": [
           "Limity i ograniczenia"
@@ -1731,7 +1741,7 @@
         }
       }
     },
-    "/api/v2/testdata/rate-limits/production": {
+    "/testdata/rate-limits/production": {
       "post": {
         "tags": [
           "Limity i ograniczenia"
@@ -1773,7 +1783,7 @@
         }
       }
     },
-    "/api/v2/permissions/persons/grants": {
+    "/permissions/persons/grants": {
       "post": {
         "tags": [
           "Nadawanie uprawnień"
@@ -1862,7 +1872,7 @@
         ]
       }
     },
-    "/api/v2/permissions/entities/grants": {
+    "/permissions/entities/grants": {
       "post": {
         "tags": [
           "Nadawanie uprawnień"
@@ -1955,7 +1965,7 @@
         ]
       }
     },
-    "/api/v2/permissions/authorizations/grants": {
+    "/permissions/authorizations/grants": {
       "post": {
         "tags": [
           "Nadawanie uprawnień"
@@ -2039,7 +2049,7 @@
         ]
       }
     },
-    "/api/v2/permissions/indirect/grants": {
+    "/permissions/indirect/grants": {
       "post": {
         "tags": [
           "Nadawanie uprawnień"
@@ -2130,7 +2140,7 @@
         ]
       }
     },
-    "/api/v2/permissions/subunits/grants": {
+    "/permissions/subunits/grants": {
       "post": {
         "tags": [
           "Nadawanie uprawnień"
@@ -2218,7 +2228,7 @@
         ]
       }
     },
-    "/api/v2/permissions/eu-entities/administration/grants": {
+    "/permissions/eu-entities/administration/grants": {
       "post": {
         "tags": [
           "Nadawanie uprawnień"
@@ -2307,7 +2317,7 @@
         ]
       }
     },
-    "/api/v2/permissions/eu-entities/grants": {
+    "/permissions/eu-entities/grants": {
       "post": {
         "tags": [
           "Nadawanie uprawnień"
@@ -2394,7 +2404,7 @@
         ]
       }
     },
-    "/api/v2/permissions/common/grants/{permissionId}": {
+    "/permissions/common/grants/{permissionId}": {
       "delete": {
         "tags": [
           "Odbieranie uprawnień"
@@ -2465,7 +2475,7 @@
         ]
       }
     },
-    "/api/v2/permissions/authorizations/grants/{permissionId}": {
+    "/permissions/authorizations/grants/{permissionId}": {
       "delete": {
         "tags": [
           "Odbieranie uprawnień"
@@ -2534,7 +2544,7 @@
         ]
       }
     },
-    "/api/v2/permissions/operations/{referenceNumber}": {
+    "/permissions/operations/{referenceNumber}": {
       "get": {
         "tags": [
           "Operacje"
@@ -2600,7 +2610,7 @@
         }
       }
     },
-    "/api/v2/permissions/attachments/status": {
+    "/permissions/attachments/status": {
       "get": {
         "tags": [
           "Operacje"
@@ -2656,7 +2666,7 @@
         ]
       }
     },
-    "/api/v2/invoices/ksef/{ksefNumber}": {
+    "/invoices/ksef/{ksefNumber}": {
       "get": {
         "tags": [
           "Pobieranie faktur"
@@ -2722,7 +2732,7 @@
         ]
       }
     },
-    "/api/v2/invoices/query/metadata": {
+    "/invoices/query/metadata": {
       "post": {
         "tags": [
           "Pobieranie faktur"
@@ -2954,7 +2964,7 @@
         ]
       }
     },
-    "/api/v2/invoices/exports": {
+    "/invoices/exports": {
       "post": {
         "tags": [
           "Pobieranie faktur"
@@ -3055,7 +3065,7 @@
         ]
       }
     },
-    "/api/v2/invoices/exports/{referenceNumber}": {
+    "/invoices/exports/{referenceNumber}": {
       "get": {
         "tags": [
           "Pobieranie faktur"
@@ -3158,7 +3168,7 @@
         ]
       }
     },
-    "/api/v2/sessions": {
+    "/sessions": {
       "get": {
         "tags": [
           "Status wysyłki i UPO"
@@ -3360,7 +3370,7 @@
         ]
       }
     },
-    "/api/v2/sessions/{referenceNumber}": {
+    "/sessions/{referenceNumber}": {
       "get": {
         "tags": [
           "Status wysyłki i UPO"
@@ -3447,7 +3457,7 @@
         ]
       }
     },
-    "/api/v2/sessions/{referenceNumber}/invoices": {
+    "/sessions/{referenceNumber}/invoices": {
       "get": {
         "tags": [
           "Status wysyłki i UPO"
@@ -3574,7 +3584,7 @@
         ]
       }
     },
-    "/api/v2/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}": {
+    "/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}": {
       "get": {
         "tags": [
           "Status wysyłki i UPO"
@@ -3668,7 +3678,7 @@
         ]
       }
     },
-    "/api/v2/sessions/{referenceNumber}/invoices/failed": {
+    "/sessions/{referenceNumber}/invoices/failed": {
       "get": {
         "tags": [
           "Status wysyłki i UPO"
@@ -3780,7 +3790,7 @@
         ]
       }
     },
-    "/api/v2/sessions/{referenceNumber}/invoices/ksef/{ksefNumber}/upo": {
+    "/sessions/{referenceNumber}/invoices/ksef/{ksefNumber}/upo": {
       "get": {
         "tags": [
           "Status wysyłki i UPO"
@@ -3858,7 +3868,7 @@
         ]
       }
     },
-    "/api/v2/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}/upo": {
+    "/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}/upo": {
       "get": {
         "tags": [
           "Status wysyłki i UPO"
@@ -3936,7 +3946,7 @@
         ]
       }
     },
-    "/api/v2/sessions/{referenceNumber}/upo/{upoReferenceNumber}": {
+    "/sessions/{referenceNumber}/upo/{upoReferenceNumber}": {
       "get": {
         "tags": [
           "Status wysyłki i UPO"
@@ -4014,7 +4024,7 @@
         ]
       }
     },
-    "/api/v2/tokens": {
+    "/tokens": {
       "post": {
         "tags": [
           "Tokeny KSeF"
@@ -4231,7 +4241,7 @@
         ]
       }
     },
-    "/api/v2/tokens/{referenceNumber}": {
+    "/tokens/{referenceNumber}": {
       "get": {
         "tags": [
           "Tokeny KSeF"
@@ -4361,7 +4371,7 @@
         }
       }
     },
-    "/api/v2/peppol/query": {
+    "/peppol/query": {
       "get": {
         "tags": [
           "Usługi Peppol"
@@ -4445,7 +4455,7 @@
         ]
       }
     },
-    "/api/v2/auth/challenge": {
+    "/auth/challenge": {
       "post": {
         "tags": [
           "Uzyskiwanie dostępu"
@@ -4489,7 +4499,7 @@
         }
       }
     },
-    "/api/v2/auth/xades-signature": {
+    "/auth/xades-signature": {
       "post": {
         "tags": [
           "Uzyskiwanie dostępu"
@@ -4556,7 +4566,7 @@
         }
       }
     },
-    "/api/v2/auth/ksef-token": {
+    "/auth/ksef-token": {
       "post": {
         "tags": [
           "Uzyskiwanie dostępu"
@@ -4628,7 +4638,7 @@
         }
       }
     },
-    "/api/v2/auth/{referenceNumber}": {
+    "/auth/{referenceNumber}": {
       "get": {
         "tags": [
           "Uzyskiwanie dostępu"
@@ -4783,7 +4793,7 @@
         }
       }
     },
-    "/api/v2/auth/token/redeem": {
+    "/auth/token/redeem": {
       "post": {
         "tags": [
           "Uzyskiwanie dostępu"
@@ -4840,7 +4850,7 @@
         }
       }
     },
-    "/api/v2/auth/token/refresh": {
+    "/auth/token/refresh": {
       "post": {
         "tags": [
           "Uzyskiwanie dostępu"
@@ -4893,7 +4903,7 @@
         }
       }
     },
-    "/api/v2/sessions/online": {
+    "/sessions/online": {
       "post": {
         "tags": [
           "Wysyłka interaktywna"
@@ -4982,7 +4992,7 @@
         ]
       }
     },
-    "/api/v2/sessions/online/{referenceNumber}/invoices": {
+    "/sessions/online/{referenceNumber}/invoices": {
       "post": {
         "tags": [
           "Wysyłka interaktywna"
@@ -5082,7 +5092,7 @@
         ]
       }
     },
-    "/api/v2/sessions/online/{referenceNumber}/close": {
+    "/sessions/online/{referenceNumber}/close": {
       "post": {
         "tags": [
           "Wysyłka interaktywna"
@@ -5143,7 +5153,7 @@
         ]
       }
     },
-    "/api/v2/sessions/batch": {
+    "/sessions/batch": {
       "post": {
         "tags": [
           "Wysyłka wsadowa"
@@ -5253,7 +5263,7 @@
         ]
       }
     },
-    "/api/v2/sessions/batch/{referenceNumber}/close": {
+    "/sessions/batch/{referenceNumber}/close": {
       "post": {
         "tags": [
           "Wysyłka wsadowa"
@@ -5313,7 +5323,7 @@
         ]
       }
     },
-    "/api/v2/permissions/query/personal/grants": {
+    "/permissions/query/personal/grants": {
       "post": {
         "tags": [
           "Wyszukiwanie nadanych uprawnień"
@@ -5441,7 +5451,7 @@
         ]
       }
     },
-    "/api/v2/permissions/query/persons/grants": {
+    "/permissions/query/persons/grants": {
       "post": {
         "tags": [
           "Wyszukiwanie nadanych uprawnień"
@@ -5587,7 +5597,7 @@
         ]
       }
     },
-    "/api/v2/permissions/query/subunits/grants": {
+    "/permissions/query/subunits/grants": {
       "post": {
         "tags": [
           "Wyszukiwanie nadanych uprawnień"
@@ -5721,7 +5731,7 @@
         ]
       }
     },
-    "/api/v2/permissions/query/entities/roles": {
+    "/permissions/query/entities/roles": {
       "get": {
         "tags": [
           "Wyszukiwanie nadanych uprawnień"
@@ -5822,7 +5832,7 @@
         ]
       }
     },
-    "/api/v2/permissions/query/subordinate-entities/roles": {
+    "/permissions/query/subordinate-entities/roles": {
       "post": {
         "tags": [
           "Wyszukiwanie nadanych uprawnień"
@@ -5947,7 +5957,7 @@
         ]
       }
     },
-    "/api/v2/permissions/query/authorizations/grants": {
+    "/permissions/query/authorizations/grants": {
       "post": {
         "tags": [
           "Wyszukiwanie nadanych uprawnień"
@@ -6090,7 +6100,7 @@
         ]
       }
     },
-    "/api/v2/permissions/query/eu-entities/grants": {
+    "/permissions/query/eu-entities/grants": {
       "post": {
         "tags": [
           "Wyszukiwanie nadanych uprawnień"

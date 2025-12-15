@@ -2,6 +2,9 @@
 
 ### Wersja 2.0.0 RC6.1
 
+- **Nowa adresacja środowisk**  
+  Udostępnienie nowych adresów. Zmiany w sekcji [środowiska KSeF API 2.0](srodowiska.md).
+
 - **Uwierzytelnianie - pobranie statusu (GET `/auth/{referenceNumber}`)**  
   Dodano kod `480` - Uwierzytelnienie zablokowane: "Podejrzenie incydentu bezpieczeństwa. Skontaktuj się z Ministerstwem Finansów przez formularz zgłoszeniowy."
 
