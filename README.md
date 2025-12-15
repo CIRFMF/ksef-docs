@@ -1,5 +1,5 @@
-# **KSeF 2.0 RC6.0 \- Przewodnik dla Integratorów**
-02.12.2025
+# **KSeF 2.0 RC6.1 \- Przewodnik dla Integratorów**
+15.12.2025
 
 Niniejszy dokument stanowi kompendium wiedzy dla deweloperów, analityków i integratorów systemów, którzy realizują integrację z Krajowym Systemem e-Faktur (KSeF) w wersji 2.0. Przewodnik koncentruje się na aspektach technicznych i praktycznych związanych z komunikacją z API systemu KSeF.
 
@@ -33,7 +33,7 @@ Dla każdego obszaru przewidziano:
 
 * szczegółowy opis działania,
 * przykład wywołania w językach C# i Java,
-* powiązania ze specyfikacją [OpenAPI](https://ksef-test.mf.gov.pl/docs/v2) i kodem biblioteki referencyjnej.
+* powiązania ze specyfikacją [OpenAPI](https://api-test.ksef.mf.gov.pl/docs/v2) i kodem biblioteki referencyjnej.
 
 Przykłady kodu prezentowane w przewodniku zostały przygotowane w oparciu o oficjalne biblioteki open source:
 * [ksef-client-csharp](https://github.com/CIRFMF/ksef-client-csharp) – biblioteka w języku C#
