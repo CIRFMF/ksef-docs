@@ -3650,7 +3650,7 @@
             "x-summary": "Bad Request"
           },
           "429": {
-            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 300 | 1200 | 18000 | invoiceStatus\n",
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 300 | 1200 | 12000 | invoiceStatus\n",
             "x-summary": "Too Many Requests"
           },
           "403": {
@@ -3668,7 +3668,7 @@
         "x-rate-limits": {
           "perSecond": 300,
           "perMinute": 1200,
-          "perHour": 18000
+          "perHour": 12000
         },
         "x-required-permissions": [
           "InvoiceWrite",
