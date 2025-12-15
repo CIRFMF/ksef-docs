@@ -253,8 +253,12 @@ Wariant uwierzytelniania tokenem KSeF wymaga przesyłania **zaszyfrowanego ciąg
 #### 1. Przygotowanie i szyfrowanie tokena
 Łańcuch znaków w formacie:
 ```csharp
-{tokenKSeF}|{timestamp_z_challenge}
+{tokenKSeF}|{timestampMs}
 ```
+Gdzie:
+- `tokenKSeF` - token KSeF,
+- `timestampMs` – znacznik czasu z odpowiedzi na `POST /auth/challenge`, przekazany jako **liczba milisekund od 1 stycznia 1970 roku (Unix timestamp, ms)**.
+
 należy zaszyfrować kluczem publicznym KSeF, wykorzystując algorytm ```RSA-OAEP``` z funkcją skrótu ```SHA-256 (MGF1)```. Otrzymany szyfrogram należy zakodować w ```Base64```.
 
 Przykład w języku ```C#```:
@@ -262,7 +266,7 @@ Przykład w języku ```C#```:
 
 ```csharp
 AuthChallengeResponse challenge = await KsefClient.GetAuthChallengeAsync();
-long timestampMs = challenge.Timestamp.ToUnixTimeMilliseconds();
+long timestampMs = challenge.TimestampMs;
 
 // Przygotuj "token|timestamp" i zaszyfruj RSA-OAEP SHA-256 zgodnie z wymaganiem API
 string tokenWithTimestamp = $"{ksefToken}|{timestampMs}";

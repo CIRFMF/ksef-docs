@@ -4448,7 +4448,8 @@
                 },
                 "example": {
                   "challenge": "20250514-CR-226FB7B000-3ACF9BE4C0-10",
-                  "timestamp": "2025-07-11T12:23:56.0154302+00:00"
+                  "timestamp": "2025-07-11T12:23:56.0154302+00:00",
+                  "timestampMs": 1752236636015
                 }
               }
             }
@@ -6470,7 +6471,8 @@
       "AuthenticationChallengeResponse": {
         "required": [
           "challenge",
-          "timestamp"
+          "timestamp",
+          "timestampMs"
         ],
         "type": "object",
         "properties": {
@@ -6481,6 +6483,11 @@
             "type": "string",
             "description": "Czas wygenerowania challenge-a.",
             "format": "date-time"
+          },
+          "timestampMs": {
+            "type": "integer",
+            "description": "Czas wygenerowania challenge-a w milisekundach od 1 stycznia 1970 roku (Unix timestamp).",
+            "format": "int64"
           }
         },
         "additionalProperties": false

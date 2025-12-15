@@ -16,6 +16,9 @@
 - **Otwarcie sesji wsadowej (POST `/sessions/batch`)**  
   Usunięto z modelu `BatchFilePartInfo` właściwość `fileName` (wcześniej oznaczoną jako deprecated; x-removal-date: 2025-12-07).  
 
+- **Inicjalizacja uwierzytelnienia (POST `/auth/challenge`)**  
+  Dodano właściwość `timestampMs` (int64) w modelu odpowiedzi - czas wygenerowania challenge w milisekundach od 1.01.1970 (Unix).
+
 - **Dane testowe**
   - Doprecyzowano typ właściwości `expectedEndDate`: format: `date` w (POST `/testdata/attachment/revoke`).
   - Usunięto wartość `Token` z enum `SubjectIdentifierType` w endpoint POST `/testdata/limits/subject/certificate`. Wartość była nieużywana: w KSeF podmiot nie może być "tokenem" - tożsamość zawsze wynika z `NIP/PESEL` lub odcisku palca certyfikatu, który przenosi tożsamość podmiotu, który go utworzył.
