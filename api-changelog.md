@@ -20,6 +20,12 @@
   - Doprecyzowano typ właściwości `expectedEndDate`: format: `date` w (POST `/testdata/attachment/revoke`).
   - Usunięto wartość `Token` z enum `SubjectIdentifierType` w endpoint POST `/testdata/limits/subject/certificate`. Wartość była nieużywana: w KSeF podmiot nie może być "tokenem" - tożsamość zawsze wynika z `NIP/PESEL` lub odcisku palca certyfikatu, który przenosi tożsamość podmiotu, który go utworzył.
 
+- **OpenAPI**  
+  Zwiększono maksymalną wartość `pageSize` z 500 do 1000 dla endpointów:
+  - GET `/sessions`
+  - GET `/sessions/{referenceNumber}/invoices`
+  - GET `/sessions/{referenceNumber}/invoices/failed`
+
 ### Wersja 2.0.0 RC6.0
 
 - **Limity API**  

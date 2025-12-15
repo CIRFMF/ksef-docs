@@ -3157,7 +3157,7 @@
             "in": "query",
             "description": "Rozmiar strony.",
             "schema": {
-              "maximum": 500,
+              "maximum": 1000,
               "minimum": 10,
               "type": "integer",
               "format": "int32",
@@ -3463,7 +3463,7 @@
             "in": "query",
             "description": "Rozmiar strony wyników.",
             "schema": {
-              "maximum": 500,
+              "maximum": 1000,
               "minimum": 10,
               "type": "integer",
               "format": "int32",
@@ -3684,7 +3684,7 @@
             "in": "query",
             "description": "Rozmiar strony wyników.",
             "schema": {
-              "maximum": 500,
+              "maximum": 1000,
               "minimum": 10,
               "type": "integer",
               "format": "int32",
