@@ -2,6 +2,9 @@
 
 ### Wersja 2.0.0 RC6.1
 
+- **Uwierzytelnianie - pobranie statusu (GET `/auth/{referenceNumber}`)**  
+  Dodano kod `480` - Uwierzytelnienie zablokowane: "Podejrzenie incydentu bezpieczeństwa. Skontaktuj się z Ministerstwem Finansów przez formularz zgłoszeniowy."
+
 - **Uprawnienia**  
   - Rozszerzono reguły dostępu dla operacji sesji (GET/POST `/sessions/...`): do listy akceptowanych uprawnień dodano `EnforcementOperations` (organ egzekucyjny).
   - Dodano ograniczenia długości dla właściwości typu string: `minLength` oraz `maxLength`.
