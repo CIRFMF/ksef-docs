@@ -1,5 +1,11 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.0
+
+- **OpenAPI**  
+  Uzupełniono dokumentację odpowiedzi `429` o zwracany nagłówek `Retry-After` oraz treść odpowiedzi `TooManyRequestsResponse`.
+
+
 ### Wersja 2.0.0 RC6.1
 
 - **Nowa adresacja środowisk**  
