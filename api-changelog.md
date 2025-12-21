@@ -4,6 +4,7 @@
 
 - **Uprawnienia**  
   - Dodano atrybut `required` dla właściwości `subjectDetails` ("Dane podmiotu, któremu nadawane są uprawnienia") we wszystkich endpointach nadających uprawnienia (`/permissions/.../grants).
+  - Dodano atrybut `required` dla właściwości `euEntityDetails` ("Dane podmiotu unijnego, w kontekście którego nadawane są uprawnienia") w endpoint POST `/permissions/eu-entities/administration/grants` ("Nadanie uprawnień administratora podmiotu unijnego").  
 
 - **OpenAPI**  
   Uzupełniono dokumentację odpowiedzi `429` o zwracany nagłówek `Retry-After` oraz treść odpowiedzi `TooManyRequestsResponse`.

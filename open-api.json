@@ -2725,7 +2725,8 @@
                   "contextIdentifier",
                   "description",
                   "euEntityName",
-                  "subjectDetails"
+                  "subjectDetails",
+                  "euEntityDetails"
                 ],
                 "allOf": [
                   {
@@ -9510,6 +9511,7 @@
         "required": [
           "contextIdentifier",
           "description",
+          "euEntityDetails",
           "euEntityName",
           "subjectDetails",
           "subjectIdentifier"
@@ -9573,8 +9575,7 @@
                 "$ref": "#/components/schemas/EuEntityDetails"
               }
             ],
-            "description": "Dane podmiotu unijnego, którego dotyczy nadawane uprawnienie.",
-            "nullable": true
+            "description": "Dane podmiotu unijnego, w kontekście którego nadawane są uprawnienia."
           }
         },
         "additionalProperties": false
