@@ -4039,11 +4039,13 @@
                     "code": 200,
                     "description": "Sesja interaktywna przetworzona pomyślnie"
                   },
+                  "dateCreated": "2025-09-18T15:00:30+00:00",
+                  "dateUpdated": "2025-09-18T15:01:20+00:00",
                   "upo": {
                     "pages": [
                       {
                         "referenceNumber": "20250918-EU-2EBD6FA000-242EB9B66D-43",
-                        "downloadUrl": "https://ksef-test.mf.gov.pl/storage/01/20250918-sb-3789a40000-20373e1269-a3/session-upo/upo_00.xml?sv=2025-01-05&st=2025-09-18T14%3A55%3A50Z&se=2025-09-21T15%3A00%3A50Z&sr=b&sp=r&sig=ZlQO6Xtzu3VQQDwmEMfb0VryMxe9WcUgWtkdiB6X2Qo%3D",
+                        "downloadUrl": "https://ksef-test.mf.gov.pl/storage/01/20250918-so-3789a40000-20373e1269-a3/session-upo/upo_00.xml?sv=2025-01-05&st=2025-09-18T14%3A55%3A50Z&se=2025-09-21T15%3A00%3A50Z&sr=b&sp=r&sig=ZlQO6Xtzu3VQQDwmEMfb0VryMxe9WcUgWtkdiB6X2Qo%3D",
                         "downloadUrlExpirationDate": "2025-09-21T15:00:50+00:00"
                       }
                     ]
@@ -13358,6 +13360,8 @@
       },
       "SessionStatusResponse": {
         "required": [
+          "dateCreated",
+          "dateUpdated",
           "status"
         ],
         "type": "object",
@@ -13369,6 +13373,16 @@
               }
             ],
             "description": "Informacje o aktualnym statusie.\n            \nSesja wsadowa:\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Sesja wsadowa rozpoczęta | - |\n| 150 | Trwa przetwarzanie | - |\n| 200 | Sesja wsadowa przetworzona pomyślnie | - |\n| 405 | Błąd weryfikacji poprawności dostarczonych elementów paczki | - |\n| 415 | Błąd odszyfrowania dostarczonego klucza | - |\n| 420 | Przekroczony limit faktur w sesji | - |\n| 430 | Błąd dekompresji pierwotnego archiwum | - |\n| 435 | Błąd odszyfrowania zaszyfrowanych części archiwum | - |\n| 440 | Sesja anulowana | Przekroczono czas wysyłki |\n| 440 | Sesja anulowana | Nie przesłano faktur |\n| 445 | Błąd weryfikacji, brak poprawnych faktur | - |\n| 500 | Nieznany błąd ({statusCode}) | - |\n\nSesja interaktywna:\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Sesja interaktywna otwarta | - |\n| 170 | Sesja interaktywna zamknięta | - |\n| 200 | Sesja interaktywna przetworzona pomyślnie | - |\n| 415 | Błąd odszyfrowania dostarczonego klucza | - |\n| 440 | Sesja anulowana | Nie przesłano faktur |\n| 445 | Błąd weryfikacji, brak poprawnych faktur | - |\n| * | description missing | - |"
+          },
+          "dateCreated": {
+            "type": "string",
+            "description": "Data utworzenia sesji.",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "description": "Data ostatniej aktywności w ramach sesji.",
+            "format": "date-time"
           },
           "validUntil": {
             "type": "string",

@@ -2,6 +2,9 @@
 
 ### Wersja 2.0.0
 
+- **Status sesji** (GET `/sessions/{referenceNumber}`)  
+  - Rozszerzono model odpowiedzi o właściwości `dateCreated` ("Data utworzenia sesji") oraz `dateUpdated` ("Data ostatniej aktywności w ramach sesji").  
+
 - **Uprawnienia**  
   - Dodano atrybut `required` dla właściwości `subjectDetails` ("Dane podmiotu, któremu nadawane są uprawnienia") we wszystkich endpointach nadających uprawnienia (`/permissions/.../grants).
   - Dodano atrybut `required` dla właściwości `euEntityDetails` ("Dane podmiotu unijnego, w kontekście którego nadawane są uprawnienia") w endpoint POST `/permissions/eu-entities/administration/grants` ("Nadanie uprawnień administratora podmiotu unijnego").  
