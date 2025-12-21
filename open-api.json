@@ -2203,7 +2203,8 @@
                 "required": [
                   "subjectIdentifier",
                   "permissions",
-                  "description"
+                  "description",
+                  "subjectDetails"
                 ],
                 "allOf": [
                   {
@@ -2306,7 +2307,8 @@
                 "required": [
                   "subjectIdentifier",
                   "permissions",
-                  "description"
+                  "description",
+                  "subjectDetails"
                 ],
                 "allOf": [
                   {
@@ -2413,7 +2415,8 @@
                 "required": [
                   "subjectIdentifier",
                   "permission",
-                  "description"
+                  "description",
+                  "subjectDetails"
                 ],
                 "allOf": [
                   {
@@ -2511,7 +2514,8 @@
                 "required": [
                   "subjectIdentifier",
                   "permissions",
-                  "description"
+                  "description",
+                  "subjectDetails"
                 ],
                 "allOf": [
                   {
@@ -2616,7 +2620,8 @@
                 "required": [
                   "subjectIdentifier",
                   "contextIdentifier",
-                  "description"
+                  "description",
+                  "subjectDetails"
                 ],
                 "allOf": [
                   {
@@ -2719,7 +2724,8 @@
                   "subjectIdentifier",
                   "contextIdentifier",
                   "description",
-                  "euEntityName"
+                  "euEntityName",
+                  "subjectDetails"
                 ],
                 "allOf": [
                   {
@@ -2821,7 +2827,8 @@
                 "required": [
                   "subjectIdentifier",
                   "permissions",
-                  "description"
+                  "description",
+                  "subjectDetails"
                 ],
                 "allOf": [
                   {
@@ -8978,6 +8985,7 @@
         "required": [
           "description",
           "permission",
+          "subjectDetails",
           "subjectIdentifier"
         ],
         "type": "object",
@@ -9017,8 +9025,7 @@
                 "$ref": "#/components/schemas/EntityDetails"
               }
             ],
-            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
-            "nullable": true
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           }
         },
         "additionalProperties": false
@@ -9269,6 +9276,7 @@
         "required": [
           "description",
           "permissions",
+          "subjectDetails",
           "subjectIdentifier"
         ],
         "type": "object",
@@ -9307,8 +9315,7 @@
                 "$ref": "#/components/schemas/EntityDetails"
               }
             ],
-            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
-            "nullable": true
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           }
         },
         "additionalProperties": false
@@ -9504,6 +9511,7 @@
           "contextIdentifier",
           "description",
           "euEntityName",
+          "subjectDetails",
           "subjectIdentifier"
         ],
         "type": "object",
@@ -9553,8 +9561,7 @@
                 "$ref": "#/components/schemas/EuEntityPermissionSubjectDetails"
               }
             ],
-            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
-            "nullable": true
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           },
           "euEntityDetails": {
             "required": [
@@ -9831,6 +9838,7 @@
         "required": [
           "description",
           "permissions",
+          "subjectDetails",
           "subjectIdentifier"
         ],
         "type": "object",
@@ -9869,8 +9877,7 @@
                 "$ref": "#/components/schemas/EuEntityPermissionSubjectDetails"
               }
             ],
-            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
-            "nullable": true
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           }
         },
         "additionalProperties": false
@@ -10155,6 +10162,7 @@
         "required": [
           "description",
           "permissions",
+          "subjectDetails",
           "subjectIdentifier"
         ],
         "type": "object",
@@ -10205,8 +10213,7 @@
                 "$ref": "#/components/schemas/PersonPermissionSubjectDetails"
               }
             ],
-            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
-            "nullable": true
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           }
         },
         "additionalProperties": false
@@ -12117,6 +12124,7 @@
         "required": [
           "description",
           "permissions",
+          "subjectDetails",
           "subjectIdentifier"
         ],
         "type": "object",
@@ -12155,8 +12163,7 @@
                 "$ref": "#/components/schemas/PersonPermissionSubjectDetails"
               }
             ],
-            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
-            "nullable": true
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           }
         },
         "additionalProperties": false
@@ -14022,6 +14029,7 @@
         "required": [
           "contextIdentifier",
           "description",
+          "subjectDetails",
           "subjectIdentifier"
         ],
         "type": "object",
@@ -14072,8 +14080,7 @@
                 "$ref": "#/components/schemas/PersonPermissionSubjectDetails"
               }
             ],
-            "description": "Dane podmiotu, któremu nadawane są uprawnienia.",
-            "nullable": true
+            "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           }
         },
         "additionalProperties": false

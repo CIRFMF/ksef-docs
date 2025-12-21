@@ -2,9 +2,11 @@
 
 ### Wersja 2.0.0
 
+- **Uprawnienia**  
+  - Dodano atrybut `required` dla właściwości `subjectDetails` ("Dane podmiotu, któremu nadawane są uprawnienia") we wszystkich endpointach nadających uprawnienia (`/permissions/.../grants).
+
 - **OpenAPI**  
   Uzupełniono dokumentację odpowiedzi `429` o zwracany nagłówek `Retry-After` oraz treść odpowiedzi `TooManyRequestsResponse`.
-
 
 ### Wersja 2.0.0 RC6.1
 
