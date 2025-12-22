@@ -9750,7 +9750,7 @@
             ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/PermissionsSubjectPersonDetails"
+                "$ref": "#/components/schemas/PermissionsSubjectPersonByFingerprintDetails"
               }
             ],
             "description": "Dane osoby, której dotyczy uprawnienie.",
@@ -11685,6 +11685,70 @@
         },
         "additionalProperties": false
       },
+      "PermissionsSubjectPersonByFingerprintDetails": {
+        "required": [
+          "firstName",
+          "lastName",
+          "subjectDetailsType"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectDetailsType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonSubjectByFingerprintDetailsType"
+              }
+            ],
+            "description": "Typ danych uprawnionej osoby fizycznej.\n| Wartość | Opis |\n| --- | --- |\n| PersonByFingerprintWithIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL, ale mająca NIP lub PESEL. |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n"
+          },
+          "firstName": {
+            "maxLength": 30,
+            "minLength": 2,
+            "type": "string",
+            "description": "Imię osoby fizycznej."
+          },
+          "lastName": {
+            "maxLength": 81,
+            "minLength": 2,
+            "type": "string",
+            "description": "Nazwisko osoby fizycznej."
+          },
+          "personIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonIdentifier"
+              }
+            ],
+            "description": "Identyfikator osoby fizycznej.",
+            "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "Data urodzenia osoby fizycznej.",
+            "format": "date",
+            "nullable": true
+          },
+          "idDocument": {
+            "required": [
+              "type",
+              "number",
+              "country"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdDocument"
+              }
+            ],
+            "description": "Dane dokumentu tożsamości osoby fizycznej.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PermissionsSubjectPersonDetails": {
         "required": [
           "firstName",
@@ -12452,6 +12516,14 @@
           }
         },
         "additionalProperties": false
+      },
+      "PersonSubjectByFingerprintDetailsType": {
+        "enum": [
+          "PersonByFingerprintWithIdentifier",
+          "PersonByFingerprintWithoutIdentifier"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| PersonByFingerprintWithIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL, ale mająca NIP lub PESEL. |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n"
       },
       "PersonSubjectDetailsType": {
         "enum": [

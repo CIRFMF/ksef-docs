@@ -21,6 +21,7 @@
   - Dodano wartość `PersonByFingerprintWithIdentifier` ("Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL, ale mająca NIP lub PESEL") do enum `EuEntityPermissionSubjectDetailsType` w enpoint POST `/permissions/eu-entities/administration/grants` ("Nadanie uprawnień administratora podmiotu unijnego").    
   - Zmieniono typ właściwości `subjectEntityDetails` na `PermissionsSubjectEntityByIdentifierDetails` ("Dane podmiotu uprawnionego") w modelu odpowiedzi w POST `/permissions/query/authorizations/grants` ("Pobranie listy uprawnień podmiotowych do obsługi faktur").  
   - Zmieniono typ właściwości `subjectEntityDetails` na `PermissionsSubjectEntityByFingerprintDetails` ("Dane podmiotu uprawnionego") w modelu odpowiedzi w POST `/permissions/query/eu-entities/grants` ("Pobranie listy uprawnień administratorów lub reprezentantów podmiotów unijnych uprawnionych do samofakturowania").  
+  - Zmieniono typ właściwości `subjectPersonDetails` na `PermissionsSubjectPersonByFingerprintDetails` ("Dane osoby uprawnionej") w modelu odpowiedzi w POST `/permissions/query/eu-entities/grants` ("Pobranie listy uprawnień administratorów lub reprezentantów podmiotów unijnych uprawnionych do samofakturowania").    
   - Wprowadzono walidację sumy kontrolnej dla identyfikatora `InternalId` w POST `/permissions/subunits/grants` ("Nadanie uprawnień administratora podmiotu podrzędnego").
 
 - **OpenAPI**  
