@@ -48,6 +48,7 @@
 - **OpenAPI**  
   - Uzupełniono dokumentację odpowiedzi `429` o zwracany nagłówek `Retry-After` oraz treść odpowiedzi `TooManyRequestsResponse`.
   - Doprecyzowano opisy właściwości typu `byte` - wartości są przekazywane jako dane binarne zakodowane w formacie `Base64`.
+  - Poprawiono literówki w specyfikacji.
 
 ### Wersja 2.0.0 RC6.1
 

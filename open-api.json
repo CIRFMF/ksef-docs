@@ -1567,7 +1567,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Pobranie limitów dla bieżącego podmiotu",
-        "description": "Zwraca wartoście aktualnie obowiązujących limitów dla bieżącego podmiotu.",
+        "description": "Zwraca wartości aktualnie obowiązujących limitów dla bieżącego podmiotu.",
         "responses": {
           "200": {
             "description": "OK",
@@ -2013,7 +2013,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Zmiana limitów API dla bieżącego kontekstu",
-        "description": "Zmienia wartości aktualnie obowiązujących limitów żądań przesyłąnych do API dla bieżącego kontekstu. **Tylko na środowiskach testowych.**",
+        "description": "Zmienia wartości aktualnie obowiązujących limitów żądań przesyłanych do API dla bieżącego kontekstu. **Tylko na środowiskach testowych.**",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2083,7 +2083,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Przywrócenie domyślnych wartości limitów API dla bieżącego kontekstu",
-        "description": "Przywraca wartości aktualnie obowiązujących limitów żądań przesyłąnych do API dla bieżącego kontekstu do wartości domyślnych. **Tylko na środowiskach testowych.**",
+        "description": "Przywraca wartości aktualnie obowiązujących limitów żądań przesyłanych do API dla bieżącego kontekstu do wartości domyślnych. **Tylko na środowiskach testowych.**",
         "responses": {
           "200": {
             "description": "OK"
@@ -2506,7 +2506,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień w sposób pośredni",
-        "description": "Metoda pozwala na nadanie w sposób pośredni osobie wskazanej w żądaniu uprawnień do obsługi faktur innego podmiotu – klienta.  \nMoże to być jedna z możliwości:  \n- nadanie uprawnień generalnych – do obsługi wszystkich klientów  \n- nadanie uprawnień selektywnych – do obsługi wskazanego klienta  \n            \nUprawnienie selektywne może być nadane wyłącznie wtedy, gdy klient nadał wcześniej podmiotowi bieżącego kontekstu dowolne uprawnienie z prawem do jego dalszego przekazywania (patrz [POST /api/v2/permissions/entities/grants](/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1api~1v2~1permissions~1entities~1grants/post)).  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-w-spos%C3%B3b-po%C5%9Bredni)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
+        "description": "Metoda pozwala na nadanie w sposób pośredni osobie wskazanej w żądaniu uprawnień do obsługi faktur innego podmiotu – klienta.  \nMoże to być jedna z możliwości:  \n- nadanie uprawnień generalnych – do obsługi wszystkich klientów  \n- nadanie uprawnień selektywnych – do obsługi wskazanego klienta  \n            \nUprawnienie selektywne może być nadane wyłącznie wtedy, gdy klient nadał wcześniej podmiotowi bieżącego kontekstu dowolne uprawnienie z prawem do jego dalszego przekazywania (patrz [POST /v2/permissions/entities/grants](/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1permissions~1entities~1grants/post)).  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-w-spos%C3%B3b-po%C5%9Bredni)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3623,7 +3623,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21181               | Nieprawidłowe żądanie eksportu faktur.              | Nie można wyeksportować paczki faktur dla wybranego podmiotu ({subjecttype}) i zalogowanego identyfikatoru kontekstu ({type}). |\n| 21182               | Osiągnięto limit trwających eksportów.              | Dla uwierzytelnionego podmiotu w bieżącym kontekście osiągnięto maksymalny limit {count} równoczesnych eksportów faktur. Spróbuj ponownie później. |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n| 21181               | Nieprawidłowe żądanie eksportu faktur.              | Nie można wyeksportować paczki faktur dla wybranego podmiotu ({subjecttype}) i zalogowanego identyfikatora kontekstu ({type}). |\n| 21182               | Osiągnięto limit trwających eksportów.              | Dla uwierzytelnionego podmiotu w bieżącym kontekście osiągnięto maksymalny limit {count} równoczesnych eksportów faktur. Spróbuj ponownie później. |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -5833,7 +5833,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Otwarcie sesji interaktywnej",
-        "description": "Otwiera sesję do wysyłki pojedynczych faktur. Należy przekazać schemat wysyłanych faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Otwarcie sesji interaktywnej](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#1-otwarcie-sesji)\n> - [Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\nAby generować dokumenty UPO w wersji v4-3 w ramach sesji, należy przy jej otwarciu przesłać nagłówek <b>X-KSeF-Feature: upo-v4-3</b>.\nOd 22 grudnia 2025 wersja UPO v4-3 będzie generowana domyślnie.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`, `EnforcementOperations`.",
+        "description": "Otwiera sesję do wysyłki pojedynczych faktur. Należy przekazać schemat wysyłanych faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Otwarcie sesji interaktywnej](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#1-otwarcie-sesji)\n> - [Klucz publiczny Ministerstwa Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\nAby generować dokumenty UPO w wersji v4-3 w ramach sesji, należy przy jej otwarciu przesłać nagłówek <b>X-KSeF-Feature: upo-v4-3</b>.\nOd 22 grudnia 2025 wersja UPO v4-3 będzie generowana domyślnie.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -6125,7 +6125,7 @@
           "Wysyłka wsadowa"
         ],
         "summary": "Otwarcie sesji wsadowej",
-        "description": "Otwiera sesję do wysyłki wsadowej faktur. Należy przekazać schemat wysyłanych faktur, informacje o paczce faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Przygotwanie paczki faktur](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-wsadowa.md)\n> - [Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\nAby generować dokumenty UPO w wersji v4-3 w ramach sesji, należy przy jej otwarciu przesłać nagłówek <b>X-KSeF-Feature: upo-v4-3</b>.\nOd 22 grudnia 2025 wersja UPO v4-3 będzie generowana domyślnie.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `EnforcementOperations`.",
+        "description": "Otwiera sesję do wysyłki wsadowej faktur. Należy przekazać schemat wysyłanych faktur, informacje o paczce faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Przygotowanie paczki faktur](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-wsadowa.md)\n> - [Klucz publiczny Ministerstwa Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\nAby generować dokumenty UPO w wersji v4-3 w ramach sesji, należy przy jej otwarciu przesłać nagłówek <b>X-KSeF-Feature: upo-v4-3</b>.\nOd 22 grudnia 2025 wersja UPO v4-3 będzie generowana domyślnie.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `EnforcementOperations`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -7703,7 +7703,7 @@
                 "$ref": "#/components/schemas/AuthenticationMethod"
               }
             ],
-            "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy uslug Peppol. |\n"
+            "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy usług Peppol. |\n"
           },
           "status": {
             "allOf": [
@@ -7778,7 +7778,7 @@
           "PeppolSignature"
         ],
         "type": "string",
-        "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy uslug Peppol. |\n"
+        "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy usług Peppol. |\n"
       },
       "AuthenticationOperationStatusResponse": {
         "required": [
@@ -7799,7 +7799,7 @@
                 "$ref": "#/components/schemas/AuthenticationMethod"
               }
             ],
-            "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy uslug Peppol. |\n"
+            "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy usług Peppol. |\n"
           },
           "status": {
             "allOf": [
@@ -7890,7 +7890,7 @@
                 "$ref": "#/components/schemas/TokenInfo"
               }
             ],
-            "description": "Token umożliwiający odświeżenie tokenu dostępu.\n> Więcej informacji:\n> - [Odświeżanie tokena](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md#od%C5%9Bwie%C5%BCenie-tokena-accesstoken)"
+            "description": "Token umożliwiający odświeżenie tokenu dostępu.\n> Więcej informacji:\n> - [Odświeżanie tokena](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md#5-od%C5%9Bwie%C5%BCenie-tokena-dost%C4%99powego-accesstoken)"
           }
         },
         "additionalProperties": false
@@ -8823,7 +8823,7 @@
         "properties": {
           "encryptedSymmetricKey": {
             "type": "string",
-            "description": "Klucz symetryczny o długości 32 bajtów, zaszyfrowany algorytmem RSA (Padding: OAEP z SHA-256), zakodowany w formacie Base64.\n\n[Klucz publiczny Ministersta Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)",
+            "description": "Klucz symetryczny o długości 32 bajtów, zaszyfrowany algorytmem RSA (Padding: OAEP z SHA-256), zakodowany w formacie Base64.\n\n[Klucz publiczny Ministerstwa Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)",
             "format": "byte"
           },
           "initializationVector": {
@@ -10374,7 +10374,7 @@
                 "$ref": "#/components/schemas/AuthenticationContextIdentifier"
               }
             ],
-            "description": "Indentyfikator kontekstu do którego następuje uwierzytelnienie."
+            "description": "Identyfikator kontekstu do którego następuje uwierzytelnienie."
           },
           "encryptedToken": {
             "type": "string",
@@ -10591,7 +10591,7 @@
                 "$ref": "#/components/schemas/InvoiceType"
               }
             ],
-            "description": "Rodzaj faktury.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | (PEF) Podstawowowa |\n| VatPefSp | (PEF) Specjalizowana |\n| KorPef | (PEF) Korygująca |\n| VatRr | (RR) Podstawowa |\n| KorVatRr | (RR) Korygująca |\n"
+            "description": "Rodzaj faktury.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | (PEF) Podstawowa |\n| VatPefSp | (PEF) Specjalizowana |\n| KorPef | (PEF) Korygująca |\n| VatRr | (RR) Podstawowa |\n| KorVatRr | (RR) Korygująca |\n"
           },
           "formCode": {
             "required": [
@@ -10727,7 +10727,7 @@
           "value": {
             "maxLength": 50,
             "type": "string",
-            "description": "Wartośc identyfikatora nabywcy.",
+            "description": "Wartość identyfikatora nabywcy.",
             "nullable": true
           }
         },
@@ -11149,7 +11149,7 @@
             "items": {
               "$ref": "#/components/schemas/InvoiceType"
             },
-            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | (PEF) Podstawowowa |\n| VatPefSp | (PEF) Specjalizowana |\n| KorPef | (PEF) Korygująca |\n| VatRr | (RR) Podstawowa |\n| KorVatRr | (RR) Korygująca |\n",
+            "description": "Rodzaje faktur.\n| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | (PEF) Podstawowa |\n| VatPefSp | (PEF) Specjalizowana |\n| KorPef | (PEF) Korygująca |\n| VatRr | (RR) Podstawowa |\n| KorVatRr | (RR) Korygująca |\n",
             "nullable": true
           },
           "hasAttachment": {
@@ -11232,7 +11232,7 @@
           "KorVatRr"
         ],
         "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | (PEF) Podstawowowa |\n| VatPefSp | (PEF) Specjalizowana |\n| KorPef | (PEF) Korygująca |\n| VatRr | (RR) Podstawowa |\n| KorVatRr | (RR) Korygująca |\n"
+        "description": "| Wartość | Opis |\n| --- | --- |\n| Vat | (FA) Podstawowa |\n| Zal | (FA) Zaliczkowa |\n| Kor | (FA) Korygująca |\n| Roz | (FA) Rozliczeniowa |\n| Upr | (FA) Uproszczona |\n| KorZal | (FA) Korygująca fakturę zaliczkową |\n| KorRoz | (FA) Korygująca fakturę rozliczeniową |\n| VatPef | (PEF) Podstawowa |\n| VatPefSp | (PEF) Specjalizowana |\n| KorPef | (PEF) Korygująca |\n| VatRr | (RR) Podstawowa |\n| KorVatRr | (RR) Korygująca |\n"
       },
       "InvoicingMode": {
         "enum": [
@@ -11377,7 +11377,7 @@
           },
           "offlineMode": {
             "type": "boolean",
-            "description": "Określa, czy podatnik deklaruje tryb fakurowania \"offline\" dla dokumentów przesyłanych w sesji wsadowej.",
+            "description": "Określa, czy podatnik deklaruje tryb fakturowania \"offline\" dla dokumentów przesyłanych w sesji wsadowej.",
             "default": false
           }
         },
@@ -12418,7 +12418,7 @@
                 "$ref": "#/components/schemas/PermissionState"
               }
             ],
-            "description": "Stan uprawnienia. \n| Type | Value |\n| --- | --- |\n| Active | Uprawnienia aktywne |\n| Inactive | Uprawnienia nieaktywne, nadane w sposób poœredni |",
+            "description": "Stan uprawnienia. \n| Type | Value |\n| --- | --- |\n| Active | Uprawnienia aktywne |\n| Inactive | Uprawnienia nieaktywne, nadane w sposób pośredni |",
             "nullable": true
           },
           "queryType": {
