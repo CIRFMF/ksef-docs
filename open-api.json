@@ -9788,7 +9788,21 @@
                 "$ref": "#/components/schemas/EuEntityPermissionSubjectDetailsType"
               }
             ],
-            "description": "Typ danych podmiotu.\n| Wartość | Opis |\n| --- | --- |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n| EntityByFingerprint | Podmiot identyfikowany odciskiem palca pieczęci kwalifikowanej. |\n"
+            "description": "Typ danych podmiotu.\n| Wartość | Opis |\n| --- | --- |\n| PersonByFingerprintWithIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL, ale mająca NIP lub PESEL. |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n| EntityByFingerprint | Podmiot identyfikowany odciskiem palca pieczęci kwalifikowanej. |\n"
+          },
+          "personByFpWithId": {
+            "required": [
+              "firstName",
+              "lastName",
+              "identifier"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonByFingerprintWithIdentifierDetails"
+              }
+            ],
+            "description": "Dane podmiotu.\n*Wymagane, gdy subjectDetailsType = PersonByFingerprintWithIdentifier.*",
+            "nullable": true
           },
           "personByFpNoId": {
             "required": [
@@ -9823,11 +9837,12 @@
       },
       "EuEntityPermissionSubjectDetailsType": {
         "enum": [
+          "PersonByFingerprintWithIdentifier",
           "PersonByFingerprintWithoutIdentifier",
           "EntityByFingerprint"
         ],
         "type": "string",
-        "description": "| Wartość | Opis |\n| --- | --- |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n| EntityByFingerprint | Podmiot identyfikowany odciskiem palca pieczęci kwalifikowanej. |\n"
+        "description": "| Wartość | Opis |\n| --- | --- |\n| PersonByFingerprintWithIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL, ale mająca NIP lub PESEL. |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n| EntityByFingerprint | Podmiot identyfikowany odciskiem palca pieczęci kwalifikowanej. |\n"
       },
       "EuEntityPermissionType": {
         "enum": [
