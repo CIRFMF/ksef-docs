@@ -35,6 +35,9 @@
     - `21304` - "Brak uwierzytelnienia" - Operacja uwierzytelniania {`referenceNumber`} nie została znaleziona, 
     - `21308` - "Próba wykorzystania metod autoryzacyjnych osoby zmarłej".
 
+- **Eksport paczki faktur (POST `/invoices/exports`). Pobranie listy metadanych faktur (POST `/invoices/query/metadata`)**  
+  Zmniejszono maksymalny dozwolony zakres `dateRange` z 2 lat do 3 miesięcy.
+
 - **Uprawnienia**  
   - Dodano atrybut `required` dla właściwości `subjectDetails` ("Dane podmiotu, któremu nadawane są uprawnienia") we wszystkich endpointach nadających uprawnienia (`/permissions/.../grants).
   - Dodano atrybut `required` dla właściwości `euEntityDetails` ("Dane podmiotu unijnego, w kontekście którego nadawane są uprawnienia") w endpoint POST `/permissions/eu-entities/administration/grants` ("Nadanie uprawnień administratora podmiotu unijnego").  
@@ -108,7 +111,7 @@
   - Na środowisku **TR** (DEMO) włączono [limity api](limity/limity-api.md) z wartościami identycznymi jak na **PRD**. Wartości są replikowane z produkcji; szczegóły: ["Limity na środowiskach"](/limity/limity-api.md#limity-na-środowiskach).
   - Dodano endpoint POST `/testdata/rate-limits/production` - ustawia w bieżącym kontekście wartości limitów api zgodne z profilem produkcyjnym. Dostępny tylko na środowisku **TE**.
   
-- **Eksport paczki faktur (POST `/invoices/exports`). Pobranie listy metadanych faktur (POST /invoices/query/metadata)**   
+- **Eksport paczki faktur (POST `/invoices/exports`). Pobranie listy metadanych faktur (POST `/invoices/query/metadata`)**   
   - Dodano dokument [High Water Mark (HWM)](pobieranie-faktur/hwm.md) opisujący mechanizm zarządzania kompletnością danych w czasie.
   - Zaktualizowano [Przyrostowe pobieranie faktur](pobieranie-faktur/przyrostowe-pobieranie-faktur.md) o zalecenia wykorzystania mechanizmu `HWM`.
   - Rozszerzono model odpowiedzi o właściwość `permanentStorageHwmDate` (string, date-time, nullable). Dotyczy wyłącznie zapytań z `dateType = PermanentStorage` i oznacza punkt, poniżej którego dane są kompletne; dla `dateType = Issue/Invoicing` - null.  
