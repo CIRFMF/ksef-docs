@@ -35,7 +35,7 @@ Przykład w języku C#:
 ```csharp
 InvoiceQueryFilters invoiceQueryFilters = new InvoiceQueryFilters
 {
-    SubjectType = SubjectType.Subject1,
+    SubjectType = InvoiceSubjectType.Subject1,
     DateRange = new DateRange
     {
         From = DateTime.UtcNow.AddDays(-30),
@@ -89,7 +89,7 @@ InvoiceQueryFilters query = new InvoiceQueryFilters
         To = DateTime.Now.AddDays(1),
         DateType = DateType.Invoicing
     },
-    SubjectType = SubjectType.Subject1
+    SubjectType = InvoiceSubjectType.Subject1
 };
 
 InvoiceExportRequest invoiceExportRequest = new InvoiceExportRequest

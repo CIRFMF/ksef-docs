@@ -28,8 +28,9 @@ Podając w ciele żądania kolekcję uprawnień oraz opis tokena.
 
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 ```csharp
- var tokenRequest = new KsefTokenRequest
+ KsefTokenRequest tokenRequest = new KsefTokenRequest
     {
         Permissions = [
             KsefTokenPermissionType.InvoiceRead,
@@ -37,7 +38,7 @@ Przykład w języku C#:
             ],
         Description = "Demo token",
     };
- var token = await ksefClient.GenerateKsefTokenAsync(tokenRequest, accessToken, cancellationToken);
+ KsefTokenResponse token = await ksefClient.GenerateKsefTokenAsync(tokenRequest, accessToken, cancellationToken);
 ```
 
 Przykład w języku Java:
@@ -57,18 +58,24 @@ Metadane tokenów KSeF można pobierać i filtrować za pomocą wywołania:<br>
 GET [/tokens](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Tokeny/paths/~1api~1v2~1tokens/get)
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 ```csharp
-var result = new List<AuthenticationKsefToken>();
-const int pageSize = 20;
-var status = AuthenticationKsefTokenStatus.Active;
-var continuationToken = string.Empty;
-
-do
- {
-     var tokens = await ksefClient.QueryKsefTokensAsync(accessToken, [status], continuationToken, pageSize, cancellationToken);
-     result.AddRange(tokens.Tokens);
-     continuationToken = tokens.ContinuationToken;
- } while (!string.IsNullOrEmpty(continuationToken));
+QueryKsefTokensResponse singleResult = await KsefClient.QueryKsefTokensAsync(
+    AccessToken,
+    statuses: new List<AuthenticationKsefTokenStatus> {
+        AuthenticationKsefTokenStatus.Pending,
+        AuthenticationKsefTokenStatus.Active,
+        AuthenticationKsefTokenStatus.Revoking,
+        AuthenticationKsefTokenStatus.Revoked,
+        AuthenticationKsefTokenStatus.Failed
+    }, // domyślnie: null
+    authorIdentifier: "authorIdentifier", // domyślnie: null
+    authorIdentifierType: AuthenticationTokenContextIdentifierType.Nip, // lub inny typ, domyślnie: null
+    description: "description",
+    continuationToken: continuationToken,
+    pageSize: pageSize, // domyślnie: null
+    cancellationToken: cancellationToken // domyślnie null,
+    );
 ```
 
 Przykład w języku Java:
@@ -90,8 +97,9 @@ GET [/tokens/\{referenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.html
 ```referenceNumber``` to unikalny identyfikator tokena, który można uzyskać podczas jego tworzenia lub z listy tokenów.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 ```csharp
-var token = await ksefClient.GetKsefTokenAsync(referenceNumber, accessToken, cancellationToken);
+AuthenticationKsefToken token = await ksefClient.GetKsefTokenAsync(referenceNumber, accessToken, cancellationToken);
 ```
 Przykład w języku Java:
 [KsefTokenIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/KsefTokenIntegrationTest.java)
@@ -108,6 +116,7 @@ DELETE [/tokens/\{referenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.h
 ```referenceNumber``` to unikalny identyfikator tokena, który chcemy unieważnić.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 ```csharp
 await ksefClient.RevokeKsefTokenAsync(referenceNumber, accessToken, cancellationToken);
 ```

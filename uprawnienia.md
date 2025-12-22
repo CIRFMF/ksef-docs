@@ -350,12 +350,15 @@ Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Permissions\ProxyPermission\AuthorizationPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/ProxyPermission/AuthorizationPermissionsE2ETests.cs)
 
 ```csharp
-GrantAuthorizationPermissionsRequest grantPermissionAuthorizationRequest =
-    GrantAuthorizationPermissionsRequestBuilder
+GrantPermissionsAuthorizationRequest grantPermissionsAuthorizationRequest = GrantAuthorizationPermissionsRequestBuilder
     .Create()
-    .WithSubject(Fixture.SubjectIdentifier)
-    .WithPermission(StandardPermissionType.SelfInvoicing)
-    .WithDescription("E2E test grant")
+    .WithSubject(new AuthorizationSubjectIdentifier
+    {
+        Type = AuthorizationSubjectIdentifierType.PeppolId,
+        Value = peppolId
+    })
+    .WithPermission(AuthorizationPermissionType.PefInvoicing)
+    .WithDescription($"E2E: Nadanie uprawnienia do wystawiania faktur PEF dla firmy {companyNip} (na wniosek {peppolId})")
     .Build();
 
 OperationResponse operationResponse = await KsefClient
@@ -439,17 +442,23 @@ Wymagane uprawnienia do nadawania:
 | :----------------------------------------- | :---------------------------------------------- |
 | `subjectIdentifier`                        | Identyfikator osoby fizycznej lub podmiotu. `"Nip"`, `"Pesel"`, `"Fingerprint"`               |
 | `contextIdentifier`                        | Identyfikator podmiotu podrzędnego. `"Nip"`, `InternalId`              |
+| `subunitName`                              | Nazwa jednostki podrzędnej              |
 | `description`                              | Wartość tekstowa (opis)              |
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
 
 ```csharp
-GrantPermissionsSubUnitRequest grantPermissionsSubUnitRequest =
-    GrantSubUnitPermissionsRequestBuilder
+GrantPermissionsSubunitRequest subunitGrantRequest =
+    GrantSubunitPermissionsRequestBuilder
     .Create()
-    .WithSubject(Fixture.SubUnit)
-    .WithContext(Fixture.Unit)
+    .WithSubject(_fixture.SubjectIdentifier)
+    .WithContext(new SubunitContextIdentifier
+    {
+        Type = SubunitContextIdentifierType.InternalId,
+        Value = Fixture.UnitNipInternal
+    })
+    .WithSubunitName("E2E Test Subunit")
     .WithDescription("E2E test grant sub-unit")
     .Build();
 
@@ -490,7 +499,7 @@ Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Permissions\EuEntityPermission\EuEntityPermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/EuEntityPermission/EuEntityPermissionE2ETests.cs)
 
 ```csharp
-GrantPermissionsRequest grantPermissionsRequest = GrantEUEntityPermissionsRequestBuilder
+GrantPermissionsEuEntityRequest grantPermissionsEuEntityRequest = GrantEUEntityPermissionsRequestBuilder
     .Create()
     .WithSubject(TestFixture.EuEntity)
     .WithSubjectName(EuEntitySubjectName)
@@ -534,7 +543,7 @@ Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Permissions\EuAdministrationPermission\EuRepresentativePermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/EuAdministrationPermission/EuRepresentativePermissionE2ETests.cs)
 
 ```csharp
-GrantPermissionsEUEntityRepresentativeRequest grantRepresentativePermissionsRequest = GrantEUEntityRepresentativePermissionsRequestBuilder
+GrantPermissionsEuEntityRepresentativeRequest grantRepresentativePermissionsRequest = GrantEUEntityRepresentativePermissionsRequestBuilder
     .Create()
     .WithSubject(new Client.Core.Models.Permissions.EUEntityRepresentative.SubjectIdentifier
     {
@@ -587,6 +596,7 @@ Ta metoda służy do odbierania uprawnień takich jak:
 - reprezentanta podmiotu unijnego.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 ```csharp
 OperationResponse operationResponse = await KsefClient.RevokeCommonPermissionAsync(permission.Id, accessToken, CancellationToken);
 ```
@@ -640,6 +650,21 @@ Zapytanie pozwala na pobranie listy uprawnień posiadanych przez uwierzytelniony
 - nadane podmiotowi do obsługi faktur (`"InvoiceRead"` i `"InvoiceWrite"`) przez inny podmiot, jeśli uwierzytelniony podmiot ma uprawnienia właścicielskie (`"Owner"`) 
 
 POST [/permissions/query/personal/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1api~1v2~1permissions~1query~1personal~1grants/post)
+
+Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Permissions\PersonPermission\PersonalPermissions_AuthorizedPesel_InNipContext_E2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/PersonPermission/PersonalPermissions_AuthorizedPesel_InNipContext_E2ETests.cs)
+```csharp
+PersonalPermissionsQueryRequest query = new PersonalPermissionsQueryRequest
+{
+    ContextIdentifier = /*...*/,
+    TargetIdentifier = /*...*/,
+    PermissionTypes = /*...*/,
+    PermissionState = /*...*/
+};
+
+PagedPermissionsResponse<PersonalPermission> searchedGrantedPersonalPermissions = 
+    await KsefClient.SearchGrantedPersonalPermissionsAsync(query, entityAuthorizationInfo.AccessToken.Token);
+```
 
 Przykład w języku Java:
 [SearchPersonalGrantPermissionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SearchPersonalGrantPermissionIntegrationTest.java)
@@ -900,6 +925,12 @@ Zgoda jest wymagana do wystawiania faktur zawierających załączniki i obowiąz
 GET [/permissions/attachments/status](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Operacje/paths/~1api~1v2~1permissions~1attachments~1status/get)
 
 Zwraca status zgody dla bieżącego kontekstu. Jeżeli zgoda nie jest aktywna, faktura z załącznikiem wysłana do API KSeF zostanie odrzucona.
+
+Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\TestData\TestDataE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/TestData/TestDataE2ETests.cs)
+```csharp
+PermissionsAttachmentAllowedResponse attachmentPermissionStatus = await KsefClient.GetAttachmentPermissionStatusAsync(authOperationStatusResponse.AccessToken.Token)
+```
 
 Przykład w języku Java:
 [PermissionAttachmentStatusIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/PermissionAttachmentStatusIntegrationTest.java)

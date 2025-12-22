@@ -11,29 +11,33 @@ GET [sessions](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki
 Zwraca bieżący status sesji wraz z zagregowanymi danymi o liczbie przesłanych, poprawnie i niepoprawnie przetworzonych faktur; po zamknięciu sesji udostępnia dodatkowo listę referencji do zbiorczego UPO.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core/E2E/Sessions/SessionStatusE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Sessions/SessionStatusE2ETests.cs)
 ```csharp
 // Pobieranie sesji wsadowych
- var sessions = new List<Session>();
+ List<Session> sessions = new List<Session>();
  const int pageSize = 20;
  string? continuationToken = null;
  do
  {
-     var response = await ksefClient.GetSessionsAsync(SessionType.Batch, accessToken, pageSize, continuationToken, sessionsFilter, cancellationToken);
+     SessionsListResponse response = await ksefClient.GetSessionsAsync(SessionType.Batch, accessToken, pageSize, continuationToken, sessionsFilter, cancellationToken).ConfigureAwait(false);
      continuationToken = response.ContinuationToken;
      sessions.AddRange(response.Sessions);
  } while (!string.IsNullOrEmpty(continuationToken));
 
 // Pobieranie sesji interaktywnych
- var sessions = new List<Session>();
+ List<Session> sessions = new List<Session>();
  const int pageSize = 20;
  string? continuationToken = null;
  do
  {
-     var response = await ksefClient.GetSessionsAsync(SessionType.Online, accessToken, pageSize, continuationToken, sessionsFilter, cancellationToken);
+     SessionsListResponse response = await ksefClient.GetSessionsAsync(SessionType.Online, accessToken, pageSize, continuationToken, sessionsFilter, cancellationToken).ConfigureAwait(false);
      continuationToken = response.ContinuationToken;
      sessions.AddRange(response.Sessions);
  } while (!string.IsNullOrEmpty(continuationToken)); 
 ```
+
+`sessionsFilter` to obiekt filtrów znajdujący się tutaj: [KSeF.Client.Core/Models/Sessions/SessionsFilter.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Core/Models/Sessions/SessionsFilter.cs)
+
 
 Przykład w języku Java:
 [SessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SessionIntegrationTest.java)
@@ -58,18 +62,20 @@ GET [sessions/\{referenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.htm
 Zwraca bieżący status sesji wraz z zagregowanymi danymi o liczbie przesłanych, poprawnie i niepoprawnie przetworzonych faktur; po zamknięciu sesji udostępnia dodatkowo listę referencji do zbiorczego UPO.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
 ```csharp
-var openSessionResult = await kSeFClient.GetSessionStatusAsync(referenceNumber, accessToken, cancellationToken);
-var documentCount = openSessionResult.InvoiceCount;
-var successfulInvoiceCount = openSessionResult.SuccessfulInvoiceCount;
-var failedInvoiceCount = openSessionResult.FailedInvoiceCount;
+SessionStatusResponse openSessionResult = await kSeFClient.GetSessionStatusAsync(referenceNumber, accessToken, cancellationToken).ConfigureAwait(false);
+
+int documentCount = openSessionResult.InvoiceCount;
+int successfulInvoiceCount = openSessionResult.SuccessfulInvoiceCount;
+int failedInvoiceCount = openSessionResult.FailedInvoiceCount;
 ```
 
 Przykład w języku Java:
 [OnlineSessionIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/OnlineSessionIntegrationTest.java)
 
 ```java
-SessionStatusResponse statusResponse = ksefClient.getSessionStatus(sessionReferenceNumber, accessToken);
+SessionStatusResponse statusResponse = ksefClient.getSessionStatus(referenceNumber, accessToken);
 ```
 
 
@@ -86,17 +92,18 @@ string continuationtoken = null;
 
 do
 {
-    var sessionInvoices = await ksefClient
+    SessionInvoicesResponse sessionInvoices = await ksefClient
                                 .GetSessionInvoicesAsync(
                                 referenceNumber,
                                 accessToken,
                                 pageOffset,
                                 pageSize,
-                                cancellationToken);
+                                cancellationToken)
+                                ConfigureAwait(false);
 
-    foreach (var doc in getInvoicesResult.Invoices)
+    foreach (SessionInvoice sessionInvoice in sessionInvoices.Invoices)
     {
-        Console.WriteLine($"#{doc.InvoiceNumber}. Status: {doc.Status.Code}");
+        Console.WriteLine($"#{sessionInvoice.InvoiceNumber}. Status: {sessionInvoice.Status.Code}");
     }
 
     continuationtoken = sessionInvoices.ContinuationToken;
@@ -125,7 +132,7 @@ GET [sessions/\{referenceNumber\}/invoices/\{invoiceReferenceNumber\}](https://k
 
 Przykład w języku C#:
 ```csharp
-var invoice = await ksefClient
+SessionInvoice invoice = await ksefClient
                 .GetSessionInvoiceAsync(
                 referenceNumber,
                 invoiceReferenceNumber,
@@ -151,7 +158,7 @@ GET [sessions/\{referenceNumber\}/invoices/\{invoiceReferenceNumber\}/upo](https
 
 Przykład w języku C#:
 ```csharp
-var upo = await ksefClient
+string upo = await ksefClient
                 .GetSessionInvoiceUpoByReferenceNumberAsync(
                 referenceNumber,
                 invoiceReferenceNumber,
@@ -204,7 +211,7 @@ string continuationToken = "";
 
 do
 {
-    var sessionInvoices = await ksefClient
+    List<SessionInvoicesResponse> sessionInvoices = await ksefClient
                                 .GetSessionFailedInvoicesAsync(
                                 referenceNumber,
                                 accessToken,
@@ -263,7 +270,7 @@ Otrzymany dokument XML jest zgodny ze schematem [XSD](/faktury/upo/schemy/upo-v4
 Przykład w języku C#:
 
 ```csharp
- var upo = await ksefClient.GetSessionUpoAsync(
+ string upo = await ksefClient.GetSessionUpoAsync(
             sessionReferenceNumber,
             upoReferenceNumber,
             accessToken,

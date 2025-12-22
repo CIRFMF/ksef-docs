@@ -69,7 +69,7 @@ Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
 ```csharp
 CertificateEnrollmentsInfoResponse certificateEnrollmentsInfoResponse =
-    await KsefClient.GetCertificateEnrollmentDataAsync(accessToken, CancellationToken);
+    await KsefClient.GetCertificateEnrollmentDataAsync(accessToken, CancellationToken).ConfigureAwait(false);
 ```
 
 Przykład w języku Java:
@@ -259,7 +259,8 @@ Parametry filtrowania (opcjonalne):
 * `pageOffset` - numer strony wyników (domyślnie 0)
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Certificates\CertificateMetadataListE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core\E2E\Certificates/CertificateMetadataListE2ETests.cs)
+
 ```csharp
 var request = GetCertificateMetadataListRequestBuilder
     .Create()

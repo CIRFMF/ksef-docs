@@ -53,20 +53,20 @@ public static (byte[] ZipBytes, FileMetadata Meta) BuildZip(
     IEnumerable<(string FileName, byte[] Content)> files,
     ICryptographyService crypto)
 {
-    using var zipStream = new MemoryStream();
-    using var archive = new ZipArchive(zipStream, ZipArchiveMode.Create, leaveOpen: true);
+    using MemoryStream zipStream = new MemoryStream();
+    using ZipArchive archive = new ZipArchive(zipStream, ZipArchiveMode.Create, leaveOpen: true);
     
-    foreach (var (fileName, content) in files)
+    foreach ((string fileName, byte[] content) in files)
     {
-        var entry = archive.CreateEntry(fileName, CompressionLevel.Optimal);
-        using var entryStream = entry.Open();
+        ZipArchiveEntry entry = archive.CreateEntry(fileName, CompressionLevel.Optimal);
+        using Stream entryStream = entry.Open();
         entryStream.Write(content);
     }
     
     archive.Dispose();
     
-    var zipBytes = zipStream.ToArray();
-    var meta = crypto.GetMetaData(zipBytes);
+    byte[] zipBytes = zipStream.ToArray();
+    List<byte[]> meta = crypto.GetMetaData(zipBytes);
 
     return (zipBytes, meta);
 }
@@ -92,17 +92,17 @@ Przykład w języku C#:
 ```csharp
 
  // Pobierz metadane ZIP-a (przed szyfrowaniem)
- var zipMetadata = cryptographyService.GetMetaData(zipBytes);
+FileMetadata zipMetadata = cryptographyService.GetMetaData(zipBytes);
 int maxPartSize = 100 * 1000 * 1000; // 100 MB
 int partCount = (int)Math.Ceiling((double)zipBytes.Length / maxPartSize);
 int partSize = (int)Math.Ceiling((double)zipBytes.Length / partCount);
-var zipParts = new List<byte[]>();
+List<byte[]> zipParts = new List<byte[]>();
 for (int i = 0; i < partCount; i++)
 {
     int start = i * partSize;
     int size = Math.Min(partSize, zipBytes.Length - start);
     if (size <= 0) break;
-    var part = new byte[size];
+    byte[] part = new byte[size];
     Array.Copy(zipBytes, start, part, 0, size);
     zipParts.Add(part);
 }
@@ -120,19 +120,33 @@ List<byte[]> zipParts = FilesUtil.splitZip(partsCount, zipBytes);
 Każdą część należy zaszyfrować nowo wygenerowanym kluczem AES‑256‑CBC z dopełnianiem PKCS#7.
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionStreamE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionStreamE2ETests.cs)
 ```csharp
-    //  Szyfruj każdy part i pobierz metadane
-        var encryptedParts = new List<(byte[] Data, FileHash Metadata)>();
-        for (int i = 0; i < zipParts.Count; i++)
-        {
-            var encrypted = cryptographyService.EncryptBytesWithAES256(zipParts[i], encryptionData.CipherKey, encryptionData.CipherIv);
-            var metadata = cryptographyService.GetMetaData(encrypted);
-            encryptedParts.Add((encrypted, metadata));
+List<BatchPartStreamSendingInfo> encryptedParts = new(rawParts.Count);
+for (int i = 0; i < rawParts.Count; i++)
+{
+    using MemoryStream partInput = new(rawParts[i], writable: false);
+    MemoryStream encryptedOutput = new();
+    await cryptographyService.EncryptStreamWithAES256Async(partInput, encryptedOutput, encryptionData.CipherKey, encryptionData.CipherIv, CancellationToken).ConfigureAwait(false);
 
-            // Zapisz part na dysku
-            var partFileName = Path.Combine(BatchPartsDirectory, $"faktura_part{i + 1}.zip.aes");
-            System.IO.File.WriteAllBytes(partFileName, encrypted);
-        }
+    if (encryptedOutput.CanSeek)
+    {
+        encryptedOutput.Position = 0;
+    }
+
+    FileMetadata partMeta = await cryptographyService.GetMetaDataAsync(encryptedOutput, CancellationToken).ConfigureAwait(false);
+    if (encryptedOutput.CanSeek)
+    {
+        encryptedOutput.Position = 0; // reset po odczycie do metadanych
+    }
+
+    encryptedParts.Add(new BatchPartStreamSendingInfo
+    {
+        DataStream = encryptedOutput,
+        OrdinalNumber = i + 1,
+        Metadata = partMeta
+    });
+}
 ```
 
 Przykład w języku Java:
@@ -173,7 +187,7 @@ Client.Core.Models.Sessions.BatchSession.OpenBatchSessionRequest openBatchReques
     BatchUtils.BuildOpenBatchRequest(zipMeta, encryptionData, encryptedParts, systemCode);
 
 Client.Core.Models.Sessions.BatchSession.OpenBatchSessionResponse openBatchSessionResponse =
-    await BatchUtils.OpenBatchAsync(KsefClient, openBatchRequest, accessToken);
+    await BatchUtils.OpenBatchAsync(KsefClient, openBatchRequest, accessToken).ConfigureAwait(false);
 
 //BatchUtils.BuildOpenBatchRequest
 public static OpenBatchSessionRequest BuildOpenBatchRequest(
@@ -184,12 +198,12 @@ public static OpenBatchSessionRequest BuildOpenBatchRequest(
     string schemaVersion = DefaultSchemaVersion,
     string value = DefaultValue)
 {
-    var builder = OpenBatchSessionRequestBuilder
+    IOpenBatchSessionRequestBuilderBatchFile builder = OpenBatchSessionRequestBuilder
         .Create()
         .WithFormCode(systemCode: SystemCodeHelper.GetValue(systemCode), schemaVersion: schemaVersion, value: value)
         .WithBatchFile(fileSize: zipMeta.FileSize, fileHash: zipMeta.HashSHA);
 
-    foreach (var p in encryptedParts)
+    foreach (BatchPartSendingInfo p in encryptedParts)
     {
         builder = builder.AddBatchFilePart(
             ordinalNumber: p.OrdinalNumber,
@@ -211,7 +225,7 @@ public static async Task<OpenBatchSessionResponse> OpenBatchAsync(
     IKSeFClient client,
     OpenBatchSessionRequest openReq,
     string accessToken)
-    => await client.OpenBatchSessionAsync(openReq, accessToken);
+    => await client.OpenBatchSessionAsync(openReq, accessToken).ConfigureAwait(false);
 ```
 
 Przykład w języku Java:
@@ -284,7 +298,7 @@ Po przesłaniu wszystkich części paczki należy zamknąć sesję wsadową, co 
 POST [/sessions/batch/\{referenceNumber\}/close](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wysylka-wsadowa/paths/~1api~1v2~1sessions~1batch~1%7BreferenceNumber%7D~1close/post)}]
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\BatchSession\BatchSessionStreamE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/BatchSession/BatchSessionStreamE2ETests.cs)
 ```csharp
 await KsefClient.CloseBatchSessionAsync(referenceNumber, accessToken);
 ```

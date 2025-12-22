@@ -90,15 +90,16 @@ Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Authorization\AuthorizationE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Authorization/AuthorizationE2ETests.cs)
 
 ```csharp
-var authorizationPolicy = new AuthenticationTokenAuthorizationPolicy
-{
-    AllowedIps = new AuthenticationTokenAllowedIps
+AuthenticationTokenAuthorizationPolicy authorizationPolicy = 
+    new AuthenticationTokenAuthorizationPolicy
     {
-        Ip4Addresses = ["192.168.0.1", "192.222.111.1"],
-        Ip4Masks = ["192.168.1.0/24"], // Przykładowa maska
-        Ip4Ranges = ["222.111.0.1-222.111.0.255"] // Przykładowy zakres IP
-    }
-};
+        AllowedIps = new AuthenticationTokenAllowedIps
+        {
+            Ip4Addresses = ["192.168.0.1", "192.222.111.1"],
+            Ip4Masks = ["192.168.1.0/24"], // Przykładowa maska
+            Ip4Ranges = ["222.111.0.1-222.111.0.255"] // Przykładowy zakres IP
+        }
+    };
 
 AuthenticationTokenRequest authTokenRequest = AuthTokenRequestBuilder
     .Create()
@@ -266,7 +267,7 @@ Przykład w języku ```C#```:
 
 ```csharp
 AuthChallengeResponse challenge = await KsefClient.GetAuthChallengeAsync();
-long timestampMs = challenge.TimestampMs;
+long timestampMs = challenge.Timestamp.ToUnixTimeMilliseconds();
 
 // Przygotuj "token|timestamp" i zaszyfruj RSA-OAEP SHA-256 zgodnie z wymaganiem API
 string tokenWithTimestamp = $"{ksefToken}|{timestampMs}";
@@ -306,12 +307,12 @@ Przykład w języku ```C#```:
 
 ```csharp
 // Sposób 1: Budowa zapytania za pomocą buildera
-var builder = AuthKsefTokenRequestBuilder
+IAuthKsefTokenRequestBuilderWithEncryptedToken builder = AuthKsefTokenRequestBuilder
     .Create()
     .WithChallenge(challenge)
     .WithContext(contextIdentifierType, contextIdentifierValue)
     .WithEncryptedToken(encryptedToken);   
-var authKsefTokenRequest = builder.Build();
+AuthenticationKsefTokenRequest authKsefTokenRequest = builder.Build();
 
 // Sposób 2: manualne tworzenie obiektu
 AuthenticationKsefTokenRequest request = new AuthenticationKsefTokenRequest
@@ -365,8 +366,7 @@ Przykład w języku ```C#```:
 [KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
 
 ```csharp
-AuthStatus status;
-status = await KsefClient.GetAuthStatusAsync(signature.ReferenceNumber, signature.AuthenticationToken.Token);
+AuthStatus status = await KsefClient.GetAuthStatusAsync(signature.ReferenceNumber, signature.AuthenticationToken.Token);
 ```
 
 Przykład w języku ```Java```:
@@ -435,3 +435,6 @@ Powiązane dokumenty:
 - [Testowe certyfikaty i podpisy XAdES](auth/testowe-certyfikaty-i-podpisy-xades.md)
 - [Podpis XAdES](auth/podpis-xades.md)
 - [Token KSeF](tokeny-ksef.md)
+
+Powiązane testy:
+- [Uwierzytelnianie E2E](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests/Features/Authenticate/Authenticate.feature.cs)

@@ -53,6 +53,7 @@ Korekta przesyłana jest zgodnie z zasadami opisanymi w dokumencie [sesja intera
 - `hashOfCorrectedInvoice` – skrót faktury pierwotnej.  
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\OnlineSession\OnlineSessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/OnlineSession/OnlineSessionE2ETests.cs)
 ```csharp
 var sendOnlineInvoiceRequest = SendInvoiceOnlineSessionRequestBuilder
     .Create()

@@ -8,7 +8,7 @@ Kody QR wprowadzono z myślą o sytuacjach, gdy faktura trafia do odbiorcy innym
 - pobrać jej wersję ustrukturyzowaną (plik XML) bez potrzeby kontaktu z wystawcą,
 - potwierdzić autentyczność wystawcy (w przypadku faktur offline).
 
-Generowanie kodów (zarówno dla faktur online, jak i offline) odbywa się lokalnie w aplikacji klienta na podstawie danych zawartych w wystawionej fakturze. Kod QR musi być zgodny z normą ISO/IEC 18004:2024. Jeśli nie ma możliwości umieszczenia kodu bezpośrednio na fakturze (np. format danych tego nie pozwala), należy dostarczyć go odbiorcy jako oddzielny plik graficzny lub link.
+Generowanie kodów (zarówno dla faktur online, jak i offline) odbywa się lokalnie w aplikacji klienta na podstawie danych zawartych w wystawionej fakturze. Kod QR musi być zgodny z normą ISO/IEC 18004:2024. Jeśli nie ma możliwości umieszczenia kodu bezpośrednio na fakturze (np. format danych tego nie pozwala), należy dostarczyć go odbiorcy jako oddzielny plik graficzny lub link.
 
 ### Środowiska
 
@@ -234,7 +234,6 @@ Przykład w języku ```C#```:
  byte[] qrOfflineCode = QrCodeService.GenerateQrCode(
     linkService.BuildCertificateVerificationUrl(
         nip,
-        QRCodeContextIdentifierType.Nip,
         nip,
         certificate.CertificateSerialNumber,
         invoiceHash,

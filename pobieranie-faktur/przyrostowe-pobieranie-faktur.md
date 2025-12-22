@@ -33,11 +33,11 @@ Przykład w języku ```C#```:
 
 ```csharp
 // Słownik do śledzenia punktu kontynuacji dla każdego SubjectType
-Dictionary<SubjectType, DateTime?> continuationPoints = new();
+Dictionary<InvoiceSubjectType, DateTime?> continuationPoints = new();
 IReadOnlyList<(DateTime From, DateTime To)> windows = BuildIncrementalWindows(batchCreationStart, batchCreationCompleted);
 
 // Tworzenie planu eksportu - krotki (okno czasowe, typ podmiotu)
-IEnumerable<SubjectType> subjectTypes = Enum.GetValues<SubjectType>().Where(x => x != SubjectType.SubjectAuthorized);
+IEnumerable<InvoiceSubjectType> subjectTypes = Enum.GetValues<InvoiceSubjectType>().Where(x => x != InvoiceSubjectType.SubjectAuthorized);
 IOrderedEnumerable<ExportTask> exportTasks = windows
     .SelectMany(window => subjectTypes, (window, subjectType) => new ExportTask(window.From, window.To, subjectType))
     .OrderBy(task => task.From)
@@ -135,10 +135,7 @@ InvoiceExportRequest request = new()
     Encryption = exportEncryption.EncryptionInfo
 };
 
-OperationResponse response = await KsefRateLimitWrapper.ExecuteWithRetryAsync(
-    ksefApiCall: ct => KsefClient.ExportInvoicesAsync(request, _accessToken, ct, includeMetadata: true),
-    endpoint: KsefApiEndpoint.InvoiceExport,
-    cancellationToken: CancellationToken);
+OperationResponse response = awat KsefClient.ExportInvoicesAsync(request, _accessToken, ct, includeMetadata: true);
 ```
 
 Przykład w języku ```java```:
@@ -197,10 +194,11 @@ using MemoryStream decryptedArchiveStream = await BatchUtils.DownloadAndDecryptP
     package.Parts, 
     encryptionData, 
     CryptographyService, 
-    cancellationToken: CancellationToken);
+    cancellationToken: CancellationToken)
+    .ConfigureAwait(false);
 
 // Rozpakowanie ZIP
-Dictionary<string, string> unzippedFiles = await BatchUtils.UnzipAsync(decryptedArchiveStream, CancellationToken);
+Dictionary<string, string> unzippedFiles = await BatchUtils.UnzipAsync(decryptedArchiveStream, CancellationToken).ConfigureAwait(false);
 
 foreach ((string fileName, string content) in unzippedFiles)
 {

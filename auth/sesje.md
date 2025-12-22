@@ -8,15 +8,20 @@ Zwraca listę aktywnych sesji uwierzytelnienia.
 GET [/auth/sessions](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Aktywne-sesje/paths/~1api~1v2~1auth~1sessions/get)
 
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core/E2E/Authorization/Sessions/SessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Authorization/Sessions/SessionE2ETests.cs)
 ```csharp
 const int pageSize = 20;
-string? continuationToken = null;
-var activeSessions = new List<Item>();
+string continuationToken = string.Empty;
+List<AuthenticationListItem> authenticationListItems = [];
+
 do
 {
-    var response = await ksefClient.GetActiveSessions(accessToken, pageSize, continuationToken, cancellationToken);
-    continuationToken = response.ContinuationToken;
-    activeSessions.AddRange(response.Items);
+    AuthenticationListResponse page = await ActiveSessionsClient.GetActiveSessions(accessToken, pageSize, continuationToken, CancellationToken.None);
+    continuationToken = page.ContinuationToken;
+    if (page.Items != null)
+    {
+        authenticationListItems.AddRange(page.Items);
+    }
 }
 while (!string.IsNullOrWhiteSpace(continuationToken));
 ```
@@ -41,6 +46,7 @@ Unieważnia sesję związaną z tokenem użytym do wywołania tego endpointu. Po
 - aktywne ```accessTokeny``` pozostają ważne do upływu ich terminu ważności.
 
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core/E2E/Authorization/Sessions/SessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Authorization/Sessions/SessionE2ETests.cs)
 ```csharp
 await ksefClient.RevokeCurrentSessionAsync(token, cancellationToken);
 ```
@@ -61,6 +67,7 @@ Unieważnia sesję o wskazanym numerze referencyjnym. Po operacji:
 - aktywne ```accessTokeny``` pozostają ważne do upływu ich terminu ważności.
 
 Przykład w języku ```C#```:
+[KSeF.Client.Tests.Core/E2E/Authorization/Sessions/SessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Authorization/Sessions/SessionE2ETests.cs)
 ```csharp
 await ksefClient.RevokeSessionAsync(referenceNumber, accessToken, cancellationToken);
 ```
