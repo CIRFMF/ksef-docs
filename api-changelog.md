@@ -8,7 +8,7 @@
 - **Zamknięcie sesji wsadowej (POST `/sessions/batch/{referenceNumber}/close`)**   
   - Dodano kod błędu `21208` ("Czas oczekiwania na requesty upload lub finish został przekroczony").
 
-- **Pobranie faktury/UPO***
+- **Pobranie faktury/UPO**
   - Dodano nagłówek `x-ms-meta-hash` (skrót `SHA-256`, `Base64`) w odpowiedziach `200` dla endpointów:
     - GET `/invoices/ksef/{ksefNumber}`,
     - GET `/sessions/{referenceNumber}/invoices/ksef/{ksefNumber}/upo`,
@@ -22,6 +22,14 @@
   Uzupełniono dokumentację kodów błędów o: 
     - `21301` - "Brak autoryzacji":
       - Tokeny dla operacji {`referenceNumber`} zostały już pobrane,
+      - Status uwierzytelniania ({`operation.Status`}) nie pozwala na pobranie tokenów,
+      - Token KSeF został unieważniony.
+    - `21304` - "Brak uwierzytelnienia" - Operacja uwierzytelniania {`referenceNumber`} nie została znaleziona, 
+    - `21308` - "Próba wykorzystania metod autoryzacyjnych osoby zmarłej".
+
+- **Odświeżenie tokena dostępowego** (POST `/auth/token/refresh`)  
+  Uzupełniono dokumentację kodów błędów o: 
+    - `21301` - "Brak autoryzacji":
       - Status uwierzytelniania ({`operation.Status`}) nie pozwala na pobranie tokenów,
       - Token KSeF został unieważniony.
     - `21304` - "Brak uwierzytelnienia" - Operacja uwierzytelniania {`referenceNumber`} nie została znaleziona, 

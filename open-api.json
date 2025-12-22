@@ -5486,7 +5486,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "description": "| ExceptionCode       | ExceptionDescription                           | Details                                                                     | \n|---------------------|------------------------------------------------|-----------------------------------------------------------------------------|\n| 21111               | Nieprawidłowe wyzwanie autoryzacyjne.          |  |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
             "content": {
               "application/json": {
                 "schema": {
@@ -5785,7 +5785,7 @@
             }
           },
           "400": {
-            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                     | \n|---------------------|-----------------------------------------------------|-----------------------------------------------------------------------------|\n| 21304               | Brak uwierzytelnienia.                              | Operacja uwierzytelniania o numerze referencyjnym {referenceNumber} nie została znaleziona. |",
+            "description": "| ExceptionCode       | ExceptionDescription                                | Details                                                                     | \n|---------------------|-----------------------------------------------------|-----------------------------------------------------------------------------|\n| 21301               | Brak autoryzacji.                                   | Status uwierzytelniania ({operation.Status}) nie pozwala na odświeżenie tokenu dostępowego. |\n| 21301               | Brak autoryzacji.                                   | Token KSeF został unieważniony. |\n| 21304               | Brak uwierzytelnienia.                              | Operacja uwierzytelniania o numerze referencyjnym {referenceNumber} nie została znaleziona. |\n| 21308               | Próba wykorzystania metod autoryzacyjnych osoby zmarłej. |  |",
             "content": {
               "application/json": {
                 "schema": {
