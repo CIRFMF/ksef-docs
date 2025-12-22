@@ -15,6 +15,15 @@
     - GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}/upo`,
     - GET `/sessions/{referenceNumber}/upo/{upoReferenceNumber}`.
 
+- **Pobranie tokenów dostępowych** (POST `/auth/token/redeem`)  
+  Uzupełniono dokumentację kodów błędów dla błędnych odpowiedzi: 
+    - `21301` - "Brak autoryzacji":
+      - Tokeny dla operacji {`referenceNumber`} zostały już pobrane,
+      - Status uwierzytelniania ({`operation.Status`}) nie pozwala na pobranie tokenów,
+      - Token KSeF został unieważniony.
+    - `21304` - "Brak uwierzytelnienia" - Operacja uwierzytelniania {`referenceNumber`} nie została znaleziona, 
+    - `21308` - "Próba wykorzystania metod autoryzacyjnych osoby zmarłej".
+
 - **Uprawnienia**  
   - Dodano atrybut `required` dla właściwości `subjectDetails` ("Dane podmiotu, któremu nadawane są uprawnienia") we wszystkich endpointach nadających uprawnienia (`/permissions/.../grants).
   - Dodano atrybut `required` dla właściwości `euEntityDetails` ("Dane podmiotu unijnego, w kontekście którego nadawane są uprawnienia") w endpoint POST `/permissions/eu-entities/administration/grants` ("Nadanie uprawnień administratora podmiotu unijnego").  

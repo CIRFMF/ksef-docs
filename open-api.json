@@ -5718,7 +5718,7 @@
             }
           },
           "400": {
-            "description": "",
+            "description": "| ExceptionCode       | ExceptionDescription                           | Details                                                                     | \n|---------------------|------------------------------------------------|-----------------------------------------------------------------------------|\n| 21301               | Brak autoryzacji.                              | Tokeny dla operacji uwierzytelniania {referenceNumber} zostały już pobrane. |\n| 21301               | Brak autoryzacji.                              | Status uwierzytelniania ({operation.Status}) nie pozwala na pobranie tokenów. |\n| 21301               | Brak autoryzacji.                              | Token KSeF został unieważniony. |\n| 21304               | Brak uwierzytelnienia.                         | Operacja uwierzytelniania o numerze referencyjnym {referenceNumber} nie została znaleziona. |\n| 21308               | Próba wykorzystania metod autoryzacyjnych osoby zmarłej. |  |",
             "content": {
               "application/json": {
                 "schema": {
