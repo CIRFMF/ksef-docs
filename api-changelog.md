@@ -23,6 +23,7 @@
   - Zmieniono typ właściwości `subjectEntityDetails` na `PermissionsSubjectEntityByFingerprintDetails` ("Dane podmiotu uprawnionego") w modelu odpowiedzi w POST `/permissions/query/eu-entities/grants` ("Pobranie listy uprawnień administratorów lub reprezentantów podmiotów unijnych uprawnionych do samofakturowania").  
   - Zmieniono typ właściwości `subjectPersonDetails` na `PermissionsSubjectPersonByFingerprintDetails` ("Dane osoby uprawnionej") w modelu odpowiedzi w POST `/permissions/query/eu-entities/grants` ("Pobranie listy uprawnień administratorów lub reprezentantów podmiotów unijnych uprawnionych do samofakturowania").    
   - Wprowadzono walidację sumy kontrolnej dla identyfikatora `InternalId` w POST `/permissions/subunits/grants` ("Nadanie uprawnień administratora podmiotu podrzędnego").
+  - Doprecyzowano opisy właściwości.
 
 - **OpenAPI**  
   - Uzupełniono dokumentację odpowiedzi `429` o zwracany nagłówek `Retry-After` oraz treść odpowiedzi `TooManyRequestsResponse`.

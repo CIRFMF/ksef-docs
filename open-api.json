@@ -8996,7 +8996,7 @@
                 "$ref": "#/components/schemas/PermissionsSubjectEntityByIdentifierDetails"
               }
             ],
-            "description": "Dane podmiotu, którego dotyczy uprawnienie.",
+            "description": "Dane podmiotu uprawnionego.",
             "nullable": true
           },
           "startDate": {
@@ -9753,7 +9753,7 @@
                 "$ref": "#/components/schemas/PermissionsSubjectPersonByFingerprintDetails"
               }
             ],
-            "description": "Dane osoby, której dotyczy uprawnienie.",
+            "description": "Dane osoby uprawnionej.",
             "nullable": true
           },
           "subjectEntityDetails": {
@@ -9766,7 +9766,7 @@
                 "$ref": "#/components/schemas/PermissionsSubjectEntityByFingerprintDetails"
               }
             ],
-            "description": "Dane podmiotu, którego dotyczy uprawnienie.",
+            "description": "Dane podmiotu uprawnionego.",
             "nullable": true
           },
           "euEntityDetails": {
@@ -9779,7 +9779,7 @@
                 "$ref": "#/components/schemas/PermissionsEuEntityDetails"
               }
             ],
-            "description": "Dane podmiotu unijnego, którego dotyczy uprawnienie.",
+            "description": "Dane podmiotu unijnego, w kontekście którego nadane jest uprawnienie.",
             "nullable": true
           },
           "startDate": {
@@ -11669,7 +11669,7 @@
                 "$ref": "#/components/schemas/EntitySubjectDetailsType"
               }
             ],
-            "description": "Typ danych podmiotu, którego dotyczy uprawnienie.\n| Wartość | Opis |\n| --- | --- |\n| EntityByIdentifier | Podmiot identyfikowany numerem NIP. |\n| EntityByFingerprint | Podmiot identyfikowany odciskiem palca pieczęci kwalifikowanej. |\n"
+            "description": "Typ danych podmiotu uprawnionego.\n| Wartość | Opis |\n| --- | --- |\n| EntityByIdentifier | Podmiot identyfikowany numerem NIP. |\n| EntityByFingerprint | Podmiot identyfikowany odciskiem palca pieczęci kwalifikowanej. |\n"
           },
           "fullName": {
             "maxLength": 100,
@@ -11763,7 +11763,7 @@
                 "$ref": "#/components/schemas/PersonSubjectDetailsType"
               }
             ],
-            "description": "Typ danych osoby fizycznej, której dotyczy uprawnienie.\n| Wartość | Opis |\n| --- | --- |\n| PersonByIdentifier | Osoba fizyczna posługująca się Profilem Zaufanym lub certyfikatem zawierającym identyfikator NIP lub PESEL. |\n| PersonByFingerprintWithIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL, ale mająca NIP lub PESEL. |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n"
+            "description": "Typ danych uprawnionej osoby fizycznej.\n| Wartość | Opis |\n| --- | --- |\n| PersonByIdentifier | Osoba fizyczna posługująca się Profilem Zaufanym lub certyfikatem zawierającym identyfikator NIP lub PESEL. |\n| PersonByFingerprintWithIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL, ale mająca NIP lub PESEL. |\n| PersonByFingerprintWithoutIdentifier | Osoba fizyczna posługująca się certyfikatem niezawierającym identyfikatora NIP ani PESEL i niemająca NIP ani PESEL. |\n"
           },
           "firstName": {
             "maxLength": 30,
@@ -12073,7 +12073,7 @@
                 "$ref": "#/components/schemas/PermissionsSubjectPersonDetails"
               }
             ],
-            "description": "Dane osoby, której dotyczy uprawnienie.",
+            "description": "Dane osoby uprawnionej.",
             "nullable": true
           },
           "subjectEntityDetails": {
@@ -12086,7 +12086,7 @@
                 "$ref": "#/components/schemas/PermissionsSubjectEntityDetails"
               }
             ],
-            "description": "Dane podmiotu, którego dotyczy uprawnienie.",
+            "description": "Dane podmiotu uprawnionego.",
             "nullable": true
           },
           "permissionState": {
@@ -12616,7 +12616,7 @@
                 "$ref": "#/components/schemas/PermissionsSubjectPersonDetails"
               }
             ],
-            "description": "Dane osoby, której dotyczy uprawnienie.",
+            "description": "Dane osoby uprawnionej.",
             "nullable": true
           },
           "subjectEntityDetails": {
@@ -12629,7 +12629,7 @@
                 "$ref": "#/components/schemas/PermissionsSubjectEntityDetails"
               }
             ],
-            "description": "Dane podmiotu, którego dotyczy uprawnienie.",
+            "description": "Dane podmiotu uprawnionego.",
             "nullable": true
           },
           "permissionState": {
@@ -14111,7 +14111,7 @@
                 "$ref": "#/components/schemas/PermissionsSubjectPersonDetails"
               }
             ],
-            "description": "Dane osoby, której dotyczy uprawnienie.",
+            "description": "Dane osoby uprawnionej.",
             "nullable": true
           },
           "subunitName": {
