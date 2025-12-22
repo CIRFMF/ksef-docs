@@ -16,10 +16,11 @@
     - GET `/sessions/{referenceNumber}/upo/{upoReferenceNumber}`.
 
 - **Pobranie statusu uwierzytelniania** (GET `/auth/{referenceNumber}`)
-  Uzupełniono dokumentację kodów błędów o `21304` ("Brak uwierzytelnienia") - operacja uwierzytelniania o numerze referencyjnym {`referenceNumber`} nie została znaleziona.
+  - Uzupełniono dokumentację HTTP 400 (Bad Request) o kod błędu `21304` ("Brak uwierzytelnienia") - operacja uwierzytelniania o numerze referencyjnym {`referenceNumber`} nie została znaleziona.
+  - Rozszerzono status `450` ("Uwierzytelnianie zakończone niepowodzeniem z powodu błędnego tokenu") o dodatkową przyczynę: "Nieprawidłowe wyzwanie autoryzacyjne".
 
 - **Pobranie tokenów dostępowych** (POST `/auth/token/redeem`)  
-  Uzupełniono dokumentację kodów błędów o: 
+  Uzupełniono dokumentację HTTP 400 (Bad Request) o kody błędów:
     - `21301` - "Brak autoryzacji":
       - Tokeny dla operacji {`referenceNumber`} zostały już pobrane,
       - Status uwierzytelniania ({`operation.Status`}) nie pozwala na pobranie tokenów,
@@ -28,7 +29,7 @@
     - `21308` - "Próba wykorzystania metod autoryzacyjnych osoby zmarłej".
 
 - **Odświeżenie tokena dostępowego** (POST `/auth/token/refresh`)  
-  Uzupełniono dokumentację kodów błędów o: 
+  Uzupełniono dokumentację HTTP 400 (Bad Request) o kody błędów:
     - `21301` - "Brak autoryzacji":
       - Status uwierzytelniania ({`operation.Status`}) nie pozwala na pobranie tokenów,
       - Token KSeF został unieważniony.
