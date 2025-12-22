@@ -35,6 +35,11 @@
     - `21304` - "Brak uwierzytelnienia" - Operacja uwierzytelniania {`referenceNumber`} nie została znaleziona, 
     - `21308` - "Próba wykorzystania metod autoryzacyjnych osoby zmarłej".
 
+- **Wysyłka interaktywna** (POST `/sessions/online/{referenceNumber}/invoices`)  
+  Uzupełniono dokumentację kodów błędów o:
+    - `21402` "Nieprawidłowy rozmiar pliku" - długość treści nie zgadza się z rozmiarem pliku, 
+    - `21403` „Nieprawidłowy skrót pliku" - skrót treści nie zgadza się ze skrótem pliku.
+
 - **Eksport paczki faktur (POST `/invoices/exports`). Pobranie listy metadanych faktur (POST `/invoices/query/metadata`)**  
   Zmniejszono maksymalny dozwolony zakres `dateRange` z 2 lat do 3 miesięcy.
 
