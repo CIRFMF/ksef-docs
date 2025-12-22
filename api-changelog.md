@@ -2,6 +2,9 @@
 
 ### Wersja 2.0.0
 
+- **UPO**  
+  Zgodnie z zapowiedzią z RC6.0, od `2025-12-22` domyślnie zwracana jest wersja UPO v4-3.
+
 - **Status sesji** (GET `/sessions/{referenceNumber}`)  
   - Rozszerzono model odpowiedzi o właściwości `dateCreated` ("Data utworzenia sesji") oraz `dateUpdated` ("Data ostatniej aktywności w ramach sesji").  
 
