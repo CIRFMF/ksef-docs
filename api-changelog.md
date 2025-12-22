@@ -15,8 +15,11 @@
     - GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}/upo`,
     - GET `/sessions/{referenceNumber}/upo/{upoReferenceNumber}`.
 
+- **Pobranie statusu uwierzytelniania** (GET `/auth/{referenceNumber}`)
+  Uzupełniono dokumentację kodów błędów o `21304` ("Brak uwierzytelnienia") - operacja uwierzytelniania o numerze referencyjnym {`referenceNumber`} nie została znaleziona.
+
 - **Pobranie tokenów dostępowych** (POST `/auth/token/redeem`)  
-  Uzupełniono dokumentację kodów błędów dla błędnych odpowiedzi: 
+  Uzupełniono dokumentację kodów błędów o: 
     - `21301` - "Brak autoryzacji":
       - Tokeny dla operacji {`referenceNumber`} zostały już pobrane,
       - Status uwierzytelniania ({`operation.Status`}) nie pozwala na pobranie tokenów,

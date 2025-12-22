@@ -5647,7 +5647,7 @@
             }
           },
           "400": {
-            "description": "",
+            "description": "| ExceptionCode       | ExceptionDescription                           | Details                                                                     | \n|---------------------|------------------------------------------------|-----------------------------------------------------------------------------|\n| 21304               | Brak uwierzytelnienia.                         | Operacja uwierzytelniania o numerze referencyjnym {referenceNumber} nie została znaleziona. |",
             "content": {
               "application/json": {
                 "schema": {
