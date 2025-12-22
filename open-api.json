@@ -8827,7 +8827,7 @@
           },
           "csr": {
             "type": "string",
-            "description": "Wniosek certyfikacyjny PKCS#10 (CSR) w formacie DER zakodowany w Base64.",
+            "description": "Wniosek certyfikacyjny PKCS#10 (CSR) w formacie DER, zakodowany w formacie Base64.",
             "format": "byte"
           },
           "validFrom": {
@@ -10317,7 +10317,7 @@
           },
           "encryptedToken": {
             "type": "string",
-            "description": "Zaszyfrowany token wraz z timestampem z challenge'a, w formacie `token|timestamp`.",
+            "description": "Zaszyfrowany token wraz z timestampem z challenge'a, w postaci `token|timestamp`, zakodowany w formacie Base64.",
             "format": "byte"
           },
           "authorizationPolicy": {
@@ -10559,7 +10559,7 @@
                 "$ref": "#/components/schemas/Sha256HashBase64"
               }
             ],
-            "description": "Skrót SHA256 faktury."
+            "description": "Skrót SHA256 faktury, zakodowany w formacie Base64."
           },
           "hashOfCorrectedInvoice": {
             "allOf": [
@@ -10567,7 +10567,7 @@
                 "$ref": "#/components/schemas/Sha256HashBase64"
               }
             ],
-            "description": "Skrót SHA256 korygowanej faktury.",
+            "description": "Skrót SHA256 korygowanej faktury, zakodowany w formacie Base64.",
             "nullable": true
           },
           "thirdSubjects": {
@@ -12657,7 +12657,7 @@
         "properties": {
           "certificate": {
             "type": "string",
-            "description": "Certyfikat klucza publicznego w formacie DER zakodowany w Base64.",
+            "description": "Certyfikat klucza publicznego w formacie DER, zakodowany w formacie Base64.",
             "format": "byte"
           },
           "validFrom": {
@@ -13081,7 +13081,7 @@
         "properties": {
           "certificate": {
             "type": "string",
-            "description": "Certyfikat w formacie DER zakodowany w Base64.",
+            "description": "Certyfikat w formacie DER, zakodowany w formacie Base64.",
             "format": "byte"
           },
           "certificateName": {

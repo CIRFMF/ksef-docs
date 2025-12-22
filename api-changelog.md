@@ -10,7 +10,8 @@
   - Dodano atrybut `required` dla właściwości `euEntityDetails` ("Dane podmiotu unijnego, w kontekście którego nadawane są uprawnienia") w endpoint POST `/permissions/eu-entities/administration/grants` ("Nadanie uprawnień administratora podmiotu unijnego").  
 
 - **OpenAPI**  
-  Uzupełniono dokumentację odpowiedzi `429` o zwracany nagłówek `Retry-After` oraz treść odpowiedzi `TooManyRequestsResponse`.
+  - Uzupełniono dokumentację odpowiedzi `429` o zwracany nagłówek `Retry-After` oraz treść odpowiedzi `TooManyRequestsResponse`.
+  - Doprecyzowano opisy właściwości typu `byte` - wartości są przekazywane jako dane binarne zakodowane w formacie `Base64`.
 
 ### Wersja 2.0.0 RC6.1
 
