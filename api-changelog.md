@@ -5,6 +5,13 @@
 - **Status sesji** (GET `/sessions/{referenceNumber}`)  
   - Rozszerzono model odpowiedzi o właściwości `dateCreated` ("Data utworzenia sesji") oraz `dateUpdated` ("Data ostatniej aktywności w ramach sesji").  
 
+- **Pobranie faktury/UPO***
+  - Dodano nagłówek `x-ms-meta-hash` (skrót `SHA-256`, `Base64`) w odpowiedziach `200` dla endpointów:
+    - GET `/invoices/ksef/{ksefNumber}`,
+    - GET `/sessions/{referenceNumber}/invoices/ksef/{ksefNumber}/upo`,
+    - GET `/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}/upo`,
+    - GET `/sessions/{referenceNumber}/upo/{upoReferenceNumber}`.
+
 - **Uprawnienia**  
   - Dodano atrybut `required` dla właściwości `subjectDetails` ("Dane podmiotu, któremu nadawane są uprawnienia") we wszystkich endpointach nadających uprawnienia (`/permissions/.../grants).
   - Dodano atrybut `required` dla właściwości `euEntityDetails` ("Dane podmiotu unijnego, w kontekście którego nadawane są uprawnienia") w endpoint POST `/permissions/eu-entities/administration/grants` ("Nadanie uprawnień administratora podmiotu unijnego").  

@@ -3255,6 +3255,14 @@
         "responses": {
           "200": {
             "description": "OK",
+            "headers": {
+              "x-ms-meta-hash": {
+                "description": "Skrót SHA-256 faktury, zakodowany w formacie Base64",
+                "schema": {
+                  "$ref": "#/components/schemas/Sha256HashBase64"
+                }
+              }
+            },
             "content": {
               "application/xml": {
                 "schema": {
@@ -4516,6 +4524,14 @@
         "responses": {
           "200": {
             "description": "OK",
+            "headers": {
+              "x-ms-meta-hash": {
+                "description": "Skrót SHA-256 dokumentu UPO, zakodowany w formacie Base64",
+                "schema": {
+                  "$ref": "#/components/schemas/Sha256HashBase64"
+                }
+              }
+            },
             "content": {
               "application/xml": {
                 "schema": {
@@ -4608,6 +4624,14 @@
         "responses": {
           "200": {
             "description": "OK",
+            "headers": {
+              "x-ms-meta-hash": {
+                "description": "Skrót SHA-256 dokumentu UPO, zakodowany w formacie Base64",
+                "schema": {
+                  "$ref": "#/components/schemas/Sha256HashBase64"
+                }
+              }
+            },
             "content": {
               "application/xml": {
                 "schema": {
@@ -4700,6 +4724,14 @@
         "responses": {
           "200": {
             "description": "OK",
+            "headers": {
+              "x-ms-meta-hash": {
+                "description": "Skrót SHA-256 dokumentu UPO, zakodowany w formacie Base64",
+                "schema": {
+                  "$ref": "#/components/schemas/Sha256HashBase64"
+                }
+              }
+            },
             "content": {
               "application/xml": {
                 "schema": {
@@ -10837,7 +10869,7 @@
           },
           "url": {
             "type": "string",
-            "description": "Adres URL, pod który należy wysłać żądanie pobrania części paczki.\nLink jest generowany dynamicznie w momencie odpytania o status operacji eksportu.\nNie podlega limitom API i nie wymaga przesyłania tokenu dostępowego przy pobraniu.",
+            "description": "Adres URL, pod który należy wysłać żądanie pobrania części paczki.\nLink jest generowany dynamicznie w momencie odpytania o status operacji eksportu.\nNie podlega limitom API i nie wymaga przesyłania tokenu dostępowego przy pobraniu.\n\nOdpowiedź HTTP zawiera dodatkowe nagłówki:\n- `x-ms-meta-hash` – zaszyfrowanej części paczki, zakodowany w formacie Base64.",
             "format": "uri"
           },
           "partSize": {
@@ -13307,7 +13339,7 @@
           },
           "upoDownloadUrl": {
             "type": "string",
-            "description": "Adres do pobrania UPO. Link generowany jest przy każdym odpytaniu o status. \nDostęp odbywa się metodą `HTTP GET` i <b>nie należy</b> wysyłać tokenu dostępowego. \nLink nie podlega limitom API i wygasa po określonym czasie w `UpoDownloadUrlExpirationDate`.",
+            "description": "Adres do pobrania UPO. Link generowany jest przy każdym odpytaniu o status. \nDostęp odbywa się metodą `HTTP GET` i <b>nie należy</b> wysyłać tokenu dostępowego. \nLink nie podlega limitom API i wygasa po określonym czasie w `UpoDownloadUrlExpirationDate`.\n\nOdpowiedź HTTP zawiera dodatkowe nagłówki:\n- `x-ms-meta-hash` – skrót SHA-256 dokumentu UPO, zakodowany w formacie Base64.",
             "format": "uri",
             "nullable": true
           },
@@ -14599,7 +14631,7 @@
           },
           "downloadUrl": {
             "type": "string",
-            "description": "Adres do pobrania strony UPO. Link generowany jest przy każdym odpytaniu o status. \nDostęp odbywa się metodą `HTTP GET` i <b>nie należy</b> wysyłać tokenu dostępowego. \nLink nie podlega limitom API i wygasa po określonym czasie w `DownloadUrlExpirationDate`.",
+            "description": "Adres do pobrania strony UPO. Link generowany jest przy każdym odpytaniu o status. \nDostęp odbywa się metodą `HTTP GET` i <b>nie należy</b> wysyłać tokenu dostępowego. \nLink nie podlega limitom API i wygasa po określonym czasie w `DownloadUrlExpirationDate`.\n\nOdpowiedź HTTP zawiera dodatkowe nagłówki:\n- `x-ms-meta-hash` – skrót SHA-256 dokumentu UPO, zakodowany w formacie Base64.",
             "format": "uri"
           },
           "downloadUrlExpirationDate": {
