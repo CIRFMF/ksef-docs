@@ -5,6 +5,9 @@
 - **Status sesji** (GET `/sessions/{referenceNumber}`)  
   - Rozszerzono model odpowiedzi o właściwości `dateCreated` ("Data utworzenia sesji") oraz `dateUpdated` ("Data ostatniej aktywności w ramach sesji").  
 
+- **Zamknięcie sesji wsadowej (POST `/sessions/batch/{referenceNumber}/close`)**   
+  - Dodano kod błędu `21208` ("Czas oczekiwania na requesty upload lub finish został przekroczony").
+
 - **Pobranie faktury/UPO***
   - Dodano nagłówek `x-ms-meta-hash` (skrót `SHA-256`, `Base64`) w odpowiedziach `200` dla endpointów:
     - GET `/invoices/ksef/{ksefNumber}`,
