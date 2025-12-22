@@ -8993,7 +8993,7 @@
             ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/PermissionsSubjectEntityDetails"
+                "$ref": "#/components/schemas/PermissionsSubjectEntityByIdentifierDetails"
               }
             ],
             "description": "Dane podmiotu, którego dotyczy uprawnienie.",
@@ -9501,6 +9501,13 @@
           "Nip"
         ],
         "type": "string"
+      },
+      "EntitySubjectByIdentifierDetailsType": {
+        "enum": [
+          "EntityByIdentifier"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| EntityByIdentifier | Podmiot identyfikowany numerem NIP. |\n"
       },
       "EntitySubjectDetailsType": {
         "enum": [
@@ -11586,6 +11593,29 @@
               }
             ],
             "description": "Informacje o aktualnym statusie.\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Operacja przyjęta do realizacji | - |\n| 200 | Operacja zakończona sukcesem | - |\n| 400 | Operacja zakończona niepowodzeniem | - |\n| 410 | Podane identyfikatory są niezgodne lub pozostają w niewłaściwej relacji | - |\n| 420 | Użyte poświadczenia nie mają uprawnień do wykonania tej operacji | - |\n| 430 | Kontekst identyfikatora nie odpowiada wymaganej roli lub uprawnieniom | - |\n| 440 | Operacja niedozwolona dla wskazanych powiązań identyfikatorów | - |\n| 450 | Operacja niedozwolona dla wskazanego identyfikatora lub jego typu | - |\n| 500 | Nieznany błąd | - |\n| 550 | Operacja została anulowana przez system | Przetwarzanie zostało przerwane z przyczyn wewnętrznych systemu. Spróbuj ponownie później. |"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PermissionsSubjectEntityByIdentifierDetails": {
+        "required": [
+          "fullName",
+          "subjectDetailsType"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectDetailsType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitySubjectByIdentifierDetailsType"
+              }
+            ],
+            "description": "Typ danych podmiotu uprawnionego.\n| Wartość | Opis |\n| --- | --- |\n| EntityByIdentifier | Podmiot identyfikowany numerem NIP. |\n"
+          },
+          "fullName": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Pełna nazwa podmiotu."
           }
         },
         "additionalProperties": false
