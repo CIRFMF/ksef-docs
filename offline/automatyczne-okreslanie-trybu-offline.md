@@ -14,7 +14,7 @@ Reguły:
 - Jeśli dzień `issueDate` i dzień `invoicingDate` są takie same, faktura pozostaje **online**.
 
 Wartość `invoicingDate` zależy od trybu przesyłki:
-- **sesja wsadowa** - `invoicingDate` to moment otwarcia sesji,
+- **sesja wsadowa** - `invoicingDate` to moment otwarcia sesji (równy `dateCreated` zwracanemu w statusie sesji - GET `/sessions/{referenceNumber}`),
 - **sesja interaktywna** - `invoicingDate` to moment przesłania faktury.
 
 To oznacza, że jeśli np. faktura została wystawiona 2025-10-03 (`P_1`), a przesłana 2025-10-04 o godzinie 00:00:01, to mimo offlineMode: false zostanie oznaczona jako faktura offline.
