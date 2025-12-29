@@ -8308,6 +8308,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
@@ -14312,8 +14314,6 @@
         "type": "object",
         "properties": {
           "type": {
-            "maxLength": 64,
-            "minLength": 10,
             "allOf": [
               {
                 "$ref": "#/components/schemas/SubunitPermissionsSubjectIdentifierType"
@@ -14322,6 +14322,8 @@
             "description": "Typ identyfikatora."
           },
           "value": {
+            "maxLength": 64,
+            "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
