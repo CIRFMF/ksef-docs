@@ -6,7 +6,7 @@ Niniejszy dokument opisuje operacje służące do monitorowania stanu sesji (int
 ### 1. Pobranie listy sesji
 Zwraca listę sesji spełniających podane kryteria wyszukiwania.
 
-GET [sessions](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions/get)
+GET [sessions](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1sessions/get)
 
 Zwraca bieżący status sesji wraz z zagregowanymi danymi o liczbie przesłanych, poprawnie i niepoprawnie przetworzonych faktur; po zamknięciu sesji udostępnia dodatkowo listę referencji do zbiorczego UPO.
 
@@ -57,7 +57,7 @@ while (Strings.isNotBlank(activeSessions.getContinuationToken())) {
 ### 2. Sprawdzenie stanu sesji
 Sprawdza bieżący stan sesji.
 
-GET [sessions/\{referenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions~1%7BreferenceNumber%7D/get)
+GET [sessions/\{referenceNumber\}](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1sessions~1%7BreferenceNumber%7D/get)
 
 Zwraca bieżący status sesji wraz z zagregowanymi danymi o liczbie przesłanych, poprawnie i niepoprawnie przetworzonych faktur; po zamknięciu sesji udostępnia dodatkowo listę referencji do zbiorczego UPO.
 
@@ -81,7 +81,7 @@ SessionStatusResponse statusResponse = ksefClient.getSessionStatus(referenceNumb
 
 ### 3. Pobranie informacji na temat przesłanych faktur
 
-GET [sessions/\{referenceNumber\}/invoices](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions~1%7BreferenceNumber%7D~1invoices/get)
+GET [sessions/\{referenceNumber\}/invoices](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1sessions~1%7BreferenceNumber%7D~1invoices/get)
 
 Zwraca listę metadanych wszystkich przesłanych faktur wraz z ich statusami oraz łączną liczbę tych faktur w sesji.
 
@@ -128,7 +128,7 @@ Umożliwia pobranie szczegółowych informacji o pojedynczej fakturze w sesji, w
 
 Należy podać numer referencyjny sesji `referenceNumber` oraz numer referencyjny faktury `invoiceReferenceNumber`.
 
-GET [sessions/\{referenceNumber\}/invoices/\{invoiceReferenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions~1%7BreferenceNumber%7D~1invoices~1%7BinvoiceReferenceNumber%7D/get)
+GET [sessions/\{referenceNumber\}/invoices/\{invoiceReferenceNumber\}](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1sessions~1%7BreferenceNumber%7D~1invoices~1%7BinvoiceReferenceNumber%7D/get)
 
 Przykład w języku C#:
 ```csharp
@@ -154,7 +154,7 @@ Umożliwia pobranie UPO dla pojedynczej, poprawnie przyjętej faktury.
 
 #### 5.1 Na podstawie numery referencyjnego faktury
 
-GET [sessions/\{referenceNumber\}/invoices/\{invoiceReferenceNumber\}/upo](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions~1%7BreferenceNumber%7D~1invoices~1%7BinvoiceReferenceNumber%7D~1upo/get)
+GET [sessions/\{referenceNumber\}/invoices/\{invoiceReferenceNumber\}/upo](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1sessions~1%7BreferenceNumber%7D~1invoices~1%7BinvoiceReferenceNumber%7D~1upo/get)
 
 Przykład w języku C#:
 ```csharp
@@ -175,7 +175,7 @@ byte[] upoResponse = ksefClient.getSessionInvoiceUpoByReferenceNumber(sessionRef
 
 #### 5.2 Na podstawie numeru KSeF faktury
 
-GET [sessions/\{referenceNumber\}/invoices/\{ksefNumber\}/upo](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions~1%7BreferenceNumber%7D~1invoices~1ksef~1%7BksefNumber%7D~1upo/get)
+GET [sessions/\{referenceNumber\}/invoices/ksef/\{ksefNumber\}/upo](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1sessions~1%7BreferenceNumber%7D~1invoices~1ksef~1%7BksefNumber%7D~1upo/get)
 
 Przykład w języku C#:
 ```csharp
@@ -200,7 +200,7 @@ Otrzymany dokument XML jest:
 
 ### 6. Pobranie listy niepoprawnie przyjętych faktur
 
-GET [sessions/\{referenceNumber\}/invoices/failed](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions~1%7BreferenceNumber%7D~1invoices~1failed/get)
+GET [sessions/\{referenceNumber\}/invoices/failed](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1sessions~1%7BreferenceNumber%7D~1invoices~1failed/get)
 
 Zwraca łączną liczbę odrzuconych faktur w sesji oraz szczegółowe informacje (status i szczegóły błędów) dla każdej niepoprawnie przetworzonej faktury.
 
@@ -242,7 +242,7 @@ Endpoint umożliwia selektywne pobranie wyłącznie odrzuconych faktur, co ułat
 
 UPO sesji stanowi zbiorcze poświadczenie przyjęcia wszystkich faktur poprawnie przesłanych w ramach danej sesji.
 
-Po zamknięciu sesji, w odpowiedzi na sprawdzenie jej [stanu](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions~1%7BreferenceNumber%7D/get) (krok 2 – Sprawdzenie stanu sesji), zwracane są nie tylko informacje o liczbie poprawnie i błędnie przetworzonych faktur, lecz także lista referencji do zbiorczych UPO.
+Po zamknięciu sesji, w odpowiedzi na sprawdzenie jej [stanu](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1sessions~1%7BreferenceNumber%7D/get) (krok 2 – Sprawdzenie stanu sesji), zwracane są nie tylko informacje o liczbie poprawnie i błędnie przetworzonych faktur, lecz także lista referencji do zbiorczych UPO.
 
 Każdy element tablicy `upo.pages[]` zawiera numer referencyjny UPO (`referenceNumber`) oraz link (`downloadUrl`) umożliwiający jego pobranie:
 
@@ -263,7 +263,7 @@ Każdy element tablicy `upo.pages[]` zawiera numer referencyjny UPO (`referenceN
 ```
 
 Dysponując tą listą, klient API może pobrać UPO pojedynczo, wywołując endpoint wskazany w polu `downloadUrl`, tj.  
-GET [/sessions/\{referenceNumber\}/upo/\{upoReferenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1api~1v2~1sessions~1%7BreferenceNumber%7D~1upo~1%7BupoReferenceNumber%7D/get)
+GET [/sessions/\{referenceNumber\}/upo/\{upoReferenceNumber\}](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Status-wysylki-i-UPO/paths/~1sessions~1%7BreferenceNumber%7D~1upo~1%7BupoReferenceNumber%7D/get)
 
 Otrzymany dokument XML jest zgodny ze schematem [XSD](/faktury/upo/schemy/upo-v4-2.xsd) i może zawierać maksymalnie 10 000 pozycji faktur.
 

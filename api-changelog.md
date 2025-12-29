@@ -697,7 +697,7 @@ Rozszerzono model odpowiedzi o pola:
   - Zmieniono kod statusu „Trwa przetwarzanie” z 300 na 150.
 
 - **Uwierzytelnienie z wykorzystaniem podpisu XAdES**  
-  - Poprawka ContextIdentifier w xsd AuthTokenRequest. Należy użyć poprawionej wersji [schematu XSD](https://ksef-test.mf.gov.pl/docs/v2/schemas/authv2.xsd). [Przygotowanie dokumentu XML](uwierzytelnianie.md#1-przygotowanie-dokumentu-xml-authtokenrequest)
+  - Poprawka ContextIdentifier w xsd AuthTokenRequest. Należy użyć poprawionej wersji [schematu XSD](https://api-test.ksef.mf.gov.pl/docs/v2/schemas/authv2.xsd). [Przygotowanie dokumentu XML](uwierzytelnianie.md#1-przygotowanie-dokumentu-xml-authtokenrequest)
   - Dodano kod błędu`21117` - „Nieprawidłowy identyfikator podmiotu dla wskazanego typu kontekstu”.
 
 - **Usunięcie endpointu do anonimowego pobierania faktury ```invoices/download```**  

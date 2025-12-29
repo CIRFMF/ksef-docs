@@ -37,7 +37,7 @@ symetryczny klucz szyfrujący pliki XML, zaszyfrowany kluczem publicznym Ministe
 
 Otwarcie sesji jest operacją lekką i synchroniczną – można równocześnie utrzymywać wiele otwartych sesji interaktywnych w ramach jednego uwierzytelnienia.
 
-POST [sessions/online](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wysylka-interaktywna/operation/onlineSession.open)
+POST [sessions/online](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Wysylka-interaktywna/paths/~1sessions~1online/post)
 
 W odpowiedzi zwracany jest obiekt zawierający: 
  - ```referenceNumber``` – unikalny identyfikator sesji interaktywnej, który należy przekazywać we wszystkich kolejnych wywołaniach API.
@@ -74,7 +74,7 @@ OpenOnlineSessionResponse openOnlineSessionResponse = ksefClient.openOnlineSessi
 
 Zaszyfrowaną fakturę należy wysłać na endpoint:
 
-POST [sessions/online/{referenceNumber}/invoices/](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wysylka-interaktywna/paths/~1api~1v2~1sessions~1online~1%7BreferenceNumber%7D~1invoices/post)
+POST [sessions/online/{referenceNumber}/invoices/](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Wysylka-interaktywna/paths/~1sessions~1online~1%7BreferenceNumber%7D~1invoices/post)
 
 Odpowiedź zawiera ```referenceNumber``` dokumentu – używany do identyfikacji faktury w kolejnych operacjach (np. listy dokumentów).
 
@@ -126,7 +126,7 @@ SendInvoiceResponse sendInvoiceResponse = ksefClient.onlineSessionSendInvoice(se
 ### 3. Zamknięcie sesji
 Po wysłaniu wszystkich faktur należy zamknąć sesję, co inicjuje asynchroniczne generowanie zbiorczego UPO.
 
-POST [/sessions/online/\{referenceNumber\}/close](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wysylka-interaktywna/paths/~1api~1v2~1sessions~1online~1%7BreferenceNumber%7D~1close/post)
+POST [/sessions/online/\{referenceNumber\}/close](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Wysylka-interaktywna/paths/~1sessions~1online~1%7BreferenceNumber%7D~1close/post)
 
 Zbiorcze UPO będzie dostępne po sprawdzeniu stanu sesji.
 

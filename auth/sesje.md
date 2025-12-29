@@ -5,7 +5,7 @@
 
 Zwraca listę aktywnych sesji uwierzytelnienia.
 
-GET [/auth/sessions](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Aktywne-sesje/paths/~1api~1v2~1auth~1sessions/get)
+GET [/auth/sessions](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Aktywne-sesje/paths/~1auth~1sessions/get)
 
 Przykład w języku ```C#```:
 [KSeF.Client.Tests.Core/E2E/Authorization/Sessions/SessionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Authorization/Sessions/SessionE2ETests.cs)
@@ -39,7 +39,7 @@ while (Strings.isNotBlank(activeSessions.getContinuationToken())) {
 
 ### Unieważnienie bieżącej sesji
 
-DELETE [`/auth/sessions/current`](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Aktywne-sesje/paths/~1api~1v2~1auth~1sessions~1current/delete)
+DELETE [`/auth/sessions/current`](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Aktywne-sesje/paths/~1auth~1sessions~1current/delete)
 
 Unieważnia sesję związaną z tokenem użytym do wywołania tego endpointu. Po operacji:
 - powiązany ```refreshToken``` zostaje unieważniony,
@@ -60,7 +60,7 @@ createKSeFClient().revokeCurrentSession(accessToken);
 
 ### Unieważnienie wybranej sesji
 
-DELETE [`/auth/sessions/{referenceNumber}`](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Aktywne-sesje/paths/~1api~1v2~1auth~1sessions~1%7BreferenceNumber%7D/delete)
+DELETE [`/auth/sessions/{referenceNumber}`](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Aktywne-sesje/paths/~1auth~1sessions~1%7BreferenceNumber%7D/delete)
 
 Unieważnia sesję o wskazanym numerze referencyjnym. Po operacji:
 - powiązany ```refreshToken``` zostaje unieważniony,

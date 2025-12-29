@@ -15,7 +15,7 @@ Wygenerowanie ```tokena KSeF``` jest możliwe wyłącznie po jednorazowym uwierz
 ### 1. Generowanie tokenu  
 
 Token może być generowany wyłącznie w kontekście `Nip` lub `InternalId`. Generowanie odbywa się poprzez wywołanie endpointu:  
-POST [/tokens](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Tokeny/paths/~1api~1v2~1tokens/post)
+POST [/tokens](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Tokeny-KSeF/paths/~1tokens/post)
 
 Podając w ciele żądania kolekcję uprawnień oraz opis tokena.
 
@@ -55,7 +55,7 @@ GenerateTokenResponse ksefToken = ksefClient.generateKsefToken(request, authToke
 ### 2. Filtrowanie tokenów
 
 Metadane tokenów KSeF można pobierać i filtrować za pomocą wywołania:<br>
-GET [/tokens](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Tokeny/paths/~1api~1v2~1tokens/get)
+GET [/tokens](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Tokeny-KSeF/paths/~1tokens/get)
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
@@ -92,7 +92,7 @@ W odpowiedzi zwracane są metadane tokenów, między innymi informacja kto i w j
 ### 3. Pobieranie konkretnego tokena
 
 Aby pobrać szczegóły konkretnego token, należy użyć wywołania:<br>
-GET [/tokens/\{referenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Tokeny/paths/~1api~1v2~1tokens~1%7BreferenceNumber%7D/get)
+GET [/tokens/\{referenceNumber\}](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Tokeny-KSeF/paths/~1tokens~1%7BreferenceNumber%7D/get)
 
 ```referenceNumber``` to unikalny identyfikator tokena, który można uzyskać podczas jego tworzenia lub z listy tokenów.
 
@@ -111,7 +111,7 @@ AuthenticationToken ksefToken = ksefClient.getKsefToken(token.getReferenceNumber
 ### 4. Unieważnienie tokena
 
 Aby unieważnić token, należy użyć wywołania:<br>
-DELETE [/tokens/\{referenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Tokeny/paths/~1api~1v2~1tokens~1%7BreferenceNumber%7D/delete)
+DELETE [/tokens/\{referenceNumber\}](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Tokeny-KSeF/paths/~1tokens~1%7BreferenceNumber%7D/delete)
 
 ```referenceNumber``` to unikalny identyfikator tokena, który chcemy unieważnić.
 

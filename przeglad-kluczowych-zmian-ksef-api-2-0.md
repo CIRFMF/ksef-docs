@@ -21,15 +21,11 @@ Aby ułatwić przejście na nową wersję API oraz zapewnić prawidłową implem
 
 Wersja 2.0 API KSeF została opisana w standardzie OpenAPI, co umożliwia zarówno łatwe przeglądanie dokumentacji przez programistów, jak i automatyczne generowanie kodu integracyjnego.
 
-* **Dokumentacja** (interaktywna wersja online):
-  Interfejs dokumentacyjny w formie portalu technicznego, zawierający opisy metod, struktur danych, parametrów i przykładów. Przeznaczony do użytku przez programistów i analityków integracyjnych.
-  <br> Środowisko testowe (TE): \[[link](https://ksef-test.mf.gov.pl/docs/v2/index.html)\]
-  <br> Środowisko produkcyjne (PRD)
+* **Dokumentacja** (interaktywna wersja online):  
+  Przeglądarkowy interfejs w formie strony WWW, prezentujący opisy metod API, modele danych, parametry oraz przykłady użycia. Przeznaczony dla programistów i analityków integracyjnych: [[link](https://api-test.ksef.mf.gov.pl/docs/v2/index.html)].
 
 * **Specyfikacja** (plik JSON OpenAPI):  
-  Surowy plik specyfikacji OpenAPI w formacie JSON, przeznaczony do wykorzystania w narzędziach automatyzujących integrację (np. generatory kodu, walidatory kontraktów API).
-  <br> Środowisko testowe (TE): \[[link](https://ksef-test.mf.gov.pl/docs/v2/openapi.json)\]
-  <br> Środowisko produkcyjne (PRD)
+  Surowy plik specyfikacji OpenAPI w formacie JSON, przeznaczony do wykorzystania w narzędziach automatyzujących integrację (np. generatory kodu, walidatory kontraktów API): [[link](https://api-test.ksef.mf.gov.pl/docs/v2/openapi.json)].
 
 **Oficjalna biblioteka integracyjna KSeF 2.0 Client (open source)**
 

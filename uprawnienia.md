@@ -209,7 +209,7 @@ Podmiot A posiada uprawnienie `InvoiceRead` z `canDelegate = true` dla wielu kli
 
 W ramach organizacji korzystających z KSeF możliwe jest nadanie uprawnień konkretnym osobom fizycznym – np. pracownikom działu księgowości lub IT. Uprawnienia są przypisywane do osoby na podstawie jej identyfikatora (PESEL, NIP lub Fingerprint). Uprawnienia mogą obejmować zarówno działania operacyjne (np. wystawianie faktur), jak i administracyjne (np. zarządzanie uprawnieniami). Sekcja opisuje sposób nadania takich uprawnień za pomocą API oraz wymagania uprawnieniowe po stronie nadającego.
 
-POST [/permissions/persons/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1api~1v2~1permissions~1persons~1grants/post)
+POST [/permissions/persons/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1permissions~1persons~1grants/post)
 
 
 | Pole                                       | Wartość                                         |
@@ -278,7 +278,7 @@ Uprawnienia może nadawać ktoś kto jest:
 
 KSeF umożliwia nadanie uprawnień podmiotom, które w imieniu danej organizacji będą przetwarzać faktury – np. biurom rachunkowym, centrom usług wspólnych czy firmom outsourcingowym. Uprawnienia InvoiceRead i InvoiceWrite mogą być nadane bezpośrednio i w razie potrzeby – z możliwością dalszego przekazywania (flaga `canDelegate`). W tej sekcji omówiono mechanizm nadawania tych uprawnień, wymagane role oraz przykładowe implementacje .
 
-POST [/permissions/entities/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1api~1v2~1permissions~1entities~1grants/post)
+POST [/permissions/entities/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1permissions~1entities~1grants/post)
 
 
 * **InvoiceWrite (Wystawianie faktur)**: To uprawnienie umożliwia przesyłanie plików faktur w formacie XML do systemu KSeF. Po pomyślnej weryfikacji i nadaniu numeru KSeF, te pliki stają się ustrukturyzowanymi fakturami.
@@ -329,7 +329,7 @@ OperationResponse response = ksefClient.grantsPermissionEntity(request, accessTo
 
 Dla wybranych procesów fakturowania KSeF przewiduje tzw. uprawnienia podmiotowe, które mają zastosowanie w kontekście fakturowania w imieniu innego podmiotu (`TaxRepresentative`, `SelfInvoicing`, `RRInvoicing`). Te uprawnienia mogą być nadawane wyłącznie przez właściciela lub administratora posiadającego `CredentialsManage`. Sekcja przedstawia sposób ich nadawania, zastosowanie oraz ograniczenia techniczne.
 
-POST [/permissions/authorizations/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1api~1v2~1permissions~1authorizations~1grants/post)
+POST [/permissions/authorizations/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1permissions~1authorizations~1grants/post)
 
 Służy do nadawania tzw. uprawnień podmiotowych, takich jak `SelfInvoicing` (samofakturowanie), `RRInvoicing` (samofakturowanie RR) czy `TaxRepresentative` (operacje przedstawiciela podatkowego).
 
@@ -385,7 +385,7 @@ Mechanizm pośredniego nadawania uprawnień umożliwia działanie tzw. podmiotu 
 
 Uprawnienia `InvoiceWrite` i `InvoiceRead` to jedyne uprawnienia, które mogą być nadawane w sposób pośredni. Oznacza to, że podmiot pośredniczący może nadać te uprawnienia innemu podmiotowi (uprawnionemu), które będą obowiązywać w kontekście podmiotu docelowego (partnera). Uprawnienia te mogą być selektywne (dla konkretnego partnera) lub generalne (dla wszystkich partnerów podmiotu pośredniczącego). W przypadku selektywnego nadania w identyfikatorze podmiotu docelowego należy podać typ `"Nip"` i wartość konkretnego numeru nip. Natomiast w przypadku uprawnień generalnych w identyfikatorze podmiotu docelowego należy podać typ `"AllPartners"`, bez uzupełnionego pola `value`.
 
-POST [/permissions/indirect/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1api~1v2~1permissions~1indirect~1grants/post)
+POST [/permissions/indirect/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1permissions~1indirect~1grants/post)
 
 
 
@@ -430,7 +430,7 @@ OperationResponse response = ksefClient.grantsPermissionIndirectEntity(request, 
 
 Struktura organizacyjna podmiotu może obejmować jednostki lub podmioty podrzędne – np. oddziały, działy, spółki zależne, członków grupy VAT oraz jednostki samorządu terytorialnego. KSeF umożliwia przypisanie uprawnień do zarządzania takimi jednostkami. Wymagane jest posiadanie uprawnienia `SubunitManage`. W tej sekcji przedstawiono sposób nadania uprawnień administracyjnych w kontekście jednostki podrzędnej lub podmiotu podrzędnego, z uwzględnieniem identyfikatora `InternalId` lub `Nip`.
 
-POST [/permissions/subunits/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1api~1v2~1permissions~1subunits~1grants/post)
+POST [/permissions/subunits/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1permissions~1subunits~1grants/post)
 
 
 
@@ -485,7 +485,7 @@ OperationResponse response = ksefClient.grantsPermissionSubUnit(request, accessT
 
 Nadanie uprawnień administratora podmiotu unijnego w KSeF pozwala na uprawnienie podmiotu lub osoby wyznaczonej przez podmiot unijny mający prawo do samofakturowania w imieniu podmiotu polskiego nadającego uprawnienie. Wykonanie tej operacji powoduje, że uprawniona w ten sposób osoba uzyskuje możliwość logowania się w kontekście złożonym: `NipVatUe`, wiążącym podmiot polski nadający uprawnienie z podmiotem unijnym mającym prawo do samofakturowania. Po nadaniu uprawnień administratora podmiotu unijnego osoba taka będzie mogła wykonywać operacje na fakturach, a także zarządzać uprawnieniami innych osób (tzw. reprezentantów podmiotu unijnego) w ramach tego kontekstu złożonego.
 
-POST [/permissions/eu-entities/administration/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1api~1v2~1permissions~1eu-entities~1administration~1grants/post)
+POST [/permissions/eu-entities/administration/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1permissions~1eu-entities~1administration~1grants/post)
 
 
 
@@ -529,7 +529,7 @@ OperationResponse response = ksefClient.grantsPermissionEUEntity(request, access
 
 Reprezentant podmiotu unijnego to osoba działająca na rzecz jednostki zarejestrowanej w UE, która potrzebuje dostępu do KSeF w celu przeglądania lub wystawiania faktur. Takie uprawnienie może być nadane wyłącznie przez administratora VAT UE. Sekcja przedstawia strukturę danych oraz sposób wywołania odpowiedniego endpointu.
 
-POST [/permissions/eu-entities/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1api~1v2~1permissions~1eu-entities~1grants/post)
+POST [/permissions/eu-entities/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1permissions~1eu-entities~1grants/post)
 
 
 
@@ -584,7 +584,7 @@ Proces odbierania uprawnień w KSeF jest równie istotny, jak ich nadawanie – 
 
 Standardowa metoda odbierania uprawnień, z której można skorzystać w odniesieniu do większości przypadków: osób fizycznych, podmiotów krajowych, jednostek podrzędnych, a także reprezentantów UE lub administratorów UE. Operacja wymaga znajomości `permissionId` oraz posiadania odpowiedniego uprawnienia. 
 
-DELETE [/permissions/common/grants/\{permissionId\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Odbieranie-uprawnien/paths/~1api~1v2~1permissions~1common~1grants~1%7BpermissionId%7D/delete)
+DELETE [/permissions/common/grants/\{permissionId\}](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Odbieranie-uprawnien/paths/~1permissions~1common~1grants~1%7BpermissionId%7D/delete)
 
 Ta metoda służy do odbierania uprawnień takich jak:
 
@@ -612,7 +612,7 @@ OperationResponse response = ksefClient.revokeCommonPermission(permissionId, acc
 
 W przypadku uprawnień typu podmiotowego (`SelfInvoicing`, `RRInvoicing`, `TaxRepresentative`), obowiązuje osobna metoda odbierania – z użyciem endpointu dedykowanego do operacji autoryzacyjnych. Tego typu uprawnienia nie są przekazywalne, więc ich odebranie ma natychmiastowy skutek i kończy możliwość realizacji operacji fakturowych w danym trybie. Wymagana jest znajomość `permissionId`.
 
-DELETE [/permissions/authorizations/grants/\{permissionId\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Odbieranie-uprawnien/paths/~1api~1v2~1permissions~1authorizations~1grants~1%7BpermissionId%7D/delete)
+DELETE [/permissions/authorizations/grants/\{permissionId\}](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Odbieranie-uprawnien/paths/~1permissions~1authorizations~1grants~1%7BpermissionId%7D/delete)
 
 Ta metoda służy do odbierania uprawnień takich jak:
 
@@ -649,7 +649,7 @@ Zapytanie pozwala na pobranie listy uprawnień posiadanych przez uwierzytelniony
 - nadane w sposób pośredni, gdzie kontekstem jest pośrednik lub podmiot docelowy
 - nadane podmiotowi do obsługi faktur (`"InvoiceRead"` i `"InvoiceWrite"`) przez inny podmiot, jeśli uwierzytelniony podmiot ma uprawnienia właścicielskie (`"Owner"`) 
 
-POST [/permissions/query/personal/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1api~1v2~1permissions~1query~1personal~1grants/post)
+POST [/permissions/query/personal/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1permissions~1query~1personal~1grants/post)
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Permissions\PersonPermission\PersonalPermissions_AuthorizedPesel_InNipContext_E2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/PersonPermission/PersonalPermissions_AuthorizedPesel_InNipContext_E2ETests.cs)
@@ -678,7 +678,7 @@ QueryPersonalGrantResponse response = ksefClient.searchPersonalGrantPermission(r
 
 Zapytanie pozwala na pobranie listy uprawnień nadanych osobom fizycznym lub podmiotom – np. pracownikom firmy. Możliwe jest filtrowanie po rodzaju uprawnień, stanie (`Active` / `Inactive`), a także identyfikatorze nadawcy i odbiorcy. Endpoint ten bywa wykorzystywany przy onboardingu, audycie oraz monitoringu uprawnień personalnych.
 
-POST [/permissions/query/persons/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1api~1v2~1permissions~1query~1persons~1grants/post)
+POST [/permissions/query/persons/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1permissions~1query~1persons~1grants/post)
 
 | Pole                  | Opis                                                                 |
 | :-------------------- | :------------------------------------------------------------------- |
@@ -719,7 +719,7 @@ QueryPersonPermissionsResponse response = ksefClient.searchGrantedPersonPermissi
 
 Ten endpoint służy do pobrania informacji o administratorach jednostek podrzędnych lub podmiotów podrzędnych (np. oddziałów, grup VAT). Pozwala na monitorowanie, kto posiada uprawnienia zarządcze względem danej struktury podrzędnej, identyfikowanej za pomocą `InternalId` lub `Nip`.
 
-POST [/permissions/query/subunits/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1api~1v2~1permissions~1query~1subunits~1grants/post)
+POST [/permissions/query/subunits/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1permissions~1query~1subunits~1grants/post)
 
 | Pole                  | Opis                                                                 |
 | :-------------------- | :------------------------------------------------------------------- |
@@ -757,7 +757,7 @@ QuerySubunitPermissionsResponse response = ksefClient.searchSubunitAdminPermissi
 
 Endpoint zwraca zestaw ról przypisanych do kontekstu w ktorym jesteśmy uwierzytelnieni (czyli tego, w imieniu którego wykonywane jest zapytanie). Funkcja wykorzystywana głównie przy automatycznym sprawdzaniu dostępów przez systemy klienckie.
 
-GET [/permissions/query/entities/roles](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1api~1v2~1permissions~1query~1entities~1roles/get)
+GET [/permissions/query/entities/roles](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1permissions~1query~1entities~1roles/get)
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Permissions\SubunitPermission\SubunitPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/SubunitPermission/SubunitPermissionsE2ETests.cs)
@@ -783,7 +783,7 @@ QueryEntityRolesResponse response = ksefClient.searchEntityInvoiceRoles(0, 10, t
 
 Pozwala na uzyskanie informacji o powiązanych podmiotach podrzędnych dla kontekstu w którym jesteśmy uwierzytelnieni (czyli tego, w imieniu którego wykonywane jest zapytanie). Funkcja głównie wykorzystywana w celu weryfikacji struktury jednostek samorządu terytorialnego lub grup VAT.
 
-POST [/permissions/query/subordinate-entities/roles](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1api~1v2~1permissions~1query~1subordinate-entities~1roles/post)
+POST [/permissions/query/subordinate-entities/roles](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1permissions~1query~1subordinate-entities~1roles/post)
 
 | Pole                     | Opis                                                                                                              |
 | :----------------------- | :---------------------------------------------------------------------------------------------------------------- |
@@ -818,7 +818,7 @@ Endpoint ten służy do przeglądu wszystkich nadanych uprawnień podmiotowych n
 
 
 
-POST [/permissions/query/authorizations/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1api~1v2~1permissions~1query~1authorizations~1grants/post)
+POST [/permissions/query/authorizations/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1permissions~1query~1authorizations~1grants/post)
 
 | Pole                     | Opis                                                                                                              |
 | :----------------------- | :---------------------------------------------------------------------------------------------------------------- |
@@ -859,7 +859,7 @@ QueryEntityAuthorizationPermissionsResponse response = ksefClient.searchEntityAu
 
 Podmioty unijne również mogą mieć przypisane uprawnienia do korzystania z KSeF. W tej sekcji możliwe jest pobranie informacji o nadanych im dostępach, z uwzględnieniem identyfikatorów VAT UE i odcisku palca certyfikatu.
 
-POST [/permissions/query/eu-entities/grants](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1api~1v2~1permissions~1query~1eu-entities~1grants/post)
+POST [/permissions/query/eu-entities/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1permissions~1query~1eu-entities~1grants/post)
 
 | Pole                        | Opis                                                                 |
 | :-------------------------- | :------------------------------------------------------------------- |
@@ -894,13 +894,13 @@ QueryEuEntityPermissionsResponse response = createKSeFClient().searchGrantedEuEn
 
 ## Operacje 
 
-Krajowy System e-Faktur umożliwia śledzenie i weryfikację statusu operacji związanych z zarządzaniem uprawnieniami. Każde nadanie lub odebranie uprawnienia jest realizowane jako asynchroniczna operacja, której status można monitorować przy użyciu unikalnego identyfikatora referencyjnego (`operationReferenceNumber`). Sekcja ta prezentuje mechanizm pobierania statusu operacji i jego interpretacji w kontekście automatyzacji i kontroli poprawności działań administracyjnych w KSeF.
+Krajowy System e-Faktur umożliwia śledzenie i weryfikację statusu operacji związanych z zarządzaniem uprawnieniami. Każde nadanie lub odebranie uprawnienia jest realizowane jako asynchroniczna operacja, której status można monitorować przy użyciu unikalnego identyfikatora referencyjnego (`referenceNumber`). Sekcja ta prezentuje mechanizm pobierania statusu operacji i jego interpretacji w kontekście automatyzacji i kontroli poprawności działań administracyjnych w KSeF.
 
 ### Pobranie statusu operacji
 
-Po nadaniu lub odebraniu uprawnienia, system zwraca numer referencyjny operacji (`operationReferenceNumber`). Dzięki temu identyfikatorowi możliwe jest sprawdzenie aktualnego stanu przetwarzania żądania: czy zakończyło się sukcesem, czy wystąpił błąd, lub czy nadal trwa przetwarzanie. Informacja ta może być kluczowa w systemach nadzorczych, logice automatycznego ponawiania operacji lub raportowaniu działań administracyjnych. W tej sekcji przedstawiono przykład wywołania API służącego do pobrania statusu operacji.
+Po nadaniu lub odebraniu uprawnienia, system zwraca numer referencyjny operacji (`referenceNumber`). Dzięki temu identyfikatorowi możliwe jest sprawdzenie aktualnego stanu przetwarzania żądania: czy zakończyło się sukcesem, czy wystąpił błąd, lub czy nadal trwa przetwarzanie. Informacja ta może być kluczowa w systemach nadzorczych, logice automatycznego ponawiania operacji lub raportowaniu działań administracyjnych. W tej sekcji przedstawiono przykład wywołania API służącego do pobrania statusu operacji.
 
-GET [/permissions/operations/{operationReferenceNumber}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Operacje/paths/~1api~1v2~1permissions~1operations~1%7BoperationReferenceNumber%7D/get)
+GET [/permissions/operations/{referenceNumber}](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Operacje/paths/~1permissions~1operations~1%7BreferenceNumber%7D/get)
 
 Każda operacja nadania uprawnienia zwraca identyfikator operacji, który należy wykorzystać do sprawdzenia statusu tej operacji.
 
@@ -922,7 +922,7 @@ PermissionStatusInfo status = ksefClient.permissionOperationStatus(referenceNumb
 
 Zgoda jest wymagana do wystawiania faktur zawierających załączniki i obowiązuje w obrębie bieżącego kontekstu (`ContextIdentifier`) użytego przy uwierzytelnieniu. Zgoda jest nadawana poza API, wyłącznie w usłudze e-Urząd Skarbowy, a zgłoszenia można składać od 1 stycznia 2026 r. API nie udostępnia operacji złożenia zgody
 
-GET [/permissions/attachments/status](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Operacje/paths/~1api~1v2~1permissions~1attachments~1status/get)
+GET [/permissions/attachments/status](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Operacje/paths/~1permissions~1attachments~1status/get)
 
 Zwraca status zgody dla bieżącego kontekstu. Jeżeli zgoda nie jest aktywna, faktura z załącznikiem wysłana do API KSeF zostanie odrzucona.
 

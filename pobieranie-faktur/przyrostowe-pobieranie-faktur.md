@@ -3,7 +3,7 @@
 
 ## Wprowadzenie
 
-Przyrostowe pobieranie faktur, oparte na eksporcie paczek (POST [`/invoice/exports`](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1exports/post)), jest rekomendowanym mechanizmem synchronizacji między centralnym repozytorium KSeF a lokalnymi bazami danych systemów zewnętrznych. 
+Przyrostowe pobieranie faktur, oparte na eksporcie paczek (POST [`/invoices/exports`](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1invoices~1exports/post)), jest rekomendowanym mechanizmem synchronizacji między centralnym repozytorium KSeF a lokalnymi bazami danych systemów zewnętrznych. 
 
 Kluczową rolę odgrywa tu mechanizm **[High Water Mark (HWM)](hwm.md)** - stabilny punkt w czasie, do którego system gwarantuje kompletność danych.
 
@@ -15,7 +15,7 @@ Przyrostowe pobieranie opiera się na trzech kluczowych komponentach:
 2. **Obsługa limitów API** - sterowanie tempem wywołań, obsługa HTTP 429 oraz Retry-After.
 3. **Deduplikacja** - eliminacja duplikatów na podstawie metadanych z plików `_metadata.json`.
 
-Metoda bazowa: POST [`/invoice/exports`](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1exports/post) inicjuje asynchroniczny eksport. Po zakończeniu przetwarzania status operacji udostępnia unikalne adresy URL do pobrania części paczki.
+Metoda bazowa: POST [`/invoices/exports`](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1invoices~1exports/post) inicjuje asynchroniczny eksport. Po zakończeniu przetwarzania status operacji udostępnia unikalne adresy URL do pobrania części paczki.
 
 ## Synchronizacja w oknach czasowych (Windowing)
 

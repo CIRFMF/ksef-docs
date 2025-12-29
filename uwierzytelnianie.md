@@ -32,7 +32,7 @@ Tokeny są automatycznie unieważniane w przypadku utraty uprawnień.
 
 Proces uwierzytelniania rozpoczyna się od pobrania tzw. **auth challenge**, który stanowi element wymagany do dalszego utworzenia żądania uwierzytelniającego.
 Challenge pobierany jest za pomocą wywołania:<br>
-POST [/auth/challenge](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierzytelnianie/paths/~1api~1v2~1auth~1challenge/post)<br>
+POST [/auth/challenge](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Uzyskiwanie-dostepu/paths/~1auth~1challenge/post)<br>
 
 Czas życia challenge'a wynosi 10 minut.
 
@@ -58,12 +58,12 @@ Odpowiedź zwraca challenge i timestamp.
 
 #### 1. Przygotowanie dokumentu XML (AuthTokenRequest)
 
-Po uzyskaniu auth challenge należy przygotować dokument XML zgodny ze schematem [AuthTokenRequest](https://ksef-test.mf.gov.pl/docs/v2/schemas/authv2.xsd), który zostanie wykorzystany w dalszym procesie uwierzytelniania. Dokument ten zawiera:
+Po uzyskaniu auth challenge należy przygotować dokument XML zgodny ze schematem [AuthTokenRequest](https://api-test.ksef.mf.gov.pl/docs/v2/schemas/authv2.xsd), który zostanie wykorzystany w dalszym procesie uwierzytelniania. Dokument ten zawiera:
 
 
 |    Klucz     |           Wartość                                                                                                                              |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| Challenge    | `Wartość otrzymana z wywołania POST [/auth/challenge](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uzyskiwanie-dostepu/paths/~1api~1v2~1auth~1challenge/post)`                                                                                                          |
+| Challenge    | `Wartość otrzymana z wywołania POST [/auth/challenge](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Uzyskiwanie-dostepu/paths/~1auth~1challenge/post)`                                                                                                          |
 | ContextIdentifier| `Identyfikator kontekstu, dla którego realizowane jest uwierzytelnienie (NIP, identyfikator wewnętrzny, identyfikator złożony VAT UE)`                                                                       |
 | SubjectIdentifierType | `Sposób identyfikacji podmiotu uwierzytelniającego się. Możliwe wartości: certificateSubject (np. NIP/PESEL z certyfikatu) lub certificateFingerprint (odcisk palca certyfikatu).` |    
 |(opcjonalnie) AuthorizationPolicy | `Reguły autoryzacyjne. Obecnie obsługiwana lista dozwolonych adresów IP klienta.` |    
@@ -229,7 +229,7 @@ String signedXml = signatureService.sign(xml.getBytes(), cert.certificate(), cer
 #### 3. Wysłanie podpisanego XML
 
 Po podpisaniu dokumentu AuthTokenRequest należy przesłać go do systemu KSeF za pomocą wywołania endpointu <br>
-POST [/auth/xades-signature](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierzytelnianie/paths/~1api~1v2~1auth~1xades-signature/post). <br>
+POST [/auth/xades-signature](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Uzyskiwanie-dostepu/paths/~1auth~1xades-signature/post). <br>
 Ponieważ proces uwierzytelniania jest asynchroniczny, w odpowiedzi zwracany jest tymczasowy token operacji uwierzytelnienia (JWT) (```authenticationToken```) wraz z numerem referencyjnym (```referenceNumber```). Oba identyfikatory służą do:
 * sprawdzenia statusu procesu uwierzytelnienia,
 * pobrania właściwego tokena dostępowego (`accessToken`) w formacie JWT.
@@ -300,7 +300,7 @@ Zaszyfrowany token Ksef należy przesłać razem z
 
 za pomocą wywołania endpointu:
 
-POST [/auth/ksef-token](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierzytelnianie/paths/~1api~1v2~1auth~1ksef-token/post). <br>
+POST [/auth/ksef-token](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Uzyskiwanie-dostepu/paths/~1auth~1ksef-token/post). <br>
 
 Przykład w języku ```C#```:
 [KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
@@ -350,7 +350,7 @@ Ponieważ proces uwierzytelniania jest asynchroniczny, w odpowiedzi zwracany jes
 ### 3. Sprawdzenie statusu uwierzytelniania
 
 Po przesłaniu podpisanego dokumentu XML (```AuthTokenRequest```) i otrzymaniu odpowiedzi zawierającej ```authenticationToken``` oraz ```referenceNumber```, należy sprawdzić status trwającej operacji uwierzytelnienia podając w nagłówku ```Authorization``` Bearer \<authenticationToken\>. <br>
-GET [/auth/{referenceNumber}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierzytelnianie/paths/~1api~1v2~1auth~1%7BreferenceNumber%7D/get)
+GET [/auth/{referenceNumber}](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Uzyskiwanie-dostepu/paths/~1auth~1%7BreferenceNumber%7D/get)
 W odpowiedzi zwracany jest status – kod i opis stanu operacji (np. "Uwierzytelnianie w toku", Uwierzytelnianie "zakończone sukcesem").
 
 **Uwaga**  
@@ -379,7 +379,7 @@ AuthStatus authStatus = ksefClient.getAuthStatus(referenceNumber, tempToken);
 ### 4. Uzyskanie tokena dostępowego (accessToken)
 Endpoint zwraca jednorazowo parę tokenów wygenerowanych dla pomyślnie zakończonego procesu uwierzytelniania. Każde kolejne wywołanie z tym samym ```authenticationToken``` zwróci błąd 400.
 
-POST [/auth/token/redeem](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierzytelnianie/paths/~1api~1v2~1auth~1token~1redeem/post)
+POST [/auth/token/redeem](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Uzyskiwanie-dostepu/paths/~1auth~1token~1redeem/post)
 
 Przykład w języku ```C#```:
 [KSeF.Client.Tests.Core\E2E\KsefToken\KsefTokenE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/KsefToken/KsefTokenE2ETests.cs)
@@ -406,7 +406,7 @@ W odpowiedzi zwracane są:
 #### 5. Odświeżenie tokena dostępowego (```accessToken```)
 W celu utrzymania ciągłego dostępu do chronionych zasobów API, system KSeF udostępnia mechanizm odświeżania tokena dostępowego (```accessToken```) przy użyciu specjalnego tokena odświeżającego (```refreshToken```). Rozwiązanie to eliminuje konieczność każdorazowego ponawiania pełnego procesu uwierzytelnienia, ale również poprawia bezpieczeństwo systemu – krótki czas życia ```accessToken``` ogranicza ryzyko jego nieautoryzowanego użycia w przypadku przechwycenia.
 
-POST [/auth/token/refresh](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Uwierzytelnianie/paths/~1api~1v2~1auth~1token~1refresh/post) <br>
+POST [/auth/token/refresh](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Uzyskiwanie-dostepu/paths/~1auth~1token~1refresh/post) <br>
 ```RefreshToken``` należy przekazać w nagłówku Authorization w formacie:
 ```
 Authorization: Bearer {refreshToken}

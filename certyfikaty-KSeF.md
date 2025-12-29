@@ -4,7 +4,7 @@
 ### Wstęp
 Certyfikat KSeF to cyfrowe poświadczenie tożsamości podmiotu, wydawane przez system KSeF na wniosek użytkownika.
 
-Wniosek o wydanie certyfikatu KSeF może zostać złożony wyłącznie dla danych, które znajdują się w certyfikacie wykorzystanym do [uwierzytelnienia](uwierzytelnianie.md). Na podstawie tych danych endpoint [/certificates/enrollments/data](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1enrollments~1data/get)
+Wniosek o wydanie certyfikatu KSeF może zostać złożony wyłącznie dla danych, które znajdują się w certyfikacie wykorzystanym do [uwierzytelnienia](uwierzytelnianie.md). Na podstawie tych danych endpoint [/certificates/enrollments/data](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1certificates~1enrollments~1data/get)
  zwraca dane identyfikacyjne, które muszą zostać użyte w żądaniu certyfikacyjnym.
 
 >System nie pozwala na wystąpienie o certyfikat w imieniu innego podmiotu.
@@ -33,7 +33,7 @@ API udostępnia informacje na temat:
 * liczby aktualnie aktywnych certyfikatów,
 * możliwości złożenia kolejnego wniosku.
 
-GET [/certificates/limits](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1limits/get)
+GET [/certificates/limits](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1certificates~1limits/get)
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
@@ -52,7 +52,7 @@ CertificateLimitsResponse response = ksefClient.getCertificateLimits(accessToken
 ### 2. Pobranie danych do wniosku certyfikacyjnego
 
 Aby rozpocząć proces aplikowania o certyfikat KSeF, należy pobrać zestaw danych identyfikacyjnych, które system zwróci w odpowiedzi na wywołanie endpointu  
-GET [/certificates/enrollments/data](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1enrollments~1data/get).
+GET [/certificates/enrollments/data](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1certificates~1enrollments~1data/get).
 
 Dane te są odczytywane z certyfikatu użytego do uwierzytelnienia, którym może być:
 - kwalifikowany certyfikat osoby fizycznej – zawierający numer PESEL albo NIP,
@@ -142,7 +142,7 @@ CsrResult csr = defaultCryptographyService.generateCsrWithRsa(enrollmentInfo);
 ### 4. Wysłanie wniosku certyfikacyjnego
 Po przygotowaniu żądania certyfikacyjnego (CSR) należy przesłać je do systemu KSeF za pomocą wywołania 
 
-POST [/certificates/enrollments](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1enrollments/post)
+POST [/certificates/enrollments](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1certificates~1enrollments/post)
 
 W przesyłanym wniosku należy podać:
 * **nazwę certyfikatu** – widoczną później w metadanych certyfikatu, ułatwiającą identyfikację,
@@ -189,7 +189,7 @@ W odpowiedzi otrzymasz ```referenceNumber```, który umożliwia monitorowanie st
 Proces wystawiania certyfikatu ma charakter asynchroniczny. Oznacza to, że system nie zwraca certyfikatu natychmiast po złożeniu wniosku, lecz umożliwia jego późniejsze pobranie po zakończeniu przetwarzania.
 Status wniosku należy okresowo sprawdzać, używając numeru referencyjnego (```referenceNumber```), który został zwrócony w odpowiedzi na wysłanie wniosku (/certificates/enrollments).
 
-GET [/certificates/enrollments/\{referenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1enrollments~1%7BreferenceNumber%7D/get)
+GET [/certificates/enrollments/\{referenceNumber\}](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1certificates~1enrollments~1%7BreferenceNumber%7D/get)
 
 Jeżeli wniosek certyfikacyjny zostanie odrzucony, w odpowiedzi otrzymamy informacje o błędzie.
 
@@ -215,7 +215,7 @@ Po uzyskaniu numeru seryjnego certyfikatu (```certificateSerialNumber```), możl
 
 System KSeF umożliwia pobranie treści wcześniej wystawionych certyfikatów wewnętrznych na podstawie listy numerów seryjnych. Każdy certyfikat zwracany jest w formacie DER, zakodowanym jako ciąg Base64.
 
-POST [/certificates/retrieve](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1retrieve/post)
+POST [/certificates/retrieve](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1certificates~1retrieve/post)
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)
@@ -247,7 +247,7 @@ Każdy element odpowiedzi zawiera:
 
 Dostępna jest możliwość pobrania listy certyfikatów wewnętrznych złożonych przez dany podmiot. Dane te obejmują zarówno aktywne, jak i historyczne certyfikaty, wraz z ich statusem, zakresem ważności oraz identyfikatorami.
 
-POST [/certificates/query](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1query/post)
+POST [/certificates/query](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1certificates~1query/post)
 
 Parametry filtrowania (opcjonalne):
 * `status` - status certyfikatu (`Active`, `Blocked`, `Revoked`, `Expired`)
@@ -290,7 +290,7 @@ W odpowiedzi otrzymamy metadane certyfikatów.
 Certyfikat KSeF może zostać unieważniony tylko przez właściciela w przypadku kompromitacji klucza prywatnego, zakończenia jego użycia lub zmiany organizacyjnej. Po unieważnieniu certyfikat nie może być użyty do dalszego uwierzytelniania ani realizacji operacji w systemie KSeF.
 Unieważnienie realizowane jest na podstawie numeru seryjnego certyfikatu (```certificateSerialNumber```) oraz opcjonalnego powodu odwołania.
 
-POST [/certificates/\{certificateSerialNumber\}/revoke](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1api~1v2~1certificates~1%7BcertificateSerialNumber%7D~1revoke/post)
+POST [/certificates/\{certificateSerialNumber\}/revoke](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1certificates~1%7BcertificateSerialNumber%7D~1revoke/post)
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Certificates\CertificatesE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Certificates/CertificatesE2ETests.cs)

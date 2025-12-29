@@ -4,7 +4,7 @@
 
 Zwraca fakturę o podanym numerze KSeF.
 
-GET [/invoices/ksef/\{ksefReferenceNumber\}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1ksef~1%7BksefNumber%7D/get)
+GET [/invoices/ksef/\{ksefNumber\}](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1invoices~1ksef~1%7BksefNumber%7D/get)
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Invoice\InvoiceE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Invoice/InvoiceE2ETests.cs)
@@ -27,7 +27,7 @@ Zwraca listę metadanych faktur spełniające podane kryteria wyszukiwania.
 **Plik _metadata.json w paczce eksportu**  
 W paczce eksportu znajduje się plik `_metadata.json` zawierający tablicę obiektów `InvoiceMetadata` (model zwracany przez POST `/invoices/query/metadata` - "Pobieranie metadanych faktur").
 
-POST [/invoices/query/metadata](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1query~1metadata/post)
+POST [/invoices/query/metadata](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1invoices~1query~1metadata/post)
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Invoice\InvoiceE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Invoice/InvoiceE2ETests.cs)
@@ -73,7 +73,7 @@ QueryInvoiceMetadataResponse response = ksefClient.queryInvoiceMetadata(pageOffs
 
 Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów. Wymagane jest przekazanie informacji o szyfrowaniu w polu `encryption`, które służą wykorzystywane do zaszyfrowania wygenerowanych paczek z fakturami.
 
-POST [/invoices/exports](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1exports/post)
+POST [/invoices/exports](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1invoices~1exports/post)
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Invoice\InvoiceE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Invoice/InvoiceE2ETests.cs)
@@ -104,7 +104,7 @@ OperationResponse invoicesForSellerResponse = await KsefClient.ExportInvoicesAsy
     CancellationToken);
 ```
 
-Dostępne wartości `DateType` oraz `SubjectType` są opisane [tutaj](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1query~1metadata/post).
+Dostępne wartości `DateType` oraz `SubjectType` są opisane [tutaj](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1invoices~1query~1metadata/post).
 
 Faktury w paczce są sortowane rosnąco według typu daty wskazanego w `DateRange` podczas inicjalizacji eksportu.
 
@@ -131,14 +131,14 @@ InitAsyncInvoicesQueryResponse response = ksefClient.initAsyncQueryInvoice(reque
 
 Pobiera status wcześniej zainicjalizowanego zapytania asynchronicznego na podstawie identyfikatora operacji. Umożliwia śledzenie postępu przetwarzania zapytania oraz pobranie gotowych paczek z wynikami, jeśli są już dostępne.
 
-GET [/invoices/exports/{operationReferenceNumber}](https://ksef-test.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1api~1v2~1invoices~1exports~1%7BoperationReferenceNumber%7D/get)
+GET [/invoices/exports/{referenceNumber}](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Pobieranie-faktur/paths/~1invoices~1exports~1%7BreferenceNumber%7D/get)
 
 Przykład w języku C#:
 [KSeF.Client.Tests.Core\E2E\Invoice\InvoiceE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Invoice/InvoiceE2ETests.cs)
 
 ```csharp
 InvoiceExportStatusResponse exportStatus = await KsefClient.GetInvoiceExportStatusAsync(
-    exportInvoicesResponse.OperationReferenceNumber,
+    exportInvoicesResponse.ReferenceNumber,
     accessToken);
 ```
 
@@ -147,7 +147,7 @@ Przykład w języku Java:
 [QueryInvoiceIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/QueryInvoiceIntegrationTest.java)
 
 ```java
-InvoiceExportStatus response = ksefClient.checkStatusAsyncQueryInvoice(operationReferenceNumber, accessToken);
+InvoiceExportStatus response = ksefClient.checkStatusAsyncQueryInvoice(referenceNumber, accessToken);
 
 ```
 
