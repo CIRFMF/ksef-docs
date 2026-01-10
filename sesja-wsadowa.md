@@ -18,7 +18,9 @@ Przed utworzeniem paczki do wysyłki wsadowej zaleca się obliczyć skrót SHA-2
 
 Przed otwarciem sesji oraz wysłaniem faktur wymagane jest:
 * wygenerowanie klucza symetrycznego o długości 256 bitów i wektora inicjującego o długości 128 bitów (IV), dołączanego jako prefiks do szyfrogramu,
-* zaszyfrowanie dokumentu algorytmem AES-256-CBC z dopełnianiem PKCS#7,
+* przygotowanie paczki ZIP,
+* (opcjonalnie, jeśli paczka przekracza dopuszczalny rozmiar) podział paczki ZIP na części,
+* zaszyfrowanie części algorytmem AES-256-CBC z dopełnianiem PKCS#7,
 * zaszyfrowanie klucza symetrycznego algorytmem RSAES-OAEP (padding OAEP z funkcją MGF1 opartą na SHA-256 oraz skrótem SHA-256), przy użyciu klucza publicznego KSeF Ministerstwa Finansów.
 
 Operacje te można zrealizować za pomocą komponentu ```CryptographyService```, dostępnego w oficjalnym kliencie KSeF. Biblioteka ta udostępnia gotowe metody do generowania i szyfrowania kluczy, zgodnie z wymaganiami systemu.
