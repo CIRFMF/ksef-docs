@@ -11118,7 +11118,7 @@
                 "$ref": "#/components/schemas/InvoiceQueryDateRange"
               }
             ],
-            "description": "Typ i zakres dat, według którego mają być filtrowane faktury. Dozwolony maksymalny okres wynosi 3 miesiące."
+            "description": "Typ i zakres dat, według którego mają być filtrowane faktury. Dozwolony maksymalny okres wynosi 3 miesiące. Zakres uznawany jest za poprawny, jeśli mieści się w trzech miesiącach w UTC lub w czasie polskim."
           },
           "ksefNumber": {
             "allOf": [
