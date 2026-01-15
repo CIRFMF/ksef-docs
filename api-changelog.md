@@ -12,6 +12,13 @@
 - **Pobieranie faktur**  
   Doprecyzowano walidację `dateRange` w `InvoiceQueryFilters`: zakres 3 miesięcy uznawany jest za poprawny, jeśli mieści się w trzech miesiącach w UTC lub w czasie polskim.
 
+- **Wysyka faktur**
+  - Walidacja numeru NIP  
+    Dodano weryfikację sumy kontrolnej NIP dla: `Podmiot1`, `Podmiot2`, `Podmiot3` oraz `PodmiotUpowazniony` (jeśli występuje) - dotyczy tylko środowiska produkcyjnego.
+  - Walidacja NIP w identyfikatorze wewnętrznym  
+    Dodano weryfikację sumy kontrolnej NIP w `InternalId` dla `Podmiot3` (jeśli identyfikator występuje) - dotyczy tylko środowiska produkcyjnego.
+  - Aktualizacja [dokumentacji](/faktury/weryfikacja-faktury.md).
+
 - **OpenAPI**  
   Drobne aktualizacje opisów.
 

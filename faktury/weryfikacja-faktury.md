@@ -18,6 +18,14 @@ Faktura musi być przygotowana w formacie XML, kodowana w UTF-8 bez znaku BOM (3
 ## Walidacja dat
 Data wystawienia faktury (`P_1`) nie może być późniejsza niż data przyjęcia dokumentu do systemu KSeF.
 
+## Walidacja numeru NIP  
+  - Sprawdzenie sumy kontrolnej NIP dla: `Podmiot1`, `Podmiot2`, `Podmiot3` oraz `PodmiotUpowazniony` (jeśli występuje).
+  - Dotyczy tylko środowiska produkcyjnego.
+
+## Walidacja numeru NIP w identyfikatorze wewnętrznym
+  - Sprawdzenie sumy kontrolnej NIP w identyfikatorze wewnętrznym (`InternalId`) dla `Podmiot3` - o ile ten identyfikator występuje.
+  - Dotyczy tylko środowiska produkcyjnego.
+
 ## Rozmiar pliku
 - Maksymalny rozmiar faktury bez załączników: **1 MB \*** (1 000 000 bajtów).
 - Maksymalny rozmiar faktury z załącznikami: **3 MB \*** (3 000 000 bajtów).
