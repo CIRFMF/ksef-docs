@@ -3,8 +3,11 @@
 ### Wersja 2.0.1
 
 - **Uprawnienia**
-  - Pobranie listy własnych uprawnień (POST `/permissions/query/personal/grants`). Poprawiono logikę zwracania listy "Moje uprawnienia" dla właściciela kontekstu - w wynikach zwracane są również uprawnienia podmiotowe do wystawiania i przeglądania faktur (`InvoiceWrite`, `InvoiceRead`) nadane **bez prawa** do dalszego przekazywania `canDelegate = false`. Wcześniej lista zwracała tylko te z prawem do dalszego przekazywania.
-  - Poprawiono przykłady (examples) w dokumentacji OpenAPI dla endpointów uprawnień.
+  - Pobranie listy własnych uprawnień (POST `/permissions/query/personal/grants`).  
+    - Poprawiono logikę zwracania listy "Moje uprawnienia" dla właściciela kontekstu - w wynikach zwracane są również uprawnienia podmiotowe do wystawiania i przeglądania faktur (`InvoiceWrite`, `InvoiceRead`) nadane **bez prawa** do dalszego przekazywania `canDelegate = false`. Wcześniej lista zwracała tylko te z prawem do dalszego przekazywania.
+    - Dodano opis dla wartości `InternalId` w `PersonalPermissionsContextIdentifierType`; 
+    - Zaktualizowano ograniczenia długości `PersonalPermissionsContextIdentifier.value` (`maxLength` z 10 na 16).
+  - Poprawiono przykłady w dokumentacji OpenAPI dla endpointów uprawnień.
 
 - **Pobieranie faktur**  
   Doprecyzowano walidację `dateRange` w `InvoiceQueryFilters`: zakres 3 miesięcy uznawany jest za poprawny, jeśli mieści się w trzech miesiącach w UTC lub w czasie polskim.

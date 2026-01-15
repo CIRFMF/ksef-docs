@@ -12618,7 +12618,7 @@
                 "$ref": "#/components/schemas/PersonalPermissionsContextIdentifier"
               }
             ],
-            "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
+            "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |",
             "nullable": true
           },
           "authorizedIdentifier": {
@@ -12782,14 +12782,14 @@
             "description": "Typ identyfikatora."
           },
           "value": {
-            "maxLength": 10,
+            "maxLength": 16,
             "minLength": 10,
             "type": "string",
             "description": "Wartość identyfikatora."
           }
         },
         "additionalProperties": false,
-        "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
+        "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
       },
       "PersonalPermissionsContextIdentifierType": {
         "enum": [
@@ -12811,7 +12811,7 @@
                 "$ref": "#/components/schemas/PersonalPermissionsContextIdentifier"
               }
             ],
-            "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
+            "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |",
             "nullable": true
           },
           "targetIdentifier": {
