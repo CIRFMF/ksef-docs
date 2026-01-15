@@ -4,6 +4,7 @@
 
 - **Uprawnienia**
   - Pobranie listy własnych uprawnień (POST `/permissions/query/personal/grants`). Poprawiono logikę zwracania listy "Moje uprawnienia" dla właściciela kontekstu - w wynikach zwracane są również uprawnienia podmiotowe do wystawiania i przeglądania faktur (`InvoiceWrite`, `InvoiceRead`) nadane **bez prawa** do dalszego przekazywania `canDelegate = false`. Wcześniej lista zwracała tylko te z prawem do dalszego przekazywania.
+  - Poprawiono przykłady (examples) w dokumentacji OpenAPI dla endpointów uprawnień.
 
 ### Wersja 2.0.0
 

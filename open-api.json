@@ -2223,7 +2223,14 @@
                   "Introspection",
                   "CredentialsRead"
                 ],
-                "description": "Opis uprawnienia"
+                "description": "Opis uprawnienia",
+                "subjectDetails": {
+                  "subjectDetailsType": "PersonByIdentifier",
+                  "personById": {
+                    "firstName": "Adam",
+                    "lastName": "Abacki"
+                  }
+                }
               }
             }
           }
@@ -2331,7 +2338,10 @@
                     "canDelegate": true
                   }
                 ],
-                "description": "Opis uprawnienia"
+                "description": "Opis uprawnienia",
+                "subjectDetails": {
+                  "fullName": "Firma sp. z o.o."
+                }
               }
             }
           }
@@ -2430,7 +2440,10 @@
                   "value": "7762811692"
                 },
                 "permission": "SelfInvoicing",
-                "description": "działanie w imieniu 3393244202 w kontekście 7762811692, Firma sp. z o.o."
+                "description": "działanie w imieniu 3393244202 w kontekście 7762811692, Firma sp. z o.o.",
+                "subjectDetails": {
+                  "fullName": "Firma sp. z o.o."
+                }
               }
             }
           }
@@ -2536,7 +2549,14 @@
                   "InvoiceWrite",
                   "InvoiceRead"
                 ],
-                "description": "praca dla klienta 5687926712; uprawniony PESEL: 22271569167, Adam Abacki; pośrednik 3936518395"
+                "description": "praca dla klienta 5687926712; uprawniony PESEL: 22271569167, Adam Abacki; pośrednik 3936518395",
+                "subjectDetails": {
+                  "subjectDetailsType": "PersonByIdentifier",
+                  "personById": {
+                    "firstName": "Adam",
+                    "lastName": "Abacki"
+                  }
+                }
               }
             }
           }
@@ -2639,7 +2659,14 @@
                   "value": "7762811692-12345"
                 },
                 "description": "Opis uprawnienia",
-                "subunitName": "Jednostka 014"
+                "subunitName": "Jednostka 014",
+                "subjectDetails": {
+                  "subjectDetailsType": "PersonByIdentifier",
+                  "personById": {
+                    "firstName": "Adam",
+                    "lastName": "Abacki"
+                  }
+                }
               }
             }
           }
@@ -2744,7 +2771,22 @@
                   "value": "7762811692-DE123456789012"
                 },
                 "description": "Opis uprawnienia",
-                "euEntityName": "Firma G.m.b.H."
+                "euEntityName": "Firma G.m.b.H.",
+                "subjectDetails": {
+                  "subjectDetailsType": "PersonByFingerprintWithIdentifier",
+                  "personByFpWithId": {
+                    "firstName": "Adam",
+                    "lastName": "Abacki",
+                    "identifier": {
+                      "type": "Pesel",
+                      "value": "15062788702"
+                    }
+                  }
+                },
+                "euEntityDetails": {
+                  "fullName": "Firma G.m.b.H.",
+                  "address": "Warszawa ul. Świętokrzyska 4824 00-916 Warszawa"
+                }
               }
             }
           }
@@ -2846,7 +2888,18 @@
                   "InvoiceRead",
                   "InvoiceWrite"
                 ],
-                "description": "Opis uprawnienia"
+                "description": "Opis uprawnienia",
+                "subjectDetails": {
+                  "subjectDetailsType": "PersonByFingerprintWithIdentifier",
+                  "personByFpWithId": {
+                    "firstName": "Adam",
+                    "lastName": "Abacki",
+                    "identifier": {
+                      "type": "Pesel",
+                      "value": "15062788702"
+                    }
+                  }
+                }
               }
             }
           }
