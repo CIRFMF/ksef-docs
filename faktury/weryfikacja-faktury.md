@@ -1,5 +1,5 @@
 # Weryfikacja faktury
-22.09.2025
+15.01.2026
 
 Faktura przesyłana do systemu KSeF podlega szeregowi kontroli technicznych i semantycznych. Weryfikacja obejmuje następujące kryteria:
 
