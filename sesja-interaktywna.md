@@ -49,7 +49,7 @@ Przykład w języku C#:
 ```csharp
 OpenOnlineSessionRequest openOnlineSessionRequest = OpenOnlineSessionRequestBuilder
     .Create()
-    .WithFormCode(systemCode: SystemCodeHelper.GetValue(systemCode), schemaVersion: DefaultSchemaVersion, value: DefaultFormCodeValue)
+    .WithFormCode(systemCode: SystemCodeHelper.GetSystemCode(systemCode), schemaVersion: DefaultSchemaVersion, value: DefaultFormCodeValue)
     .WithEncryption(
         encryptedSymmetricKey: encryptionData.EncryptionInfo.EncryptedSymmetricKey,
         initializationVector: encryptionData.EncryptionInfo.InitializationVector)
