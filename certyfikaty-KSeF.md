@@ -1,13 +1,16 @@
 ## Certyfikaty KSeF
-31.08.2025
+03.02.2026
 
 ### Wstęp
-Certyfikat KSeF to cyfrowe poświadczenie tożsamości podmiotu, wydawane przez system KSeF na wniosek użytkownika.
+
+Certyfikat KSeF jest **nośnikiem tożsamości** podmiotu uwierzytelniającego (najczęściej identyfikowanej przez **PESEL** albo **NIP**, a w niektórych przypadkach przez **fingerprint** certyfikatu, który był wykorzystany do uwierzytelnienia w momencie wnioskowania o certyfikat KSeF). Certyfikat sam w sobie **nie przenosi żadnych uprawnień KSeF** i **nie jest przypisany do żadnego kontekstu** (np. NIP firmy / InternalId jednostki / NipVatUe). Uprawnienia są zarządzane i weryfikowane **po stronie KSeF** w oparciu o model uprawnień.
+
+Endpointy do zarządzania certyfikatami są dostępne po [uwierzytelnieniu](uwierzytelnianie.md). Operacje te dotyczą **podmiotu uwierzytelnionego** (właściciela certyfikatów) i nie są powiązane z kontekstem logowania, w którym uzyskano token dostępu. Oznacza to, że dany podmiot uwierzytelniony (np. osoba identyfikowana przez PESEL) ma dostęp do tego samego zbioru certyfikatów niezależnie od kontekstu, w jakim został uzyskany token dostępu.
 
 Wniosek o wydanie certyfikatu KSeF może zostać złożony wyłącznie dla danych, które znajdują się w certyfikacie wykorzystanym do [uwierzytelnienia](uwierzytelnianie.md). Na podstawie tych danych endpoint [/certificates/enrollments/data](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Certyfikaty/paths/~1certificates~1enrollments~1data/get)
  zwraca dane identyfikacyjne, które muszą zostać użyte w żądaniu certyfikacyjnym.
 
->System nie pozwala na wystąpienie o certyfikat w imieniu innego podmiotu.
+> Uwaga: wniosek o certyfikat KSeF może zostać złożony wyłącznie "we własnym imieniu" – dane identyfikacyjne do CSR są odczytywane z certyfikatu użytego do uwierzytelnienia, a ich modyfikacja powoduje odrzucenie wniosku.
 
 Dostępne są dwa typy certyfikatów – każdy certyfikat może mieć **tylko jeden typ** (`Authentication` albo `Offline`). Nie jest możliwe wystawienie certyfikatu łączącego obie funkcje.
 
