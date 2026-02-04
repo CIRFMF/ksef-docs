@@ -10433,8 +10433,7 @@
           },
           "encryptedToken": {
             "type": "string",
-            "description": "Zaszyfrowany token wraz z timestampem z challenge'a, w postaci `token|timestamp`, zakodowany w formacie Base64.",
-            "format": "byte"
+            "description": "Zaszyfrowany token wraz z timestampem z challenge'a, w postaci `token|timestamp`, zakodowany w formacie Base64."
           },
           "authorizationPolicy": {
             "allOf": [
