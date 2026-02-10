@@ -1,5 +1,10 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.0.2
+- **Uwierzytelnianie**  
+  - **Pobranie statusu uwierzytelniania (GET `/auth/{referenceNumber}`)** oraz **Pobranie listy aktywnych sesji (GET `/auth/sessions`)**  
+    Rozszerzono możliwe wartości pola details dla statusu `460` ("Uwierzytelnianie zakończone niepowodzeniem z powodu błędu certyfikatu") o: "Certyfikat zawieszony".
+
 ### Wersja 2.0.1
 
 - **Uprawnienia**
