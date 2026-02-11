@@ -3479,9 +3479,9 @@
                       "ksefNumber": "5555555555-20250828-010080615740-E4",
                       "invoiceNumber": "FA/KUDYO1a7dddfe-610e-4843-84ba-6b887e35266e",
                       "issueDate": "2025-08-27",
-                      "invoicingDate": "2025-08-28T09:22:13.388+00:00",
-                      "acquisitionDate": "2025-08-28T09:22:56.388+00:00",
-                      "permanentStorageDate": "2025-08-28T09:23:01.388+00:00",
+                      "invoicingDate": "2025-08-28T09:22:13.3881234+00:00",
+                      "acquisitionDate": "2025-08-28T09:22:56.3881234+00:00",
+                      "permanentStorageDate": "2025-08-28T09:23:01.388123+00:00",
                       "seller": {
                         "nip": "5555555555",
                         "name": "Test Company 1"
@@ -3513,9 +3513,9 @@
                       "ksefNumber": "5555555555-20250828-010080615740-E4",
                       "invoiceNumber": "5265877635-20250925-010020A0A242-0A",
                       "issueDate": "2025-08-28",
-                      "invoicingDate": "2025-08-28T10:23:13.388+00:00",
-                      "acquisitionDate": "2025-08-28T10:23:56.388+00:00",
-                      "permanentStorageDate": "2025-08-28T10:24:01.388+00:00",
+                      "invoicingDate": "2025-08-28T10:23:13.3881234+00:00",
+                      "acquisitionDate": "2025-08-28T10:23:56.3881234+00:00",
+                      "permanentStorageDate": "2025-08-28T10:24:01.388123+00:00",
                       "seller": {
                         "nip": "5555555555",
                         "name": "Test Company 1"
@@ -4229,7 +4229,7 @@
                       "invoiceHash": "mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=",
                       "acquisitionDate": "2025-09-18T12:24:16.0154302+00:00",
                       "invoicingDate": "2025-09-18T12:23:56.0154302+00:00",
-                      "permanentStorageDate": "2025-09-18T12:24:01.0154302+00:00",
+                      "permanentStorageDate": "2025-09-18T12:24:01.015432+00:00",
                       "upoDownloadUrl": "https://api-test.ksef.mf.gov.pl/storage/01/20250918-SB-3789A40000-20373E1269-A3/invoice-upo/upo_5265877635-20250626-010080DD2B5E-26.xml?sv=2025-01-05&st=2025-09-18T14%3A49%3A20Z&se=2025-09-21T14%3A54%3A20Z&sr=b&sp=r&sig=%2BUWFPA10gS580VhngGKW%2FZiOOtiHPOiTyMlxhG6ZvWs%3D",
                       "upoDownloadUrlExpirationDate": "2025-09-21T14:54:20+00:00",
                       "status": {
