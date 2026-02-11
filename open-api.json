@@ -1486,6 +1486,128 @@
         }
       }
     },
+    "/testdata/context/block": {
+      "post": {
+        "tags": [
+          "Dane testowe"
+        ],
+        "summary": "Zablokowanie kontekstu",
+        "description": "Blokuje możliwość uwierzytelniania dla wskazanego kontekstu. Uwierzytelnianie zakończy się błędem 480.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BlockContextAuthenticationRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetryAfter"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              }
+            },
+            "x-summary": "Too Many Requests"
+          }
+        },
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
+      }
+    },
+    "/testdata/context/unblock": {
+      "post": {
+        "tags": [
+          "Dane testowe"
+        ],
+        "summary": "Odblokowanie kontekstu",
+        "description": "Odblokowuje możliwość uwierzytelniania dla wskazanego kontekstu.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UnblockContextAuthenticationRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetryAfter"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              }
+            },
+            "x-summary": "Too Many Requests"
+          }
+        },
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        }
+      }
+    },
     "/limits/context": {
       "get": {
         "tags": [
@@ -8090,6 +8212,24 @@
         },
         "additionalProperties": false
       },
+      "BlockContextAuthenticationRequest": {
+        "type": "object",
+        "properties": {
+          "contextIdentifier": {
+            "required": [
+              "value",
+              "type"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TestDataAuthenticationContextIdentifier"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "BuyerIdentifierType": {
         "enum": [
           "Nip",
@@ -14424,6 +14564,35 @@
         ],
         "type": "string"
       },
+      "TestDataAuthenticationContextIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TestDataAuthenticationContextIdentifierType"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestDataAuthenticationContextIdentifierType": {
+        "enum": [
+          "Nip",
+          "InternalId",
+          "NipVatUe",
+          "PeppolId"
+        ],
+        "type": "string"
+      },
       "TestDataAuthorizedIdentifier": {
         "required": [
           "type",
@@ -14820,6 +14989,24 @@
             ]
           }
         }
+      },
+      "UnblockContextAuthenticationRequest": {
+        "type": "object",
+        "properties": {
+          "contextIdentifier": {
+            "required": [
+              "value",
+              "type"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TestDataAuthenticationContextIdentifier"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "UpoPageResponse": {
         "required": [

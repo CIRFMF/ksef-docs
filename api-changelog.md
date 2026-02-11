@@ -1,6 +1,7 @@
 ## Zmiany w API 2.0
 
 ### Wersja 2.1.0
+
 - **Uwierzytelnianie**  
   - **Pobranie statusu uwierzytelniania (GET `/auth/{referenceNumber}`)** oraz **Pobranie listy aktywnych sesji (GET `/auth/sessions`)**  
     Rozszerzono możliwe wartości pola details dla statusu `460` ("Uwierzytelnianie zakończone niepowodzeniem z powodu błędu certyfikatu") o: "Certyfikat zawieszony".
@@ -8,6 +9,11 @@
   - **Uwierzytelnienie z wykorzystaniem podpisu XAdES (POST `/auth/xades-signature`)**  
     Ujednolicono i zaostrzono walidację [podpisu XAdES](/auth/podpis-xades.md) w procesie uwierzytelniania, tak aby akceptowane były wyłącznie podpisy zgodne z wymaganiami profili XAdES.  
     Nowe wymagania obowiązują już na środowisku TEST. Na środowiskach DEMO i PRD zaczną obowiązywać **16 marca 2026** (zalecamy weryfikację integracji na TEST przed tą datą).
+
+- **Dane testowe**
+  Dodano nowe endpointy:
+    - POST `/testdata/context/block` - "Blokuje możliwość uwierzytelniania dla wskazanego kontekstu. Uwierzytelnianie zakończy się błędem 480.",
+    - POST `/testdata/context/unblock` - odblokowuje możliwość uwierzytelniania dla bieżącego kontekstu.  
 
 ### Wersja 2.0.1
 
