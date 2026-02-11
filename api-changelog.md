@@ -8,7 +8,7 @@
     - Oznaczono w modelu odpowiedzi właściwość `authenticationMethod` jako `deprecated`. Planowane wycofanie: `2026-11-16`. Aby zachować kompatybilność kontraktu w okresie przejściowym wartość `TrustedProfile` obejmuje zarówno "Profil Zaufany", jak i uwierzytelnienia realizowane przez Węzeł Krajowy.
     - Dodano nową właściwość `authenticationMethodInfo` jako elastyczny opis metody uwierzytelniania: 
       - `category` - kategoria metody uwierzytelnienia (enum: `XadesSignature`, `NationalNode`, `Token`, `Other`), 
-      - `code` - kategoria metody uwierzytelnienia (string), 
+      - `code` - kod metody uwierzytelnienia (string), 
       - `displayName` - nazwa metody uwierzytelnienia do wyświetlenia użytkownikowi (string).
     - Rozszerzono możliwe wartości pola details dla statusu `460` ("Uwierzytelnianie zakończone niepowodzeniem z powodu błędu certyfikatu") o: "Certyfikat zawieszony".
 
