@@ -61,6 +61,11 @@
                       "isCurrent": false,
                       "startDate": "2025-10-11T12:23:56.0154302+00:00",
                       "authenticationMethod": "QualifiedSeal",
+                      "authenticationMethodInfo": {
+                        "category": "XadesSignature",
+                        "code": "xades.qualified-seal",
+                        "displayName": "Pieczęć kwalifikowana"
+                      },
                       "status": {
                         "code": 200,
                         "description": "Uwierzytelnianie zakończone sukcesem"
@@ -7861,6 +7866,7 @@
       "AuthenticationListItem": {
         "required": [
           "authenticationMethod",
+          "authenticationMethodInfo",
           "referenceNumber",
           "startDate",
           "status"
@@ -7878,7 +7884,17 @@
                 "$ref": "#/components/schemas/AuthenticationMethod"
               }
             ],
-            "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy usług Peppol. |\n"
+            "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy usług Peppol. |\n",
+            "deprecated": true,
+            "x-removal-date": "2026-11-16"
+          },
+          "authenticationMethodInfo": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AuthenticationMethodInfo"
+              }
+            ],
+            "description": "Użyta metoda uwierzytelnienia."
           },
           "status": {
             "allOf": [
@@ -7955,9 +7971,45 @@
         "type": "string",
         "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy usług Peppol. |\n"
       },
+      "AuthenticationMethodCategory": {
+        "enum": [
+          "XadesSignature",
+          "NationalNode",
+          "Token",
+          "Other"
+        ],
+        "type": "string",
+        "description": "| Wartość | Opis |\n| --- | --- |\n| XadesSignature | Uwierzytelnienie podpisem Xades. |\n| NationalNode | Uwierzytelnienie za pomocą Węzła Krajowego (login.gov.pl). |\n| Token | Uwierzytelnienie tokenem. |\n| Other | Uwierzytelnienie inną metodą. |\n"
+      },
+      "AuthenticationMethodInfo": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AuthenticationMethodCategory"
+              }
+            ],
+            "description": "Kategoria metody uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| XadesSignature | Uwierzytelnienie podpisem Xades. |\n| NationalNode | Uwierzytelnienie za pomocą Węzła Krajowego (login.gov.pl). |\n| Token | Uwierzytelnienie tokenem. |\n| Other | Uwierzytelnienie inną metodą. |\n"
+          },
+          "code": {
+            "type": "string",
+            "description": "Kod metody uwierzytelnienia.",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Nazwa metody uwierzytelnienia do wyświetlenia użytkownikowi.",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AuthenticationOperationStatusResponse": {
         "required": [
           "authenticationMethod",
+          "authenticationMethodInfo",
           "startDate",
           "status"
         ],
@@ -7974,7 +8026,17 @@
                 "$ref": "#/components/schemas/AuthenticationMethod"
               }
             ],
-            "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy usług Peppol. |\n"
+            "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy usług Peppol. |\n",
+            "deprecated": true,
+            "x-removal-date": "2026-11-16"
+          },
+          "authenticationMethodInfo": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AuthenticationMethodInfo"
+              }
+            ],
+            "description": "Użyta metoda uwierzytelnienia."
           },
           "status": {
             "allOf": [

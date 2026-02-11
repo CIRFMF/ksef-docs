@@ -3,8 +3,14 @@
 ### Wersja 2.1.0
 
 - **Uwierzytelnianie**  
+  - Dodano integrację z Węzłem Krajowym (login.gov.pl). Endpoint wykorzystywany do tej integracji nie jest publicznie dostępny (metoda uwierzytelnienia przeznaczona wyłącznie dla aplikacji rządowych).
   - **Pobranie statusu uwierzytelniania (GET `/auth/{referenceNumber}`)** oraz **Pobranie listy aktywnych sesji (GET `/auth/sessions`)**  
-    Rozszerzono możliwe wartości pola details dla statusu `460` ("Uwierzytelnianie zakończone niepowodzeniem z powodu błędu certyfikatu") o: "Certyfikat zawieszony".
+    - Oznaczono w modelu odpowiedzi właściwość `authenticationMethod` jako `deprecated`. Planowane wycofanie: `2026-11-16`. Aby zachować kompatybilność kontraktu w okresie przejściowym wartość `TrustedProfile` obejmuje zarówno "Profil Zaufany", jak i uwierzytelnienia realizowane przez Węzeł Krajowy.
+    - Dodano nową właściwość `authenticationMethodInfo` jako elastyczny opis metody uwierzytelniania: 
+      - `category` - kategoria metody uwierzytelnienia (enum: `XadesSignature`, `NationalNode`, `Token`, `Other`), 
+      - `code` - kategoria metody uwierzytelnienia (string), 
+      - `displayName` - nazwa metody uwierzytelnienia do wyświetlenia użytkownikowi (string).
+    - Rozszerzono możliwe wartości pola details dla statusu `460` ("Uwierzytelnianie zakończone niepowodzeniem z powodu błędu certyfikatu") o: "Certyfikat zawieszony".
 
   - **Uwierzytelnienie z wykorzystaniem podpisu XAdES (POST `/auth/xades-signature`)**  
     Ujednolicono i zaostrzono walidację [podpisu XAdES](/auth/podpis-xades.md) w procesie uwierzytelniania, tak aby akceptowane były wyłącznie podpisy zgodne z wymaganiami profili XAdES.  
