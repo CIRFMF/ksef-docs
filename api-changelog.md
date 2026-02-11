@@ -16,10 +16,13 @@
     Ujednolicono i zaostrzono walidację [podpisu XAdES](/auth/podpis-xades.md) w procesie uwierzytelniania, tak aby akceptowane były wyłącznie podpisy zgodne z wymaganiami profili XAdES.  
     Nowe wymagania obowiązują już na środowisku TEST. Na środowiskach DEMO i PRD zaczną obowiązywać **16 marca 2026** (zalecamy weryfikację integracji na TEST przed tą datą).
 
-- **Dane testowe**
+- **Dane testowe**  
   Dodano nowe endpointy:
     - POST `/testdata/context/block` - "Blokuje możliwość uwierzytelniania dla wskazanego kontekstu. Uwierzytelnianie zakończy się błędem 480.",
     - POST `/testdata/context/unblock` - odblokowuje możliwość uwierzytelniania dla bieżącego kontekstu.  
+
+- **OpenAPI**  
+  Drobne aktualizacje opisów.
 
 ### Wersja 2.0.1
 

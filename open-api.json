@@ -9,10 +9,6 @@
     {
       "url": "https://api-test.ksef.mf.gov.pl/v2",
       "description": "Środowisko TEST"
-    },
-    {
-      "url": "https://ksef-test.mf.gov.pl/api/v2",
-      "description": "[deprecated] Środowisko TEST"
     }
   ],
   "paths": {
@@ -11320,7 +11316,7 @@
                 "$ref": "#/components/schemas/InvoiceQueryDateRange"
               }
             ],
-            "description": "Typ i zakres dat, według którego mają być filtrowane faktury. Dozwolony maksymalny okres wynosi 3 miesiące. Zakres uznawany jest za poprawny, jeśli mieści się w trzech miesiącach w UTC lub w czasie polskim."
+            "description": "Typ i zakres dat, według którego filtrowane są faktury.\nMaksymalny dozwolony okres wynosi 3 miesiące w strefie UTC lub w strefie Europe/Warsaw (WAW).\n            \nFormat daty:\n * Daty muszą być przekazane w formacie ISO 8601, np. `yyyy-MM-ddTHH:mm:ss`.\n * Dopuszczalne są następujące warianty:\n   - z sufiksem `Z` (czas UTC),\n   - z jawnym offsetem, np. `+01:00`, `+03:00`,\n   - bez offsetu (interpretowane jako czas lokalny strefy Europe/Warsaw)."
           },
           "ksefNumber": {
             "allOf": [
