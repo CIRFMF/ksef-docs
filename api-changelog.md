@@ -5,6 +5,8 @@
 - **Uwierzytelnianie**  
   - **Pobranie statusu uwierzytelniania (GET `/auth/{referenceNumber}`)** oraz **Pobranie listy aktywnych sesji (GET `/auth/sessions`)**  
   Uzupełniono definicję `authenticationMethodInfo` - oznaczono właściwości `category`, `code` oraz `displayName` jako `required` w modelu odpowiedzi.
+  - **Uwierzytelnienie z wykorzystaniem podpisu XAdES (POST `/auth/xades-signature`)**  
+  Dodano możliwość wcześniejszego włączenia nowych wymagań walidacji XAdES na środowiskach DEMO i PRD poprzez nagłówek: `X-KSeF-Feature`: `enforce-xades-compliance`.  
 
 ### Wersja 2.1.0
 
