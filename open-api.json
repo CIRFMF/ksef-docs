@@ -7885,6 +7885,11 @@
             "x-removal-date": "2026-11-16"
           },
           "authenticationMethodInfo": {
+            "required": [
+              "category",
+              "code",
+              "displayName"
+            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/AuthenticationMethodInfo"
@@ -7978,6 +7983,11 @@
         "description": "| Wartość | Opis |\n| --- | --- |\n| XadesSignature | Uwierzytelnienie podpisem Xades. |\n| NationalNode | Uwierzytelnienie za pomocą Węzła Krajowego (login.gov.pl). |\n| Token | Uwierzytelnienie tokenem. |\n| Other | Uwierzytelnienie inną metodą. |\n"
       },
       "AuthenticationMethodInfo": {
+        "required": [
+          "category",
+          "code",
+          "displayName"
+        ],
         "type": "object",
         "properties": {
           "category": {
@@ -7990,13 +8000,11 @@
           },
           "code": {
             "type": "string",
-            "description": "Kod metody uwierzytelnienia.",
-            "nullable": true
+            "description": "Kod metody uwierzytelnienia."
           },
           "displayName": {
             "type": "string",
             "description": "Nazwa metody uwierzytelnienia do wyświetlenia użytkownikowi.",
-            "nullable": true,
             "readOnly": true
           }
         },
@@ -8027,6 +8035,11 @@
             "x-removal-date": "2026-11-16"
           },
           "authenticationMethodInfo": {
+            "required": [
+              "category",
+              "code",
+              "displayName"
+            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/AuthenticationMethodInfo"

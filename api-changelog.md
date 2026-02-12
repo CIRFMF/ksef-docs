@@ -1,5 +1,11 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.1.1
+
+- **Uwierzytelnianie**  
+  - **Pobranie statusu uwierzytelniania (GET `/auth/{referenceNumber}`)** oraz **Pobranie listy aktywnych sesji (GET `/auth/sessions`)**  
+  Uzupełniono definicję `authenticationMethodInfo` - oznaczono właściwości `category`, `code` oraz `displayName` jako `required` w modelu odpowiedzi.
+
 ### Wersja 2.1.0
 
 - **Uwierzytelnianie**  
