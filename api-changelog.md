@@ -5,6 +5,9 @@
 - **Wysyłka faktur**  
   Dodano obsługę faktur RR ([schemat_RR(1)_v1-0E](/faktury/schemy/RR/schemat_RR(1)_v1-0E.xsd)).
 
+- **Eksport paczki faktur (POST `/invoices/exports`). Pobranie listy metadanych faktur (POST `/invoices/query/metadata`)**   
+  Naprawiono interpretację parametrów `dateRange.from` / `dateRange.to` podawanych bez offsetu. Wartości bez strefy czasowej są teraz jednoznacznie interpretowane zgodnie z dokumentacją (czas lokalny Europe/Warsaw).
+
 - **OpenAPI**  
   Usunięto `additionalProperties`: `false` w wybranych modelach. Zmiana porządkująca specyfikację i uelastyczniająca kontrakt - dopuszcza możliwość pojawiania się dodatkowych właściwości w żądaniach lub odpowiedziach (np. w ramach rozszerzeń). Dodanie nowej właściwości nie jest traktowane jako złamanie kontraktu; klienci API powinni ignorować nieznane właściwości.
 
