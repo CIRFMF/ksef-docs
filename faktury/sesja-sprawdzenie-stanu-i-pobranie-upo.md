@@ -226,13 +226,19 @@ while (!string.IsNullOrEmpty(continuationToken));
 ```
 
 Przykład w języku Java:
-[SessionController.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/main/java/pl/akmf/ksef/sdk/SessionController.java)
+[DuplicateInvoiceIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/DuplicateInvoiceIntegrationTest.java)
 
 ```java
-SessionInvoicesResponse response = ksefClient.getSessionFailedInvoices(referenceNumber, continuationToken, pageSize, authToken);
-
-while (Strings.isNotBlank(response.getContinuationToken())) {
-        response = ksefClient.getSessionFailedInvoices(pageSize, response.getContinuationToken(), accessToken);
+List<SessionInvoiceStatusResponse> failedInvoicesList = new ArrayList<>();
+SessionInvoicesResponse failedInvoices = ksefClient.getSessionFailedInvoices(sessionRef, null, 10, accessToken);
+if (failedInvoices.getInvoices() != null && !failedInvoices.getInvoices().isEmpty()) {
+    failedInvoicesList.addAll(failedInvoices.getInvoices());
+}
+while (Strings.isNotBlank(failedInvoices.getContinuationToken())) {
+    failedInvoices = ksefClient.getSessionFailedInvoices(sessionRef, failedInvoices.getContinuationToken(), 10, accessToken);
+    if (failedInvoices.getInvoices() != null && !failedInvoices.getInvoices().isEmpty()) {
+        failedInvoicesList.addAll(failedInvoices.getInvoices());
+    }
 }
 ```
 

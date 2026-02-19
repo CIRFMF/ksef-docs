@@ -347,7 +347,7 @@ Wymagane uprawnienia do nadawania uprawnień: ```CredentialsManage``` lub ```Own
 
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\ProxyPermission\AuthorizationPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/ProxyPermission/AuthorizationPermissionsE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\AuthorizationPermission\AuthorizationPermissionsE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/AuthorizationPermission/AuthorizationPermissionsE2ETests.cs)
 
 ```csharp
 GrantPermissionsAuthorizationRequest grantPermissionsAuthorizationRequest = GrantAuthorizationPermissionsRequestBuilder
@@ -540,7 +540,7 @@ POST [/permissions/eu-entities/grants](https://api-test.ksef.mf.gov.pl/docs/v2/i
 | `description`                              | Wartość tekstowa (opis)              |
 
 Przykład w języku C#:
-[KSeF.Client.Tests.Core\E2E\Permissions\EuAdministrationPermission\EuRepresentativePermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/EuAdministrationPermission/EuRepresentativePermissionE2ETests.cs)
+[KSeF.Client.Tests.Core\E2E\Permissions\EuRepresentativePermission\EuRepresentativePermissionE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/EuRepresentativePermission/EuRepresentativePermissionE2ETests.cs)
 
 ```csharp
 GrantPermissionsEuEntityRepresentativeRequest grantRepresentativePermissionsRequest = GrantEUEntityRepresentativePermissionsRequestBuilder

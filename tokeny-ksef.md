@@ -42,7 +42,7 @@ Przykład w języku C#:
 ```
 
 Przykład w języku Java:
-[KsefTokenIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/configuration/KsefTokenIntegrationTest.java)
+[KsefTokenIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/KsefTokenIntegrationTest.java)
 
 ```java
 KsefTokenRequest request = new KsefTokenRequestBuilder()
