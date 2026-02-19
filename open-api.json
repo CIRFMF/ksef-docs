@@ -14740,7 +14740,8 @@
           "CredentialsRead",
           "CredentialsManage",
           "SubunitManage",
-          "EnforcementOperations"
+          "EnforcementOperations",
+          "Introspection"
         ],
         "type": "string"
       },
