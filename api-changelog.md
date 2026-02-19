@@ -1,5 +1,10 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.1.2
+
+- **OpenAPI**  
+  Usunięto `additionalProperties`: `false` w wybranych modelach. Zmiana porządkująca specyfikację i uelastyczniająca kontrakt - dopuszcza możliwość pojawiania się dodatkowych właściwości w żądaniach lub odpowiedziach (np. w ramach rozszerzeń). Dodanie nowej właściwości nie jest traktowane jako złamanie kontraktu; klienci API powinni ignorować nieznane właściwości.
+
 ### Wersja 2.1.1
 
 - **Uwierzytelnianie**  

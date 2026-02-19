@@ -7531,8 +7531,7 @@
             "description": "Lista adresów IPv4 w notacji CIDR, np. `172.16.0.0/16`.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AmountType": {
         "enum": [
@@ -7565,8 +7564,7 @@
             "description": "Limit na godzinę.",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "ApiRateLimitsOverride": {
         "required": [
@@ -7741,8 +7739,7 @@
             ],
             "description": "Limity dla pozostałych operacji API."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AttachmentPermissionGrantRequest": {
         "required": [
@@ -7753,8 +7750,7 @@
           "nip": {
             "$ref": "#/components/schemas/Nip"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AttachmentPermissionRevokeRequest": {
         "required": [
@@ -7771,8 +7767,7 @@
             "format": "date",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AuthenticationChallengeResponse": {
         "required": [
@@ -7795,8 +7790,7 @@
             "description": "Czas wygenerowania challenge-a w milisekundach od 1 stycznia 1970 roku (Unix timestamp).",
             "format": "int64"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AuthenticationContextIdentifier": {
         "required": [
@@ -7817,8 +7811,7 @@
             "type": "string",
             "description": "Wartość identyfikatora"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AuthenticationContextIdentifierType": {
         "enum": [
@@ -7856,8 +7849,7 @@
             ],
             "description": "Token operacji uwierzytelnienia."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AuthenticationListItem": {
         "required": [
@@ -7935,8 +7927,7 @@
             "description": "Czy sesja jest powiązana z aktualnie używanym tokenem.",
             "readOnly": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AuthenticationListResponse": {
         "required": [
@@ -7956,8 +7947,7 @@
             },
             "description": "Lista sesji uwierzytelniania."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AuthenticationMethod": {
         "enum": [
@@ -8007,8 +7997,7 @@
             "description": "Nazwa metody uwierzytelnienia do wyświetlenia użytkownikowi.",
             "readOnly": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AuthenticationOperationStatusResponse": {
         "required": [
@@ -8072,8 +8061,7 @@
             "format": "date-time",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AuthenticationTokenRefreshResponse": {
         "required": [
@@ -8093,8 +8081,7 @@
             ],
             "description": "Token dostępu, którego należy używać w wywołaniach chronionych zasobów API."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AuthenticationTokenStatus": {
         "enum": [
@@ -8138,8 +8125,7 @@
             ],
             "description": "Token umożliwiający odświeżenie tokenu dostępu.\n> Więcej informacji:\n> - [Odświeżanie tokena](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md#5-od%C5%9Bwie%C5%BCenie-tokena-dost%C4%99powego-accesstoken)"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AuthorizationPolicy": {
         "type": "object",
@@ -8153,8 +8139,7 @@
             "description": "Lista dozwolonych adresów IP.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "BatchFileInfo": {
         "required": [
@@ -8188,8 +8173,7 @@
             },
             "description": "Informacje o częściach pliku paczki. Maksymalna liczba części to 50. Maksymalny dozwolony rozmiar części przed zaszyfrowaniem to 100MB."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "BatchFilePartInfo": {
         "required": [
@@ -8219,8 +8203,7 @@
             ],
             "description": "Skrót SHA256 zaszyfrowanej części pliku paczki, zakodowany w formacie Base64."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "BatchSessionContextLimitsOverride": {
         "required": [
@@ -8251,8 +8234,7 @@
             "description": "Maksymalna ilość faktur które można przesłać w pojedynczej sesji.",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "BatchSessionEffectiveContextLimits": {
         "required": [
@@ -8280,8 +8262,7 @@
             "description": "Maksymalna ilość faktur które można przesłać w pojedynczej sesji.",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "BlockContextAuthenticationRequest": {
         "type": "object",
@@ -8298,8 +8279,7 @@
             ],
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "BuyerIdentifierType": {
         "enum": [
@@ -8318,8 +8298,7 @@
             "type": "integer",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CertificateEnrollmentDataResponse": {
         "required": [
@@ -8366,8 +8345,7 @@
             "description": "Identyfikator organizacji.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CertificateEnrollmentStatusResponse": {
         "required": [
@@ -8394,8 +8372,7 @@
             "description": "Numer seryjny wygenerowanego certyfikatu (w formacie szesnastkowym). \nZwracany w przypadku prawidłowego przeprocesowania wniosku certyfikacyjnego.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CertificateLimit": {
         "required": [
@@ -8414,8 +8391,7 @@
             "description": "Maksymalna liczba zasobów dozwolona w ramach limitu.",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CertificateLimitsResponse": {
         "required": [
@@ -8455,7 +8431,6 @@
             "description": "Informacje o limitach dotyczących liczby aktywnych certyfikatów wydanych dla danego podmiotu."
           }
         },
-        "additionalProperties": false,
         "description": "Informacje o limitach wniosków oraz certyfikatów dla uwierzytelnionego podmiotu."
       },
       "CertificateListItem": {
@@ -8534,8 +8509,7 @@
             "description": "Data złożenia wniosku certyfikacyjnego.",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CertificateListItemStatus": {
         "enum": [
@@ -8578,7 +8552,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu dla którego wystawiono certyfikat.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "CertificateSubjectIdentifierType": {
@@ -8598,8 +8571,7 @@
             "format": "int32",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "Challenge": {
         "maxLength": 36,
@@ -8620,8 +8592,7 @@
             "format": "date-time",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CommonSessionStatus": {
         "enum": [
@@ -8843,8 +8814,7 @@
             "description": "Limit na godzinę.",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EffectiveApiRateLimits": {
         "required": [
@@ -9019,8 +8989,7 @@
             ],
             "description": "Limity dla pozostałych operacji API."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EffectiveContextLimits": {
         "required": [
@@ -9055,8 +9024,7 @@
             ],
             "description": "Limity dla sesji wsadowych."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EffectiveSubjectLimits": {
         "type": "object",
@@ -9077,8 +9045,7 @@
             ],
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EncryptionInfo": {
         "required": [
@@ -9097,8 +9064,7 @@
             "description": "Wektor inicjalizujący (IV) o długości 16 bajtów, używany do szyfrowania symetrycznego, zakodowany w formacie Base64.",
             "format": "byte"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EnrollCertificateRequest": {
         "required": [
@@ -9134,8 +9100,7 @@
             "format": "date-time",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EnrollCertificateResponse": {
         "required": [
@@ -9157,8 +9122,7 @@
             "description": "Data złożenia wniosku certyfikacyjnego.",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EnrollmentEffectiveSubjectLimits": {
         "type": "object",
@@ -9167,8 +9131,7 @@
             "type": "integer",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EnrollmentSubjectLimitsOverride": {
         "type": "object",
@@ -9179,8 +9142,7 @@
             "format": "int32",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EntityAuthorizationGrant": {
         "required": [
@@ -9270,8 +9232,7 @@
             "description": "Data rozpoczęcia obowiązywania uprawnienia.",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EntityAuthorizationPermissionType": {
         "enum": [
@@ -9328,8 +9289,7 @@
             ],
             "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EntityAuthorizationPermissionsQueryRequest": {
         "required": [
@@ -9379,8 +9339,7 @@
             "description": "Lista rodzajów wyszukiwanych uprawnień.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EntityAuthorizationPermissionsSubjectIdentifier": {
         "required": [
@@ -9404,7 +9363,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu uprawnianego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| PeppolId | Identyfikator dostawcy usług Peppol |"
       },
       "EntityAuthorizationPermissionsSubjectIdentifierType": {
@@ -9436,7 +9394,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator osoby nadającej uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "EntityAuthorizationsAuthorIdentifierType": {
@@ -9469,7 +9426,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu uprawnionego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| PeppolId | Identyfikator dostawcy usług Peppol |"
       },
       "EntityAuthorizationsAuthorizedEntityIdentifierType": {
@@ -9501,7 +9457,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu uprawniającego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
       },
       "EntityAuthorizationsAuthorizingEntityIdentifierType": {
@@ -9527,8 +9482,7 @@
             "type": "string",
             "description": "Adres podmiotu."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EntityDetails": {
         "required": [
@@ -9542,8 +9496,7 @@
             "type": "string",
             "description": "Pełna nazwa podmiotu."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EntityPermission": {
         "required": [
@@ -9563,8 +9516,7 @@
             "type": "boolean",
             "description": "Flaga pozwalająca na pośrednie przekazywanie danego uprawnienia"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EntityPermissionType": {
         "enum": [
@@ -9618,8 +9570,7 @@
             ],
             "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EntityPermissionsSubjectIdentifier": {
         "required": [
@@ -9643,7 +9594,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
       },
       "EntityPermissionsSubjectIdentifierType": {
@@ -9674,7 +9624,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu podrzędnego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
       },
       "EntityPermissionsSubordinateEntityIdentifierType": {
@@ -9723,8 +9672,7 @@
             "description": "Data rozpoczęcia obowiązywania roli.",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EntityRoleType": {
         "enum": [
@@ -9759,7 +9707,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu nadrzędnego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
       },
       "EntityRolesParentEntityIdentifierType": {
@@ -9812,7 +9759,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator kontekstu złożonego.\n| Type | Value |\n| --- | --- |\n| NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru VAT-UE: `{nip}-{vat_ue}` |"
       },
       "EuEntityAdministrationPermissionsContextIdentifierType": {
@@ -9891,8 +9837,7 @@
             ],
             "description": "Dane podmiotu unijnego, w kontekście którego nadawane są uprawnienia."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EuEntityAdministrationPermissionsSubjectIdentifier": {
         "required": [
@@ -9916,7 +9861,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu uprawnionego.\n| Type | Value |\n| --- | --- |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "EuEntityAdministrationPermissionsSubjectIdentifierType": {
@@ -9942,8 +9886,7 @@
             "type": "string",
             "description": "Adres podmiotu."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EuEntityPermission": {
         "required": [
@@ -10053,8 +9996,7 @@
             "description": "Data rozpoczęcia obowiązywania uprawnienia.",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EuEntityPermissionSubjectDetails": {
         "required": [
@@ -10112,8 +10054,7 @@
             "description": "Dane podmiotu.\n*Wymagane, gdy subjectDetailsType = EntityByFingerprint.*",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EuEntityPermissionSubjectDetailsType": {
         "enum": [
@@ -10153,7 +10094,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator uprawniającego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "EuEntityPermissionsAuthorIdentifierType": {
@@ -10209,8 +10149,7 @@
             ],
             "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EuEntityPermissionsQueryPermissionType": {
         "enum": [
@@ -10243,8 +10182,7 @@
             "description": "Lista rodzajów wyszukiwanych uprawnień.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "EuEntityPermissionsSubjectIdentifier": {
         "required": [
@@ -10268,7 +10206,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu uprawnianego.\n| Type | Value |\n| --- | --- |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "EuEntityPermissionsSubjectIdentifierType": {
@@ -10295,8 +10232,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "ExceptionInfo": {
         "type": "object",
@@ -10332,8 +10268,7 @@
             "type": "string",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "ExceptionResponse": {
         "type": "object",
@@ -10347,7 +10282,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "example": {
           "exception": {
             "exceptionDetailList": [
@@ -10381,8 +10315,7 @@
             ],
             "description": "Numer referencyjny eksportu faktur."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "FormCode": {
         "required": [
@@ -10404,8 +10337,7 @@
             "type": "string",
             "description": "Wartość"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "GenerateTokenRequest": {
         "required": [
@@ -10427,8 +10359,7 @@
             "type": "string",
             "description": "Opis tokena."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "GenerateTokenResponse": {
         "required": [
@@ -10450,8 +10381,7 @@
             "type": "string",
             "description": "Token KSeF."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "IdDocument": {
         "required": [
@@ -10478,7 +10408,6 @@
             "description": "Kraj wydania dokumentu tożsamości. Musi być zgodny z ISO 3166-1 alpha-2 (np. PL, DE, US) oraz zawierać dokładnie 2 wielkie litery."
           }
         },
-        "additionalProperties": false,
         "description": "Dane dokumentu tożsamości osoby fizycznej."
       },
       "IndirectPermissionType": {
@@ -10545,8 +10474,7 @@
             ],
             "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "IndirectPermissionsSubjectIdentifier": {
         "required": [
@@ -10570,7 +10498,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator osoby fizycznej.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "IndirectPermissionsSubjectIdentifierType": {
@@ -10603,7 +10530,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator kontekstu klienta. Nie przekazanie identyfikatora oznacza, że uprawnienie nadane w sposób pośredni jest typu generalnego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
       },
       "IndirectPermissionsTargetIdentifierType": {
@@ -10656,8 +10582,7 @@
             "description": "Polityka autoryzacji żądań przy każdym użyciu tokena dostępu.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InternalId": {
         "maxLength": 16,
@@ -10697,8 +10622,7 @@
             ],
             "description": "Zestaw filtrów do wyszukiwania faktur."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceExportStatusResponse": {
         "required": [
@@ -10741,8 +10665,7 @@
             "description": "Dane paczki faktur przygotowanej do pobrania.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceMetadata": {
         "required": [
@@ -10918,8 +10841,7 @@
             "description": "Podmiot upoważniony.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceMetadataAuthorizedSubject": {
         "required": [
@@ -10947,8 +10869,7 @@
             "description": "Rola podmiotu upoważnionego.\n| Wartość | Opis |\n| ---- | --- |\n| 1 | Organ egzekucyjny - w przypadku, o którym mowa w art. 106c pkt 1 ustawy |\n| 2 | Komornik sądowy - w przypadku, o którym mowa w art. 106c pkt 2 ustawy |\n| 3 | Przedstawiciel podatkowy - w przypadku gdy na fakturze występują dane przedstawiciela podatkowego, o którym mowa w art. 18a - 18d ustawy |",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceMetadataBuyer": {
         "required": [
@@ -10973,8 +10894,7 @@
             "description": "Nazwa nabywcy.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceMetadataBuyerIdentifier": {
         "required": [
@@ -10996,8 +10916,7 @@
             "description": "Wartość identyfikatora nabywcy.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceMetadataSeller": {
         "required": [
@@ -11019,8 +10938,7 @@
             "description": "Nazwa sprzedawcy.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceMetadataThirdSubject": {
         "required": [
@@ -11047,8 +10965,7 @@
             "description": "Rola podmiotu trzeciego.\n| Wartość | Opis |\n| ---- | --- |\n| 0 | Inna rola |\n| 1 | Faktor - w przypadku gdy na fakturze występują dane faktora |\n| 2 | Odbiorca - w przypadku gdy na fakturze występują dane jednostek wewnętrznych, oddziałów, wyodrębnionych w ramach nabywcy, które same nie stanowią nabywcy w rozumieniu ustawy |\n| 3 | Podmiot pierwotny - w przypadku gdy na fakturze występują dane podmiotu będącego w stosunku do podatnika podmiotem przejętym lub przekształconym, który dokonywał dostawy lub świadczył usługę. Z wyłączeniem przypadków, o których mowa w art. 106j ust.2 pkt 3 ustawy, gdy dane te wykazywane są w części Podmiot1K |\n| 4 | Dodatkowy nabywca - w przypadku gdy na fakturze występują dane kolejnych (innych niż wymieniony w części Podmiot2) nabywców |\n| 5 | Wystawca faktury - w przypadku gdy na fakturze występują dane podmiotu wystawiającego fakturę w imieniu podatnika. Nie dotyczy przypadku, gdy wystawcą faktury jest nabywca |\n| 6 | Dokonujący płatności - w przypadku gdy na fakturze występują dane podmiotu regulującego zobowiązanie w miejsce nabywcy |\n| 7 | Jednostka samorządu terytorialnego - wystawca |\n| 8 | Jednostka samorządu terytorialnego - odbiorca |\n| 9 | Członek grupy VAT - wystawca |\n| 10 | Członek grupy VAT - odbiorca |\n| 11 | Pracownik |",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceMetadataThirdSubjectIdentifier": {
         "required": [
@@ -11070,8 +10987,7 @@
             "description": "Wartość identyfikatora podmiotu trzeciego.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoicePackage": {
         "required": [
@@ -11130,8 +11046,7 @@
             "format": "date-time",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoicePackagePart": {
         "required": [
@@ -11200,8 +11115,7 @@
             "description": "Data i godzina wygaśnięcia linku umożliwiającego pobranie części paczki.\nPo upływie tego momentu link przestaje być aktywny.",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoicePermissionType": {
         "enum": [
@@ -11235,8 +11149,7 @@
             "format": "double",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceQueryBuyerIdentifier": {
         "required": [
@@ -11258,8 +11171,7 @@
             "description": "Wartość identyfikatora nabywcy (exact match).",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceQueryDateRange": {
         "required": [
@@ -11292,8 +11204,7 @@
             "description": "Określa, czy system ma ograniczyć filtrowanie (zakres dateRange.to) do wartości `PermanentStorageHwmDate`.\n\n* Dotyczy wyłącznie zapytań z `dateType = PermanentStorage`,  \n* Gdy `true`, system ogranicza filtrowanie tak, aby wartość `dateRange.to` nie przekraczała wartości `PermanentStorageHwmDate`,  \n* Gdy `null` lub `false`, filtrowanie może wykraczać poza `PermanentStorageHwmDate`.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceQueryDateType": {
         "enum": [
@@ -11423,8 +11334,7 @@
             "description": "Czy faktura ma załącznik.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceQueryFormType": {
         "enum": [
@@ -11472,15 +11382,10 @@
           },
           "extensions": {
             "type": "object",
-            "additionalProperties": {
-              "type": "string",
-              "nullable": true
-            },
             "description": "Zbiór dodatkowych informacji związanych ze statusem faktury, zapisanych jako pary klucz–wartość.\nUmożliwia rozszerzenie modelu o dane specyficzne dla danego przypadku.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InvoiceType": {
         "enum": [
@@ -11563,8 +11468,7 @@
             "description": "Maksymalna ilość faktur które można przesłać w pojedynczej sesji.",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "OnlineSessionEffectiveContextLimits": {
         "required": [
@@ -11592,8 +11496,7 @@
             "description": "Maksymalna ilość faktur które można przesłać w pojedynczej sesji.",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "OpenBatchSessionRequest": {
         "required": [
@@ -11646,8 +11549,7 @@
             "description": "Określa, czy podatnik deklaruje tryb fakturowania \"offline\" dla dokumentów przesyłanych w sesji wsadowej.",
             "default": false
           }
-        },
-        "additionalProperties": false
+        }
       },
       "OpenBatchSessionResponse": {
         "required": [
@@ -11671,8 +11573,7 @@
             },
             "description": "Dane wymagane do poprawnego przesłania poszczególnych części pliku paczki faktur.\n\nKażdą część pliku paczki zadeklarowaną w <b>fileParts</b> należy przesłać zgodnie z odpowiadającym jej obiektem w <b>partUploadRequests</b>.\nŁącznikiem pomiędzy deklaracją a instrukcją wysyłki jest pole <b>ordinalNumber</b>.\n\nDla każdej części należy:\n* zastosować metodę HTTP wskazaną w <b>method</b>,\n* ustawić adres z <b>url</b>,\n* dołączyć nagłówki z <b>headers</b>,\n* dołączyć treść części pliku w korpusie żądania.\n\n`Uwaga: nie należy dodawać do nagłówków token dostępu (accessToken).`\n \nKażdą część przesyła się oddzielnym żądaniem HTTP.Zwracane kody odpowiedzi:\n * <b>201</b> – poprawne przyjęcie pliku,\n * <b>400</b> – błędne dane,\n * <b>401</b> – nieprawidłowe uwierzytelnienie,\n * <b>403</b> – brak uprawnień do zapisu (np.upłynął czas na zapis)."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "OpenOnlineSessionRequest": {
         "required": [
@@ -11706,8 +11607,7 @@
             ],
             "description": "Symetryczny klucz szyfrujący pliki XML, zaszyfrowany kluczem publicznym Ministerstwa Finansów."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "OpenOnlineSessionResponse": {
         "required": [
@@ -11729,8 +11629,7 @@
             "description": "Termin ważności sesji. Po jego upływie sesja zostanie automatycznie zamknięta.",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PartUploadRequest": {
         "required": [
@@ -11758,14 +11657,9 @@
           },
           "headers": {
             "type": "object",
-            "additionalProperties": {
-              "type": "string",
-              "nullable": true
-            },
             "description": "Nagłówki, których należy użyć przy wysyłce części pliku paczki."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PeppolId": {
         "maxLength": 9,
@@ -11800,8 +11694,7 @@
             "description": "Data rejestracji dostawcy usług Peppol w systemie.",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PermissionId": {
         "maxLength": 36,
@@ -11833,8 +11726,7 @@
             "type": "string",
             "description": "Adres podmiotu unijnego."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PermissionsOperationResponse": {
         "required": [
@@ -11850,8 +11742,7 @@
             ],
             "description": "Numer referencyjny operacji nadania lub odbierania uprawnień."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PermissionsOperationStatusResponse": {
         "required": [
@@ -11867,8 +11758,7 @@
             ],
             "description": "Informacje o aktualnym statusie.\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Operacja przyjęta do realizacji | - |\n| 200 | Operacja zakończona sukcesem | - |\n| 400 | Operacja zakończona niepowodzeniem | - |\n| 410 | Podane identyfikatory są niezgodne lub pozostają w niewłaściwej relacji | - |\n| 420 | Użyte poświadczenia nie mają uprawnień do wykonania tej operacji | - |\n| 430 | Kontekst identyfikatora nie odpowiada wymaganej roli lub uprawnieniom | - |\n| 440 | Operacja niedozwolona dla wskazanych powiązań identyfikatorów | - |\n| 450 | Operacja niedozwolona dla wskazanego identyfikatora lub jego typu | - |\n| 500 | Nieznany błąd | - |\n| 550 | Operacja została anulowana przez system | Przetwarzanie zostało przerwane z przyczyn wewnętrznych systemu. Spróbuj ponownie później. |"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PermissionsSubjectEntityByFingerprintDetails": {
         "required": [
@@ -11896,8 +11786,7 @@
             "description": "Adres podmiotu.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PermissionsSubjectEntityByIdentifierDetails": {
         "required": [
@@ -11919,8 +11808,7 @@
             "type": "string",
             "description": "Pełna nazwa podmiotu."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PermissionsSubjectEntityDetails": {
         "required": [
@@ -11948,8 +11836,7 @@
             "description": "Adres podmiotu.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PermissionsSubjectPersonByFingerprintDetails": {
         "required": [
@@ -12012,8 +11899,7 @@
             "description": "Dane dokumentu tożsamości osoby fizycznej.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PermissionsSubjectPersonDetails": {
         "required": [
@@ -12076,8 +11962,7 @@
             "description": "Dane dokumentu tożsamości osoby fizycznej.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonByFingerprintWithIdentifierDetails": {
         "required": [
@@ -12111,8 +11996,7 @@
             ],
             "description": "Identyfikator osoby fizycznej."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonByFingerprintWithoutIdentifierDetails": {
         "required": [
@@ -12153,8 +12037,7 @@
             ],
             "description": "Dane dokumentu tożsamości osoby fizycznej."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonCreateRequest": {
         "required": [
@@ -12188,8 +12071,7 @@
             "format": "date-time",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonDetails": {
         "required": [
@@ -12210,8 +12092,7 @@
             "type": "string",
             "description": "Nazwisko osoby fizycznej."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonIdentifier": {
         "required": [
@@ -12234,8 +12115,7 @@
             "type": "string",
             "description": "Wartość identyfikatora."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonIdentifierType": {
         "enum": [
@@ -12372,8 +12252,7 @@
             "type": "boolean",
             "description": "Flaga określająca, czy uprawnienie ma być możliwe do dalszego przekazywania."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonPermissionScope": {
         "enum": [
@@ -12443,8 +12322,7 @@
             "description": "Dane podmiotu.\n*Wymagane, gdy subjectDetailsType = PersonByFingerprintWithoutIdentifier.*",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonPermissionSubjectDetailsType": {
         "enum": [
@@ -12489,7 +12367,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator osoby lub podmiotu nadającego uprawnienie.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |\n| System | Identyfikator systemowy KSeF |"
       },
       "PersonPermissionsAuthorIdentifierType": {
@@ -12523,7 +12400,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator osoby lub podmiotu uprawnionego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "PersonPermissionsAuthorizedIdentifierType": {
@@ -12556,7 +12432,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator kontekstu uprawnienia (dla uprawnień nadanych administratorom jednostek podrzędnych).\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
       },
       "PersonPermissionsContextIdentifierType": {
@@ -12611,8 +12486,7 @@
             ],
             "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonPermissionsQueryRequest": {
         "required": [
@@ -12695,8 +12569,7 @@
             ],
             "description": "Typ zapytania.\n| Type | Value |\n| --- | --- |\n| PermissionsInCurrentContext | Lista uprawnień obowiązujących w bieżącym kontekście |\n| PermissionsGrantedInCurrentContext | Lista uprawnień nadanych w bieżącym kontekście |"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonPermissionsQueryType": {
         "enum": [
@@ -12727,7 +12600,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator osoby fizycznej.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "PersonPermissionsSubjectIdentifierType": {
@@ -12760,7 +12632,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni jest typu generalnego |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
       },
       "PersonPermissionsTargetIdentifierType": {
@@ -12780,8 +12651,7 @@
           "nip": {
             "$ref": "#/components/schemas/Nip"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonSubjectByFingerprintDetailsType": {
         "enum": [
@@ -12915,8 +12785,7 @@
             "type": "boolean",
             "description": "Flaga określająca, czy uprawnienie ma być możliwe do dalszego przekazywania."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonalPermissionScope": {
         "enum": [
@@ -12966,7 +12835,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu uprawnionego, jeżeli jest inny niż identyfikator uwierzytelnionego klienta API.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
       },
       "PersonalPermissionsAuthorizedIdentifierType": {
@@ -12999,7 +12867,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
       },
       "PersonalPermissionsContextIdentifierType": {
@@ -13054,8 +12921,7 @@
             "description": "Stan uprawnienia. \n| Type | Value |\n| --- | --- |\n| Active | Uprawnienia aktywne |\n| Inactive | Uprawnienia nieaktywne |",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PersonalPermissionsTargetIdentifier": {
         "required": [
@@ -13079,7 +12945,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu docelowego dla uprawnień selektywnych nadanych pośrednio.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| AllPartners | Identyfikator oznaczający, że wyszukiwanie dotyczy uprawnień generalnych nadanych w sposób pośredni |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
       },
       "PersonalPermissionsTargetIdentifierType": {
@@ -13128,8 +12993,7 @@
             },
             "description": "Operacje do których może być używany certyfikat.\n| Wartość | Opis |\n| --- | --- |\n| KsefTokenEncryption | Szyfrowanie tokenów KSeF przesyłanych w trakcie procesu uwierzytelniania. |\n| SymmetricKeyEncryption | Szyfrowanie klucza symetrycznego wykorzystywanego do szyfrowania przesyłanych faktur. |\n"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PublicKeyCertificateUsage": {
         "enum": [
@@ -13176,8 +13040,7 @@
             "format": "date-time",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QueryCertificatesResponse": {
         "required": [
@@ -13197,8 +13060,7 @@
             "type": "boolean",
             "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QueryEntityAuthorizationPermissionsResponse": {
         "required": [
@@ -13218,8 +13080,7 @@
             "type": "boolean",
             "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QueryEntityRolesResponse": {
         "required": [
@@ -13239,8 +13100,7 @@
             "type": "boolean",
             "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QueryEuEntityPermissionsResponse": {
         "required": [
@@ -13260,8 +13120,7 @@
             "type": "boolean",
             "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QueryInvoicesMetadataResponse": {
         "required": [
@@ -13292,8 +13151,7 @@
             },
             "description": "Lista faktur spełniających kryteria."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QueryPeppolProvidersResponse": {
         "required": [
@@ -13313,8 +13171,7 @@
             "type": "boolean",
             "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QueryPersonPermissionsResponse": {
         "required": [
@@ -13334,8 +13191,7 @@
             "type": "boolean",
             "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QueryPersonalPermissionsResponse": {
         "required": [
@@ -13355,8 +13211,7 @@
             "type": "boolean",
             "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QuerySubordinateEntityRolesResponse": {
         "required": [
@@ -13376,8 +13231,7 @@
             "type": "boolean",
             "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QuerySubunitPermissionsResponse": {
         "required": [
@@ -13397,8 +13251,7 @@
             "type": "boolean",
             "description": "Flaga informująca o dostępności kolejnej strony wyników."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QueryTokensResponse": {
         "required": [
@@ -13418,8 +13271,7 @@
             },
             "description": "Lista tokenów uwierzytelniających."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QueryTokensResponseItem": {
         "required": [
@@ -13505,8 +13357,7 @@
             "description": "Dodatkowe informacje na temat statusu, zwracane w przypadku błędów.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "QueryType": {
         "enum": [
@@ -13551,8 +13402,7 @@
             ],
             "description": "Typ certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Authentication | Certyfikat używany do uwierzytelnienia w systemie. |\n| Offline | Certyfikat używany wyłącznie do potwierdzania autentyczności wystawcy i integralności faktury w trybie offline |\n"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "RetrieveCertificatesRequest": {
         "required": [
@@ -13569,8 +13419,7 @@
             },
             "description": "Numery seryjne certyfikatów do pobrania."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "RetrieveCertificatesResponse": {
         "required": [
@@ -13585,8 +13434,7 @@
             },
             "description": "Pobrane certyfikaty."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "RetryAfter": {
         "type": "integer",
@@ -13606,8 +13454,7 @@
             "description": "Powód unieważnienia certyfikatu.\n| Wartość | Opis |\n| --- | --- |\n| Unspecified | Nieokreślony. |\n| Superseded | Certyfikat został zastąpiony przez inny. |\n| KeyCompromise | Klucz prywatny powiązany z certyfikatem został skompromitowany. |\n",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SendInvoiceRequest": {
         "required": [
@@ -13666,8 +13513,7 @@
             "description": "Skrót SHA256 korygowanej faktury, zakodowany w formacie Base64. Wymagany przy wysyłaniu korekty technicznej faktury.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SendInvoiceResponse": {
         "required": [
@@ -13683,8 +13529,7 @@
             ],
             "description": "Numer referencyjny faktury."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SessionInvoiceStatusResponse": {
         "required": [
@@ -13785,8 +13630,7 @@
             ],
             "description": "Status faktury.\n\n| Code | Description | Details | Extensions |\n| --- | --- | --- | ---|\n| 100 | Faktura przyjęta do dalszego przetwarzania | - | - |\n| 150 | Trwa przetwarzanie | - | - |\n| 200 | Sukces | - | - |\n| 405 | Przetwarzanie anulowane z powodu błędu sesji | - | - |\n| 410 | Nieprawidłowy zakres uprawnień | - |  - |\n| 415 | Brak możliwości wysyłania faktury z załącznikiem | - | - |\n| 430 | Błąd weryfikacji pliku faktury | - | -  |\n| 435 | Błąd odszyfrowania pliku | - | - |\n| 440 | Duplikat faktury | - | 'originalSessionReferenceNumber', 'originalKsefNumber'|\n| 450 | Błąd weryfikacji semantyki dokumentu faktury | - | - |\n| 500 | Nieznany błąd ({statusCode}) | - | - |\n| 550 | Operacja została anulowana przez system | Przetwarzanie zostało przerwane z przyczyn wewnętrznych systemu. Spróbuj ponownie |- |"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SessionInvoicesResponse": {
         "required": [
@@ -13806,8 +13650,7 @@
             },
             "description": "Lista pobranych faktur."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SessionStatusResponse": {
         "required": [
@@ -13875,8 +13718,7 @@
             "format": "int32",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SessionType": {
         "enum": [
@@ -13904,8 +13746,7 @@
             },
             "description": "Lista sesji."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SessionsQueryResponseItem": {
         "required": [
@@ -13969,8 +13810,7 @@
             "description": "Liczba błędnie przetworzonych faktur.",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SetRateLimitsRequest": {
         "required": [
@@ -14000,8 +13840,7 @@
             ],
             "description": "Limity dla ilości żądań do API."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SetSessionLimitsRequest": {
         "required": [
@@ -14036,8 +13875,7 @@
             ],
             "description": "Limity dla sesji wsadowych."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SetSubjectLimitsRequest": {
         "type": "object",
@@ -14065,8 +13903,7 @@
             ],
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "Sha256HashBase64": {
         "maxLength": 44,
@@ -14108,8 +13945,7 @@
             "description": "Dodatkowe szczegóły statusu",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SubjectCreateRequest": {
         "required": [
@@ -14147,8 +13983,7 @@
             "format": "date-time",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SubjectIdentifierType": {
         "enum": [
@@ -14167,8 +14002,7 @@
           "subjectNip": {
             "$ref": "#/components/schemas/Nip"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SubjectType": {
         "enum": [
@@ -14218,8 +14052,7 @@
             "description": "Data rozpoczęcia obowiązywania powiązania.",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SubordinateEntityRoleType": {
         "enum": [
@@ -14244,8 +14077,7 @@
             "description": "Identyfikator podmiotu podrzędnego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SubordinateRoleSubordinateEntityIdentifier": {
         "required": [
@@ -14269,7 +14101,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu podrzędnego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |"
       },
       "SubordinateRoleSubordinateEntityIdentifierType": {
@@ -14293,8 +14124,7 @@
             "minLength": 5,
             "type": "string"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SubunitPermission": {
         "required": [
@@ -14392,8 +14222,7 @@
             "description": "Data rozpoczęcia obowiązywania uprawnienia.",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SubunitPermissionScope": {
         "enum": [
@@ -14423,7 +14252,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator uprawniającego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "SubunitPermissionsAuthorIdentifierType": {
@@ -14456,7 +14284,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator uprawnionego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "SubunitPermissionsContextIdentifier": {
@@ -14481,7 +14308,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu podrzędnego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
       },
       "SubunitPermissionsContextIdentifierType": {
@@ -14548,8 +14374,7 @@
             ],
             "description": "Dane podmiotu, któremu nadawane są uprawnienia."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SubunitPermissionsQueryRequest": {
         "type": "object",
@@ -14567,8 +14392,7 @@
             "description": "Identyfikator jednostki lub podmiotu podrzędnego.\n| Type | Value |\n| --- | --- |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |\n| Nip | 10 cyfrowy numer NIP |",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "SubunitPermissionsSubjectIdentifier": {
         "required": [
@@ -14592,7 +14416,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator podmiotu lub osoby fizycznej.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| Pesel | 11 cyfrowy numer PESEL |\n| Fingerprint | Odcisk palca certyfikatu |"
       },
       "SubunitPermissionsSubjectIdentifierType": {
@@ -14625,7 +14448,6 @@
             "description": "Wartość identyfikatora."
           }
         },
-        "additionalProperties": false,
         "description": "Identyfikator jednostki lub podmiotu podrzędnego.\n| Type | Value |\n| --- | --- |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |\n| Nip | 10 cyfrowy numer NIP |"
       },
       "SubunitPermissionsSubunitIdentifierType": {
@@ -14652,8 +14474,7 @@
               }
             ]
           }
-        },
-        "additionalProperties": false
+        }
       },
       "TestDataAuthenticationContextIdentifierType": {
         "enum": [
@@ -14683,8 +14504,7 @@
             "minLength": 10,
             "type": "string"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "TestDataAuthorizedIdentifierType": {
         "enum": [
@@ -14713,8 +14533,7 @@
             "minLength": 10,
             "type": "string"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "TestDataContextIdentifierType": {
         "enum": [
@@ -14741,8 +14560,7 @@
               }
             ]
           }
-        },
-        "additionalProperties": false
+        }
       },
       "TestDataPermissionType": {
         "enum": [
@@ -14792,8 +14610,7 @@
               "$ref": "#/components/schemas/TestDataPermission"
             }
           }
-        },
-        "additionalProperties": false
+        }
       },
       "TestDataPermissionsRevokeRequest": {
         "required": [
@@ -14824,8 +14641,7 @@
               }
             ]
           }
-        },
-        "additionalProperties": false
+        }
       },
       "ThirdSubjectIdentifierType": {
         "enum": [
@@ -14866,8 +14682,7 @@
             "type": "string",
             "description": "Wartość identyfikatora."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "TokenContextIdentifierType": {
         "enum": [
@@ -14898,8 +14713,7 @@
             "type": "string",
             "description": "Wartość identyfikatora."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "TokenInfo": {
         "required": [
@@ -14917,8 +14731,7 @@
             "description": "Data ważności tokena.",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "TokenPermissionType": {
         "enum": [
@@ -15015,8 +14828,7 @@
             "description": "Dodatkowe informacje na temat statusu, zwracane w przypadku błędów.",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "TooManyRequestsResponse": {
         "required": [
@@ -15076,8 +14888,7 @@
             ],
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "UpoPageResponse": {
         "required": [
@@ -15105,8 +14916,7 @@
             "description": "Data i godzina wygaśnięcia adresu. Po tej dacie link `DownloadUrl` nie będzie już aktywny.",
             "format": "date-time"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "UpoResponse": {
         "required": [
@@ -15121,8 +14931,7 @@
             },
             "description": "Lista stron UPO."
           }
-        },
-        "additionalProperties": false
+        }
       }
     },
     "securitySchemes": {
