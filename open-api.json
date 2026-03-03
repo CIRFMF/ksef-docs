@@ -7842,6 +7842,160 @@
         ]
       }
     },
+    "/permissions/query/entities/grants": {
+      "post": {
+        "tags": [
+          "Wyszukiwanie nadanych uprawnień"
+        ],
+        "summary": "Pobranie listy uprawnień do obsługi faktur w bieżącym kontekście",
+        "description": " Metoda pozwala na odczytanie otrzymanych uprawnień do obsługi faktur w bieżącym kontekście logowania.  \n\n W odpowiedzi przekazywane są następujące uprawnienia:  \n - nadane podmiotowi do obsługi faktur przez inny podmiot \n\n Uprawnienia zwracane przez operację obejmują:  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **contextIdentifier** – identyfikator podmiotu, który nadał uprawnienie do obsługi faktur  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-do-obs%C5%82ugi-faktur-w-bie%C5%BC%C4%85cym-kontek%C5%9Bcie)\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`.",
+        "parameters": [
+          {
+            "name": "pageOffset",
+            "in": "query",
+            "description": "Numer strony wyników.",
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Rozmiar strony wyników.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 10,
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/EntityPermissionsQueryRequest"
+                  }
+                ]
+              },
+              "example": {
+                "contextIdentifier": {
+                  "type": "Nip",
+                  "value": "3568707925"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryEntityPermissionsResponse"
+                },
+                "example": {
+                  "permissions": [
+                    {
+                      "id": "0c9a72e8-f344-457f-9c16-7c640eb60242",
+                      "contextIdentifier": {
+                        "type": "Nip",
+                        "value": "3568707925"
+                      },
+                      "permissionScope": "InvoiceWrite",
+                      "description": "Opis uprawnienia",
+                      "startDate": "2025-06-22T10:41:11+00:00",
+                      "canDelegate": false
+                    }
+                  ],
+                  "hasMore": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "| ExceptionCode | ExceptionDescription | Details |\n|-|-|-|\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora} |",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              }
+            },
+            "x-summary": "Bad Request"
+          },
+          "429": {
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 100 | 300 | 1200 | other\n",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetryAfter"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              }
+            },
+            "x-summary": "Too Many Requests"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-rate-limits": {
+          "perSecond": 100,
+          "perMinute": 300,
+          "perHour": 1200
+        },
+        "x-sort": [
+          {
+            "field": "startDate",
+            "direction": "Desc"
+          },
+          {
+            "field": "id",
+            "direction": "Asc"
+          }
+        ],
+        "x-required-permissions": [
+          "CredentialsManage",
+          "CredentialsRead"
+        ]
+      }
+    },
     "/permissions/query/entities/roles": {
       "get": {
         "tags": [
@@ -10473,10 +10627,104 @@
           }
         }
       },
+      "EntityPermissionItem": {
+        "required": [
+          "canDelegate",
+          "contextIdentifier",
+          "description",
+          "id",
+          "permissionScope",
+          "startDate"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PermissionId"
+              }
+            ],
+            "description": "Identyfikator uprawnienia."
+          },
+          "contextIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityPermissionsContextIdentifier"
+              }
+            ],
+            "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
+          },
+          "permissionScope": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityPermissionItemScope"
+              }
+            ],
+            "description": "Rodzaj uprawnienia."
+          },
+          "description": {
+            "maxLength": 256,
+            "minLength": 5,
+            "type": "string",
+            "description": "Opis uprawnienia."
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Data rozpoczęcia obowiązywania uprawnienia.",
+            "format": "date-time"
+          },
+          "canDelegate": {
+            "type": "boolean",
+            "description": "Flaga określająca, czy uprawnienie ma być możliwe do dalszego przekazywania."
+          }
+        }
+      },
+      "EntityPermissionItemScope": {
+        "enum": [
+          "InvoiceWrite",
+          "InvoiceRead"
+        ],
+        "type": "string"
+      },
       "EntityPermissionType": {
         "enum": [
           "InvoiceWrite",
           "InvoiceRead"
+        ],
+        "type": "string"
+      },
+      "EntityPermissionsContextIdentifier": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityPermissionsContextIdentifierType"
+              }
+            ],
+            "description": "Typ identyfikatora."
+          },
+          "value": {
+            "maxLength": 16,
+            "minLength": 10,
+            "type": "string",
+            "description": "Wartość identyfikatora."
+          }
+        },
+        "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |"
+      },
+      "EntityPermissionsContextIdentifierType": {
+        "enum": [
+          "Nip",
+          "InternalId"
         ],
         "type": "string"
       },
@@ -10524,6 +10772,24 @@
               }
             ],
             "description": "Dane podmiotu, któremu nadawane są uprawnienia."
+          }
+        }
+      },
+      "EntityPermissionsQueryRequest": {
+        "type": "object",
+        "properties": {
+          "contextIdentifier": {
+            "required": [
+              "type",
+              "value"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityPermissionsContextIdentifier"
+              }
+            ],
+            "description": "Identyfikator kontekstu podmiotu, który nadał uprawnienia do obsługi faktur.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}` |",
+            "nullable": true
           }
         }
       },
@@ -14089,6 +14355,26 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EntityAuthorizationGrant"
+            },
+            "description": "Lista odczytanych uprawnień."
+          },
+          "hasMore": {
+            "type": "boolean",
+            "description": "Flaga informująca o dostępności kolejnej strony wyników."
+          }
+        }
+      },
+      "QueryEntityPermissionsResponse": {
+        "required": [
+          "hasMore",
+          "permissions"
+        ],
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityPermissionItem"
             },
             "description": "Lista odczytanych uprawnień."
           },
