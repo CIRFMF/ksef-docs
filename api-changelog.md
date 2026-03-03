@@ -1,5 +1,10 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.2.0
+
+- **OpenAPI**  
+  Rozszerzono odpowiedzi `401 Unauthorized` i `403 Forbidden` o ustandaryzowany format błędu "Problem Details" (`application/problem+json`). Dodano schematy `UnauthorizedProblemDetails` oraz `ForbiddenProblemDetails`. `ForbiddenProblemDetails` udostępnia m.in. właściwość `reasonCode` oraz opcjonalny obiekt `security` na potrzeby dodatkowych informacji.
+
 ### Wersja 2.1.2
 
 - **Wysyłka faktur**  
