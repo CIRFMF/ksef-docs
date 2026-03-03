@@ -8881,6 +8881,7 @@
       "AuthenticationChallengeResponse": {
         "required": [
           "challenge",
+          "clientIp",
           "timestamp",
           "timestampMs"
         ],
@@ -8898,6 +8899,10 @@
             "type": "integer",
             "description": "Czas wygenerowania challenge-a w milisekundach od 1 stycznia 1970 roku (Unix timestamp).",
             "format": "int64"
+          },
+          "clientIp": {
+            "type": "string",
+            "description": "Adres IP klienta."
           }
         }
       },

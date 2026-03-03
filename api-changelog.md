@@ -5,6 +5,9 @@
 - **Uprawnienia**  
   Dodano nowy endpoint (POST `/permissions/query/entities/grants`) umożliwiający pobranie listy uprawnień do obsługi faktur w bieżącym kontekście (zwracane uprawnienia: `InvoiceWrite`, `InvoiceRead` - nadane przez inny podmiot).
 
+- **Uwierzytelnianie**  
+  Rozszerzono odpowiedź POST `/auth/challenge` o właściwość `clientIp`, zwracające adres IP klienta zarejestrowany przez KSeF. Wartość może zostać bezpośrednio wykorzystana do budowy `AuthorizationPolicy` w kolejnych krokach uwierzytelniania.
+
 - **OpenAPI**  
   - Rozszerzono odpowiedzi `401 Unauthorized` i `403 Forbidden` o ustandaryzowany format błędu "Problem Details" (`application/problem+json`). Dodano schematy `UnauthorizedProblemDetails` oraz `ForbiddenProblemDetails`. `ForbiddenProblemDetails` udostępnia m.in. właściwość `reasonCode` oraz opcjonalny obiekt `security` na potrzeby dodatkowych informacji.
   - Przywrócono (dotyczy tylko specyfikacji OpenAPI) `additionalProperties` dla pól słownikowych: `InvoiceStatusInfo.extensions` oraz `PartUploadRequest.headers`.
