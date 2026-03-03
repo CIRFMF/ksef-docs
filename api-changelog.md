@@ -6,7 +6,8 @@
   Dodano nowy endpoint (POST `/permissions/query/entities/grants`) umożliwiający pobranie listy uprawnień do obsługi faktur w bieżącym kontekście (zwracane uprawnienia: `InvoiceWrite`, `InvoiceRead` - nadane przez inny podmiot).
 
 - **OpenAPI**  
-  Rozszerzono odpowiedzi `401 Unauthorized` i `403 Forbidden` o ustandaryzowany format błędu "Problem Details" (`application/problem+json`). Dodano schematy `UnauthorizedProblemDetails` oraz `ForbiddenProblemDetails`. `ForbiddenProblemDetails` udostępnia m.in. właściwość `reasonCode` oraz opcjonalny obiekt `security` na potrzeby dodatkowych informacji.
+  - Rozszerzono odpowiedzi `401 Unauthorized` i `403 Forbidden` o ustandaryzowany format błędu "Problem Details" (`application/problem+json`). Dodano schematy `UnauthorizedProblemDetails` oraz `ForbiddenProblemDetails`. `ForbiddenProblemDetails` udostępnia m.in. właściwość `reasonCode` oraz opcjonalny obiekt `security` na potrzeby dodatkowych informacji.
+  - Drobne aktualizacje opisów.
 
 ### Wersja 2.1.2
 
