@@ -16281,11 +16281,6 @@
         "description": "Token dostępu uzyskany w wyniku operacji uwierzytelnienia.",
         "scheme": "Bearer",
         "bearerFormat": "JWT"
-      },
-      "SessionToken": {
-        "type": "apiKey",
-        "name": "SessionToken",
-        "in": "header"
       }
     }
   },
