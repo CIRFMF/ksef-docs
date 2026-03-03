@@ -12664,6 +12664,10 @@
           },
           "extensions": {
             "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
             "description": "Zbiór dodatkowych informacji związanych ze statusem faktury, zapisanych jako pary klucz–wartość.\nUmożliwia rozszerzenie modelu o dane specyficzne dla danego przypadku.",
             "nullable": true
           }
@@ -12939,6 +12943,10 @@
           },
           "headers": {
             "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
             "description": "Nagłówki, których należy użyć przy wysyłce części pliku paczki."
           }
         }

@@ -7,6 +7,7 @@
 
 - **OpenAPI**  
   - Rozszerzono odpowiedzi `401 Unauthorized` i `403 Forbidden` o ustandaryzowany format błędu "Problem Details" (`application/problem+json`). Dodano schematy `UnauthorizedProblemDetails` oraz `ForbiddenProblemDetails`. `ForbiddenProblemDetails` udostępnia m.in. właściwość `reasonCode` oraz opcjonalny obiekt `security` na potrzeby dodatkowych informacji.
+  - Przywrócono (dotyczy tylko specyfikacji OpenAPI) `additionalProperties` dla pól słownikowych: `InvoiceStatusInfo.extensions` oraz `PartUploadRequest.headers`.
   - Drobne aktualizacje opisów.
 
 ### Wersja 2.1.2
