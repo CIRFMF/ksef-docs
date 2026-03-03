@@ -673,6 +673,28 @@ Przykład w języku Java:
 QueryPersonalGrantResponse response = ksefClient.searchPersonalGrantPermission(request, pageOffset, pageSize, token.accessToken());
 
 ```
+
+---
+### Pobranie listy uprawnień do obsługi faktur w bieżącym kontekście
+
+Metoda pozwala na odczytanie otrzymanych uprawnień do obsługi faktur w bieżącym kontekście logowania. 
+ Na tej liście znajdują się uprawnienia:
+- nadane podmiotowi do obsługi faktur przez inny podmiot 
+
+POST [/permissions/query/entities/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1permissions~1query~entities~1grants/post)
+
+| Pole                  | Opis                                                                 |
+| :-------------------- | :------------------------------------------------------------------- |
+| `contextIdentifier`    | identyfikator podmiotu, który nadał uprawnienie do obsługi faktur.   ```Nip```, ```InternalId```  |
+
+Przykład w języku C#:
+```
+```
+
+Przykład w języku Java:
+```
+```
+
 ---
 ### Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom
 
