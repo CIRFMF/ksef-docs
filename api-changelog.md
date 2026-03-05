@@ -13,6 +13,9 @@
   - Przywrócono (dotyczy tylko specyfikacji OpenAPI) `additionalProperties` dla pól słownikowych: `InvoiceStatusInfo.extensions` oraz `PartUploadRequest.headers`.
   - Drobne aktualizacje opisów.
 
+- **Eksport paczki faktur (POST `/invoices/exports`).**  
+  Poprawiono generowanie pliku `_metadata.json` w paczce eksportu - przy dużej liczbie faktur plik mógł być wcześniej ucięty (nieprawidłowy JSON).
+
 ### Wersja 2.1.2
 
 - **Wysyłka faktur**  
