@@ -677,8 +677,8 @@ QueryPersonalGrantResponse response = ksefClient.searchPersonalGrantPermission(r
 ---
 ### Pobranie listy uprawnień do obsługi faktur w bieżącym kontekście
 
-Metoda pozwala na odczytanie otrzymanych uprawnień do obsługi faktur w bieżącym kontekście logowania. 
- Na tej liście znajdują się uprawnienia:
+Metoda pozwala na odczytanie otrzymanych uprawnień do obsługi faktur w bieżącym kontekście logowania.
+Na tej liście znajdują się uprawnienia:
 - nadane podmiotowi do obsługi faktur przez inny podmiot 
 
 POST [/permissions/query/entities/grants](https://api-test.ksef.mf.gov.pl/docs/v2/index.html#tag/Wyszukiwanie-nadanych-uprawnien/paths/~1permissions~1query~entities~1grants/post)
@@ -688,7 +688,19 @@ POST [/permissions/query/entities/grants](https://api-test.ksef.mf.gov.pl/docs/v
 | `contextIdentifier`    | identyfikator podmiotu, który nadał uprawnienie do obsługi faktur.   ```Nip```, ```InternalId```  |
 
 Przykład w języku C#:
+[KSeF.Client.Tests.Core\E2E\Permissions\EntityPermission\EntityPermissionGrantQueryE2ETests.cs](https://github.com/CIRFMF/ksef-client-csharp/blob/main/KSeF.Client.Tests.Core/E2E/Permissions/EntityPermission/EntityPermissionGrantQueryE2ETests.cs)
 ```
+EntityPermissionGrantQueryRequest request = new EntityPermissionGrantQueryRequest
+{
+    ContextIdentifier = new ContextIdentifier
+    {
+        Type = AuthenticationTokenContextIdentifierType.Nip,
+        Value = nip
+    }
+};
+
+EntityPermissionGrantResponse queryEntitiesGrantsAsyncResponse = 
+    await searchPermissionClient.QueryEntitiesGrantsAsync(request, authOperationStatusResponse.AccessToken.Token);
 ```
 
 Przykład w języku Java:
