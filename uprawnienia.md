@@ -704,7 +704,14 @@ EntityPermissionGrantResponse queryEntitiesGrantsAsyncResponse =
 ```
 
 Przykład w języku Java:
+[SearchEntityPermissionsIntegrationTest.java](https://github.com/CIRFMF/ksef-client-java/blob/main/demo-web-app/src/integrationTest/java/pl/akmf/ksef/sdk/SearchEntityPermissionsIntegrationTest.java)
 ```
+PersonPermissionsContextIdentifier contextIdentifier = new PersonPermissionsContextIdentifier();
+contextIdentifier.setValue(nip);
+contextIdentifier.setType(PersonPermissionsContextIdentifier.IdentifierType.NIP);
+EntityPermissionsQueryRequest request = new EntityPermissionsQueryRequest(contextIdentifier);
+
+QueryEntityPermissionsResponse queryEntitiesGrantsAsyncResponse = ksefClient.searchEntityInvoiceContext(request, 0, 10, token.accessToken());
 ```
 
 ---
