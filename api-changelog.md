@@ -1,5 +1,12 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.2.1
+
+- **Wysyłka faktur**  
+  Dodano nową wersję (`1-1E`) schemy `FA_RR (1)`.  
+  Schema `FA_RR (1) 1-0E` będzie obsługiwana na środowisku TEST do 23.04.
+  Schema `FA_RR (1) 1-1E` będzie obowiązywać na środowisku PRD od 01.04.  
+
 ### Wersja 2.2.0
 
 - **Uprawnienia**  
