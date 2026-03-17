@@ -1,5 +1,5 @@
 ## Środowiska KSeF API 2.0 
-15.12.2025
+16.03.2026
 
 Poniżej zestawiono informacje o publicznych środowiskach.
 
@@ -16,6 +16,9 @@ Poniżej zestawiono informacje o publicznych środowiskach.
 W środowisku testowym `TE` dopuszczalne jest uwierzytelnianie przy użyciu samopodpisanych certyfikatów (self-signed), co w praktyce oznacza, że wielu integratorów może [uwierzytelnić się](uwierzytelnianie.md#proces-uwierzytelniania) w kontekście tej samej firmy.
 Z tego względu dane wprowadzone w środowisku `TE` nie są odizolowane i mogą być współdzielone między integratorami.
 Do testów należy używać losowych identyfikatorów NIP, unikając jakichkolwiek danych rzeczywistych.
+
+### Adresy URL zwracane przez API
+W każdym przypadku, gdy API zwraca adres URL do pobrania lub wysyłki zasobu, jego host odpowiada środowisku, do którego zostało skierowane wywołanie (TEST, DEMO albo PRD).
 
 ### Prace serwisowe na środowiskach testowych
 W związku z planowanym, systematycznym rozwojem Krajowego Systemu e-Faktur (KSeF 2.0), **od dnia 1 października 2025 r.** na środowiskach testowych Systemu mogą być prowadzone cykliczne prace serwisowe.
