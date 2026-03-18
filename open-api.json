@@ -6223,7 +6223,8 @@
                 "example": {
                   "challenge": "20250514-CR-226FB7B000-3ACF9BE4C0-10",
                   "timestamp": "2025-07-11T12:23:56.0154302+00:00",
-                  "timestampMs": 1752236636015
+                  "timestampMs": 1752236636015,
+                  "clientIp": "127.0.0.1"
                 }
               }
             }
@@ -12050,7 +12051,7 @@
           },
           "vatAmount": {
             "type": "number",
-            "description": "Łączna kwota VAT.",
+            "description": "Łączna kwota VAT wyrażona w PLN.",
             "format": "double"
           },
           "currency": {

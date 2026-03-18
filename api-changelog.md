@@ -21,6 +21,7 @@
 
 - **OpenAPI**  
   - Rozszerzono `ForbiddenProblemDetails.reasonCode` o wartość `context-type-not-allowed` ("Operacja nie jest dostępna dla uwierzytelnionego typu kontekstu").
+  - Drobne aktualizacje opisów i przykładów.
 
 ### Wersja 2.2.1
 
