@@ -1888,10 +1888,10 @@
                 },
                 "example": {
                   "enrollment": {
-                    "maxEnrollments": 6
+                    "maxEnrollments": 12
                   },
                   "certificate": {
-                    "maxCertificates": 2
+                    "maxCertificates": 6
                   }
                 }
               }

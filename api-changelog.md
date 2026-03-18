@@ -2,6 +2,11 @@
 
 ### Wersja 2.3.0
 
+- **Wysyłka wniosku certyfikacyjnego (POST /certificates/enrollments)**  
+  Zwiększono limity dla identyfikatorów PESEL oraz fingerprint:  
+  * liczba wniosków o certyfikat KSeF: z 6 do 12,
+  * liczba aktywnych certyfikatów KSeF: z 2 do 6.  
+
 - **Wysyłka faktur**  
   Doprecyzowano wartość pola `Value` dla schemy `FA_RR (1) 1-1E`: zamiast `RR` należy przekazywać `FA_RR` (zgodnie z wartością `TKodFormularza` w XSD).
 
