@@ -4,18 +4,18 @@
 
 - **Wysyłka wniosku certyfikacyjnego (POST /certificates/enrollments)**  
   Zwiększono limity dla identyfikatorów PESEL oraz fingerprint:  
-  * liczba wniosków o certyfikat KSeF: z 6 do 12,
-  * liczba aktywnych certyfikatów KSeF: z 2 do 6.  
+  - liczba wniosków o certyfikat KSeF: z 6 do 12,
+  - liczba aktywnych certyfikatów KSeF: z 2 do 6.  
 
 - **Wysyłka faktur**  
-  * Zaostrzono walidację wejściowego XML: prolog jest opcjonalny, ale jeśli występuje i deklaruje kodowanie inne niż UTF-8, dokument zostanie odrzucony (faktura musi być kodowana w UTF-8).
-  * Doprecyzowano wartość pola `Value` dla schemy `FA_RR (1) 1-1E`: zamiast `RR` należy przekazywać `FA_RR` (zgodnie z wartością `TKodFormularza` w XSD).
+  - Zaostrzono walidację wejściowego XML: prolog jest opcjonalny, ale jeśli występuje i deklaruje kodowanie inne niż UTF-8, dokument zostanie odrzucony (faktura musi być kodowana w UTF-8).
+  - Doprecyzowano wartość pola `Value` dla schemy `FA_RR (1) 1-1E`: zamiast `RR` należy przekazywać `FA_RR` (zgodnie z wartością `TKodFormularza` w XSD).
 
-- **Pobranie listy metadanych faktur (POST `/invoices/query/metadata`)**   
-  Rozszerzono obsługę `formType` dla faktur `RR` o wartość `FA_RR` (spójnie z mechanizmem wysyłki faktur). Na TEST akceptowane są `RR` (do 30.03) oraz `FA_RR`, natomiast na PRD akceptowana będzie wyłącznie `FA_RR`.
+- **Pobranie faktur**   
+  - Rozszerzono obsługę `formType` dla faktur `RR` o wartość `FA_RR` (spójnie z mechanizmem wysyłki faktur). Na TEST akceptowane są `RR` (do 30.03) oraz `FA_RR`, natomiast na PRD akceptowana będzie wyłącznie `FA_RR`.
+  - Umożliwiono wyszukiwanie faktur po ujemnych kwotach w filtrze `amount` - dopuszczono wartości ujemne w `amount.from` i `amount.to`.
 
 - **Eksport paczki faktur (POST `/invoices/exports`)**  
-  - Rozszerzono obsługę `formType` dla faktur `RR` o wartość `FA_RR` (spójnie z mechanizmem wysyłki faktur). Na TEST akceptowane są `RR` (do 30.03) oraz `FA_RR`, natomiast na PRD akceptowana będzie wyłącznie `FA_RR`.
   - Rozszerzono model żądania o właściwość boolean `onlyMetadata` (domyślnie: `false`):
     - `onlyMetadata`=false - bez zmian: eksport zawiera faktury oraz plik `_metadata.json`,
     - `onlyMetadata`=true - eksport zawiera wyłącznie plik `_metadata.json`, co umożliwia szybsze i lżejsze eksporty w scenariuszach wymagających jedynie metadanych.  
