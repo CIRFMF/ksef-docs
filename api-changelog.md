@@ -8,11 +8,11 @@
   - liczba aktywnych certyfikatów KSeF: z 2 do 6.  
 
 - **Wysyłka faktur**  
-  - Zaostrzono walidację wejściowego XML: prolog jest opcjonalny, ale jeśli występuje i deklaruje kodowanie inne niż UTF-8, dokument zostanie odrzucony (faktura musi być kodowana w UTF-8).
+  - Zaostrzono walidację wejściowego XML: prolog jest opcjonalny, jednak jeśli się pojawi i wskazuje inne kodowanie niż UTF-8, dokument zostanie odrzucony ([faktura powinna być zapisana w kodowaniu UTF-8](/faktury/weryfikacja-faktury.md)).
   - Doprecyzowano wartość pola `Value` dla schemy `FA_RR (1) 1-1E`: zamiast `RR` należy przekazywać `FA_RR` (zgodnie z wartością `TKodFormularza` w XSD).
 
 - **Pobranie faktur**   
-  - Rozszerzono obsługę `formType` dla faktur `RR` o wartość `FA_RR` (spójnie z mechanizmem wysyłki faktur). Na TEST akceptowane są `RR` (do 30.03) oraz `FA_RR`, natomiast na PRD akceptowana będzie wyłącznie `FA_RR`.
+  - Rozszerzono obsługę `formType` dla faktur `RR` o wartość `FA_RR` (spójnie z mechanizmem wysyłki faktur). Na środowisku TEST akceptowane są `RR` (do 30.03) oraz `FA_RR`, natomiast na PRD akceptowana będzie wyłącznie `FA_RR`.
   - Umożliwiono wyszukiwanie faktur po ujemnych kwotach w filtrze `amount` - dopuszczono wartości ujemne w `amount.from` i `amount.to`.
 
 - **Eksport paczki faktur (POST `/invoices/exports`)**  
