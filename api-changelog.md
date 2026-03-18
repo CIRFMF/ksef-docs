@@ -8,7 +8,8 @@
   * liczba aktywnych certyfikatów KSeF: z 2 do 6.  
 
 - **Wysyłka faktur**  
-  Doprecyzowano wartość pola `Value` dla schemy `FA_RR (1) 1-1E`: zamiast `RR` należy przekazywać `FA_RR` (zgodnie z wartością `TKodFormularza` w XSD).
+  * Zaostrzono walidację wejściowego XML: prolog jest opcjonalny, ale jeśli występuje i deklaruje kodowanie inne niż UTF-8, dokument zostanie odrzucony (faktura musi być kodowana w UTF-8).
+  * Doprecyzowano wartość pola `Value` dla schemy `FA_RR (1) 1-1E`: zamiast `RR` należy przekazywać `FA_RR` (zgodnie z wartością `TKodFormularza` w XSD).
 
 - **Pobranie listy metadanych faktur (POST `/invoices/query/metadata`)**   
   Rozszerzono obsługę `formType` dla faktur `RR` o wartość `FA_RR` (spójnie z mechanizmem wysyłki faktur). Na TEST akceptowane są `RR` (do 30.03) oraz `FA_RR`, natomiast na PRD akceptowana będzie wyłącznie `FA_RR`.
