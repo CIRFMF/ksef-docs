@@ -11573,14 +11573,14 @@
           },
           "reasonCode": {
             "type": "string",
-            "description": " Kod przyczyny odmowy dostępu.\n| Code | Opis |  \n|------|-------------|\n| missing-permissions | Brak wymaganych uprawnień do wykonania operacji w bieżącym kontekście. | \n| ip-not-allowed | Żądanie pochodzi z adresu IP innego niż wskazany podczas uwierzytelnienia. | \n| insufficient-resource-access | Brak dostępu do wskazanego zasobu. | \n| auth-method-not-allowed | Ta operacja nie jest dostępna dla użytej metody uwierzytelnienia. | \n| security-service-blocked | Żądanie zostało zablokowane przez mechanizmy bezpieczeństwa. |"
+            "description": " Kod przyczyny odmowy dostępu.\n| Code | Opis |  \n|------|-------------|\n| missing-permissions | Brak wymaganych uprawnień do wykonania operacji w bieżącym kontekście. | \n| ip-not-allowed | Żądanie pochodzi z adresu IP innego niż wskazany podczas uwierzytelnienia. | \n| insufficient-resource-access | Brak dostępu do wskazanego zasobu. | \n| auth-method-not-allowed | Ta operacja nie jest dostępna dla użytej metody uwierzytelnienia. | \n| security-service-blocked | Żądanie zostało zablokowane przez mechanizmy bezpieczeństwa. | \n| context-type-not-allowed | Operacja nie jest dostępna dla uwierzytelnionego typu kontekstu. |"
           },
           "security": {
             "type": "object",
             "additionalProperties": {
               "nullable": true
             },
-            "description": "Dodatkowe dane zależne od `reasonCode`.\n| Code  | Security |\n|------| ------------ |\n| missing-permissions | requiredAnyOfPermissions: string[], presentPermissions: string[] |\n| ip-not-allowed | clientIp: string |\n| insufficient-resource-access  ||\n| auth-method-not-allowed | authenticationMethodCategory: string  |\n| security-service-blocked | incidentId: string, clientIp: string  |",
+            "description": "Dodatkowe dane zależne od `reasonCode`.\n| Code  | Security |\n|------| ------------ |\n| missing-permissions | requiredAnyOfPermissions: string[], presentPermissions: string[] |\n| ip-not-allowed | clientIp: string |\n| insufficient-resource-access  ||\n| auth-method-not-allowed | authenticationMethodCategory: string  |\n| security-service-blocked | incidentId: string, clientIp: string  |\n| context-type-not-allowed | contextIdentifierType: string |",
             "nullable": true
           },
           "traceId": {

@@ -19,6 +19,9 @@
     - `onlyMetadata`=false - bez zmian: eksport zawiera faktury oraz plik `_metadata.json`,
     - `onlyMetadata`=true - eksport zawiera wyłącznie plik `_metadata.json`, co umożliwia szybsze i lżejsze eksporty w scenariuszach wymagających jedynie metadanych.  
 
+- **OpenAPI**  
+  - Rozszerzono `ForbiddenProblemDetails.reasonCode` o wartość `context-type-not-allowed` ("Operacja nie jest dostępna dla uwierzytelnionego typu kontekstu").
+
 ### Wersja 2.2.1
 
 - **Wysyłka faktur**  
