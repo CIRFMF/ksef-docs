@@ -16300,7 +16300,7 @@
       "Bearer": {
         "type": "http",
         "description": "Token dostępu uzyskany w wyniku operacji uwierzytelnienia.",
-        "scheme": "Bearer",
+        "scheme": "bearer",
         "bearerFormat": "JWT"
       }
     }

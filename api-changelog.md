@@ -21,6 +21,7 @@
 
 - **OpenAPI**  
   - Rozszerzono `ForbiddenProblemDetails.reasonCode` o wartość `context-type-not-allowed` ("Operacja nie jest dostępna dla uwierzytelnionego typu kontekstu").
+  - Poprawiono definicję `securitySchemes.Bearer` - ustawiono `scheme`: `bearer` (z małej litery), zgodnie ze specyfikacją.  
   - Drobne aktualizacje opisów i przykładów.
 
 ### Wersja 2.2.1
