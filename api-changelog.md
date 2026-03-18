@@ -2,10 +2,17 @@
 
 ### Wersja 2.3.0
 
+- **Wysyłka faktur**  
+  Doprecyzowano wartość pola `Value` dla schemy `FA_RR (1) 1-1E`: zamiast `RR` należy przekazywać `FA_RR` (zgodnie z wartością `TKodFormularza` w XSD).
+
+- **Pobranie listy metadanych faktur (POST `/invoices/query/metadata`)**   
+  Rozszerzono obsługę `formType` dla faktur `RR` o wartość `FA_RR` (spójnie z mechanizmem wysyłki faktur). Na TEST akceptowane są `RR` (do 30.03) oraz `FA_RR`, natomiast na PRD akceptowana będzie wyłącznie `FA_RR`.
+
 - **Eksport paczki faktur (POST `/invoices/exports`)**  
-  Rozszerzono model żądania o właściwość boolean `onlyMetadata` (domyślnie: `false`):
-  - `onlyMetadata`=false - bez zmian: eksport zawiera faktury oraz plik `_metadata.json`,
-  - `onlyMetadata`=true - eksport zawiera wyłącznie plik `_metadata.json`, co umożliwia szybsze i lżejsze eksporty w scenariuszach wymagających jedynie metadanych.
+  - Rozszerzono obsługę `formType` dla faktur `RR` o wartość `FA_RR` (spójnie z mechanizmem wysyłki faktur). Na TEST akceptowane są `RR` (do 30.03) oraz `FA_RR`, natomiast na PRD akceptowana będzie wyłącznie `FA_RR`.
+  - Rozszerzono model żądania o właściwość boolean `onlyMetadata` (domyślnie: `false`):
+    - `onlyMetadata`=false - bez zmian: eksport zawiera faktury oraz plik `_metadata.json`,
+    - `onlyMetadata`=true - eksport zawiera wyłącznie plik `_metadata.json`, co umożliwia szybsze i lżejsze eksporty w scenariuszach wymagających jedynie metadanych.  
 
 ### Wersja 2.2.1
 
