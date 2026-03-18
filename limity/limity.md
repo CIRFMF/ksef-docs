@@ -30,8 +30,8 @@ Więcej informacji znajduje się w [Limity żądań API](limity-api.md).
 | Identyfikator z certyfikatu            | Wnioski o certyfikat KSeF | Aktywne certyfikaty KSeF |
 | -------------------------------------- | ------------------------- | ------------------------ |
 | NIP                                    | 300                       | 100                      |
-| PESEL                                  | 6                         | 2                        |
-| Odcisk palca certyfikatu (fingerprint) | 6                         | 2                        |
+| PESEL                                  | 12                         | 6                        |
+| Odcisk palca certyfikatu (fingerprint) | 12                         | 6                        |
 
 
 
