@@ -110,9 +110,11 @@ Wymagane atrybuty podmiotu:<br/>
 | 2.5.4.3             | commonName     | nazwa powszechna właściciela certyfikatu |
 | 2.5.4.6             | countryName    | nazwa kraju, kod ISO 3166                |
 
-Rozpoznawane wzorce atrybutu `serialNumber`:<br>
-**(PNOPL|PESEL).\*?(?<number>\\d{11})**<br>
-**(TINPL|NIP).\*?(?<number>\\d{10})**<br>
+Rozpoznawane wzorce atrybutu `serialNumber`:  
+```regex
+(PNOPL|PESEL).*?(?<identifier>\\d{11})
+(TINPL|NIP).*?(?<identifier>\\d{10})
+```
 
 #### Certyfikaty pieczęci kwalifikowanej (wydawane dla organizacji)
 
@@ -130,8 +132,10 @@ Niedopuszczalne atrybuty podmiotu:
 | 2.5.4.42            | givenName   | imię      |  
 | 2.5.4.4             | surname     | nazwisko  |
 
-Rozpoznawane wzorce atrybutu `organizationIdentifier`:<br>
-**(VATPL).\*?(?<number>\\d{10})**<br>
+Rozpoznawane wzorce atrybutu `organizationIdentifier`:
+```regex
+(VATPL).*?(?<identifier>\\d{10})
+```
 
 ### Odcisk palca certyfikatu
 
