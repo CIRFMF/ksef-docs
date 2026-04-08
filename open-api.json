@@ -39,6 +39,17 @@
               "format": "int32",
               "default": 10
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -81,6 +92,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -98,6 +114,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -149,6 +170,19 @@
         ],
         "summary": "Unieważnienie aktualnej sesji uwierzytelnienia",
         "description": "Unieważnia sesję powiązaną z tokenem użytym do wywołania tej operacji.\n\nUnieważnienie sesji sprawia, że powiązany z nią refresh token przestaje działać i nie można już za jego pomocą uzyskać kolejnych access tokenów.\n**Aktywne access tokeny działają do czasu minięcia ich termin ważności.**\n\nSposób uwierzytelnienia: `RefreshToken` lub `AccessToken`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "204": {
             "description": "No Content"
@@ -159,6 +193,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
                 }
               }
             },
@@ -177,6 +216,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -231,6 +275,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -243,6 +298,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
                 }
               }
             },
@@ -261,6 +321,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -306,6 +371,19 @@
         ],
         "summary": "Pobranie danych o limitach certyfikatów",
         "description": "Zwraca informacje o limitach certyfikatów oraz informacje czy użytkownik może zawnioskować o certyfikat KSeF.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -324,6 +402,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -341,6 +424,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -386,6 +474,19 @@
         ],
         "summary": "Pobranie danych do wniosku certyfikacyjnego",
         "description": "Zwraca dane wymagane do przygotowania wniosku certyfikacyjnego PKCS#10.\n\nDane te są zwracane na podstawie certyfikatu użytego w procesie uwierzytelnienia i identyfikują podmiot, który składa wniosek o certyfikat.\n\n\n> Więcej informacji:\n> - [Pobranie danych do wniosku certyfikacyjnego](https://github.com/CIRFMF/ksef-docs/blob/main/certyfikaty-KSeF.md#2-pobranie-danych-do-wniosku-certyfikacyjnego)\n> - [Przygotowanie wniosku](https://github.com/CIRFMF/ksef-docs/blob/main/certyfikaty-KSeF.md#3-przygotowanie-csr-certificate-signing-request)",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -412,6 +513,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -429,6 +535,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -474,6 +585,19 @@
         ],
         "summary": "Wysyłka wniosku certyfikacyjnego",
         "description": "Przyjmuje wniosek certyfikacyjny i rozpoczyna jego przetwarzanie.\n\nDozwolone typy kluczy prywatnych:\n- RSA (OID: 1.2.840.113549.1.1.1), długość klucza równa 2048 bitów,\n- EC (klucze oparte na krzywych eliptycznych, OID: 1.2.840.10045.2.1), krzywa NIST P-256 (secp256r1)\n\nZalecane jest stosowanie kluczy EC.\n\nDozwolone algorytmy podpisu:\n- RSA PKCS#1 v1.5,\n- RSA PSS,\n- ECDSA (format podpisu zgodny z RFC 3279)\n\nDozwolone funkcje skrótu użyte do podpisu CSR:\n- SHA1,\n- SHA256,\n- SHA384,\n- SHA512\n\n> Więcej informacji:\n> - [Wysłanie wniosku certyfikacyjnego](https://github.com/CIRFMF/ksef-docs/blob/main/certyfikaty-KSeF.md#4-wys%C5%82anie-wniosku-certyfikacyjnego)",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "description": "",
           "content": {
@@ -521,6 +645,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -538,6 +667,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -592,6 +726,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -619,6 +764,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -636,6 +786,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -681,6 +836,19 @@
         ],
         "summary": "Pobranie certyfikatu lub listy certyfikatów",
         "description": "Zwraca certyfikaty o podanych numerach seryjnych w formacie DER zakodowanym w Base64.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "description": "",
           "content": {
@@ -732,6 +900,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -749,6 +922,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -803,6 +981,17 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -830,6 +1019,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -847,6 +1041,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -915,6 +1114,17 @@
               "format": "int32",
               "default": 0
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -973,6 +1183,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -990,6 +1205,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -1041,6 +1261,19 @@
         ],
         "summary": "Pobranie certyfikatów",
         "description": "Zwraca informacje o kluczach publicznych używanych do szyfrowania danych przesyłanych do systemu KSeF.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1073,6 +1306,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1091,6 +1329,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
+                }
               }
             },
             "x-summary": "Too Many Requests"
@@ -1108,6 +1351,19 @@
         ],
         "summary": "Utworzenie podmiotu",
         "description": "Tworzenie nowego podmiotu testowego. W przypadku grupy VAT i JST istnieje możliwość stworzenia jednostek podrzędnych. W wyniku takiego działania w systemie powstanie powiązanie między tymi podmiotami.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1143,6 +1399,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1161,6 +1422,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
+                }
               }
             },
             "x-summary": "Too Many Requests"
@@ -1178,6 +1444,19 @@
         ],
         "summary": "Usunięcie podmiotu",
         "description": "Usuwanie podmiotu testowego. W przypadku grupy VAT i JST usunięte zostaną również jednostki podrzędne.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1208,6 +1487,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1226,6 +1510,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
+                }
               }
             },
             "x-summary": "Too Many Requests"
@@ -1243,6 +1532,19 @@
         ],
         "summary": "Utworzenie osoby fizycznej",
         "description": "Tworzenie nowej osoby fizycznej, której system nadaje uprawnienia właścicielskie. Można również określić, czy osoba ta jest komornikiem – wówczas otrzyma odpowiednie uprawnienie egzekucyjne.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1281,6 +1583,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1299,6 +1606,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
+                }
               }
             },
             "x-summary": "Too Many Requests"
@@ -1316,6 +1628,19 @@
         ],
         "summary": "Usunięcie osoby fizycznej",
         "description": "Usuwanie testowej osoby fizycznej. System automatycznie odbierze jej wszystkie uprawnienia.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1346,6 +1671,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1364,6 +1694,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
+                }
               }
             },
             "x-summary": "Too Many Requests"
@@ -1381,6 +1716,19 @@
         ],
         "summary": "Nadanie uprawnień testowemu podmiotowi/osobie fizycznej",
         "description": "Nadawanie uprawnień testowemu podmiotowi lub osobie fizycznej, a także w ich kontekście.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1426,6 +1774,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1444,6 +1797,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
+                }
               }
             },
             "x-summary": "Too Many Requests"
@@ -1461,6 +1819,19 @@
         ],
         "summary": "Odebranie uprawnień testowemu podmiotowi/osobie fizycznej",
         "description": "Odbieranie uprawnień nadanych testowemu podmiotowi lub osobie fizycznej, a także w ich kontekście.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1499,6 +1870,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1517,6 +1893,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
+                }
               }
             },
             "x-summary": "Too Many Requests"
@@ -1534,6 +1915,19 @@
         ],
         "summary": "Umożliwienie wysyłania faktur z załącznikiem",
         "description": "Dodaje możliwość wysyłania faktur z załącznikiem przez wskazany podmiot",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1564,6 +1958,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1582,6 +1981,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
+                }
               }
             },
             "x-summary": "Too Many Requests"
@@ -1599,6 +2003,19 @@
         ],
         "summary": "Odebranie możliwości wysyłania faktur z załącznikiem",
         "description": "Odbiera możliwość wysyłania faktur z załącznikiem przez wskazany podmiot",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1629,6 +2046,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1647,6 +2069,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
+                }
               }
             },
             "x-summary": "Too Many Requests"
@@ -1664,6 +2091,19 @@
         ],
         "summary": "Zablokowanie kontekstu",
         "description": "Blokuje możliwość uwierzytelniania dla wskazanego kontekstu. Uwierzytelnianie zakończy się błędem 480.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1688,6 +2128,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1705,6 +2150,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -1725,6 +2175,19 @@
         ],
         "summary": "Odblokowanie kontekstu",
         "description": "Odblokowuje możliwość uwierzytelniania dla wskazanego kontekstu.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1749,6 +2212,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1766,6 +2234,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -1786,6 +2259,19 @@
         ],
         "summary": "Pobranie limitów dla bieżącego kontekstu",
         "description": "Zwraca wartości aktualnie obowiązujących limitów dla bieżącego kontekstu.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1816,6 +2302,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1833,6 +2324,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -1878,6 +2374,19 @@
         ],
         "summary": "Pobranie limitów dla bieżącego podmiotu",
         "description": "Zwraca wartości aktualnie obowiązujących limitów dla bieżącego podmiotu.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1904,6 +2413,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -1921,6 +2435,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -1966,6 +2485,19 @@
         ],
         "summary": "Pobranie aktualnie obowiązujących limitów API",
         "description": "Zwraca wartości aktualnie obowiązujących limitów ilości żądań przesyłanych do API.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -2046,6 +2578,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -2063,6 +2600,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -2108,6 +2650,19 @@
         ],
         "summary": "Zmiana limitów sesji dla bieżącego kontekstu",
         "description": "Zmienia wartości aktualnie obowiązujących limitów sesji dla bieżącego kontekstu. **Tylko na środowiskach testowych.**",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2136,6 +2691,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -2153,6 +2713,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -2196,6 +2761,19 @@
         ],
         "summary": "Przywrócenie domyślnych wartości limitów sesji dla bieżącego kontekstu",
         "description": "Przywraca wartości aktualnie obowiązujących limitów sesji dla bieżącego kontekstu do wartości domyślnych. **Tylko na środowiskach testowych.**",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2206,6 +2784,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
                 }
               }
             },
@@ -2224,6 +2807,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -2269,6 +2857,19 @@
         ],
         "summary": "Zmiana limitów certyfikatów dla bieżącego podmiotu",
         "description": "Zmienia wartości aktualnie obowiązujących limitów certyfikatów dla bieżącego podmiotu. **Tylko na środowiskach testowych.**",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2293,6 +2894,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -2310,6 +2916,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -2353,6 +2964,19 @@
         ],
         "summary": "Przywrócenie domyślnych wartości limitów certyfikatów dla bieżącego podmiotu",
         "description": "Przywraca wartości aktualnie obowiązujących limitów certyfikatów dla bieżącego podmiotu do wartości domyślnych. **Tylko na środowiskach testowych.**",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2363,6 +2987,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
                 }
               }
             },
@@ -2381,6 +3010,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -2426,6 +3060,19 @@
         ],
         "summary": "Zmiana limitów API dla bieżącego kontekstu",
         "description": "Zmienia wartości aktualnie obowiązujących limitów żądań przesyłanych do API dla bieżącego kontekstu. **Tylko na środowiskach testowych.**",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2453,6 +3100,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -2470,6 +3122,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -2513,6 +3170,19 @@
         ],
         "summary": "Przywrócenie domyślnych wartości limitów API dla bieżącego kontekstu",
         "description": "Przywraca wartości aktualnie obowiązujących limitów żądań przesyłanych do API dla bieżącego kontekstu do wartości domyślnych. **Tylko na środowiskach testowych.**",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2523,6 +3193,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
                 }
               }
             },
@@ -2541,6 +3216,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -2586,6 +3266,19 @@
         ],
         "summary": "Zmiana limitów API dla bieżącego kontekstu na wartości produkcyjne",
         "description": "Zmienia wartości aktualnie obowiązujących limitów żądań przesyłanych do API dla bieżącego kontekstu na wartości takie jakie będą na środowisku produkcyjnym. **Tylko na środowiskach testowych.**",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2596,6 +3289,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
                 }
               }
             },
@@ -2614,6 +3312,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -2659,6 +3362,19 @@
         ],
         "summary": "Nadanie osobom fizycznym uprawnień do pracy w KSeF",
         "description": "Metoda pozwala na nadanie osobie wskazanej w żądaniu uprawnień do pracy w KSeF  \nw kontekście bieżącym.\n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur,  \n- **InvoiceRead** – przeglądanie faktur,  \n- **CredentialsManage** – zarządzanie uprawnieniami,  \n- **CredentialsRead** – przeglądanie uprawnień,  \n- **Introspection** – przeglądanie historii sesji i generowanie UPO,  \n- **SubunitManage** – zarządzanie jednostkami podrzędnymi,  \n- **EnforcementOperations** – wykonywanie operacji egzekucyjnych.\n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.  \nUprawnienie **EnforcementOperations** może być nadane wyłącznie wtedy,  \ngdy podmiot kontekstu ma rolę **EnforcementAuthority** (organ egzekucyjny)  \nlub **CourtBailiff** (komornik sądowy).\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadawanie-uprawnie%C5%84-osobom-fizycznym-do-pracy-w-ksef)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2719,6 +3435,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -2736,6 +3457,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -2784,6 +3510,19 @@
         ],
         "summary": "Nadanie podmiotom uprawnień do obsługi faktur",
         "description": "Metoda pozwala na nadanie podmiotowi wskazanemu w żądaniu uprawnień do obsługi faktur podmiotu kontekstu.  \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.  \nDla każdego uprawnienia może być ustawiona flaga **canDelegate**, mówiąca o możliwości jego dalszego przekazywania poprzez nadawanie w sposób pośredni.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-podmiotom-uprawnie%C5%84-do-obs%C5%82ugi-faktur)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2844,6 +3583,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -2861,6 +3605,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -2909,6 +3658,19 @@
         ],
         "summary": "Nadanie uprawnień podmiotowych",
         "description": "Metoda pozwala na nadanie jednego z uprawnień podmiotowych do obsługi podmiotu kontekstu  podmiotowi wskazanemu w żądaniu.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-podmiotowych)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2960,6 +3722,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -2977,6 +3744,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -3025,6 +3797,19 @@
         ],
         "summary": "Nadanie uprawnień w sposób pośredni",
         "description": "Metoda pozwala na nadanie w sposób pośredni osobie wskazanej w żądaniu uprawnień do obsługi faktur innego podmiotu – klienta.  \nMoże to być jedna z możliwości:  \n- nadanie uprawnień generalnych – do obsługi wszystkich klientów  \n- nadanie uprawnień selektywnych – do obsługi wskazanego klienta  \n            \nUprawnienie selektywne może być nadane wyłącznie wtedy, gdy klient nadał wcześniej podmiotowi bieżącego kontekstu dowolne uprawnienie z prawem do jego dalszego przekazywania (patrz [POST /v2/permissions/entities/grants](/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1permissions~1entities~1grants/post)).  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-w-spos%C3%B3b-po%C5%9Bredni)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3087,6 +3872,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -3104,6 +3894,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -3152,6 +3947,19 @@
         ],
         "summary": "Nadanie uprawnień administratora podmiotu podrzędnego",
         "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień administratora w kontekście:  \n- wskazanego NIP podmiotu podrzędnego – wyłącznie jeżeli podmiot bieżącego kontekstu logowania ma rolę podmiotu nadrzędnego:\n  - **LocalGovernmentUnit** \n  - **VatGroupUnit**  \n- wskazanego lub utworzonego identyfikatora wewnętrznego  \n            \nWraz z utworzeniem administratora jednostki podrzędnej tworzony jest identyfikator wewnętrzny składający się z numeru NIP podmiotu kontekstu logowania oraz 5 cyfr unikalnie identyfikujących jednostkę wewnętrzną.\nOstatnia cyfra musi być poprawną sumą kontrolną, która jest obliczana według poniższego algorytmu.\n\nAlgorytm używa naprzemiennych wag (1×, 3×, 1×, 3×, ...), sumuje wyniki i zwraca resztę z dzielenia przez 10.\n\nPrzykład:\n- Wejście: \"6824515772-1234\" (bez cyfry kontrolnej)\n- Pozycja 0 (1. cyfra): 6 × 1 = 6\n- Pozycja 1 (2. cyfra): 8 × 3 = 24\n- Pozycja 2 (3. cyfra): 2 × 1 = 2\n- Pozycja 3 (4. cyfra): 4 × 3 = 12\n- Pozycja 4 (5. cyfra): 5 × 1 = 5\n- Pozycja 5 (6. cyfra): 1 × 3 = 3\n- Pozycja 6 (7. cyfra): 5 × 1 = 5\n- Pozycja 7 (8. cyfra): 7 × 3 = 21\n- Pozycja 8 (9. cyfra): 7 × 1 = 7\n- Pozycja 9 (10. cyfra): 2 × 3 = 6\n- Pozycja 10 (11. cyfra): 1 × 1 = 1\n- Pozycja 11 (12. cyfra): 2 × 3 = 6\n- Pozycja 12 (13. cyfra): 3 × 1 = 3\n- Pozycja 13 (14. cyfra): 4 × 3 = 12\n- Suma: 6 + 24 + 2 + 12 + 5 + 3 + 5 + 21 + 7 + 6 + 1 + 6 + 3 + 12 = 113\n- Cyfra kontrolna (15. cyfra): 113 % 10 = 3\n\nW żądaniu podaje się również nazwę tej jednostki.  \n            \nUprawnienia administratora jednostki podrzędnej obejmują:  \n- **CredentialsManage** – zarządzanie uprawnieniami  \n            \nMetoda automatycznie nadaje powyższe uprawnienie, bez konieczności podawania go w żądaniu.\n            \n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-podrz%C4%99dnego)\n\n**Wymagane uprawnienia**: `SubunitManage`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3211,6 +4019,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -3228,6 +4041,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -3276,6 +4094,19 @@
         ],
         "summary": "Nadanie uprawnień administratora podmiotu unijnego",
         "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień administratora w kontekście złożonym z identyfikatora NIP podmiotu kontekstu bieżącego oraz numeru VAT UE podmiotu unijnego wskazanego w żądaniu.  \nWraz z utworzeniem administratora podmiotu unijnego tworzony jest kontekst złożony składający się z numeru NIP podmiotu kontekstu logowania oraz wskazanego numeru identyfikacyjnego VAT UE podmiotu unijnego.  \nW żądaniu podaje się również nazwę i adres podmiotu unijnego.  \n            \nJedynym sposobem identyfikacji uprawnianego jest odcisk palca certyfikatu kwalifikowanego:  \n- certyfikat podpisu elektronicznego dla osób fizycznych  \n- certyfikat pieczęci elektronicznej dla podmiotów  \n            \nUprawnienia administratora podmiotu unijnego obejmują:  \n- **VatEuManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n- **Introspection** – przeglądanie historii sesji  \n            \nMetoda automatycznie nadaje wszystkie powyższe uprawnienia, bez konieczności ich wskazywania w żądaniu.\n            \n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-unijnego)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3345,6 +4176,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -3362,6 +4198,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -3410,6 +4251,19 @@
         ],
         "summary": "Nadanie uprawnień reprezentanta podmiotu unijnego",
         "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień do wystawiania i/lub przeglądania faktur w kontekście złożonym kontekstu bieżącego.  \n            \nJedynym sposobem identyfikacji uprawnianego jest odcisk palca certyfikatu kwalifikowanego:  \n- certyfikat podpisu elektronicznego dla osób fizycznych  \n- certyfikat pieczęci elektronicznej dla podmiotów  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-reprezentanta-podmiotu-unijnego)\n\n**Wymagane uprawnienia**: `VatUeManage`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3472,6 +4326,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -3489,6 +4348,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -3546,6 +4410,17 @@
             "schema": {
               "$ref": "#/components/schemas/PermissionId"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3569,6 +4444,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -3586,6 +4466,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -3645,6 +4530,17 @@
             "schema": {
               "$ref": "#/components/schemas/PermissionId"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3668,6 +4564,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -3685,6 +4586,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -3742,6 +4648,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3768,6 +4685,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -3785,6 +4707,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -3830,6 +4757,19 @@
         ],
         "summary": "Sprawdzenie statusu zgody na wystawianie faktur z załącznikiem",
         "description": "Sprawdzenie czy obecny kontekst posiada zgodę na wystawianie faktur z załącznikiem.\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -3848,6 +4788,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -3865,6 +4810,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -3923,6 +4873,17 @@
             "schema": {
               "$ref": "#/components/schemas/KsefNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3951,6 +4912,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -3968,6 +4934,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -4052,6 +5023,17 @@
               "type": "integer",
               "format": "int32",
               "default": 10
+            }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
             }
           }
         ],
@@ -4198,6 +5180,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -4215,6 +5202,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -4276,6 +5268,19 @@
         ],
         "summary": "Eksport paczki faktur",
         "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu <b>Encryption</b>, które służą do zabezpieczenia przygotowanej paczki z fakturami.\nMaksymalnie można uruchomić 10 równoczesnych eksportów w zalogowanym kontekście.\n            \nSystem pobiera faktury rosnąco według daty określonej w filtrze (Invoicing, Issue, PermanentStorage) i dodaje faktury(nazwa pliku: <b>{ksefNumber}.xml</b>) do paczki aż do osiągnięcia jednego z poniższych limitów:\n* Limit liczby faktur: 10 000 sztuk\n* Limit rozmiaru danych(skompresowanych): 1GB\n\nPaczka eksportu zawiera dodatkowy plik z metadanymi faktur w formacie JSON (`_metadata.json`). Zawartość pliku to\nobiekt z tablicą <b>invoices</b>, gdzie każdy element jest obiektem typu <b>InvoiceMetadata</b>\n(taki jak zwracany przez endpoint `POST /invoices/query/metadata`).\n\n<b>Plik z metadanymi(_metadata.json) nie jest wliczany do limitów algorytmu budowania paczki</b>. \n\n`Do realizacji pobierania przyrostowego należy stosować filtrowanie po dacie PermanentStorage`.\n\n**Sortowanie:**\n\n- permanentStorageDate | invoicingDate | issueDate (Asc) - pole wybierane na podstawie filtrów\n\n\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "description": "Dane wejściowe określające kryteria i format eksportu paczki faktur.",
           "content": {
@@ -4331,6 +5336,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -4348,6 +5358,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -4415,6 +5430,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4462,6 +5488,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -4479,6 +5510,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -4643,6 +5679,17 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4694,6 +5741,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -4711,6 +5763,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -4776,6 +5833,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4816,6 +5884,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -4833,6 +5906,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -4913,6 +5991,17 @@
               "format": "int32",
               "default": 10
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4971,6 +6060,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -4988,6 +6082,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -5057,6 +6156,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5093,6 +6203,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -5110,6 +6225,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -5190,6 +6310,17 @@
               "format": "int32",
               "default": 10
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5233,6 +6364,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -5250,6 +6386,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -5319,6 +6460,17 @@
             "schema": {
               "$ref": "#/components/schemas/KsefNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5347,6 +6499,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -5364,6 +6521,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -5433,6 +6595,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5461,6 +6634,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -5478,6 +6656,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -5547,6 +6730,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5575,6 +6769,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -5592,6 +6791,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -5643,6 +6847,19 @@
         ],
         "summary": "Wygenerowanie nowego tokena",
         "description": "Zwraca token, który może być użyty do uwierzytelniania się w KSeF.\n\nToken może być generowany tylko w kontekście NIP lub identyfikatora wewnętrznego. Jest zwracany tylko raz. Zaczyna być aktywny w momencie gdy jego status zmieni się na `Active`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -5689,6 +6906,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -5706,6 +6928,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -5810,6 +7037,17 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5854,6 +7092,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -5871,6 +7114,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -5930,6 +7178,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5970,6 +7229,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -5987,6 +7251,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -6039,6 +7308,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6051,6 +7331,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
                 }
               }
             },
@@ -6069,6 +7354,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -6137,6 +7427,17 @@
               "format": "int32",
               "default": 10
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6167,6 +7468,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -6184,6 +7490,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -6212,6 +7523,19 @@
         ],
         "summary": "Inicjalizacja uwierzytelnienia",
         "description": "Generuje unikalny challenge wymagany w kolejnym kroku operacji uwierzytelnienia.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -6236,6 +7560,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -6253,6 +7582,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -6278,6 +7612,17 @@
             "description": "Wymuszenie weryfikacji zaufania łańcucha certyfikatu wraz ze sprawdzeniem statusu certyfikatu (OCSP/CRL) na środowiskach które umożliwiają wykorzystanie samodzielnie wygenerowanych certyfikatów.",
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
             }
           }
         ],
@@ -6317,6 +7662,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -6335,6 +7685,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
+                }
               }
             },
             "x-summary": "Too Many Requests"
@@ -6352,6 +7707,19 @@
         ],
         "summary": "Uwierzytelnienie z wykorzystaniem tokena KSeF",
         "description": "Rozpoczyna operację uwierzytelniania z wykorzystaniem wcześniej wygenerowanego tokena KSeF.\n\nToken KSeF wraz z timestampem ze wcześniej wygenerowanego challenge'a (w formacie ```token|timestamp```) powinien zostać zaszyfrowany dedykowanym do tego celu kluczem publicznym.\n- Timestamp powinien zostać przekazany jako **liczba milisekund od 1 stycznia 1970 roku (Unix timestamp)**.\n- Algorytm szyfrowania: **RSA-OAEP (z użyciem SHA-256 jako funkcji skrótu)**.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -6403,6 +7771,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -6420,6 +7793,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -6446,6 +7824,17 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
+            }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
             }
           }
         ],
@@ -6564,6 +7953,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -6581,6 +7975,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -6624,6 +8023,19 @@
         ],
         "summary": "Pobranie tokenów dostępowych",
         "description": "Pobiera parę tokenów (access token i refresh token) wygenerowanych w ramach pozytywnie zakończonego procesu uwierzytelniania.\n**Tokeny można pobrać tylko raz.**\n\nSposób uwierzytelnienia: `AuthenticationToken` otrzymany przy rozpoczęciu operacji uwierzytelniania.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -6652,6 +8064,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -6669,6 +8086,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -6712,6 +8134,19 @@
         ],
         "summary": "Odświeżenie tokena dostępowego",
         "description": "Generuje nowy token dostępu na podstawie ważnego refresh tokena.\n\nSposób uwierzytelnienia: `RefreshToken`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -6736,6 +8171,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -6753,6 +8193,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -6796,6 +8241,19 @@
         ],
         "summary": "Otwarcie sesji interaktywnej",
         "description": "Otwiera sesję do wysyłki pojedynczych faktur. Należy przekazać schemat wysyłanych faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Otwarcie sesji interaktywnej](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#1-otwarcie-sesji)\n> - [Klucz publiczny Ministerstwa Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`, `EnforcementOperations`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -6846,6 +8304,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -6863,6 +8326,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -6922,6 +8390,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -6974,6 +8453,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -6991,6 +8475,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -7050,6 +8539,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -7062,6 +8562,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
                 }
               }
             },
@@ -7080,6 +8585,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -7130,6 +8640,19 @@
         ],
         "summary": "Otwarcie sesji wsadowej",
         "description": "Otwiera sesję do wysyłki wsadowej faktur. Należy przekazać schemat wysyłanych faktur, informacje o paczce faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Przygotowanie paczki faktur](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-wsadowa.md)\n> - [Klucz publiczny Ministerstwa Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `EnforcementOperations`.",
+        "parameters": [
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -7202,6 +8725,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -7219,6 +8747,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -7277,6 +8810,17 @@
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -7289,6 +8833,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
                 }
               }
             },
@@ -7307,6 +8856,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -7379,6 +8933,17 @@
               "format": "int32",
               "default": 10
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7443,6 +9008,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -7460,6 +9030,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -7538,6 +9113,17 @@
               "format": "int32",
               "default": 10
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7612,6 +9198,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -7629,6 +9220,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -7712,6 +9308,17 @@
               "format": "int32",
               "default": 10
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7774,6 +9381,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -7791,6 +9403,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -7874,6 +9491,17 @@
               "format": "int32",
               "default": 10
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7929,6 +9557,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -7946,6 +9579,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -8028,6 +9666,17 @@
               "format": "int32",
               "default": 10
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -8058,6 +9707,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -8075,6 +9729,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -8157,6 +9816,17 @@
               "format": "int32",
               "default": 10
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -8210,6 +9880,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -8227,6 +9902,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -8310,6 +9990,17 @@
               "format": "int32",
               "default": 10
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -8381,6 +10072,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -8398,6 +10094,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -8481,6 +10182,17 @@
               "format": "int32",
               "default": 10
             }
+          },
+          {
+            "name": "X-Error-Format",
+            "in": "header",
+            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
+            "schema": {
+              "enum": [
+                "problem-details"
+              ],
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -8539,6 +10251,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ExceptionResponse"
                 }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestProblemDetails"
+                }
               }
             },
             "x-summary": "Bad Request"
@@ -8556,6 +10273,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TooManyRequestsResponse"
+                }
+              },
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsProblemDetails"
                 }
               }
             },
@@ -8651,6 +10373,32 @@
           "Vat"
         ],
         "type": "string"
+      },
+      "ApiError": {
+        "required": [
+          "code",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "Kod błędu.",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string",
+            "description": "Ogólny opis błędu odpowiadający danemu kodowi."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Lista szczegółowych komunikatów opisujących konkretny błąd.\nMoże zawierać wiele wpisów dla jednego kodu błędu.",
+            "nullable": true
+          }
+        }
       },
       "ApiRateLimitValuesOverride": {
         "required": [
@@ -9255,6 +11003,77 @@
             "description": "Lista dozwolonych adresów IP.",
             "nullable": true
           }
+        }
+      },
+      "BadRequestProblemDetails": {
+        "required": [
+          "detail",
+          "errors",
+          "instance",
+          "status",
+          "timestamp",
+          "title",
+          "traceId"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Bad Request"
+          },
+          "status": {
+            "type": "integer",
+            "description": "400",
+            "format": "int32"
+          },
+          "instance": {
+            "type": "string",
+            "description": "URI identyfikujące konkretne wystąpienie błędu."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Ogólny opis problemu."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiError"
+            },
+            "description": "Lista błędów powiązanych z żądaniem."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Data i czas wystąpienia błędu w UTC.",
+            "format": "date-time"
+          },
+          "traceId": {
+            "type": "string",
+            "description": "Identyfikator śledzenia błędu."
+          }
+        },
+        "example": {
+          "title": "Bad Request",
+          "status": 400,
+          "instance": "{{uri_path}}",
+          "detail": "Żądanie jest nieprawidłowe.",
+          "errors": [
+            {
+              "code": 21405,
+              "description": "Błąd walidacji danych wejściowych.",
+              "details": [
+                "Wskazany kod formularza nie jest wspierany."
+              ]
+            },
+            {
+              "code": 21157,
+              "description": "Nieprawidłowy rozmiar części pakietu.",
+              "details": [
+                "Rozmiar części 1 przekroczył dozwolony rozmiar 100MB."
+              ]
+            }
+          ],
+          "timestamp": "2025-07-11T12:23:56.0154302+00:00",
+          "traceId": "673843e023c432286660bc0501a3af44"
         }
       },
       "BatchFileInfo": {
@@ -11527,7 +13346,8 @@
             "serviceName": "Undefined",
             "timestamp": "2025-10-11T12:23:56.0154302"
           }
-        }
+        },
+        "deprecated": true
       },
       "ExportInvoicesResponse": {
         "required": [
@@ -16154,6 +17974,53 @@
           }
         }
       },
+      "TooManyRequestsProblemDetails": {
+        "required": [
+          "detail",
+          "instance",
+          "status",
+          "timestamp",
+          "title",
+          "traceId"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Too Many Requests"
+          },
+          "status": {
+            "type": "integer",
+            "description": "429",
+            "format": "int32"
+          },
+          "instance": {
+            "type": "string",
+            "description": "URI identyfikujące konkretne wystąpienie błędu."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Informacja o przyczynie przekroczenia limitu żądań oraz wskazówki dotyczące ponowienia żądania."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Data i czas wystąpienia błędu w UTC.",
+            "format": "date-time"
+          },
+          "traceId": {
+            "type": "string",
+            "description": "Identyfikator śledzenia błędu."
+          }
+        },
+        "example": {
+          "title": "Too Many Requests",
+          "status": 429,
+          "instance": "{{uri_path}}",
+          "detail": "Przekroczono limit 20 żądań na minutę. Spróbuj ponownie po 30 sekundach.",
+          "timestamp": "2025-07-11T12:23:56.0154302+00:00",
+          "traceId": "673843e023c432286660bc0501a3af44"
+        }
+      },
       "TooManyRequestsResponse": {
         "required": [
           "status"
@@ -16195,7 +18062,8 @@
               "Przekroczono limit 20 żądań na minutę. Spróbuj ponownie po 30 sekundach."
             ]
           }
-        }
+        },
+        "deprecated": true
       },
       "UnauthorizedProblemDetails": {
         "required": [

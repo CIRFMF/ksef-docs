@@ -1,5 +1,11 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.4.0
+
+- **OpenAPI**  
+  - Udostępniono opcjonalny format błędów **Problem Details** (`application/problem+json`) dla odpowiedzi `400 Bad Request` i `429 Too Many Requests` (spójny z formatem używanym już dla `401` i `403`). Format można włączyć przez nagłówek `X-Error-Format: problem-details`; dotychczasowe odpowiedzi `application/json` pozostają wspierane. 
+  - W odpowiedziach `400` w formacie Problem Details zwracana jest lista `errors` (bez agregowania wielu błędów do jednej pozycji).
+
 ### Wersja 2.3.0
 
 - **Wysyłka wniosku certyfikacyjnego (POST /certificates/enrollments)**  
