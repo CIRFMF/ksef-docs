@@ -13370,6 +13370,7 @@
           "detail",
           "reasonCode",
           "status",
+          "timestamp",
           "title"
         ],
         "type": "object",
@@ -13408,6 +13409,11 @@
             "type": "string",
             "description": "Identyfikator śledzenia błędu.",
             "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Data i czas wystąpienia błędu w UTC.",
+            "format": "date-time"
           }
         },
         "example": {
@@ -13423,7 +13429,8 @@
             "presentPermissions": [
               "CredentialsManage"
             ]
-          }
+          },
+          "timestamp": "2025-07-11T12:23:56.0154302+00:00"
         }
       },
       "FormCode": {
@@ -18069,6 +18076,7 @@
         "required": [
           "detail",
           "status",
+          "timestamp",
           "title"
         ],
         "type": "object",
@@ -18095,12 +18103,18 @@
             "type": "string",
             "description": "Identyfikator śledzenia błędu.",
             "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Data i czas wystąpienia błędu w UTC.",
+            "format": "date-time"
           }
         },
         "example": {
           "title": "Unauthorized",
           "status": 401,
-          "detail": "Wymagane jest uwierzytelnienie."
+          "detail": "Wymagane jest uwierzytelnienie.",
+          "timestamp": "2025-07-11T12:23:56.0154302+00:00"
         }
       },
       "UnblockContextAuthenticationRequest": {
