@@ -10737,8 +10737,7 @@
               }
             ],
             "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy usług Peppol. |\n",
-            "deprecated": true,
-            "x-removal-date": "2026-11-16"
+            "deprecated": true
           },
           "authenticationMethodInfo": {
             "required": [
@@ -10884,8 +10883,7 @@
               }
             ],
             "description": "Metoda uwierzytelnienia.\n| Wartość | Opis |\n| --- | --- |\n| Token | Token KSeF. |\n| TrustedProfile | Profil Zaufany. |\n| InternalCertificate | Certyfikat KSeF. |\n| QualifiedSignature | Podpis kwalifikowany. |\n| QualifiedSeal | Pieczęć kwalifikowana. |\n| PersonalSignature | Podpis osobisty. |\n| PeppolSignature | Podpis dostawcy usług Peppol. |\n",
-            "deprecated": true,
-            "x-removal-date": "2026-11-16"
+            "deprecated": true
           },
           "authenticationMethodInfo": {
             "required": [
@@ -13420,6 +13418,7 @@
           "title": "Forbidden",
           "status": 403,
           "detail": "Brak wymaganych uprawnień do wykonania operacji w bieżącym kontekście.",
+          "instance": "{{uri_path}}",
           "reasonCode": "missing-permissions",
           "security": {
             "requiredAnyOfPermissions": [
@@ -13427,9 +13426,10 @@
               "InvoiceWrite"
             ],
             "presentPermissions": [
-              "CredentialsManage"
+              "CredentialsRead"
             ]
           },
+          "traceId": "673843e023c432286660bc0501a3af44",
           "timestamp": "2025-07-11T12:23:56.0154302+00:00"
         }
       },
@@ -18114,6 +18114,8 @@
           "title": "Unauthorized",
           "status": 401,
           "detail": "Wymagane jest uwierzytelnienie.",
+          "instance": "{{uri_path}}",
+          "traceId": "673843e023c432286660bc0501a3af44",
           "timestamp": "2025-07-11T12:23:56.0154302+00:00"
         }
       },

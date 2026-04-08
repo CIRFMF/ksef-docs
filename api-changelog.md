@@ -6,6 +6,7 @@
   - Udostępniono opcjonalny format błędów **Problem Details** (`application/problem+json`) dla odpowiedzi `400 Bad Request` i `429 Too Many Requests` (spójny z formatem używanym już dla `401` i `403`). Format można włączyć przez nagłówek `X-Error-Format: problem-details`; dotychczasowe odpowiedzi `application/json` pozostają wspierane. 
   - W odpowiedziach `400` w formacie Problem Details zwracana jest lista `errors` (bez agregowania wielu błędów do jednej pozycji).
   - Rozszerzono `ForbiddenProblemDetails` i `UnauthorizedProblemDetails` o właściwość `timestamp` ("Data i czas wystąpienia błędu w UTC.").
+  - Drobne aktualizacje opisów i przykładów.
 
 ### Wersja 2.3.0
 
