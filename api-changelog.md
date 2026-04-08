@@ -2,6 +2,14 @@
 
 ### Wersja 2.4.0
 
+- **Tokeny KSeF**
+  - Umożliwiono wykonywanie operacji na tokenie użytym do uwierzytelnienia bez dodatkowych uprawnień:
+    - DELETE `/tokens/{referenceNumber}` pozwala unieważnić własny token (ten, którym nastąpiło uwierzytelnienie) bez `CredentialsManage`,
+    - GET `/tokens` oraz GET `/tokens/{referenceNumber}` zwracają informacje o tokenie użytym do uwierzytelnienia również wtedy, gdy nie posiada on uprawnień `CredentialsManage` / `CredentialsRead`.
+  - Aktualizacja opisów:
+    - DELETE `/tokens/{referenceNumber}`,
+    - GET `/tokens/`
+
 - **OpenAPI**  
   - Udostępniono opcjonalny format błędów **Problem Details** (`application/problem+json`) dla odpowiedzi `400 Bad Request` i `429 Too Many Requests` (spójny z formatem używanym już dla `401` i `403`). Format można włączyć przez nagłówek `X-Error-Format: problem-details`; dotychczasowe odpowiedzi `application/json` pozostają wspierane. 
   - W odpowiedziach `400` w formacie Problem Details zwracana jest lista `errors` (bez agregowania wielu błędów do jednej pozycji).

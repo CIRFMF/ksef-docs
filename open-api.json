@@ -6975,7 +6975,7 @@
           "Tokeny KSeF"
         ],
         "summary": "Pobranie listy wygenerowanych tokenów",
-        "description": "\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n\n",
+        "description": "Zwraca listę metadanych tokenów. Zakres wyników zależy od sposobu uwierzytelnienia oraz uprawnień podmiotu wywołującego.\n\nJeżeli podmiot posiada uprawnienie **CredentialsManage** lub **CredentialsRead**, \nusługa zwraca wszystkie tokeny wygenerowane w danym kontekście niezależnie od metody uwierzytelnienia. \n\nJeżeli podmiot nie posiada żadnego z powyższych uprawnień, zakres wyników jest ograniczony: \n- Dla podmiotu uwierzytelnionego tokenem zwracany jest wyłącznie token użyty do uwierzytelnienia.\n- Dla pozostałych metod uwierzytelnienia zwracane są tokeny,  \nktórych autorem jest wywołujący podmiot – z uwzględnieniem powiązania NIP–PESEL.\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n\n",
         "parameters": [
           {
             "name": "status",
@@ -7298,7 +7298,7 @@
           "Tokeny KSeF"
         ],
         "summary": "Unieważnienie tokena",
-        "description": "Unieważniony token nie pozwoli już na uwierzytelnienie się za jego pomocą. Unieważnienie nie może zostać cofnięte.",
+        "description": "Unieważnia token o podanym numerze referencyjnym. Zakres tokenów dostępnych do unieważnienia zależy od sposobu uwierzytelnienia oraz uprawnień podmiotu wywołującego.\n\nJeżeli podmiot posiada uprawnienie **CredentialsManage**, \nmoże unieważnić dowolny aktywny token w danym kontekście niezależnie od metody uwierzytelnienia.\n\nJeżeli podmiot nie posiada powyższego uprawnienia, zakres unieważnienia jest ograniczony: \n- Dla podmiotu uwierzytelnionego tokenem możliwe jest unieważnienie wyłącznie tokena użytego do uwierzytelnienia. \n- Dla pozostałych metod uwierzytelnienia podmiot może unieważnić tokeny,  \nktórych jest autorem – z uwzględnieniem powiązania NIP–PESEL.",
         "parameters": [
           {
             "name": "referenceNumber",
