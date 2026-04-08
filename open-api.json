@@ -10338,6 +10338,8 @@
         "type": "object",
         "properties": {
           "ip4Addresses": {
+            "maximum": 10,
+            "minimum": 0,
             "type": "array",
             "items": {
               "pattern": "^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$",
@@ -10347,6 +10349,8 @@
             "nullable": true
           },
           "ip4Ranges": {
+            "maximum": 10,
+            "minimum": 0,
             "type": "array",
             "items": {
               "pattern": "^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}-((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$",
@@ -10356,6 +10360,8 @@
             "nullable": true
           },
           "ip4Masks": {
+            "maximum": 10,
+            "minimum": 0,
             "type": "array",
             "items": {
               "pattern": "^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}\\/(0|[1-9]|1[0-9]|2[0-9]|3[0-2])$",
