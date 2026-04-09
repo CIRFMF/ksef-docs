@@ -10,6 +10,9 @@
     - DELETE `/tokens/{referenceNumber}`,
     - GET `/tokens/`
 
+- **Wysyłka faktur**  
+  Zaostrzono weryfikację treści XML - dokument nie może zawierać niezalecanych znaków Unicode wskazanych w specyfikacji XML W3C; faktury zawierające takie znaki będą odrzucane. Szczegóły: [Weryfikacja faktury](/faktury/weryfikacja-faktury.md).
+
 - **OpenAPI**  
   - Udostępniono opcjonalny format błędów **Problem Details** (`application/problem+json`) dla odpowiedzi `400 Bad Request` i `429 Too Many Requests` (spójny z formatem używanym już dla `401` i `403`). Format można włączyć przez nagłówek `X-Error-Format: problem-details`; dotychczasowe odpowiedzi `application/json` pozostają wspierane. 
   - W odpowiedziach `400` w formacie Problem Details zwracana jest lista `errors` (bez agregowania wielu błędów do jednej pozycji).
