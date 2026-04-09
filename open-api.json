@@ -971,7 +971,7 @@
           "Certyfikaty"
         ],
         "summary": "Unieważnienie certyfikatu",
-        "description": "Unieważnia certyfikat o podanym numerze seryjnym.",
+        "description": "Unieważnia certyfikat o podanym numerze seryjnym. Operacja nie jest dostępna dla podmiotu uwierzytelnionego tokenem KSeF.\n\nPodmiot może unieważnić wyłącznie certyfikat wygenerowany na jego identyfikator uwierzytelnienia  \nlub na identyfikator powiązany w ramach powiązania NIP–PESEL.",
         "parameters": [
           {
             "name": "certificateSerialNumber",
