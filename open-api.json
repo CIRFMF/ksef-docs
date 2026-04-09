@@ -2548,8 +2548,8 @@
                     "perHour": 200
                   },
                   "invoiceExport": {
-                    "perSecond": 40,
-                    "perMinute": 80,
+                    "perSecond": 80,
+                    "perMinute": 160,
                     "perHour": 200
                   },
                   "invoiceExportStatus": {
@@ -5346,7 +5346,7 @@
             "x-summary": "Bad Request"
           },
           "429": {
-            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 40 | 80 | 200 | invoiceExport\n",
+            "description": "| | req / s | req / min | req / h | grupa\n| --- | --- | --- | --- | --- |\n| **Limity liczby żądań** | 80 | 160 | 200 | invoiceExport\n",
             "headers": {
               "Retry-After": {
                 "schema": {
@@ -5395,8 +5395,8 @@
           }
         ],
         "x-rate-limits": {
-          "perSecond": 40,
-          "perMinute": 80,
+          "perSecond": 80,
+          "perMinute": 160,
           "perHour": 200
         },
         "x-sort": [

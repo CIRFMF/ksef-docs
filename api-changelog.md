@@ -24,6 +24,11 @@
   - Doprecyzowano ograniczenia dla właściwości `AllowedIps` w modelu żądania POST `/auth/ksef-token` - dodano atrybuty `minimum` i `maximum` (limit elementów list dla `ip4Addresses`, `ip4Ranges`, `ip4Masks`). Zmiana ma charakter dokumentacyjny: limity były egzekwowane również wcześniej, a ich przekroczenie skutkowało błędem walidacji.
   - Drobne aktualizacje opisów i przykładów.
 
+- **Limity API**  
+  Zwiększono limity dla POST `/invoices/exports`, wyrównując je do wartości obowiązujących dla POST `/invoices/query/metadata`:
+    - req/s: z 4 do 8,
+    - req/min: z 8 do 16.
+
 ### Wersja 2.3.0
 
 - **Wysyłka wniosku certyfikacyjnego (POST /certificates/enrollments)**  
