@@ -18,7 +18,8 @@
     Szczegóły: [Weryfikacja faktury](/faktury/weryfikacja-faktury.md).
 
 - **OpenAPI**  
-  - Udostępniono opcjonalny format błędów **Problem Details** (`application/problem+json`) dla odpowiedzi `400 Bad Request` i `429 Too Many Requests` (spójny z formatem używanym już dla `401` i `403`). Format można włączyć przez nagłówek `X-Error-Format: problem-details`; dotychczasowe odpowiedzi `application/json` pozostają wspierane. 
+  - Udostępniono opcjonalny format błędów Problem Details (`application/problem+json`) dla odpowiedzi `400 Bad Request` i `429 Too Many Requests` (spójny z formatem używanym już dla `401` i `403`). Format można włączyć przez nagłówek `X-Error-Format: problem-details`; dotychczasowe odpowiedzi `application/json` pozostają wspierane. 
+  - Dodano obsługę odpowiedzi `410` Gone w formacie Problem Details (`application/problem+json`).
   - W odpowiedziach `400` w formacie Problem Details zwracana jest lista `errors` (bez agregowania wielu błędów do jednej pozycji).
   - Rozszerzono `ForbiddenProblemDetails` i `UnauthorizedProblemDetails` o właściwość `timestamp` ("Data i czas wystąpienia błędu w UTC.").
   - Doprecyzowano ograniczenia dla właściwości `AllowedIps` w modelu żądania POST `/auth/ksef-token` - dodano atrybuty `minimum` i `maximum` (limit elementów list dla `ip4Addresses`, `ip4Ranges`, `ip4Masks`). Zmiana ma charakter dokumentacyjny: limity były egzekwowane również wcześniej, a ich przekroczenie skutkowało błędem walidacji.

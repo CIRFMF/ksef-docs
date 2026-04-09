@@ -13505,6 +13505,45 @@
           }
         }
       },
+      "GoneProblemDetails": {
+        "required": [
+          "detail",
+          "instance",
+          "status",
+          "timestamp",
+          "title",
+          "traceId"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Gone"
+          },
+          "status": {
+            "type": "integer",
+            "description": "410",
+            "format": "int32"
+          },
+          "instance": {
+            "type": "string",
+            "description": "URI identyfikujące konkretne wystąpienie błędu."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Ogólny opis problemu."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Data i czas wystąpienia błędu w UTC.",
+            "format": "date-time"
+          },
+          "traceId": {
+            "type": "string",
+            "description": "Identyfikator śledzenia błędu."
+          }
+        }
+      },
       "IdDocument": {
         "required": [
           "country",
