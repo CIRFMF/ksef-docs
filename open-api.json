@@ -715,7 +715,7 @@
         "tags": [
           "Certyfikaty"
         ],
-        "summary": "Pobranie statusu przetwarzania wniosku certyfikacyjnego",
+        "summary": "Pobranie statusu przetwarzania wniosku certyfikacyjnego\n\nStatus wniosku jest dostępny przez 30 dni.",
         "description": "Zwraca informacje o statusie wniosku certyfikacyjnego.",
         "parameters": [
           {
@@ -753,6 +753,24 @@
                     "code": 100,
                     "description": "Wniosek przyjęty do realizacji"
                   }
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GoneProblemDetails"
+                },
+                "example": {
+                  "title": "Gone",
+                  "status": 410,
+                  "instance": "{{uri_path}}",
+                  "detail": "Operacja wygasła i nie jest już dostępna.",
+                  "timestamp": "2025-07-11T12:23:56.0154302+00:00",
+                  "traceId": "673843e023c432286660bc0501a3af44"
                 }
               }
             }
@@ -4638,7 +4656,7 @@
           "Operacje"
         ],
         "summary": "Pobranie statusu operacji",
-        "description": "Zwraca status operacji asynchronicznej związanej z nadaniem lub odebraniem uprawnień.",
+        "description": "Zwraca status operacji asynchronicznej związanej z nadaniem lub odebraniem uprawnień.       \n\nStatus operacji jest dostępny przez 30 dni.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -4674,6 +4692,24 @@
                     "code": 200,
                     "description": "Operacja zakończona sukcesem"
                   }
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GoneProblemDetails"
+                },
+                "example": {
+                  "title": "Gone",
+                  "status": 410,
+                  "instance": "{{uri_path}}",
+                  "detail": "Operacja wygasła i nie jest już dostępna.",
+                  "timestamp": "2025-07-11T12:23:56.0154302+00:00",
+                  "traceId": "673843e023c432286660bc0501a3af44"
                 }
               }
             }
@@ -5420,7 +5456,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Pobranie statusu eksportu paczki faktur",
-        "description": "Paczka faktur jest dzielona na części o maksymalnym rozmiarze 50 MB. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. \n\nW przypadku ucięcia wyniku eksportu z powodu przekroczenia limitów, zwracana jest flaga <b>IsTruncated = true</b> oraz odpowiednia data, którą należy wykorzystać do wykonania kolejnego eksportu, aż do momentu, gdy flaga <b>IsTruncated = false</b>.\n\n**Sortowanie:**\n\n- permanentStorageDate | invoicingDate | issueDate (Asc) - pole wybierane na podstawie filtrów\n\n\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
+        "description": "Paczka faktur jest dzielona na części o maksymalnym rozmiarze 50 MB. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. \n\nW przypadku ucięcia wyniku eksportu z powodu przekroczenia limitów, zwracana jest flaga <b>IsTruncated = true</b> oraz odpowiednia data, którą należy wykorzystać do wykonania kolejnego eksportu, aż do momentu, gdy flaga <b>IsTruncated = false</b>.\n\nStatus eksportu paczki faktur jest dostępny przez 7 dni.\n\n**Sortowanie:**\n\n- permanentStorageDate | invoicingDate | issueDate (Asc) - pole wybierane na podstawie filtrów\n\n\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -5477,6 +5513,24 @@
                     "lastPermanentStorageDate": "2025-09-11T11:40:40.266578+00:00",
                     "permanentStorageHwmDate": "2025-09-11T12:00:40.266578+00:00"
                   }
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GoneProblemDetails"
+                },
+                "example": {
+                  "title": "Gone",
+                  "status": 410,
+                  "instance": "{{uri_path}}",
+                  "detail": "Operacja wygasła i nie jest już dostępna.",
+                  "timestamp": "2025-07-11T12:23:56.0154302+00:00",
+                  "traceId": "673843e023c432286660bc0501a3af44"
                 }
               }
             }
@@ -7815,7 +7869,7 @@
           "Uzyskiwanie dostępu"
         ],
         "summary": "Pobranie statusu uwierzytelniania",
-        "description": "Sprawdza bieżący status operacji uwierzytelniania dla podanego tokena.\n\nSposób uwierzytelnienia: `AuthenticationToken` otrzymany przy rozpoczęciu operacji uwierzytelniania.",
+        "description": "Sprawdza bieżący status operacji uwierzytelniania dla podanego tokena.\n\nSposób uwierzytelnienia: `AuthenticationToken` otrzymany przy rozpoczęciu operacji uwierzytelniania.\nOperacja jest dostępna przez 7 dni.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -7942,6 +7996,24 @@
                       }
                     }
                   }
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GoneProblemDetails"
+                },
+                "example": {
+                  "title": "Gone",
+                  "status": 410,
+                  "instance": "{{uri_path}}",
+                  "detail": "Operacja wygasła i nie jest już dostępna.",
+                  "timestamp": "2025-07-11T12:23:56.0154302+00:00",
+                  "traceId": "673843e023c432286660bc0501a3af44"
                 }
               }
             }

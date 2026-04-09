@@ -17,9 +17,19 @@
 
     Szczegóły: [Weryfikacja faktury](/faktury/weryfikacja-faktury.md).
 
+- **Retencja statusów operacji asynchronicznych**  
+  Wprowadzono retencję dla technicznych odpowiedzi i statusów operacji asynchronicznych (służących do krótkotrwałego odpytywania postępu i odbioru wyniku). Retencja nie dotyczy danych biznesowych będących skutkiem wykonania operacji. Po upływie okresu retencji odpytywanie statusu zwraca `410 Gone`.
+  Obowiązujące okresy retencji:
+    - Uwierzytelnianie - GET `/auth/{referenceNumber}`: 7 dni,
+    - Eksport faktur - GET `/invoices/exports/{referenceNumber}`: 7 dni,
+    - Wydanie certyfikatu - GET `/certificates/enrollments/{referenceNumber}`: 30 dni,
+    - Nadanie/odebranie uprawnień - GET `/permissions/operations/{referenceNumber}`: 30 dni.  
+    
+  Dla statusów sesji oraz wysyłki faktur retencja nie jest obecnie planowana.
+
 - **OpenAPI**  
   - Udostępniono opcjonalny format błędów Problem Details (`application/problem+json`) dla odpowiedzi `400 Bad Request` i `429 Too Many Requests` (spójny z formatem używanym już dla `401` i `403`). Format można włączyć przez nagłówek `X-Error-Format: problem-details`; dotychczasowe odpowiedzi `application/json` pozostają wspierane. 
-  - Dodano obsługę odpowiedzi `410` Gone w formacie Problem Details (`application/problem+json`).
+  - Dodano obsługę odpowiedzi `410 Gone` w formacie Problem Details (`application/problem+json`).
   - W odpowiedziach `400` w formacie Problem Details zwracana jest lista `errors` (bez agregowania wielu błędów do jednej pozycji).
   - Rozszerzono `ForbiddenProblemDetails` i `UnauthorizedProblemDetails` o właściwość `timestamp` ("Data i czas wystąpienia błędu w UTC.").
   - Doprecyzowano ograniczenia dla właściwości `AllowedIps` w modelu żądania POST `/auth/ksef-token` - dodano atrybuty `minimum` i `maximum` (limit elementów list dla `ip4Addresses`, `ip4Ranges`, `ip4Masks`). Zmiana ma charakter dokumentacyjny: limity były egzekwowane również wcześniej, a ich przekroczenie skutkowało błędem walidacji.
