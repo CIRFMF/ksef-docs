@@ -4,18 +4,23 @@
 Faktura przesyłana do systemu KSeF podlega szeregowi kontroli technicznych i semantycznych. Weryfikacja obejmuje następujące kryteria:
 
 ## Weryfikacja XML  
-Faktura musi być przygotowana jako poprawny dokument XML, zgodny z regułami XML 1.0, kodowany w UTF-8 (3 pierwsze bajty 0xEF 0xBB 0xBF) oraz zgodna z zadeklarowanym schematem podanym przy otwarciu sesji.
+Faktura musi spełniać łącznie następujące wymagania:
 
-Prolog XML jest opcjonalny. Jeżeli jednak występuje i wskazuje inne kodowanie niż UTF-8, dokument zostanie odrzucony.
+- musi być przygotowana jako poprawny dokument XML, zgodny z regułami XML 1.0,
+-  musi być kodowana w UTF-8 (3 pierwsze bajty 0xEF 0xBB 0xBF),
+-  musi być zgodna z zadeklarowanym schematem podanym przy otwarciu sesji,
+-  może zawierać prolog XML, ale jeżeli prolog występuje, to nie może wskazywać kodowania innego niż UTF-8,
+-  nie może zawierać instrukcji przetwarzania XML (processing instructions),
+-  nie może zawierać niezalecanych znaków Unicode określonych w specyfikacji [XML W3C](https://www.w3.org/TR/xml/#charsets), tj. znaków z zakresów:  
+  [#x7F-#x84], [#x86-#x9F], [#xFDD0-#xFDEF],   
+  [#x1FFFE-#x1FFFF], [#x2FFFE-#x2FFFF], [#x3FFFE-#x3FFFF],  
+  [#x4FFFE-#x4FFFF], [#x5FFFE-#x5FFFF], [#x6FFFE-#x6FFFF],  
+  [#x7FFFE-#x7FFFF], [#x8FFFE-#x8FFFF], [#x9FFFE-#x9FFFF],  
+  [#xAFFFE-#xAFFFF], [#xBFFFE-#xBFFFF], [#xCFFFE-#xCFFFF],  
+  [#xDFFFE-#xDFFFF], [#xEFFFE-#xEFFFF], [#xFFFFE-#xFFFFF],  
+  [#x10FFFE-#x10FFFF].
 
-Dokument nie może również zawierać niezalecanych znaków Unicode określonych w specyfikacji [XML W3C](https://www.w3.org/TR/xml/#charsets). Odrzucane będą faktury zawierające znaki z zakresów:  
-[#x7F-#x84], [#x86-#x9F], [#xFDD0-#xFDEF],   
-[#x1FFFE-#x1FFFF], [#x2FFFE-#x2FFFF], [#x3FFFE-#x3FFFF],  
-[#x4FFFE-#x4FFFF], [#x5FFFE-#x5FFFF], [#x6FFFE-#x6FFFF],  
-[#x7FFFE-#x7FFFF], [#x8FFFE-#x8FFFF], [#x9FFFE-#x9FFFF],  
-[#xAFFFE-#xAFFFF], [#xBFFFE-#xBFFFF], [#xCFFFE-#xCFFFF],  
-[#xDFFFE-#xDFFFF], [#xEFFFE-#xEFFFF], [#xFFFFE-#xFFFFF],  
-[#x10FFFE-#x10FFFF].
+Niespełnienie któregokolwiek z powyższych wymagań spowoduje odrzucenie faktury.
 
 ## Unikalność faktury
 - KSeF wykrywa duplikaty faktur globalnie, w oparciu o dane przechowywane w systemie. Kryterium identyfikacji duplikatu stanowi kombinacja:
