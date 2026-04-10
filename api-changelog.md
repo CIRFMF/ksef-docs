@@ -2,6 +2,13 @@
 
 ### Wersja 2.4.0
 
+| Środowisko | Data wdrożenia | Uwagi                                                            |
+| ---------- | -------------: | ---------------------------------------------------------------- |
+| **TEST**   |     10.04.2026 | —                                                                |
+| **DEMO**   |     13.04.2026 | —                                                                |
+| **PRD**    |     16.04.2026 | Zaostrzenie walidacji XML zacznie obowiązywać od **16.07.2026**. |
+
+
 - **Tokeny KSeF**
   - Umożliwiono wykonywanie operacji na tokenie użytym do uwierzytelnienia bez dodatkowych uprawnień:
     - DELETE `/tokens/{referenceNumber}` pozwala unieważnić własny token (ten, którym nastąpiło uwierzytelnienie) bez `CredentialsManage`,
