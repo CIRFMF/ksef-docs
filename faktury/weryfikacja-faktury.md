@@ -7,11 +7,11 @@ Faktura przesyłana do systemu KSeF podlega szeregowi kontroli technicznych i se
 Faktura musi spełniać łącznie następujące wymagania:
 
 - musi być przygotowana jako poprawny dokument XML, zgodny z regułami XML 1.0,
--  musi być kodowana w UTF-8 (3 pierwsze bajty 0xEF 0xBB 0xBF),
--  musi być zgodna z zadeklarowanym schematem podanym przy otwarciu sesji,
--  może zawierać prolog XML, ale jeżeli prolog występuje, to nie może wskazywać kodowania innego niż UTF-8,
--  nie może zawierać instrukcji przetwarzania XML (processing instructions),
--  nie może zawierać niezalecanych znaków Unicode określonych w specyfikacji [XML W3C](https://www.w3.org/TR/xml/#charsets), tj. znaków z zakresów:  
+- musi być kodowana w UTF-8 bez znaku BOM (3 pierwsze bajty 0xEF 0xBB 0xBF),
+- musi być zgodna z zadeklarowanym schematem podanym przy otwarciu sesji,
+- może zawierać prolog XML, ale jeżeli prolog występuje, to nie może wskazywać kodowania innego niż UTF-8,
+- nie może zawierać instrukcji przetwarzania XML (processing instructions),
+- nie może zawierać niezalecanych znaków Unicode określonych w specyfikacji [XML W3C](https://www.w3.org/TR/xml/#charsets), tj. znaków z zakresów:  
   [#x7F-#x84], [#x86-#x9F], [#xFDD0-#xFDEF],   
   [#x1FFFE-#x1FFFF], [#x2FFFE-#x2FFFF], [#x3FFFE-#x3FFFF],  
   [#x4FFFE-#x4FFFF], [#x5FFFE-#x5FFFF], [#x6FFFE-#x6FFFF],  
