@@ -18,7 +18,7 @@
           "Aktywne sesje"
         ],
         "summary": "Pobranie listy aktywnych sesji",
-        "description": "Zwraca listę aktywnych sesji uwierzytelnienia.\n\n**Sortowanie:**\n\n- startDate (Desc)\n\n",
+        "description": "Zwraca listę aktywnych sesji uwierzytelnienia.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- startDate (Desc)\n\n",
         "parameters": [
           {
             "name": "x-continuation-token",
@@ -38,17 +38,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -169,20 +158,7 @@
           "Aktywne sesje"
         ],
         "summary": "Unieważnienie aktualnej sesji uwierzytelnienia",
-        "description": "Unieważnia sesję powiązaną z tokenem użytym do wywołania tej operacji.\n\nUnieważnienie sesji sprawia, że powiązany z nią refresh token przestaje działać i nie można już za jego pomocą uzyskać kolejnych access tokenów.\n**Aktywne access tokeny działają do czasu minięcia ich termin ważności.**\n\nSposób uwierzytelnienia: `RefreshToken` lub `AccessToken`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Unieważnia sesję powiązaną z tokenem użytym do wywołania tej operacji.\n\nUnieważnienie sesji sprawia, że powiązany z nią refresh token przestaje działać i nie można już za jego pomocą uzyskać kolejnych access tokenów.\n**Aktywne access tokeny działają do czasu minięcia ich termin ważności.**\n\nSposób uwierzytelnienia: `RefreshToken` lub `AccessToken`.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "204": {
             "description": "No Content"
@@ -265,7 +241,7 @@
           "Aktywne sesje"
         ],
         "summary": "Unieważnienie sesji uwierzytelnienia",
-        "description": "Unieważnia sesję o podanym numerze referencyjnym.\n\nUnieważnienie sesji sprawia, że powiązany z nią refresh token przestaje działać i nie można już za jego pomocą uzyskać kolejnych access tokenów.\n**Aktywne access tokeny działają do czasu minięcia ich termin ważności.**",
+        "description": "Unieważnia sesję o podanym numerze referencyjnym.\n\nUnieważnienie sesji sprawia, że powiązany z nią refresh token przestaje działać i nie można już za jego pomocą uzyskać kolejnych access tokenów.\n**Aktywne access tokeny działają do czasu minięcia ich termin ważności.**\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -274,17 +250,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -370,20 +335,7 @@
           "Certyfikaty"
         ],
         "summary": "Pobranie danych o limitach certyfikatów",
-        "description": "Zwraca informacje o limitach certyfikatów oraz informacje czy użytkownik może zawnioskować o certyfikat KSeF.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Zwraca informacje o limitach certyfikatów oraz informacje czy użytkownik może zawnioskować o certyfikat KSeF.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK",
@@ -473,20 +425,7 @@
           "Certyfikaty"
         ],
         "summary": "Pobranie danych do wniosku certyfikacyjnego",
-        "description": "Zwraca dane wymagane do przygotowania wniosku certyfikacyjnego PKCS#10.\n\nDane te są zwracane na podstawie certyfikatu użytego w procesie uwierzytelnienia i identyfikują podmiot, który składa wniosek o certyfikat.\n\n\n> Więcej informacji:\n> - [Pobranie danych do wniosku certyfikacyjnego](https://github.com/CIRFMF/ksef-docs/blob/main/certyfikaty-KSeF.md#2-pobranie-danych-do-wniosku-certyfikacyjnego)\n> - [Przygotowanie wniosku](https://github.com/CIRFMF/ksef-docs/blob/main/certyfikaty-KSeF.md#3-przygotowanie-csr-certificate-signing-request)",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Zwraca dane wymagane do przygotowania wniosku certyfikacyjnego PKCS#10.\n\nDane te są zwracane na podstawie certyfikatu użytego w procesie uwierzytelnienia i identyfikują podmiot, który składa wniosek o certyfikat.\n\n\n> Więcej informacji:\n> - [Pobranie danych do wniosku certyfikacyjnego](https://github.com/CIRFMF/ksef-docs/blob/main/certyfikaty-KSeF.md#2-pobranie-danych-do-wniosku-certyfikacyjnego)\n> - [Przygotowanie wniosku](https://github.com/CIRFMF/ksef-docs/blob/main/certyfikaty-KSeF.md#3-przygotowanie-csr-certificate-signing-request)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK",
@@ -584,20 +523,7 @@
           "Certyfikaty"
         ],
         "summary": "Wysyłka wniosku certyfikacyjnego",
-        "description": "Przyjmuje wniosek certyfikacyjny i rozpoczyna jego przetwarzanie.\n\nDozwolone typy kluczy prywatnych:\n- RSA (OID: 1.2.840.113549.1.1.1), długość klucza równa 2048 bitów,\n- EC (klucze oparte na krzywych eliptycznych, OID: 1.2.840.10045.2.1), krzywa NIST P-256 (secp256r1)\n\nZalecane jest stosowanie kluczy EC.\n\nDozwolone algorytmy podpisu:\n- RSA PKCS#1 v1.5,\n- RSA PSS,\n- ECDSA (format podpisu zgodny z RFC 3279)\n\nDozwolone funkcje skrótu użyte do podpisu CSR:\n- SHA1,\n- SHA256,\n- SHA384,\n- SHA512\n\n> Więcej informacji:\n> - [Wysłanie wniosku certyfikacyjnego](https://github.com/CIRFMF/ksef-docs/blob/main/certyfikaty-KSeF.md#4-wys%C5%82anie-wniosku-certyfikacyjnego)",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Przyjmuje wniosek certyfikacyjny i rozpoczyna jego przetwarzanie.\n\nDozwolone typy kluczy prywatnych:\n- RSA (OID: 1.2.840.113549.1.1.1), długość klucza równa 2048 bitów,\n- EC (klucze oparte na krzywych eliptycznych, OID: 1.2.840.10045.2.1), krzywa NIST P-256 (secp256r1)\n\nZalecane jest stosowanie kluczy EC.\n\nDozwolone algorytmy podpisu:\n- RSA PKCS#1 v1.5,\n- RSA PSS,\n- ECDSA (format podpisu zgodny z RFC 3279)\n\nDozwolone funkcje skrótu użyte do podpisu CSR:\n- SHA1,\n- SHA256,\n- SHA384,\n- SHA512\n\n> Więcej informacji:\n> - [Wysłanie wniosku certyfikacyjnego](https://github.com/CIRFMF/ksef-docs/blob/main/certyfikaty-KSeF.md#4-wys%C5%82anie-wniosku-certyfikacyjnego)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "description": "",
           "content": {
@@ -716,7 +642,7 @@
           "Certyfikaty"
         ],
         "summary": "Pobranie statusu przetwarzania wniosku certyfikacyjnego\n\nStatus wniosku jest dostępny przez 30 dni.",
-        "description": "Zwraca informacje o statusie wniosku certyfikacyjnego.",
+        "description": "Zwraca informacje o statusie wniosku certyfikacyjnego.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -725,17 +651,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -853,20 +768,7 @@
           "Certyfikaty"
         ],
         "summary": "Pobranie certyfikatu lub listy certyfikatów",
-        "description": "Zwraca certyfikaty o podanych numerach seryjnych w formacie DER zakodowanym w Base64.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Zwraca certyfikaty o podanych numerach seryjnych w formacie DER zakodowanym w Base64.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "description": "",
           "content": {
@@ -989,7 +891,7 @@
           "Certyfikaty"
         ],
         "summary": "Unieważnienie certyfikatu",
-        "description": "Unieważnia certyfikat o podanym numerze seryjnym. Operacja nie jest dostępna dla podmiotu uwierzytelnionego tokenem KSeF.\n\nPodmiot może unieważnić wyłącznie certyfikat wygenerowany na jego identyfikator uwierzytelnienia  \nlub na identyfikator powiązany w ramach powiązania NIP–PESEL.",
+        "description": "Unieważnia certyfikat o podanym numerze seryjnym. Operacja nie jest dostępna dla podmiotu uwierzytelnionego tokenem KSeF.\n\nPodmiot może unieważnić wyłącznie certyfikat wygenerowany na jego identyfikator uwierzytelnienia  \nlub na identyfikator powiązany w ramach powiązania NIP–PESEL.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "parameters": [
           {
             "name": "certificateSerialNumber",
@@ -997,17 +899,6 @@
             "description": "Numer seryjny certyfikatu (w formacie szesnastkowym).",
             "required": true,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
               "type": "string"
             }
           }
@@ -1108,7 +999,7 @@
           "Certyfikaty"
         ],
         "summary": "Pobranie listy metadanych certyfikatów",
-        "description": "Zwraca listę certyfikatów spełniających podane kryteria wyszukiwania.\nW przypadku braku podania kryteriów wyszukiwania zwrócona zostanie nieprzefiltrowana lista.\n\n**Sortowanie:**\n\n- requestDate (Desc)\n\n",
+        "description": "Zwraca listę certyfikatów spełniających podane kryteria wyszukiwania.\nW przypadku braku podania kryteriów wyszukiwania zwrócona zostanie nieprzefiltrowana lista.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- requestDate (Desc)\n\n",
         "parameters": [
           {
             "name": "pageSize",
@@ -1131,17 +1022,6 @@
               "type": "integer",
               "format": "int32",
               "default": 0
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -1278,20 +1158,7 @@
           "Certyfikaty klucza publicznego"
         ],
         "summary": "Pobranie certyfikatów",
-        "description": "Zwraca informacje o kluczach publicznych używanych do szyfrowania danych przesyłanych do systemu KSeF.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Zwraca informacje o kluczach publicznych używanych do szyfrowania danych przesyłanych do systemu KSeF.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK",
@@ -1368,20 +1235,7 @@
           "Dane testowe"
         ],
         "summary": "Utworzenie podmiotu",
-        "description": "Tworzenie nowego podmiotu testowego. W przypadku grupy VAT i JST istnieje możliwość stworzenia jednostek podrzędnych. W wyniku takiego działania w systemie powstanie powiązanie między tymi podmiotami.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Tworzenie nowego podmiotu testowego. W przypadku grupy VAT i JST istnieje możliwość stworzenia jednostek podrzędnych. W wyniku takiego działania w systemie powstanie powiązanie między tymi podmiotami.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1461,20 +1315,7 @@
           "Dane testowe"
         ],
         "summary": "Usunięcie podmiotu",
-        "description": "Usuwanie podmiotu testowego. W przypadku grupy VAT i JST usunięte zostaną również jednostki podrzędne.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Usuwanie podmiotu testowego. W przypadku grupy VAT i JST usunięte zostaną również jednostki podrzędne.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1549,20 +1390,7 @@
           "Dane testowe"
         ],
         "summary": "Utworzenie osoby fizycznej",
-        "description": "Tworzenie nowej osoby fizycznej, której system nadaje uprawnienia właścicielskie. Można również określić, czy osoba ta jest komornikiem – wówczas otrzyma odpowiednie uprawnienie egzekucyjne.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Tworzenie nowej osoby fizycznej, której system nadaje uprawnienia właścicielskie. Można również określić, czy osoba ta jest komornikiem – wówczas otrzyma odpowiednie uprawnienie egzekucyjne.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1645,20 +1473,7 @@
           "Dane testowe"
         ],
         "summary": "Usunięcie osoby fizycznej",
-        "description": "Usuwanie testowej osoby fizycznej. System automatycznie odbierze jej wszystkie uprawnienia.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Usuwanie testowej osoby fizycznej. System automatycznie odbierze jej wszystkie uprawnienia.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1733,20 +1548,7 @@
           "Dane testowe"
         ],
         "summary": "Nadanie uprawnień testowemu podmiotowi/osobie fizycznej",
-        "description": "Nadawanie uprawnień testowemu podmiotowi lub osobie fizycznej, a także w ich kontekście.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Nadawanie uprawnień testowemu podmiotowi lub osobie fizycznej, a także w ich kontekście.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1836,20 +1638,7 @@
           "Dane testowe"
         ],
         "summary": "Odebranie uprawnień testowemu podmiotowi/osobie fizycznej",
-        "description": "Odbieranie uprawnień nadanych testowemu podmiotowi lub osobie fizycznej, a także w ich kontekście.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Odbieranie uprawnień nadanych testowemu podmiotowi lub osobie fizycznej, a także w ich kontekście.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1932,20 +1721,7 @@
           "Dane testowe"
         ],
         "summary": "Umożliwienie wysyłania faktur z załącznikiem",
-        "description": "Dodaje możliwość wysyłania faktur z załącznikiem przez wskazany podmiot",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Dodaje możliwość wysyłania faktur z załącznikiem przez wskazany podmiot\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2020,20 +1796,7 @@
           "Dane testowe"
         ],
         "summary": "Odebranie możliwości wysyłania faktur z załącznikiem",
-        "description": "Odbiera możliwość wysyłania faktur z załącznikiem przez wskazany podmiot",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Odbiera możliwość wysyłania faktur z załącznikiem przez wskazany podmiot\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2108,20 +1871,7 @@
           "Dane testowe"
         ],
         "summary": "Zablokowanie kontekstu",
-        "description": "Blokuje możliwość uwierzytelniania dla wskazanego kontekstu. Uwierzytelnianie zakończy się błędem 480.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Blokuje możliwość uwierzytelniania dla wskazanego kontekstu. Uwierzytelnianie zakończy się błędem 480.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2192,20 +1942,7 @@
           "Dane testowe"
         ],
         "summary": "Odblokowanie kontekstu",
-        "description": "Odblokowuje możliwość uwierzytelniania dla wskazanego kontekstu.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Odblokowuje możliwość uwierzytelniania dla wskazanego kontekstu.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2276,20 +2013,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Pobranie limitów dla bieżącego kontekstu",
-        "description": "Zwraca wartości aktualnie obowiązujących limitów dla bieżącego kontekstu.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Zwraca wartości aktualnie obowiązujących limitów dla bieżącego kontekstu.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK",
@@ -2391,20 +2115,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Pobranie limitów dla bieżącego podmiotu",
-        "description": "Zwraca wartości aktualnie obowiązujących limitów dla bieżącego podmiotu.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Zwraca wartości aktualnie obowiązujących limitów dla bieżącego podmiotu.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK",
@@ -2502,20 +2213,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Pobranie aktualnie obowiązujących limitów API",
-        "description": "Zwraca wartości aktualnie obowiązujących limitów ilości żądań przesyłanych do API.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Zwraca wartości aktualnie obowiązujących limitów ilości żądań przesyłanych do API.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK",
@@ -2667,20 +2365,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Zmiana limitów sesji dla bieżącego kontekstu",
-        "description": "Zmienia wartości aktualnie obowiązujących limitów sesji dla bieżącego kontekstu. **Tylko na środowiskach testowych.**",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Zmienia wartości aktualnie obowiązujących limitów sesji dla bieżącego kontekstu. **Tylko na środowiskach testowych.**\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2778,20 +2463,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Przywrócenie domyślnych wartości limitów sesji dla bieżącego kontekstu",
-        "description": "Przywraca wartości aktualnie obowiązujących limitów sesji dla bieżącego kontekstu do wartości domyślnych. **Tylko na środowiskach testowych.**",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Przywraca wartości aktualnie obowiązujących limitów sesji dla bieżącego kontekstu do wartości domyślnych. **Tylko na środowiskach testowych.**\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK"
@@ -2874,20 +2546,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Zmiana limitów certyfikatów dla bieżącego podmiotu",
-        "description": "Zmienia wartości aktualnie obowiązujących limitów certyfikatów dla bieżącego podmiotu. **Tylko na środowiskach testowych.**",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Zmienia wartości aktualnie obowiązujących limitów certyfikatów dla bieżącego podmiotu. **Tylko na środowiskach testowych.**\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2981,20 +2640,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Przywrócenie domyślnych wartości limitów certyfikatów dla bieżącego podmiotu",
-        "description": "Przywraca wartości aktualnie obowiązujących limitów certyfikatów dla bieżącego podmiotu do wartości domyślnych. **Tylko na środowiskach testowych.**",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Przywraca wartości aktualnie obowiązujących limitów certyfikatów dla bieżącego podmiotu do wartości domyślnych. **Tylko na środowiskach testowych.**\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK"
@@ -3077,20 +2723,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Zmiana limitów API dla bieżącego kontekstu",
-        "description": "Zmienia wartości aktualnie obowiązujących limitów żądań przesyłanych do API dla bieżącego kontekstu. **Tylko na środowiskach testowych.**",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Zmienia wartości aktualnie obowiązujących limitów żądań przesyłanych do API dla bieżącego kontekstu. **Tylko na środowiskach testowych.**\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3187,20 +2820,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Przywrócenie domyślnych wartości limitów API dla bieżącego kontekstu",
-        "description": "Przywraca wartości aktualnie obowiązujących limitów żądań przesyłanych do API dla bieżącego kontekstu do wartości domyślnych. **Tylko na środowiskach testowych.**",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Przywraca wartości aktualnie obowiązujących limitów żądań przesyłanych do API dla bieżącego kontekstu do wartości domyślnych. **Tylko na środowiskach testowych.**\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK"
@@ -3283,20 +2903,7 @@
           "Limity i ograniczenia"
         ],
         "summary": "Zmiana limitów API dla bieżącego kontekstu na wartości produkcyjne",
-        "description": "Zmienia wartości aktualnie obowiązujących limitów żądań przesyłanych do API dla bieżącego kontekstu na wartości takie jakie będą na środowisku produkcyjnym. **Tylko na środowiskach testowych.**",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Zmienia wartości aktualnie obowiązujących limitów żądań przesyłanych do API dla bieżącego kontekstu na wartości takie jakie będą na środowisku produkcyjnym. **Tylko na środowiskach testowych.**\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK"
@@ -3379,20 +2986,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie osobom fizycznym uprawnień do pracy w KSeF",
-        "description": "Metoda pozwala na nadanie osobie wskazanej w żądaniu uprawnień do pracy w KSeF  \nw kontekście bieżącym.\n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur,  \n- **InvoiceRead** – przeglądanie faktur,  \n- **CredentialsManage** – zarządzanie uprawnieniami,  \n- **CredentialsRead** – przeglądanie uprawnień,  \n- **Introspection** – przeglądanie historii sesji i generowanie UPO,  \n- **SubunitManage** – zarządzanie jednostkami podrzędnymi,  \n- **EnforcementOperations** – wykonywanie operacji egzekucyjnych.\n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.  \nUprawnienie **EnforcementOperations** może być nadane wyłącznie wtedy,  \ngdy podmiot kontekstu ma rolę **EnforcementAuthority** (organ egzekucyjny)  \nlub **CourtBailiff** (komornik sądowy).\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadawanie-uprawnie%C5%84-osobom-fizycznym-do-pracy-w-ksef)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Metoda pozwala na nadanie osobie wskazanej w żądaniu uprawnień do pracy w KSeF  \nw kontekście bieżącym.\n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur,  \n- **InvoiceRead** – przeglądanie faktur,  \n- **CredentialsManage** – zarządzanie uprawnieniami,  \n- **CredentialsRead** – przeglądanie uprawnień,  \n- **Introspection** – przeglądanie historii sesji i generowanie UPO,  \n- **SubunitManage** – zarządzanie jednostkami podrzędnymi,  \n- **EnforcementOperations** – wykonywanie operacji egzekucyjnych.\n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.  \nUprawnienie **EnforcementOperations** może być nadane wyłącznie wtedy,  \ngdy podmiot kontekstu ma rolę **EnforcementAuthority** (organ egzekucyjny)  \nlub **CourtBailiff** (komornik sądowy).\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadawanie-uprawnie%C5%84-osobom-fizycznym-do-pracy-w-ksef)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3527,20 +3121,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie podmiotom uprawnień do obsługi faktur",
-        "description": "Metoda pozwala na nadanie podmiotowi wskazanemu w żądaniu uprawnień do obsługi faktur podmiotu kontekstu.  \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.  \nDla każdego uprawnienia może być ustawiona flaga **canDelegate**, mówiąca o możliwości jego dalszego przekazywania poprzez nadawanie w sposób pośredni.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-podmiotom-uprawnie%C5%84-do-obs%C5%82ugi-faktur)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Metoda pozwala na nadanie podmiotowi wskazanemu w żądaniu uprawnień do obsługi faktur podmiotu kontekstu.  \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.  \nDla każdego uprawnienia może być ustawiona flaga **canDelegate**, mówiąca o możliwości jego dalszego przekazywania poprzez nadawanie w sposób pośredni.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-podmiotom-uprawnie%C5%84-do-obs%C5%82ugi-faktur)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3675,20 +3256,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień podmiotowych",
-        "description": "Metoda pozwala na nadanie jednego z uprawnień podmiotowych do obsługi podmiotu kontekstu  podmiotowi wskazanemu w żądaniu.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-podmiotowych)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Metoda pozwala na nadanie jednego z uprawnień podmiotowych do obsługi podmiotu kontekstu  podmiotowi wskazanemu w żądaniu.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-podmiotowych)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3814,20 +3382,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień w sposób pośredni",
-        "description": "Metoda pozwala na nadanie w sposób pośredni osobie wskazanej w żądaniu uprawnień do obsługi faktur innego podmiotu – klienta.  \nMoże to być jedna z możliwości:  \n- nadanie uprawnień generalnych – do obsługi wszystkich klientów  \n- nadanie uprawnień selektywnych – do obsługi wskazanego klienta  \n            \nUprawnienie selektywne może być nadane wyłącznie wtedy, gdy klient nadał wcześniej podmiotowi bieżącego kontekstu dowolne uprawnienie z prawem do jego dalszego przekazywania (patrz [POST /v2/permissions/entities/grants](/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1permissions~1entities~1grants/post)).  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-w-spos%C3%B3b-po%C5%9Bredni)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Metoda pozwala na nadanie w sposób pośredni osobie wskazanej w żądaniu uprawnień do obsługi faktur innego podmiotu – klienta.  \nMoże to być jedna z możliwości:  \n- nadanie uprawnień generalnych – do obsługi wszystkich klientów  \n- nadanie uprawnień selektywnych – do obsługi wskazanego klienta  \n            \nUprawnienie selektywne może być nadane wyłącznie wtedy, gdy klient nadał wcześniej podmiotowi bieżącego kontekstu dowolne uprawnienie z prawem do jego dalszego przekazywania (patrz [POST /v2/permissions/entities/grants](/docs/v2/index.html#tag/Nadawanie-uprawnien/paths/~1permissions~1entities~1grants/post)).  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-w-spos%C3%B3b-po%C5%9Bredni)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3964,20 +3519,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień administratora podmiotu podrzędnego",
-        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień administratora w kontekście:  \n- wskazanego NIP podmiotu podrzędnego – wyłącznie jeżeli podmiot bieżącego kontekstu logowania ma rolę podmiotu nadrzędnego:\n  - **LocalGovernmentUnit** \n  - **VatGroupUnit**  \n- wskazanego lub utworzonego identyfikatora wewnętrznego  \n            \nWraz z utworzeniem administratora jednostki podrzędnej tworzony jest identyfikator wewnętrzny składający się z numeru NIP podmiotu kontekstu logowania oraz 5 cyfr unikalnie identyfikujących jednostkę wewnętrzną.\nOstatnia cyfra musi być poprawną sumą kontrolną, która jest obliczana według poniższego algorytmu.\n\nAlgorytm używa naprzemiennych wag (1×, 3×, 1×, 3×, ...), sumuje wyniki i zwraca resztę z dzielenia przez 10.\n\nPrzykład:\n- Wejście: \"6824515772-1234\" (bez cyfry kontrolnej)\n- Pozycja 0 (1. cyfra): 6 × 1 = 6\n- Pozycja 1 (2. cyfra): 8 × 3 = 24\n- Pozycja 2 (3. cyfra): 2 × 1 = 2\n- Pozycja 3 (4. cyfra): 4 × 3 = 12\n- Pozycja 4 (5. cyfra): 5 × 1 = 5\n- Pozycja 5 (6. cyfra): 1 × 3 = 3\n- Pozycja 6 (7. cyfra): 5 × 1 = 5\n- Pozycja 7 (8. cyfra): 7 × 3 = 21\n- Pozycja 8 (9. cyfra): 7 × 1 = 7\n- Pozycja 9 (10. cyfra): 2 × 3 = 6\n- Pozycja 10 (11. cyfra): 1 × 1 = 1\n- Pozycja 11 (12. cyfra): 2 × 3 = 6\n- Pozycja 12 (13. cyfra): 3 × 1 = 3\n- Pozycja 13 (14. cyfra): 4 × 3 = 12\n- Suma: 6 + 24 + 2 + 12 + 5 + 3 + 5 + 21 + 7 + 6 + 1 + 6 + 3 + 12 = 113\n- Cyfra kontrolna (15. cyfra): 113 % 10 = 3\n\nW żądaniu podaje się również nazwę tej jednostki.  \n            \nUprawnienia administratora jednostki podrzędnej obejmują:  \n- **CredentialsManage** – zarządzanie uprawnieniami  \n            \nMetoda automatycznie nadaje powyższe uprawnienie, bez konieczności podawania go w żądaniu.\n            \n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-podrz%C4%99dnego)\n\n**Wymagane uprawnienia**: `SubunitManage`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień administratora w kontekście:  \n- wskazanego NIP podmiotu podrzędnego – wyłącznie jeżeli podmiot bieżącego kontekstu logowania ma rolę podmiotu nadrzędnego:\n  - **LocalGovernmentUnit** \n  - **VatGroupUnit**  \n- wskazanego lub utworzonego identyfikatora wewnętrznego  \n            \nWraz z utworzeniem administratora jednostki podrzędnej tworzony jest identyfikator wewnętrzny składający się z numeru NIP podmiotu kontekstu logowania oraz 5 cyfr unikalnie identyfikujących jednostkę wewnętrzną.\nOstatnia cyfra musi być poprawną sumą kontrolną, która jest obliczana według poniższego algorytmu.\n\nAlgorytm używa naprzemiennych wag (1×, 3×, 1×, 3×, ...), sumuje wyniki i zwraca resztę z dzielenia przez 10.\n\nPrzykład:\n- Wejście: \"6824515772-1234\" (bez cyfry kontrolnej)\n- Pozycja 0 (1. cyfra): 6 × 1 = 6\n- Pozycja 1 (2. cyfra): 8 × 3 = 24\n- Pozycja 2 (3. cyfra): 2 × 1 = 2\n- Pozycja 3 (4. cyfra): 4 × 3 = 12\n- Pozycja 4 (5. cyfra): 5 × 1 = 5\n- Pozycja 5 (6. cyfra): 1 × 3 = 3\n- Pozycja 6 (7. cyfra): 5 × 1 = 5\n- Pozycja 7 (8. cyfra): 7 × 3 = 21\n- Pozycja 8 (9. cyfra): 7 × 1 = 7\n- Pozycja 9 (10. cyfra): 2 × 3 = 6\n- Pozycja 10 (11. cyfra): 1 × 1 = 1\n- Pozycja 11 (12. cyfra): 2 × 3 = 6\n- Pozycja 12 (13. cyfra): 3 × 1 = 3\n- Pozycja 13 (14. cyfra): 4 × 3 = 12\n- Suma: 6 + 24 + 2 + 12 + 5 + 3 + 5 + 21 + 7 + 6 + 1 + 6 + 3 + 12 = 113\n- Cyfra kontrolna (15. cyfra): 113 % 10 = 3\n\nW żądaniu podaje się również nazwę tej jednostki.  \n            \nUprawnienia administratora jednostki podrzędnej obejmują:  \n- **CredentialsManage** – zarządzanie uprawnieniami  \n            \nMetoda automatycznie nadaje powyższe uprawnienie, bez konieczności podawania go w żądaniu.\n            \n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-podrz%C4%99dnego)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `SubunitManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -4111,20 +3653,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień administratora podmiotu unijnego",
-        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień administratora w kontekście złożonym z identyfikatora NIP podmiotu kontekstu bieżącego oraz numeru VAT UE podmiotu unijnego wskazanego w żądaniu.  \nWraz z utworzeniem administratora podmiotu unijnego tworzony jest kontekst złożony składający się z numeru NIP podmiotu kontekstu logowania oraz wskazanego numeru identyfikacyjnego VAT UE podmiotu unijnego.  \nW żądaniu podaje się również nazwę i adres podmiotu unijnego.  \n            \nJedynym sposobem identyfikacji uprawnianego jest odcisk palca certyfikatu kwalifikowanego:  \n- certyfikat podpisu elektronicznego dla osób fizycznych  \n- certyfikat pieczęci elektronicznej dla podmiotów  \n            \nUprawnienia administratora podmiotu unijnego obejmują:  \n- **VatEuManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n- **Introspection** – przeglądanie historii sesji  \n            \nMetoda automatycznie nadaje wszystkie powyższe uprawnienia, bez konieczności ich wskazywania w żądaniu.\n            \n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-unijnego)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień administratora w kontekście złożonym z identyfikatora NIP podmiotu kontekstu bieżącego oraz numeru VAT UE podmiotu unijnego wskazanego w żądaniu.  \nWraz z utworzeniem administratora podmiotu unijnego tworzony jest kontekst złożony składający się z numeru NIP podmiotu kontekstu logowania oraz wskazanego numeru identyfikacyjnego VAT UE podmiotu unijnego.  \nW żądaniu podaje się również nazwę i adres podmiotu unijnego.  \n            \nJedynym sposobem identyfikacji uprawnianego jest odcisk palca certyfikatu kwalifikowanego:  \n- certyfikat podpisu elektronicznego dla osób fizycznych  \n- certyfikat pieczęci elektronicznej dla podmiotów  \n            \nUprawnienia administratora podmiotu unijnego obejmują:  \n- **VatEuManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n- **Introspection** – przeglądanie historii sesji  \n            \nMetoda automatycznie nadaje wszystkie powyższe uprawnienia, bez konieczności ich wskazywania w żądaniu.\n            \n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-unijnego)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -4268,20 +3797,7 @@
           "Nadawanie uprawnień"
         ],
         "summary": "Nadanie uprawnień reprezentanta podmiotu unijnego",
-        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień do wystawiania i/lub przeglądania faktur w kontekście złożonym kontekstu bieżącego.  \n            \nJedynym sposobem identyfikacji uprawnianego jest odcisk palca certyfikatu kwalifikowanego:  \n- certyfikat podpisu elektronicznego dla osób fizycznych  \n- certyfikat pieczęci elektronicznej dla podmiotów  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-reprezentanta-podmiotu-unijnego)\n\n**Wymagane uprawnienia**: `VatUeManage`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Metoda pozwala na nadanie wskazanemu w żądaniu podmiotowi lub osobie fizycznej uprawnień do wystawiania i/lub przeglądania faktur w kontekście złożonym kontekstu bieżącego.  \n            \nJedynym sposobem identyfikacji uprawnianego jest odcisk palca certyfikatu kwalifikowanego:  \n- certyfikat podpisu elektronicznego dla osób fizycznych  \n- certyfikat pieczęci elektronicznej dla podmiotów  \n            \nW żądaniu określane są nadawane uprawnienia ze zbioru:  \n- **InvoiceWrite** – wystawianie faktur  \n- **InvoiceRead** – przeglądanie faktur  \n            \nMetoda pozwala na wybór dowolnej kombinacji powyższych uprawnień.\n\n> Więcej informacji:\n> - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-reprezentanta-podmiotu-unijnego)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `VatUeManage`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -4418,7 +3934,7 @@
           "Odbieranie uprawnień"
         ],
         "summary": "Odebranie uprawnień",
-        "description": "Metoda pozwala na odebranie uprawnienia o wskazanym identyfikatorze.  \nWymagane jest wcześniejsze odczytanie uprawnień w celu uzyskania  \nidentyfikatora uprawnienia, które ma zostać odebrane.\n\n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84)\n\n**Wymagane uprawnienia**: `CredentialsManage`, `VatUeManage`, `SubunitManage`.",
+        "description": "Metoda pozwala na odebranie uprawnienia o wskazanym identyfikatorze.  \nWymagane jest wcześniejsze odczytanie uprawnień w celu uzyskania  \nidentyfikatora uprawnienia, które ma zostać odebrane.\n\n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `CredentialsManage`, `VatUeManage`, `SubunitManage`.",
         "parameters": [
           {
             "name": "permissionId",
@@ -4427,17 +3943,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/PermissionId"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -4538,7 +4043,7 @@
           "Odbieranie uprawnień"
         ],
         "summary": "Odebranie uprawnień podmiotowych",
-        "description": "Metoda pozwala na odebranie uprawnienia podmiotowego o wskazanym identyfikatorze.  \nWymagane jest wcześniejsze odczytanie uprawnień w celu uzyskania  \nidentyfikatora uprawnienia, które ma zostać odebrane.\n            \n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84-podmiotowych)\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
+        "description": "Metoda pozwala na odebranie uprawnienia podmiotowego o wskazanym identyfikatorze.  \nWymagane jest wcześniejsze odczytanie uprawnień w celu uzyskania  \nidentyfikatora uprawnienia, które ma zostać odebrane.\n            \n> Więcej informacji:\n> - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84-podmiotowych)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `CredentialsManage`.",
         "parameters": [
           {
             "name": "permissionId",
@@ -4547,17 +4052,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/PermissionId"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -4656,7 +4150,7 @@
           "Operacje"
         ],
         "summary": "Pobranie statusu operacji",
-        "description": "Zwraca status operacji asynchronicznej związanej z nadaniem lub odebraniem uprawnień.       \n\nStatus operacji jest dostępny przez 30 dni.",
+        "description": "Zwraca status operacji asynchronicznej związanej z nadaniem lub odebraniem uprawnień.       \n\nStatus operacji jest dostępny przez 30 dni.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -4665,17 +4159,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -4792,20 +4275,7 @@
           "Operacje"
         ],
         "summary": "Sprawdzenie statusu zgody na wystawianie faktur z załącznikiem",
-        "description": "Sprawdzenie czy obecny kontekst posiada zgodę na wystawianie faktur z załącznikiem.\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Sprawdzenie czy obecny kontekst posiada zgodę na wystawianie faktur z załącznikiem.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`.",
         "responses": {
           "200": {
             "description": "OK",
@@ -4899,7 +4369,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Pobranie faktury po numerze KSeF",
-        "description": "Zwraca fakturę o podanym numerze KSeF.\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
+        "description": "Zwraca fakturę o podanym numerze KSeF.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
         "parameters": [
           {
             "name": "ksefNumber",
@@ -4908,17 +4378,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/KsefNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -5022,7 +4481,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Pobranie listy metadanych faktur",
-        "description": "Zwraca metadane faktur spełniających filtry.\n\nLimit techniczny: ≤ 10 000 rekordów na zestaw filtrów, po jego osiągnięciu <b>isTruncated = true</b> i należy ponownie ustawić <b>dateRange</b>, używając ostatniej daty z wyników (tj. ustawić from/to - w zależności od kierunku sortowania, od daty ostatniego zwróconego rekordu) oraz wyzerować <b>pageOffset</b>.\n\n`Do scenariusza przyrostowego należy używać daty PermanentStorage oraz kolejność sortowania Asc`.\n            \n<b>Scenariusz pobierania przyrostowego (skrót):</b>\n* Gdy <b>hasMore = false</b>, należy zakończyć,\n* Gdy <b>hasMore = true</b> i <b>isTruncated = false</b>, należy zwiększyć <b>pageOffset</b>,\n* Gdy <b>hasMore = true</b> i <b>isTruncated = true</b>, należy zawęzić <b>dateRange</b> (ustawić from od daty ostatniego rekordu), wyzerować <b>pageOffset</b> i kontynuować\n\n**Sortowanie:**\n\n- permanentStorageDate | invoicingDate | issueDate (Asc | Desc) - pole wybierane na podstawie filtrów\n\n\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
+        "description": "Zwraca metadane faktur spełniających filtry.\n\nLimit techniczny: ≤ 10 000 rekordów na zestaw filtrów, po jego osiągnięciu <b>isTruncated = true</b> i należy ponownie ustawić <b>dateRange</b>, używając ostatniej daty z wyników (tj. ustawić from/to - w zależności od kierunku sortowania, od daty ostatniego zwróconego rekordu) oraz wyzerować <b>pageOffset</b>.\n\n`Do scenariusza przyrostowego należy używać daty PermanentStorage oraz kolejność sortowania Asc`.\n            \n<b>Scenariusz pobierania przyrostowego (skrót):</b>\n* Gdy <b>hasMore = false</b>, należy zakończyć,\n* Gdy <b>hasMore = true</b> i <b>isTruncated = false</b>, należy zwiększyć <b>pageOffset</b>,\n* Gdy <b>hasMore = true</b> i <b>isTruncated = true</b>, należy zawęzić <b>dateRange</b> (ustawić from od daty ostatniego rekordu), wyzerować <b>pageOffset</b> i kontynuować\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- permanentStorageDate | invoicingDate | issueDate (Asc | Desc) - pole wybierane na podstawie filtrów\n\n\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
         "parameters": [
           {
             "name": "sortOrder",
@@ -5059,17 +4518,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -5303,20 +4751,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Eksport paczki faktur",
-        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu <b>Encryption</b>, które służą do zabezpieczenia przygotowanej paczki z fakturami.\nMaksymalnie można uruchomić 10 równoczesnych eksportów w zalogowanym kontekście.\n            \nSystem pobiera faktury rosnąco według daty określonej w filtrze (Invoicing, Issue, PermanentStorage) i dodaje faktury(nazwa pliku: <b>{ksefNumber}.xml</b>) do paczki aż do osiągnięcia jednego z poniższych limitów:\n* Limit liczby faktur: 10 000 sztuk\n* Limit rozmiaru danych(skompresowanych): 1GB\n\nPaczka eksportu zawiera dodatkowy plik z metadanymi faktur w formacie JSON (`_metadata.json`). Zawartość pliku to\nobiekt z tablicą <b>invoices</b>, gdzie każdy element jest obiektem typu <b>InvoiceMetadata</b>\n(taki jak zwracany przez endpoint `POST /invoices/query/metadata`).\n\n<b>Plik z metadanymi(_metadata.json) nie jest wliczany do limitów algorytmu budowania paczki</b>. \n\n`Do realizacji pobierania przyrostowego należy stosować filtrowanie po dacie PermanentStorage`.\n\n**Sortowanie:**\n\n- permanentStorageDate | invoicingDate | issueDate (Asc) - pole wybierane na podstawie filtrów\n\n\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej paczki.\nWymagane jest przekazanie informacji o szyfrowaniu w polu <b>Encryption</b>, które służą do zabezpieczenia przygotowanej paczki z fakturami.\nMaksymalnie można uruchomić 10 równoczesnych eksportów w zalogowanym kontekście.\n            \nSystem pobiera faktury rosnąco według daty określonej w filtrze (Invoicing, Issue, PermanentStorage) i dodaje faktury(nazwa pliku: <b>{ksefNumber}.xml</b>) do paczki aż do osiągnięcia jednego z poniższych limitów:\n* Limit liczby faktur: 10 000 sztuk\n* Limit rozmiaru danych(skompresowanych): 1GB\n\nPaczka eksportu zawiera dodatkowy plik z metadanymi faktur w formacie JSON (`_metadata.json`). Zawartość pliku to\nobiekt z tablicą <b>invoices</b>, gdzie każdy element jest obiektem typu <b>InvoiceMetadata</b>\n(taki jak zwracany przez endpoint `POST /invoices/query/metadata`).\n\n<b>Plik z metadanymi(_metadata.json) nie jest wliczany do limitów algorytmu budowania paczki</b>. \n\n`Do realizacji pobierania przyrostowego należy stosować filtrowanie po dacie PermanentStorage`.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- permanentStorageDate | invoicingDate | issueDate (Asc) - pole wybierane na podstawie filtrów\n\n\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
         "requestBody": {
           "description": "Dane wejściowe określające kryteria i format eksportu paczki faktur.",
           "content": {
@@ -5456,7 +4891,7 @@
           "Pobieranie faktur"
         ],
         "summary": "Pobranie statusu eksportu paczki faktur",
-        "description": "Paczka faktur jest dzielona na części o maksymalnym rozmiarze 50 MB. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. \n\nW przypadku ucięcia wyniku eksportu z powodu przekroczenia limitów, zwracana jest flaga <b>IsTruncated = true</b> oraz odpowiednia data, którą należy wykorzystać do wykonania kolejnego eksportu, aż do momentu, gdy flaga <b>IsTruncated = false</b>.\n\nStatus eksportu paczki faktur jest dostępny przez 7 dni.\n\n**Sortowanie:**\n\n- permanentStorageDate | invoicingDate | issueDate (Asc) - pole wybierane na podstawie filtrów\n\n\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
+        "description": "Paczka faktur jest dzielona na części o maksymalnym rozmiarze 50 MB. Każda część jest zaszyfrowana algorytmem AES-256-CBC z dopełnieniem PKCS#7, przy użyciu klucza symetrycznego przekazanego podczas inicjowania eksportu. \n\nW przypadku ucięcia wyniku eksportu z powodu przekroczenia limitów, zwracana jest flaga <b>IsTruncated = true</b> oraz odpowiednia data, którą należy wykorzystać do wykonania kolejnego eksportu, aż do momentu, gdy flaga <b>IsTruncated = false</b>.\n\nStatus eksportu paczki faktur jest dostępny przez 7 dni.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- permanentStorageDate | invoicingDate | issueDate (Asc) - pole wybierane na podstawie filtrów\n\n\n\n**Wymagane uprawnienia**: `InvoiceRead`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -5465,17 +4900,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -5626,7 +5050,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie listy sesji",
-        "description": "Zwraca listę sesji spełniających podane kryteria wyszukiwania.\n\n\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n\n\n**Wymagane uprawnienia**:\n- `Introspection`/`EnforcementOperations` – pozwala pobrać wszystkie sesje w bieżącym kontekście uwierzytelnienia `(ContextIdentifier)`.\n- `InvoiceWrite` – pozwala pobrać wyłącznie sesje utworzone przez podmiot uwierzytelniający, czyli podmiot inicjujący uwierzytelnienie.",
+        "description": "Zwraca listę sesji spełniających podane kryteria wyszukiwania.\n\n\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n\n\n**Wymagane uprawnienia**:\n- `Introspection`/`EnforcementOperations` – pozwala pobrać wszystkie sesje w bieżącym kontekście uwierzytelnienia `(ContextIdentifier)`.\n- `InvoiceWrite` – pozwala pobrać wyłącznie sesje utworzone przez podmiot uwierzytelniający, czyli podmiot inicjujący uwierzytelnienie.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "parameters": [
           {
             "name": "pageSize",
@@ -5731,17 +5155,6 @@
             "in": "header",
             "description": "Token służący do pobrania kolejnej strony wyników.",
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
               "type": "string"
             }
           }
@@ -5877,7 +5290,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie statusu sesji",
-        "description": "Sprawdza bieżący status sesji o podanym numerze referencyjnym.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
+        "description": "Sprawdza bieżący status sesji o podanym numerze referencyjnym.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -5886,17 +5299,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -6015,7 +5417,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie faktur sesji",
-        "description": "Zwraca listę faktur przesłanych w sesji wraz z ich statusami, oraz informacje na temat ilości poprawnie i niepoprawnie przetworzonych faktur.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
+        "description": "Zwraca listę faktur przesłanych w sesji wraz z ich statusami, oraz informacje na temat ilości poprawnie i niepoprawnie przetworzonych faktur.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "x-continuation-token",
@@ -6044,17 +5446,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -6191,7 +5582,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie statusu faktury z sesji",
-        "description": "Zwraca fakturę przesłaną w sesji wraz ze statusem.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
+        "description": "Zwraca fakturę przesłaną w sesji wraz ze statusem.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -6209,17 +5600,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -6334,7 +5714,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie niepoprawnie przetworzonych faktur sesji",
-        "description": "Zwraca listę niepoprawnie przetworzonych faktur przesłanych w sesji wraz z ich statusami.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
+        "description": "Zwraca listę niepoprawnie przetworzonych faktur przesłanych w sesji wraz z ich statusami.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "x-continuation-token",
@@ -6363,17 +5743,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -6495,7 +5864,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie UPO faktury z sesji na podstawie numeru KSeF",
-        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
+        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -6513,17 +5882,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/KsefNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -6630,7 +5988,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie UPO faktury z sesji na podstawie numeru referencyjnego faktury",
-        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
+        "description": "Zwraca UPO faktury przesłanego w sesji na podstawie jego numeru KSeF.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -6648,17 +6006,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -6765,7 +6112,7 @@
           "Status wysyłki i UPO"
         ],
         "summary": "Pobranie UPO dla sesji",
-        "description": "Zwraca XML zawierający zbiorcze UPO dla sesji.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
+        "description": "Zwraca XML zawierający zbiorcze UPO dla sesji.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -6783,17 +6130,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -6900,20 +6236,7 @@
           "Tokeny KSeF"
         ],
         "summary": "Wygenerowanie nowego tokena",
-        "description": "Zwraca token, który może być użyty do uwierzytelniania się w KSeF.\n\nToken może być generowany tylko w kontekście NIP lub identyfikatora wewnętrznego. Jest zwracany tylko raz. Zaczyna być aktywny w momencie gdy jego status zmieni się na `Active`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Zwraca token, który może być użyty do uwierzytelniania się w KSeF.\n\nToken może być generowany tylko w kontekście NIP lub identyfikatora wewnętrznego. Jest zwracany tylko raz. Zaczyna być aktywny w momencie gdy jego status zmieni się na `Active`.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -7029,7 +6352,7 @@
           "Tokeny KSeF"
         ],
         "summary": "Pobranie listy wygenerowanych tokenów",
-        "description": "Zwraca listę metadanych tokenów. Zakres wyników zależy od sposobu uwierzytelnienia oraz uprawnień podmiotu wywołującego.\n\nJeżeli podmiot posiada uprawnienie **CredentialsManage** lub **CredentialsRead**, \nusługa zwraca wszystkie tokeny wygenerowane w danym kontekście niezależnie od metody uwierzytelnienia. \n\nJeżeli podmiot nie posiada żadnego z powyższych uprawnień, zakres wyników jest ograniczony: \n- Dla podmiotu uwierzytelnionego tokenem zwracany jest wyłącznie token użyty do uwierzytelnienia.\n- Dla pozostałych metod uwierzytelnienia zwracane są tokeny,  \nktórych autorem jest wywołujący podmiot – z uwzględnieniem powiązania NIP–PESEL.\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n\n",
+        "description": "Zwraca listę metadanych tokenów. Zakres wyników zależy od sposobu uwierzytelnienia oraz uprawnień podmiotu wywołującego.\n\nJeżeli podmiot posiada uprawnienie **CredentialsManage** lub **CredentialsRead**, \nusługa zwraca wszystkie tokeny wygenerowane w danym kontekście niezależnie od metody uwierzytelnienia. \n\nJeżeli podmiot nie posiada żadnego z powyższych uprawnień, zakres wyników jest ograniczony: \n- Dla podmiotu uwierzytelnionego tokenem zwracany jest wyłącznie token użyty do uwierzytelnienia.\n- Dla pozostałych metod uwierzytelnienia zwracane są tokeny,  \nktórych autorem jest wywołujący podmiot – z uwzględnieniem powiązania NIP–PESEL.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n\n",
         "parameters": [
           {
             "name": "status",
@@ -7089,17 +6412,6 @@
             "in": "header",
             "description": "Token służący do pobrania kolejnej strony wyników.",
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
               "type": "string"
             }
           }
@@ -7223,6 +6535,7 @@
           "Tokeny KSeF"
         ],
         "summary": "Pobranie statusu tokena",
+        "description": "\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -7231,17 +6544,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -7352,7 +6654,7 @@
           "Tokeny KSeF"
         ],
         "summary": "Unieważnienie tokena",
-        "description": "Unieważnia token o podanym numerze referencyjnym. Zakres tokenów dostępnych do unieważnienia zależy od sposobu uwierzytelnienia oraz uprawnień podmiotu wywołującego.\n\nJeżeli podmiot posiada uprawnienie **CredentialsManage**, \nmoże unieważnić dowolny aktywny token w danym kontekście niezależnie od metody uwierzytelnienia.\n\nJeżeli podmiot nie posiada powyższego uprawnienia, zakres unieważnienia jest ograniczony: \n- Dla podmiotu uwierzytelnionego tokenem możliwe jest unieważnienie wyłącznie tokena użytego do uwierzytelnienia. \n- Dla pozostałych metod uwierzytelnienia podmiot może unieważnić tokeny,  \nktórych jest autorem – z uwzględnieniem powiązania NIP–PESEL.",
+        "description": "Unieważnia token o podanym numerze referencyjnym. Zakres tokenów dostępnych do unieważnienia zależy od sposobu uwierzytelnienia oraz uprawnień podmiotu wywołującego.\n\nJeżeli podmiot posiada uprawnienie **CredentialsManage**, \nmoże unieważnić dowolny aktywny token w danym kontekście niezależnie od metody uwierzytelnienia.\n\nJeżeli podmiot nie posiada powyższego uprawnienia, zakres unieważnienia jest ograniczony: \n- Dla podmiotu uwierzytelnionego tokenem możliwe jest unieważnienie wyłącznie tokena użytego do uwierzytelnienia. \n- Dla pozostałych metod uwierzytelnienia podmiot może unieważnić tokeny,  \nktórych jest autorem – z uwzględnieniem powiązania NIP–PESEL.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -7361,17 +6663,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -7457,7 +6748,7 @@
           "Usługi Peppol"
         ],
         "summary": "Pobranie listy dostawców usług Peppol",
-        "description": "Zwraca listę dostawców usług Peppol zarejestrowanych w systemie.\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n- id (Asc)\n\n",
+        "description": "Zwraca listę dostawców usług Peppol zarejestrowanych w systemie.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- dateCreated (Desc)\n- id (Asc)\n\n",
         "parameters": [
           {
             "name": "pageOffset",
@@ -7480,17 +6771,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -7576,20 +6856,7 @@
           "Uzyskiwanie dostępu"
         ],
         "summary": "Inicjalizacja uwierzytelnienia",
-        "description": "Generuje unikalny challenge wymagany w kolejnym kroku operacji uwierzytelnienia.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Generuje unikalny challenge wymagany w kolejnym kroku operacji uwierzytelnienia.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK",
@@ -7658,7 +6925,7 @@
           "Uzyskiwanie dostępu"
         ],
         "summary": "Uwierzytelnienie z wykorzystaniem podpisu XAdES",
-        "description": "Rozpoczyna operację uwierzytelniania za pomocą dokumentu XML podpisanego podpisem elektronicznym XAdES.\n\n> Więcej informacji:\n> - [Przygotowanie dokumentu XML](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md#1-przygotowanie-dokumentu-xml-authtokenrequest)\n> - [Podpis dokumentu XML](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md#2-podpisanie-dokumentu-xades)\n> - [Schemat XSD](/docs/v2/schemas/authv2.xsd)",
+        "description": "Rozpoczyna operację uwierzytelniania za pomocą dokumentu XML podpisanego podpisem elektronicznym XAdES.\n\n> Więcej informacji:\n> - [Przygotowanie dokumentu XML](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md#1-przygotowanie-dokumentu-xml-authtokenrequest)\n> - [Podpis dokumentu XML](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md#2-podpisanie-dokumentu-xades)\n> - [Schemat XSD](/docs/v2/schemas/authv2.xsd)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "parameters": [
           {
             "name": "verifyCertificateChain",
@@ -7666,17 +6933,6 @@
             "description": "Wymuszenie weryfikacji zaufania łańcucha certyfikatu wraz ze sprawdzeniem statusu certyfikatu (OCSP/CRL) na środowiskach które umożliwiają wykorzystanie samodzielnie wygenerowanych certyfikatów.",
             "schema": {
               "type": "boolean"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -7760,20 +7016,7 @@
           "Uzyskiwanie dostępu"
         ],
         "summary": "Uwierzytelnienie z wykorzystaniem tokena KSeF",
-        "description": "Rozpoczyna operację uwierzytelniania z wykorzystaniem wcześniej wygenerowanego tokena KSeF.\n\nToken KSeF wraz z timestampem ze wcześniej wygenerowanego challenge'a (w formacie ```token|timestamp```) powinien zostać zaszyfrowany dedykowanym do tego celu kluczem publicznym.\n- Timestamp powinien zostać przekazany jako **liczba milisekund od 1 stycznia 1970 roku (Unix timestamp)**.\n- Algorytm szyfrowania: **RSA-OAEP (z użyciem SHA-256 jako funkcji skrótu)**.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Rozpoczyna operację uwierzytelniania z wykorzystaniem wcześniej wygenerowanego tokena KSeF.\n\nToken KSeF wraz z timestampem ze wcześniej wygenerowanego challenge'a (w formacie ```token|timestamp```) powinien zostać zaszyfrowany dedykowanym do tego celu kluczem publicznym.\n- Timestamp powinien zostać przekazany jako **liczba milisekund od 1 stycznia 1970 roku (Unix timestamp)**.\n- Algorytm szyfrowania: **RSA-OAEP (z użyciem SHA-256 jako funkcji skrótu)**.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -7869,7 +7112,7 @@
           "Uzyskiwanie dostępu"
         ],
         "summary": "Pobranie statusu uwierzytelniania",
-        "description": "Sprawdza bieżący status operacji uwierzytelniania dla podanego tokena.\n\nSposób uwierzytelnienia: `AuthenticationToken` otrzymany przy rozpoczęciu operacji uwierzytelniania.\nOperacja jest dostępna przez 7 dni.",
+        "description": "Sprawdza bieżący status operacji uwierzytelniania dla podanego tokena.\n\nSposób uwierzytelnienia: `AuthenticationToken` otrzymany przy rozpoczęciu operacji uwierzytelniania.\nOperacja jest dostępna przez 7 dni.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -7878,17 +7121,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -8094,20 +7326,7 @@
           "Uzyskiwanie dostępu"
         ],
         "summary": "Pobranie tokenów dostępowych",
-        "description": "Pobiera parę tokenów (access token i refresh token) wygenerowanych w ramach pozytywnie zakończonego procesu uwierzytelniania.\n**Tokeny można pobrać tylko raz.**\n\nSposób uwierzytelnienia: `AuthenticationToken` otrzymany przy rozpoczęciu operacji uwierzytelniania.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Pobiera parę tokenów (access token i refresh token) wygenerowanych w ramach pozytywnie zakończonego procesu uwierzytelniania.\n**Tokeny można pobrać tylko raz.**\n\nSposób uwierzytelnienia: `AuthenticationToken` otrzymany przy rozpoczęciu operacji uwierzytelniania.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK",
@@ -8205,20 +7424,7 @@
           "Uzyskiwanie dostępu"
         ],
         "summary": "Odświeżenie tokena dostępowego",
-        "description": "Generuje nowy token dostępu na podstawie ważnego refresh tokena.\n\nSposób uwierzytelnienia: `RefreshToken`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Generuje nowy token dostępu na podstawie ważnego refresh tokena.\n\nSposób uwierzytelnienia: `RefreshToken`.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).",
         "responses": {
           "200": {
             "description": "OK",
@@ -8312,20 +7518,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Otwarcie sesji interaktywnej",
-        "description": "Otwiera sesję do wysyłki pojedynczych faktur. Należy przekazać schemat wysyłanych faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Otwarcie sesji interaktywnej](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#1-otwarcie-sesji)\n> - [Klucz publiczny Ministerstwa Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`, `EnforcementOperations`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Otwiera sesję do wysyłki pojedynczych faktur. Należy przekazać schemat wysyłanych faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Otwarcie sesji interaktywnej](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#1-otwarcie-sesji)\n> - [Klucz publiczny Ministerstwa Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -8452,7 +7645,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Wysłanie faktury",
-        "description": "Przyjmuje zaszyfrowaną fakturę oraz jej metadane i rozpoczyna jej przetwarzanie.\n\n> Więcej informacji:\n> - [Wysłanie faktury](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#2-wys%C5%82anie-faktury)\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`, `EnforcementOperations`.",
+        "description": "Przyjmuje zaszyfrowaną fakturę oraz jej metadane i rozpoczyna jej przetwarzanie.\n\n> Więcej informacji:\n> - [Wysłanie faktury](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#2-wys%C5%82anie-faktury)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -8461,17 +7654,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -8601,7 +7783,7 @@
           "Wysyłka interaktywna"
         ],
         "summary": "Zamknięcie sesji interaktywnej",
-        "description": "Zamyka sesję interaktywną i rozpoczyna generowanie zbiorczego UPO dla sesji.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`, `EnforcementOperations`.",
+        "description": "Zamyka sesję interaktywną i rozpoczyna generowanie zbiorczego UPO dla sesji.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `PefInvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -8610,17 +7792,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -8711,20 +7882,7 @@
           "Wysyłka wsadowa"
         ],
         "summary": "Otwarcie sesji wsadowej",
-        "description": "Otwiera sesję do wysyłki wsadowej faktur. Należy przekazać schemat wysyłanych faktur, informacje o paczce faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Przygotowanie paczki faktur](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-wsadowa.md)\n> - [Klucz publiczny Ministerstwa Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `EnforcementOperations`.",
-        "parameters": [
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Otwiera sesję do wysyłki wsadowej faktur. Należy przekazać schemat wysyłanych faktur, informacje o paczce faktur oraz informacje o kluczu używanym do szyfrowania.\n\n> Więcej informacji:\n> - [Przygotowanie paczki faktur](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-wsadowa.md)\n> - [Klucz publiczny Ministerstwa Finansów](/docs/v2/index.html#tag/Certyfikaty-klucza-publicznego)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `EnforcementOperations`.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -8872,7 +8030,7 @@
           "Wysyłka wsadowa"
         ],
         "summary": "Zamknięcie sesji wsadowej",
-        "description": "Zamyka sesję wsadową, rozpoczyna procesowanie paczki faktur i generowanie UPO dla prawidłowych faktur oraz zbiorczego UPO dla sesji.\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `EnforcementOperations`.",
+        "description": "Zamyka sesję wsadową, rozpoczyna procesowanie paczki faktur i generowanie UPO dla prawidłowych faktur oraz zbiorczego UPO dla sesji.\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Wymagane uprawnienia**: `InvoiceWrite`, `EnforcementOperations`.",
         "parameters": [
           {
             "name": "referenceNumber",
@@ -8881,17 +8039,6 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/ReferenceNumber"
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -8981,7 +8128,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy własnych uprawnień",
-        "description": " Metoda pozwala na odczytanie własnych uprawnień uwierzytelnionego klienta API w bieżącym kontekście logowania.  \n\n W odpowiedzi przekazywane są następujące uprawnienia:  \n - nadane w sposób bezpośredni w bieżącym kontekście  \n - nadane przez podmiot nadrzędny  \n - nadane w sposób pośredni, jeżeli podmiot kontekstu logowania jest w uprawnieniu pośrednikiem lub podmiotem docelowym  \n - nadane podmiotowi do obsługi faktur przez inny podmiot, jeśli podmiot uwierzytelniony ma w bieżącym kontekście uprawnienia właścicielskie  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **CredentialsManage** – zarządzanie uprawnieniami  \n - **CredentialsRead** – przeglądanie uprawnień  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n - **SubunitManage** – zarządzanie podmiotami podrzędnymi  \n - **EnforcementOperations** – wykonywanie operacji egzekucyjnych  \n - **VatEuManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **contextIdentifier** – identyfikator podmiotu, który nadał uprawnienie do obsługi faktur  \n - **targetIdentifier** – identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n - **permissionState** – status uprawnienia  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-w%C5%82asnych-uprawnie%C5%84)\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n",
+        "description": " Metoda pozwala na odczytanie własnych uprawnień uwierzytelnionego klienta API w bieżącym kontekście logowania.  \n\n W odpowiedzi przekazywane są następujące uprawnienia:  \n - nadane w sposób bezpośredni w bieżącym kontekście  \n - nadane przez podmiot nadrzędny  \n - nadane w sposób pośredni, jeżeli podmiot kontekstu logowania jest w uprawnieniu pośrednikiem lub podmiotem docelowym  \n - nadane podmiotowi do obsługi faktur przez inny podmiot, jeśli podmiot uwierzytelniony ma w bieżącym kontekście uprawnienia właścicielskie  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **CredentialsManage** – zarządzanie uprawnieniami  \n - **CredentialsRead** – przeglądanie uprawnień  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n - **SubunitManage** – zarządzanie podmiotami podrzędnymi  \n - **EnforcementOperations** – wykonywanie operacji egzekucyjnych  \n - **VatEuManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **contextIdentifier** – identyfikator podmiotu, który nadał uprawnienie do obsługi faktur  \n - **targetIdentifier** – identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n - **permissionState** – status uprawnienia  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-w%C5%82asnych-uprawnie%C5%84)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n",
         "parameters": [
           {
             "name": "pageOffset",
@@ -9004,17 +8151,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -9161,7 +8297,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub podmiotom",
-        "description": " Metoda pozwala na odczytanie uprawnień nadanych osobie fizycznej lub podmiotowi.  \n Lista pobranych uprawnień może być dwóch rodzajów:  \n - Lista wszystkich uprawnień obowiązujących w bieżącym kontekście logowania (używana, gdy administrator chce przejrzeć uprawnienia wszystkich użytkowników w bieżącym kontekście)  \n - Lista wszystkich uprawnień nadanych w bieżącym kontekście przez uwierzytelnionego klienta API (używana, gdy administrator chce przejrzeć listę nadanych przez siebie uprawnień w bieżącym kontekście)  \n\n Dla pierwszej listy (obowiązujących uprawnień) w odpowiedzi przekazywane są:  \n - osoby i podmioty mogące pracować w bieżącym kontekście z wyjątkiem osób uprawnionych w sposób pośredni  \n - osoby uprawnione w sposób pośredni przez podmiot bieżącego kontekstu  \n\n Dla drugiej listy (nadanych uprawnień) w odpowiedzi przekazywane są:  \n - uprawnienia nadane w sposób bezpośredni do pracy w bieżącym kontekście lub w kontekście jednostek podrzędnych  \n - uprawnienia nadane w sposób pośredni do obsługi klientów podmiotu bieżącego kontekstu  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **CredentialsManage** – zarządzanie uprawnieniami  \n - **CredentialsRead** – przeglądanie uprawnień  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n - **SubunitManage** – zarządzanie podmiotami podrzędnymi  \n - **EnforcementOperations** – wykonywanie operacji egzekucyjnych  \n\n Odpowiedź może być filtrowana na podstawie parametrów:  \n - **authorIdentifier** – identyfikator osoby, która nadała uprawnienie  \n - **authorizedIdentifier** – identyfikator osoby lub podmiotu uprawnionego  \n - **targetIdentifier** – identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n - **permissionState** – status uprawnienia  \n - **queryType** – typ zapytania określający, która z dwóch list ma zostać zwrócona  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-do-pracy-w-ksef-nadanych-osobom-fizycznym-lub-podmiotom)\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
+        "description": " Metoda pozwala na odczytanie uprawnień nadanych osobie fizycznej lub podmiotowi.  \n Lista pobranych uprawnień może być dwóch rodzajów:  \n - Lista wszystkich uprawnień obowiązujących w bieżącym kontekście logowania (używana, gdy administrator chce przejrzeć uprawnienia wszystkich użytkowników w bieżącym kontekście)  \n - Lista wszystkich uprawnień nadanych w bieżącym kontekście przez uwierzytelnionego klienta API (używana, gdy administrator chce przejrzeć listę nadanych przez siebie uprawnień w bieżącym kontekście)  \n\n Dla pierwszej listy (obowiązujących uprawnień) w odpowiedzi przekazywane są:  \n - osoby i podmioty mogące pracować w bieżącym kontekście z wyjątkiem osób uprawnionych w sposób pośredni  \n - osoby uprawnione w sposób pośredni przez podmiot bieżącego kontekstu  \n\n Dla drugiej listy (nadanych uprawnień) w odpowiedzi przekazywane są:  \n - uprawnienia nadane w sposób bezpośredni do pracy w bieżącym kontekście lub w kontekście jednostek podrzędnych  \n - uprawnienia nadane w sposób pośredni do obsługi klientów podmiotu bieżącego kontekstu  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **CredentialsManage** – zarządzanie uprawnieniami  \n - **CredentialsRead** – przeglądanie uprawnień  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n - **SubunitManage** – zarządzanie podmiotami podrzędnymi  \n - **EnforcementOperations** – wykonywanie operacji egzekucyjnych  \n\n Odpowiedź może być filtrowana na podstawie parametrów:  \n - **authorIdentifier** – identyfikator osoby, która nadała uprawnienie  \n - **authorizedIdentifier** – identyfikator osoby lub podmiotu uprawnionego  \n - **targetIdentifier** – identyfikator podmiotu docelowego dla uprawnień nadanych pośrednio  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n - **permissionState** – status uprawnienia  \n - **queryType** – typ zapytania określający, która z dwóch list ma zostać zwrócona  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-do-pracy-w-ksef-nadanych-osobom-fizycznym-lub-podmiotom)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -9184,17 +8320,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -9356,7 +8481,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień administratorów jednostek i podmiotów podrzędnych",
-        "description": " Metoda pozwala na odczytanie uprawnień do zarządzania uprawnieniami nadanych administratorom:  \n - jednostek podrzędnych identyfikowanych identyfikatorem wewnętrznym  \n - podmiotów podrzędnych (podrzędnych JST lub członków grupy VAT) identyfikowanych przez NIP  \n\n Lista zwraca wyłącznie uprawnienia do zarządzania uprawnieniami nadane z kontekstu bieżącego (z podmiotu nadrzędnego).  \n Nie są odczytywane uprawnienia nadane przez administratorów jednostek podrzędnych wewnątrz tych jednostek.  \n\n Odpowiedź może być filtrowana na podstawie parametru:  \n - **subunitIdentifier** – identyfikator jednostki lub podmiotu podrzędnego  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-administrator%C3%B3w-jednostek-i-podmiot%C3%B3w-podrz%C4%99dnych)\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
+        "description": " Metoda pozwala na odczytanie uprawnień do zarządzania uprawnieniami nadanych administratorom:  \n - jednostek podrzędnych identyfikowanych identyfikatorem wewnętrznym  \n - podmiotów podrzędnych (podrzędnych JST lub członków grupy VAT) identyfikowanych przez NIP  \n\n Lista zwraca wyłącznie uprawnienia do zarządzania uprawnieniami nadane z kontekstu bieżącego (z podmiotu nadrzędnego).  \n Nie są odczytywane uprawnienia nadane przez administratorów jednostek podrzędnych wewnątrz tych jednostek.  \n\n Odpowiedź może być filtrowana na podstawie parametru:  \n - **subunitIdentifier** – identyfikator jednostki lub podmiotu podrzędnego  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-administrator%C3%B3w-jednostek-i-podmiot%C3%B3w-podrz%C4%99dnych)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -9379,17 +8504,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -9539,7 +8653,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień do obsługi faktur w bieżącym kontekście",
-        "description": " Metoda pozwala na odczytanie otrzymanych uprawnień do obsługi faktur w bieżącym kontekście logowania.  \n\n W odpowiedzi przekazywane są następujące uprawnienia:  \n - nadane podmiotowi do obsługi faktur przez inny podmiot \n\n Uprawnienia zwracane przez operację obejmują:  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **contextIdentifier** – identyfikator podmiotu, który nadał uprawnienie do obsługi faktur  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-do-obs%C5%82ugi-faktur-w-bie%C5%BC%C4%85cym-kontek%C5%9Bcie)\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`.",
+        "description": " Metoda pozwala na odczytanie otrzymanych uprawnień do obsługi faktur w bieżącym kontekście logowania.  \n\n W odpowiedzi przekazywane są następujące uprawnienia:  \n - nadane podmiotowi do obsługi faktur przez inny podmiot \n\n Uprawnienia zwracane przez operację obejmują:  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **contextIdentifier** – identyfikator podmiotu, który nadał uprawnienie do obsługi faktur  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-do-obs%C5%82ugi-faktur-w-bie%C5%BC%C4%85cym-kontek%C5%9Bcie)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -9562,17 +8676,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -9714,7 +8817,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy ról podmiotu",
-        "description": " Metoda pozwala na **odczytanie listy ról podmiotu bieżącego kontekstu logowania**.\n\n#### Role podmiotów zwracane przez operację:\n- **CourtBailiff** – komornik sądowy  \n- **EnforcementAuthority** – organ egzekucyjny  \n- **LocalGovernmentUnit** – nadrzędna JST  \n- **LocalGovernmentSubUnit** – podrzędne JST  \n- **VatGroupUnit** – grupa VAT  \n- **VatGroupSubUnit** – członek grupy VAT\n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n \n > Więcej informacji:\n > - [Pobieranie listy ról](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-r%C3%B3l-podmiotu)\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`.",
+        "description": " Metoda pozwala na **odczytanie listy ról podmiotu bieżącego kontekstu logowania**.\n\n#### Role podmiotów zwracane przez operację:\n- **CourtBailiff** – komornik sądowy  \n- **EnforcementAuthority** – organ egzekucyjny  \n- **LocalGovernmentUnit** – nadrzędna JST  \n- **LocalGovernmentSubUnit** – podrzędne JST  \n- **VatGroupUnit** – grupa VAT  \n- **VatGroupSubUnit** – członek grupy VAT\n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n \n > Więcej informacji:\n > - [Pobieranie listy ról](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-r%C3%B3l-podmiotu)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -9737,17 +8840,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -9864,7 +8956,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy podmiotów podrzędnych",
-        "description": " Metoda pozwala na odczytanie listy podmiotów podrzędnych,  \n jeżeli podmiot bieżącego kontekstu ma rolę podmiotu nadrzędnego:\n - **nadrzędna JST** – odczytywane są podrzędne JST,  \n - **grupa VAT** – odczytywane są podmioty będące członkami grupy VAT.\n\n Role podmiotów zwracane przez operację obejmują:  \n - **LocalGovernmentSubUnit** – podrzędne JST,  \n - **VatGroupSubUnit** – członek grupy VAT.\n\n Odpowiedź może być filtrowana według parametru:  \n - **subordinateEntityIdentifier** – identyfikator podmiotu podrzędnego.\n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n  \n > Więcej informacji:\n > - [Pobieranie listy podmiotów podrzędnych](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-podmiot%C3%B3w-podrz%C4%99dnych)\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
+        "description": " Metoda pozwala na odczytanie listy podmiotów podrzędnych,  \n jeżeli podmiot bieżącego kontekstu ma rolę podmiotu nadrzędnego:\n - **nadrzędna JST** – odczytywane są podrzędne JST,  \n - **grupa VAT** – odczytywane są podmioty będące członkami grupy VAT.\n\n Role podmiotów zwracane przez operację obejmują:  \n - **LocalGovernmentSubUnit** – podrzędne JST,  \n - **VatGroupSubUnit** – członek grupy VAT.\n\n Odpowiedź może być filtrowana według parametru:  \n - **subordinateEntityIdentifier** – identyfikator podmiotu podrzędnego.\n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n  \n > Więcej informacji:\n > - [Pobieranie listy podmiotów podrzędnych](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-podmiot%C3%B3w-podrz%C4%99dnych)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `SubunitManage`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -9887,17 +8979,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -10038,7 +9119,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień podmiotowych do obsługi faktur",
-        "description": " Metoda pozwala na odczytanie uprawnień podmiotowych:  \n - otrzymanych przez podmiot bieżącego kontekstu  \n - nadanych przez podmiot bieżącego kontekstu  \n\n Wybór listy nadanych lub otrzymanych uprawnień odbywa się przy użyciu parametru **queryType**.  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **SelfInvoicing** – wystawianie faktur w trybie samofakturowania  \n - **TaxRepresentative** – wykonywanie operacji przedstawiciela podatkowego  \n - **RRInvoicing** – wystawianie faktur VAT RR  \n - **PefInvoicing** – wystawianie faktur PEF  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **authorizingIdentifier** – identyfikator podmiotu uprawniającego (stosowane przy queryType = Received)  \n - **authorizedIdentifier** – identyfikator podmiotu uprawnionego (stosowane przy queryType = Granted)  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-podmiotowych-do-obs%C5%82ugi-faktur)\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `PefInvoiceWrite`.",
+        "description": " Metoda pozwala na odczytanie uprawnień podmiotowych:  \n - otrzymanych przez podmiot bieżącego kontekstu  \n - nadanych przez podmiot bieżącego kontekstu  \n\n Wybór listy nadanych lub otrzymanych uprawnień odbywa się przy użyciu parametru **queryType**.  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **SelfInvoicing** – wystawianie faktur w trybie samofakturowania  \n - **TaxRepresentative** – wykonywanie operacji przedstawiciela podatkowego  \n - **RRInvoicing** – wystawianie faktur VAT RR  \n - **PefInvoicing** – wystawianie faktur PEF  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **authorizingIdentifier** – identyfikator podmiotu uprawniającego (stosowane przy queryType = Received)  \n - **authorizedIdentifier** – identyfikator podmiotu uprawnionego (stosowane przy queryType = Granted)  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n\n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-podmiotowych-do-obs%C5%82ugi-faktur)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `PefInvoiceWrite`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -10061,17 +9142,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
@@ -10230,7 +9300,7 @@
           "Wyszukiwanie nadanych uprawnień"
         ],
         "summary": "Pobranie listy uprawnień administratorów lub reprezentantów podmiotów unijnych uprawnionych do samofakturowania",
-        "description": " Metoda pozwala na odczytanie uprawnień administratorów lub reprezentantów podmiotów unijnych:  \n - Jeżeli kontekstem logowania jest NIP, możliwe jest odczytanie uprawnień administratorów podmiotów unijnych powiązanych z podmiotem bieżącego kontekstu, czyli takich, dla których pierwszy człon kontekstu złożonego jest równy NIP-owi kontekstu logowania.  \n - Jeżeli kontekst logowania jest złożony (NIP-VAT UE), możliwe jest pobranie wszystkich uprawnień administratorów i reprezentantów podmiotu w bieżącym kontekście złożonym.  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **VatUeManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **vatUeIdentifier** – identyfikator podmiotu unijnego  \n - **authorizedFingerprintIdentifier** – odcisk palca certyfikatu uprawnionej osoby lub podmiotu  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n \n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-administrator%C3%B3w-lub-reprezentant%C3%B3w-podmiot%C3%B3w-unijnych-uprawnionych-do-samofakturowania)\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `VatUeManage`.",
+        "description": " Metoda pozwala na odczytanie uprawnień administratorów lub reprezentantów podmiotów unijnych:  \n - Jeżeli kontekstem logowania jest NIP, możliwe jest odczytanie uprawnień administratorów podmiotów unijnych powiązanych z podmiotem bieżącego kontekstu, czyli takich, dla których pierwszy człon kontekstu złożonego jest równy NIP-owi kontekstu logowania.  \n - Jeżeli kontekst logowania jest złożony (NIP-VAT UE), możliwe jest pobranie wszystkich uprawnień administratorów i reprezentantów podmiotu w bieżącym kontekście złożonym.  \n\n Uprawnienia zwracane przez operację obejmują:  \n - **VatUeManage** – zarządzanie uprawnieniami w ramach podmiotu unijnego  \n - **InvoiceWrite** – wystawianie faktur  \n - **InvoiceRead** – przeglądanie faktur  \n - **Introspection** – przeglądanie historii sesji  \n\n Odpowiedź może być filtrowana na podstawie następujących parametrów:  \n - **vatUeIdentifier** – identyfikator podmiotu unijnego  \n - **authorizedFingerprintIdentifier** – odcisk palca certyfikatu uprawnionej osoby lub podmiotu  \n - **permissionTypes** – lista rodzajów wyszukiwanych uprawnień  \n\n#### Stronicowanie wyników\nZapytanie zwraca **jedną stronę wyników** o numerze i rozmiarze podanym w ścieżce.\n- Przy pierwszym wywołaniu należy ustawić parametr `pageOffset = 0`.  \n- Jeżeli dostępna jest kolejna strona wyników, w odpowiedzi pojawi się flaga **`hasMore`**.  \n- W takim przypadku można wywołać zapytanie ponownie z kolejnym numerem strony.\n \n > Więcej informacji:\n > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-administrator%C3%B3w-lub-reprezentant%C3%B3w-podmiot%C3%B3w-unijnych-uprawnionych-do-samofakturowania)\n\n**Headers:**\n\n`X-Error-Format: problem-details` - ustawienie tego nagłówka powoduje zwracanie błędów w formacie **Problem Details** (`application/problem+json`).\n\n**Sortowanie:**\n\n- startDate (Desc)\n- id (Asc)\n\n\n\n**Wymagane uprawnienia**: `CredentialsManage`, `CredentialsRead`, `VatUeManage`.",
         "parameters": [
           {
             "name": "pageOffset",
@@ -10253,17 +9323,6 @@
               "type": "integer",
               "format": "int32",
               "default": 10
-            }
-          },
-          {
-            "name": "X-Error-Format",
-            "in": "header",
-            "description": "Opcjonalny nagłówek przełączający format błędów na Problem Details",
-            "schema": {
-              "enum": [
-                "problem-details"
-              ],
-              "type": "string"
             }
           }
         ],
