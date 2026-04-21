@@ -9,7 +9,7 @@ Faktura musi spełniać łącznie następujące wymagania:
 - musi być przygotowana jako poprawny dokument XML, zgodny z regułami XML 1.0,
 - musi być kodowana w UTF-8 bez znaku BOM (3 pierwsze bajty 0xEF 0xBB 0xBF),
 - musi być zgodna z zadeklarowanym schematem podanym przy otwarciu sesji,
-- może zawierać prolog XML, ale jeżeli prolog występuje, to nie może wskazywać kodowania innego niż UTF-8,
+- może zawierać prolog XML, przy czym jeżeli jest on obecny, nie może wskazywać kodowania innego niż UTF-8,
 - nie może zawierać instrukcji przetwarzania XML (processing instructions),
 - nie może zawierać niezalecanych znaków Unicode określonych w specyfikacji [XML W3C](https://www.w3.org/TR/xml/#charsets), tj. znaków z zakresów:  
   [#x7F-#x84], [#x86-#x9F], [#xFDD0-#xFDEF],   
