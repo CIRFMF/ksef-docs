@@ -1,7 +1,14 @@
 ## Sesja – sprawdzenie stanu i pobranie UPO
-10.07.2025
+20.04.2026
 
 Niniejszy dokument opisuje operacje służące do monitorowania stanu sesji (interaktywnej lub wsadowej) oraz pobierania UPO dla faktur i całej sesji.
+
+### Diagramy stanów
+
+#### Sesja interaktywna
+![diagram stanów](sesja-interaktywna-diagram-stanow.png)
+#### Sesja wsadowa
+![diagram stanów](sesja-wsadowa-diagram-stanow.png)
 
 ### 1. Pobranie listy sesji
 Zwraca listę sesji spełniających podane kryteria wyszukiwania.
@@ -292,4 +299,4 @@ byte[] sessionUpo = ksefClient.getSessionUpo(sessionReferenceNumber, upoReferenc
 ```
 
 ## Powiązane dokumenty
-- [Numer KSeF – struktura i walidacja](numer-ksef.md)
+- [Numer KSeF – struktura i walidacja](../numer-ksef.md)

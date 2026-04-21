@@ -145,6 +145,6 @@ ksefClient.closeOnlineSession(sessionReferenceNumber, accessToken);
 ```
 
 Powiązane dokumenty: 
-- [Sprawdzenie stanu i pobranie UPO](faktury/sesja-sprawdzenie-stanu-i-pobranie-upo.md)
+- [Sprawdzenie stanu i pobranie UPO](faktury/sesje/sesja-sprawdzenie-stanu-i-pobranie-upo.md)
 - [Weryfikacja faktury](faktury/weryfikacja-faktury.md)
 - [Numer KSeF – struktura i walidacja](faktury/numer-ksef.md)
