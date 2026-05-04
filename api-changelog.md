@@ -3,7 +3,8 @@
 ### Wersja 2.5.0
 
 - **OpenAPI**  
-  Uzupełniono opisy parametru `certificateSerialNumber` o format i ograniczenia (`minLength/maxLength: 16`, `pattern: ^[0-9A-F]{16}$`). Zmiana ma charakter dokumentacyjny - nie wprowadza dodatkowej walidacji po stronie API i nie zmienia zachowania endpointów (np. POST `/certificates/retrieve`).
+  - Uzupełniono opisy parametru `certificateSerialNumber` o format i ograniczenia (`minLength/maxLength: 16`, `pattern: ^[0-9A-F]{16}$`). Zmiana ma charakter dokumentacyjny - nie wprowadza dodatkowej walidacji po stronie API i nie zmienia zachowania endpointów (np. POST `/certificates/retrieve`).
+  - Usunięto wartości związane z fakturami RR, wcześniej oznaczone jako deprecated (m.in. `InvoiceQueryFormType.RR`).
 
 ### Wersja 2.4.0
 
