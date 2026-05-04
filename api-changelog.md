@@ -1,5 +1,10 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.5.0
+
+- **OpenAPI**  
+  Uzupełniono opisy parametru `certificateSerialNumber` o format i ograniczenia (`minLength/maxLength: 16`, `pattern: ^[0-9A-F]{16}$`). Zmiana ma charakter dokumentacyjny - nie wprowadza dodatkowej walidacji po stronie API i nie zmienia zachowania endpointów (np. POST `/certificates/retrieve`).
+
 ### Wersja 2.4.0
 
 | Środowisko | Data wdrożenia | Uwagi                                                            |

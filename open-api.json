@@ -899,6 +899,9 @@
             "description": "Numer seryjny certyfikatu (w formacie szesnastkowym).",
             "required": true,
             "schema": {
+              "maxLength": 16,
+              "minLength": 16,
+              "pattern": "^[0-9A-F]{16}$",
               "type": "string"
             }
           }
@@ -10438,6 +10441,9 @@
             "description": "Informacje o aktualnym statusie.\n| Code | Description | Details |\n| --- | --- | --- |\n| 100 | Wniosek przyjęty do realizacji | - |\n| 200 | Wniosek obsłużony (certyfikat wygenerowany) | - |\n| 400 | Wniosek odrzucony | Klucz publiczny został już certyfikowany przez inny podmiot. |\n| 400 | Wniosek odrzucony | Osiągnięto dopuszczalny limit posiadanych certyfikatów. |\n| 500 | Nieznany błąd | - |\n| 550 | Operacja została anulowana przez system | Przetwarzanie zostało przerwane z przyczyn wewnętrznych systemu. Spróbuj ponownie |"
           },
           "certificateSerialNumber": {
+            "maxLength": 16,
+            "minLength": 16,
+            "pattern": "^[0-9A-F]{16}$",
             "type": "string",
             "description": "Numer seryjny wygenerowanego certyfikatu (w formacie szesnastkowym). \nZwracany w przypadku prawidłowego przeprocesowania wniosku certyfikacyjnego.",
             "nullable": true
@@ -10518,6 +10524,9 @@
         "type": "object",
         "properties": {
           "certificateSerialNumber": {
+            "maxLength": 16,
+            "minLength": 16,
+            "pattern": "^[0-9A-F]{16}$",
             "type": "string",
             "description": "Numer seryjny certyfikatu (w formacie szesnastkowym)."
           },
@@ -15313,6 +15322,9 @@
         "type": "object",
         "properties": {
           "certificateSerialNumber": {
+            "maxLength": 16,
+            "minLength": 16,
+            "pattern": "^[0-9A-F]{16}$",
             "type": "string",
             "description": "Numer seryjny certyfikatu. Wyszukiwanie odbywa się na zasadzie dokładnego dopasowania (exact match).",
             "nullable": true
@@ -15717,6 +15729,9 @@
             "description": "Nazwa własna certyfikatu."
           },
           "certificateSerialNumber": {
+            "maxLength": 16,
+            "minLength": 16,
+            "pattern": "^[0-9A-F]{16}$",
             "type": "string",
             "description": "Numer seryjny certyfikatu."
           },
@@ -15741,6 +15756,9 @@
             "minItems": 1,
             "type": "array",
             "items": {
+              "maxLength": 16,
+              "minLength": 16,
+              "pattern": "^[0-9A-F]{16}$",
               "type": "string"
             },
             "description": "Numery seryjne certyfikatów do pobrania."
