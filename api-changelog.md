@@ -2,6 +2,15 @@
 
 ### Wersja 2.5.0
 
+- **Klucze publiczne KSeF (rotacja i selekcja kluczy)**  
+  Wprowadzono przekazywanie selektora `keyId` w żądaniach do operacji, w których klient szyfruje dane kluczem publicznym KSeF - umożliwia to jednoznaczną identyfikację użytego klucza oraz poprawną i automatyczną obsługę re-certyfikacji/rotacji. Rozszerzenie dotyczy endpointów: 
+    - POST `/auth/token`, 
+    - POST `/sessions/online`, 
+    - POST `/sessions/batch`, 
+    - POST `/invoices/exports`.  
+  
+  Dodatkowo uzupełniono [dokumentację](bezpieczenstwo/klucze-publiczne-do-szyfrowania.md) o opis publikacji i rotacji kluczy publicznych.
+
 - **OpenAPI**  
   - Uzupełniono opisy parametru `certificateSerialNumber` o format i ograniczenia (`minLength/maxLength: 16`, `pattern: ^[0-9A-F]{16}$`). Zmiana ma charakter dokumentacyjny - nie wprowadza dodatkowej walidacji po stronie API i nie zmienia zachowania endpointów (np. POST `/certificates/retrieve`).
   - Usunięto wartości związane z fakturami RR, wcześniej oznaczone jako deprecated (m.in. `InvoiceQueryFormType.RR`).

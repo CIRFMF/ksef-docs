@@ -26,6 +26,8 @@ Przewodnik został podzielony na tematyczne sekcje, odpowiadające kluczowym fun
   * [Pobieranie faktur](pobieranie-faktur/pobieranie-faktur.md)
   * [Przyrostowe pobieranie faktur](pobieranie-faktur/przyrostowe-pobieranie-faktur.md)
 * [Zarządzanie tokenami KSeF](tokeny-ksef.md)
+* Bezpieczeństwo
+  * [Klucze publiczne do szyfrowania](bezpieczenstwo/klucze-publiczne-do-szyfrowania.md)
 * [Limity](limity/limity.md)
 * [Dane testowe](dane-testowe-scenariusze.md)
 
