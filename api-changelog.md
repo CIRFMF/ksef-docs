@@ -11,6 +11,9 @@
   
   Dodatkowo uzupełniono [dokumentację](bezpieczenstwo/klucze-publiczne-do-szyfrowania.md) o opis publikacji i rotacji kluczy publicznych.
 
+- **Limity API**  
+  Zrównano domyślne limity API na środowisku TEST z wartościami obowiązującymi na PRD. Na środowisku TEST nadal dostępne są endpointy z grupy `/testdata/rate-limits`, umożliwiające testowanie niestandardowych profili limitów.
+
 - **OpenAPI**  
   - Uzupełniono opisy parametru `certificateSerialNumber` o format i ograniczenia (`minLength/maxLength: 16`, `pattern: ^[0-9A-F]{16}$`). Zmiana ma charakter dokumentacyjny - nie wprowadza dodatkowej walidacji po stronie API i nie zmienia zachowania endpointów (np. POST `/certificates/retrieve`).
   - Usunięto wartości związane z fakturami RR, wcześniej oznaczone jako deprecated (m.in. `InvoiceQueryFormType.RR`).
