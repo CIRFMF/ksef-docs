@@ -1,4 +1,5 @@
 # Klucze publiczne do szyfrowania
+05.05.2026
 
 Dokument opisuje, w jaki sposób KSeF publikuje **klucze publiczne wykorzystywane do szyfrowania po stronie klienta**, jak przebiegają procesy **rotacji** oraz jak poprawnie obsłużyć scenariusz przełączenia na nowy klucz.
 

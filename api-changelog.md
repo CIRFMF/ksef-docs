@@ -1,6 +1,11 @@
 ## Zmiany w API 2.0
 
 ### Wersja 2.5.0
+| Środowisko | Data wdrożenia |
+| ---------- | -------------: |
+| **TEST**   |     06.05.2026 |
+| **DEMO**   |     07.05.2026 |
+| **PRD**    |     11.05.2026 |
 
 - **Klucze publiczne KSeF (rotacja i selekcja kluczy)**  
   Wprowadzono przekazywanie selektora `keyId` w żądaniach do operacji, w których klient szyfruje dane kluczem publicznym KSeF - umożliwia to jednoznaczną identyfikację użytego klucza oraz poprawną i automatyczną obsługę re-certyfikacji/rotacji. Rozszerzenie dotyczy endpointów: 
