@@ -16,6 +16,10 @@
   
   Dodatkowo uzupełniono [dokumentację](bezpieczenstwo/klucze-publiczne-do-szyfrowania.md) o opis publikacji i rotacji kluczy publicznych.
 
+- **Uwierzytelnienie z wykorzystaniem podpisu XAdES (POST `/auth/xades-signature`)**  
+  - Rozszerzono obsługę dokumentu `AuthTokenRequest` o wersję schemy 2.1 (przy zachowaniu kompatybilności ze schemą 2.0).
+  - W schemie 2.1 zaktualizowano wyrażenia regularne dla adresów IP (`Ip4Address`, `Ip4Range`, `Ip4Mask`), aby były zgodne z typowymi parserami.
+
 - **Limity API**  
   Zrównano domyślne limity API na środowisku TEST z wartościami obowiązującymi na PRD. Na środowisku TEST nadal dostępne są endpointy z grupy `/testdata/rate-limits`, umożliwiające testowanie niestandardowych profili limitów.
 
