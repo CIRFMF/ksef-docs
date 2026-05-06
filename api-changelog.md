@@ -8,7 +8,7 @@
 | **PRD**    |     11.05.2026 |
 
 - **Klucze publiczne KSeF (rotacja i selekcja kluczy)**  
-  Wprowadzono przekazywanie selektora `keyId` w żądaniach do operacji, w których klient szyfruje dane kluczem publicznym KSeF - umożliwia to jednoznaczną identyfikację użytego klucza oraz poprawną i automatyczną obsługę re-certyfikacji/rotacji. Rozszerzenie dotyczy endpointów: 
+  Wprowadzono przekazywanie selektora `publicKeyId` w żądaniach do operacji, w których klient szyfruje dane kluczem publicznym KSeF - umożliwia to jednoznaczną identyfikację użytego klucza oraz poprawną i automatyczną obsługę re-certyfikacji/rotacji. Rozszerzenie dotyczy endpointów: 
     - POST `/auth/token`, 
     - POST `/sessions/online`, 
     - POST `/sessions/batch`, 
