@@ -129,7 +129,7 @@ Takie podejście jest dopuszczalne jedynie w profilach o niskim wolumenie; przy 
 | Endpoint | | req/s | req/min | req/h |
 |----------|---|-------|---------|-------|
 | Pobranie listy metadanych faktur | POST /invoices/query/metadata | 8 | 16 | 20 |
-| Eksport paczki faktur | POST /invoices/exports | 4 | 8 | 20 |
+| Eksport paczki faktur | POST /invoices/exports | 8 | 16 | 20 |
 | Pobranie statusu eksportu paczki faktur | /invoices/exports/{referenceNumber} | 10 | 60 | 600 |
 | Pobranie faktury po numerze KSeF | GET /invoices/ksef/{ksefNumber} | 8 | 16 | 64 |
 
