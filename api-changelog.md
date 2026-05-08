@@ -9,7 +9,7 @@
 
 - **Klucze publiczne KSeF (rotacja i selekcja kluczy)**  
   Wprowadzono przekazywanie selektora `publicKeyId` w żądaniach do operacji, w których klient szyfruje dane kluczem publicznym KSeF - umożliwia to jednoznaczną identyfikację użytego klucza oraz poprawną i automatyczną obsługę re-certyfikacji/rotacji. Rozszerzenie dotyczy endpointów: 
-    - POST `/auth/token`, 
+    - POST `/auth/ksef-token`, 
     - POST `/sessions/online`, 
     - POST `/sessions/batch`, 
     - POST `/invoices/exports`.  
