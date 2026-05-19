@@ -10,6 +10,7 @@
 
 - **OpenAPI**  
   - Dodano opcjonalny nagłówek odpowiedzi `X-System-Warning`, pozwalający przekazać ostrzeżenia techniczne bez wpływu na wynik operacji (np. gdy wykryto zachowanie, które w przyszłości może skutkować odrzuceniem żądania). Na środowisku TEST ostrzeżenie można wymusić nagłówkiem `X-Test-System-Warning`.
+  - Ujednolicono wyrażenia regularne dla adresów IP (`Ip4Address`, `Ip4Range`, `Ip4Mask`) w POST `/auth/ksef-token` - zastosowano te same patterny, co w schemie AuthTokenRequest 2.1.
   - Uzupełniono brakujący opis dla `InvoiceMetadataThirdSubject` ("Identyfikator podmiotu trzeciego.").
 
 ### Wersja 2.5.0
