@@ -9,7 +9,8 @@
 
 
 - **OpenAPI**  
-  Dodano opcjonalny nagłówek odpowiedzi `X-System-Warning`, pozwalający przekazać ostrzeżenia techniczne bez wpływu na wynik operacji (np. gdy wykryto zachowanie, które w przyszłości może skutkować odrzuceniem żądania). Na środowisku TEST ostrzeżenie można wymusić nagłówkiem `X-Test-System-Warning`.
+  - Dodano opcjonalny nagłówek odpowiedzi `X-System-Warning`, pozwalający przekazać ostrzeżenia techniczne bez wpływu na wynik operacji (np. gdy wykryto zachowanie, które w przyszłości może skutkować odrzuceniem żądania). Na środowisku TEST ostrzeżenie można wymusić nagłówkiem `X-Test-System-Warning`.
+  - Uzupełniono brakujący opis dla `InvoiceMetadataThirdSubject` ("Identyfikator podmiotu trzeciego.").
 
 ### Wersja 2.5.0
 | Środowisko | Data wdrożenia |

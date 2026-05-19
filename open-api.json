@@ -13827,7 +13827,8 @@
               {
                 "$ref": "#/components/schemas/InvoiceMetadataThirdSubjectIdentifier"
               }
-            ]
+            ],
+            "description": "Identyfikator podmiotu trzeciego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Identyfikator wewnętrzny, składający się z numeru NIP i 5 cyfr. |\n| VatUe | Identyfikator VAT UE podmiotu unijnego. |\n| Other | Inny identyfikator|\n| None  | Brak identyfikatora podmiotu trzeciego |"
           },
           "name": {
             "maxLength": 512,
@@ -13862,7 +13863,8 @@
             "description": "Wartość identyfikatora podmiotu trzeciego.",
             "nullable": true
           }
-        }
+      },
+        "description": "Identyfikator podmiotu trzeciego.\n| Type | Value |\n| --- | --- |\n| Nip | 10 cyfrowy numer NIP |\n| InternalId | Identyfikator wewnętrzny, składający się z numeru NIP i 5 cyfr |\n| VatUe | Identyfikator VAT UE podmiotu unijnego |\n| Other | Inny identyfikator |\n| None  | Brak identyfikatora podmiotu trzeciego |"
       },
       "InvoicePackage": {
         "required": [
