@@ -1,5 +1,16 @@
 ## Zmiany w API 2.0
 
+### Wersja 2.6.0
+| Środowisko | Data wdrożenia |
+| ---------- | -------------: |
+| **TEST**   |     19.05.2026 |
+| **DEMO**   |     21.05.2026 |
+| **PRD**    |     26.05.2026 |
+
+
+- **OpenAPI**  
+  Dodano opcjonalny nagłówek odpowiedzi `X-System-Warning`, pozwalający przekazać ostrzeżenia techniczne bez wpływu na wynik operacji (np. gdy wykryto zachowanie, które w przyszłości może skutkować odrzuceniem żądania). Na środowisku TEST ostrzeżenie można wymusić nagłówkiem `X-Test-System-Warning`.
+
 ### Wersja 2.5.0
 | Środowisko | Data wdrożenia |
 | ---------- | -------------: |
