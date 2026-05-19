@@ -10790,6 +10790,15 @@
             ],
             "description": "Skrót SHA256 pliku paczki, zakodowany w formacie Base64."
           },
+          "compressionType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CompressionType"
+              }
+            ],
+            "description": "Typ kompresji pliku paczki. Obsługiwane typy: Zip oraz TarGz. Domyślna kompresja to Zip.",
+            "nullable": true
+          },
           "fileParts": {
             "maxItems": 50,
             "minItems": 1,
@@ -11235,6 +11244,13 @@
         ],
         "type": "string",
         "description": "| Wartość | Opis |\n| --- | --- |\n| InProgress | Sesja aktywna. |\n| Succeeded | Sesja przetworzona poprawnie.            W trakcie przetwarzania sesji nie wystąpiły żadne błędy, ale część faktur nadal mogła zostać odrzucona. |\n| Failed | Sesja nie przetworzona z powodu błędów.            Na etapie rozpoczynania lub kończenia sesji wystąpiły błędy, które nie pozwoliły na jej poprawne przetworzenie. |\n| Cancelled | Sesja anulowania.            Został przekroczony czas na wysyłkę w sesji wsadowej, lub nie przesłano żadnych faktur w sesji interaktywnej. |\n"
+      },
+      "CompressionType": {
+        "enum": [
+          "Zip",
+          "TarGz"
+        ],
+        "type": "string"
       },
       "CurrencyCode": {
         "enum": [
@@ -13496,7 +13512,16 @@
               }
             ],
             "description": "Zestaw filtrów do wyszukiwania faktur."
+          },
+          "compressionType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CompressionType"
           }
+            ],
+            "description": "Typ kompresji. Obsługiwane typy: Zip oraz TarGz. Domyślna kompresja to Zip.",
+            "nullable": true
+        }
         }
       },
       "InvoiceExportStatusResponse": {

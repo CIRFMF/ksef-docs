@@ -138,18 +138,33 @@ Takie podejście jest dopuszczalne jedynie w profilach o niskim wolumenie; przy 
 ## Wysyłka faktur - limity
 
 ### Założenia architektoniczne
-- Wysyłka faktur bez względu na typ wysyłki jest kolejkowana.
-- Przetwarzanie jest zoptymalizowane pod jak najszybsze potwierdzenie poprawności faktury i zwrócenie numeru KSeF.
+- Wysyłka faktur, niezależnie od trybu, jest kolejkowana.
+- Przetwarzanie jest zoptymalizowane pod jak najszybsze potwierdzenie poprawności faktury i nadanie numeru KSeF.
 
 #### Wysyłka wsadowa (paczki faktur):
 
-- Paczka faktur jest traktowana jako jedna wiadomość w kolejce (referencja do paczki zamiast osobnych wpisów dla każdej faktury) i przetwarzana z takim samym priorytetem jak pojedynczy dokument.
-- Wysyłka w paczce ogranicza narzut sieciowy i operacyjny, ponieważ:
-	- wykonywana jest mniejsza liczba żądań HTTP,
-	- operacje na zawartości (odszyfrowanie, walidacja, zapis) wykonywane są batchowo, co stanowi najwydajniejszy sposób obsługi wielu dokumentów jednocześnie.
-- Kompresja wsadu. Ze względu na format XML i wysoką powtarzalność elementów między fakturami (stała struktura, podobne nazwy pól, powtarzalne bloki) osiągany współczynnik kompresji jest zwykle bardzo korzystny, co znacząco zmniejsza wolumen danych i skraca czas transmisji. W praktyce szybciej jest przesłać jedną paczkę zawierającą np. 100 faktur niż 100 pojedynczych faktur w sesji interaktywnej.
-- Limity. Mechanizm limitów działa niezależnie od trybu wysyłki. Wysyłka wsadowa z natury zmniejsza liczbę żądań i ułatwia efektywne wykorzystanie dostępnych limitów.
-- Zastosowanie. Tryb wsadowy zalecany jest wszędzie tam, gdzie w jednym oknie operacyjnym przekazywanych jest więcej niż jeden dokument. W szczególności sprawdza się przy rozliczeniach cyklicznych klientów, w e-commerce oraz w zautomatyzowanych procesach fakturowania.
+Wysyłka wsadowa jest rekomendowanym trybem przekazywania większej liczby faktur.
+
+- **Jedna paczka, jedna wiadomość w kolejce.**  
+  Paczka faktur jest traktowana jako jedna wiadomość w kolejce — jako referencja do paczki, a nie jako osobny wpis dla każdej faktury. Jest przetwarzana z takim samym priorytetem jak pojedynczy dokument.
+
+- **Mniejszy narzut komunikacyjny.**  
+  Wysyłka w paczce ogranicza liczbę żądań HTTP oraz zmniejsza narzut sieciowy i operacyjny po stronie klienta oraz API.
+
+- **Wydajniejsze przetwarzanie wielu dokumentów.**  
+  Operacje na zawartości paczki, takie jak odszyfrowanie, walidacja i zapis, są wykonywane batchowo, co stanowi najwydajniejszy sposób obsługi wielu dokumentów jednocześnie.
+
+- **Kompresja wsadu.**  
+  Wysyłka wsadowa pozwala przesłać wiele faktur jako jedną skompresowaną paczkę. 
+
+  Dla większych paczek rekomendowane jest użycie formatu **tar.gz** zamiast domyślnego ZIP. **tar.gz** kompresuje całą paczkę jako jeden strumień danych i lepiej wykorzystuje powtarzalność struktury XML między fakturami. ZIP kompresuje każdy plik osobno, dlatego daje słabszy efekt dla dużych zbiorów podobnych dokumentów.
+
+- **Efektywniejsze wykorzystanie limitów.**  
+  Mechanizm limitów działa niezależnie od trybu wysyłki. Wysyłka wsadowa z natury zmniejsza liczbę żądań do API, dzięki czemu ułatwia efektywne wykorzystanie dostępnych limitów. W praktyce przesłanie jednej paczki zawierającej np. 100 faktur jest zwykle korzystniejsze niż wysłanie 100 pojedynczych faktur w sesji interaktywnej.
+
+- **Zastosowanie.**  
+  Tryb wsadowy zalecany jest wszędzie tam, gdzie w jednym oknie operacyjnym przekazywany jest więcej niż jeden dokument. W szczególności sprawdza się przy rozliczeniach cyklicznych klientów, w e-commerce oraz w zautomatyzowanych procesach fakturowania.
+
 
 Przykładowe scenariusze zastosowania trybu wsadowego:
 - **Sklep internetowy (e-commerce).** Zamówienia i płatności są przetwarzane asynchronicznie, a faktury wystawiane automatycznie przez system ERP lub moduł fakturowania. Pojedyncza faktura nie musi być przesyłane do KSeF natychmiast po wystawieniu. Wydzielony proces może agregować wystawione faktury i cyklicznie - np. co 5 minut - przesyłać je w paczkach wsadowych do KSeF, co znacząco ogranicza liczbę żądań HTTP i optymalizuje wykorzystanie limitów.

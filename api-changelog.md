@@ -7,6 +7,8 @@
 | **DEMO**   |     21.05.2026 |
 | **PRD**    |     26.05.2026 |
 
+  - **Wysyłka wsadowa (POST `/sessions/batch`) oraz eksport paczki faktur (POST `/invoices/exports`)**  
+  Dodano typ kompresji `TarGz` jako alternatywę dla `Zip`. Format `TarGz` jest rekomendowany ze względu na możliwość uzyskania lepszego współczynnika kompresji dla paczek zawierających wiele podobnych dokumentów XML. Domyślnym typem kompresji pozostaje `Zip` w celu zachowania kompatybilności.
 
 - **OpenAPI**  
   - Dodano opcjonalny nagłówek odpowiedzi `X-System-Warning`, pozwalający przekazać ostrzeżenia techniczne bez wpływu na wynik operacji (np. gdy wykryto zachowanie, które w przyszłości może skutkować odrzuceniem żądania). Na środowisku TEST ostrzeżenie można wymusić nagłówkiem `X-Test-System-Warning`.
